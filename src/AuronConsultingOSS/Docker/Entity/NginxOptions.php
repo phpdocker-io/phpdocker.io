@@ -1,7 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Entity;
 
-class Nginx
+class NginxOptions
 {
-
+    protected $portNumber;
 }
