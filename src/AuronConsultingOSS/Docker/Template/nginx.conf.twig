@@ -1,0 +1,57 @@
+server {
+    listen 80 default;
+
+{% if isSymfonyApp %}
+    root {{ workdir }}/web;
+    
+    rewrite ^/app\.php/?(.*)$ /$1 permanent;
+    
+    try_files $uri @rewriteapp;
+    
+    location @rewriteapp {
+        rewrite ^(.*)$ /app.php/$1 last;
+    }
+    
+    # Deny all . files
+    location ~ /\. {
+        deny all;
+    }
+    
+    location ~ ^/(app|app_dev)\.php(/|$) {
+        fastcgi_pass php-fpm:9000;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_index app.php;
+        send_timeout 1800;
+        fastcgi_read_timeout 1800;
+    }
+    
+    # Statics
+        location /(bundles|media) {
+        access_log off;
+        expires 30d;
+        try_files $uri @rewriteapp;
+    }
+    
+{% else %}
+
+    root {{ workdir }}/public;
+    index index.php;
+
+    if (!-e $request_filename) {
+        rewrite ^.*$ /index.php last;
+    }
+
+    access_log /var/log/nginx/{{ projectName }}.access.log;
+
+    location ~ \.php$ {
+        fastcgi_pass php-fpm:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectName }}_php_errors.log";
+        include /etc/nginx/fastcgi_params;
+    }
+    
+{% endif %}
+}

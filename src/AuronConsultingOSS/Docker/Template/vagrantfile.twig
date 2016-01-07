@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+unless Vagrant.has_plugin?("vagrant-host-shell")
+    raise 'Please install vagrant-host-shell plugin, eg `vagrant plugin install vagrant-host-shell`'
+end
+
+Vagrant.configure(2) do |config|
+    config.vm.box = "AntonioMeireles/coreos-stable"
+
+    config.vm.network "private_network", ip: "192.168.33.{{ random(255) }}"
+    config.vm.synced_folder ".", "/home/vagrant/{{ projectName }}", id: "{{ projectNameSlug }}-dev", nfs: true
+    config.vm.synced_folder "~/.composer/", "/home/vagrant/.composer", id: "{{ projectNameSlug }}-composer", nfs: true
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.name = "{{ projectName }}"
+        vb.memory = 1024
+        vb.cpus = 1
+    end
+
+    host_shell.inline = 'cd /home/vagrant/{{ projectName }} && docker-compose up 1>&2'
+end
