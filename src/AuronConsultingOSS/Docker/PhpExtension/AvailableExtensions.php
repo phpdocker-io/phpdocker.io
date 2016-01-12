@@ -15,10 +15,18 @@ class AvailableExtensions
     const EXTENSIONS_MAP = [
         # Extensions not included on dist
         'memcached'    => [
-            'dependencies' => [],
+            'dependencies' => ['libmemcached-dev'],
             'custom-dist'  => [
                 'tarball'             => 'https://codeload.github.com/php-memcached-dev/php-memcached/tar.gz/php7',
                 'uncompressed-folder' => 'php-memcached-php7'
+            ]
+        ],
+
+        'redis'    => [
+            'dependencies' => ['libmemcached-dev'],
+            'custom-dist'  => [
+                'tarball'             => 'https://codeload.github.com/phpredis/phpredis/tar.gz/php7',
+                'uncompressed-folder' => 'phpredis-php7'
             ]
         ],
 

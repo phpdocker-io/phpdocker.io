@@ -1,5 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Entity;
+use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
+use AuronConsultingOSS\Docker\PhpExtension\NotFoundException;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 
 /**
@@ -34,6 +36,20 @@ class PhpOptions extends AbstractServiceOptions
     public function getExtensions() : array
     {
         return $this->extensions;
+    }
+
+    /**
+     * Adds an extension given the name only.
+     *
+     * @param string $extensionName
+     *
+     * @return PhpOptions
+     */
+    public function addExtensionByName(string $extensionName) : self
+    {
+        $this->addExtension(AvailableExtensions::getPhpExtension($extensionName));
+
+        return $this;
     }
 
     /**

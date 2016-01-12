@@ -1,6 +1,5 @@
 <?php
 namespace AuronConsultingOSS\Docker\Archive;
-
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 
 /**
@@ -14,29 +13,29 @@ abstract class AbstractArchive implements ArchiveInterface
     /**
      * @var string
      */
-    protected $name;
+    protected $filename;
 
     /**
      * @var string
      */
-    protected $content;
+    protected $tmpFilename;
 
     /**
      * @return string
      */
-    public function getName() : string
+    public function getFilename() : string
     {
-        return $this->name;
+        return $this->filename;
     }
 
     /**
-     * @param string $name
+     * @param string $filename
      *
      * @return AbstractArchive
      */
-    public function setName(string $name) : self
+    public function setFilename(string $filename) : self
     {
-        $this->name = $name;
+        $this->filename = $filename;
 
         return $this;
     }
@@ -44,19 +43,19 @@ abstract class AbstractArchive implements ArchiveInterface
     /**
      * @return string
      */
-    public function getContent() : string
+    public function getTmpFilename() : string
     {
-        return $this->content;
+        return $this->tmpFilename;
     }
 
     /**
-     * @param string $content
+     * @param string $tmpFilename
      *
      * @return AbstractArchive
      */
-    public function setContent(string $content) : self
+    public function setTmpFilename(string $tmpFilename) : self
     {
-        $this->content = $content;
+        $this->tmpFilename = $tmpFilename;
 
         return $this;
     }

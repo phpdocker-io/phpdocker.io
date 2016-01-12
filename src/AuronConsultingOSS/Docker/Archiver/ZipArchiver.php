@@ -1,15 +1,27 @@
 <?php
 namespace AuronConsultingOSS\Docker\Archiver;
 
-use AuronConsultingOSS\Docker\Archive\AbstractArchiver;
+use AuronConsultingOSS\Docker\Archive\ZipFile;
+use AuronConsultingOSS\Docker\Exception\Archiver\NotCreatedException;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 
+/**
+ * Generates an in-memory zip archive.
+ *
+ * @package   AuronConsultingOSS\Docker\Archiver
+ * @copyright Auron Consulting Ltd
+ */
 class ZipArchiver extends AbstractArchiver
 {
+    /**
+     * @var \ZipArchive
+     */
     private $zipfile;
+
     public function __construct()
     {
         $this->zipfile = new \ZipArchive();
+        $this->zipfile->open(tempnam(sys_get_temp_dir(), get_class($this)), \ZipArchive::CREATE);
     }
 
     /**
@@ -20,7 +32,7 @@ class ZipArchiver extends AbstractArchiver
      *
      * @return ZipArchiver
      */
-    protected function addFile(string $filename, string $contents) : self
+    protected function addFile(string $filename, string $contents)
     {
         $this->zipfile->addFromString($filename, $contents);
 
@@ -30,11 +42,34 @@ class ZipArchiver extends AbstractArchiver
     /**
      * Actually generate and return archive.
      *
+     * @param string $archiveFilename
+     *
      * @return ArchiveInterface
+     * @throws NotCreatedException
      */
-    protected function generateArchive() : ArchiveInterface
+    protected function generateArchive(string $archiveFilename) : ArchiveInterface
     {
-        $this->zipfile->close();
-        return (string) $this->zipfile;
+        $filename = $this->zipfile->filename;
+
+        if ($this->zipfile->close() === false) {
+            throw new NotCreatedException('Archive creation failed for an unknown reason');
+        }
+
+        $file = new ZipFile();
+        $file
+            ->setFilename($archiveFilename)
+            ->setTmpFilename($filename);
+
+        return $file;
+    }
+
+    /**
+     * Returns the file extension for this particular archive.
+     *
+     * @return string
+     */
+    protected function getFileExtension() : string
+    {
+        return 'zip';
     }
 }

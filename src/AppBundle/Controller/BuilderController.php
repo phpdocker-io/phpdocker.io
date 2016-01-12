@@ -3,9 +3,13 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
+use AuronConsultingOSS\Docker\Generator\Factory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
  * Docker environment builder controller.
@@ -15,6 +19,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BuilderController extends Controller
 {
+    use ContainerAwareTrait;
+
     /**
      * @Route("/build-environment", name="homepage")
      */
@@ -26,8 +32,14 @@ class BuilderController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() === true) {
-            dump($project);
-            //return $this->redirectToRoute('task_success');
+            $generator = $this->container->get('docker_generator');
+            $zipFile = $generator->generate($project);
+
+            $response = new BinaryFileResponse($zipFile->getTmpFilename());
+            $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename());
+            $response->deleteFileAfterSend(true);
+
+            return $response;
         } elseif ($form->isValid() === false) {
             dump($form);
         }

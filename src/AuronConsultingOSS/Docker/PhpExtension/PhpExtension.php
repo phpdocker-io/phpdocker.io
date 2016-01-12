@@ -65,9 +65,9 @@ class PhpExtension
     }
 
     /**
-     * @return \stdClass
+     * @return \stdClass|null
      */
-    public function getCustomDist() : \stdClass
+    public function getCustomDist()
     {
         return $this->customDist;
     }

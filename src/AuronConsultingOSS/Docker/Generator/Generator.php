@@ -1,7 +1,8 @@
 <?php
-namespace AuronConsultingOSS\Docker;
+namespace AuronConsultingOSS\Docker\Generator;
 
-use AuronConsultingOSS\Docker\Archive\AbstractArchiver;
+
+use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
 use AuronConsultingOSS\Docker\Entity\Project;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
@@ -55,7 +56,7 @@ class Generator
             ->setNginxDockerConf($this->getNginxDockerConf($project))
             ->setNginxConf($this->getNginxConf($project));
 
-        return $this->archiver->getArchive();
+        return $this->archiver->getArchive($this->getProjectNameSlug($project));
     }
 
     /**
