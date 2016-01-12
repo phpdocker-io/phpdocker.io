@@ -39,7 +39,7 @@ class PhpType extends AbstractType
     private function getChoices()
     {
         $choices = [];
-        foreach (AvailableExtensions::EXTENSIONS_MAP as $name => $extension) {
+        foreach (AvailableExtensions::OPTIONAL_EXTENSIONS_MAP as $name => $extension) {
             $choices[$name] = $name;
         }
 

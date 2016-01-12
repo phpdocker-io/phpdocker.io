@@ -1,19 +1,29 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+
 {% if memcached %}
-memcached:
+{{ projectNameSlug }}-memcached:
   image: memcached:latest
   container_name: {{ projectNameSlug }}-memcached
 {% endif %}
 
 {% if mailcatcher %}
-mailcatcher:
+{{ projectNameSlug }}-mailcatcher:
   image: pataquets/mailcatcher
   container_name: {{ projectNameSlug }}-mailcatcher
   ports:
     - "{{ mailcatcherPort }}:1080"
 {% endif %}
 
+{% if redis %}
+{{ projectNameSlug }}-redis:
+  image: redis:latest
+  container_name: {{ projectNameSlug }}-redis
+{% endif %}
+
 {% if mysql %}
-mysql:
+{{ projectNameSlug }}-mysql:
   image: mysql:latest
   container_name: {{ projectNameSlug }}-database
   environment:
@@ -23,33 +33,39 @@ mysql:
     - MYSQL_PASSWORD={{ mysql.getPassword() }}
 {% endif %}
 
-webserver:
+{{ projectNameSlug }}-webserver:
   build: .
   dockerfile: docker/Dockerfile.nginx.conf
   container_name: {{ projectNameSlug }}-webserver
   volumes:
-      - .:{{ workdir }}
+      - ..:{{ workdir }}
   ports:
    - "{{ webserverPort }}:80"
   links:
-   - php-fpm
+   - {{ projectNameSlug }}-php-fpm
 
-php-fpm:
+{{ projectNameSlug }}-php-fpm:
   build: .
   dockerfile: docker/Dockerfile.php-fpm.conf
   container_name: {{ projectNameSlug }}-php
   volumes:
-    - .:{{ workdir }}
+    - ..:{{ workdir }}
 
 {% if mysql or memcached or mailcatcher %}
   links:
   {% if memcached %}
-    - memcached
+    - {{ projectNameSlug }}-memcached
   {% endif %}
+
   {% if mailcatcher %}
-    - mailcatcher
+    - {{ projectNameSlug }}-mailcatcher
   {% endif %}
+
   {% if mysql %}
-    - mysql
+    - {{ projectNameSlug }}-mysql
+  {% endif %}
+
+  {% if redis %}
+    - {{ projectNameSlug }}-redis
   {% endif %}
 {% endif %}

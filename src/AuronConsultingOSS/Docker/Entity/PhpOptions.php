@@ -1,7 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Entity;
+
 use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
-use AuronConsultingOSS\Docker\PhpExtension\NotFoundException;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 
 /**

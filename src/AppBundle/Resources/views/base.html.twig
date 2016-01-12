@@ -1,21 +1,22 @@
 <html>
 <head>
     <title>PhpDocker.io</title>
-    {% stylesheets '@AppBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.min.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% stylesheets
+    '@AppBundle/Resources/public/css/base.css'
+    '@AppBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body class="dark-background">
 
-<div class="header">
+<div class="container">
+    <div id="content" class="shadow">
+        {% block body %}{% endblock %}
+    </div>
 </div>
-
-<div id="content">
-    {% block body %}{% endblock %}
-</div>
-
 {% javascripts
 '@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
 '@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js' %}
