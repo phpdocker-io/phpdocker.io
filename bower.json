@@ -1,0 +1,19 @@
+{
+  "name": "PhpDocker",
+  "version": "0.0.0",
+  "authors": [
+    "Luis Pabon <luis.pabon@rightster.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}

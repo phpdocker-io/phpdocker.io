@@ -1,0 +1,3 @@
+create_build_environment:
+    path:      /build-environment
+    defaults:  { _controller: AppBundle:Builder:create }

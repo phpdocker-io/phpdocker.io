@@ -1,0 +1,12 @@
+{% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+{% extends 'AppBundle::base.html.twig' %}
+{% block body %}
+    <form method="post" action="{{ path('create_build_environment') }}" class="pure-form pure-form-stacked">
+
+        {{ form_widget(form) }}
+
+        <input type="submit" class="pure-button">
+
+    </form>
+{% endblock %}
+

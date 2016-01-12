@@ -12,22 +12,22 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @var string
      */
-    protected $rootPassword;
+    protected $rootPassword = 'root-password';
 
     /**
      * @var string
      */
-    protected $databaseName;
+    protected $databaseName = 'database-name';
 
     /**
      * @var string
      */
-    protected $username;
+    protected $username = 'username';
 
     /**
      * @var string
      */
-    protected $password;
+    protected $password = 'password';
 
     /**
      * @inheritdoc

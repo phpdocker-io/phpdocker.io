@@ -12,12 +12,12 @@ class Project
     /**
      * @var string
      */
-    protected $name;
+    protected $name = 'your-project';
 
     /**
      * @var int
      */
-    protected $basePort;
+    protected $basePort = '8000';
 
     /**
      * @var NginxOptions

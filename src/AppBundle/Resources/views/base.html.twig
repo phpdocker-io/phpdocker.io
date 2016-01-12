@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>PhpDocker.io</title>
+    {% stylesheets '@AppBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="header">
+</div>
+
+<div id="content">
+    {% block body %}{% endblock %}
+</div>
+
+{% javascripts
+'@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
+'@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>
+</html>
