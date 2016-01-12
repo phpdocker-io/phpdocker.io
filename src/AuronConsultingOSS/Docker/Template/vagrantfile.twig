@@ -1,0 +1,35 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$dockerComposeInstallScript = <<SCRIPT
+if ! command -v "docker-compose" >/dev/null 2>&1 ; then
+    mkdir -p /opt/bin
+    curl -LsS `curl -sS https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url | select(contains("Linux") and contains("x86_64"))'` > /opt/bin/docker-compose
+    chmod +x /opt/bin/docker-compose
+fi
+SCRIPT
+
+Vagrant.configure(2) do |config|
+    config.vm.box = "AntonioMeireles/coreos-stable"
+
+    config.vm.network "private_network", ip: "192.168.33.{{ random(255) }}"
+    config.vm.synced_folder "..", "/home/core/{{ projectName }}", id: "{{ projectNameSlug }}-dev", nfs: true
+    config.vm.synced_folder "~/.composer/", "/home/core/.composer", id: "{{ projectNameSlug }}-composer", nfs: true
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.name = "{{ projectName }}"
+        vb.memory = 1024
+        vb.cpus = 1
+    end
+
+    # Ensure docker-compose is installed
+    config.vm.provision "shell", inline: $dockerComposeInstallScript
+
+    # Bring up containers
+    config.vm.provision "shell", inline: "cd /home/core/{{ projectName }} && docker-compose up 1>&2"
+
+    # Disable guest additions auto update as it breaks CoreOS kernel
+    if Vagrant.has_plugin?("vagrant-vbguest")
+        config.vbguest.auto_update = false
+    end
+end

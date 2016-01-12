@@ -1,0 +1,25 @@
+memcached:
+  image: memcached:latest
+  container_name: phpdocker-io-memcached
+
+# The webserver is nginx, we're mapping host port 8080 to 80 on the container
+# It will respond on any hostname
+webserver:
+  build: .
+  dockerfile: docker/Dockerfile.nginx.yml
+  container_name: phpdocker-io-webserver
+  volumes:
+      - .:/var/www/phpdocker.io
+  ports:
+   - "8082:80"
+  links:
+   - php-fpm
+
+php-fpm:
+  build: .
+  dockerfile: docker/Dockerfile.php-fpm.yml
+  container_name: phpdocker-io-php
+  volumes:
+    - .:/var/www/phpdocker.io
+  links:
+    - memcached

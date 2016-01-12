@@ -1,0 +1,55 @@
+{% if memcached %}
+memcached:
+  image: memcached:latest
+  container_name: {{ projectNameSlug }}-memcached
+{% endif %}
+
+{% if mailcatcher %}
+mailcatcher:
+  image: pataquets/mailcatcher
+  container_name: {{ projectNameSlug }}-mailcatcher
+  ports:
+    - "{{ mailcatcherPort }}:1080"
+{% endif %}
+
+{% if mysql %}
+mysql:
+  image: mysql:latest
+  container_name: {{ projectNameSlug }}-database
+  environment:
+    - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
+    - MYSQL_DATABASE={{ mysql.getRootPassword() }}
+    - MYSQL_USER={{ mysql.getUsername() }}
+    - MYSQL_PASSWORD={{ mysql.getPassword() }}
+{% endif %}
+
+webserver:
+  build: .
+  dockerfile: docker/Dockerfile.nginx.conf
+  container_name: {{ projectNameSlug }}-webserver
+  volumes:
+      - .:{{ workdir }}
+  ports:
+   - "{{ webserverPort }}:80"
+  links:
+   - php-fpm
+
+php-fpm:
+  build: .
+  dockerfile: docker/Dockerfile.php-fpm.conf
+  container_name: {{ projectNameSlug }}-php
+  volumes:
+    - .:{{ workdir }}
+
+{% if mysql or memcached or mailcatcher %}
+  links:
+  {% if memcached %}
+    - memcached
+  {% endif %}
+  {% if mailcatcher %}
+    - mailcatcher
+  {% endif %}
+  {% if mysql %}
+    - mysql
+  {% endif %}
+{% endif %}
