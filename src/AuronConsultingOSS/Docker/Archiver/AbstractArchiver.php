@@ -16,7 +16,7 @@ abstract class AbstractArchiver
      */
     const BASE_FOLDER_NAME             = 'phpdocker';
     const FILENAME_DOCKER_COMPOSE      = 'docker-compose.yml';
-    const FILENAME_VAGRANT_FILE        = 'vagrant' . DIRECTORY_SEPARATOR . 'Vagrantfile';
+    const FILENAME_VAGRANT_FILE        = 'Vagrantfile';
     const FILENAME_PHP_FPM_DOCKER_CONF = 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.php-fpm.conf';
     const FILENAME_NGINX_DOCKER_CONF   = 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.nginx.conf';
     const FILENAME_NGINX_CONF          = 'docker' . DIRECTORY_SEPARATOR . 'nginx.conf';

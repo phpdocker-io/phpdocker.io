@@ -10,11 +10,25 @@ namespace AuronConsultingOSS\Docker\PhpExtension;
 class AvailableExtensions
 {
     /**
+     * List of extensions always to install
+     */
+    const MANDATORY_EXTENSIONS_MAP = [
+        'bz2'      => ['dependencies' => ['libbz2-dev']],
+        'calendar' => [],
+        'iconv'    => [],
+        'intl'     => ['dependencies' => ['libicu-dev']],
+        'mbstring' => [],
+        'mcrypt'   => ['dependencies' => ['libmcrypt-dev']],
+        'json'     => [],
+        'posix'    => [],
+    ];
+
+    /**
      * List of allowed extensions
      */
-    const EXTENSIONS_MAP = [
+    const OPTIONAL_EXTENSIONS_MAP = [
         # Extensions not included on dist
-        'memcached'    => [
+        'memcached' => [
             'dependencies' => ['libmemcached-dev'],
             'custom-dist'  => [
                 'tarball'             => 'https://codeload.github.com/php-memcached-dev/php-memcached/tar.gz/php7',
@@ -22,7 +36,7 @@ class AvailableExtensions
             ]
         ],
 
-        'redis'    => [
+        'redis'        => [
             'dependencies' => ['libmemcached-dev'],
             'custom-dist'  => [
                 'tarball'             => 'https://codeload.github.com/phpredis/phpredis/tar.gz/php7',
@@ -30,82 +44,59 @@ class AvailableExtensions
             ]
         ],
 
-        # Extensions that have dependencies
-        'zip'          => ['dependencies' => ['zlib1g-dev']],
-        'zlib'         => ['dependencies' => ['zlib1g-dev']],
+        # Disabled extensions - don't work for now
+        # 'com_dotnet'   => [],
+        #'imap'         => ['dependencies' => ['libc-client-dev libkrb5-dev']],
+        # 'oci8'         => [],
+        #'odbc'         => ['dependencies' => ['unixodbc-dev'],
+        #'pdo_dblib'         => ['dependencies' => ['freetds-dev',  'libsybdb5', 'libdbd-freetds'],
+        # 'pdo_oci'      => [],
+        # 'pdo_odbc'     => [],
+        # 'xml'          => [],
+        # 'xmlreader'    => [],
+        # 'xmlrpc'       => [],
+        # 'xmlwriter'    => [],
+        # 'ldap'         => ['dependencies' => ['libldap2-dev'], 'configure' => ['--with-libdir=lib/x86_64-linux-gnu/']],
 
         # The easy ones
         'bcmath'       => [],
-        'bz2'          => [],
-        'calendar'     => [],
-        'com_dotnet'   => [],
         'ctype'        => [],
-        'curl'         => [],
-        'date'         => [],
+        'curl'         => ['dependencies' => ['libcurl4-openssl-dev']],
         'dba'          => [],
-        'dom'          => [],
-        'enchant'      => [],
+        'dom'          => ['dependencies' => ['libxml2-dev']],
+        'enchant'      => ['dependencies' => ['libenchant-dev']],
         'exif'         => [],
         'fileinfo'     => [],
-        'filter'       => [],
-        'ftp'          => [],
-        'gd'           => [],
+        'ftp'          => ['dependencies' => ['libssl-dev']],
+        'gd'           => ['dependencies' => ['libjpeg-dev', 'libpng12-dev']],
         'gettext'      => [],
         'gmp'          => [],
-        'hash'         => [],
-        'iconv'        => [],
-        'imap'         => [],
-        'interbase'    => [],
-        'intl'         => [],
-        'json'         => [],
-        'ldap'         => [],
-        'libxml'       => [],
-        'mbstring'     => [],
-        'mcrypt'       => [],
-        'mysqli'       => [],
-        'mysqlnd'      => [],
-        'oci8'         => [],
-        'odbc'         => [],
+        'interbase'    => ['dependencies' => ['firebird-dev']],
+        'mysqli'       => ['dependencies' => ['libmysqlclient-dev']],
         'opcache'      => [],
-        'openssl'      => [],
         'pcntl'        => [],
-        'pcre'         => [],
         'pdo'          => [],
-        'pdo_dblib'    => [],
-        'pdo_firebird' => [],
-        'pdo_mysql'    => [],
-        'pdo_oci'      => [],
-        'pdo_odbc'     => [],
-        'pdo_pgsql'    => [],
-        'pdo_sqlite'   => [],
-        'pgsql'        => [],
+        'pdo_firebird' => ['dependencies' => ['firebird-dev']],
+        'pdo_mysql'    => ['dependencies' => ['libmysqlclient-dev']],
+        'pdo_pgsql'    => ['dependencies' => ['libpq-dev']],
+        'pdo_sqlite'   => ['dependencies' => ['libsqlite3-dev']],
+        'pgsql'        => ['dependencies' => ['libpq-dev']],
         'phar'         => [],
-        'posix'        => [],
-        'pspell'       => [],
-        'readline'     => [],
-        'recode'       => [],
-        'reflection'   => [],
+        'pspell'       => ['dependencies' => ['libpspell-dev']],
+        'recode'       => ['dependencies' => ['librecode-dev']],
         'session'      => [],
         'shmop'        => [],
         'simplexml'    => [],
-        'skeleton'     => [],
-        'snmp'         => [],
-        'soap'         => [],
+        'snmp'         => ['dependencies' => ['libsnmp-dev']],
+        'soap'         => ['dependencies' => ['libxml2-dev']],
         'sockets'      => [],
-        'spl'          => [],
-        'sqlite3'      => [],
-        'standard'     => [],
         'sysvmsg'      => [],
         'sysvsem'      => [],
         'sysvshm'      => [],
-        'tidy'         => [],
+        'tidy'         => ['dependencies' => ['libtidy-dev']],
         'tokenizer'    => [],
         'wddx'         => [],
-        'xml'          => [],
-        'xmlreader'    => [],
-        'xmlrpc'       => [],
-        'xmlwriter'    => [],
-        'xsl'          => [],
+        'xsl'          => ['dependencies' => ['libxslt1-dev']],
     ];
 
     /**
@@ -117,7 +108,23 @@ class AvailableExtensions
      */
     public static function isAvailable(string $name) : bool
     {
-        return array_key_exists($name, self::EXTENSIONS_MAP);
+        return array_key_exists($name, self::getAllExtensions());
+    }
+
+    /**
+     * Returns all available extensions, mandatory or not.
+     *
+     * @return array
+     */
+    public static function getAllExtensions() : array
+    {
+        static $allExtensions;
+
+        if ($allExtensions === null) {
+            $allExtensions = array_merge(self::MANDATORY_EXTENSIONS_MAP, self::OPTIONAL_EXTENSIONS_MAP);
+        }
+
+        return $allExtensions;
     }
 
     /**
@@ -134,7 +141,7 @@ class AvailableExtensions
             throw new NotFoundException(sprintf('PHP extension %s is not available to install', $name));
         }
 
-        $raw = self::EXTENSIONS_MAP[$name];
+        $raw = self::getAllExtensions()[$name];
 
         $extension = new PhpExtension();
         $extension->setName($name);
@@ -149,5 +156,21 @@ class AvailableExtensions
         }
 
         return $extension;
+    }
+
+    /**
+     * Returns all mandatory php extensions as an array of PhpExtension.
+     *
+     * @return array
+     * @throws NotFoundException
+     */
+    public static function getMandatoryPhpExtensions() : array
+    {
+        $extensions = [];
+        foreach (self::MANDATORY_EXTENSIONS_MAP as $name => $value) {
+            $extensions[] = self::getPhpExtension($name);
+        }
+
+        return $extensions;
     }
 }

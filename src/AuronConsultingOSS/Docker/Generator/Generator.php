@@ -1,10 +1,10 @@
 <?php
 namespace AuronConsultingOSS\Docker\Generator;
 
-
 use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
 use AuronConsultingOSS\Docker\Entity\Project;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
+use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 use Cocur\Slugify\Slugify;
 
@@ -71,6 +71,7 @@ class Generator
         $data = [
             'projectName'     => $project->getName(),
             'projectNameSlug' => $this->getProjectNameSlug($project),
+            'phpDockerFolder' => AbstractArchiver::BASE_FOLDER_NAME,
         ];
 
         return $this->twig->render('vagrantfile.twig', $data);
@@ -111,6 +112,7 @@ class Generator
             'mailcatcherPort' => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
             'memcached'       => $project->hasMemcached(),
+            'redis'           => $project->hasRedis(),
             'mysql'           => $project->getMysqlOptions(),
         ];
 
@@ -131,9 +133,15 @@ class Generator
         $customDists   = [];
         $stdExtensions = [];
 
-        foreach ($phpOptions->getExtensions() as $extension) {
+        // Extensions to add
+        $extensions = array_merge(
+            AvailableExtensions::getMandatoryPhpExtensions(),
+            $phpOptions->getExtensions()
+        );
+
+        foreach ($extensions as $extension) {
             /** @var PhpExtension $extension */
-            $dependencies += $extension->getDependencies();
+            $dependencies = array_merge($dependencies, $extension->getDependencies());
 
             $customDist = $extension->getCustomDist();
             if ($customDist !== null) {
@@ -142,6 +150,8 @@ class Generator
                 $stdExtensions[] = $extension->getName();
             }
         }
+
+        $dependencies = array_unique($dependencies);
 
         $data = [
             'projectName'   => $project->getName(),
@@ -185,6 +195,7 @@ class Generator
             'isSymfonyApp' => $project->getPhpOptions()->isSymfonyApp(),
             'projectName'  => $project->getName(),
             'workdir'      => $this->getWorkdir($project),
+            'phpFpmHost'   => sprintf('%s-%s', $this->getProjectNameSlug($project), $project->getPhpOptions()->getDefaultHostname()),
         ];
 
         return $this->twig->render('nginx.conf.twig', $data);

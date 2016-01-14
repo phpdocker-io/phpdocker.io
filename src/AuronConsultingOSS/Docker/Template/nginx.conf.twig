@@ -18,7 +18,7 @@ server {
     }
     
     location ~ ^/(app|app_dev)\.php(/|$) {
-        fastcgi_pass php-fpm:9000;
+        fastcgi_pass {{ phpFpmHost }}:9000;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
