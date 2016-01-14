@@ -1,0 +1,4 @@
+services:
+  docker_generator:
+      class: AuronConsultingOSS\Docker\Generator\Generator
+      factory: [AuronConsultingOSS\Docker\Generator\Factory, create]

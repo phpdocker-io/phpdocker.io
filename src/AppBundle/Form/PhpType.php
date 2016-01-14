@@ -24,8 +24,8 @@ class PhpType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('isSymfonyApp', CheckboxType::class)
-            ->add('extensions', ChoiceType::class, [
+            ->add('isSymfonyApp', CheckboxType::class, ['required' => false])
+            ->add('phpExtensions', ChoiceType::class, [
                 'choices'  => $this->getChoices(),
                 'multiple' => true,
             ]);
@@ -39,7 +39,7 @@ class PhpType extends AbstractType
     private function getChoices()
     {
         $choices = [];
-        foreach (AvailableExtensions::EXTENSIONS_MAP as $name => $extension) {
+        foreach (AvailableExtensions::OPTIONAL_EXTENSIONS_MAP as $name => $extension) {
             $choices[$name] = $name;
         }
 

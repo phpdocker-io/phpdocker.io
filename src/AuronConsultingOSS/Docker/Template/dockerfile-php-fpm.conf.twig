@@ -3,14 +3,16 @@ FROM php:fpm
 RUN apt-get update
 
 # Install extension dependencies, plus atool for custom extension unpacking
-RUN apt-get -y install atool zlib1g-dev {% for depency in dependencies %}{{ dependency }}{% endfor %}
+RUN apt-get -y install atool zlib1g-dev libgmp-dev {% for dependency in dependencies %}{{ dependency }} {% endfor %}
+
+RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 
 # Install zip for composer's benefit
 RUN docker-php-ext-install zip
 
 # Install selected extensions
 {% for extension in stdExtensions %}
-    RUN docker-php-ext-install {{ extension }}
+RUN docker-php-ext-install {{ extension }}
 {% endfor %}
 
 # Install custom extensions
@@ -22,12 +24,18 @@ RUN docker-php-ext-install zip
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 {% if isSymfonyApp %}
-    # If you're using symfony and the vagranted environment, I strongly recommend you change your AppKernel to use the following temporary folders
-    # for cache, logs and sessions, otherwise application performance may suffer due to these being shared over NFS back to the host
-    RUN mkdir -p "/tmp/{{ projectName }}/cache"
-    RUN mkdir -p "/tmp/{{ projectName }}/logs"
-    RUN mkdir -p "/tmp/{{ projectName }}/sessions"
-    RUN chown www-data:www-data -R "/tmp/{{ projectName }}"
+# If you're using symfony and the vagranted environment, I strongly recommend you change your AppKernel to use the following temporary folders
+# for cache, logs and sessions, otherwise application performance may suffer due to these being shared over NFS back to the host
+RUN mkdir -p "/tmp/{{ projectName }}/cache"
+RUN mkdir -p "/tmp/{{ projectName }}/logs"
+RUN mkdir -p "/tmp/{{ projectName }}/sessions"
+RUN chown www-data:www-data -R "/tmp/{{ projectName }}"
 {% endif %}
+
+# Cleanup
+RUN apt-get -y remove atool zlib1g-dev libgmp-dev {% for dependency in dependencies %}{{ dependency }} {% endfor %}
+
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR "{{ workdir }}"

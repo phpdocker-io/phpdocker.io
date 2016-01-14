@@ -19,7 +19,7 @@ class PhpOptions extends \AuronConsultingOSS\Docker\Entity\PhpOptions
 
      * })
      */
-    protected $extensions = [];
+    protected $phpExtensions = [];
 
     /**
      * @var bool
@@ -27,14 +27,26 @@ class PhpOptions extends \AuronConsultingOSS\Docker\Entity\PhpOptions
     protected $isSymfonyApp = false;
 
     /**
-     * @param array $extensions
+     * @param array $phpExtensions
      *
      * @return PhpOptions
      */
-    public function setExtensions($extensions)
+    public function setPhpExtensions($phpExtensions)
     {
-        $this->extensions = $extensions;
+        $this->phpExtensions = $phpExtensions;
+
+        foreach ($phpExtensions as $phpExtension) {
+            $this->addExtensionByName($phpExtension);
+        }
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPhpExtensions()
+    {
+        return $this->phpExtensions;
     }
 }

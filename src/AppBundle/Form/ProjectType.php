@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Project;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +27,7 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('basePort', NumberType::class)
+            ->add('basePort', IntegerType::class)
             ->add('hasMemcached', CheckboxType::class, ['required' => false])
             ->add('hasRedis', CheckboxType::class, ['required' => false])
             ->add('hasMailcatcher', CheckboxType::class, ['required' => false])
