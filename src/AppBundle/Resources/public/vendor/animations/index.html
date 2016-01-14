@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<!-- Animations v2.1, Copyright 2014, Joe Mottershaw, https://github.com/joemottershaw/ -->
+
+<!--[if lt IE 7 ]><html class="no-js ie ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
+
+<head>
+	<!-- Meta Data -->
+		<title>Animations</title>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="author" content="" />
+
+		<meta name="HandheldFriendly" content="True" />
+		<meta name="MobileOptimized" content="320" />
+
+	<!-- Stylesheets -->
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all" />
+		<link href="assets/css/normalize.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="assets/css/animations.min.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="assets/css/style.min.css" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- HTML5 SHIV -->
+		<!--[if lt IE 9]>
+			<script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="http://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+	<!-- Sandbox -->
+		<div class="container bm-larger tm-larger text-center">
+			<div class="one-whole bm-larger tm-larger">
+				<button id="sandbox" class="bm-remove">SANDBOX</button>
+			</div>
+		</div>
+
+
+	<!-- No JavaScript -->
+		<noscript>
+			<div class="container text-center">
+				<div id="no-script">
+					<p class="bm-smaller"><strong>JavaScript Disabled</strong></p>
+					<p class="bm-smaller">Certain features of this site may not function correctly without JavaScript enabled</p>
+					<p class="bm-remove"><a href="http://enable-javascript.com/" target="_blank">Find out how to enable JavaScript in your browser</a></p>
+				</div>
+			</div>
+		</noscript>
+
+	<!-- Content -->
+		<main class="clearfix" role="main">
+			<div class="container">
+				<div class="one-whole">
+					<div class="one-half-percent">
+						<select class="fades element-center bm-remove">
+							<option value="">-- FADE ENTRANCES --</option>
+							<option value=""></option>
+							<option value="fade-in"> - Fade In</option>
+							<option value="fade-in-up"> - Fade In Up</option>
+							<option value="fade-in-up-big"> - Fade In Up Big</option>
+							<option value="fade-in-up-large"> - Fade In Up Large</option>
+							<option value="fade-in-down"> - Fade In Down</option>
+							<option value="fade-in-down-big"> - Fade In Down Big</option>
+							<option value="fade-in-down-large"> - Fade In Down Large</option>
+							<option value="fade-in-left"> - Fade In Left</option>
+							<option value="fade-in-left-big"> - Fade In Left Big</option>
+							<option value="fade-in-left-large"> - Fade In Left Large</option>
+							<option value="fade-in-right"> - Fade In Right</option>
+							<option value="fade-in-right-big"> - Fade In Right Big</option>
+							<option value="fade-in-right-large"> - Fade In Right Large</option>
+
+							<option value="fade-in-up-left"> - Fade In Up Left</option>
+							<option value="fade-in-up-left-big"> - Fade In Up Left Big</option>
+							<option value="fade-in-up-left-large"> - Fade In Up Left Large</option>
+							<option value="fade-in-up-right"> - Fade In Up Right</option>
+							<option value="fade-in-up-right-big"> - Fade In Up Right Big</option>
+							<option value="fade-in-up-right-large"> - Fade In Up Right Large</option>
+							<option value="fade-in-down-left"> - Fade In Down Left</option>
+							<option value="fade-in-down-left-big"> - Fade In Down Left Big</option>
+							<option value="fade-in-down-left-large"> - Fade In Down Left Large</option>
+							<option value="fade-in-down-right"> - Fade In Down Right</option>
+							<option value="fade-in-down-right-big"> - Fade In Down Right Big</option>
+							<option value="fade-in-down-right-large"> - Fade In Down Right Large</option>
+							<option value=""></option>
+						</select>
+					</div>
+					<div class="one-half-percent last">
+						<select class="fades element-center bm-remove">
+							<option value="">-- FADE EXITS --</option>
+							<option value=""></option>
+							<option value="fade-out"> - Fade Out</option>
+							<option value="fade-out-up"> - Fade Out Up</option>
+							<option value="fade-out-up-big"> - Fade Out Up Big</option>
+							<option value="fade-out-up-large"> - Fade Out Up Large</option>
+							<option value="fade-out-down"> - Fade Out Down</option>
+							<option value="fade-out-down-big"> - Fade Out Down Big</option>
+							<option value="fade-out-down-large"> - Fade Out Down Large</option>
+							<option value="fade-out-left"> - Fade Out Left</option>
+							<option value="fade-out-left-big"> - Fade Out Left Big</option>
+							<option value="fade-out-left-large"> - Fade Out Left Large</option>
+							<option value="fade-out-right"> - Fade Out Right</option>
+							<option value="fade-out-right-big"> - Fade Out Right Big</option>
+							<option value="fade-out-right-large"> - Fade Out Right Large</option>
+
+							<option value="fade-out-up-left"> - Fade Out Up Left</option>
+							<option value="fade-out-up-left-big"> - Fade Out Up Left Big</option>
+							<option value="fade-out-up-left-large"> - Fade Out Up Left Large</option>
+							<option value="fade-out-up-right"> - Fade Out Up Right</option>
+							<option value="fade-out-up-right-big"> - Fade Out Up Right Big</option>
+							<option value="fade-out-up-right-large"> - Fade Out Up Right Large</option>
+							<option value="fade-out-down-left"> - Fade Out Down Left</option>
+							<option value="fade-out-down-left-big"> - Fade Out Down Left Big</option>
+							<option value="fade-out-down-left-large"> - Fade Out Down Left Large</option>
+							<option value="fade-out-down-right"> - Fade Out Down Right</option>
+							<option value="fade-out-down-right-big"> - Fade Out Down Right Big</option>
+							<option value="fade-out-down-right-large"> - Fade Out Down Right Large</option>
+							<option value=""></option>
+						</select>
+					</div>
+
+					<div class="one-half-percent">
+						<select class="bounces element-center bm-remove">
+							<option value="">-- BOUNCE ENTRANCES --</option>
+							<option value=""></option>
+							<option value="bounce-in"> - Bounce In</option>
+							<option value="bounce-in-big"> - Bounce In Big</option>
+							<option value="bounce-in-large"> - Bounce In Large</option>
+							<option value="bounce-in-up"> - Bounce In Up</option>
+							<option value="bounce-in-up-big"> - Bounce In Up Big</option>
+							<option value="bounce-in-up-large"> - Bounce In Up Large</option>
+							<option value="bounce-in-down"> - Bounce In Down</option>
+							<option value="bounce-in-down-big"> - Bounce In Down Big</option>
+							<option value="bounce-in-down-large"> - Bounce In Down Large</option>
+							<option value="bounce-in-left"> - Bounce In Left</option>
+							<option value="bounce-in-left-big"> - Bounce In Left Big</option>
+							<option value="bounce-in-left-large"> - Bounce In Left Large</option>
+							<option value="bounce-in-right"> - Bounce In Right</option>
+							<option value="bounce-in-right-big"> - Bounce In Right Big</option>
+							<option value="bounce-in-right-large"> - Bounce In Right Large</option>
+
+							<option value="bounce-in-up-left"> - Bounce In Up Left</option>
+							<option value="bounce-in-up-left-big"> - Bounce In Up Left Big</option>
+							<option value="bounce-in-up-left-large"> - Bounce In Up Left Large</option>
+							<option value="bounce-in-up-right"> - Bounce In Up Right</option>
+							<option value="bounce-in-up-right-big"> - Bounce In Up Right Big</option>
+							<option value="bounce-in-up-right-large"> - Bounce In Up Right Large</option>
+							<option value="bounce-in-down-left"> - Bounce In Down Left</option>
+							<option value="bounce-in-down-left-big"> - Bounce In Down Left Big</option>
+							<option value="bounce-in-down-left-large"> - Bounce In Down Left Large</option>
+							<option value="bounce-in-down-right"> - Bounce In Down Right</option>
+							<option value="bounce-in-down-right-big"> - Bounce In Down Right Big</option>
+							<option value="bounce-in-down-right-large"> - Bounce In Down Right Large</option>
+							<option value=""></option>
+						</select>
+					</div>
+					<div class="one-half-percent last">
+						<select class="bounces element-center bm-remove">
+							<option value="">-- BOUNCE EXITS --</option>
+							<option value=""></option>
+							<option value="bounce-out"> - Bounce Out</option>
+							<option value="bounce-out-big"> - Bounce Out Big</option>
+							<option value="bounce-out-large"> - Bounce Out Large</option>
+							<option value="bounce-out-up"> - Bounce Out Up</option>
+							<option value="bounce-out-up-big"> - Bounce Out Up Big</option>
+							<option value="bounce-out-up-large"> - Bounce Out Up Large</option>
+							<option value="bounce-out-down"> - Bounce Out Down</option>
+							<option value="bounce-out-down-big"> - Bounce Out Down Big</option>
+							<option value="bounce-out-down-large"> - Bounce Out Down Large</option>
+							<option value="bounce-out-left"> - Bounce Out Left</option>
+							<option value="bounce-out-left-big"> - Bounce Out Left Big</option>
+							<option value="bounce-out-left-large"> - Bounce Out Left Large</option>
+							<option value="bounce-out-right"> - Bounce Out Right</option>
+							<option value="bounce-out-right-big"> - Bounce Out Right Big</option>
+							<option value="bounce-out-right-large"> - Bounce Out Right Large</option>
+
+							<option value="bounce-out-up-left"> - Bounce Out Up Left</option>
+							<option value="bounce-out-up-left-big"> - Bounce Out Up Left Big</option>
+							<option value="bounce-out-up-left-large"> - Bounce Out Up Left Large</option>
+							<option value="bounce-out-up-right"> - Bounce Out Up Right</option>
+							<option value="bounce-out-up-right-big"> - Bounce Out Up Right Big</option>
+							<option value="bounce-out-up-right-large"> - Bounce Out Up Right Large</option>
+							<option value="bounce-out-down-left"> - Bounce Out Down Left</option>
+							<option value="bounce-out-down-left-big"> - Bounce Out Down Left Big</option>
+							<option value="bounce-out-down-left-large"> - Bounce Out Down Left Large</option>
+							<option value="bounce-out-down-right"> - Bounce Out Down Right</option>
+							<option value="bounce-out-down-right-big"> - Bounce Out Down Right Big</option>
+							<option value="bounce-out-down-right-large"> - Bounce Out Down Right Large</option>
+							<option value=""></option>
+						</select>
+					</div>
+
+					<div class="one-half-percent">
+						<select class="zooms element-center bm-remove">
+							<option value="">-- ZOOM ENTRANCES --</option>
+							<option value=""></option>
+							<option value="zoom-in"> - Zoom In</option>
+							<option value="zoom-in-up"> - Zoom In Up</option>
+							<option value="zoom-in-up-big"> - Zoom In Up Big</option>
+							<option value="zoom-in-up-large"> - Zoom In Up Large</option>
+							<option value="zoom-in-down"> - Zoom In Down</option>
+							<option value="zoom-in-down-big"> - Zoom In Down Big</option>
+							<option value="zoom-in-down-large"> - Zoom In Down Large</option>
+							<option value="zoom-in-left"> - Zoom In Left</option>
+							<option value="zoom-in-left-big"> - Zoom In Left Big</option>
+							<option value="zoom-in-left-large"> - Zoom In Left Large</option>
+							<option value="zoom-in-right"> - Zoom In Right</option>
+							<option value="zoom-in-right-big"> - Zoom In Right Big</option>
+							<option value="zoom-in-right-large"> - Zoom In Right Large</option>
+
+							<option value="zoom-in-up-left"> - Zoom In Up Left</option>
+							<option value="zoom-in-up-left-big"> - Zoom In Up Left Big</option>
+							<option value="zoom-in-up-left-large"> - Zoom In Up Left Large</option>
+							<option value="zoom-in-up-right"> - Zoom In Up Right</option>
+							<option value="zoom-in-up-right-big"> - Zoom In Up Right Big</option>
+							<option value="zoom-in-up-right-large"> - Zoom In Up Right Large</option>
+							<option value="zoom-in-down-left"> - Zoom In Down Left</option>
+							<option value="zoom-in-down-left-big"> - Zoom In Down Left Big</option>
+							<option value="zoom-in-down-left-large"> - Zoom In Down Left Large</option>
+							<option value="zoom-in-down-right"> - Zoom In Down Right</option>
+							<option value="zoom-in-down-right-big"> - Zoom In Down Right Big</option>
+							<option value="zoom-in-down-right-large"> - Zoom In Down Right Large</option>
+							<option value=""></option>
+						</select>
+					</div>
+					<div class="one-half-percent last">
+						<select class="zooms element-center bm-remove">
+							<option value="">-- ZOOM EXITS --</option>
+							<option value=""></option>
+							<option value="zoom-out"> - Zoom Out</option>
+							<option value="zoom-out-up"> - Zoom Out Up</option>
+							<option value="zoom-out-up-big"> - Zoom Out Up Big</option>
+							<option value="zoom-out-up-large"> - Zoom Out Up Large</option>
+							<option value="zoom-out-down"> - Zoom Out Down</option>
+							<option value="zoom-out-down-big"> - Zoom Out Down Big</option>
+							<option value="zoom-out-down-large"> - Zoom Out Down Large</option>
+							<option value="zoom-out-left"> - Zoom Out Left</option>
+							<option value="zoom-out-left-big"> - Zoom Out Left Big</option>
+							<option value="zoom-out-left-large"> - Zoom Out Left Large</option>
+							<option value="zoom-out-right"> - Zoom Out Right</option>
+							<option value="zoom-out-right-big"> - Zoom Out Right Big</option>
+							<option value="zoom-out-right-large"> - Zoom Out Right Large</option>
+
+							<option value="zoom-out-up-left"> - Zoom Out Up Left</option>
+							<option value="zoom-out-up-left-big"> - Zoom Out Up Left Big</option>
+							<option value="zoom-out-up-left-large"> - Zoom Out Up Left Large</option>
+							<option value="zoom-out-up-right"> - Zoom Out Up Right</option>
+							<option value="zoom-out-up-right-big"> - Zoom Out Up Right Big</option>
+							<option value="zoom-out-up-right-large"> - Zoom Out Up Right Large</option>
+							<option value="zoom-out-down-left"> - Zoom Out Down Left</option>
+							<option value="zoom-out-down-left-big"> - Zoom Out Down Left Big</option>
+							<option value="zoom-out-down-left-large"> - Zoom Out Down Left Large</option>
+							<option value="zoom-out-down-right"> - Zoom Out Down Right</option>
+							<option value="zoom-out-down-right-big"> - Zoom Out Down Right Big</option>
+							<option value="zoom-out-down-right-large"> - Zoom Out Down Right Large</option>
+							<option value=""></option>
+						</select>
+					</div>
+
+					<div class="one-half-percent">
+						<select class="flips element-center bm-remove">
+							<option value="">-- FLIP ENTRANCES --</option>
+							<option value=""></option>
+							<option value="flip-in-x"> - Flip In X</option>
+							<option value="flip-in-y"> - Flip In Y</option>
+							<option value="flip-in-top-front"> - Flip In Top Front</option>
+							<option value="flip-in-top-back"> - Flip In Top Back</option>
+							<option value="flip-in-bottom-front"> - Flip In Bottom Front</option>
+							<option value="flip-in-bottom-back"> - Flip In Bottom Back</option>
+							<option value="flip-in-left-front"> - Flip In Left Front</option>
+							<option value="flip-in-left-back"> - Flip In Left Back</option>
+							<option value="flip-in-right-front"> - Flip In Right Front</option>
+							<option value="flip-in-right-back"> - Flip In Right Back</option>
+							<option value=""></option>
+						</select>
+					</div>
+					<div class="one-half-percent last">
+						<select class="flips element-center bm-remove">
+							<option value="">-- FLIP EXITS --</option>
+							<option value=""></option>
+							<option value="flip-out-x"> - Flip Out X</option>
+							<option value="flip-out-y"> - Flip Out Y</option>
+							<option value="flip-out-top-front"> - Flip Out Top Front</option>
+							<option value="flip-out-top-back"> - Flip Out Top Back</option>
+							<option value="flip-out-bottom-front"> - Flip Out Bottom Front</option>
+							<option value="flip-out-bottom-back"> - Flip Out Bottom Back</option>
+							<option value="flip-out-left-front"> - Flip Out Left Front</option>
+							<option value="flip-out-left-back"> - Flip Out Left Back</option>
+							<option value="flip-out-right-front"> - Flip Out Right Front</option>
+							<option value="flip-out-right-back"> - Flip Out Right Back</option>
+							<option value=""></option>
+						</select>
+					</div>
+
+					<div class="one-half-percent">
+						<select class="show-off element-center bm-remove">
+							<option value="">-- SHOW OFF ENTRANCES --</option>
+							<option value=""></option>
+							<option value="flash"> - Flash</option>
+							<option value="strobe"> - Strobe</option>
+							<option value="shake-x"> - Shake X</option>
+							<option value="shake-y"> - Shake Y</option>
+							<option value="bounce"> - Bounce</option>
+							<option value="tada"> - Tada</option>
+							<option value="rubber-band"> - Rubber Band</option>
+							<option value="swing"> - Swing</option>
+							<option value="spin"> - Spin</option>
+							<option value="spin-reverse"> - Spin Reverse</option>
+							<option value="slingshot"> - Slingshot</option>
+							<option value="slingshot-reverse"> - Slingshot Reverse</option>
+							<option value="wobble"> - Wobble</option>
+							<option value="pulse"> - Pulse</option>
+							<option value="pulsate"> - Pulsate</option>
+							<option value="heartbeat"> - Heartbeat</option>
+							<option value="panic"> - Panic</option>
+							<option value=""></option>
+						</select>
+					</div>
+					<div class="one-half-percent last">
+					</div>
+				</div>
+			</div>
+		</main>
+
+	<!-- Footer -->
+		<section class="clearfix" >
+			<div class="container bm-remove text-right animate" data-anim-type="fadeInUp">
+				<p>
+					<a href="https://github.com/joemottershaw/animations" target="_blank">Animations</a>, Copyright 2014<br>
+					<a href="https://github.com/joemottershaw/" target="_blank">https://github.com/joemottershaw/</a>
+				</p>
+
+				<p>
+					Credit to:<br />
+					<a href="https://github.com/daneden/animate.css" target="_blank">Animate.css, Dan Eden</a><br />
+					<a href="http://www.justinaguilar.com/animations/" target="_blank">CSS3 Animation Cheat Sheet, Justin Aguilar</a><br />
+					<a href="https://github.com/bas2k/jquery.appear" target="_blank">jquery.appear, bas2k</a>
+
+				</p>
+				
+				<p><a href="#" target="_self" class="scroll-to-top">SCROLL TO TOP</a></p>
+			</div>
+		</section>
+
+	<!-- JavaScript -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="assets/js/smoothscroll.min.js" type="text/javascript"></script>
+		<script src="assets/js/appear.min.js" type="text/javascript"></script>
+		<script src="assets/js/backbone.js" type="text/javascript"></script>
+		<script src="assets/js/animations.min.js" type="text/javascript"></script>
+
+		<script>
+			$(document).ready(function() {
+				$('.fades, .bounces, .zooms, .flips').on('change', function() {
+					var	elem = $('#sandbox'),
+						effect = $(this).val();
+
+					elem.removeClass().addClass('animating bm-remove').addClass(effect);
+
+					elem.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+						elem.removeClass(effect).removeClass('animating');
+					});
+				});
+
+				$('.show-off').on('change', function() {
+					var	elem = $('#sandbox'),
+						effect = $(this).val(),
+						exit = $(this).attr('data-exit');
+
+					if (exit) animateEnd('#sandbox', true, true, effect);
+					else animate('#sandbox', effect);
+				});
+			});
+		</script>
+
+</body>
+
+</html>

@@ -1,3 +1,9 @@
-create_build_environment:
-    path:      /build-environment
+home:
+    path:      /
     defaults:  { _controller: AppBundle:Builder:create }
+    methods: [GET]
+
+create_build_environment:
+    path:      /
+    defaults:  { _controller: AppBundle:Builder:create }
+    methods: [GET, POST]

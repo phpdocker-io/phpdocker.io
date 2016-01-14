@@ -11,9 +11,13 @@
     "bower_components",
     "web/assets/vendor/",
     "test",
-    "tests"
+    "tests",
+    "src/AppBundle/Resources/public/vendor/"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6"
+    "custom-solid": "http://www.designbootstrap.com/livedemos/2015/02/27/light-wave/template/assets/js/custom-solid.js",
+    "animations": "*",
+    "jquery-easing": "*",
+    "style-solid-red": "http://www.designbootstrap.com/livedemos/2015/02/27/light-wave/template/assets/css/style-solid-red.css"
   }
 }
