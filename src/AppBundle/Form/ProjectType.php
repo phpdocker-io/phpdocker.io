@@ -26,13 +26,13 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('basePort', IntegerType::class)
-            ->add('hasMemcached', CheckboxType::class, ['required' => false])
-            ->add('hasRedis', CheckboxType::class, ['required' => false])
-            ->add('hasMailcatcher', CheckboxType::class, ['required' => false])
-            ->add('mysqlOptions', MySQLType::class)
-            ->add('phpOptions', PhpType::class)
+            ->add('name', TextType::class, ['label' => 'Project name'])
+            ->add('basePort', IntegerType::class, ['label' => 'Base port'])
+            ->add('hasMemcached', CheckboxType::class, ['required' => false, 'label' => 'Enable Memcached'])
+            ->add('hasRedis', CheckboxType::class, ['required' => false, 'label' => 'Enable Redis'])
+            ->add('hasMailcatcher', CheckboxType::class, ['required' => false, 'label' => 'Enable Mailcatcher'])
+            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
+            ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
         ;
     }
 

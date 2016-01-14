@@ -24,10 +24,12 @@ class PhpType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('isSymfonyApp', CheckboxType::class, ['required' => false])
+            ->add('isSymfonyApp', CheckboxType::class, ['required' => false, 'label' => 'Is yours a Symfony app? Check this to configure nginx accordingly'])
             ->add('phpExtensions', ChoiceType::class, [
                 'choices'  => $this->getChoices(),
                 'multiple' => true,
+                'label'    => 'Available PHP extensions',
+                'required' => false,
             ]);
     }
 

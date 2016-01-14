@@ -2,24 +2,40 @@
 <head>
     <title>PhpDocker.io</title>
     {% stylesheets
-    '@AppBundle/Resources/public/css/base.css'
-    '@AppBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.min.css' %}
+    '@AppBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.min.css'
+    '@AppBundle/Resources/public/css/base.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body class="dark-background">
+<body class="ddark-background">
+<div class="col-md-12 header shadow dark-background">
+    <div class="col-md-1">
+        <h1><a href="{{ url('home') }}">PHPDocker.io</a></h1>
+    </div>
+    <div id="menu" class="col-md-11">
+        <ul>
+
+        </ul>
+    </div>
+</div>
 
 <div class="container">
-    <div id="content" class="shadow">
-        {% block body %}{% endblock %}
+    <div class="row">
+        <div id="right" class="col-md-1"></div>
+        <div id="" class="col-md-10">
+            {% block body %}{% endblock %}
+        </div>
+        <div id="left" class="col-md-1"></div>
     </div>
 </div>
 {% javascripts
 '@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
-'@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js' %}
+'@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
+'@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 

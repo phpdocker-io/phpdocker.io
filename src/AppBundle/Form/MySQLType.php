@@ -2,6 +2,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\MySQLOptions;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -22,6 +23,7 @@ class MySQLType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('hasMysql', CheckboxType::class, ['label' => 'Enable MySQL', 'required' => false])
             ->add('rootPassword', TextType::class)
             ->add('databaseName', TextType::class)
             ->add('username', TextType::class)

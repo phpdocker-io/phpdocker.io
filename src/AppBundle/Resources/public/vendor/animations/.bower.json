@@ -1,0 +1,14 @@
+{
+  "name": "animations",
+  "homepage": "https://github.com/joemottershaw/animations",
+  "_release": "9d5ff35994",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "9d5ff35994a164af8fc3ae25d495c17f5f93e61e"
+  },
+  "_source": "git://github.com/joemottershaw/animations.git",
+  "_target": "*",
+  "_originalSource": "animations",
+  "_direct": true
+}
