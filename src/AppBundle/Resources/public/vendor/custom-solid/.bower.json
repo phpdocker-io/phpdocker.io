@@ -1,0 +1,15 @@
+{
+  "name": "custom-solid",
+  "_cacheHeaders": {
+    "ETag": "\"3f40b32-79f-5101633352880\"",
+    "Last-Modified": "Fri, 27 Feb 2015 18:40:18 GMT",
+    "Content-Length": "1951",
+    "Content-Type": "application/javascript"
+  },
+  "_release": "e-tag:3f40b32-7",
+  "main": "index.js",
+  "_source": "http://www.designbootstrap.com/livedemos/2015/02/27/light-wave/template/assets/js/custom-solid.js",
+  "_target": "*",
+  "_originalSource": "http://www.designbootstrap.com/livedemos/2015/02/27/light-wave/template/assets/js/custom-solid.js",
+  "_direct": true
+}

@@ -1,87 +1,38 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
 
 .dark-background {
     background-color : #761c19 !important;
+    color            : white;
 }
 
-#content {
-    width            : 90%;
-    height           : 100%;
+body {
+    font-family : Montserrat, sans-serif;
+}
 
-    font-family      : Montserrat, sans-serif;
-    margin           : 0 auto;
-    background-color : white;
+.header h1 {
+    font-family : Shadows Into Light;
+}
+
+.beta {
+    font-family : Shadows Into Light;
+}
+
+.header h1 a {
+    color     : antiquewhite;
+    font-size : larger;
 }
 
 .shadow {
     -webkit-box-shadow : 0 15px 10px #777;
     -moz-box-shadow    : 0 15px 10px #777;
-    box-shadow         : 0px 0px 100px #000;
+    box-shadow         : 0 0 10px #000;
 }
 
-.effect2 {
-    position : relative;
+.disabled {
+    color      : #999;
+    font-style : italic;
 }
 
-.effect2:before, .effect2:after {
-    z-index            : -1;
-    position           : absolute;
-    content            : "";
-    bottom             : 15px;
-    left               : 10px;
-    width              : 50%;
-    top                : 80%;
-    max-width          : 300px;
-    background         : #777;
-    -webkit-box-shadow : 0 15px 10px #777;
-    -moz-box-shadow    : 0 15px 10px #777;
-    box-shadow         : 0 15px 10px #777;
-    -webkit-transform  : rotate(-3deg);
-    -moz-transform     : rotate(-3deg);
-    -o-transform       : rotate(-3deg);
-    -ms-transform      : rotate(-3deg);
-    transform          : rotate(-3deg);
+.form-group {
 }
-
-.effect2:after {
-    -webkit-transform : rotate(3deg);
-    -moz-transform    : rotate(3deg);
-    -o-transform      : rotate(3deg);
-    -ms-transform     : rotate(3deg);
-    transform         : rotate(3deg);
-    right             : 10px;
-    left              : auto;
-}
-
-.effect7 {
-    position           : relative;
-    -webkit-box-shadow : 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow    : 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow         : 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
-
-.effect7:before, .effect7:after {
-    content            : "";
-    position           : absolute;
-    z-index            : -1;
-    -webkit-box-shadow : 0 0 20px rgba(0, 0, 0, 0.8);
-    -moz-box-shadow    : 0 0 20px rgba(0, 0, 0, 0.8);
-    box-shadow         : 0 0 20px rgba(0, 0, 0, 0.8);
-    top                : 0;
-    bottom             : 0;
-    left               : 10px;
-    right              : 10px;
-    -moz-border-radius : 100px / 10px;
-    border-radius      : 100px / 10px;
-}
-
-.effect7:after {
-    right             : 10px;
-    left              : auto;
-    -webkit-transform : skew(8deg) rotate(3deg);
-    -moz-transform    : skew(8deg) rotate(3deg);
-    -ms-transform     : skew(8deg) rotate(3deg);
-    -o-transform      : skew(8deg) rotate(3deg);
-    transform         : skew(8deg) rotate(3deg);
-}
-

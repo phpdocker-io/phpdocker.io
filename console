@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
 bin/run-in-container php bin/console $@
-

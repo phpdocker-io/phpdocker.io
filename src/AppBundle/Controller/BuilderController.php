@@ -3,11 +3,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
@@ -21,7 +21,11 @@ class BuilderController extends Controller
     use ContainerAwareTrait;
 
     /**
-     * @Route("/build-environment", name="homepage")
+     * Form and form processor for reating a project.
+     *
+     * @param Request $request
+     *
+     * @return BinaryFileResponse|Response
      */
     public function createAction(Request $request)
     {
@@ -38,8 +42,10 @@ class BuilderController extends Controller
 
             // Generate file download & cleanup
             $response = new BinaryFileResponse($zipFile->getTmpFilename());
-            $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename());
-            $response->deleteFileAfterSend(true);
+            $response
+                ->prepare($request)
+                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
+                ->deleteFileAfterSend(true);
 
             return $response;
         }

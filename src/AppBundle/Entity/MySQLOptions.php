@@ -12,6 +12,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
 {
     /**
+     * @var bool
+     */
+    protected $hasMysql = false;
+
+    /**
      * @var string
      *
      * @Assert\NotBlank()
@@ -46,4 +51,24 @@ class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
      * @Assert\Length(min=1, max=128)
      */
     protected $password = 'password';
+
+    /**
+     * @return boolean
+     */
+    public function hasMysql()
+    {
+        return $this->hasMysql;
+    }
+
+    /**
+     * @param boolean $hasMysql
+     *
+     * @return MySQLOptions
+     */
+    public function setHasMysql($hasMysql)
+    {
+        $this->hasMysql = $hasMysql;
+
+        return $this;
+    }
 }
