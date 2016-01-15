@@ -10,8 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
     <title>PHPDocker.io</title>
+    {% stylesheets filter="cssrewrite"
+    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
     {% stylesheets
-    '@AppBundle/Resources/public/vendor/bootstrap/dist/css/bootstrap.min.css'
     '@AppBundle/Resources/public/css/base.css'
     '@AppBundle/Resources/public/vendor/style-solid-red/index.css'
     '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}

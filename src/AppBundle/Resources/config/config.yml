@@ -1,0 +1,4 @@
+assetic:
+    debug:          %kernel.debug%
+    filters:
+        cssrewrite: ~
