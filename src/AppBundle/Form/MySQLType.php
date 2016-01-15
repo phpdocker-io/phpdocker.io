@@ -24,10 +24,10 @@ class MySQLType extends AbstractType
     {
         $builder
             ->add('hasMysql', CheckboxType::class, ['label' => 'Enable MySQL', 'required' => false])
-            ->add('rootPassword', TextType::class)
-            ->add('databaseName', TextType::class)
-            ->add('username', TextType::class)
-            ->add('password', TextType::class);
+            ->add('rootPassword', TextType::class, ['empty_data' => ''])
+            ->add('databaseName', TextType::class, ['empty_data' => ''])
+            ->add('username', TextType::class, ['empty_data' => ''])
+            ->add('password', TextType::class, ['empty_data' => '']);
     }
 
     /**

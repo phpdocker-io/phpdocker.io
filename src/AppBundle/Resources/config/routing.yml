@@ -6,4 +6,4 @@ home:
 create_build_environment:
     path:      /
     defaults:  { _controller: AppBundle:Builder:create }
-    methods: [GET, POST]
+    methods: [POST]

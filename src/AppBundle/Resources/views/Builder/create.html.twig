@@ -2,13 +2,15 @@
 {% extends 'AppBundle::base2.html.twig' %}
 {% block body %}
 
-    <form method="post" action="{{ path('create_build_environment') }}" class="pretty">
+    <form method="post" action="{{ path('create_build_environment') }}#generator" class="pretty yellow border">
         <div class="row text-center header">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <h2>Define your environment</h2>
                 <hr/>
             </div>
         </div>
+
+        {{ form_errors(form) }}
 
         {% for field in ['name', 'basePort']
         if (attribute(form, field) is defined) %}
@@ -37,7 +39,7 @@
         </div>
 
         {{ form_rest(form) }}
-        <input type="submit" class="btn button-custom btn-custom-one right">
+        <input type="submit" class="btn button-custom btn-custom-one">
     </form>
 {% endblock %}
 

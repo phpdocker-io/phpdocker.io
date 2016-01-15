@@ -50,7 +50,7 @@ class MySQLOptions extends AbstractServiceOptions
      *
      * @return MySQLOptions
      */
-    public function setRootPassword(string $rootPassword) : MySQLOptions
+    public function setRootPassword(string $rootPassword = null) : MySQLOptions
     {
         $this->rootPassword = $rootPassword;
 
@@ -70,7 +70,7 @@ class MySQLOptions extends AbstractServiceOptions
      *
      * @return MySQLOptions
      */
-    public function setDatabaseName(string $databaseName) : MySQLOptions
+    public function setDatabaseName(string $databaseName = null) : MySQLOptions
     {
         $this->databaseName = $databaseName;
 
@@ -90,7 +90,7 @@ class MySQLOptions extends AbstractServiceOptions
      *
      * @return MySQLOptions
      */
-    public function setUsername(string $username) : MySQLOptions
+    public function setUsername(string $username = null) : MySQLOptions
     {
         $this->username = $username;
 
@@ -110,7 +110,7 @@ class MySQLOptions extends AbstractServiceOptions
      *
      * @return MySQLOptions
      */
-    public function setPassword(string $password) : MySQLOptions
+    public function setPassword(string $password = null) : MySQLOptions
     {
         $this->password = $password;
 
