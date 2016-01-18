@@ -12,7 +12,7 @@ class NginxOptions extends AbstractServiceOptions
     /**
      * @inheritdoc
      */
-    public function getDefaultHostname() : string
+    public function getHostnameSuffix() : string
     {
         return 'webserver';
     }

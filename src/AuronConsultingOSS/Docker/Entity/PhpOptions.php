@@ -25,7 +25,7 @@ class PhpOptions extends AbstractServiceOptions
     /**
      * @inheritdoc
      */
-    public function getDefaultHostname() : string
+    public function getHostnameSuffix() : string
     {
         return 'php-fpm';
     }

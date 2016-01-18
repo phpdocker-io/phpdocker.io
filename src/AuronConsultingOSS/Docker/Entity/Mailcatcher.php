@@ -16,7 +16,7 @@ class Mailcatcher extends AbstractServiceOptions
      *
      * @return string
      */
-    public function getDefaultHostname() : string
+    public function getHostnameSuffix() : string
     {
         return 'mailcatcher';
     }

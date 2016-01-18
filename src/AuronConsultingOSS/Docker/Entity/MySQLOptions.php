@@ -37,7 +37,7 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @inheritdoc
      */
-    public function getDefaultHostname() : string
+    public function getHostnameSuffix() : string
     {
         return 'mysql';
     }
