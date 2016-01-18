@@ -42,11 +42,11 @@ Either on `localhost`, if you're running the containers directly, or on `{{ vmIp
 
 #Webserver#
 
-The webserver (`nginx`) is exposed through port {{ webserver.port }}
+The webserver (`nginx`) is exposed through port {{ webserverPort }}
  
 #Mailcatcher#
 
-Web interface is exposed on port {{ mailcatcher.port }}.
+Web interface is exposed on port {{ mailcatcherPort }}.
 
 ##Hosts within your environment##
 
@@ -67,4 +67,4 @@ You'll need to configure your application to use any services you enabled:
   * Stop containers: `docker-compose stop`
   * Kill containers: `docker-compose kill`
   * View container logs: `docker-compose logs`
-  * Execute command inside of container: `docker exec -it {{ phpContainerName }} COMMAND` where `COMMAND` is whatever you want to run. For instance, `/bin/bash` to open a console prompt.
+  * Execute command inside of container: `docker exec -it {{ phpFpmHostname }} COMMAND` where `COMMAND` is whatever you want to run. For instance, `/bin/bash` to open a console prompt.
