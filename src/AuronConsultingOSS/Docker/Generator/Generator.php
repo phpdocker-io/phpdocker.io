@@ -67,12 +67,12 @@ class Generator
 
         if ($readme === null) {
             $data = [
-                'mysqlHostname'     => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
-                'memcachedHostname'     => $project->hasMemcached() ? $project->getHostnameForService($project->getMe()) : null,
-                'memcached' => new \stdClass(),
+                'webserverPort'       => '%%%FIXMEEEEE%%%',
+                'mailcatcherPort'     => '%%%FIXMEEEEE%%%',
+                'vmIpAddress'         => '%%%FIXMEEEEE%%%',
             ];
 
-            $readme = $this->twig->render('README.md.twig', $data);
+            $readme = $this->twig->render('README.md.twig', array_merge($data, $this->getHostnameDataBlock($project)));
         }
 
         return $readme;
@@ -239,5 +239,29 @@ class Generator
         ];
 
         return $this->twig->render('nginx.conf.twig', $data);
+    }
+
+    /**
+     * Returns a data block with hostnames for all configured services.
+     *
+     * @param Project $project
+     *
+     * @return array
+     */
+    private function getHostnameDataBlock(Project $project)
+    {
+        static $hostnameDataBlock = [];
+
+        if (count($hostnameDataBlock) === 0) {
+            $hostnameDataBlock = [
+                'phpFpmHostname'      => $project->getHostnameForService($project->getPhpOptions()),
+                'mysqlHostname'       => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
+                'memcachedHostname'   => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
+                'redisHostname'       => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
+                'mailcatcherHostname' => $project->hasMailcatcher() ? $project->getHostnameForService($project->getMailCatcherOptions()) : null,
+            ];
+        }
+
+        return $hostnameDataBlock;
     }
 }
