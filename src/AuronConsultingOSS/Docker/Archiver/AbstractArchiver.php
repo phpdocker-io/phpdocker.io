@@ -15,6 +15,8 @@ abstract class AbstractArchiver
      * File folders
      */
     const BASE_FOLDER_NAME             = 'phpdocker';
+    const FILENAME_README              = 'Readme.md';
+    const FILENAME_README_HTML         = 'Readme.html';
     const FILENAME_DOCKER_COMPOSE      = 'docker-compose.yml';
     const FILENAME_VAGRANT_FILE        = 'Vagrantfile';
     const FILENAME_PHP_FPM_DOCKER_CONF = 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.php-fpm.conf';
@@ -50,6 +52,16 @@ abstract class AbstractArchiver
      * @var ArchiveInterface
      */
     protected $archive;
+
+    /**
+     * @var string
+     */
+    protected $readme;
+
+    /**
+     * @var string
+     */
+    protected $readmeHtml;
 
     /**
      * Adds a file to the archive.
@@ -95,6 +107,9 @@ abstract class AbstractArchiver
 
         if ($this->archive === null) {
             $files = [
+                self::FILENAME_DOCKER_COMPOSE      => $this->getDockerCompose(),
+                self::FILENAME_README              => $this->getReadme(),
+                self::FILENAME_README_HTML         => $this->getReadmeHtml(),
                 self::FILENAME_DOCKER_COMPOSE      => $this->getDockerCompose(),
                 self::FILENAME_PHP_FPM_DOCKER_CONF => $this->getPhpDockerConf(),
                 self::FILENAME_NGINX_DOCKER_CONF   => $this->getNginxDockerConf(),
@@ -220,6 +235,46 @@ abstract class AbstractArchiver
     public function setNginxConf(string $nginxConf) : self
     {
         $this->nginxConf = $nginxConf;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReadme() : string
+    {
+        return $this->readme;
+    }
+
+    /**
+     * @param string $readme
+     *
+     * @return AbstractArchiver
+     */
+    public function setReadme(string $readme) : self
+    {
+        $this->readme = $readme;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReadmeHtml() : string
+    {
+        return $this->readmeHtml;
+    }
+
+    /**
+     * @param string $readmeHtml
+     *
+     * @return AbstractArchiver
+     */
+    public function setReadmeHtml(string $readmeHtml) : self
+    {
+        $this->readmeHtml = $readmeHtml;
 
         return $this;
     }
