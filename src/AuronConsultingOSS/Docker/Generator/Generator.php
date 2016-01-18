@@ -17,6 +17,8 @@ class Generator
 {
     const WORKDIR_PATTERN = '/var/www/%s';
 
+    const VM_IP_ADDRESS_PATTERN = '192.168.33.%d';
+
     /**
      * @var AbstractArchiver
      */
@@ -67,9 +69,9 @@ class Generator
 
         if ($readme === null) {
             $data = [
-                'webserverPort'   => '%%%FIXMEEEEE%%%',
-                'mailcatcherPort' => '%%%FIXMEEEEE%%%',
-                'vmIpAddress'     => '%%%FIXMEEEEE%%%',
+                'webserverPort'   => $project->getBasePort(),
+                'mailcatcherPort' => $project->getBasePort() + 1,
+                'vmIpAddress'     => $this->getVmIpAddress(),
             ];
 
             $readme = $this->twig->render('README.md.twig', array_merge($data, $this->getHostnameDataBlock($project)));
@@ -112,6 +114,7 @@ class Generator
             'projectName'     => $project->getName(),
             'projectNameSlug' => $project->getProjectNameSlug(),
             'phpDockerFolder' => AbstractArchiver::BASE_FOLDER_NAME,
+            'vmIpAddress'     => $this->getVmIpAddress(),
         ];
 
         return $this->twig->render('vagrantfile.twig', $data);
@@ -160,10 +163,10 @@ class Generator
         $data = array_merge($data, $this->getHostnameDataBlock($project));
 
         // Render and return
-        $header = $this->twig->render('docker-compose-header.twig');
-        $rendered = ltrim($this->twig->render('docker-compose.yml.twig', $data));
+        $header   = $this->twig->render('docker-compose-header.twig');
+        $rendered = $this->twig->render('docker-compose.yml.twig', $data);
 
-        return $header . $rendered;
+        return $header . ltrim($rendered);
     }
 
     /**
@@ -271,5 +274,21 @@ class Generator
         }
 
         return $hostnameDataBlock;
+    }
+
+    /**
+     * Calculates a random IP address based on a pattern.
+     *
+     * @return string
+     */
+    private function getVmIpAddress() : string
+    {
+        static $vmIpAddress;
+
+        if ($vmIpAddress === null) {
+            $vmIpAddress = sprintf(self::VM_IP_ADDRESS_PATTERN, random_int(1, 255));
+        }
+
+        return $vmIpAddress;
     }
 }

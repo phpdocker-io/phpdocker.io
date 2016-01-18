@@ -46,7 +46,6 @@
   container_name: {{ phpFpmHostname }}
   volumes:
     - ..:{{ workdir }}
-
 {% if mysqlHostname or memcachedHostname or mailcatcherHostname or redisHostname %}
   links:
 {% if memcachedHostname %}    - {{ memcachedHostname }}{{ "\n" }}{% endif %}
