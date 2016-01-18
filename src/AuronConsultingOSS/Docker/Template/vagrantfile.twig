@@ -13,8 +13,8 @@ Vagrant.configure(2) do |config|
     config.vm.box = "blinkreaction/boot2docker"
 
     config.vm.network "private_network", ip: "{{ vmIpAddress }}"
-    config.vm.synced_folder "..", "/home/docker/{{ projectName }}", id: "{{ projectNameSlug }}-dev", nfs: true
-    config.vm.synced_folder "~/.composer/", "/home/docker/.composer", id: "{{ projectNameSlug }}-composer", nfs: true
+    config.vm.synced_folder "..", "/home/docker/{{ projectNameSlug }}", id: "{{ projectNameSlug }}-dev"
+    config.vm.synced_folder "~/.composer/", "/home/docker/.composer", id: "{{ projectNameSlug }}-composer"
 
     config.vm.provider "virtualbox" do |vb|
         vb.name = "{{ projectName }}"
@@ -26,7 +26,7 @@ Vagrant.configure(2) do |config|
     config.vm.provision "shell", run: "always", inline: $dockerComposeInstallScript
 
     # Bring up containers
-    config.vm.provision "shell", run: "always", inline: "cd /home/docker/{{ projectName }}/{{ phpDockerFolder }} && docker-compose up -d 1>&2"
+    config.vm.provision "shell", run: "always", inline: "cd /home/docker/{{ projectNameSlug }}/{{ phpDockerFolder }} && docker-compose up -d 1>&2"
 
     # Disable guest additions auto update as it breaks CoreOS kernel
     if Vagrant.has_plugin?("vagrant-vbguest")
