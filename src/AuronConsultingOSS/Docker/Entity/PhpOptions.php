@@ -22,6 +22,11 @@ class PhpOptions extends AbstractServiceOptions
      */
     protected $isSymfonyApp = false;
 
+    public function __construct()
+    {
+        $this->setEnabled(true);
+    }
+
     /**
      * @inheritdoc
      */

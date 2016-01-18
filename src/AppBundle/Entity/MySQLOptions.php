@@ -46,4 +46,24 @@ class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
      * @Assert\Length(min=1, max=128)
      */
     protected $password = 'password';
+
+    /**
+     * Redirect hasMysql to enabled.
+     *
+     * @param bool $hasMysql
+     *
+     * @return MySQLOptions
+     */
+    public function setHasMysql(bool $hasMysql = false) : self
+    {
+        return $this->setEnabled($hasMysql);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMysql() : bool
+    {
+        return $this->isEnabled();
+    }
 }

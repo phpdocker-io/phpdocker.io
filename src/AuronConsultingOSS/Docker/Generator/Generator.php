@@ -67,9 +67,9 @@ class Generator
 
         if ($readme === null) {
             $data = [
-                'webserverPort'       => '%%%FIXMEEEEE%%%',
-                'mailcatcherPort'     => '%%%FIXMEEEEE%%%',
-                'vmIpAddress'         => '%%%FIXMEEEEE%%%',
+                'webserverPort'   => '%%%FIXMEEEEE%%%',
+                'mailcatcherPort' => '%%%FIXMEEEEE%%%',
+                'vmIpAddress'     => '%%%FIXMEEEEE%%%',
             ];
 
             $readme = $this->twig->render('README.md.twig', array_merge($data, $this->getHostnameDataBlock($project)));
@@ -156,6 +156,10 @@ class Generator
             'mysql'           => $project->getMysqlOptions(),
         ];
 
+        // Get hostnames
+        $data = array_merge($data, $this->getHostnameDataBlock($project));
+
+        // Render and return
         return $this->twig->render('docker-compose.yml.twig', $data);
     }
 
@@ -254,6 +258,7 @@ class Generator
 
         if (count($hostnameDataBlock) === 0) {
             $hostnameDataBlock = [
+                'webserverHostname'   => $project->getHostnameForService($project->getNginxOptions()),
                 'phpFpmHostname'      => $project->getHostnameForService($project->getPhpOptions()),
                 'mysqlHostname'       => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
                 'memcachedHostname'   => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,

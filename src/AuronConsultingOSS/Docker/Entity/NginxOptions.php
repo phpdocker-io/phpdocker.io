@@ -9,6 +9,11 @@ namespace AuronConsultingOSS\Docker\Entity;
  */
 class NginxOptions extends AbstractServiceOptions
 {
+    public function __construct()
+    {
+        $this->setEnabled(true);
+    }
+
     /**
      * @inheritdoc
      */
