@@ -1,14 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: development
- * Date: 18/01/16
- * Time: 20:54
- */
-
 namespace AuronConsultingOSS\Docker\Entity;
 
-class RedisOptions
+/**
+ * Options for redis container
+ *
+ * @package   AuronConsultingOSS\Docker\Entity
+ * @copyright Auron Consulting Ltd
+ */
+class RedisOptions extends AbstractServiceOptions
 {
-
+    /**
+     * Return the suffix to be used on hostname construction.
+     *
+     * @return string
+     */
+    public function getHostnameSuffix() : string
+    {
+        return 'redis';
+    }
 }

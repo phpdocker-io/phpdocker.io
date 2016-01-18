@@ -1,14 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: development
- * Date: 18/01/16
- * Time: 20:50
- */
-
 namespace AuronConsultingOSS\Docker\Entity;
 
-class MemcachedOptions
+/**
+ * Options for Memcached container.
+ *
+ * @package   AuronConsultingOSS\Docker\Entity
+ * @copyright Auron Consulting Ltd
+ */
+class MemcachedOptions extends AbstractServiceOptions
 {
-
+    /**
+     * Return the suffix to be used on hostname construction.
+     *
+     * @return string
+     */
+    public function getHostnameSuffix() : string
+    {
+        return 'memcached';
+    }
 }
