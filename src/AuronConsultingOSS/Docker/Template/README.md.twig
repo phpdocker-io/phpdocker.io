@@ -52,13 +52,14 @@ Web interface is exposed on port {{ mailcatcherPort }}.
 
 You'll need to configure your application to use any services you enabled:
 
-|Service|Hostname|Port number|
-|------|---------|-----------|
-|php-fpm|{{ phpFpmHostname }}|9000|
-{% if mysqlHostname %}|MySQL|{{ mysqlHostname }}|3306 (default)|{% endif %}
-{% if memcachedHostname %}|Memcached|{{ memcachedHostname }}|11211 (default)|{% endif %}
-{% if redisHostname %}|Redis|{{ redisHostname }}|6379 (default)|{% endif %}
-{% if mailcatcherHostname %}|SMTP (Mailcatcher)|{{ mailcatcherHostname }}|1025 (default)|{% endif %}
+Service|Hostname|Port number
+------|---------|-----------
+php-fpm|{{ phpFpmHostname }}|9000
+{% if mysqlHostname %}MySQL|{{ mysqlHostname }}|3306 (default){% endif %}
+{% if memcachedHostname %}Memcached|{{ memcachedHostname }}|11211 (default){% endif %}
+{% if redisHostname %}Redis|{{ redisHostname }}|6379 (default){% endif %}
+{% if mailcatcherHostname %}SMTP (Mailcatcher)|{{ mailcatcherHostname }}|1025 (default){% endif %}
+
 
 #Docker compose cheatsheet#
 

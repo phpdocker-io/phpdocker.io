@@ -3,6 +3,7 @@ namespace AuronConsultingOSS\Docker\Generator;
 
 use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
 use AuronConsultingOSS\Docker\Archiver\ZipArchiver;
+use Michelf\MarkdownExtra;
 
 /**
  * Factory for generator. If not provided, it will spawn and inject default dependencies.
@@ -23,11 +24,11 @@ class Factory
      * @param AbstractArchiver  $archiver
      * @param \Twig_Environment $twig
      *
-     * @return Generator
-     * @internal param Slugify $slugify
+     * @param MarkdownExtra     $markdownExtra
      *
+     * @return Generator
      */
-    public static function create(AbstractArchiver $archiver = null, \Twig_Environment $twig = null) : Generator
+    public static function create(AbstractArchiver $archiver = null, \Twig_Environment $twig = null, MarkdownExtra $markdownExtra = null) : Generator
     {
         if ($archiver === null) {
             $archiver = new ZipArchiver();
@@ -38,6 +39,10 @@ class Factory
             $twig   = new \Twig_Environment($loader);
         }
 
-        return new Generator($archiver, $twig);
+        if ($markdownExtra === null) {
+            $markdownExtra = new MarkdownExtra();
+        }
+
+        return new Generator($archiver, $twig, $markdownExtra);
     }
 }

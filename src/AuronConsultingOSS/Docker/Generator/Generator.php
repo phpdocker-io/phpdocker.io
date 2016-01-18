@@ -6,6 +6,7 @@ use AuronConsultingOSS\Docker\Entity\Project;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
+use Michelf\MarkdownExtra;
 
 /**
  * Generator
@@ -29,10 +30,16 @@ class Generator
      */
     protected $twig;
 
-    public function __construct(AbstractArchiver $archiver, \Twig_Environment $twig)
+    /**
+     * @var MarkdownExtra
+     */
+    protected $markdownExtra;
+
+    public function __construct(AbstractArchiver $archiver, \Twig_Environment $twig, MarkdownExtra $markdownExtra)
     {
-        $this->archiver = $archiver;
-        $this->twig     = $twig;
+        $this->archiver      = $archiver;
+        $this->twig          = $twig;
+        $this->markdownExtra = $markdownExtra;
     }
 
     /**
@@ -95,10 +102,10 @@ class Generator
             $readme = $this->getReadme($project);
 
             // CONVERT TO HTML
-            $readmeHtml = $readme;
+            $readmeHtml = $this->markdownExtra->transform($readme);
         }
 
-        return $readmeHtml;
+        return $this->twig->render('README.html.twig', ['text' => $readmeHtml]);;
     }
 
     /**
