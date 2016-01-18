@@ -21,7 +21,7 @@
   container_name: {{ projectNameSlug }}-redis
 {% endif %}
 
-{% if mysql %}
+{% if mysql.hasMysql() %}
 {{ projectNameSlug }}-mysql:
   image: mysql:latest
   container_name: {{ projectNameSlug }}-database
@@ -50,7 +50,7 @@
   volumes:
     - ..:{{ workdir }}
 
-{% if mysql or memcached or mailcatcher %}
+{% if mysql.hasMysql() or memcached or mailcatcher %}
   links:
   {% if memcached %}
     - {{ projectNameSlug }}-memcached
@@ -60,7 +60,7 @@
     - {{ projectNameSlug }}-mailcatcher
   {% endif %}
 
-  {% if mysql %}
+  {% if mysql.hasMysql() %}
     - {{ projectNameSlug }}-mysql
   {% endif %}
 

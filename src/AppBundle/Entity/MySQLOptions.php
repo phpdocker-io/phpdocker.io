@@ -12,15 +12,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
 {
     /**
-     * @var bool
-     */
-    protected $hasMysql = false;
-
-    /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
+     * @Assert\NotBlank(groups={"mysqlOptions"})
+     * @Assert\NotNull(groups={"mysqlOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $rootPassword = 'root-password';
@@ -28,8 +23,8 @@ class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
+     * @Assert\NotBlank(groups={"mysqlOptions"})
+     * @Assert\NotNull(groups={"mysqlOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $databaseName = 'database-name';
@@ -37,8 +32,8 @@ class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
+     * @Assert\NotBlank(groups={"mysqlOptions"})
+     * @Assert\NotNull(groups={"mysqlOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $username = 'username';
@@ -46,29 +41,9 @@ class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
+     * @Assert\NotBlank(groups={"mysqlOptions"})
+     * @Assert\NotNull(groups={"mysqlOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $password = 'password';
-
-    /**
-     * @return boolean
-     */
-    public function hasMysql()
-    {
-        return $this->hasMysql;
-    }
-
-    /**
-     * @param boolean $hasMysql
-     *
-     * @return MySQLOptions
-     */
-    public function setHasMysql($hasMysql)
-    {
-        $this->hasMysql = $hasMysql;
-
-        return $this;
-    }
 }
