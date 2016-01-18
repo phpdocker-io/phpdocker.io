@@ -160,7 +160,10 @@ class Generator
         $data = array_merge($data, $this->getHostnameDataBlock($project));
 
         // Render and return
-        return $this->twig->render('docker-compose.yml.twig', $data);
+        $header = $this->twig->render('docker-compose-header.twig');
+        $rendered = ltrim($this->twig->render('docker-compose.yml.twig', $data));
+
+        return $header . $rendered;
     }
 
     /**
