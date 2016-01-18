@@ -15,8 +15,8 @@ abstract class AbstractArchiver
      * File folders
      */
     const BASE_FOLDER_NAME             = 'phpdocker';
-    const FILENAME_README              = 'Readme.md';
-    const FILENAME_README_HTML         = 'Readme.html';
+    const FILENAME_README              = 'README.md';
+    const FILENAME_README_HTML         = 'README.html';
     const FILENAME_DOCKER_COMPOSE      = 'docker-compose.yml';
     const FILENAME_VAGRANT_FILE        = 'Vagrantfile';
     const FILENAME_PHP_FPM_DOCKER_CONF = 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.php-fpm.conf';

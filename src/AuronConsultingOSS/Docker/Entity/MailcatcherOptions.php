@@ -7,7 +7,7 @@ namespace AuronConsultingOSS\Docker\Entity;
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-class Mailcatcher extends AbstractServiceOptions
+class MailcatcherOptions extends AbstractServiceOptions
 {
     const DEFAULT_WEB_INTERFACE_PORT = 1080;
 
