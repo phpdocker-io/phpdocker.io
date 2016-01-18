@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -24,7 +25,20 @@ abstract class AbstractType extends \Symfony\Component\Form\AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => $this->getDataClass(),
+            'data_class'        => $this->getDataClass(),
+            'validation_groups' => $this->getValidationGroups()
         ]);
+    }
+
+    /**
+     * Override to set any additional validation groups.
+     *
+     * @return callable
+     */
+    protected function getValidationGroups() : callable
+    {
+        return function (FormInterface $form) {
+            return ['Default'];
+        };
     }
 }

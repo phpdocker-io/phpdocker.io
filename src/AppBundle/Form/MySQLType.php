@@ -5,6 +5,7 @@ use AppBundle\Entity\MySQLOptions;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * Form for MySQL options.
@@ -38,5 +39,23 @@ class MySQLType extends AbstractType
     protected function getDataClass()
     {
         return MySQLOptions::class;
+    }
+
+    /**
+     * @return callable
+     */
+    protected function getValidationGroups() : callable
+    {
+        return function (FormInterface $form) {
+            /** @var MySQLOptions $data */
+            $data   = $form->getData();
+            $groups = ['Default'];
+
+            if ($data->hasMysql() === true) {
+                $groups[] = 'mysqlOptions';
+            }
+
+            return $groups;
+        };
     }
 }

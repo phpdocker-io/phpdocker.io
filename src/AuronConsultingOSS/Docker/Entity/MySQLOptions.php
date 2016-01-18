@@ -28,6 +28,11 @@ class MySQLOptions extends AbstractServiceOptions
      * @var string
      */
     protected $password = 'password';
+    
+    /**
+     * @var bool
+     */
+    protected $hasMysql = false;
 
     /**
      * @inheritdoc
@@ -113,6 +118,26 @@ class MySQLOptions extends AbstractServiceOptions
     public function setPassword(string $password = null) : MySQLOptions
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasMysql() : bool
+    {
+        return $this->hasMysql;
+    }
+
+    /**
+     * @param boolean $hasMysql
+     *
+     * @return bool
+     */
+    public function setHasMysql($hasMysql)
+    {
+        $this->hasMysql = $hasMysql;
 
         return $this;
     }
