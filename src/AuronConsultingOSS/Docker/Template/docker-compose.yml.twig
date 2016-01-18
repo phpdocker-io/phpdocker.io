@@ -52,19 +52,8 @@
 
 {% if mysql.hasMysql() or memcached or mailcatcher %}
   links:
-  {% if memcached %}
-    - {{ projectNameSlug }}-memcached
-  {% endif %}
-
-  {% if mailcatcher %}
-    - {{ projectNameSlug }}-mailcatcher
-  {% endif %}
-
-  {% if mysql.hasMysql() %}
-    - {{ projectNameSlug }}-mysql
-  {% endif %}
-
-  {% if redis %}
-    - {{ projectNameSlug }}-redis
-  {% endif %}
+  {% if memcached %}  - {{ projectNameSlug }}-memcached{% endif %}
+  {% if mailcatcher %}  - {{ projectNameSlug }}-mailcatcher{% endif %}
+  {% if mysql.hasMysql() %}  - {{ projectNameSlug }}-mysql{% endif %}
+  {% if redis %}  - {{ projectNameSlug }}-redis{% endif %}
 {% endif %}
