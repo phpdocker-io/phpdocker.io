@@ -73,5 +73,5 @@ php-fpm|{{ phpFpmHostname }}|9000
 #Recommendations
 
   * If you run the containers through vagrant and use Symfony, or any framework that generates loads of cache/log files, make sure you configure your application so that cache and logs are written outside of your project root. If you selected "symfony app" on the form, you'll have folders available on the PHP container under `/tmp/{{ projectName }}`. This will dramatically improve the performance of your app since these files won't be shared over back to your host (your project folder is a network share). 
-  * If you have a NFS available on your host, use it. Change `Vagrantfile` so that each `synced_folder` has `, nfs: true` at the end
+  * If you have a NFS server available on your host (Linux, Mac), use it. Change `Vagrantfile` so that each `synced_folder` has `, nfs: true` at the end. If you do, be advised you'll need admin mojo on your host as `vagrant up` will need permissions to modify your NFS shares.
   

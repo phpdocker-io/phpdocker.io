@@ -139,7 +139,7 @@ class Generator
         static $workdir;
 
         if ($workdir === null) {
-            $workdir = sprintf(self::WORKDIR_PATTERN, $project->getName());
+            $workdir = sprintf(self::WORKDIR_PATTERN, $project->getProjectNameSlug());
         }
 
         return $workdir;
