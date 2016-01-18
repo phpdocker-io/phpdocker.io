@@ -211,12 +211,12 @@ class Generator
         $dependencies = array_unique($dependencies);
 
         $data = [
-            'projectName'   => $project->getName(),
-            'workdir'       => $this->getWorkdir($project),
-            'dependencies'  => $dependencies,
-            'customDists'   => $customDists,
-            'stdExtensions' => $stdExtensions,
-            'isSymfonyApp'  => $phpOptions->isSymfonyApp(),
+            'projectNameSlug' => $project->getProjectNameSlug(),
+            'workdir'         => $this->getWorkdir($project),
+            'dependencies'    => $dependencies,
+            'customDists'     => $customDists,
+            'stdExtensions'   => $stdExtensions,
+            'isSymfonyApp'    => $phpOptions->isSymfonyApp(),
         ];
 
         return $this->twig->render('dockerfile-php-fpm.conf.twig', $data);
