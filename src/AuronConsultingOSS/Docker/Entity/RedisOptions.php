@@ -2,23 +2,20 @@
 namespace AuronConsultingOSS\Docker\Entity;
 
 /**
- * Options for nginx container.
+ * Options for redis container
  *
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-class NginxOptions extends AbstractServiceOptions
+class RedisOptions extends AbstractServiceOptions
 {
-    public function __construct()
-    {
-        $this->setEnabled(true);
-    }
-
     /**
-     * @inheritdoc
+     * Return the suffix to be used on hostname construction.
+     *
+     * @return string
      */
     public function getHostnameSuffix() : string
     {
-        return 'webserver';
+        return 'redis';
     }
 }

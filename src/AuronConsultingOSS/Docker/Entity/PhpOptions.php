@@ -22,10 +22,15 @@ class PhpOptions extends AbstractServiceOptions
      */
     protected $isSymfonyApp = false;
 
+    public function __construct()
+    {
+        $this->setEnabled(true);
+    }
+
     /**
      * @inheritdoc
      */
-    public function getDefaultHostname() : string
+    public function getHostnameSuffix() : string
     {
         return 'php-fpm';
     }
