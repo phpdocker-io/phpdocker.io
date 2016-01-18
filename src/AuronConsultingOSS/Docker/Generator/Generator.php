@@ -6,7 +6,6 @@ use AuronConsultingOSS\Docker\Entity\Project;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
-use Cocur\Slugify\Slugify;
 
 /**
  * Generator
@@ -28,16 +27,10 @@ class Generator
      */
     protected $twig;
 
-    /**
-     * @var Slugify
-     */
-    protected $slugify;
-
-    public function __construct(AbstractArchiver $archiver, \Twig_Environment $twig, Slugify $slugify)
+    public function __construct(AbstractArchiver $archiver, \Twig_Environment $twig)
     {
         $this->archiver = $archiver;
         $this->twig     = $twig;
-        $this->slugify  = $slugify;
     }
 
     /**
@@ -50,13 +43,60 @@ class Generator
     public function generate(Project $project) : ArchiveInterface
     {
         $this->archiver
+            ->setReadme($this->getReadme($project))
+            ->setReadmeHtml($this->getReadmeHtml($project))
             ->setVagrantFile($this->getVagrantFile($project))
             ->setDockerCompose($this->getDockerCompose($project))
             ->setPhpDockerConf($this->getPhpDockerConf($project))
             ->setNginxDockerConf($this->getNginxDockerConf($project))
             ->setNginxConf($this->getNginxConf($project));
 
-        return $this->archiver->getArchive($this->getProjectNameSlug($project));
+        return $this->archiver->getArchive($project->getProjectNameSlug());
+    }
+
+    /**
+     * Generates the Readme file.
+     *
+     * @param Project $project
+     *
+     * @return string
+     */
+    private function getReadme(Project $project) : string
+    {
+        static $readme;
+
+        if ($readme === null) {
+            $data = [
+                'mysqlHostname'     => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
+                'memcachedHostname'     => $project->hasMemcached() ? $project->getHostnameForService($project->getMe()) : null,
+                'memcached' => new \stdClass(),
+            ];
+
+            $readme = $this->twig->render('README.md.twig', $data);
+        }
+
+        return $readme;
+    }
+
+    /**
+     * Returns the HTML readme.
+     *
+     * @param Project $project
+     *
+     * @return string
+     */
+    private function getReadmeHtml(Project $project) : string
+    {
+        static $readmeHtml;
+
+        if ($readmeHtml === null) {
+            $readme = $this->getReadme($project);
+
+            // CONVERT TO HTML
+            $readmeHtml = $readme;
+        }
+
+        return $readmeHtml;
     }
 
     /**
@@ -70,7 +110,7 @@ class Generator
     {
         $data = [
             'projectName'     => $project->getName(),
-            'projectNameSlug' => $this->getProjectNameSlug($project),
+            'projectNameSlug' => $project->getProjectNameSlug(),
             'phpDockerFolder' => AbstractArchiver::BASE_FOLDER_NAME,
         ];
 
@@ -106,7 +146,7 @@ class Generator
     {
         $data = [
             'projectName'     => $project->getName(),
-            'projectNameSlug' => $this->getProjectNameSlug($project),
+            'projectNameSlug' => $project->getProjectNameSlug(),
             'workdir'         => $this->getWorkdir($project),
             'mailcatcher'     => $project->hasMailcatcher(),
             'mailcatcherPort' => $project->getBasePort() + 1,
@@ -195,27 +235,9 @@ class Generator
             'isSymfonyApp' => $project->getPhpOptions()->isSymfonyApp(),
             'projectName'  => $project->getName(),
             'workdir'      => $this->getWorkdir($project),
-            'phpFpmHost'   => sprintf('%s-%s', $this->getProjectNameSlug($project), $project->getPhpOptions()->getDefaultHostname()),
+            'phpFpmHost'   => $project->getHostnameForService($project->getPhpOptions()),
         ];
 
         return $this->twig->render('nginx.conf.twig', $data);
-    }
-
-    /**
-     * Returns a
-     *
-     * @param Project $project
-     *
-     * @return string
-     */
-    private function getProjectNameSlug(Project $project) : string
-    {
-        static $slug;
-
-        if ($slug === null) {
-            $slug = $this->slugify->slugify($project->getName());
-        }
-
-        return $slug;
     }
 }
