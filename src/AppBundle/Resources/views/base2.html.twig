@@ -22,10 +22,10 @@
     {% endstylesheets %}
 </head>
 
-<body data-spy="scroll" data-target="#menu-section">
+<body data-spy="scroll" data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
 
 <!--MENU SECTION START-->
-<div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section">
+<div class="navbar navbar-inverse navbar-fixed-top" id="menu-section">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
@@ -34,113 +34,17 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#home">WHAT IS PHPDOCKER.IO?</a></li>
-                <li><a href="#generator">GENERATOR</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="{{ path('home') }}">WHAT IS PHPDOCKER.IO?</a></li>
+                <li><a href="{{ path('generator') }}">Generator</a></li>
             </ul>
         </div>
 
     </div>
 </div>
 <!--MENU SECTION END-->
-<!--HOME SECTION START-->
-<div id="home">
-    <div class="container animate-in" data-anim-type="fade-in-up">
-        <div class="row text-center header">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h2>What is PHPDocker.io?</h2>
-                <hr/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 scroll-me">
-                <p>PHPDocker.io is a tool that will help you build a typical PHP environment based on Docker with just a
-                    few clicks. </p>
-                <p>It will also generate a suitable Vagrantfile for use on systems which do not support Docker and
-                    containers natively. The idea is to vm-boot into a very minimal Linux OS (<a
-                            href="http://boot2docker.io/" target="_blank">boot2docker</a>) able of running these
-                    containers.</p>
-                <p>Why Docker? If you've been using a typical vagrant + linux + puppet set up for a while, as I have,
-                    you've probably grown weary of unreliable and never ending provisioning runs. Docker images come
-                    pre-configured and require minimal set up and no maintenance. There's no extra OS overhead to
-                    consider, if you run Docker natively, or such overhead is really small in the case of
-                    boot2docker.</p>
-
-                <p>This is our first, early feeler prototype. Features to come:</p>
-                <ul>
-                    <li>Dotdeb.org based PHP: PHP's official images are incredibly cumbersome due to compiling of extensions. Just waiting for php-redis and php-memcached PECL extensions to be packaged</li>
-                    <li>PostgreSQL</li>
-                    <li>Elasticsearch</li>
-                    <li>RabbitMQ</li>
-                </ul>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<section id="generator">
-    <div class="container">
-        <div class="row animate-in" data-anim-type="fade-in-up">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                {% block body %}{% endblock %}
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="faq">
-
-</section>
-
-<section id="contact" class="remove-top-padding">
-    <div class="container">
-        <div class="row text-center header animate-in" data-anim-type="fade-in-up">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                <h3>Contact Details </h3>
-                <hr/>
-
-            </div>
-        </div>
-
-        <div class="row animate-in" data-anim-type="fade-in-up">
-
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="contact-wrapper">
-                    <h3>We Are Social</h3>
-                    <p>
-                        Aliquam tempus ante placerat,
-                        consectetur tellus nec, porttitor nulla.
-                    </p>
-                    <div class="social-below">
-                        <a href="#" class="btn button-custom btn-custom-two"> Facebook</a>
-                        <a href="#" class="btn button-custom btn-custom-two"> Twitter</a>
-                        <a href="#" class="btn button-custom btn-custom-two"> Google +</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="contact-wrapper">
-                    <h3>Quick Contact</h3>
-                    <h4><strong>Call : </strong> +09-88-99-77-55 </h4>
-                    <h4><strong>Skype : </strong> Yujhaeu78 </h4>
-                </div>
-
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="contact-wrapper">
-                    <h3>Address : </h3>
-                    <h4>230/45 , New way Lane , </h4>
-                    <h4>United States</h4>
-                    <div class="footer-div">
-                        &copy; 2015 YourDomain | <a href="http://www.designbootstrap.com/" target="_blank">by
-                            DesignBootstrp</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<section id="content">
+    <div class="container class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {% block body %}{% endblock %}
     </div>
 </section>
 
@@ -154,8 +58,8 @@
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-<div class="container row col-md-12 text-center remove-top-padding">Template courtesy of <a href="http://www.designbootstrap.com" target="_blank">DesignBootstrap.com</a></div>
-
+<div class="container row col-md-12 text-center remove-top-padding">Template courtesy of <a
+            href="http://www.designbootstrap.com" target="_blank">DesignBootstrap.com</a></div>
 
 
 </body>

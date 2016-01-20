@@ -1,9 +1,9 @@
 home:
     path:      /
-    defaults:  { _controller: AppBundle:Builder:create }
+    defaults:  { _controller: AppBundle:Pages:home }
     methods: [GET]
 
-create_build_environment:
-    path:      /
+generator:
+    path:      /generator
     defaults:  { _controller: AppBundle:Builder:create }
-    methods: [POST]
+    methods: [GET, POST]
