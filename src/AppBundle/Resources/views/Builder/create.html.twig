@@ -1,8 +1,10 @@
 {% form_theme form 'AppBundle::form_layout.html.twig' %}
 {% extends 'AppBundle::base2.html.twig' %}
-{% block body %}
 
-    <form method="post" action="{{ path('create_build_environment') }}#generator" class="pretty yellow border">
+{% block bodyClass %}bob{% endblock %}
+
+{% block body %}
+    <form method="post" action="{{ path('generator') }}" class="">
         <div class="row text-center header">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <h2>Define your environment</h2>
@@ -42,4 +44,3 @@
         <input type="submit" class="btn button-custom btn-custom-one">
     </form>
 {% endblock %}
-

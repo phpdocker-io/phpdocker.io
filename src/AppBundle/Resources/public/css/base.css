@@ -10,12 +10,17 @@ body {
     font-family : Montserrat, sans-serif;
 }
 
+body.bob {
+    background-color: #cf9a60;
+    color: black;
+}
+
 .header h1 {
-    font-family : Shadows Into Light;
+    font-family : Shadows Into Light, sans-serif;
 }
 
 .beta {
-    font-family : Shadows Into Light;
+    font-family : Shadows Into Light, sans-serif;
 }
 
 .header h1 a {
@@ -35,4 +40,8 @@ body {
 }
 
 .form-group {
+}
+
+.navbar-nav li a {
+    text-transform: uppercase;
 }
