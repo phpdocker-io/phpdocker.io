@@ -76,9 +76,9 @@ class Generator
 
         if ($readme === null) {
             $data = [
-                'webserverPort'   => $project->getBasePort(),
-                'mailcatcherPort' => $project->getBasePort() + 1,
-                'vmIpAddress'     => $this->getVmIpAddress(),
+                'webserverPort' => $project->getBasePort(),
+                'mailhogPort'   => $project->getBasePort() + 1,
+                'vmIpAddress'   => $this->getVmIpAddress(),
             ];
 
             $readme = $this->twig->render('README.md.twig', array_merge($data, $this->getHostnameDataBlock($project)));
@@ -158,8 +158,8 @@ class Generator
             'projectName'     => $project->getName(),
             'projectNameSlug' => $project->getProjectNameSlug(),
             'workdir'         => $this->getWorkdir($project),
-            'mailcatcher'     => $project->hasMailcatcher(),
-            'mailcatcherPort' => $project->getBasePort() + 1,
+            'mailhog'         => $project->hasMailhog(),
+            'mailhogPort'     => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
             'memcached'       => $project->hasMemcached(),
             'redis'           => $project->hasRedis(),
@@ -249,10 +249,10 @@ class Generator
     private function getNginxConf(Project $project) : string
     {
         $data = [
-            'isSymfonyApp' => $project->getPhpOptions()->isSymfonyApp(),
-            'projectName'  => $project->getName(),
-            'workdir'      => $this->getWorkdir($project),
-            'phpFpmHost'   => $project->getHostnameForService($project->getPhpOptions()),
+            'isSymfonyApp'   => $project->getPhpOptions()->isSymfonyApp(),
+            'projectName'    => $project->getName(),
+            'workdir'        => $this->getWorkdir($project),
+            'phpFpmHostname' => $project->getHostnameForService($project->getPhpOptions()),
         ];
 
         return $this->twig->render('nginx.conf.twig', $data);
@@ -271,12 +271,12 @@ class Generator
 
         if (count($hostnameDataBlock) === 0) {
             $hostnameDataBlock = [
-                'webserverHostname'   => $project->getHostnameForService($project->getNginxOptions()),
-                'phpFpmHostname'      => $project->getHostnameForService($project->getPhpOptions()),
-                'mysqlHostname'       => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
-                'memcachedHostname'   => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
-                'redisHostname'       => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
-                'mailcatcherHostname' => $project->hasMailcatcher() ? $project->getHostnameForService($project->getMailCatcherOptions()) : null,
+                'webserverHostname' => $project->getHostnameForService($project->getNginxOptions()),
+                'phpFpmHostname'    => $project->getHostnameForService($project->getPhpOptions()),
+                'mysqlHostname'     => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
+                'memcachedHostname' => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
+                'redisHostname'     => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
+                'mailhogHostname'   => $project->hasMailhog() ? $project->getHostnameForService($project->getMailhogOptions()) : null,
             ];
         }
 

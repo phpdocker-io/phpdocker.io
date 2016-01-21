@@ -26,7 +26,7 @@
 
 
         <h2>Services</h2>
-        {% for field in ['hasMemcached', 'hasRedis', 'hasMailcatcher']
+        {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
         if (attribute(form, field) is defined) %}
             {{ form_widget(attribute(form, field)) }}
         {% endfor %}
