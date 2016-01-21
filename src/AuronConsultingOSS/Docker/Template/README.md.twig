@@ -38,15 +38,15 @@ Simply `cd` to the folder where you placed the files, then `vagrant up`. This wi
 
 #Hostname#
 
-Either on `localhost`, if you're running the containers directly, or on `{{ vmIpAddress }}` when run on a vm. nginx and mailcatcher both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts` 
+Either on **`localhost`**, if you're running the containers directly, or on **`{{ vmIpAddress }}`** when run on a vm. nginx and mailhog both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts` 
 
 #Webserver#
 
-The webserver (`nginx`) is exposed through port {{ webserverPort }}
+The webserver (`nginx`) is exposed through port **{{ webserverPort }}**
  
-#Mailcatcher#
+#Mailhog#
 
-Web interface is exposed on port {{ mailcatcherPort }}.
+Web interface is exposed on port **{{ mailhogPort }}**.
 
 ##Hosts within your environment##
 
@@ -58,7 +58,7 @@ php-fpm|{{ phpFpmHostname }}|9000
 {% if mysqlHostname %}MySQL|{{ mysqlHostname }}|3306 (default){{ "\n" }}{% endif %}
 {% if memcachedHostname %}Memcached|{{ memcachedHostname }}|11211 (default){{ "\n" }}{% endif %}
 {% if redisHostname %}Redis|{{ redisHostname }}|6379 (default){{ "\n" }}{% endif %}
-{% if mailcatcherHostname %}SMTP (Mailcatcher)|{{ mailcatcherHostname }}|1025 (default){{ "\n" }}{% endif %}
+{% if mailhogHostname %}SMTP (Mailhog)|{{ mailhogHostname }}|1025 (default){{ "\n" }}{% endif %}
 
 
 #Docker compose cheatsheet#

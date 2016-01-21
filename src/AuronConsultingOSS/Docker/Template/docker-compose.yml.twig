@@ -4,12 +4,12 @@
   container_name: {{ memcachedHostname }}
 {% endif %}
 
-{% if mailcatcherHostname %}
-{{ mailcatcherHostname }}:
-  image: pataquets/mailcatcher
-  container_name: {{ mailcatcherHostname }}
+{% if mailhogHostname %}
+{{ mailhogHostname }}:
+  image: diyan/mailhog
+  container_name: {{ mailhogHostname }}
   ports:
-    - "{{ mailcatcherPort }}:1080"
+    - "{{ mailhogPort }}:8025"
 {% endif %}
 
 {% if redisHostname %}
@@ -38,7 +38,7 @@
   ports:
    - "{{ webserverPort }}:80"
   links:
-   - {{ projectNameSlug }}-php-fpm
+   - {{ phpFpmHostname }}
 
 {{ phpFpmHostname }}:
   build: .
@@ -46,10 +46,10 @@
   container_name: {{ phpFpmHostname }}
   volumes:
     - ..:{{ workdir }}
-{% if mysqlHostname or memcachedHostname or mailcatcherHostname or redisHostname %}
+{% if mysqlHostname or memcachedHostname or mailhogHostname or redisHostname %}
   links:
 {% if memcachedHostname %}    - {{ memcachedHostname }}{{ "\n" }}{% endif %}
-{% if mailcatcherHostname %}    - {{ mailcatcherHostname }}{{ "\n" }}{% endif %}
+{% if mailhogHostname %}    - {{ mailhogHostname }}{{ "\n" }}{% endif %}
 {% if mysqlHostname %}    - {{ mysqlHostname }}{{ "\n" }}{% endif %}
 {% if redisHostname %}    - {{ redisHostname }}{% endif %}
 {% endif %}

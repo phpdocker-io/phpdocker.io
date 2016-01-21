@@ -30,7 +30,7 @@ class ProjectType extends AbstractType
             ->add('basePort', IntegerType::class, ['label' => 'Base port'])
             ->add('hasMemcached', CheckboxType::class, ['required' => false, 'label' => 'Enable Memcached'])
             ->add('hasRedis', CheckboxType::class, ['required' => false, 'label' => 'Enable Redis'])
-            ->add('hasMailcatcher', CheckboxType::class, ['required' => false, 'label' => 'Enable Mailcatcher'])
+            ->add('hasMailhog', CheckboxType::class, ['required' => false, 'label' => 'Enable Mailhog'])
             ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
             ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
         ;

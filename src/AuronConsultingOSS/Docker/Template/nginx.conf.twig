@@ -18,7 +18,7 @@ server {
     }
     
     location ~ ^/(app|app_dev)\.php(/|$) {
-        fastcgi_pass {{ phpFpmHost }}:9000;
+        fastcgi_pass {{ phpFpmHostname }}:9000;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -46,7 +46,7 @@ server {
     access_log /var/log/nginx/{{ projectName }}.access.log;
 
     location ~ \.php$ {
-        fastcgi_pass php-fpm:9000;
+        fastcgi_pass {{ phpFpmHostname }}:9000;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectName }}_php_errors.log";

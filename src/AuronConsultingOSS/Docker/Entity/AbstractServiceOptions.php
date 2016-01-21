@@ -1,5 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Entity;
+
 use AuronConsultingOSS\Docker\Interfaces\HostnameSuffixInterface;
 
 /**

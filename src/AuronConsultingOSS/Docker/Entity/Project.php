@@ -49,9 +49,9 @@ class Project
     protected $redisOptions;
 
     /**
-     * @var MailcatcherOptions
+     * @var MailhogOptions
      */
-    protected $mailCatcherOptions;
+    protected $mailhogOptions;
 
     /**
      * @var string
@@ -70,12 +70,12 @@ class Project
 
     public function __construct()
     {
-        $this->nginxOptions       = new NginxOptions();
-        $this->mysqlOptions       = new MySQLOptions();
-        $this->phpOptions         = new PhpOptions();
-        $this->redisOptions       = new RedisOptions();
-        $this->memcachedOptions   = new MemcachedOptions();
-        $this->mailCatcherOptions = new MailcatcherOptions();
+        $this->nginxOptions     = new NginxOptions();
+        $this->mysqlOptions     = new MySQLOptions();
+        $this->phpOptions       = new PhpOptions();
+        $this->redisOptions     = new RedisOptions();
+        $this->memcachedOptions = new MemcachedOptions();
+        $this->mailhogOptions   = new MailhogOptions();
     }
 
     /**
@@ -307,21 +307,21 @@ class Project
     }
 
     /**
-     * @return MailcatcherOptions
+     * @return MailhogOptions
      */
-    public function getMailCatcherOptions() : MailcatcherOptions
+    public function getMailhogOptions() : MailhogOptions
     {
-        return $this->mailCatcherOptions;
+        return $this->mailhogOptions;
     }
 
     /**
-     * @param MailcatcherOptions $mailCatcherOptions
+     * @param MailhogOptions $mailhogOptions
      *
      * @return Project
      */
-    public function setMailCatcherOptions(MailcatcherOptions $mailCatcherOptions) : self
+    public function setMailhogOptions(MailhogOptions $mailhogOptions) : self
     {
-        $this->mailCatcherOptions = $mailCatcherOptions;
+        $this->mailhogOptions = $mailhogOptions;
 
         return $this;
     }
@@ -329,19 +329,19 @@ class Project
     /**
      * @return boolean
      */
-    public function hasMailcatcher() : bool
+    public function hasMailhog() : bool
     {
-        return $this->mailCatcherOptions->isEnabled();
+        return $this->mailhogOptions->isEnabled();
     }
 
     /**
-     * @param boolean $hasMailcatcher
+     * @param boolean $hasMailhog
      *
      * @return Project
      */
-    public function setHasMailcatcher(bool $hasMailcatcher) : self
+    public function setHasMailhog(bool $hasMailhog) : self
     {
-        $this->mailCatcherOptions->setEnabled($hasMailcatcher);
+        $this->mailhogOptions->setEnabled($hasMailhog);
 
         return $this;
     }

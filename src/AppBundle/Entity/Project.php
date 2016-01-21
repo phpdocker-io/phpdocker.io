@@ -63,7 +63,7 @@ class Project extends \AuronConsultingOSS\Docker\Entity\Project
      *
      * @Assert\Type(type="bool")
      */
-    protected $hasMailcatcher = false;
+    protected $hasMailhog = false;
 
     public function __construct()
     {
