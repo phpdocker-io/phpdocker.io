@@ -185,10 +185,8 @@ class Generator
      */
     private function getPhpDockerConf(Project $project) : string
     {
-        $phpOptions    = $project->getPhpOptions();
-        $dependencies  = [];
-        $customDists   = [];
-        $stdExtensions = [];
+        $phpOptions  = $project->getPhpOptions();
+        $packages    = [];
 
         // Extensions to add
         $extensions = array_merge(
@@ -198,25 +196,18 @@ class Generator
 
         foreach ($extensions as $extension) {
             /** @var PhpExtension $extension */
-            $dependencies = array_merge($dependencies, $extension->getDependencies());
-
-            $customDist = $extension->getCustomDist();
-            if ($customDist !== null) {
-                $customDists[] = $customDist;
-            } else {
-                $stdExtensions[] = $extension->getName();
-            }
+            $packages = array_merge($packages, $extension->getPackages());
         }
 
-        $dependencies = array_unique($dependencies);
+        $packages = array_unique($packages);
 
+
+        dump($packages);
         $data = [
-            'projectNameSlug' => $project->getProjectNameSlug(),
-            'workdir'         => $this->getWorkdir($project),
-            'dependencies'    => $dependencies,
-            'customDists'     => $customDists,
-            'stdExtensions'   => $stdExtensions,
-            'isSymfonyApp'    => $phpOptions->isSymfonyApp(),
+            'projectNameSlug'   => $project->getProjectNameSlug(),
+            'workdir'           => $this->getWorkdir($project),
+            'extensionPackages' => $packages,
+            'isSymfonyApp'      => $phpOptions->isSymfonyApp(),
         ];
 
         return $this->twig->render('dockerfile-php-fpm.conf.twig', $data);
