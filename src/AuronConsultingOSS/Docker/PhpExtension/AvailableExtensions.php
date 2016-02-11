@@ -19,7 +19,6 @@ class AvailableExtensions
         'MCrypt'   => ['packages' => ['php7.0-mcrypt']],
         'OPCache'  => ['packages' => ['php7.0-opcache']],
         'Readline' => ['packages' => ['php7.0-readline']],
-        'curl'     => ['packages' => ['php7.0-curl']],
     ];
 
     /**

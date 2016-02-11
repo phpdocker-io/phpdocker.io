@@ -185,8 +185,8 @@ class Generator
      */
     private function getPhpDockerConf(Project $project) : string
     {
-        $phpOptions  = $project->getPhpOptions();
-        $packages    = [];
+        $phpOptions = $project->getPhpOptions();
+        $packages   = [];
 
         // Extensions to add
         $extensions = array_merge(
@@ -199,14 +199,10 @@ class Generator
             $packages = array_merge($packages, $extension->getPackages());
         }
 
-        $packages = array_unique($packages);
-
-
-        dump($packages);
         $data = [
             'projectNameSlug'   => $project->getProjectNameSlug(),
             'workdir'           => $this->getWorkdir($project),
-            'extensionPackages' => $packages,
+            'extensionPackages' => array_unique($packages),
             'isSymfonyApp'      => $phpOptions->isSymfonyApp(),
         ];
 
