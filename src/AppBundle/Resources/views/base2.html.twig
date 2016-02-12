@@ -9,7 +9,7 @@
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
-    <title>PHPDocker.io</title>
+    <title>PHPDocker.io{% block pageName %}{% endblock %}</title>
     {% stylesheets filter="cssrewrite"
     'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -29,14 +29,14 @@
 <div class="navbar navbar-inverse navbar-fixed-top" id="menu-section">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ path('home') }}">
                 PHPDocker.io <span class="beta">beta</span>
             </a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('home') }}">WHAT IS PHPDOCKER.IO?</a></li>
-                <li><a href="{{ path('generator') }}">Generator</a></li>
+                <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">WHAT IS PHPDOCKER.IO?</a></li>
+                <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
             </ul>
         </div>
 
@@ -44,16 +44,16 @@
 </div>
 <!--MENU SECTION END-->
 <section id="content">
-    <div class="container class=" col-xs-12 col-sm-12 col-md-12 col-lg-12
-    ">
+    <div class="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
     {% block body %}{% endblock %}
     </div>
 </section>
 
-<div class="container col-md-12 text-center footer">
-    <div class="row">&copy; PhpDocker.io / Auron Consulting ltd</div>
-    <div class="row">Template courtesy of <a href="http://www.designbootstrap.com" target="_blank">DesignBootstrap.com</a></div>
+<div class="container text-center footer col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">PhpDocker.io / &copy; 2016 Auron Consulting ltd</div>
 </div>
+
+<!-- Template courtesy of http://www.designbootstrap.com -->
 
 {% javascripts
 '@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'

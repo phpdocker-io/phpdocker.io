@@ -26,8 +26,14 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, ['label' => 'Project name'])
-            ->add('basePort', IntegerType::class, ['label' => 'Base port'])
+            ->add('name', TextType::class, [
+                'label' => 'Project name',
+                'attr' => ['placeholder' => 'Used on host, container, vm and folder names']
+            ])
+            ->add('basePort', IntegerType::class, [
+                'label' => 'Base port',
+                'attr' => ['placeholder' => 'For nginx, Mailhog control panel...']
+            ])
             ->add('hasMemcached', CheckboxType::class, ['required' => false, 'label' => 'Enable Memcached'])
             ->add('hasRedis', CheckboxType::class, ['required' => false, 'label' => 'Enable Redis'])
             ->add('hasMailhog', CheckboxType::class, ['required' => false, 'label' => 'Enable Mailhog'])

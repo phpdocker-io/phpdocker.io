@@ -9,6 +9,12 @@ function doMainFormMagic() {
     var mysqlOptionsDiv    = $('#mysql-options')
     var mysqlOptionsFields = mysqlOptionsDiv.find('input');
     var mysqlSwitch        = $('#project_mysqlOptions_hasMysql');
+    var fields             = $('#generator input[type=text], input[type=number]');
+
+    // Remove any default values on text and number fields
+    fields.each(function () {
+        $(this).val(null)
+    });
 
     // Disable mysql options
     var disableMysqlOptions = function () {
@@ -19,7 +25,7 @@ function doMainFormMagic() {
     disableMysqlOptions();
 
     var enableMysqlOptions = function () {
-        mysqlOptionsDiv.removeClass('disabled');
+        mysqlOptionsDiv.removeClass('disabled').fadeIn(1000);
         mysqlOptionsFields.prop('disabled', false);
     };
 
@@ -32,12 +38,20 @@ function doMainFormMagic() {
         }
     });
 
+    // PHP extension multiselect
     $('#project_phpOptions_phpExtensions').multiselect({
         enableCaseInsensitiveFiltering: true,
-        maxHeight: 250,
-        buttonWidth: 300,
-        dropUp: true
+        maxHeight: 200,
+        buttonWidth: "100%",
+        dropUp: true,
+        onDropdownHide: function (event) {
+            event.preventDefault();
+        }
+
     });
 
+    // Open multiselect and return focus to first field
+    $('button.multiselect').click();
+    fields.first().focus();
 };
 

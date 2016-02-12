@@ -408,21 +408,6 @@ CONTACT SECTION STYLES
     min-height            : 200px;
 }
 
-.pretty {
-    background-color      : rgba(255, 255, 255, 0.1);
-    padding               : 20px;
-    border-radius         : 5px;
-    -moz-border-radius    : 5px;
-    -webkit-border-radius : 5px;
-    margin-bottom         : 40px;
-    min-height            : 200px;
-}
-
-.pretty.yellow {
-    background-color : #c1aa87;
-    color            : black;
-}
-
 .border {
     border : 2px solid;
 }
