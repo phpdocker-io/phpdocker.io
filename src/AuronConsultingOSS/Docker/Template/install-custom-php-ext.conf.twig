@@ -1,5 +1,0 @@
-
-RUN curl -sS {{ tarballUrl }} -o /usr/src/php/ext/{{ uncompressedFolder }}.tgz \
-    && aunpack /usr/src/php/ext/{{ uncompressedFolder }}.tgz -X /usr/src/php/ext/ \
-    && rm /usr/src/php/ext/{{ uncompressedFolder }}.tgz \
-    && docker-php-ext-install {{ uncompressedFolder }}
