@@ -1,19 +1,22 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
 phpdocker-io-memcached:
-  image: memcached:latest
+  image: tenstartups/alpine-memcached:latest
   container_name: phpdocker-io-memcached
 
 phpdocker-io-mailhog:
   image: diyan/mailhog
   container_name: phpdocker-io-mailhog
   ports:
-   - "10001:8025"
+    - "10001:8025"
 
 phpdocker-io-webserver:
   build: .
-  dockerfile: docker/Dockerfile.nginx.yml
+  dockerfile: docker/Dockerfile.nginx.conf
   container_name: phpdocker-io-webserver
   volumes:
-      - .:/var/www/phpdocker.io
+      - .:/var/www/phpdocker-io
   ports:
    - "10000:80"
   links:
@@ -21,10 +24,10 @@ phpdocker-io-webserver:
 
 phpdocker-io-php-fpm:
   build: .
-  dockerfile: docker/Dockerfile.php-fpm.yml
-  container_name: phpdocker-io-php
+  dockerfile: docker/Dockerfile.php-fpm.conf
+  container_name: phpdocker-io-php-fpm
   volumes:
-    - .:/var/www/phpdocker.io
+    - .:/var/www/phpdocker-io
   links:
     - phpdocker-io-memcached
     - phpdocker-io-mailhog
