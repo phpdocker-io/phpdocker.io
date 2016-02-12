@@ -1,11 +1,11 @@
 imports:
     - { resource: config.yml }
 
-#framework:
-#    validation:
-#        cache: validator.mapping.cache.apc
-#    serializer:
-#        cache: serializer.mapping.cache.apc
+framework:
+    validation:
+        cache: validator.mapping.cache.apc
+    serializer:
+        cache: serializer.mapping.cache.apc
 
 monolog:
     handlers:

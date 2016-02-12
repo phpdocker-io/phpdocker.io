@@ -18,7 +18,7 @@
         if (attribute(form, field) is defined) %}
             {{ form_row(attribute(form, field)) }}
         {% endfor %}
-        
+
         <h3>PHP Options</h3>
         {{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}
         {{ form_row(attribute(form.phpOptions, 'phpExtensions')) }}
