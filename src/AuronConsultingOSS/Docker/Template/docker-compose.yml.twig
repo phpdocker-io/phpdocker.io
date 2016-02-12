@@ -1,6 +1,6 @@
 {% if memcachedHostname %}
 {{ memcachedHostname }}:
-  image: memcached:latest
+  image: tenstartups/alpine-memcached:latest
   container_name: {{ memcachedHostname }}
 {% endif %}
 
