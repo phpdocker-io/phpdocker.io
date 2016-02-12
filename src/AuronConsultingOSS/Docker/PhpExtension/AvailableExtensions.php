@@ -13,90 +13,47 @@ class AvailableExtensions
      * List of extensions always to install
      */
     const MANDATORY_EXTENSIONS_MAP = [
-        'bz2'      => ['dependencies' => ['libbz2-dev']],
-        'calendar' => [],
-        'iconv'    => [],
-        'intl'     => ['dependencies' => ['libicu-dev']],
-        'mbstring' => [],
-        'mcrypt'   => ['dependencies' => ['libmcrypt-dev']],
-        'json'     => [],
-        'posix'    => [],
+        'APC'      => ['packages' => ['php7.0-apcu', 'php7.0-apcu-bc']],
+        'cURL'     => ['packages' => ['php7.0-curl']],
+        'JSON'     => ['packages' => ['php7.0-json']],
+        'MCrypt'   => ['packages' => ['php7.0-mcrypt']],
+        'OPCache'  => ['packages' => ['php7.0-opcache']],
+        'Readline' => ['packages' => ['php7.0-readline']],
     ];
 
     /**
      * List of allowed extensions
      */
     const OPTIONAL_EXTENSIONS_MAP = [
-        # Extensions not included on dist
-        'memcached' => [
-            'dependencies' => ['libmemcached-dev'],
-            'custom-dist'  => [
-                'tarball'             => 'https://codeload.github.com/php-memcached-dev/php-memcached/tar.gz/php7',
-                'uncompressed-folder' => 'php-memcached-php7'
-            ]
-        ],
+        'bz2'         => ['packages' => ['php7.0-bz2']],
+        'dbg'         => ['packages' => ['php7.0-dbg']],
+        'Enchant'     => ['packages' => ['php7.0-enchant']],
+        'GD'          => ['packages' => ['php7.0-gd']],
+        'GMP'         => ['packages' => ['php7.0-gmp']],
+        'igbinary'    => ['packages' => ['php7.0-igbinary']],
+        'ImageMagick' => ['packages' => ['php7.0-imagick']],
+        'IMAP'        => ['packages' => ['php7.0-imap']],
+        'Interbase'   => ['packages' => ['php7.0-interbase']],
+        'Intl'        => ['packages' => ['php7.0-intl']],
+        'LDAP'        => ['packages' => ['php7.0-ldap']],
+        'Memcached'   => ['packages' => ['php7.0-memcached']],
+        'MongoDB'     => ['packages' => ['php7.0-mongodb']],
+        'MessagePack' => ['packages' => ['php7.0-msgpack']],
+        'MySQL'       => ['packages' => ['php7.0-mysql']],
+        'ODBC'        => ['packages' => ['php7.0-odbc']],
+        'PostgreSQL'  => ['packages' => ['php7.0-pgsql']],
+        'PHPDBG'      => ['packages' => ['php7.0-phpdbg']],
+        'PSpell'      => ['packages' => ['php7.0-pspell']],
+        'Recode'      => ['packages' => ['php7.0-recode']],
+        'Redis'       => ['packages' => ['php7.0-redis']],
+        'SNMP'        => ['packages' => ['php7.0-snmp']],
+        'SQLite3'     => ['packages' => ['php7.0-sqlite3']],
+        'Sybase'      => ['packages' => ['php7.0-sybase']],
+        'Tidy'        => ['packages' => ['php7.0-tidy']],
+        'XDebug'      => ['packages' => ['php7.0-xdebug']],
+        'XMLRPC-EPI'  => ['packages' => ['php7.0-xmlrpc']],
+        'XSL'         => ['packages' => ['php7.0-xsl']],
 
-        'redis'        => [
-            'dependencies' => ['libmemcached-dev'],
-            'custom-dist'  => [
-                'tarball'             => 'https://codeload.github.com/phpredis/phpredis/tar.gz/php7',
-                'uncompressed-folder' => 'phpredis-php7'
-            ]
-        ],
-
-        # Disabled extensions - don't work for now
-        # 'com_dotnet'   => [],
-        #'imap'         => ['dependencies' => ['libc-client-dev libkrb5-dev']],
-        # 'oci8'         => [],
-        #'odbc'         => ['dependencies' => ['unixodbc-dev'],
-        #'pdo_dblib'         => ['dependencies' => ['freetds-dev',  'libsybdb5', 'libdbd-freetds'],
-        # 'pdo_oci'      => [],
-        # 'pdo_odbc'     => [],
-        # 'xml'          => [],
-        # 'xmlreader'    => [],
-        # 'xmlrpc'       => [],
-        # 'xmlwriter'    => [],
-        # 'ldap'         => ['dependencies' => ['libldap2-dev'], 'configure' => ['--with-libdir=lib/x86_64-linux-gnu/']],
-
-        # The easy ones
-        'bcmath'       => [],
-        'ctype'        => [],
-        'curl'         => ['dependencies' => ['libcurl4-openssl-dev']],
-        'dba'          => [],
-        'dom'          => ['dependencies' => ['libxml2-dev']],
-        'enchant'      => ['dependencies' => ['libenchant-dev']],
-        'exif'         => [],
-        'fileinfo'     => [],
-        'ftp'          => ['dependencies' => ['libssl-dev']],
-        'gd'           => ['dependencies' => ['libjpeg-dev', 'libpng12-dev']],
-        'gettext'      => [],
-        'gmp'          => [],
-        'interbase'    => ['dependencies' => ['firebird-dev']],
-        'mysqli'       => ['dependencies' => ['libmysqlclient-dev']],
-        'opcache'      => [],
-        'pcntl'        => [],
-        'pdo'          => [],
-        'pdo_firebird' => ['dependencies' => ['firebird-dev']],
-        'pdo_mysql'    => ['dependencies' => ['libmysqlclient-dev']],
-        'pdo_pgsql'    => ['dependencies' => ['libpq-dev']],
-        'pdo_sqlite'   => ['dependencies' => ['libsqlite3-dev']],
-        'pgsql'        => ['dependencies' => ['libpq-dev']],
-        'phar'         => [],
-        'pspell'       => ['dependencies' => ['libpspell-dev']],
-        'recode'       => ['dependencies' => ['librecode-dev']],
-        'session'      => [],
-        'shmop'        => [],
-        'simplexml'    => [],
-        'snmp'         => ['dependencies' => ['libsnmp-dev']],
-        'soap'         => ['dependencies' => ['libxml2-dev']],
-        'sockets'      => [],
-        'sysvmsg'      => [],
-        'sysvsem'      => [],
-        'sysvshm'      => [],
-        'tidy'         => ['dependencies' => ['libtidy-dev']],
-        'tokenizer'    => [],
-        'wddx'         => [],
-        'xsl'          => ['dependencies' => ['libxslt1-dev']],
     ];
 
     /**
@@ -146,13 +103,8 @@ class AvailableExtensions
         $extension = new PhpExtension();
         $extension->setName($name);
 
-        foreach ($raw['dependencies'] ?? [] as $dependency) {
-            $extension->addDepencency($dependency);
-        }
-
-        $customDist = $raw['custom-dist'] ?? [];
-        if (isset($customDist['tarball']) === true && isset($customDist['uncompressed-folder']) === true) {
-            $extension->setCustomDist($customDist['tarball'], $customDist['uncompressed-folder']);
+        foreach ($raw['packages'] ?? [] as $package) {
+            $extension->addPackage($package);
         }
 
         return $extension;
