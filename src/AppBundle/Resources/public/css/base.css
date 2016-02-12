@@ -11,8 +11,8 @@ body {
 }
 
 body.bob {
-    background-color: #cf9a60;
-    color: black;
+    background-color : #cf9a60;
+    color            : black;
 }
 
 .header h1 {
@@ -43,5 +43,11 @@ body.bob {
 }
 
 .navbar-nav li a {
-    text-transform: uppercase;
+    text-transform : uppercase;
+}
+
+.footer {
+    margin-top       : 1em;
+    padding          : 1em;
+    background-color : rgba(0, 0, 0, 0.4);
 }

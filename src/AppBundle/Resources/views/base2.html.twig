@@ -17,6 +17,7 @@
     {% stylesheets
     '@AppBundle/Resources/public/css/base.css'
     '@AppBundle/Resources/public/vendor/style-solid-red/index.css'
+    '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
     '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -43,10 +44,16 @@
 </div>
 <!--MENU SECTION END-->
 <section id="content">
-    <div class="container class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            {% block body %}{% endblock %}
+    <div class="container class=" col-xs-12 col-sm-12 col-md-12 col-lg-12
+    ">
+    {% block body %}{% endblock %}
     </div>
 </section>
+
+<div class="container col-md-12 text-center footer">
+    <div class="row">&copy; PhpDocker.io / Auron Consulting ltd</div>
+    <div class="row">Template courtesy of <a href="http://www.designbootstrap.com" target="_blank">DesignBootstrap.com</a></div>
+</div>
 
 {% javascripts
 '@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
@@ -55,12 +62,10 @@
 '@AppBundle/Resources/public/vendor/animations/assets/js/animations.min.js'
 '@AppBundle/Resources/public/vendor/jquery-easing/jquery.easing.min.js'
 '@AppBundle/Resources/public/vendor/custom-solid/index.js'
+'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-<div class="container row col-md-12 text-center remove-top-padding">Template courtesy of <a
-            href="http://www.designbootstrap.com" target="_blank">DesignBootstrap.com</a></div>
-
 
 </body>
 

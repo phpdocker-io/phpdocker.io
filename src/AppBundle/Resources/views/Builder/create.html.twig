@@ -18,12 +18,11 @@
         if (attribute(form, field) is defined) %}
             {{ form_row(attribute(form, field)) }}
         {% endfor %}
-
-
+        
         <h3>PHP Options</h3>
         {{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}
         {{ form_row(attribute(form.phpOptions, 'phpExtensions')) }}
-
+        <br clear="all">
 
         <h2>Services</h2>
         {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
