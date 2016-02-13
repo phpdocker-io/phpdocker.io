@@ -53,6 +53,8 @@
     <div class="row">PhpDocker.io / &copy; 2016 Auron Consulting ltd</div>
 </div>
 
+{% include 'AppBundle::analytics.html.twig' %}
+
 <!-- Template courtesy of http://www.designbootstrap.com -->
 
 {% javascripts
@@ -66,8 +68,6 @@
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-
-{% include 'AppBundle::analytics.html.twig' %}
 
 </body>
 

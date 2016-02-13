@@ -53,5 +53,14 @@ function doMainFormMagic() {
     // Open multiselect and return focus to first field
     $('button.multiselect').click();
     fields.first().focus();
+
+    // Analytics
+    $('#generator').submit(function (event) {
+        $('input[type=checkbox]').each(function () {
+            ga('send', 'event', 'builder-form', 'builder-choices', $(this).attr('name'), $(this).is(':checked'));
+        });
+
+        ga('send', 'event', 'builder-form', 'form-submission');
+    });
 };
 
