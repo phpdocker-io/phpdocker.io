@@ -6,57 +6,55 @@
 {% block isGennyActive %}active{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="container">
-            <form method="post" id="generator" action="{{ path('generator') }}" class="pretty">
-                <div class="row text-center header">
-                    <h2>Project properties</h2>
-                    <hr/>
+    <div class="row">
+        <form method="post" id="generator" action="{{ path('generator') }}" class="pretty">
+            <div class="row text-center header">
+                <h2>Project properties</h2>
+                <hr/>
+            </div>
+
+            {{ form_errors(form) }}
+
+            <div class="row">
+                {% for field in ['name', 'basePort']
+                if (attribute(form, field) is defined) %}
+                    <div class="col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                    <h3>PHP Options</h3>
+                    {{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}
+                    {{ form_row(attribute(form.phpOptions, 'phpExtensions')) }}
                 </div>
 
-                {{ form_errors(form) }}
-
-                <div class="row">
-                    {% for field in ['name', 'basePort']
+                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
+                    <h2>Services</h2>
+                    {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
                     if (attribute(form, field) is defined) %}
-                        <div class="col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                        {{ form_widget(attribute(form, field)) }}
                     {% endfor %}
-                </div>
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
-                        <h3>PHP Options</h3>
-                        {{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}
-                        {{ form_row(attribute(form.phpOptions, 'phpExtensions')) }}
-                    </div>
+                    {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
 
-                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
-                        <h2>Services</h2>
-                        {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
-                        if (attribute(form, field) is defined) %}
-                            {{ form_widget(attribute(form, field)) }}
+                    <div id="mysql-options" data-anim-type="fade-in-up">
+                        {% for field in ['rootPassword', 'databaseName', 'username', 'password']
+                        if (attribute(form.mysqlOptions, field) is defined) %}
+                            {{ form_row(attribute(form.mysqlOptions, field)) }}
                         {% endfor %}
-
-                        {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
-
-                        <div id="mysql-options" data-anim-type="fade-in-up">
-                            {% for field in ['rootPassword', 'databaseName', 'username', 'password']
-                            if (attribute(form.mysqlOptions, field) is defined) %}
-                                {{ form_row(attribute(form.mysqlOptions, field)) }}
-                            {% endfor %}
-                        </div>
-
-                        {{ form_rest(form) }}
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 text-right">
-                        <input type="submit" class="btn button-custom btn-custom-three shadow"
-                               value="Generate project archive">
-                    </div>
+                    {{ form_rest(form) }}
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 text-right">
+                    <input type="submit" class="btn button-custom btn-custom-three shadow"
+                           value="Generate project archive">
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock %}
