@@ -26,6 +26,7 @@ class ContactRequestType extends AbstractType
         $builder
             ->add('senderName', TextType::class, [
                 'label'    => 'Your name',
+                'attr'     => ['placeholder' => 'Mandatory, even if it\'s made up'],
                 'required' => true,
             ])
             ->add('senderEmail', EmailType::class, [
