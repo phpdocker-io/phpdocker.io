@@ -1,35 +1,54 @@
 {% extends 'AppBundle::base2.html.twig' %}
+
+{% block bodyClass %}darker{% endblock %}
+{% block isHomeActive %}active{% endblock %}
+
 {% block body %}
-    <div class="row text-center header">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2>What is PHPDocker.io?</h2>
-            <hr/>
-        </div>
-    </div>
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2 scroll-me">
-            <p>PHPDocker.io is a tool that will help you build a typical PHP environment based on Docker with just a
-                few clicks. </p>
-            <p>It will also generate a suitable Vagrantfile for use on systems which do not support Docker and
-                containers natively. The idea is to vm-boot into a very minimal Linux OS (<a
-                        href="http://boot2docker.io/" target="_blank">boot2docker</a>) able of running these
-                containers.</p>
-            <p>Why Docker? If you've been using a typical vagrant + linux + puppet set up for a while, as I have,
-                you've probably grown weary of unreliable and never ending provisioning runs. Docker images come
-                pre-configured and require minimal set up and no maintenance. There's no extra OS overhead to
-                consider, if you run Docker natively, or such overhead is really small in the case of
-                boot2docker.</p>
+        <div class="col col-lg-5 col-lg-offset-1">
+            <div class="pretty">
+                <div class="row text-center header">
+                    <h2>What is PHPDocker.io?</h2>
+                    <hr/>
+                </div>
 
-            <p>This is our first, early feeler prototype. Features to come:</p>
-            <ul>
-                <li>Dotdeb.org based PHP: PHP's official images are incredibly cumbersome due to compiling of
-                    extensions. Just waiting for php-redis and php-memcached PECL extensions to be packaged
-                </li>
-                <li>PostgreSQL</li>
-                <li>Elasticsearch</li>
-                <li>RabbitMQ</li>
-            </ul>
+                <p>PHPDocker.io is a tool that will help you build a typical PHP environment based on Docker with
+                    just a few clicks. </p>
+                <p>It will also generate a suitable Vagrantfile for use on systems which do not support Docker and
+                    containers natively. </p>
+                <p>Why Docker? Containers are typically faster to set up, less prone to provisioning errors
+                    (pre-setup images), and last but not least, web app deployment is going the way of the
+                    container.</p>
 
+                <p>This a first, early feeler prototype. Features to come:</p>
+                <ul>
+                    <li>PHP version choice (currently PHP7)</li>
+                    <li>HHVM</li>
+                    <li>PostgreSQL</li>
+                    <li>Elasticsearch</li>
+                    <li>RabbitMQ</li>
+                    <li>Blackfire profiler</li>
+                    <li>Tideways profiler</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-lg-5">
+            <div class="pretty">
+                <div class="row text-center header">
+                    <h2>How to use it?</h2>
+                    <hr/>
+                </div>
+
+                <p>If you've used <a href="https://puphpet.com/" target="_blank">PuPHPet</a> before, the concept
+                    will be very familiar.
+                </p>
+                <p>Simply go to the <a href="{{ path('generator') }}">generator</a>, which hopefully will be
+                    self explanatory, fill up your requirements and press the submit button.</p>
+                <p>This will trigger the download of a zip file with the environment definition. Copy the folder
+                    within to the root of your project and bootstrap your environment. </p>
+                <p>The zip file contains instructions in more detail as well as a list of any services you might
+                    have enabled with their real hostnames for you to configure on your own application.</p>
+            </div>
         </div>
     </div>
 
