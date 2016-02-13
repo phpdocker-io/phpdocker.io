@@ -45,7 +45,10 @@ class PagesController extends Controller implements ContainerAwareInterface
         // Process form
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() === true) {
+
+            // If human, compose and send message
             if ($this->checkRecaptcha($request) === true) {
+                $this->sendmessage($contactRequest);
                 return $this->render('AppBundle:Pages:contact-success.html.twig');
             }
 
@@ -55,6 +58,29 @@ class PagesController extends Controller implements ContainerAwareInterface
         return $this->render('AppBundle:Pages:contact.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * Actually send contact request email.
+     *
+     * @param ContactRequest $contactRequest
+     */
+    private function sendmessage(ContactRequest $contactRequest)
+    {
+        $messageBody = $this->renderView('AppBundle:emails:contact-email.html.twig', [
+            'senderName'  => $contactRequest->getSenderName(),
+            'senderEmail' => $contactRequest->getSenderEmail(),
+            'message'     => $contactRequest->getMessage(),
+        ]);
+
+        $message = \Swift_Message::newInstance();
+        $message
+            ->setSubject('PHPDocker.io - Contact request')
+            ->setFrom($contactRequest->getSenderEmail() ?? 'automaton@phpdocker.io')
+            ->setTo($this->container->getParameter('email_to'))
+            ->setBody($messageBody, 'text/html');
+
+        $this->container->get('mailer')->send($message);
     }
 
     /**

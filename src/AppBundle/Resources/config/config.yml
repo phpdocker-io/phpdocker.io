@@ -1,3 +1,6 @@
+parameters:
+  email_to: "luis.pabon@auronconsulting.co.uk"
+
 assetic:
   debug:          %kernel.debug%
   filters:
