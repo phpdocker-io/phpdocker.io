@@ -138,7 +138,15 @@ form input[type=submit] {
 }
 
 #contact textarea {
-    height: 10em;
+    height : 10em;
+}
+
+#recaptcha-container {
+    padding-top              : 1em;
+    transform                : scale(0.7);
+    -webkit-transform        : scale(0.7);
+    transform-origin         : 0 0;
+    -webkit-transform-origin : 0 0;
 }
 
 
