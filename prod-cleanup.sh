@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 sudo rm /tmp/phpdocker.io/* -Rf
+composer -o install
 sudo php bin/console cache:clear --env=prod
 sudo rm -Rf web/bundles web/css web/js
 sudo php bin/console assets:install --env=prod
