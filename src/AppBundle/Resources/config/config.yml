@@ -1,4 +1,4 @@
 assetic:
-    debug:          %kernel.debug%
-    filters:
-        cssrewrite: ~
+  debug:          %kernel.debug%
+  filters:
+      cssrewrite: ~

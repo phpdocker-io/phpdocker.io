@@ -25,7 +25,8 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "cocur/slugify": "^1.4",
         "symfony/assetic-bundle": "^2.7",
-        "michelf/php-markdown": "^1.6"
+        "michelf/php-markdown": "^1.6",
+        "guzzlehttp/guzzle": "^6.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
