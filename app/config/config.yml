@@ -39,4 +39,13 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        google_analytics: %google_analytics%
+        google_analytics:     %google_analytics%
+        recaptcha_site_key:   %recaptcha_site_key%
+
+# Swiftmailer
+swiftmailer:
+    transport: '%mailer_transport%'
+    host:      '%mailer_host%'
+    port:      '%mailer_port%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
