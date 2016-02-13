@@ -6,8 +6,8 @@
 {% block isContactActive %}active{% endblock %}
 
 {% block body %}
-    <div class="row col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
-        <form method="post" id="generator" action="{{ path('contact') }}" class="pretty">
+    <div class="row col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+        <form method="post" id="contact" action="{{ path('contact') }}" class="pretty">
             <div class="row text-center header">
                 <h2>Contact</h2>
                 <hr/>
@@ -21,9 +21,21 @@
                     <div class="col-md-6">{{ form_row(attribute(form, field)) }}</div>
                 {% endfor %}
             </div>
+
             <div class="row">
-                {{ form_row(attribute(form, 'message')) }}
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-2 control-label" for="contact_request_message">
+                            {{ form.message.vars.label }}
+                        </label>
+                        <div class="col-lg-10 col-md-10">
+                            {{ form_widget(attribute(form, 'message')) }}
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            {{ form_rest(form) }}
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 text-right">
