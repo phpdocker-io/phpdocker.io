@@ -64,10 +64,21 @@ label {
 
 .navbar-nav li a {
     text-transform : uppercase;
+    transition     : color 1s, box-shadow 1s;
+    padding-left   : 0.4em !important;
+    padding-right  : 0.4em !important;
+    border-radius  : 4px;
+    margin-right   : 1em !important;
+    margin-left    : 1em !important;
+}
+
+.navbar-nav li a:hover {
+    color      : #ff9b26 !important;
+    transition : color 1s, box-shadow 1s;
+    box-shadow : 0 0 5px #ff9b26;
 }
 
 section#content {
-    margin-bottom : 100px !important;
 }
 
 .footer {
