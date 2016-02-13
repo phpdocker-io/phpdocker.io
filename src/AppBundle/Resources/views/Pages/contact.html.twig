@@ -6,7 +6,7 @@
 {% block isContactActive %}active{% endblock %}
 
 {% block body %}
-    <div class="row col-xs-12 col-sm-12 col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+    <div class="row col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
         <form method="post" id="contact" action="{{ path('contact') }}" class="pretty">
             <div class="row text-center header">
                 <h2>Contact</h2>
@@ -38,7 +38,7 @@
             {{ form_rest(form) }}
 
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-lg-3 col-md-offset-2 col-md-3">
+                <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-lg-3 col-md-offset-2 col-md-4">
                     <div
                             class="g-recaptcha"
                             id="recaptcha-container"
