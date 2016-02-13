@@ -15,8 +15,7 @@ class PhpOptions extends \AuronConsultingOSS\Docker\Entity\PhpOptions
      * @var array
      *
      * @Assert\All({
-     *     @Assert\NotBlank,
-
+     *     @Assert\NotBlank
      * })
      */
     protected $phpExtensions = [];

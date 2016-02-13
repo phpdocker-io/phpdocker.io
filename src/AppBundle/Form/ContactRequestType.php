@@ -3,11 +3,12 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\ContactRequest;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * ContactRequest form
+ * Contact request form
  *
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
@@ -32,7 +33,7 @@ class ContactRequestType extends AbstractType
                 'attr'     => ['placeholder' => 'Optional, only if you\'d like a reply'],
                 'required' => false,
             ])
-            ->add('message', TextType::class, [
+            ->add('message', TextareaType::class, [
                 'label'    => 'Your message',
                 'attr'     => ['placeholder' => 'Feedback, recommendations, feature requests...'],
                 'required' => false,
