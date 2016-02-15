@@ -1,5 +1,3 @@
-//
-
 $(doMainFormMagic);
 function doMainFormMagic() {
     /**
@@ -45,7 +43,6 @@ function doMainFormMagic() {
         onDropdownHide: function (event) {
             event.preventDefault();
         }
-
     });
 
     // Open multiselect and return focus to first field
