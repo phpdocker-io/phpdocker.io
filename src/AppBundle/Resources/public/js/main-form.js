@@ -1,5 +1,3 @@
-//
-
 $(doMainFormMagic);
 function doMainFormMagic() {
     /**
@@ -13,14 +11,16 @@ function doMainFormMagic() {
 
     // Disable mysql options
     var disableMysqlOptions = function () {
-        mysqlOptionsDiv.addClass('disabled').fadeIn();
-        mysqlOptionsFields.prop('disabled', true);
+        if (mysqlSwitch.prop('checked') == false) {
+            mysqlOptionsDiv.addClass('disabled');
+            mysqlOptionsFields.prop('disabled', true);
+        }
     };
 
     disableMysqlOptions();
 
     var enableMysqlOptions = function () {
-        mysqlOptionsDiv.removeClass('disabled').fadeIn(1000);
+        mysqlOptionsDiv.removeClass('disabled');
         mysqlOptionsFields.prop('disabled', false);
     };
 
@@ -43,7 +43,6 @@ function doMainFormMagic() {
         onDropdownHide: function (event) {
             event.preventDefault();
         }
-
     });
 
     // Open multiselect and return focus to first field
