@@ -16,12 +16,12 @@ class Project
     /**
      * @var string
      */
-    protected $name = 'your-project';
+    protected $name;
 
     /**
      * @var int
      */
-    protected $basePort = '8000';
+    protected $basePort;
 
     /**
      * @var NginxOptions
@@ -113,7 +113,7 @@ class Project
     /**
      * @return string
      */
-    public function getName() : string
+    public function getName()
     {
         return $this->name;
     }
