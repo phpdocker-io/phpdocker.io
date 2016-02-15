@@ -1,30 +1,27 @@
-###############################################################################
-#                          Generated on phpdocker.io                          #
-###############################################################################
-{% if memcached %}
-{{ projectNameSlug }}-memcached:
-  image: memcached:latest
-  container_name: {{ projectNameSlug }}-memcached
+{% if memcachedHostname %}
+{{ memcachedHostname }}:
+  image: tenstartups/alpine-memcached:latest
+  container_name: {{ memcachedHostname }}
 {% endif %}
 
-{% if mailcatcher %}
-{{ projectNameSlug }}-mailcatcher:
-  image: pataquets/mailcatcher
-  container_name: {{ projectNameSlug }}-mailcatcher
+{% if mailhogHostname %}
+{{ mailhogHostname }}:
+  image: diyan/mailhog
+  container_name: {{ mailhogHostname }}
   ports:
-    - "{{ mailcatcherPort }}:1080"
+    - "{{ mailhogPort }}:8025"
 {% endif %}
 
-{% if redis %}
-{{ projectNameSlug }}-redis:
-  image: redis:latest
-  container_name: {{ projectNameSlug }}-redis
+{% if redisHostname %}
+{{ redisHostname }}:
+  image: tenstartups/alpine-redis:latest
+  container_name: {{ redisHostname }}
 {% endif %}
 
-{% if mysql %}
-{{ projectNameSlug }}-mysql:
+{% if mysqlHostname %}
+{{ mysqlHostname }}:
   image: mysql:latest
-  container_name: {{ projectNameSlug }}-database
+  container_name: {{ mysqlHostname }}
   environment:
     - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
     - MYSQL_DATABASE={{ mysql.getRootPassword() }}
@@ -32,39 +29,27 @@
     - MYSQL_PASSWORD={{ mysql.getPassword() }}
 {% endif %}
 
-{{ projectNameSlug }}-webserver:
+{{ webserverHostname }}:
   build: .
   dockerfile: docker/Dockerfile.nginx.conf
-  container_name: {{ projectNameSlug }}-webserver
+  container_name: {{ webserverHostname }}
   volumes:
       - ..:{{ workdir }}
   ports:
    - "{{ webserverPort }}:80"
   links:
-   - {{ projectNameSlug }}-php-fpm
+   - {{ phpFpmHostname }}
 
-{{ projectNameSlug }}-php-fpm:
+{{ phpFpmHostname }}:
   build: .
   dockerfile: docker/Dockerfile.php-fpm.conf
-  container_name: {{ projectNameSlug }}-php
+  container_name: {{ phpFpmHostname }}
   volumes:
     - ..:{{ workdir }}
-
-{% if mysql or memcached or mailcatcher %}
+{% if mysqlHostname or memcachedHostname or mailhogHostname or redisHostname %}
   links:
-  {% if memcached %}
-    - {{ projectNameSlug }}-memcached
-  {% endif %}
-
-  {% if mailcatcher %}
-    - {{ projectNameSlug }}-mailcatcher
-  {% endif %}
-
-  {% if mysql %}
-    - {{ projectNameSlug }}-mysql
-  {% endif %}
-
-  {% if redis %}
-    - {{ projectNameSlug }}-redis
-  {% endif %}
+{% if memcachedHostname %}    - {{ memcachedHostname }}{{ "\n" }}{% endif %}
+{% if mailhogHostname %}    - {{ mailhogHostname }}{{ "\n" }}{% endif %}
+{% if mysqlHostname %}    - {{ mysqlHostname }}{{ "\n" }}{% endif %}
+{% if redisHostname %}    - {{ redisHostname }}{% endif %}
 {% endif %}

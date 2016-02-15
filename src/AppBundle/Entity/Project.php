@@ -18,7 +18,7 @@ class Project extends \AuronConsultingOSS\Docker\Entity\Project
      * @Assert\NotNull()
      * @Assert\Length(min=1, max=128)
      */
-    protected $name = 'your-project';
+    protected $name;
 
     /**
      * @var int
@@ -28,7 +28,7 @@ class Project extends \AuronConsultingOSS\Docker\Entity\Project
      * @Assert\Type(type="integer")
      * @Assert\Range(min="1025", max="65500")
      */
-    protected $basePort = '8000';
+    protected $basePort;
 
     /**
      * @var MySQLOptions
@@ -63,7 +63,7 @@ class Project extends \AuronConsultingOSS\Docker\Entity\Project
      *
      * @Assert\Type(type="bool")
      */
-    protected $hasMailcatcher = false;
+    protected $hasMailhog = false;
 
     public function __construct()
     {

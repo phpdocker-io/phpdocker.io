@@ -4,3 +4,15 @@
 parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Email config
+    mailer_transport: smtp
+    mailer_host: phpdocker-io-mailhog
+    mailer_port: 1025
+    mailer_user: null
+    mailer_password: null
+
+    # Third party services
+    google_analytics:  foo
+    recaptcha_site_key:   lalalala
+    recaptcha_secret_key: lerelelele

@@ -17,12 +17,7 @@ class PhpExtension
     /**
      * @var array
      */
-    protected $dependencies = [];
-
-    /**
-     * @var \stdClass
-     */
-    protected $customDist;
+    protected $packages = [];
 
     /**
      * @return string
@@ -47,42 +42,19 @@ class PhpExtension
     /**
      * @return array
      */
-    public function getDependencies() : array
+    public function getPackages() : array
     {
-        return $this->dependencies;
+        return $this->packages;
     }
 
     /**
-     * @param string $dependency
+     * @param string $package
      *
      * @return PhpExtension
      */
-    public function addDepencency(string $dependency) : PhpExtension
+    public function addPackage(string $package) : PhpExtension
     {
-        $this->dependencies[] = $dependency;
-
-        return $this;
-    }
-
-    /**
-     * @return \stdClass|null
-     */
-    public function getCustomDist()
-    {
-        return $this->customDist;
-    }
-
-    /**
-     * @param string $tarballUrl
-     * @param string $uncompressedFolder
-     *
-     * @return PhpExtension
-     */
-    public function setCustomDist(string $tarballUrl, string $uncompressedFolder) : PhpExtension
-    {
-        $this->customDist                     = new \stdClass();
-        $this->customDist->tarballUrl         = $tarballUrl;
-        $this->customDist->uncompressedFolder = $uncompressedFolder;
+        $this->packages[] = $package;
 
         return $this;
     }

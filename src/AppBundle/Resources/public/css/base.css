@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
 @import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
 
 .dark-background {
@@ -7,15 +8,34 @@
 }
 
 body {
-    font-family : Montserrat, sans-serif;
+    font-family : Ubuntu, sans-serif;
+}
+
+body.clear {
+    background-color : #c0c0bb;
+    color            : black;
+}
+
+body.darker {
+    background-color : #a7a7a2;
+    color            : black;
 }
 
 .header h1 {
-    font-family : Shadows Into Light;
+    font-family : "Shadows Into Light", sans-serif;
 }
 
 .beta {
-    font-family : Shadows Into Light;
+    font-family : "Shadows Into Light", sans-serif;
+}
+
+a {
+    color       : #c3323e;
+    font-weight : bold !important;
+}
+
+h3 {
+    display : block;
 }
 
 .header h1 a {
@@ -24,15 +44,111 @@ body {
 }
 
 .shadow {
-    -webkit-box-shadow : 0 15px 10px #777;
-    -moz-box-shadow    : 0 15px 10px #777;
-    box-shadow         : 0 0 10px #000;
+    -webkit-box-shadow : 0 6px 12px rgba(0, 0, 0, .175);
+    -moz-box-shadow    : 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow         : 0 6px 12px rgba(0, 0, 0, .175);
 }
 
 .disabled {
-    color      : #999;
+    color      : #666;
     font-style : italic;
+    display    : none;
 }
 
 .form-group {
+    margin : 2em 0 !important;
 }
+
+label {
+    font-size : 1.1em;
+}
+
+.navbar-nav li a {
+    text-transform : uppercase;
+    transition     : color 1s, box-shadow 1s;
+    padding-left   : 0.4em !important;
+    padding-right  : 0.4em !important;
+    border-radius  : 4px;
+    margin-right   : 1em !important;
+    margin-left    : 1em !important;
+}
+
+.navbar-nav li a:hover {
+    color      : #ff9b26 !important;
+    transition : color 1s, box-shadow 1s;
+    box-shadow : 0 0 5px #ff9b26;
+}
+
+section#content {
+    margin-bottom: 40px;
+}
+
+.footer {
+    margin-top       : 1em;
+    padding-top      : 1em;
+    padding-bottom   : 1em;
+    background-color : rgba(0, 0, 0, 0.7);
+    position         : fixed;
+    bottom           : 0;
+    color            : #c9c9c9;
+    z-index          : 100;
+    font-weight      : bold;
+}
+
+.pretty {
+    background-color      : rgba(255, 255, 255, 0.2);
+    padding               : 20px;
+    border-radius         : 5px;
+    -moz-border-radius    : 5px;
+    -webkit-border-radius : 5px;
+    margin-bottom         : 40px;
+    min-height            : 200px;
+}
+
+.pretty.yellow {
+    background-color : #c1aa87;
+    color            : black;
+}
+
+.btn-custom-three {
+    color            : #fff;
+    background-color : #7c7c77;
+    border           : 2px solid #4c4c4c;
+}
+
+.btn-custom-three:hover {
+    border           : 2px solid black;
+    text-decoration  : none;
+    color            : #fff;
+    background-color : #4c4c4c;
+}
+
+.multiselect-container.dropdown-menu {
+    z-index    : 10;
+    box-shadow : none;
+    width      : 100%;
+    position   : relative;
+}
+
+.header {
+    padding-bottom : 10px !important;
+}
+
+form input[type=submit] {
+    margin    : 1em;
+    font-size : 1.2em;
+}
+
+#contact textarea {
+    height : 10em;
+}
+
+#recaptcha-container {
+    padding-top              : 1em;
+    transform                : scale(0.7);
+    -webkit-transform        : scale(0.7);
+    transform-origin         : 0 0;
+    -webkit-transform-origin : 0 0;
+}
+
+

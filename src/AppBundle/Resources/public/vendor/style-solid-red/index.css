@@ -1,4 +1,4 @@
-﻿/*=============================================================
+/*=============================================================
     Authour URL: www.designbootstrap.com
 
     http://www.designbootstrap.com/
@@ -24,11 +24,11 @@ GENERAL STYLES
 ============================================================ */
 body {
     color            : #fff;
-    Background-Color : #a00f20;
+    background-Color : #a00f20;
 }
 
 section {
-    padding-top    : 80px;
+    padding-top : 80px;
 }
 
 .pad-bottom {
@@ -58,7 +58,7 @@ CUSTOM BUTTON STYLES
     -o-transition         : all 0.5s ease-in-out;
     transition            : all 0.5s ease-in-out;
     margin                : 25px 5px 5px 0px;
-    margin : 5px;
+    margin                : 5px;
 }
 
 .btn-custom-one {
@@ -398,7 +398,6 @@ TEAM SECTION STYLES
 CONTACT SECTION STYLES
 ==============================*/
 
-form.pretty,
 #contact .contact-wrapper {
     background-color      : rgba(255, 255, 255, 0.1);
     padding               : 20px;
@@ -407,6 +406,10 @@ form.pretty,
     -webkit-border-radius : 5px;
     margin-bottom         : 40px;
     min-height            : 200px;
+}
+
+.border {
+    border : 2px solid;
 }
 
 #contact .contact-wrapper h3 {

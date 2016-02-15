@@ -9,10 +9,15 @@ namespace AuronConsultingOSS\Docker\Entity;
  */
 class NginxOptions extends AbstractServiceOptions
 {
+    public function __construct()
+    {
+        $this->setEnabled(true);
+    }
+
     /**
      * @inheritdoc
      */
-    public function getDefaultHostname() : string
+    public function getHostnameSuffix() : string
     {
         return 'webserver';
     }

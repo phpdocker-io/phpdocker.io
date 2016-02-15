@@ -1,0 +1,57 @@
+{% form_theme form 'AppBundle::form_layout.html.twig' %}
+{% extends 'AppBundle::base2.html.twig' %}
+
+{% block bodyClass %}darker{% endblock %}
+{% block pageName %} - Contact{% endblock %}
+{% block isContactActive %}active{% endblock %}
+
+{% block body %}
+    <div class="row col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+        <form method="post" id="contact" action="{{ path('contact') }}" class="pretty">
+            <div class="row text-center header">
+                <h2>Contact</h2>
+                <hr/>
+            </div>
+
+            {{ form_errors(form) }}
+
+            <div class="row">
+                {% for field in ['senderName', 'senderEmail']
+                if (attribute(form, field) is defined) %}
+                    <div class="col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-2 control-label" for="contact_request_message">
+                            {{ form.message.vars.label }}
+                        </label>
+                        <div class="col-lg-10 col-md-10">
+                            {{ form_widget(attribute(form, 'message')) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{ form_rest(form) }}
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-lg-3 col-md-offset-2 col-md-4">
+                    <div
+                            class="g-recaptcha"
+                            id="recaptcha-container"
+                            data-sitekey="{{ recaptcha_site_key }}"
+                            data-theme="light"
+                            style=""></div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-lg-7 col-md-7 text-right">
+                    <input type="submit" class="btn button-custom btn-custom-three shadow"
+                           value="Send your message">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}

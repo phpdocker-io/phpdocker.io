@@ -3,7 +3,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
+use AuronConsultingOSS\Docker\Entity\ProjectFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +18,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  * @package   AppBundle\Controller
  * @copyright Auron Consulting Ltd
  */
-class BuilderController extends Controller
+class BuilderController extends Controller implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
@@ -30,7 +32,7 @@ class BuilderController extends Controller
     public function createAction(Request $request)
     {
         // Set up form
-        $project = new Project();
+        $project = ProjectFactory::create(new Project());
         $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
 
         // Process form

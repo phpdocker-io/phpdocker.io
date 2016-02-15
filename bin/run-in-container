@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Container properties
-CONTAINER_NAME=phpdocker-io-php
+CONTAINER_NAME=phpdocker-io-php-fpm
 CONTAINER_RUNNING=false
 
 # Is container running?

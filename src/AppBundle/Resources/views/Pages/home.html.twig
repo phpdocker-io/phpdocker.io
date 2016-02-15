@@ -1,0 +1,56 @@
+{% extends 'AppBundle::base2.html.twig' %}
+
+{% block bodyClass %}darker{% endblock %}
+{% block isHomeActive %}active{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col col-lg-5 col-lg-offset-1">
+            <div class="pretty">
+                <div class="row text-center header">
+                    <h2>What is PHPDocker.io?</h2>
+                    <hr/>
+                </div>
+
+                <p>PHPDocker.io is a tool that will help you build a typical PHP environment based on Docker with
+                    just a few clicks. </p>
+                <p>It will also generate a suitable Vagrantfile for use on systems which do not support Docker and
+                    containers natively. </p>
+                <p>Why Docker? Containers are typically faster to set up, less prone to provisioning errors
+                    (pre-setup images), and last but not least, web app deployment is going the way of the
+                    container.</p>
+
+                <p>This a first, early feeler prototype. Features to come:</p>
+                <ul>
+                    <li>PHP version choice (currently PHP7)</li>
+                    <li>HHVM</li>
+                    <li>PostgreSQL</li>
+                    <li>Elasticsearch</li>
+                    <li>RabbitMQ</li>
+                    <li>Blackfire profiler</li>
+                    <li>Tideways profiler</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-lg-5">
+            <div class="pretty">
+                <div class="row text-center header">
+                    <h2>How to use it?</h2>
+                    <hr/>
+                </div>
+
+                <p>If you've used <a href="https://puphpet.com/" target="_blank">PuPHPet</a> before, the concept
+                    will be very familiar.
+                </p>
+                <p>Simply go to the <a href="{{ path('generator') }}">generator</a>, which hopefully will be
+                    self explanatory, fill up your requirements and press the submit button.</p>
+                <p>This will trigger the download of a zip file with the environment definition. Copy the folder
+                    within to the root of your project and bootstrap your environment. </p>
+                <p>The zip file contains instructions in more detail as well as a list of any services you might
+                    have enabled with their real hostnames for you to configure on your own application.</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

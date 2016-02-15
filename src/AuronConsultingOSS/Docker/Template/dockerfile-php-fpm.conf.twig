@@ -1,41 +1,36 @@
-FROM php:fpm
+FROM debian:jessie
 
-RUN apt-get update
+# Install dotdeb repo, PHP, composer and selected extensions
+RUN apt-get update \
+    && apt-get install -y curl \
+    && echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list \
+    && curl -sS https://www.dotdeb.org/dotdeb.gpg | apt-key add - \
+    && apt-get update \
+    && apt-get -y install php7.0-cli php7.0-fpm {% for package in extensionPackages %} {{ package }}{% endfor %} \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install extension dependencies, plus atool for custom extension unpacking
-RUN apt-get -y install atool zlib1g-dev libgmp-dev {% for dependency in dependencies %}{{ dependency }} {% endfor %}
-
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
-
-# Install zip for composer's benefit
-RUN docker-php-ext-install zip
-
-# Install selected extensions
-{% for extension in stdExtensions %}
-RUN docker-php-ext-install {{ extension }}
-{% endfor %}
-
-# Install custom extensions
-{% for customDist in customDists %}
-    {% include 'install-custom-php-ext.conf.twig' with {'tarballUrl': customDist.tarballUrl, 'uncompressedFolder': customDist.uncompressedFolder} only %}
-{% endfor %}
-
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Configure FPM to run properly on docker
+RUN sed -i "/listen = .*/c\listen = [::]:9000" /etc/php/7.0/fpm/pool.d/www.conf \
+    && sed -i "/;access.log = .*/c\access.log = /proc/self/fd/2" /etc/php/7.0/fpm/pool.d/www.conf \
+    && sed -i "/;clear_env = .*/c\clear_env = no" /etc/php/7.0/fpm/pool.d/www.conf \
+    && sed -i "/;catch_workers_output = .*/c\catch_workers_output = yes" /etc/php/7.0/fpm/pool.d/www.conf \
+    && sed -i "/pid = .*/c\;pid = /run/php/php7.0-fpm.pid" /etc/php/7.0/fpm/php-fpm.conf \
+    && sed -i "/;daemonize = .*/c\daemonize = no" /etc/php/7.0/fpm/php-fpm.conf \
+    && sed -i "/error_log = .*/c\error_log = /proc/self/fd/2" /etc/php/7.0/fpm/php-fpm.conf \
+    && usermod -u 1000 www-data
 
 {% if isSymfonyApp %}
 # If you're using symfony and the vagranted environment, I strongly recommend you change your AppKernel to use the following temporary folders
 # for cache, logs and sessions, otherwise application performance may suffer due to these being shared over NFS back to the host
-RUN mkdir -p "/tmp/{{ projectName }}/cache"
-RUN mkdir -p "/tmp/{{ projectName }}/logs"
-RUN mkdir -p "/tmp/{{ projectName }}/sessions"
-RUN chown www-data:www-data -R "/tmp/{{ projectName }}"
+RUN mkdir -p "/tmp/{{ projectNameSlug }}/cache" \
+    && mkdir -p "/tmp/{{ projectNameSlug }}/logs" \
+    && mkdir -p "/tmp/{{ projectNameSlug }}/sessions" \
+    && chown www-data:www-data -R "/tmp/{{ projectNameSlug }}"
 {% endif %}
 
-# Cleanup
-RUN apt-get -y remove atool zlib1g-dev libgmp-dev {% for dependency in dependencies %}{{ dependency }} {% endfor %}
-
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 WORKDIR "{{ workdir }}"
+
+EXPOSE 9000
+CMD ["/usr/sbin/php-fpm7.0"]

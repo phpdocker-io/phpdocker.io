@@ -1,42 +1,44 @@
 <?php
 namespace AuronConsultingOSS\Docker\Entity;
 
+use AuronConsultingOSS\Docker\Interfaces\HostnameSuffixInterface;
+
 /**
  * Base class for service options.
  *
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-abstract class AbstractServiceOptions
+abstract class AbstractServiceOptions implements HostnameSuffixInterface
 {
     /**
-     * @var string
+     * @var bool
      */
-    protected $hostname;
+    protected $enabled = false;
 
     /**
-     * Returns the default hostname on each particular service.
+     * Return the suffix to be used on hostname construction.
      *
      * @return string
      */
-    abstract public function getDefaultHostname() : string;
+    abstract public function getHostnameSuffix() : string;
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getHostname() : string
+    public function isEnabled() : bool
     {
-        return $this->hostname;
+        return $this->enabled;
     }
 
     /**
-     * @param string $hostname
+     * @param boolean $enabled
      *
-     * @return self
+     * @return AbstractServiceOptions
      */
-    public function setHostname($hostname) : AbstractServiceOptions
+    public function setEnabled(bool $enabled) : self
     {
-        $this->hostname = $hostname;
+        $this->enabled = $enabled;
 
         return $this;
     }
