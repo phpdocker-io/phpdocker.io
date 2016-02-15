@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald);
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 @import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
 
@@ -16,7 +17,7 @@ body.clear {
 }
 
 body.darker {
-    background-color : #7c7c77;
+    background-color : #a7a7a2;
     color            : black;
 }
 
