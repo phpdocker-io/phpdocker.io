@@ -59,24 +59,19 @@ function doMainFormMagic() {
     });
 
     // Select PHP extensions based on service choices
-    var extensionServices                              = [];
-    extensionServices['project_hasRedis']              = 'Redis';
-    extensionServices['project_hasMemcached']          = 'Memcached';
-    extensionServices['project_mysqlOptions_hasMysql'] = 'MySQL';
-
-    $.fn.toggleCheck = function () {
-        $(this).prop('checked', !($(this).is(':checked')));
-    }
+    var checkboxPrefix                         = 'project_';
+    var extensionServices                      = [];
+    extensionServices['hasRedis']              = 'Redis';
+    extensionServices['hasMemcached']          = 'Memcached';
+    extensionServices['mysqlOptions_hasMysql'] = 'MySQL';
 
     for (var key in extensionServices) {
         var value      = extensionServices[key];
-        var checkboxId = '#' + key;
-        console.log(checkboxId)
+        var checkboxId = '#' + checkboxPrefix + key;
 
         $(checkboxId).data('value', value).change(function () {
-            console.log($(this).data('value'));
             var extCheckbox = $('.multiselect-container :checkbox[value=' + $(this).data('value') + ']');
-            extCheckbox.toggleCheck();
+            extCheckbox.click();
         });
     }
 };
