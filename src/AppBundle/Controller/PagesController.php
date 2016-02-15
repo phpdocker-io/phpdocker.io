@@ -76,7 +76,8 @@ class PagesController extends Controller implements ContainerAwareInterface
         $message = \Swift_Message::newInstance();
         $message
             ->setSubject('PHPDocker.io - Contact request')
-            ->setFrom($contactRequest->getSenderEmail() ?? 'automaton@phpdocker.io')
+            ->setFrom('automaton@phpdocker.io')
+            ->setReplyTo($contactRequest->getSenderEmail())
             ->setTo($this->container->getParameter('email_to'))
             ->setBody($messageBody, 'text/html');
 
