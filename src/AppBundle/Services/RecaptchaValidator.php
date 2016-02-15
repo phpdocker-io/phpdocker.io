@@ -49,7 +49,7 @@ class RecaptchaValidator implements ContainerAwareInterface
         $data = [
             'secret'   => $this->serviceSecret,
             'response' => $token,
-            'remoteip' => 'foo',
+            'remoteip' => $this->container->get('request_stack')->getMasterRequest()->getClientIp(),
         ];
 
         $response = $this->container
