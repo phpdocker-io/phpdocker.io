@@ -34,7 +34,8 @@ function doMainFormMagic() {
     });
 
     // PHP extension multiselect
-    $('#project_phpOptions_phpExtensions').multiselect({
+    var phpExtensionsMulti = $('#project_phpOptions_phpExtensions');
+    phpExtensionsMulti.multiselect({
         enableCaseInsensitiveFiltering: true,
         maxHeight: 200,
         buttonWidth: "100%",
@@ -69,10 +70,11 @@ function doMainFormMagic() {
         var value      = extensionServices[key];
         var checkboxId = '#' + checkboxPrefix + key;
 
-        $(checkboxId).data('value', value).change(function () {
-            var extCheckbox = $('.multiselect-container :checkbox[value=' + $(this).data('value') + ']');
-            extCheckbox.click();
-        });
+        $(checkboxId)
+            .data('multiselect', phpExtensionsMulti)
+            .data('value', value)
+            .change(function () {
+                $(this).data('multiselect').multiselect('select', $(this).data('value'));
+            });
     }
 };
-
