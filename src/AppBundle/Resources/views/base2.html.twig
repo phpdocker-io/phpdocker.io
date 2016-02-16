@@ -10,6 +10,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
     <title>PHPDocker.io{% block pageName %}{% endblock %}</title>
+
+    {% stylesheets filter="cssrewrite"
+    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    {% stylesheets
+    '@AppBundle/Resources/public/css/base.css'
+    '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
+    '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
 </head>
 
 <body data-spy="scroll" data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
@@ -34,7 +45,7 @@
 <!--MENU SECTION END-->
 <section id="content">
     <div class="container">
-    {% block body %}{% endblock %}
+        {% block body %}{% endblock %}
     </div>
 </section>
 
@@ -42,21 +53,7 @@
     <div class="row">&copy; 2016 PHPDocker.io</div>
 </div>
 
-{% stylesheets filter="cssrewrite"
-'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
-<link rel="stylesheet" href="{{ asset_url }}"/>
-{% endstylesheets %}
-{% stylesheets
-'@AppBundle/Resources/public/css/base.css'
-'@AppBundle/Resources/public/vendor/style-solid-red/index.css'
-'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
-'@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
-<link rel="stylesheet" href="{{ asset_url }}"/>
-{% endstylesheets %}
-
 {% include 'AppBundle::analytics.html.twig' %}
-
-<!-- Template courtesy of http://www.designbootstrap.com -->
 
 {% javascripts
 '@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
@@ -64,12 +61,16 @@
 '@AppBundle/Resources/public/vendor/animations/assets/js/appear.min.js'
 '@AppBundle/Resources/public/vendor/animations/assets/js/animations.min.js'
 '@AppBundle/Resources/public/vendor/jquery-easing/jquery.easing.min.js'
-'@AppBundle/Resources/public/vendor/custom-solid/index.js'
 '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-</body>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"/>
 
+<!-- Template courtesy of http://www.designbootstrap.com -->
+
+</body>
 </html>
