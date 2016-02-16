@@ -45,7 +45,7 @@
 <!--MENU SECTION END-->
 <section id="content">
     <div class="container">
-    {% block body %}{% endblock %}
+        {% block body %}{% endblock %}
     </div>
 </section>
 
@@ -55,25 +55,22 @@
 
 {% include 'AppBundle::analytics.html.twig' %}
 
-<!-- Template courtesy of http://www.designbootstrap.com -->
-
 {% javascripts
 '@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
 '@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
 '@AppBundle/Resources/public/vendor/animations/assets/js/appear.min.js'
 '@AppBundle/Resources/public/vendor/animations/assets/js/animations.min.js'
 '@AppBundle/Resources/public/vendor/jquery-easing/jquery.easing.min.js'
-'@AppBundle/Resources/public/vendor/custom-solid/index.js'
 '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"/>
 
+<!-- Template courtesy of http://www.designbootstrap.com -->
 
 </body>
-
 </html>
