@@ -10,17 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
     <title>PHPDocker.io{% block pageName %}{% endblock %}</title>
-    {% stylesheets filter="cssrewrite"
-    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
-    {% stylesheets
-    '@AppBundle/Resources/public/css/base.css'
-    '@AppBundle/Resources/public/vendor/style-solid-red/index.css'
-    '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
-    '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
 </head>
 
 <body data-spy="scroll" data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
@@ -52,6 +41,18 @@
 <div class="container text-center footer col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <div class="row">&copy; 2016 PHPDocker.io</div>
 </div>
+
+{% stylesheets filter="cssrewrite"
+'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
+<link rel="stylesheet" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% stylesheets
+'@AppBundle/Resources/public/css/base.css'
+'@AppBundle/Resources/public/vendor/style-solid-red/index.css'
+'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
+'@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
+<link rel="stylesheet" href="{{ asset_url }}"/>
+{% endstylesheets %}
 
 {% include 'AppBundle::analytics.html.twig' %}
 
