@@ -106,6 +106,13 @@ h3 {
     font-weight : 900;
 }
 
+#navbar-button {
+    background-color : #707070;
+    color            : #f8f8f8;
+    border           : 2px #3a3a3a solid;
+    border-radius    : 0;
+}
+
 /***** Section *****/
 
 section {
