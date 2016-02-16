@@ -1,11 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Ubuntu);
-@import url(https://fonts.googleapis.com/css?family=Shadows+Into+Light);
-
-.dark-background {
-    background-color : #761c19 !important;
-    color            : white;
-}
+/***** Main styles *****/
 
 body {
     font-family : Ubuntu, sans-serif;
@@ -21,26 +14,14 @@ body.darker {
     color            : black;
 }
 
-.header h1 {
-    font-family : "Shadows Into Light", sans-serif;
-}
-
-.beta {
-    font-family : "Shadows Into Light", sans-serif;
+.dark-background {
+    background-color : #761c19 !important;
+    color            : white;
 }
 
 a {
     color       : #c3323e;
     font-weight : bold !important;
-}
-
-h3 {
-    display : block;
-}
-
-.header h1 a {
-    color     : antiquewhite;
-    font-size : larger;
 }
 
 .shadow {
@@ -49,19 +30,41 @@ h3 {
     box-shadow         : 0 6px 12px rgba(0, 0, 0, .175);
 }
 
-.disabled {
-    color      : #666;
-    font-style : italic;
-    display    : none;
+/***** Header *****/
+
+.header {
+    font-family    : 'Oswald', sans-serif;
+    padding-bottom : 40px;
+    text-transform : uppercase;
 }
 
-.form-group {
-    margin : 2em 0 !important;
+.header hr {
+    width      : 50px;
+    border-top : 2px solid rgb(228, 79, 79);
 }
 
-label {
-    font-size : 1.1em;
+.header h1 {
+    font-family : "Shadows Into Light", sans-serif;
 }
+
+.header h1 a {
+    color     : antiquewhite;
+    font-size : larger;
+}
+
+.beta {
+    font-family : "Shadows Into Light", sans-serif;
+}
+
+h3 {
+    display : block;
+}
+
+.header {
+    padding-bottom : 10px !important;
+}
+
+/***** Navigation *****/
 
 .navbar-nav li a {
     text-transform : uppercase;
@@ -79,9 +82,41 @@ label {
     box-shadow : 0 0 5px #ff9b26;
 }
 
-section#content {
-    margin-bottom: 40px;
+.navbar-inverse {
+    background-color : rgba(0, 0, 0, 0.4);
+    border-color     : transparent;
 }
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    background-color : transparent;
+    border-bottom    : 1px solid rgb(228, 79, 79);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    font-size      : 12px;
+    font-weight    : 800;
+    padding        : 5px 0px;
+    letter-spacing : 2px;
+    margin         : 10px 20px 10px 20px;
+    color          : #fff;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-brand:hover {
+    color       : #fff;
+    font-weight : 900;
+}
+
+/***** Section *****/
+
+section {
+    padding-top : 80px;
+}
+
+section#content {
+    margin-bottom : 40px;
+}
+
+/***** Footer *****/
 
 .footer {
     margin-top       : 1em;
@@ -94,6 +129,8 @@ section#content {
     z-index          : 100;
     font-weight      : bold;
 }
+
+/***** Boxes *****/
 
 .pretty {
     background-color      : rgba(255, 255, 255, 0.2);
@@ -110,17 +147,11 @@ section#content {
     color            : black;
 }
 
-.btn-custom-three {
-    color            : #fff;
-    background-color : #7c7c77;
-    border           : 2px solid #4c4c4c;
-}
+/***** Forms *****/
 
-.btn-custom-three:hover {
-    border           : 2px solid black;
-    text-decoration  : none;
-    color            : #fff;
-    background-color : #4c4c4c;
+form input[type=submit] {
+    margin    : 1em;
+    font-size : 1.2em;
 }
 
 .multiselect-container.dropdown-menu {
@@ -128,15 +159,6 @@ section#content {
     box-shadow : none;
     width      : 100%;
     position   : relative;
-}
-
-.header {
-    padding-bottom : 10px !important;
-}
-
-form input[type=submit] {
-    margin    : 1em;
-    font-size : 1.2em;
 }
 
 #contact textarea {
@@ -151,4 +173,42 @@ form input[type=submit] {
     -webkit-transform-origin : 0 0;
 }
 
+.disabled {
+    color      : #666;
+    font-style : italic;
+    display    : none;
+}
 
+.form-group {
+    margin : 2em 0 !important;
+}
+
+label {
+    font-size : 1.1em;
+}
+
+/***** Buttons *****/
+
+.button-custom {
+    border-radius         : 0px;
+    -webkit-border-radius : 0px;
+    -moz-border-radius    : 0px;
+    -webkit-transition    : all 0.5s ease-in-out;
+    -moz-transition       : all 0.5s ease-in-out;
+    -o-transition         : all 0.5s ease-in-out;
+    transition            : all 0.5s ease-in-out;
+    margin                : 5px;
+}
+
+.btn-custom-three {
+    color            : #fff;
+    background-color : #7c7c77;
+    border           : 2px solid #4c4c4c;
+}
+
+.btn-custom-three:hover {
+    border           : 2px solid black;
+    text-decoration  : none;
+    color            : #fff;
+    background-color : #4c4c4c;
+}
