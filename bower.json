@@ -11,14 +11,11 @@
     "bower_components",
     "web/assets/vendor/",
     "test",
-    "tests",
-    "src/AppBundle/Resources/public/vendor/"
+    "tests"
   ],
   "dependencies": {
-    "custom-solid": "http://www.designbootstrap.com/livedemos/2015/02/27/light-wave/template/assets/js/custom-solid.js",
     "animations": "*",
     "jquery-easing": "*",
-    "bootstrap-multiselect": "*",
-    "style-solid-red": "http://www.designbootstrap.com/livedemos/2015/02/27/light-wave/template/assets/css/style-solid-red.css"
+    "bootstrap-multiselect": "*"
   }
 }
