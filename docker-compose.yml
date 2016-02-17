@@ -25,5 +25,4 @@ phpdocker-io-php-fpm:
   volumes:
     - .:/var/www/phpdocker-io
   links:
-    - phpdocker-io-memcached
     - phpdocker-io-mailhog
