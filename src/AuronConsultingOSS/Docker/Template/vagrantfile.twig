@@ -4,10 +4,12 @@
 Vagrant.configure(2) do |config|
     config.vm.box = "blinkreaction/boot2docker"
 
+    # Network config & shared folders
     config.vm.network "private_network", ip: "{{ vmIpAddress }}"
     config.vm.synced_folder "..", "/home/docker/{{ projectNameSlug }}", id: "{{ projectNameSlug }}-dev"
     config.vm.synced_folder "~/.composer/", "/home/docker/.composer", id: "{{ projectNameSlug }}-composer"
 
+    # VM definition
     config.vm.provider "virtualbox" do |vb|
         vb.name = "{{ projectName }}"
         vb.memory = 1024
@@ -16,4 +18,13 @@ Vagrant.configure(2) do |config|
 
     # Bring up containers
     config.vm.provision "shell", run: "always", inline: "cd /home/docker/{{ projectNameSlug }}/{{ phpDockerFolder }} && docker-compose up -d 1>&2"
+
+    # Redirect webserver port down 80, etc
+    config.vm.provision "shell", run: "always", inline: "/usr/local/sbin/iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port {{ webserverPort }} 1>&2"
+    {% if mailhog %}config.vm.provision "shell", run: "always", inline: "/usr/local/sbin/iptables -t nat -A PREROUTING -p tcp --dport 81 -j REDIRECT --to-port {{ mailhogPort }} 1>&2"{{ "\n" }}{% endif %}
+
+    # Disable guest additions auto update as it won't work on boot2docker, and slows vm boot down boot
+    if Vagrant.has_plugin?("vagrant-vbguest")
+        config.vbguest.auto_update = false
+    end
 end
