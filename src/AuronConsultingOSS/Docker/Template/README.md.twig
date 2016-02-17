@@ -22,7 +22,7 @@ The advantage of running through a virtualised environment is mainly having your
 The choice is up to you. If you'd rather run the containers directly:
 
   * Ensure you have the latest `docker engine` installed. Your distribution's package might be a little old, if you encounter problems, do upgrade. See https://docs.docker.com/engine/installation/
-  * Ensure you have the latest `docker-compose` installed. See https://docs.docker.com/compose/install/
+  * Ensure you have the latest `docker-compose` installed. See [docs.docker.com/compose/install](https://docs.docker.com/compose/install/)
   
 Once you're done, simply `cd` to the folder where you placed the files, then `docker-compose up -d`. This will initialise and start all the containers, then leave them running in the background.
   
@@ -36,17 +36,12 @@ Simply `cd` to the folder where you placed the files, then `vagrant up`. This wi
 
 ##Services exposed outside your environment##
 
-#Hostname#
+You can access your application via **`localhost`**, if you're running the containers directly, or through **`{{ vmIpAddress }}`** when run on a vm. nginx and mailhog both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts` 
 
-Either on **`localhost`**, if you're running the containers directly, or on **`{{ vmIpAddress }}`** when run on a vm. nginx and mailhog both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts` 
-
-#Webserver#
-
-The webserver (`nginx`) is exposed through port **{{ webserverPort }}**
- 
-#Mailhog#
-
-Web interface is exposed on port **{{ mailhogPort }}**.
+Service|Address outside containers|Address outside VM
+------|---------|-----------
+Webserver|[localhost:{{ webserverPort }}](http://localhost:{{ webserverPort }})|[{{ vmIpAddress }}](http://{{ vmIpAddress }})
+{% if mailhogHostname %}Mailhog web interface|[localhost:{{ mailhogPort }}](http://localhost:{{ mailhogPort }})|[{{ vmIpAddress }}:81](http://{{ vmIpAddress }}:81){{ "\n" }}{% endif %}
 
 ##Hosts within your environment##
 
@@ -59,7 +54,6 @@ php-fpm|{{ phpFpmHostname }}|9000
 {% if memcachedHostname %}Memcached|{{ memcachedHostname }}|11211 (default){{ "\n" }}{% endif %}
 {% if redisHostname %}Redis|{{ redisHostname }}|6379 (default){{ "\n" }}{% endif %}
 {% if mailhogHostname %}SMTP (Mailhog)|{{ mailhogHostname }}|1025 (default){{ "\n" }}{% endif %}
-
 
 #Docker compose cheatsheet#
 

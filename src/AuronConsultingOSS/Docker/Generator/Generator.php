@@ -122,6 +122,9 @@ class Generator
             'projectNameSlug' => $project->getProjectNameSlug(),
             'phpDockerFolder' => AbstractArchiver::BASE_FOLDER_NAME,
             'vmIpAddress'     => $this->getVmIpAddress(),
+            'mailhog'         => $project->hasMailhog(),
+            'mailhogPort'     => $project->getBasePort() + 1,
+            'webserverPort'   => $project->getBasePort(),
         ];
 
         return $this->twig->render('vagrantfile.twig', $data);
