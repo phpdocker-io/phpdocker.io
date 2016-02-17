@@ -25,6 +25,5 @@
   },
   "_source": "git://github.com/danro/jquery-easing.git",
   "_target": "*",
-  "_originalSource": "jquery-easing",
-  "_direct": true
+  "_originalSource": "jquery-easing"
 }

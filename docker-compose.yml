@@ -1,10 +1,6 @@
 ###############################################################################
 #                          Generated on phpdocker.io                          #
 ###############################################################################
-phpdocker-io-memcached:
-  image: tenstartups/alpine-memcached:latest
-  container_name: phpdocker-io-memcached
-
 phpdocker-io-mailhog:
   image: diyan/mailhog
   container_name: phpdocker-io-mailhog
@@ -29,5 +25,4 @@ phpdocker-io-php-fpm:
   volumes:
     - .:/var/www/phpdocker-io
   links:
-    - phpdocker-io-memcached
     - phpdocker-io-mailhog

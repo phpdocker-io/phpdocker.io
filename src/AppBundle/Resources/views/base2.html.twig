@@ -10,13 +10,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
     <title>PHPDocker.io{% block pageName %}{% endblock %}</title>
+
     {% stylesheets filter="cssrewrite"
     'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
     {% stylesheets
     '@AppBundle/Resources/public/css/base.css'
-    '@AppBundle/Resources/public/vendor/style-solid-red/index.css'
     '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
     '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -32,8 +32,9 @@
             <a class="navbar-brand" href="{{ path('home') }}">
                 PHPDocker.io <span class="beta">beta</span>
             </a>
+            <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navigation-top" id="navbar-button">
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" id="navigation-top">
             <ul class="nav navbar-nav navbar-right">
                 <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">WHAT IS PHPDOCKER.IO?</a></li>
                 <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
@@ -45,7 +46,7 @@
 <!--MENU SECTION END-->
 <section id="content">
     <div class="container">
-    {% block body %}{% endblock %}
+        {% block body %}{% endblock %}
     </div>
 </section>
 
@@ -55,20 +56,22 @@
 
 {% include 'AppBundle::analytics.html.twig' %}
 
-<!-- Template courtesy of http://www.designbootstrap.com -->
-
 {% javascripts
 '@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
 '@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
 '@AppBundle/Resources/public/vendor/animations/assets/js/appear.min.js'
 '@AppBundle/Resources/public/vendor/animations/assets/js/animations.min.js'
 '@AppBundle/Resources/public/vendor/jquery-easing/jquery.easing.min.js'
-'@AppBundle/Resources/public/vendor/custom-solid/index.js'
 '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-</body>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"/>
 
+<!-- Template courtesy of http://www.designbootstrap.com -->
+
+</body>
 </html>
