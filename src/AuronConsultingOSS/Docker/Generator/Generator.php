@@ -188,13 +188,8 @@ class Generator
         $phpOptions = $project->getPhpOptions();
         $packages   = [];
 
-        // Extensions to add
-        $extensions = array_merge(
-            AvailableExtensions::getMandatoryPhpExtensions(),
-            $phpOptions->getExtensions()
-        );
-
-        foreach ($extensions as $extension) {
+        // Resolve extension packages to install
+        foreach ($phpOptions->getExtensions() as $extension) {
             /** @var PhpExtension $extension */
             $packages = array_merge($packages, $extension->getPackages());
         }
