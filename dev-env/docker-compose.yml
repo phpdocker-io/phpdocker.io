@@ -12,7 +12,7 @@ phpdocker-io-webserver:
   dockerfile: docker/Dockerfile.nginx.conf
   container_name: phpdocker-io-webserver
   volumes:
-      - .:/var/www/phpdocker-io
+      - ..:/var/www/phpdocker-io
   ports:
    - "10000:80"
   links:
@@ -23,6 +23,6 @@ phpdocker-io-php-fpm:
   dockerfile: docker/Dockerfile.php-fpm.conf
   container_name: phpdocker-io-php-fpm
   volumes:
-    - .:/var/www/phpdocker-io
+    - ..:/var/www/phpdocker-io
   links:
     - phpdocker-io-mailhog
