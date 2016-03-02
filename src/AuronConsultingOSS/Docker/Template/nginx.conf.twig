@@ -1,6 +1,8 @@
 server {
     listen 80 default;
 
+    client_max_body_size 20M;
+
 {% if isSymfonyApp %}
     root {{ workdir }}/web;
     
