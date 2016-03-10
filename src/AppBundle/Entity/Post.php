@@ -51,7 +51,7 @@ class Post
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="post", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post", cascade={"all"})
      */
     private $postComments;
 
@@ -114,6 +114,16 @@ class Post
     public function getPostComments() : Collection
     {
         return $this->postComments;
+    }
+
+    /**
+     * Returns a count of all post comments associated to this post
+     *
+     * @return int
+     */
+    public function getCountPostComments() : int
+    {
+        return $this->postComments->count();
     }
 
     /**

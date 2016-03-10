@@ -145,7 +145,7 @@ section#content {
     border-radius         : 5px;
     -moz-border-radius    : 5px;
     -webkit-border-radius : 5px;
-    margin-bottom         : 40px;
+    margin         : 0 5px 40px 5px;
     min-height            : 200px;
 }
 
@@ -218,4 +218,10 @@ label {
     text-decoration  : none;
     color            : #fff;
     background-color : #4c4c4c;
+}
+
+/***** Posts *****/
+
+.post h3 {
+    margin-top: 0;
 }
