@@ -40,6 +40,14 @@ class Post
     use PropertyTrait\TimestampableTrait;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Gedmo\Slug(fields={"createdAt", "title"})
+     */
+    private $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity="Post", mappedBy="post", cascade={"all"})
      */
     private $postComments;
@@ -53,6 +61,26 @@ class Post
     }
 
     /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return self
+     */
+    public function setSlug(string $slug) : self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
      * @param PostComment $postComment
      *
      * @return self
@@ -60,7 +88,7 @@ class Post
     public function addPostComment(PostComment $postComment) : self
     {
         $this->postComments[] = $postComment;
-        $postComment->setPortfolioItem($this);
+        $postComment->setPost($this);
 
         return $this;
     }
