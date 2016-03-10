@@ -4,9 +4,9 @@ home:
     methods: [GET]
 
 post:
-    path:
-    defaults:  { _controller: AppBundle:Pages:contactRequest }
-
+    path:     /post/{slug}
+    defaults:  { _controller: AppBundle:Pages:showPost }
+    methods: [GET]
 
 contact:
     path:      /contact
