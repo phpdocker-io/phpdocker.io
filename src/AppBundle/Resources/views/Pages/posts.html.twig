@@ -1,19 +1,12 @@
-<div class="pretty">
-    <div class="row text-center header">
-        <h2>News</h2>
-        <hr/>
-    </div>
-
 {% for post in posts %}
     <div class="post">
         <h3>{{ post.getTitle() }}</h3>
         <div class="data">{{ post.getCreatedAt()|date("F jS \\a\\t g:ia") }}</div>
         <div class="body">
-            {{ post.getBody()|raw }}
+            {{ post.getBody()|truncate(350) }}
         </div>
         <div class="comment-count">
             ({{ post.getCountPostComments() }}) comment(s)
         </div>
     </div>
 {% endfor %}
-</div>
