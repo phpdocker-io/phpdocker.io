@@ -22,7 +22,8 @@ easy_admin:
                 fields:
                     - id
                     - title
-                    - updatedAt
+                    - slug
+                    - createdAt
                     - active
             form:
                 title: 'Add a new entry to the portfolio'
