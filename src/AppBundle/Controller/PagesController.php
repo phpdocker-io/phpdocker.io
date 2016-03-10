@@ -35,6 +35,27 @@ class PagesController extends Controller implements ContainerAwareInterface
     }
 
     /**
+     * Single post page.
+     *
+     * @param string $slug
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showPostAction(string $slug)
+    {
+        $post = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Post')
+            ->findOneBy(['slug' => $slug, 'active' => true]);
+
+        if (!$post) {
+            throw $this->createNotFoundException('Post not found');
+        }
+
+        return $this->render('AppBundle:Pages:post.html.twig', ['post' => $post]);
+    }
+
+    /**
      * ContactRequest page
      *
      * @param Request $request

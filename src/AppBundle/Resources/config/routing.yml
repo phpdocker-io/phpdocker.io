@@ -3,6 +3,11 @@ home:
     defaults:  { _controller: AppBundle:Pages:home }
     methods: [GET]
 
+post:
+    path:
+    defaults:  { _controller: AppBundle:Pages:contactRequest }
+
+
 contact:
     path:      /contact
     defaults:  { _controller: AppBundle:Pages:contactRequest }
