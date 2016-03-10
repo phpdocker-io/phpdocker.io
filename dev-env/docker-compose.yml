@@ -37,3 +37,4 @@ phpdocker-io-php-fpm:
     - ..:/var/www/phpdocker-io
   links:
     - phpdocker-io-mailhog
+    - phpdocker-io-mysql

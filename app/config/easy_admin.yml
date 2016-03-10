@@ -10,13 +10,13 @@ ivory_ck_editor:
                 - { name: "styles", items: ['Bold', 'Italic', 'BulletedList', 'Link', 'PasteFromWord', 'Source'] }
 
 easy_admin:
-    site_name: "SarahMorice.co.uk"
+    site_name: "PHPDocker.io"
     design:
         form_theme: 'vertical'
     entities:
         Post:
             label: 'Posts'
-            class: AppBundle\Entity\PortfolioItem
+            class: AppBundle\Entity\Post
             list:
                 title: 'Posts'
                 fields:
