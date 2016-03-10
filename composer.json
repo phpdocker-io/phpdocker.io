@@ -32,7 +32,8 @@
     "michelf/php-markdown":            "^1.6",
     "guzzlehttp/guzzle":               "^6.1",
     "javiereguiluz/easyadmin-bundle":  "^1.11",
-    "egeloen/ckeditor-bundle":         "^4.0"
+    "egeloen/ckeditor-bundle":         "^4.0",
+    "dzango/twig-truncate-extension": "^1.0"
   },
   "require-dev":  {
     "sensio/generator-bundle": "^3.0",

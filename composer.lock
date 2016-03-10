@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1e3102347f3ff73faa324ef998afccbf",
-    "content-hash": "9608a42f3059eb03cd5b3b5fb419d108",
+    "hash": "8c31a1eeed79ddecbb522c9ab92a6f1d",
+    "content-hash": "1b123072652aa93135d0034790519990",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -875,6 +875,54 @@
                 "orm"
             ],
             "time": "2016-01-05 21:34:58"
+        },
+        {
+            "name": "dzango/twig-truncate-extension",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dzango/TwigTruncateExtension.git",
+                "reference": "8f08c351125a9fc210e183f076e433f78c7baf74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dzango/TwigTruncateExtension/zipball/8f08c351125a9fc210e183f076e433f78c7baf74",
+                "reference": "8f08c351125a9fc210e183f076e433f78c7baf74",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "twig/twig": "~1.12"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dzango\\Twig\\Extension\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dzango SARL",
+                    "email": "info@dzango.com",
+                    "homepage": "http://www.dzango.com"
+                }
+            ],
+            "description": "A Twig extension to truncate text while preserving HTML tags",
+            "homepage": "https://github.com/dzango/TwigTruncateExtension",
+            "keywords": [
+                "truncate",
+                "twig"
+            ],
+            "time": "2014-09-07 23:14:47"
         },
         {
             "name": "egeloen/ckeditor-bundle",
