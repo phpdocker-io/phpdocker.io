@@ -12,10 +12,10 @@ trait BodyTrait
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="text", nullable=false)
      *
      * @Assert\NotBlank()
-     * @Assert\Length(min = 1, max = 255)
+     * @Assert\Length(min = 1)
      */
     private $body;
 
