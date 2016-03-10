@@ -27,7 +27,9 @@
         "symfony/assetic-bundle": "^2.7",
         "michelf/php-markdown": "^1.6",
         "guzzlehttp/guzzle": "^6.1",
-        "symfony/swiftmailer-bundle": "^2.3"
+        "symfony/swiftmailer-bundle": "^2.3",
+        "javiereguiluz/easyadmin-bundle": "^1.11",
+        "egeloen/ckeditor-bundle": "^4.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
