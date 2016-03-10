@@ -6,8 +6,21 @@
 {% block isGennyActive %}active{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <form method="post" id="generator" action="{{ path('generator') }}" class="pretty">
+    <div class="pretty row">
+        <div class="row text-center header">
+            <h2>How to use it?</h2>
+            <hr/>
+        </div>
+
+        <p>If you've used <a href="https://puphpet.com/" target="_blank">PuPHPet</a> before, the concept
+            will be very familiar. Fill up your requirements, and press the submit button.</p>
+        <p>This will trigger the download of a zip file with the environment definition. Copy the folder
+            within to the root of your project and bootstrap your environment. </p>
+        <p>The zip file contains instructions in more detail as well as a list of any services you might
+            have enabled with their real hostnames for you to configure on your own application.</p>
+    </div>
+    <div class="pretty row">
+        <form method="post" id="generator" action="{{ path('generator') }}">
             <div class="row text-center header">
                 <h2>Project properties</h2>
                 <hr/>
