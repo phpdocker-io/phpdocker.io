@@ -1,0 +1,35 @@
+parameters:
+    rich_text_editor_form_type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'
+
+ivory_ck_editor:
+    input_sync: true
+    default_config: base_config
+    configs:
+        base_config:
+            toolbar:
+                - { name: "styles", items: ['Bold', 'Italic', 'BulletedList', 'Link', 'PasteFromWord', 'Source'] }
+
+easy_admin:
+    site_name: "SarahMorice.co.uk"
+    design:
+        form_theme: 'vertical'
+    entities:
+        Post:
+            label: 'Posts'
+            class: AppBundle\Entity\PortfolioItem
+            list:
+                title: 'Posts'
+                fields:
+                    - id
+                    - title
+                    - updatedAt
+                    - active
+            form:
+                title: 'Add a new entry to the portfolio'
+                fields:
+                    - { property: title, css_class: 'col-lg-6 col-md-6' }
+                    - { property: body, type: '%rich_text_editor_form_type%' }
+                    - { property: active, label: 'Is active'}
+            edit:
+                title: 'Edit post'
+
