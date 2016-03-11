@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form for post comments.-
+ * Form for post comments.
  *
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
@@ -28,11 +28,11 @@ class PostCommentType extends AbstractType
                 'attr'     => ['placeholder' => 'Your name'],
                 'required' => true,
             ])
-            ->add('senderEmail', UrlType::class, [
+            ->add('posterUrl', UrlType::class, [
                 'attr'     => ['placeholder' => 'Your site\'s URL, if any'],
                 'required' => false,
             ])
-            ->add('message', TextareaType::class, [
+            ->add('body', TextareaType::class, [
                 'attr'     => ['placeholder' => 'Your comments'],
                 'required' => true,
             ]);
