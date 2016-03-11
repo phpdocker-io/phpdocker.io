@@ -233,12 +233,19 @@ label {
     font-weight : bold;
 }
 
+.comments h3 {
+    font-size: 1.1em;
+    margin: 0;
+    font-weight: bold;
+}
+
 .posts dt {
     font-size   : larger;
     font-weight : bold;
 }
 
-.post .date {
+.post .date,
+.comment .date {
     font-style : italic;
 }
 
@@ -252,4 +259,11 @@ label {
 
 form#contact input[type=submit] {
     margin-right: 0 !important;
+}
+
+.comment .metadata {
+    border             : 0 dashed black;
+    border-right-width : 1px;
+    display            : ruby;
+    padding-right: 1em;
 }

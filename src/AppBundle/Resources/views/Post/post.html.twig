@@ -7,7 +7,8 @@
     <div class="row post">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="pretty">
-                <h1><a href="{{ path('home') }}">News &gt;</a> <a href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
+                <h1><a href="{{ path('home') }}">News &gt;</a> <a
+                            href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
                 <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
                 <div class="body">
                     {{ post.getBody()|raw }}
@@ -21,15 +22,20 @@
             <div class="pretty">
                 <h2>Comments</h2>
                 {% for comment in post.getPostComments() %}
-                    <div class="comment">
-                        <h3>By {{ comment.getPosterName() }}</h3>
-                        <div class="date">{{ comment.getCreatedAt()|date("F jS, Y") }}</div>
-                        {% if comment.getPosterUrl() %}
-                            <div class="url">
-                                <a href="{{ comment.getPosterUrl() }}" target="_blank">{{ comment.getPosterUrl() }}</a>
-                            </div>
-                        {% endif %}
-                        <div class="body">
+                    <hr>
+                    <div class="comment row">
+                        <div class="metadata col-lg-3 col-md-3 col-sm-5 col-xs-5">
+                            {% if comment.getPosterUrl() %}
+                                <h3>
+                                    <a href="{{ comment.getPosterUrl() }}"
+                                       target="_blank">{{ comment.getPosterName() }}</a>
+                                </h3>
+                            {% else %}
+                                <h3>{{ comment.getPosterName() }}</h3>
+                            {% endif %}
+                            <div class="date">{{ comment.getCreatedAt()|date("d/M/Y") }}</div>
+                        </div>
+                        <div class="body col-lg-9 col-md-9 col-sm-7 col-xs-7">
                             {{ comment.getBody() }}
                         </div>
                     </div>
