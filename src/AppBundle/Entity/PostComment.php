@@ -42,8 +42,6 @@ class PostComment
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $posterUrl;

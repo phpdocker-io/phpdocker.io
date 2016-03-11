@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Post;
 use AppBundle\Entity\PostComment;
 use AppBundle\Form\PostCommentType;
 use Symfony\Component\Form\FormError;
@@ -34,7 +35,7 @@ class PostController extends AbstractController
         }
 
         // Post comment form generation and processing
-        $postCommentForm = $this->postCommentFormProcessor($request);
+        $postCommentForm = $this->postCommentFormProcessor($request, $post);
 
         return $this->render('AppBundle:Post:post.html.twig', ['post' => $post, 'form' => $postCommentForm->createView()]);
     }
@@ -43,10 +44,11 @@ class PostController extends AbstractController
      * Generates and processes the post comment form
      *
      * @param Request $request
+     * @param Post    $post
      *
      * @return FormInterface
      */
-    private function postCommentFormProcessor(Request $request) : FormInterface
+    private function postCommentFormProcessor(Request $request, Post $post) : FormInterface
     {
         // Comments form
         $postComment = new PostComment();
@@ -68,9 +70,9 @@ class PostController extends AbstractController
                     ->getSession()
                     ->getFlashBag()
                     ->add('commentForm', true);
+            } else {
+                $form->addError(new FormError('We failed to verify you are human'));
             }
-
-            $form->addError(new FormError('We failed to verify you are human'));
         }
 
         return $form;

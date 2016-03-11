@@ -23,11 +23,15 @@
                 {% for comment in post.getPostComments() %}
                     <div class="comment">
                         <h3>By {{ comment.getPosterName() }}</h3>
+                        <div class="date">{{ comment.getCreatedAt()|date("F jS, Y") }}</div>
                         {% if comment.getPosterUrl() %}
                             <div class="url">
                                 <a href="{{ comment.getPosterUrl() }}" target="_blank">{{ comment.getPosterUrl() }}</a>
                             </div>
                         {% endif %}
+                        <div class="body">
+                            {{ comment.getBody() }}
+                        </div>
                     </div>
                 {% else %}
                     <p>No comments on this post</p>
