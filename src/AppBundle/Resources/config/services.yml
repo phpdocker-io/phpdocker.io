@@ -14,3 +14,8 @@ services:
       arguments: [%recaptcha_secret_key%, %recaptcha_verify_token_endpoint%]
       calls:
         - [setContainer, ["@service_container"]]
+
+  dzango.twig.truncate_extension:
+      class: Dzango\Twig\Extension\Truncate
+      tags:
+          - { name: twig.extension }

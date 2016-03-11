@@ -3,22 +3,17 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\ContactRequest;
 use AppBundle\Form\ContactRequestType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Simple, flat pages
+ * Controller for simpler pages.
  *
  * @package   AppBundle\Controller
  * @copyright Auron Consulting Ltd
  */
-class PagesController extends Controller implements ContainerAwareInterface
+class PagesController extends AbstractController
 {
-    use ContainerAwareTrait;
-
     /**
      * Homepage
      *
@@ -26,7 +21,12 @@ class PagesController extends Controller implements ContainerAwareInterface
      */
     public function homeAction()
     {
-        return $this->render('AppBundle:Pages:home.html.twig');
+        $posts = $this
+            ->getDoctrine()
+            ->getRepository('AppBundle:Post')
+            ->findBy(['active' => true], ['id' => 'DESC']);
+
+        return $this->render('AppBundle:Pages:home.html.twig', ['posts' => $posts]);
     }
 
     /**
@@ -48,16 +48,15 @@ class PagesController extends Controller implements ContainerAwareInterface
 
             // If human, compose and send message
             if ($this->checkRecaptcha($request) === true) {
-                $this->sendmessage($contactRequest);
+                $this->sendMessage($contactRequest);
+
                 return $this->render('AppBundle:Pages:contact-success.html.twig');
             }
 
             $form->addError(new FormError('We failed to verify you are human'));
         }
 
-        return $this->render('AppBundle:Pages:contact.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return $this->render('AppBundle:Pages:contact.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -65,7 +64,7 @@ class PagesController extends Controller implements ContainerAwareInterface
      *
      * @param ContactRequest $contactRequest
      */
-    private function sendmessage(ContactRequest $contactRequest)
+    private function sendMessage(ContactRequest $contactRequest)
     {
         $messageBody = $this->renderView('AppBundle:emails:contact-email.html.twig', [
             'senderName'  => $contactRequest->getSenderName(),
@@ -82,19 +81,5 @@ class PagesController extends Controller implements ContainerAwareInterface
             ->setBody($messageBody, 'text/html');
 
         $this->container->get('mailer')->send($message);
-    }
-
-    /**
-     * Validates the recaptcha response.
-     *
-     * @param Request $request
-     *
-     * @return bool
-     */
-    private function checkRecaptcha(Request $request)
-    {
-        return $this->container
-            ->get('recaptcha_validator')
-            ->verify($request->get('g-recaptcha-response'));
     }
 }

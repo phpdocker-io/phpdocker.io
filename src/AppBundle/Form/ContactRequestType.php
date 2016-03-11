@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
  */
-class ContactRequestType extends AbstractType
+class ContactRequestType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.

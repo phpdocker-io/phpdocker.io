@@ -219,3 +219,51 @@ label {
     color            : #fff;
     background-color : #4c4c4c;
 }
+
+/***** Posts *****/
+
+.post h1 {
+    margin-top : 0;
+    font-size  : 1.5em;
+}
+
+.comments h2 {
+    margin-top  : 0;
+    font-size   : 1.2em;
+    font-weight : bold;
+}
+
+.comments h3 {
+    font-size: 1.1em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.posts dt {
+    font-size   : larger;
+    font-weight : bold;
+}
+
+.post .date,
+.comment .date {
+    font-style : italic;
+}
+
+.post .body {
+    margin-top : 1em;
+}
+
+.post .comment-count {
+    text-align : right;
+}
+
+form#contact input[type=submit] {
+    margin-right: 0 !important;
+}
+
+.comment .metadata {
+    border             : 0 dashed black;
+    border-right-width : 1px;
+    display            : ruby;
+    padding-right: 1em;
+}

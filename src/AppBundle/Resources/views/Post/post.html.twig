@@ -1,0 +1,55 @@
+{% extends 'AppBundle::base2.html.twig' %}
+
+{% block bodyClass %}darker{% endblock %}
+{% block isHomeActive %}active{% endblock %}
+
+{% block body %}
+    <div class="row post">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="pretty">
+                <h1><a href="{{ path('home') }}">News &gt;</a> <a
+                            href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
+                <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
+                <div class="body">
+                    {{ post.getBody()|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row comments" id="comments">
+        <div class="col-lg-offset-1 col-lg-6 col-md-7">
+            <div class="pretty">
+                <h2>Comments</h2>
+                {% for comment in post.getPostComments() %}
+                    <hr>
+                    <div class="comment row">
+                        <div class="metadata col-lg-3 col-md-3 col-sm-5 col-xs-5">
+                            {% if comment.getPosterUrl() %}
+                                <h3>
+                                    <a href="{{ comment.getPosterUrl() }}"
+                                       target="_blank">{{ comment.getPosterName() }}</a>
+                                </h3>
+                            {% else %}
+                                <h3>{{ comment.getPosterName() }}</h3>
+                            {% endif %}
+                            <div class="date">{{ comment.getCreatedAt()|date("d/M/Y") }}</div>
+                        </div>
+                        <div class="body col-lg-9 col-md-9 col-sm-7 col-xs-7">
+                            {{ comment.getBody() }}
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No comments on this post</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="post-comment col-lg-4 col-md-5">
+            <div class="pretty">
+                <h2>Leave a reply</h2>
+                {% include 'AppBundle:Post:post-comment-form.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

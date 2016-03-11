@@ -4,9 +4,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
 use AuronConsultingOSS\Docker\Entity\ProjectFactory;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +15,8 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  * @package   AppBundle\Controller
  * @copyright Auron Consulting Ltd
  */
-class BuilderController extends Controller implements ContainerAwareInterface
+class BuilderController extends AbstractController
 {
-    use ContainerAwareTrait;
-
     /**
      * Form and form processor for reating a project.
      *
