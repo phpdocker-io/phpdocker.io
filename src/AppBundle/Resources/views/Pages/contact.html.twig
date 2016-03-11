@@ -39,12 +39,7 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-lg-3 col-md-offset-2 col-md-4">
-                    <div
-                            class="g-recaptcha"
-                            id="recaptcha-container"
-                            data-sitekey="{{ recaptcha_site_key }}"
-                            data-theme="light"
-                            style=""></div>
+                    {% include 'AppBundle:form:recaptcha.html.twig' %}
                 </div>
                 <div class="col-xs-12 col-sm-12 col-lg-7 col-md-7 text-right">
                     <input type="submit" class="btn button-custom btn-custom-three shadow"
