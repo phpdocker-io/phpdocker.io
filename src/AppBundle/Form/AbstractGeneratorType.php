@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
  */
-abstract class AbstractType extends \Symfony\Component\Form\AbstractType
+abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractType
 {
     /**
      * This should return a string with the FQDN of the entity class associated to this form.

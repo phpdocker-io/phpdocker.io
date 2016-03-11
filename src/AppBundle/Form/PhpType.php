@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
  */
-class PhpType extends AbstractType
+class PhpType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.

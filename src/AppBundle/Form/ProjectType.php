@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
  */
-class ProjectType extends AbstractType
+class ProjectType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.

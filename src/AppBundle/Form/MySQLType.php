@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormInterface;
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
  */
-class MySQLType extends AbstractType
+class MySQLType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
