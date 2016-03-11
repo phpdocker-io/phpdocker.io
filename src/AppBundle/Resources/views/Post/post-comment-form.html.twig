@@ -1,0 +1,23 @@
+{% form_theme form 'AppBundle::form_layout.html.twig' %}
+
+<form method="post" id="contact" action="{{ path('post', {'slug': post.getSlug()}) }}#contact">
+    {{ form_errors(form) }}
+
+    <div class="row">
+        {% for field in ['posterName', 'posterUrl', 'body']
+        if (attribute(form, field) is defined) %}
+            {{ form_widget(attribute(form, field)) }}
+        {% endfor %}
+    </div>
+
+    {{ form_rest(form) }}
+
+    <div class="row">
+        <div class="col-lg-4 col-md-5">
+            {% include 'AppBundle:form:recaptcha.html.twig' %}
+        </div>
+        <div class="col-lg-8 col-md-7 text-right">
+            <input type="submit" class="btn button-custom btn-custom-three shadow" value="Add reply">
+        </div>
+    </div>
+</form>

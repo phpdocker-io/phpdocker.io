@@ -4,29 +4,42 @@
 {% block isHomeActive %}active{% endblock %}
 
 {% block body %}
-    <div class="post pretty">
-        <h1><a href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
-        <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
-        <div class="body">
-            {{ post.getBody()|raw }}
+    <div class="row post">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="pretty">
+                <h1><a href="{{ path('home') }}">News &gt;</a> <a href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
+                <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
+                <div class="body">
+                    {{ post.getBody()|raw }}
+                </div>
+            </div>
         </div>
     </div>
 
-    <a name="comments"></a>
-    <div class="comments pretty">
-        <h2>Comments</h2>
-        {% for comment in post.getPostComments() %}
-            <div class="comment">
-                <h3>By {{ comment.getPosterName() }}</h3>
-                {% if comment.getPosterUrl() %}
-                    <div class="url">
-                        <a href="{{ comment.getPosterUrl() }}" target="_blank">{{ comment.getPosterUrl() }}</a>
+    <div class="row comments" id="comments">
+        <div class="col-lg-offset-1 col-lg-6 col-md-7">
+            <div class="pretty">
+                <h2>Comments</h2>
+                {% for comment in post.getPostComments() %}
+                    <div class="comment">
+                        <h3>By {{ comment.getPosterName() }}</h3>
+                        {% if comment.getPosterUrl() %}
+                            <div class="url">
+                                <a href="{{ comment.getPosterUrl() }}" target="_blank">{{ comment.getPosterUrl() }}</a>
+                            </div>
+                        {% endif %}
                     </div>
-                {% endif %}
+                {% else %}
+                    <p>No comments on this post</p>
+                {% endfor %}
             </div>
-        {% else %}
-            <p>No comments on this post</p>
-        {% endfor %}
-        <h2>Leave a reply</h2>
+        </div>
+
+        <div class="post-comment col-lg-4 col-md-5">
+            <div class="pretty">
+                <h2>Leave a reply</h2>
+                {% include 'AppBundle:Post:post-comment-form.html.twig' %}
+            </div>
+        </div>
     </div>
 {% endblock %}

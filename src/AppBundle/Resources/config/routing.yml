@@ -6,7 +6,7 @@ home:
 post:
     path:     /post/{slug}
     defaults:  { _controller: AppBundle:Post:showPost }
-    methods: [GET]
+    methods: [GET, POST]
 
 contact:
     path:      /contact

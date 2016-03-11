@@ -145,7 +145,7 @@ section#content {
     border-radius         : 5px;
     -moz-border-radius    : 5px;
     -webkit-border-radius : 5px;
-    margin                : 0 5px 40px 5px;
+    margin-bottom         : 40px;
     min-height            : 200px;
 }
 
@@ -248,4 +248,8 @@ label {
 
 .post .comment-count {
     text-align : right;
+}
+
+form#contact input[type=submit] {
+    margin-right: 0 !important;
 }
