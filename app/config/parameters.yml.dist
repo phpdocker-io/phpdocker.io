@@ -5,6 +5,14 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
+    # Database
+    database_host:     phpdocker-io-mysql
+    database_port:     null
+    database_name:     phpdockerio
+    database_user:     username
+    database_password: password
+    database_version:  5.7
+
     # Email config
     mailer_transport: smtp
     mailer_host: phpdocker-io-mailhog

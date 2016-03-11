@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: easy_admin.yml }
     - { resource: '@AppBundle/Resources/config/config.yml' }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -11,7 +12,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["en"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -34,6 +35,32 @@ framework:
     http_method_override: true
     assets: ~
 
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+
+        # DBAL 2.5 needs to connect to the DB to check its version, unless provided beneath
+        # This avoids unnecessary connections when using the console, or when on CI
+        # This is also a per-connection setting, for when we have several connections configured (eg master/slaves) instead of a main, root one
+        server_version: "%database_version%"
+
+        charset:  UTF8
+
+        # DoctrineEnumBundle
+        mapping_types:
+            enum: string
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
@@ -49,3 +76,9 @@ swiftmailer:
     port:      '%mailer_port%'
     username:  '%mailer_user%'
     password:  '%mailer_password%'
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            sluggable: true

@@ -32,11 +32,11 @@
             <a class="navbar-brand" href="{{ path('home') }}">
                 PHPDocker.io <span class="beta">beta</span>
             </a>
-            <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navigation-top" id="navbar-button">
+            <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navigation-top" id="navbar-button"></button>
         </div>
         <div class="navbar-collapse collapse" id="navigation-top">
             <ul class="nav navbar-nav navbar-right">
-                <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">WHAT IS PHPDOCKER.IO?</a></li>
+                <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">News</a></li>
                 <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
                 <li class="{% block isContactActive %}{% endblock %}"><a href="{{ path('contact') }}">Contact</a></li>
             </ul>
@@ -67,9 +67,7 @@
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
-<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"/>
-<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu"/>
-<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light"/>
+<link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Ubuntu|Shadows+Into+Light"/>
 
 <!-- Template courtesy of http://www.designbootstrap.com -->
 
