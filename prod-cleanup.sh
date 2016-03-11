@@ -8,5 +8,6 @@ bower install
 sudo php bin/console assets:install --env=prod
 sudo php bin/console assetic:dump --env=prod
 sudo chown www-data:www-data /tmp/phpdocker.io/* -Rf
+sudo touch /var/cache/mod_pagespeed/cache.flush
 curl -sS http://phpdocker.io > /dev/null
 curl -sS http://phpdocker.io/generator > /dev/null
