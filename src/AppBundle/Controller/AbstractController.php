@@ -2,8 +2,6 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -12,13 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
  * @package   AppBundle\Controller
  * @copyright Auron Consulting Ltd
  */
-class AbstractController extends Controller implements ContainerAwareInterface
+class AbstractController extends Controller
 {
-    /**
-     * Implements ContainerAwareInterface
-     */
-    use ContainerAwareTrait;
-
     /**
      * Validates any recaptcha response.
      *
