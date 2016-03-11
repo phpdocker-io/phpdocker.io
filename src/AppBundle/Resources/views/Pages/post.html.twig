@@ -1,0 +1,32 @@
+{% extends 'AppBundle::base2.html.twig' %}
+
+{% block bodyClass %}darker{% endblock %}
+{% block isHomeActive %}active{% endblock %}
+
+{% block body %}
+    <div class="post pretty">
+        <h1><a href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
+        <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
+        <div class="body">
+            {{ post.getBody()|raw }}
+        </div>
+    </div>
+
+    <a name="comments"></a>
+    <div class="comments pretty">
+        <h2>Comments</h2>
+        {% for comment in post.getPostComments() %}
+            <div class="comment">
+                <h3>By {{ comment.getPosterName() }}</h3>
+                {% if comment.getPosterUrl() %}
+                    <div class="url">
+                        <a href="{{ comment.getPosterUrl() }}" target="_blank">{{ comment.getPosterUrl() }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>No comments on this post</p>
+        {% endfor %}
+        <h2>Leave a reply</h2>
+    </div>
+{% endblock %}

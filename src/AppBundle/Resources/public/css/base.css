@@ -145,7 +145,7 @@ section#content {
     border-radius         : 5px;
     -moz-border-radius    : 5px;
     -webkit-border-radius : 5px;
-    margin         : 0 5px 40px 5px;
+    margin                : 0 5px 40px 5px;
     min-height            : 200px;
 }
 
@@ -222,6 +222,30 @@ label {
 
 /***** Posts *****/
 
-.post h3 {
-    margin-top: 0;
+.post h1 {
+    margin-top : 0;
+    font-size  : 1.5em;
+}
+
+.comments h2 {
+    margin-top  : 0;
+    font-size   : 1.2em;
+    font-weight : bold;
+}
+
+.posts dt {
+    font-size   : larger;
+    font-weight : bold;
+}
+
+.post .date {
+    font-style : italic;
+}
+
+.post .body {
+    margin-top : 1em;
+}
+
+.post .comment-count {
+    text-align : right;
 }
