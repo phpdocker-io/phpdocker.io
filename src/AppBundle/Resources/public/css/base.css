@@ -1,27 +1,22 @@
 /***** Main styles *****/
 
 body {
-    font-family : Ubuntu, sans-serif;
-}
-
-body.clear {
-    background-color : #c0c0bb;
-    color            : black;
-}
-
-body.darker {
-    background-color : #a7a7a2;
-    color            : black;
-}
-
-.dark-background {
-    background-color : #761c19 !important;
-    color            : white;
+    font-family : "Hind", sans-serif;
+    font-size   : 1.8em;
 }
 
 a {
-    color       : #c3323e;
+    color       : #df1c0d;
     font-weight : bold !important;
+}
+
+hr {
+    border-color : #df1c0d;
+    width        : 90%;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight : bold;
 }
 
 .shadow {
@@ -33,23 +28,8 @@ a {
 /***** Header *****/
 
 .header {
-    font-family    : 'Oswald', sans-serif;
     padding-bottom : 40px;
-    text-transform : uppercase;
-}
-
-.header hr {
-    width      : 50px;
-    border-top : 2px solid rgb(228, 79, 79);
-}
-
-.header h1 {
-    font-family : "Shadows Into Light", sans-serif;
-}
-
-.header h1 a {
-    color     : antiquewhite;
-    font-size : larger;
+    /*text-transform : uppercase;*/
 }
 
 .beta {
@@ -60,30 +40,27 @@ h3 {
     display : block;
 }
 
-.header {
-    padding-bottom : 10px !important;
-}
-
 /***** Navigation *****/
 
+.navbar {
+    border-radius : 0;
+}
+
 .navbar-nav li a {
-    text-transform : uppercase;
-    transition     : color 1s, box-shadow 1s;
-    padding-left   : 0.4em !important;
-    padding-right  : 0.4em !important;
-    border-radius  : 4px;
-    margin-right   : 1em !important;
-    margin-left    : 1em !important;
+    transition    : color 1s, box-shadow 1s;
+    padding-left  : 0.4em !important;
+    padding-right : 0.4em !important;
+    margin-right  : 1em !important;
+    margin-left   : 1em !important;
 }
 
 .navbar-nav li a:hover {
     color      : #ff9b26 !important;
     transition : color 1s, box-shadow 1s;
-    box-shadow : 0 0 5px #ff9b26;
 }
 
 .navbar-inverse {
-    background-color : rgba(0, 0, 0, 0.4);
+    background-color : rgba(0, 0, 0, 0.64);
     border-color     : transparent;
 }
 
@@ -93,9 +70,9 @@ h3 {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-    font-size      : 12px;
+    /*font-size      : 1.;*/
     font-weight    : 800;
-    padding        : 5px 0px;
+    padding        : 5px 0;
     letter-spacing : 2px;
     margin         : 10px 20px 10px 20px;
     color          : #fff;
@@ -116,43 +93,29 @@ h3 {
 /***** Section *****/
 
 section {
-    padding-top : 80px;
+    /*padding-top : 80px;*/
 }
 
 section#content {
-    margin-bottom : 40px;
+    /*margin-bottom : 40px;*/
 }
 
 /***** Footer *****/
 
 .footer {
-    margin-top       : 1em;
-    padding-top      : 1em;
-    padding-bottom   : 1em;
-    background-color : rgba(0, 0, 0, 0.7);
-    position         : fixed;
-    bottom           : 0;
-    color            : #c9c9c9;
-    z-index          : 100;
-    font-weight      : bold;
+    margin-top         : 1em;
+    padding-top        : 1em;
+    padding-bottom     : 1em;
+    background-color   : rgba(0, 0, 0, 0.7);
+    bottom             : 0;
+    color              : #c9c9c9;
+    font-weight        : bold;
+    -moz-box-shadow    : inset 0 5px 10px 0 #000;
+    -webkit-box-shadow : inset 0 5px 10px 0 #000;
+    box-shadow         : inset 0 5px 10px 0 #000;
 }
 
 /***** Boxes *****/
-
-.pretty {
-    background-color      : rgba(255, 255, 255, 0.2);
-    padding               : 20px;
-    border-radius         : 5px;
-    -moz-border-radius    : 5px;
-    -webkit-border-radius : 5px;
-    margin-bottom         : 40px;
-    min-height            : 200px;
-}
-
-.pretty.yellow {
-    background-color : #c1aa87;
-    color            : black;
-}
 
 /***** Forms *****/
 
@@ -197,9 +160,9 @@ label {
 /***** Buttons *****/
 
 .button-custom {
-    border-radius         : 0px;
-    -webkit-border-radius : 0px;
-    -moz-border-radius    : 0px;
+    border-radius         : 0;
+    -webkit-border-radius : 0;
+    -moz-border-radius    : 0;
     -webkit-transition    : all 0.5s ease-in-out;
     -moz-transition       : all 0.5s ease-in-out;
     -o-transition         : all 0.5s ease-in-out;
@@ -208,8 +171,8 @@ label {
 }
 
 .btn-custom-three {
-    color            : #fff;
-    background-color : #7c7c77;
+    color            : #000;
+    background-color : #fff;
     border           : 2px solid #4c4c4c;
 }
 
@@ -234,9 +197,9 @@ label {
 }
 
 .comments h3 {
-    font-size: 1.1em;
-    margin: 0;
-    font-weight: bold;
+    font-size   : 1.1em;
+    margin      : 0;
+    font-weight : bold;
 }
 
 .posts dt {
@@ -258,12 +221,12 @@ label {
 }
 
 form#contact input[type=submit] {
-    margin-right: 0 !important;
+    margin-right : 0 !important;
 }
 
 .comment .metadata {
     border             : 0 dashed black;
     border-right-width : 1px;
     display            : ruby;
-    padding-right: 1em;
+    padding-right      : 1em;
 }

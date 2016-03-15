@@ -6,7 +6,7 @@
 {% block body %}
     <div class="row post">
         <div class="col-lg-10 col-lg-offset-1">
-            <div class="pretty">
+            <div class="content-block">
                 <h1><a href="{{ path('home') }}">News &gt;</a> <a
                             href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
                 <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
@@ -19,7 +19,7 @@
 
     <div class="row comments" id="comments">
         <div class="col-lg-offset-1 col-lg-6 col-md-7">
-            <div class="pretty">
+            <div class="content-block">
                 <h2>Comments</h2>
                 {% for comment in post.getPostComments() %}
                     <hr>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="post-comment col-lg-4 col-md-5">
-            <div class="pretty">
+            <div class="content-block">
                 <h2>Leave a reply</h2>
                 {% include 'AppBundle:Post:post-comment-form.html.twig' %}
             </div>
