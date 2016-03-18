@@ -11,7 +11,6 @@ body, html {
 
 #wrap {
     min-height : calc(100% - 55px);
-    height     : auto !important;
 }
 
 a {
@@ -127,12 +126,35 @@ footer {
     padding-top      : 1em;
     padding-bottom   : 1em;
     background-color : rgba(0, 0, 0, 0.7);
-    text-align       : center;
     height           : 55px;
 }
 
 footer a {
-    color : white;
+    color : white !important;
+}
+
+footer a:hover {
+    cursor          : pointer;
+    text-decoration : none;
+}
+
+/* Footer / Share button */
+share-button,
+share-button:after,
+share-button:before {
+    background : none !important;
+    content    : '' !important;
+    color      : transparent !important;
+    cursor     : default;
+}
+
+share-button a:hover {
+    color : transparent !important;
+}
+
+footer .share {
+    text-align    : right;
+    padding-right : 2em;
 }
 
 /***** Boxes *****/

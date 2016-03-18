@@ -14,7 +14,8 @@
     <link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Hind|Shadows+Into+Light"/>
 
     {% stylesheets filter="cssrewrite"
-    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css' %}
+    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'
+    'bundles/app/vendor/share-button/share-button.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
     {% stylesheets
@@ -56,8 +57,16 @@
     </section>
 </div>
 
-<footer class="inner-shadow-top">
-    <a href="{{ path('home') }}">PHPDocker.io &copy; {{ "now"|date("Y") }}</a>
+<footer class="inner-shadow-top container-fluid">
+    <div class="row">
+        <div class="copyright col col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <a href="{{ path('home') }}">PHPDocker.io &copy; {{ "now"|date("Y") }}</a>
+        </div>
+        <div class="share col col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <share-button></share-button>
+            <a><span class="glyphicon glyphicon-share"></span> Share</a>
+        </div>
+    </div>
 </footer>
 
 {% include 'AppBundle::analytics.html.twig' %}
@@ -69,6 +78,7 @@
 '@AppBundle/Resources/public/vendor/animations/assets/js/animations.min.js'
 '@AppBundle/Resources/public/vendor/jquery-easing/jquery.easing.min.js'
 '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
+'@AppBundle/Resources/public/vendor/share-button/share-button.js'
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
