@@ -4,7 +4,6 @@ namespace AppBundle\Form;
 use AppBundle\Entity\ContactRequest;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -24,20 +23,15 @@ class ContactRequestType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('senderName', TextType::class, [
-                'label'    => 'Your name',
-                'attr'     => ['placeholder' => 'Mandatory, even if it\'s made up'],
+            ->add('senderEmail', EmailType::class, [
+                'label'    => false,
+                'attr'     => ['placeholder' => 'Your email - optional, only if you\'d like a reply'],
                 'required' => true,
             ])
-            ->add('senderEmail', EmailType::class, [
-                'label'    => 'Your email',
-                'attr'     => ['placeholder' => 'Optional, only if you\'d like a reply'],
-                'required' => false,
-            ])
             ->add('message', TextareaType::class, [
-                'label'    => 'Your message',
+                'label'    => false,
                 'attr'     => ['placeholder' => 'Feedback, recommendations, feature requests...'],
-                'required' => false,
+                'required' => true,
             ]);
     }
 
