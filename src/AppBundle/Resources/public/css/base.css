@@ -141,8 +141,24 @@ footer a {
 /***** Forms *****/
 
 form input[type=submit] {
-    margin    : 1em;
-    font-size : 1.2em;
+    /*margin    : 1em;*/
+    /*font-size : 1.2em;*/
+}
+
+form .group {
+    border        : 2px rgba(0, 0, 0, 0.42) solid;
+    border-radius : 5px;
+    padding       : 1em;
+    margin-bottom : 1em;
+}
+
+form .group h3 {
+    margin-top : 0 !important;
+}
+
+form .form-group {
+    /*padding-bottom : 10px;*/
+    /*margin         : 0;*/
 }
 
 .multiselect-container.dropdown-menu {
@@ -192,9 +208,12 @@ label {
 }
 
 .btn-custom-three {
-    color            : #000;
-    background-color : #fff;
+    color            : #fff;
+    background-color : #777777;
     border           : 2px solid #4c4c4c;
+    font-size        : 1em;
+    font-weight      : bold;
+    padding          : 0.5em;
 }
 
 .btn-custom-three:hover {
@@ -242,7 +261,7 @@ label {
 }
 
 form#contact input[type=submit] {
-    margin-right : 0 !important;
+    /*margin-right : 0 !important;*/
 }
 
 .comment .metadata {
