@@ -28,7 +28,9 @@
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>PHP configuration</h3>
                 <div class="form-group">{{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}</div>
+                <p>Please note, the following extensions are already included on the base image: APC, cURL, JSON, MCrypt, OPCache and Readline.</p>
                 {{ form_row(attribute(form.phpOptions, 'phpExtensions')) }}
+
             </div>
 
             <div class="{{ bigColumn }} text-center">

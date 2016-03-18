@@ -149,6 +149,11 @@ form .group {
     margin-bottom : 1em;
 }
 
+form .group p {
+    font-style : italic;
+    font-size  : 0.8em;
+}
+
 form .group h3 {
     margin-top : 0 !important;
 }
@@ -235,7 +240,7 @@ label {
 }
 
 .post h1 {
-    font-size  : 1.5em;
+    font-size : 1.5em;
 }
 
 .comments h2 {
