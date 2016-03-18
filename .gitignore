@@ -17,3 +17,4 @@
 /web/css
 /web/js
 .idea
+src/AppBundle/Resources/public/vendor/*
