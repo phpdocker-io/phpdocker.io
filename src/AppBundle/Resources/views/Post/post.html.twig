@@ -32,7 +32,7 @@
                         {% else %}
                             <h3>{{ comment.getPosterName() }}</h3>
                         {% endif %}
-                        <div class="date">{{ comment.getCreatedAt()|date("d/M/Y") }}</div>
+                        <div class="date">{{ comment.getCreatedAt()|date("F jS, Y, H:i") }}</div>
                     </div>
                     <div class="body col-lg-9 col-md-9 col-sm-12 col-xs-12">
                         {{ comment.getBody()|nl2br }}
