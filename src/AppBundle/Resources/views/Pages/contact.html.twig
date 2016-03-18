@@ -1,13 +1,15 @@
-{% form_theme form 'AppBundle::form_layout.html.twig' %}
-{% extends 'AppBundle::base2.html.twig' %}
+{% form_theme form 'AppBundle::form_layout_no_labels.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
 
 {% block bodyClass %}darker{% endblock %}
 {% block pageName %} - Contact{% endblock %}
 {% block isContactActive %}active{% endblock %}
 
+{% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
+
 {% block body %}
     <div class="row col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
-        <form method="post" id="contact" action="{{ path('contact') }}" class="pretty">
+        <form method="post" id="contact" action="{{ path('contact') }}" class="content-block">
             <div class="row text-center header">
                 <h2>Contact</h2>
                 <hr/>
@@ -15,37 +17,36 @@
 
             {{ form_errors(form) }}
 
-            <div class="row">
+            <div class="{{ bigColumn }}">
                 {% for field in ['senderName', 'senderEmail']
                 if (attribute(form, field) is defined) %}
-                    <div class="col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                    {#<div class="form-group{% if attribute(attribute(form, field), error) %} has-error{% endif %}">#}
+                        {#{{ form_widget(attribute(form, field)) }}#}
+                        {#{{ form_errors(attribute(form, field)) }}#}
+                    {#</div>#}
+
+                    {{ form_row(attribute(form, field)) }}
                 {% endfor %}
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
+            <div class="{{ bigColumn }}">
+                <div class="form-group">
                     <div class="form-group">
-                        <label class="col-lg-2 col-md-2 control-label" for="contact_request_message">
-                            {{ form.message.vars.label }}
-                        </label>
-                        <div class="col-lg-10 col-md-10">
-                            {{ form_widget(attribute(form, 'message')) }}
-                        </div>
+                        {{ form_widget(attribute(form, 'message')) }}
                     </div>
                 </div>
-            </div>
 
-            {{ form_rest(form) }}
+                {{ form_rest(form) }}
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-lg-3 col-md-offset-2 col-md-4">
-                    {% include 'AppBundle:form:recaptcha.html.twig' %}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-lg-offset-2 col-lg-3 col-md-offset-2 col-md-4">
+                        {% include 'AppBundle:form:recaptcha.html.twig' %}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-lg-7 col-md-7 text-right">
+                        <input type="submit" class="btn button-custom btn-custom-three shadow"
+                               value="Send your message">
+                    </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-lg-7 col-md-7 text-right">
-                    <input type="submit" class="btn button-custom btn-custom-three shadow"
-                           value="Send your message">
-                </div>
-            </div>
         </form>
     </div>
 {% endblock %}

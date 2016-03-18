@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content="PHP development environments with Docker"/>
+    <meta name="author" content="Auron Consulting Ltd"/>
+
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <title>PHPDocker.io{% block pageName %}{% endblock %}</title>
+
+    <link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Hind|Shadows+Into+Light"/>
+
+    {% stylesheets filter="cssrewrite"
+    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'
+    'bundles/app/vendor/share-button/share-button.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    {% stylesheets
+    '@AppBundle/Resources/public/css/*.css'
+    '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
+    '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+</head>
+
+<body data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
+
+{% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
+{% set halfColumn = 'group col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
+
+<div id="wrap">
+    <div class="navbar navbar-inverse inner-shadow-bottom" id="menu-section">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('home') }}">
+                    PHPDocker.io <span class="beta">beta</span>
+                </a>
+                <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navigation-top" id="navbar-button"></button>
+            </div>
+            <div class="navbar-collapse collapse" id="navigation-top">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">News</a></li>
+                    <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
+                    <li class="{% block isContactActive %}{% endblock %}"><a href="{{ path('contact') }}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--MENU SECTION END-->
+    <section id="content">
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
+    </section>
+</div>
+
+<footer class="inner-shadow-top container-fluid">
+    <div class="row">
+        <div class="copyright col col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <a href="{{ path('home') }}">PHPDocker.io &copy; {{ "now"|date("Y") }}</a>
+        </div>
+        <div class="share col col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <share-button></share-button>
+            <a><span class="glyphicon glyphicon-share"></span> Share</a>
+        </div>
+    </div>
+</footer>
+
+{% include 'AppBundle::analytics.html.twig' %}
+
+{% javascripts
+'@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
+'@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
+'@AppBundle/Resources/public/vendor/animations/assets/js/appear.min.js'
+'@AppBundle/Resources/public/vendor/animations/assets/js/animations.min.js'
+'@AppBundle/Resources/public/vendor/jquery-easing/jquery.easing.min.js'
+'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
+'@AppBundle/Resources/public/vendor/share-button/share-button.js'
+'@AppBundle/Resources/public/js/*' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>
+</html>

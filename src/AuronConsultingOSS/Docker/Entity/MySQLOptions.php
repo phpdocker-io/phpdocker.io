@@ -12,22 +12,22 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @var string
      */
-    protected $rootPassword = 'root-password';
+    protected $rootPassword;
 
     /**
      * @var string
      */
-    protected $databaseName = 'database-name';
+    protected $databaseName;
 
     /**
      * @var string
      */
-    protected $username = 'username';
+    protected $username;
 
     /**
      * @var string
      */
-    protected $password = 'password';
+    protected $password;
 
     /**
      * @inheritdoc
@@ -40,7 +40,7 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @return string
      */
-    public function getRootPassword() : string
+    public function getRootPassword()
     {
         return $this->rootPassword;
     }
@@ -60,7 +60,7 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @return string
      */
-    public function getDatabaseName() : string
+    public function getDatabaseName()
     {
         return $this->databaseName;
     }
@@ -80,7 +80,7 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @return string
      */
-    public function getUsername() : string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -100,7 +100,7 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @return string
      */
-    public function getPassword() : string
+    public function getPassword()
     {
         return $this->password;
     }

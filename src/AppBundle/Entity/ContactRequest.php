@@ -16,13 +16,6 @@ class ContactRequest
      *
      * @Assert\NotBlank()
      * @Assert\NotNull()
-     * @Assert\Length(min=1, max=128)
-     */
-    private $senderName;
-
-    /**
-     * @var string
-     *
      * @Assert\Email()
      */
     private $senderEmail;
