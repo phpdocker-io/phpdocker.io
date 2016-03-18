@@ -25,36 +25,37 @@
     {% endstylesheets %}
 </head>
 
-<body data-spy="scroll" data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
+<body data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
 
-<!--MENU SECTION START-->
-<div class="navbar navbar-inverse" id="menu-section">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('home') }}">
-                PHPDocker.io <span class="beta">beta</span>
-            </a>
-            <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navigation-top" id="navbar-button"></button>
-        </div>
-        <div class="navbar-collapse collapse" id="navigation-top">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">News</a></li>
-                <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
-                <li class="{% block isContactActive %}{% endblock %}"><a href="{{ path('contact') }}">Contact</a></li>
-            </ul>
+<div id="wrap">
+    <div class="navbar navbar-inverse inner-shadow-bottom" id="menu-section">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('home') }}">
+                    PHPDocker.io <span class="beta">beta</span>
+                </a>
+                <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navigation-top" id="navbar-button"></button>
+            </div>
+            <div class="navbar-collapse collapse" id="navigation-top">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">News</a></li>
+                    <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
+                    <li class="{% block isContactActive %}{% endblock %}"><a href="{{ path('contact') }}">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+    <!--MENU SECTION END-->
+    <section id="content">
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
+    </section>
 </div>
-<!--MENU SECTION END-->
-<section id="content">
-    <div class="container">
-        {% block body %}{% endblock %}
-    </div>
-</section>
 
-<div class="container text-center footer col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="row">&copy; 2016 PHPDocker.io</div>
-</div>
+<footer class="inner-shadow-top">
+    <a href="{{ path('home') }}">PHPDocker.io &copy; {{ "now"|date("Y") }}</a>
+</footer>
 
 {% include 'AppBundle::analytics.html.twig' %}
 
