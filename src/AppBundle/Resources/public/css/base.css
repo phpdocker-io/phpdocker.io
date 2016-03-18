@@ -221,6 +221,20 @@ label {
 
 /***** Posts *****/
 
+#comments {
+    margin-top     : 1em;
+    margin-bottom  : 1em;
+    padding-top    : 1em;
+    padding-bottom : 1em;
+    border-width   : 1px 0;
+    border-style   : solid;
+    border-color   : #888;
+}
+
+#post-comment {
+    margin-top : 1em;
+}
+
 .post h1 {
     margin-top : 0;
     font-size  : 1.5em;
@@ -260,9 +274,14 @@ form#contact input[type=submit] {
     /*margin-right : 0 !important;*/
 }
 
-.comment .metadata {
-    border             : 0 dashed black;
-    border-right-width : 1px;
-    display            : ruby;
-    padding-right      : 1em;
+.comment {
+    margin-top    : 1em;
+    margin-bottom : 1em;
+}
+
+.comment .body {
+    border            : 0 dashed #888;
+    border-left-width : 1px;
+    display           : ruby;
+    padding-right     : 1em;
 }

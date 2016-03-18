@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
     {% stylesheets
-    '@AppBundle/Resources/public/css/base.css'
+    '@AppBundle/Resources/public/css/*.css'
     '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
     '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -26,6 +26,9 @@
 </head>
 
 <body data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
+
+{% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
+{% set halfColumn = 'group col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
 
 <div id="wrap">
     <div class="navbar navbar-inverse inner-shadow-bottom" id="menu-section">
@@ -69,9 +72,6 @@
 '@AppBundle/Resources/public/js/*' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-
-
-<!-- Template courtesy of http://www.designbootstrap.com -->
 
 </body>
 </html>
