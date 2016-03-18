@@ -16,6 +16,7 @@
   "dependencies": {
     "animations": "*",
     "jquery-easing": "*",
-    "bootstrap-multiselect": "*"
+    "bootstrap-multiselect": "*",
+    "share-button": "^1.0.3"
   }
 }

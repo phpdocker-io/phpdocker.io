@@ -62,3 +62,32 @@
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 480px) {
 }
+
+/***** Custom footer *****/
+@media only screen and (max-width : 736px) {
+    #wrap {
+        min-height : calc(100% - 80px);
+    }
+
+    footer {
+        height: 80px;
+    }
+
+    footer .copyright,
+    footer .share {
+        text-align : center;
+    }
+
+    footer .share {
+        padding-right : 0;
+        margin-left   : -3em;
+    }
+
+    share-button {
+        /*margin-left: 10em;*/
+    }
+
+    share-button ul {
+        margin-left: 10em !important;
+    }
+}
