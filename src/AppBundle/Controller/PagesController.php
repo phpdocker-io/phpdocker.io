@@ -67,7 +67,6 @@ class PagesController extends AbstractController
     private function sendMessage(ContactRequest $contactRequest)
     {
         $messageBody = $this->renderView('AppBundle:emails:contact-email.html.twig', [
-            'senderName'  => $contactRequest->getSenderName(),
             'senderEmail' => $contactRequest->getSenderEmail(),
             'message'     => $contactRequest->getMessage(),
         ]);

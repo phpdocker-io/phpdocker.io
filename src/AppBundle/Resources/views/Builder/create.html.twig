@@ -1,69 +1,72 @@
 {% form_theme form 'AppBundle::form_layout.html.twig' %}
-{% extends 'AppBundle::base2.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
 
 {% block bodyClass %}darker{% endblock %}
 {% block pageName %} - Generator{% endblock %}
 {% block isGennyActive %}active{% endblock %}
 
-{% block body %}
-    <div class="pretty row">
-        <div class="row text-center header">
-            <h2>How to use it?</h2>
-            <hr/>
-        </div>
+{% set formGroupClass = 'group' %}
 
-        <p>If you've used <a href="https://puphpet.com/" target="_blank">PuPHPet</a> before, the concept
-            will be very familiar. Fill up your requirements, and press the submit button.</p>
-        <p>This will trigger the download of a zip file with the environment definition. Copy the folder
-            within to the root of your project and bootstrap your environment. </p>
-        <p>The zip file contains instructions in more detail as well as a list of any services you might
-            have enabled with their real hostnames for you to configure on your own application.</p>
-    </div>
-    <div class="pretty row">
+{% block body %}
+    <div class="row">
         <form method="post" id="generator" action="{{ path('generator') }}">
-            <div class="row text-center header">
-                <h2>Project properties</h2>
-                <hr/>
+            <div class="{{ bigColumn }} text-center">
+                <h2>Global config</h2>
             </div>
 
             {{ form_errors(form) }}
 
-            <div class="row">
+            <div class="{{ formGroupClass }} {{ bigColumn }}">
+                <h3>Project properties</h3>
+
                 {% for field in ['name', 'basePort']
                 if (attribute(form, field) is defined) %}
-                    <div class="col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                    {{ form_row(attribute(form, field)) }}
                 {% endfor %}
             </div>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
-                    <h3>PHP Options</h3>
-                    {{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions')) }}
-                </div>
+            <div class="{{ formGroupClass }} {{ bigColumn }}">
+                <h3>PHP configuration</h3>
+                <div class="form-group">{{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}</div>
+                <p>Please note, the following extensions are already included on the base image: APC, cURL, JSON, MCrypt, OPCache and Readline.</p>
+                {{ form_row(attribute(form.phpOptions, 'phpExtensions')) }}
 
-                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-6">
-                    <h2>Services</h2>
-                    {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
-                    if (attribute(form, field) is defined) %}
-                        {{ form_widget(attribute(form, field)) }}
+            </div>
+
+            <div class="{{ bigColumn }} text-center">
+                <h2>Databases</h2>
+            </div>
+
+            <div class="{{ halfColumn }}">
+                <h3>MySQL</h3>
+                {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
+
+                <div id="mysql-options" data-anim-type="fade-in-up">
+                    {% for field in ['rootPassword', 'databaseName', 'username', 'password']
+                    if (attribute(form.mysqlOptions, field) is defined) %}
+                        {{ form_row(attribute(form.mysqlOptions, field)) }}
                     {% endfor %}
-
-                    {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
-
-                    <div id="mysql-options" data-anim-type="fade-in-up">
-                        {% for field in ['rootPassword', 'databaseName', 'username', 'password']
-                        if (attribute(form.mysqlOptions, field) is defined) %}
-                            {{ form_row(attribute(form.mysqlOptions, field)) }}
-                        {% endfor %}
-                    </div>
-
-                    {{ form_rest(form) }}
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12 text-right">
+            <div class="{{ formGroupClass }} {{ bigColumn }}">
+                <h3>Zero-config Services</h3>
+                <p>The following services take no additional configuration parameters.</p>
+
+                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
+                if (attribute(form, field) is defined) %}
+                    <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
+                {% endfor %}
+            </div>
+
+            {{ form_rest(form) }}
+
+            <div class="{{ formGroupClass }} {{ bigColumn }}">
+
+                <p>The zip file contains instructions in detail as well as a list of any services you might
+                    have enabled with their real hostnames for you to configure on your own application.</p>
+
+                <div class="text-right">
                     <input type="submit" class="btn button-custom btn-custom-three shadow"
                            value="Generate project archive">
                 </div>

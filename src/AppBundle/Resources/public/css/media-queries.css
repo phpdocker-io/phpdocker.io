@@ -1,0 +1,64 @@
+/***** Media queries *****/
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+}
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 1024px) {
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 800px) {
+
+    /**** Format post comments better for sm and xs ****/
+    .comment .body {
+        border-width : 0 !important;
+    }
+
+    .comment:last-child {
+        border-width   : 0 !important;
+        padding-bottom : 0;
+    }
+
+    .comment {
+        border              : 0 dashed #4d4d4d;
+        border-bottom-width : 1px;
+        padding-bottom      : 1em;
+    }
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 480px) {
+}

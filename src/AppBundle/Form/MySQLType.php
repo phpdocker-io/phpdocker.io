@@ -24,11 +24,26 @@ class MySQLType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('hasMysql', CheckboxType::class, ['label' => 'Enable MySQL', 'required' => false])
-            ->add('rootPassword', TextType::class, ['empty_data' => ''])
-            ->add('databaseName', TextType::class, ['empty_data' => ''])
-            ->add('username', TextType::class, ['empty_data' => ''])
-            ->add('password', TextType::class, ['empty_data' => '']);
+            ->add('hasMysql', CheckboxType::class, [
+                'label'    => 'Enable MySQL',
+                'required' => false
+            ])
+            ->add('rootPassword', TextType::class, [
+                'label'    => false,
+                'attr'     => ['placeholder' => 'Password for root user'],
+            ])
+            ->add('databaseName', TextType::class, [
+                'label'    => false,
+                'attr'     => ['placeholder' => 'Your app\'s database name'],
+            ])
+            ->add('username', TextType::class, [
+                'label'    => false,
+                'attr'     => ['placeholder' => 'Your app\'s database username'],
+            ])
+            ->add('password', TextType::class, [
+                'label'    => false,
+                'attr'     => ['placeholder' => 'Your app\'s database password'],
+            ]);
     }
 
     /**
