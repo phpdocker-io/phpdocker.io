@@ -90,12 +90,12 @@ class AvailableExtensions
      * @param string $name
      *
      * @return PhpExtension
-     * @throws NotFoundException
+     * @throws Exception\NotFoundException
      */
     public static function getPhpExtension(string $name) : PhpExtension
     {
         if (self::isAvailable($name) === false) {
-            throw new NotFoundException(sprintf('PHP extension %s is not available to install', $name));
+            throw new Exception\NotFoundException(sprintf('PHP extension %s is not available to install', $name));
         }
 
         $raw = self::getAllExtensions()[$name];
@@ -114,7 +114,7 @@ class AvailableExtensions
      * Returns all mandatory php extensions as an array of PhpExtension.
      *
      * @return array
-     * @throws NotFoundException
+     * @throws Exception\NotFoundException
      */
     public static function getMandatoryPhpExtensions() : array
     {
