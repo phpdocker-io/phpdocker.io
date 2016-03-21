@@ -10,7 +10,7 @@ use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
  * @package   AuronConsultingOSS\Docker\Archiver
  * @copyright Auron Consulting Ltd
  */
-class ZipArchiver extends AbstractArchiver
+class OldZipArchiver extends AbstractArchiver
 {
     /**
      * @var \ZipArchive
@@ -29,7 +29,7 @@ class ZipArchiver extends AbstractArchiver
      * @param string $filename
      * @param string $contents
      *
-     * @return ZipArchiver
+     * @return OldZipArchiver
      */
     protected function addFile(string $filename, string $contents)
     {
