@@ -183,7 +183,7 @@ form .group {
     margin-bottom : 1em;
 }
 
-form .group p {
+form .group .note {
     font-style    : italic;
     font-size     : 0.8em;
     margin-bottom : 2em;
@@ -191,7 +191,7 @@ form .group p {
 
 form .group h3 {
     margin-top    : 0 !important;
-    margin-bottom : 1.5em;
+    margin-bottom : 1em;
 }
 
 form .form-group {

@@ -33,11 +33,21 @@
 
                 {{ form_row(attribute(form.phpOptions, 'version')) }}
 
-                <p>Please note, the following extensions are already included on the base image: APC, cURL, JSON, MCrypt, OPCache and Readline.</p>
-
-                {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
+                <div class="note">
+                    <p>Please note:</p>
+                    <ul>
+                        <li>The following extensions are already included on the base image: APC, cURL, JSON, MCrypt,
+                            OPCache and Readline
+                        </li>
+                        <li>The list of extensions below is different to PHP5 and PHP7, with the latter playing catch
+                            up
+                        </li>
+                    </ul>
+                </div>
 
                 {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
+
+                {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
             </div>
 
             <div class="{{ bigColumn }} text-center">
@@ -70,7 +80,7 @@
 
             <div class="{{ formGroupClass }} {{ bigColumn }}">
 
-                <p>The zip file contains instructions in detail as well as a list of any services you might
+                <p class="note">The zip file contains instructions in detail as well as a list of any services you might
                     have enabled with their real hostnames for you to configure on your own application.</p>
 
                 <div class="text-right">
