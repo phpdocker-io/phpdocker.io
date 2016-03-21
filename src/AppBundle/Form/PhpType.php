@@ -36,13 +36,13 @@ class PhpType extends AbstractGeneratorType
             ->add('phpExtensions56', ChoiceType::class, [
                 'choices'  => $this->getExtensionChoices(Php56AvailableExtensions::create()->getOptionalPhpExtensions()),
                 'multiple' => true,
-                'label'    => 'Available PHP extensions (PHP 5.6.x)',
+                'label'    => 'Extensions (PHP 5.6.x)',
                 'required' => false,
             ])
             ->add('phpExtensions70', ChoiceType::class, [
                 'choices'  => $this->getExtensionChoices(Php70AvailableExtensions::create()->getOptionalPhpExtensions()),
                 'multiple' => true,
-                'label'    => 'Available PHP extensions (PHP 7.0.x)',
+                'label'    => 'Extensions (PHP 7.0.x)',
                 'required' => false,
             ]);
     }
