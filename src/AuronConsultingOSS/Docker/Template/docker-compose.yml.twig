@@ -1,6 +1,6 @@
 {% if memcachedHostname %}
 {{ memcachedHostname }}:
-  image: tenstartups/alpine-memcached:latest
+  image: tenstartups/memcached:latest
   container_name: {{ memcachedHostname }}
 {% endif %}
 
@@ -14,7 +14,7 @@
 
 {% if redisHostname %}
 {{ redisHostname }}:
-  image: tenstartups/alpine-redis:latest
+  image: tenstartups/redis:latest
   container_name: {{ redisHostname }}
 {% endif %}
 
