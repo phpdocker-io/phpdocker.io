@@ -65,10 +65,11 @@ h3 {
     margin-bottom  : 0;
     padding-top    : 0.5em;
     padding-bottom : 0.5em;
+    text-shadow    : 2px 2px 6px rgba(0, 0, 0, .7);
 }
 
 .navbar-nav li a {
-    transition    : color 1s, box-shadow 1s;
+    transition    : color 1s;
     padding-left  : 0.4em !important;
     padding-right : 0.4em !important;
     margin-right  : 1em !important;
@@ -91,7 +92,6 @@ h3 {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-    /*font-size      : 1.;*/
     font-weight    : 800;
     padding        : 5px 0;
     letter-spacing : 2px;
@@ -127,6 +127,11 @@ footer {
     padding-bottom   : 1em;
     background-color : rgba(0, 0, 0, 0.7);
     height           : 55px;
+}
+
+footer .copyright,
+footer .share a {
+    text-shadow : 2px 2px 6px rgba(0, 0, 0, .7);
 }
 
 footer a {
