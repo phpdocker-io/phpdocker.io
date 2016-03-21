@@ -237,10 +237,11 @@ class Generator
     private function getNginxConf(Project $project) : GeneratedFile\NginxConf
     {
         $data = [
-            'isSymfonyApp'   => $project->getPhpOptions()->isSymfonyApp(),
-            'projectName'    => $project->getName(),
-            'workdir'        => $this->getWorkdir($project),
-            'phpFpmHostname' => $project->getHostnameForService($project->getPhpOptions()),
+            'isSymfonyApp'    => $project->getPhpOptions()->isSymfonyApp(),
+            'projectName'     => $project->getName(),
+            'workdir'         => $this->getWorkdir($project),
+            'phpFpmHostname'  => $project->getHostnameForService($project->getPhpOptions()),
+            'projectNameSlug' => $project->getProjectNameSlug(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));
