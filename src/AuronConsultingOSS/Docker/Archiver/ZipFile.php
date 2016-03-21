@@ -1,15 +1,14 @@
 <?php
-namespace AuronConsultingOSS\Docker\Archive;
-
+namespace AuronConsultingOSS\Docker\Archiver;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 
 /**
- * Base class for all archive files.
+ * Represents a zip file.
  *
  * @package   AuronConsultingOSS\Docker\Archive
  * @copyright Auron Consulting Ltd
  */
-abstract class AbstractArchive implements ArchiveInterface
+class ZipFile implements ArchiveInterface
 {
     /**
      * @var string
@@ -32,7 +31,7 @@ abstract class AbstractArchive implements ArchiveInterface
     /**
      * @param string $filename
      *
-     * @return AbstractArchive
+     * @return ZipFile
      */
     public function setFilename(string $filename) : self
     {
@@ -52,7 +51,7 @@ abstract class AbstractArchive implements ArchiveInterface
     /**
      * @param string $tmpFilename
      *
-     * @return AbstractArchive
+     * @return ZipFile
      */
     public function setTmpFilename(string $tmpFilename) : self
     {

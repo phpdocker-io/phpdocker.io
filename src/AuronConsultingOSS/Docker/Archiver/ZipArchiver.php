@@ -1,7 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Archiver;
 
-use AuronConsultingOSS\Docker\Archive\ZipFile;
 use AuronConsultingOSS\Docker\Exception\Archiver\NotCreatedException;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 
