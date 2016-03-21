@@ -1,7 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Generator;
 
-use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 use AuronConsultingOSS\Docker\Project\Project;
