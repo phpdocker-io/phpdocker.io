@@ -162,6 +162,13 @@ footer .share {
     padding-right : 2em;
 }
 
+/* Firefox overflow fix for share menu */
+@-moz-document url-prefix() {
+    footer .share {
+        margin-left   : -11px;
+    }
+}
+
 /***** Boxes *****/
 
 /***** Forms *****/
