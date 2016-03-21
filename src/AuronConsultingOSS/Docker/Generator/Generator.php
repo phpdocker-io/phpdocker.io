@@ -2,10 +2,9 @@
 namespace AuronConsultingOSS\Docker\Generator;
 
 use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
-use AuronConsultingOSS\Docker\Entity\Project;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
-use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
+use AuronConsultingOSS\Docker\Project\Project;
 use Michelf\MarkdownExtra;
 
 /**

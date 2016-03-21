@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Entity;
+namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
 /**
  * Options for MySQL container.
@@ -7,7 +7,7 @@ namespace AuronConsultingOSS\Docker\Entity;
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-class MySQLOptions extends AbstractServiceOptions
+class MySQL extends Base
 {
     /**
      * @var string
@@ -48,9 +48,9 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @param string $rootPassword
      *
-     * @return MySQLOptions
+     * @return MySQL
      */
-    public function setRootPassword(string $rootPassword = null) : MySQLOptions
+    public function setRootPassword(string $rootPassword = null) : MySQL
     {
         $this->rootPassword = $rootPassword;
 
@@ -68,9 +68,9 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @param string $databaseName
      *
-     * @return MySQLOptions
+     * @return MySQL
      */
-    public function setDatabaseName(string $databaseName = null) : MySQLOptions
+    public function setDatabaseName(string $databaseName = null) : MySQL
     {
         $this->databaseName = $databaseName;
 
@@ -88,9 +88,9 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @param string $username
      *
-     * @return MySQLOptions
+     * @return MySQL
      */
-    public function setUsername(string $username = null) : MySQLOptions
+    public function setUsername(string $username = null) : self
     {
         $this->username = $username;
 
@@ -108,9 +108,9 @@ class MySQLOptions extends AbstractServiceOptions
     /**
      * @param string $password
      *
-     * @return MySQLOptions
+     * @return MySQL
      */
-    public function setPassword(string $password = null) : MySQLOptions
+    public function setPassword(string $password = null) : self
     {
         $this->password = $password;
 

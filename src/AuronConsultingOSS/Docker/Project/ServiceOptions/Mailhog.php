@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Entity;
+namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
 /**
  * Options for Mailhog container.
@@ -7,7 +7,7 @@ namespace AuronConsultingOSS\Docker\Entity;
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-class MailhogOptions extends AbstractServiceOptions
+class Mailhog extends Base
 {
     /**
      * Returns the default hostname on each particular service.

@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Entity;
+namespace AuronConsultingOSS\Docker\Project;
 
 use AuronConsultingOSS\Docker\Exception\MissingDependencyException;
 use AuronConsultingOSS\Docker\Interfaces\HostnameSuffixInterface;
@@ -24,32 +24,32 @@ class Project
     protected $basePort;
 
     /**
-     * @var NginxOptions
+     * @var ServiceOptions\Nginx
      */
     protected $nginxOptions;
 
     /**
-     * @var MySQLOptions
+     * @var ServiceOptions\MySQL
      */
     protected $mysqlOptions;
 
     /**
-     * @var PhpOptions
+     * @var ServiceOptions\Php
      */
     protected $phpOptions;
 
     /**
-     * @var MemcachedOptions
+     * @var ServiceOptions\Memcached
      */
     protected $memcachedOptions;
 
     /**
-     * @var RedisOptions
+     * @var ServiceOptions\Redis
      */
     protected $redisOptions;
 
     /**
-     * @var MailhogOptions
+     * @var ServiceOptions\Mailhog
      */
     protected $mailhogOptions;
 
@@ -70,12 +70,12 @@ class Project
 
     public function __construct()
     {
-        $this->nginxOptions     = new NginxOptions();
-        $this->mysqlOptions     = new MySQLOptions();
-        $this->phpOptions       = new PhpOptions();
-        $this->redisOptions     = new RedisOptions();
-        $this->memcachedOptions = new MemcachedOptions();
-        $this->mailhogOptions   = new MailhogOptions();
+        $this->nginxOptions     = new ServiceOptions\Nginx();
+        $this->mysqlOptions     = new ServiceOptions\MySQL();
+        $this->phpOptions       = new ServiceOptions\Php();
+        $this->redisOptions     = new ServiceOptions\Redis();
+        $this->memcachedOptions = new ServiceOptions\Memcached();
+        $this->mailhogOptions   = new ServiceOptions\Mailhog();
     }
 
     /**
@@ -159,19 +159,19 @@ class Project
     }
 
     /**
-     * @return NginxOptions
+     * @return ServiceOptions\Nginx
      */
-    public function getNginxOptions() : NginxOptions
+    public function getNginxOptions() : ServiceOptions\Nginx
     {
         return $this->nginxOptions;
     }
 
     /**
-     * @param NginxOptions $nginxOptions
+     * @param ServiceOptions\Nginx $nginxOptions
      *
      * @return Project
      */
-    public function setNginxOptions(NginxOptions $nginxOptions) : self
+    public function setNginxOptions(ServiceOptions\Nginx $nginxOptions) : self
     {
         $this->nginxOptions = $nginxOptions;
 
@@ -187,19 +187,19 @@ class Project
     }
 
     /**
-     * @return MySQLOptions
+     * @return ServiceOptions\MySQL
      */
-    public function getMysqlOptions() : MySQLOptions
+    public function getMysqlOptions() : ServiceOptions\MySQL
     {
         return $this->mysqlOptions;
     }
 
     /**
-     * @param MySQLOptions $mysqlOptions
+     * @param ServiceOptions\MySQL $mysqlOptions
      *
      * @return Project
      */
-    public function setMysqlOptions(MySQLOptions $mysqlOptions) : self
+    public function setMysqlOptions(ServiceOptions\MySQL $mysqlOptions) : self
     {
         $this->mysqlOptions = $mysqlOptions;
 
@@ -207,19 +207,19 @@ class Project
     }
 
     /**
-     * @return PhpOptions
+     * @return ServiceOptions\Php
      */
-    public function getPhpOptions() : PhpOptions
+    public function getPhpOptions() : ServiceOptions\Php
     {
         return $this->phpOptions;
     }
 
     /**
-     * @param PhpOptions $phpOptions
+     * @param ServiceOptions\Php $phpOptions
      *
      * @return Project
      */
-    public function setPhpOptions(PhpOptions $phpOptions) : self
+    public function setPhpOptions(ServiceOptions\Php $phpOptions) : self
     {
         $this->phpOptions = $phpOptions;
 
@@ -227,19 +227,19 @@ class Project
     }
 
     /**
-     * @return MemcachedOptions
+     * @return ServiceOptions\Memcached
      */
-    public function getMemcachedOptions() : MemcachedOptions
+    public function getMemcachedOptions() : ServiceOptions\Memcached
     {
         return $this->memcachedOptions;
     }
 
     /**
-     * @param MemcachedOptions $memcachedOptions
+     * @param ServiceOptions\Memcached $memcachedOptions
      *
      * @return Project
      */
-    public function setMemcachedOptions(MemcachedOptions $memcachedOptions) : self
+    public function setMemcachedOptions(ServiceOptions\Memcached $memcachedOptions) : self
     {
         $this->memcachedOptions = $memcachedOptions;
 
@@ -267,19 +267,19 @@ class Project
     }
 
     /**
-     * @return RedisOptions
+     * @return ServiceOptions\Redis
      */
-    public function getRedisOptions() : RedisOptions
+    public function getRedisOptions() : ServiceOptions\Redis
     {
         return $this->redisOptions;
     }
 
     /**
-     * @param RedisOptions $redisOptions
+     * @param ServiceOptions\Redis $redisOptions
      *
      * @return Project
      */
-    public function setRedisOptions(RedisOptions $redisOptions) : self
+    public function setRedisOptions(ServiceOptions\Redis $redisOptions) : self
     {
         $this->redisOptions = $redisOptions;
 
@@ -307,19 +307,19 @@ class Project
     }
 
     /**
-     * @return MailhogOptions
+     * @return ServiceOptions\Mailhog
      */
-    public function getMailhogOptions() : MailhogOptions
+    public function getMailhogOptions() : ServiceOptions\Mailhog
     {
         return $this->mailhogOptions;
     }
 
     /**
-     * @param MailhogOptions $mailhogOptions
+     * @param ServiceOptions\Mailhog $mailhogOptions
      *
      * @return Project
      */
-    public function setMailhogOptions(MailhogOptions $mailhogOptions) : self
+    public function setMailhogOptions(ServiceOptions\Mailhog $mailhogOptions) : self
     {
         $this->mailhogOptions = $mailhogOptions;
 

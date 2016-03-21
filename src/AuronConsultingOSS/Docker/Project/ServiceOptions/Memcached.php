@@ -1,13 +1,13 @@
 <?php
-namespace AuronConsultingOSS\Docker\Entity;
+namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
 /**
- * Options for redis container
+ * Options for Memcached container.
  *
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-class RedisOptions extends AbstractServiceOptions
+class Memcached extends Base
 {
     /**
      * Return the suffix to be used on hostname construction.
@@ -16,6 +16,6 @@ class RedisOptions extends AbstractServiceOptions
      */
     public function getHostnameSuffix() : string
     {
-        return 'redis';
+        return 'memcached';
     }
 }
