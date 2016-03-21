@@ -165,7 +165,7 @@ footer .share {
 /* Firefox overflow fix for share menu */
 @-moz-document url-prefix() {
     footer .share {
-        margin-left   : -11px;
+        margin-left : -11px;
     }
 }
 
@@ -184,15 +184,18 @@ form .group {
 }
 
 form .group p {
-    font-style : italic;
-    font-size  : 0.8em;
+    font-style    : italic;
+    font-size     : 0.8em;
+    margin-bottom : 2em;
 }
 
 form .group h3 {
-    margin-top : 0 !important;
+    margin-top    : 0 !important;
+    margin-bottom : 1.5em;
 }
 
 form .form-group {
+    min-height : 2em;
 }
 
 .multiselect-container.dropdown-menu {

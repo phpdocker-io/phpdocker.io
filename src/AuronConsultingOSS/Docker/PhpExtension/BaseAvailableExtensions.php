@@ -110,4 +110,20 @@ abstract class BaseAvailableExtensions
 
         return $extensions;
     }
+
+    /**
+     * Returns all optional php extensions as an array of PhpExtension.
+     *
+     * @return array
+     * @throws Exception\NotFoundException
+     */
+    public function getOptionalPhpExtensions() : array
+    {
+        $extensions = [];
+        foreach ($this->getOptionalExtensionsMap() as $name => $value) {
+            $extensions[] = $this->getPhpExtension($name);
+        }
+
+        return $extensions;
+    }
 }
