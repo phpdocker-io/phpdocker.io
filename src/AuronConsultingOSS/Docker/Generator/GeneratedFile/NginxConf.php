@@ -1,8 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Generator\GeneratedFile;
 
-use AuronConsultingOSS\Docker\Interfaces\string;
-
 /**
  * nginx.conf file
  *
@@ -16,6 +14,6 @@ class NginxConf extends Base
      */
     public function getFilename() : string
     {
-        return DIRECTORY_SEPARATOR . 'nginx.conf';
+        return 'docker' . DIRECTORY_SEPARATOR . 'nginx.conf';
     }
 }

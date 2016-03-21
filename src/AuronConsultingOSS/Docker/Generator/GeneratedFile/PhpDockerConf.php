@@ -1,8 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Generator\GeneratedFile;
 
-use AuronConsultingOSS\Docker\Interfaces\string;
-
 /**
  * PHP docker config
  *
@@ -16,6 +14,6 @@ class PhpDockerConf extends Base
      */
     public function getFilename() : string
     {
-        return DIRECTORY_SEPARATOR . 'Dockerfile.php-fpm.conf';
+        return 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.php-fpm.conf';
     }
 }

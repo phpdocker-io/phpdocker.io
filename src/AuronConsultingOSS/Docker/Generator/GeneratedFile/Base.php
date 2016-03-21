@@ -17,22 +17,20 @@ abstract class Base implements GeneratedFileInterface
     protected $contents;
 
     /**
+     * You MUST provide the file contents on the constructor.
+     *
+     * @param string $contents
+     */
+    public function __construct(string $contents)
+    {
+        $this->contents = $contents;
+    }
+
+    /**
      * @return string
      */
     public function getContents() : string
     {
         return $this->contents;
-    }
-
-    /**
-     * @param string $contents
-     *
-     * @return Base
-     */
-    public function setContents(string $contents) : self
-    {
-        $this->contents = $contents;
-
-        return $this;
     }
 }

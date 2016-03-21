@@ -2,13 +2,14 @@
 namespace AuronConsultingOSS\Docker\Generator;
 
 use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
+use AuronConsultingOSS\Docker\Archiver\ZipArchiver;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 use AuronConsultingOSS\Docker\Project\Project;
 use Michelf\MarkdownExtra;
 
 /**
- * Generator
+ * Docker environment generator based on a Project.
  *
  * @package   AuronConsultingOSS\Docker
  * @copyright Auron Consulting Ltd
@@ -19,10 +20,12 @@ class Generator
 
     const VM_IP_ADDRESS_PATTERN = '192.168.33.%d';
 
+    const BASE_ZIP_FOLDER = 'phpdocker';
+
     /**
-     * @var AbstractArchiver
+     * @var ZipArchiver
      */
-    protected $archiver;
+    protected $zipArchiver;
 
     /**
      * @var \Twig_Environment
@@ -34,11 +37,13 @@ class Generator
      */
     protected $markdownExtra;
 
-    public function __construct(AbstractArchiver $archiver, \Twig_Environment $twig, MarkdownExtra $markdownExtra)
+    public function __construct(ZipArchiver $archiver, \Twig_Environment $twig, MarkdownExtra $markdownExtra)
     {
-        $this->archiver      = $archiver;
+        $this->zipArchiver   = $archiver;
         $this->twig          = $twig;
         $this->markdownExtra = $markdownExtra;
+
+        $this->zipArchiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
 
     /**
@@ -50,26 +55,26 @@ class Generator
      */
     public function generate(Project $project) : ArchiveInterface
     {
-        $this->archiver
-            ->setReadme($this->getReadme($project))
-            ->setReadmeHtml($this->getReadmeHtml($project))
-            ->setVagrantFile($this->getVagrantFile($project))
-            ->setDockerCompose($this->getDockerCompose($project))
-            ->setPhpDockerConf($this->getPhpDockerConf($project))
-            ->setNginxDockerConf($this->getNginxDockerConf($project))
-            ->setNginxConf($this->getNginxConf($project));
+        $this->zipArchiver
+            ->addFile($this->getReadmeMd($project))
+            ->addFile($this->getReadmeHtml($project))
+            ->addFile($this->getVagrantFile($project))
+            ->addFile($this->getDockerCompose($project))
+            ->addFile($this->getPhpDockerConf($project))
+            ->addFile($this->getNginxDockerConf($project))
+            ->addFile($this->getNginxConf($project));
 
-        return $this->archiver->getArchive($project->getProjectNameSlug());
+        return $this->zipArchiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
     }
 
     /**
-     * Generates the Readme file.
+     * Generates the Readme file in Markdown format.
      *
      * @param Project $project
      *
-     * @return string
+     * @return GeneratedFile\ReadmeMd
      */
-    private function getReadme(Project $project) : string
+    private function getReadmeMd(Project $project) : GeneratedFile\ReadmeMd
     {
         static $readme;
 
@@ -80,41 +85,38 @@ class Generator
                 'vmIpAddress'   => $this->getVmIpAddress(),
             ];
 
-            $readme = $this->twig->render('README.md.twig', array_merge($data, $this->getHostnameDataBlock($project)));
+            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig', array_merge($data, $this->getHostnameDataBlock($project))));
         }
 
         return $readme;
     }
 
     /**
-     * Returns the HTML readme.
+     * Returns the HTML readme, converted off Markdown.
      *
      * @param Project $project
      *
-     * @return string
+     * @return GeneratedFile\ReadmeHtml
      */
-    private function getReadmeHtml(Project $project) : string
+    private function getReadmeHtml(Project $project) : GeneratedFile\ReadmeHtml
     {
         static $readmeHtml;
 
         if ($readmeHtml === null) {
-            $readme = $this->getReadme($project);
-
-            // CONVERT TO HTML
-            $readmeHtml = $this->markdownExtra->transform($readme);
+            $readmeHtml = $this->markdownExtra->transform($this->getReadmeMd($project)->getContents());
         }
 
-        return $this->twig->render('README.html.twig', ['text' => $readmeHtml]);;
+        return new GeneratedFile\ReadmeHtml($this->twig->render('README.html.twig', ['text' => $readmeHtml]));
     }
 
     /**
-     * Generates the vagrant file, and returns as a string of its contents.
+     * Generates the vagrant file.
      *
      * @param Project $project
      *
-     * @return string
+     * @return GeneratedFile\Vagrantfile
      */
-    private function getVagrantFile(Project $project) : string
+    private function getVagrantFile(Project $project) : GeneratedFile\Vagrantfile
     {
         $data = [
             'projectName'     => $project->getName(),
@@ -126,7 +128,7 @@ class Generator
             'webserverPort'   => $project->getBasePort(),
         ];
 
-        return $this->twig->render('vagrantfile.twig', $data);
+        return new GeneratedFile\Vagrantfile($this->twig->render('vagrantfile.twig', $data));
     }
 
     /**
@@ -152,9 +154,9 @@ class Generator
      *
      * @param Project $project
      *
-     * @return string
+     * @return GeneratedFile\DockerCompose
      */
-    private function getDockerCompose(Project $project) : string
+    private function getDockerCompose(Project $project) : GeneratedFile\DockerCompose
     {
         $data = [
             'projectName'     => $project->getName(),
@@ -175,7 +177,7 @@ class Generator
         $header   = $this->twig->render('docker-compose-header.twig');
         $rendered = $this->twig->render('docker-compose.yml.twig', $data);
 
-        return $header . ltrim($rendered);
+        return new GeneratedFile\DockerCompose($header . ltrim($rendered));
     }
 
     /**
@@ -183,9 +185,9 @@ class Generator
      *
      * @param Project $project
      *
-     * @return string
+     * @return GeneratedFile\PhpDockerConf
      */
-    private function getPhpDockerConf(Project $project) : string
+    private function getPhpDockerConf(Project $project) : GeneratedFile\PhpDockerConf
     {
         $phpOptions = $project->getPhpOptions();
         $packages   = [];
@@ -203,7 +205,7 @@ class Generator
             'isSymfonyApp'      => $phpOptions->isSymfonyApp(),
         ];
 
-        return $this->twig->render('dockerfile-php-fpm.conf.twig', $data);
+        return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
     }
 
     /**
@@ -211,16 +213,16 @@ class Generator
      *
      * @param Project $project
      *
-     * @return string
+     * @return GeneratedFile\NginxDockerConf
      */
-    private function getNginxDockerConf(Project $project) : string
+    private function getNginxDockerConf(Project $project) : GeneratedFile\NginxDockerConf
     {
         $data = [
             'projectName' => $project->getName(),
             'workdir'     => $this->getWorkdir($project),
         ];
 
-        return $this->twig->render('dockerfile-nginx.conf.twig', $data);
+        return new GeneratedFile\NginxDockerConf($this->twig->render('dockerfile-nginx.conf.twig', $data));
     }
 
     /**
@@ -228,9 +230,9 @@ class Generator
      *
      * @param Project $project
      *
-     * @return string
+     * @return GeneratedFile\NginxConf
      */
-    private function getNginxConf(Project $project) : string
+    private function getNginxConf(Project $project) : GeneratedFile\NginxConf
     {
         $data = [
             'isSymfonyApp'   => $project->getPhpOptions()->isSymfonyApp(),
@@ -239,7 +241,7 @@ class Generator
             'phpFpmHostname' => $project->getHostnameForService($project->getPhpOptions()),
         ];
 
-        return $this->twig->render('nginx.conf.twig', $data);
+        return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));
     }
 
     /**

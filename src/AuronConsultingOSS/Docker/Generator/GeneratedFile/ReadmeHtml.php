@@ -1,8 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Generator\GeneratedFile;
 
-use AuronConsultingOSS\Docker\Interfaces\string;
-
 /**
  * HTML readme file
  *

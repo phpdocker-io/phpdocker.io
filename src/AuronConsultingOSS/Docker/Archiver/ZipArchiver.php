@@ -49,6 +49,8 @@ class ZipArchiver
             $this->prefixFilename($generatedFile->getFilename()),
             $generatedFile->getContents()
         );
+
+        return $this;
     }
 
     /**
