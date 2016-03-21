@@ -1,7 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Project;
 
-use AuronConsultingOSS\Docker\Exception\MissingDependencyException;
 use AuronConsultingOSS\Docker\Interfaces\HostnameSuffixInterface;
 use Cocur\Slugify\Slugify;
 
@@ -99,7 +98,6 @@ class Project
      * Returns a slugged-up version of the project name.
      *
      * @return string
-     * @throws MissingDependencyException
      */
     public function getProjectNameSlug() : string
     {
@@ -348,12 +346,12 @@ class Project
 
     /**
      * @return Slugify
-     * @throws MissingDependencyException
+     * @throws Exception\MissingDependencyException
      */
     public function getSlugifier() : Slugify
     {
         if ($this->slugifier === null) {
-            throw new MissingDependencyException('Slugifier hasn\'t been initialised');
+            throw new Exception\MissingDependencyException('Slugifier hasn\'t been initialised');
         }
 
         return $this->slugifier;

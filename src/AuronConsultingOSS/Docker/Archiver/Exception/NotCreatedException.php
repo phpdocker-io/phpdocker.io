@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Exception\Archiver;
+namespace AuronConsultingOSS\Docker\Archiver\Exception;
 
 /**
  * When an archive couldn't be created for whatever reason.

@@ -1,7 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Archiver;
 
-use AuronConsultingOSS\Docker\Exception\Archiver\NotCreatedException;
+use AuronConsultingOSS\Docker\Archiver\Exception\NotCreatedException;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 
 /**
@@ -51,7 +51,7 @@ class ZipArchiver extends AbstractArchiver
         $filename = $this->zipfile->filename;
 
         if ($this->zipfile->close() === false) {
-            throw new NotCreatedException('Archive creation failed for an unknown reason');
+            throw new Exception\NotCreatedException('Archive creation failed for an unknown reason');
         }
 
         $file = new ZipFile();
