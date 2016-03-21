@@ -102,10 +102,11 @@ class Generator
         static $readmeHtml;
 
         if ($readmeHtml === null) {
-            $readmeHtml = $this->markdownExtra->transform($this->getReadmeMd($project)->getContents());
+            $html       = $this->markdownExtra->transform($this->getReadmeMd($project)->getContents());
+            $readmeHtml = new GeneratedFile\ReadmeHtml($this->twig->render('README.html.twig', ['text' => $html]));
         }
 
-        return new GeneratedFile\ReadmeHtml($this->twig->render('README.html.twig', ['text' => $readmeHtml]));
+        return $readmeHtml;
     }
 
     /**

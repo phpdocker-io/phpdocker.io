@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 class BuilderController extends AbstractController
 {
     /**
-     * Form and form processor for reating a project.
+     * Form and form processor for creating a project.
      *
      * @param Request $request
      *
