@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Archiver;
+namespace AuronConsultingOSS\Docker\Zip;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 
 /**
@@ -8,7 +8,7 @@ use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
  * @package   AuronConsultingOSS\Docker\Archive
  * @copyright Auron Consulting Ltd
  */
-class ZipFile implements ArchiveInterface
+class File implements ArchiveInterface
 {
     /**
      * @var string
@@ -31,7 +31,7 @@ class ZipFile implements ArchiveInterface
     /**
      * @param string $filename
      *
-     * @return ZipFile
+     * @return File
      */
     public function setFilename(string $filename) : self
     {
@@ -51,7 +51,7 @@ class ZipFile implements ArchiveInterface
     /**
      * @param string $tmpFilename
      *
-     * @return ZipFile
+     * @return File
      */
     public function setTmpFilename(string $tmpFilename) : self
     {

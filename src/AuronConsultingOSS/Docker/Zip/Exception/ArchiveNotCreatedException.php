@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Archiver\Exception;
+namespace AuronConsultingOSS\Docker\Zip\Exception;
 
 /**
  * When an archive couldn't be created for whatever reason.
@@ -7,7 +7,7 @@ namespace AuronConsultingOSS\Docker\Archiver\Exception;
  * @package   AuronConsultingOSS\Docker\Exception\Archiver
  * @copyright Auron Consulting Ltd
  */
-class NotCreatedException extends \Exception
+class ArchiveNotCreatedException extends \Exception
 {
 
 }

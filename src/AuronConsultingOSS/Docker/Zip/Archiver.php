@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Archiver;
+namespace AuronConsultingOSS\Docker\Zip;
 
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\Interfaces\GeneratedFileInterface;
@@ -10,7 +10,7 @@ use AuronConsultingOSS\Docker\Interfaces\GeneratedFileInterface;
  * @package   AuronConsultingOSS\Docker\Archiver
  * @copyright Auron Consulting Ltd
  */
-class ZipArchiver
+class Archiver
 {
     /**
      * @var string
@@ -41,7 +41,7 @@ class ZipArchiver
      *
      * @param GeneratedFileInterface $generatedFile
      *
-     * @return ZipArchiver
+     * @return Archiver
      */
     public function addFile(GeneratedFileInterface $generatedFile) : self
     {
@@ -59,17 +59,17 @@ class ZipArchiver
      * @param string $archiveFilename
      *
      * @return ArchiveInterface
-     * @throws Exception\NotCreatedException
+     * @throws Exception\ArchiveNotCreatedException
      */
     public function generateArchive(string $archiveFilename) : ArchiveInterface
     {
         $filename = $this->zipfile->filename;
 
         if ($this->zipfile->close() === false) {
-            throw new Exception\NotCreatedException('Archive creation failed for an unknown reason');
+            throw new Exception\ArchiveNotCreatedException('Archive creation failed for an unknown reason');
         }
 
-        $file = new ZipFile();
+        $file = new File();
         $file
             ->setFilename($archiveFilename)
             ->setTmpFilename($filename);
@@ -82,7 +82,7 @@ class ZipArchiver
      *
      * @param string $baseFolder
      *
-     * @return ZipArchiver
+     * @return Archiver
      */
     public function setBaseFolder(string $baseFolder) : self
     {

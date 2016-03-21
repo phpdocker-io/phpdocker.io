@@ -1,8 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Generator;
 
-use AuronConsultingOSS\Docker\Archiver\OldZipArchiver;
-use AuronConsultingOSS\Docker\Archiver\ZipArchiver;
+use AuronConsultingOSS\Docker\Zip\Archiver;
 use Michelf\MarkdownExtra;
 
 /**
@@ -21,16 +20,16 @@ class Factory
     /**
      * Builds and returns a Generator. Will spawn all dependencies also, if not already supplied by consumer.
      *
-     * @param ZipArchiver       $zipArchiver
+     * @param Archiver          $archiver
      * @param \Twig_Environment $twig
      * @param MarkdownExtra     $markdownExtra
      *
      * @return Generator
      */
-    public static function create(ZipArchiver $zipArchiver = null, \Twig_Environment $twig = null, MarkdownExtra $markdownExtra = null) : Generator
+    public static function create(Archiver $archiver = null, \Twig_Environment $twig = null, MarkdownExtra $markdownExtra = null) : Generator
     {
-        if ($zipArchiver === null) {
-            $zipArchiver = new ZipArchiver();
+        if ($archiver === null) {
+            $archiver = new Archiver();
         }
 
         if ($twig === null) {
@@ -42,6 +41,6 @@ class Factory
             $markdownExtra = new MarkdownExtra();
         }
 
-        return new Generator($zipArchiver, $twig, $markdownExtra);
+        return new Generator($archiver, $twig, $markdownExtra);
     }
 }

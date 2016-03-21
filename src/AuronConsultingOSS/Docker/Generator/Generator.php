@@ -2,10 +2,10 @@
 namespace AuronConsultingOSS\Docker\Generator;
 
 use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
-use AuronConsultingOSS\Docker\Archiver\ZipArchiver;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 use AuronConsultingOSS\Docker\Project\Project;
+use AuronConsultingOSS\Docker\Zip\Archiver;
 use Michelf\MarkdownExtra;
 
 /**
@@ -23,7 +23,7 @@ class Generator
     const BASE_ZIP_FOLDER = 'phpdocker';
 
     /**
-     * @var ZipArchiver
+     * @var Archiver
      */
     protected $zipArchiver;
 
@@ -37,7 +37,7 @@ class Generator
      */
     protected $markdownExtra;
 
-    public function __construct(ZipArchiver $archiver, \Twig_Environment $twig, MarkdownExtra $markdownExtra)
+    public function __construct(Archiver $archiver, \Twig_Environment $twig, MarkdownExtra $markdownExtra)
     {
         $this->zipArchiver   = $archiver;
         $this->twig          = $twig;
@@ -121,7 +121,7 @@ class Generator
         $data = [
             'projectName'     => $project->getName(),
             'projectNameSlug' => $project->getProjectNameSlug(),
-            'phpDockerFolder' => AbstractArchiver::BASE_FOLDER_NAME,
+            'phpDockerFolder' => self::BASE_ZIP_FOLDER,
             'vmIpAddress'     => $this->getVmIpAddress(),
             'mailhog'         => $project->hasMailhog(),
             'mailhogPort'     => $project->getBasePort() + 1,
