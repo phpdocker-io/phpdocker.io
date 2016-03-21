@@ -1,6 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
+use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensionsFactory;
 use AuronConsultingOSS\Docker\PhpExtension\BaseAvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 
@@ -75,7 +76,13 @@ class Php extends Base
      */
     public function addExtensionByName(string $extensionName) : self
     {
-        $this->addExtension(BaseAvailableExtensions::getPhpExtension($extensionName));
+        static $extensionInstance;
+
+        if ($extensionInstance === null) {
+            $extensionInstance = AvailableExtensionsFactory::create($this->getVersion());
+        }
+
+        $this->addExtension($extensionInstance->getPhpExtension($extensionName));
 
         return $this;
     }

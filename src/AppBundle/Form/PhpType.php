@@ -38,14 +38,12 @@ class PhpType extends AbstractGeneratorType
                 'multiple' => true,
                 'label'    => 'Available PHP extensions (PHP 5.6.x)',
                 'required' => false,
-                'mapped'   => false,
             ])
             ->add('phpExtensions70', ChoiceType::class, [
                 'choices'  => $this->getExtensionChoices(Php70AvailableExtensions::create()->getOptionalPhpExtensions()),
                 'multiple' => true,
                 'label'    => 'Available PHP extensions (PHP 7.0.x)',
                 'required' => false,
-                'mapped'   => false,
             ]);
     }
 
@@ -78,6 +76,7 @@ class PhpType extends AbstractGeneratorType
         }
 
         arsort($versions);
+
         return $versions;
     }
 

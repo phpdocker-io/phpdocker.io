@@ -54,7 +54,8 @@ class Generator
      */
     public function generate(Project $project) : ArchiveInterface
     {
-        $this->zipArchiver
+        $this
+            ->zipArchiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
             ->addFile($this->getVagrantFile($project))
@@ -199,6 +200,7 @@ class Generator
         }
 
         $data = [
+            'phpVersion'        => $project->getPhpOptions()->getVersion(),
             'projectNameSlug'   => $project->getProjectNameSlug(),
             'workdir'           => $this->getWorkdir($project),
             'extensionPackages' => array_unique($packages),

@@ -1,4 +1,12 @@
-FROM phpdockerio/php7-fpm:latest
+{% spaceless %}
+    {% if phpVersion == '7.0.x' %}
+        FROM phpdockerio/php7-fpm:latest
+    {% else %}
+        FROM phpdockerio/php56-fpm:latest
+    {% endif %}
+{% endspaceless %}
+
+
 {% if extensionPackages %}
 # Install selected extensions
 RUN apt-get update \

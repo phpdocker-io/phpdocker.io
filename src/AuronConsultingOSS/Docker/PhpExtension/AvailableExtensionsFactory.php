@@ -1,6 +1,12 @@
 <?php
 namespace AuronConsultingOSS\Docker\PhpExtension;
 
+/**
+ * Factory to specific PHP extensions list based on php version.
+ *
+ * @package   AuronConsultingOSS\Docker\PhpExtension
+ * @copyright Auron Consulting Ltd
+ */
 class AvailableExtensionsFactory
 {
     /**
@@ -28,9 +34,9 @@ class AvailableExtensionsFactory
      *
      * @return mixed
      */
-    public function create(string $phpVersion)
+    public static function create(string $phpVersion)
     {
-        if (in_array($phpVersion, self::SUPPORTED_VERSIONS, true) === false) {
+        if (array_key_exists($phpVersion, self::SUPPORTED_VERSIONS) === false) {
             throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $phpVersion));
         }
         
