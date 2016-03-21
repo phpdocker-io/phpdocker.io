@@ -1,7 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
-use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
+use AuronConsultingOSS\Docker\PhpExtension\BaseAvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 
 /**
@@ -13,6 +13,24 @@ use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 class Php extends Base
 {
     /**
+     * PHP 7.0.x
+     */
+    const PHP_VERSION_70 = '7.0.x';
+
+    /**
+     * PHP 5.6.x
+     */
+    const PHP_VERSION_56 = '5.6.x';
+
+    /**
+     * Supported PHP versions
+     */
+    const SUPPORTED_VERSIONS = [
+        self::PHP_VERSION_56,
+        self::PHP_VERSION_70,
+    ];
+
+    /**
      * @var array
      */
     protected $extensions = [];
@@ -21,6 +39,11 @@ class Php extends Base
      * @var bool
      */
     protected $isSymfonyApp = false;
+
+    /**
+     * @var string
+     */
+    protected $version;
 
     public function __construct()
     {
@@ -52,7 +75,7 @@ class Php extends Base
      */
     public function addExtensionByName(string $extensionName) : self
     {
-        $this->addExtension(AvailableExtensions::getPhpExtension($extensionName));
+        $this->addExtension(BaseAvailableExtensions::getPhpExtension($extensionName));
 
         return $this;
     }
@@ -87,5 +110,39 @@ class Php extends Base
         $this->isSymfonyApp = $isSymfonyApp;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return Php
+     */
+    public function setVersion(string $version) : self
+    {
+        if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
+            throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
+        }
+
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Returns an array of supported PHP versions.
+     *
+     * @return array
+     */
+    public static function getSupportedVersions() : array
+    {
+        return self::SUPPORTED_VERSIONS;
     }
 }
