@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\PhpExtension;
+namespace AuronConsultingOSS\Docker\PhpExtension\Exception;
 
 /**
  * Class NotFoundException

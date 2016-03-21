@@ -4,10 +4,10 @@ PHPDocker.io generated environment
 #Add to your project#
 
   * Unzip the file.
-  * Move the `phpdocker` folder into your project. You may rename this folder.
+  * Move the `phpdocker` folder into your project. You may rename this folder (see note below)
   * Ensure the webserver config on `docker\nginx.conf` is correct for your project. PHPDocker.io generates it either for a typical Symfony project (`web/app|app_dev.php`) or generic (`public/index.php`).
 
-Note: you may place the files elsewhere in your project. Make sure you modify the volume linking on `docker-compose.yml` for both the webserver and php-fpm so that the folder being shared into the container is the root of your project.
+Note: you may place the files elsewhere in your project. Make sure you modify the volume linking on `docker-compose.yml` for both the webserver and php-fpm so that the folder being shared into the container is the root of your project. Also, if you're using the vagrant machine, modify accordingly the line after the `#Bring up containers` comment.
  
 #How to run#
 

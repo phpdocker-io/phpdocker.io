@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package   AppBundle\Entity
  * @copyright Auron Consulting Ltd
  */
-class Project extends \AuronConsultingOSS\Docker\Entity\Project
+class Project extends \AuronConsultingOSS\Docker\Project\Project
 {
     /**
      * @var string

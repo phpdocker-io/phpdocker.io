@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package   AppBundle\Entity
  * @copyright Auron Consulting Ltd
  */
-class MySQLOptions extends \AuronConsultingOSS\Docker\Entity\MySQLOptions
+class MySQLOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\MySQL
 {
     /**
      * @var string
