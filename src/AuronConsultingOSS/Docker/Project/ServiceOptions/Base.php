@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Entity;
+namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
 use AuronConsultingOSS\Docker\Interfaces\HostnameSuffixInterface;
 
@@ -9,7 +9,7 @@ use AuronConsultingOSS\Docker\Interfaces\HostnameSuffixInterface;
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-abstract class AbstractServiceOptions implements HostnameSuffixInterface
+abstract class Base implements HostnameSuffixInterface
 {
     /**
      * @var bool
@@ -34,7 +34,7 @@ abstract class AbstractServiceOptions implements HostnameSuffixInterface
     /**
      * @param boolean $enabled
      *
-     * @return AbstractServiceOptions
+     * @return Base
      */
     public function setEnabled(bool $enabled) : self
     {

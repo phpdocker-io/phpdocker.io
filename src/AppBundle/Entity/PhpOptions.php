@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package   AppBundle\Entity
  * @copyright Auron Consulting Ltd
  */
-class PhpOptions extends \AuronConsultingOSS\Docker\Entity\PhpOptions
+class PhpOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\Php
 {
     /**
      * @var array
@@ -30,7 +30,7 @@ class PhpOptions extends \AuronConsultingOSS\Docker\Entity\PhpOptions
      *
      * @return PhpOptions
      */
-    public function setPhpExtensions($phpExtensions)
+    public function setPhpExtensions($phpExtensions) : self
     {
         $this->phpExtensions = $phpExtensions;
 

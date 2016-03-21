@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Entity;
+namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
 use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
@@ -10,7 +10,7 @@ use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-class PhpOptions extends AbstractServiceOptions
+class Php extends Base
 {
     /**
      * @var array
@@ -48,7 +48,7 @@ class PhpOptions extends AbstractServiceOptions
      *
      * @param string $extensionName
      *
-     * @return PhpOptions
+     * @return Php
      */
     public function addExtensionByName(string $extensionName) : self
     {
@@ -60,7 +60,7 @@ class PhpOptions extends AbstractServiceOptions
     /**
      * @param PhpExtension $extension
      *
-     * @return PhpOptions
+     * @return Php
      */
     public function addExtension(PhpExtension $extension) : self
     {
@@ -80,7 +80,7 @@ class PhpOptions extends AbstractServiceOptions
     /**
      * @param boolean $isSymfonyApp
      *
-     * @return PhpOptions
+     * @return Php
      */
     public function setIsSymfonyApp(bool $isSymfonyApp) : self
     {

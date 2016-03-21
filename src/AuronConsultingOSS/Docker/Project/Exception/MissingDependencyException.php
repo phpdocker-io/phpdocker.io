@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Exception;
+namespace AuronConsultingOSS\Docker\Project\Exception;
 
 /**
  * Thrown when a class has not been properly initialised with a specific dependency.

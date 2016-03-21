@@ -3,7 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Form\ProjectType;
-use AuronConsultingOSS\Docker\Entity\ProjectFactory;
+use AuronConsultingOSS\Docker\Project\Factory as ProjectFactory;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

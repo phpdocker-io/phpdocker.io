@@ -1,5 +1,5 @@
 <?php
-namespace AuronConsultingOSS\Docker\Entity;
+namespace AuronConsultingOSS\Docker\Project;
 
 use Cocur\Slugify\Slugify;
 
@@ -9,7 +9,7 @@ use Cocur\Slugify\Slugify;
  * @package   AuronConsultingOSS\Docker\Entity
  * @copyright Auron Consulting Ltd
  */
-class ProjectFactory
+class Factory
 {
     /**
      * Creates a new project. You can supply a pre-made Project (for instance if you already have one handy, like
