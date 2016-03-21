@@ -1,5 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Zip;
+
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 
 /**
