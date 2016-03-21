@@ -77,6 +77,7 @@ class PhpType extends AbstractGeneratorType
             $versions[$version] = $version;
         }
 
+        arsort($versions);
         return $versions;
     }
 
