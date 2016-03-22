@@ -36,11 +36,6 @@ class PhpOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\Php
     protected $phpExtensions70 = [];
 
     /**
-     * @var bool
-     */
-    protected $isSymfonyApp = false;
-
-    /**
      * @param array $phpExtensions
      *
      * @return PhpOptions
@@ -54,14 +49,6 @@ class PhpOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\Php
         }
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPhpExtensions()
-    {
-        return $this->phpExtensions;
     }
 
     /**

@@ -2,7 +2,6 @@
 namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
 use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensionsFactory;
-use AuronConsultingOSS\Docker\PhpExtension\BaseAvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 
 /**
@@ -35,11 +34,6 @@ class Php extends Base
      * @var array
      */
     protected $extensions = [];
-
-    /**
-     * @var bool
-     */
-    protected $isSymfonyApp = false;
 
     /**
      * @var string
@@ -95,26 +89,6 @@ class Php extends Base
     public function addExtension(PhpExtension $extension) : self
     {
         $this->extensions[] = $extension;
-
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isSymfonyApp() : bool
-    {
-        return $this->isSymfonyApp;
-    }
-
-    /**
-     * @param boolean $isSymfonyApp
-     *
-     * @return Php
-     */
-    public function setIsSymfonyApp(bool $isSymfonyApp) : self
-    {
-        $this->isSymfonyApp = $isSymfonyApp;
 
         return $this;
     }

@@ -27,9 +27,6 @@
 
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>PHP configuration</h3>
-                <div class="form-group">
-                    {{ form_widget(attribute(form.phpOptions, 'isSymfonyApp')) }}
-                </div>
 
                 <div class="col col-lg-6 col-md-6">
                     {{ form_row(attribute(form.phpOptions, 'version')) }}

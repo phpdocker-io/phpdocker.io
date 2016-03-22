@@ -23,6 +23,11 @@ class Project
     protected $basePort;
 
     /**
+     * @var ServiceOptions\Application
+     */
+    protected $applicationOptions;
+
+    /**
      * @var ServiceOptions\Nginx
      */
     protected $nginxOptions;
@@ -69,12 +74,13 @@ class Project
 
     public function __construct()
     {
-        $this->nginxOptions     = new ServiceOptions\Nginx();
-        $this->mysqlOptions     = new ServiceOptions\MySQL();
-        $this->phpOptions       = new ServiceOptions\Php();
-        $this->redisOptions     = new ServiceOptions\Redis();
-        $this->memcachedOptions = new ServiceOptions\Memcached();
-        $this->mailhogOptions   = new ServiceOptions\Mailhog();
+        $this->applicationOptions = new ServiceOptions\Application();
+        $this->nginxOptions       = new ServiceOptions\Nginx();
+        $this->mysqlOptions       = new ServiceOptions\MySQL();
+        $this->phpOptions         = new ServiceOptions\Php();
+        $this->redisOptions       = new ServiceOptions\Redis();
+        $this->memcachedOptions   = new ServiceOptions\Memcached();
+        $this->mailhogOptions     = new ServiceOptions\Mailhog();
     }
 
     /**
@@ -147,6 +153,27 @@ class Project
 
         return $this;
     }
+
+    /**
+     * @return ServiceOptions\Application
+     */
+    public function getApplicationOptions() : ServiceOptions\Application
+    {
+        return $this->applicationOptions;
+    }
+
+    /**
+     * @param ServiceOptions\Application $applicationOptions
+     *
+     * @return Project
+     */
+    public function setApplicationOptions(ServiceOptions\Application $applicationOptions) : self
+    {
+        $this->applicationOptions = $applicationOptions;
+
+        return $this;
+    }
+    
 
     /**
      * @return bool

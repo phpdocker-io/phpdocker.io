@@ -5,7 +5,6 @@ use AppBundle\Entity\PhpOptions;
 use AuronConsultingOSS\Docker\PhpExtension\Php56AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\Php70AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -26,7 +25,6 @@ class PhpType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('isSymfonyApp', CheckboxType::class, ['required' => false, 'label' => 'Is yours a Symfony app? Check this to configure nginx accordingly'])
             ->add('version', ChoiceType::class, [
                 'choices'  => $this->getVersionChoices(),
                 'expanded' => false,
