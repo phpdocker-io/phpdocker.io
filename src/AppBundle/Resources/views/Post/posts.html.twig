@@ -3,7 +3,10 @@
         <dt><a href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></dt>
         <dd class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</dd>
         <dd class="body">
-            {{ post.getBody()|truncate(350) }}
+            {{ post.getBodyIntro()|raw }}
+        </dd>
+        <dd class="read-more">
+            <a href="{{ path('post', {'slug': post.getSlug()}) }}">Continue reading &gt;</a>
         </dd>
         <dd class="comment-count">
             <a href="{{ path('post', {'slug': post.getSlug()}) }}#comments">({{ post.getCountPostComments() }}) comment(s)</a>
