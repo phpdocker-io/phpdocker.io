@@ -45,6 +45,16 @@ class Post
     /**
      * @var string
      *
+     * @ORM\Column(type="text", nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min = 1)
+     */
+    private $bodyIntro;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Gedmo\Slug(fields={"createdAt", "title"})
      */
@@ -124,6 +134,26 @@ class Post
     public function getCountPostComments() : int
     {
         return $this->postComments->count();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBodyIntro()
+    {
+        return $this->bodyIntro;
+    }
+
+    /**
+     * @param string $bodyIntro
+     *
+     * @return Post
+     */
+    public function setBodyIntro(string $bodyIntro) : self
+    {
+        $this->bodyIntro = $bodyIntro;
+
+        return $this;
     }
 
     /**
