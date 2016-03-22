@@ -19,6 +19,7 @@
     "bootstrap-multiselect": "*",
     "jquery": "^2.2.2",
     "jquery-easing": "*",
-    "share-button": "^1.0.3"
+    "share-button": "^1.0.3",
+    "jquery-ui": "^1.11.4"
   }
 }
