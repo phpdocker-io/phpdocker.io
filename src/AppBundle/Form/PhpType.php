@@ -2,7 +2,9 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\PhpOptions;
-use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
+use AuronConsultingOSS\Docker\PhpExtension\Php56AvailableExtensions;
+use AuronConsultingOSS\Docker\PhpExtension\Php70AvailableExtensions;
+use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,10 +27,22 @@ class PhpType extends AbstractGeneratorType
     {
         $builder
             ->add('isSymfonyApp', CheckboxType::class, ['required' => false, 'label' => 'Is yours a Symfony app? Check this to configure nginx accordingly'])
-            ->add('phpExtensions', ChoiceType::class, [
-                'choices'  => $this->getChoices(),
+            ->add('version', ChoiceType::class, [
+                'choices'  => $this->getVersionChoices(),
+                'expanded' => false,
+                'multiple' => false,
+                'label'    => 'PHP Version'
+            ])
+            ->add('phpExtensions56', ChoiceType::class, [
+                'choices'  => $this->getExtensionChoices(Php56AvailableExtensions::create()->getOptionalPhpExtensions()),
                 'multiple' => true,
-                'label'    => 'Available PHP extensions',
+                'label'    => 'Extensions (PHP 5.6.x)',
+                'required' => false,
+            ])
+            ->add('phpExtensions70', ChoiceType::class, [
+                'choices'  => $this->getExtensionChoices(Php70AvailableExtensions::create()->getOptionalPhpExtensions()),
+                'multiple' => true,
+                'label'    => 'Extensions (PHP 7.0.x)',
                 'required' => false,
             ]);
     }
@@ -38,14 +52,32 @@ class PhpType extends AbstractGeneratorType
      *
      * @return array
      */
-    private function getChoices()
+    private function getExtensionChoices($rawChoices)
     {
         $choices = [];
-        foreach (AvailableExtensions::OPTIONAL_EXTENSIONS_MAP as $name => $extension) {
-            $choices[$name] = $name;
+        foreach ($rawChoices as $extension) {
+            /** @var PhpExtension $extension */
+            $choices[$extension->getName()] = $extension->getName();
         }
 
         return $choices;
+    }
+
+    /**
+     * Gets ChoiceType choices for available PHP versions.
+     *
+     * @return array
+     */
+    private function getVersionChoices()
+    {
+        $versions = [];
+        foreach (PhpOptions::getSupportedVersions() as $version) {
+            $versions[$version] = $version;
+        }
+
+        arsort($versions);
+
+        return $versions;
     }
 
     /**

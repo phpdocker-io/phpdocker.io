@@ -54,7 +54,8 @@ class Generator
      */
     public function generate(Project $project) : ArchiveInterface
     {
-        $this->zipArchiver
+        $this
+            ->zipArchiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
             ->addFile($this->getVagrantFile($project))
@@ -199,6 +200,7 @@ class Generator
         }
 
         $data = [
+            'phpVersion'        => $project->getPhpOptions()->getVersion(),
             'projectNameSlug'   => $project->getProjectNameSlug(),
             'workdir'           => $this->getWorkdir($project),
             'extensionPackages' => array_unique($packages),
@@ -235,10 +237,11 @@ class Generator
     private function getNginxConf(Project $project) : GeneratedFile\NginxConf
     {
         $data = [
-            'isSymfonyApp'   => $project->getPhpOptions()->isSymfonyApp(),
-            'projectName'    => $project->getName(),
-            'workdir'        => $this->getWorkdir($project),
-            'phpFpmHostname' => $project->getHostnameForService($project->getPhpOptions()),
+            'isSymfonyApp'    => $project->getPhpOptions()->isSymfonyApp(),
+            'projectName'     => $project->getName(),
+            'workdir'         => $this->getWorkdir($project),
+            'phpFpmHostname'  => $project->getHostnameForService($project->getPhpOptions()),
+            'projectNameSlug' => $project->getProjectNameSlug(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));

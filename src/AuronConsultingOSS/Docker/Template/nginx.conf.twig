@@ -27,6 +27,7 @@ server {
         fastcgi_index app.php;
         send_timeout 1800;
         fastcgi_read_timeout 1800;
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectNameSlug }}_php_errors.log";
     }
     
     # Statics
@@ -51,7 +52,7 @@ server {
         fastcgi_pass {{ phpFpmHostname }}:9000;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectName }}_php_errors.log";
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectNameSlug }}_php_errors.log";
         include /etc/nginx/fastcgi_params;
     }
     

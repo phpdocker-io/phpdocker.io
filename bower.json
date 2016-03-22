@@ -1,8 +1,8 @@
 {
   "name": "PhpDocker",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "authors": [
-    "Luis Pabon <luis.pabon@rightster.com>"
+    "Luis Pabon <luis.pabon@auronconsulting.co.uk>"
   ],
   "license": "MIT",
   "ignore": [
