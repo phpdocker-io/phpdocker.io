@@ -10,88 +10,105 @@
 {% block body %}
     <div class="row">
         <form method="post" id="generator" action="{{ path('generator') }}">
-            <div class="{{ bigColumn }} text-center">
-                <h2>Global config</h2>
-            </div>
-
-            {{ form_errors(form) }}
-
-            <div class="{{ formGroupClass }} {{ bigColumn }}">
-                <h3>Project properties</h3>
-
-                <div class="row">
-                    {% for field in ['name', 'basePort']
-                    if (attribute(form, field) is defined) %}
-                        <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
-                    {% endfor %}
-                </div>
-                <div class="row">
-                    {% for field in ['applicationType', 'uploadSize'] %}
-                        <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
-                    {% endfor %}
+            <div class="row">
+                <div class="{{ bigColumn }} text-center">
+                    <h2>Global config</h2>
                 </div>
             </div>
 
-            <div class="{{ formGroupClass }} {{ bigColumn }}">
-                <h3>PHP configuration</h3>
+            <div class="row">
+                {{ form_errors(form) }}
+            </div>
+            <div class="row">
+                <div class="{{ formGroupClass }} {{ bigColumn }}">
+                    <h3>Project properties</h3>
 
-                <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'version')) }}
-
-                    <div class="note">
-                        <p>Please note:</p>
-                        <ul>
-                            <li>The following extensions are already included on the base image: APC, cURL, JSON, MCrypt,
-                                OPCache and Readline.
-                            </li>
-                            <li>PHP5 and 7 support a different set of extensions.</li>
-                        </ul>
+                    <div class="row">
+                        {% for field in ['name', 'basePort']
+                        if (attribute(form, field) is defined) %}
+                            <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="row">
+                        {% for field in ['applicationType', 'uploadSize'] %}
+                            <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
+                        {% endfor %}
                     </div>
                 </div>
+            </div>
 
-                <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
+            <div class="row">
+                <div class="{{ formGroupClass }} {{ bigColumn }}">
+                    <h3>PHP configuration</h3>
 
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
+                    <div class="col col-lg-6 col-md-6">
+                        {{ form_row(attribute(form.phpOptions, 'version')) }}
+
+                        <div class="note">
+                            <p>Please note:</p>
+                            <ul>
+                                <li>The following extensions are already included on the base image: APC, cURL, JSON,
+                                    MCrypt,
+                                    OPCache and Readline.
+                                </li>
+                                <li>PHP5 and 7 support a different set of extensions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-6 col-md-6">
+                        {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
+
+                        {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
+                    </div>
                 </div>
             </div>
 
-            <div class="{{ bigColumn }} text-center">
-                <h2>Databases</h2>
+            <div class="row">
+                <div class="{{ bigColumn }} text-center">
+                    <h2>Databases</h2>
+                </div>
             </div>
 
-            <div class="{{ formGroupClass }} {{ halfColumn }}">
-                <h3>MySQL</h3>
-                {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
+            <div class="row">
+                <div class="{{ formGroupClass }} {{ halfColumn }}">
+                    <h3>MySQL</h3>
+                    {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
 
-                <div id="mysql-options" data-anim-type="fade-in-up">
-                    {% for field in ['rootPassword', 'databaseName', 'username', 'password']
-                    if (attribute(form.mysqlOptions, field) is defined) %}
-                        {{ form_row(attribute(form.mysqlOptions, field)) }}
+                    <div id="mysql-options" data-anim-type="fade-in-up">
+                        {% for field in ['rootPassword', 'databaseName', 'username', 'password']
+                        if (attribute(form.mysqlOptions, field) is defined) %}
+                            {{ form_row(attribute(form.mysqlOptions, field)) }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="{{ formGroupClass }} {{ bigColumn }}">
+                    <h3>Zero-config Services</h3>
+                    <p>The following services take no additional configuration parameters.</p>
+
+                    {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
+                    if (attribute(form, field) is defined) %}
+                        <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
                     {% endfor %}
                 </div>
-            </div>
-
-            <div class="{{ formGroupClass }} {{ bigColumn }}">
-                <h3>Zero-config Services</h3>
-                <p>The following services take no additional configuration parameters.</p>
-
-                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
-                if (attribute(form, field) is defined) %}
-                    <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
-                {% endfor %}
             </div>
 
             {{ form_rest(form) }}
 
-            <div class="{{ formGroupClass }} col col-lg-4 col-lg-offset-4">
+            <div class="row">
+                <div class="{{ formGroupClass }} col col-lg-4 col-lg-offset-4">
 
-                <p class="note">The zip file contains instructions in detail as well as a list of any services you might
-                    have enabled with their real hostnames for you to configure on your own application.</p>
+                    <p class="note">The zip file contains instructions in detail as well as a list of any services you
+                        might
+                        have enabled with their real hostnames for you to configure on your own application.</p>
 
-                <div class="text-center">
-                    <input type="submit" class="btn button-custom btn-custom-three shadow"
-                           value="Generate project archive">
+                    <div class="text-center">
+                        <input type="submit" class="btn button-custom btn-custom-three shadow"
+                               value="Generate project archive">
+                    </div>
                 </div>
             </div>
         </form>
