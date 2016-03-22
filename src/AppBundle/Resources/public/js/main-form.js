@@ -8,6 +8,7 @@ function doMainFormMagic() {
     var mysqlOptionsFields = mysqlOptionsDiv.find('input');
     var mysqlSwitch        = $('#project_mysqlOptions_hasMysql');
     var fields             = $('#generator input[type=text], input[type=number]');
+    var form               = $('#generator');
 
     // Disable mysql options
     var disableMysqlOptions = function () {
@@ -54,7 +55,7 @@ function doMainFormMagic() {
     }
 
     // PHP extension multiselect
-    extensionMultiSelects.each(function (index, element) {
+    extensionMultiSelects.each(function (index) {
         $(this).multiselect({
             enableCaseInsensitiveFiltering: true,
             maxHeight: 200,
@@ -77,7 +78,7 @@ function doMainFormMagic() {
 
     // Change multiselect based on php version chosen
     var phpVersionSelector = $('#project_phpOptions_version');
-    phpVersionSelector.change(function() {
+    phpVersionSelector.change(function () {
         extensionMultiSelects.parents('.form-group').hide();
 
         switch ($(this).val()) {
@@ -88,6 +89,20 @@ function doMainFormMagic() {
             default:
                 extensionMultiSelects.filter('[id$=56]').parents('.form-group').show();
                 break;
+        }
+    });
+
+    // Phalcon supports PHP 5.6 only
+    var applicationType = $('#project_applicationOptions_applicationType');
+    var hiddenFieldId   = 'hidden-phpversion';
+
+    applicationType.change(function () {
+        if ($(this).val() == 'phalcon') {
+            phpVersionSelector.val('5.6.x').change().prop('disabled', true).parent().parent().effect('bounce');
+            $('<input>').attr('type', 'hidden').appendTo(form).attr('id', hiddenFieldId).attr('name', phpVersionSelector.attr('name')).val(phpVersionSelector.val());
+        } else if (phpVersionSelector.prop('disabled') == true) {
+            phpVersionSelector.prop('disabled', false).parent().parent().effect('bounce');
+            $('#' + hiddenFieldId).remove();
         }
     });
 

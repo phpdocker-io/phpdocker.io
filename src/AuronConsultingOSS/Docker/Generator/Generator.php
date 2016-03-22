@@ -204,7 +204,8 @@ class Generator
             'projectNameSlug'   => $project->getProjectNameSlug(),
             'workdir'           => $this->getWorkdir($project),
             'extensionPackages' => array_unique($packages),
-            'isSymfonyApp'      => $phpOptions->isSymfonyApp(),
+            'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'     => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
@@ -237,11 +238,12 @@ class Generator
     private function getNginxConf(Project $project) : GeneratedFile\NginxConf
     {
         $data = [
-            'isSymfonyApp'    => $project->getPhpOptions()->isSymfonyApp(),
             'projectName'     => $project->getName(),
             'workdir'         => $this->getWorkdir($project),
             'phpFpmHostname'  => $project->getHostnameForService($project->getPhpOptions()),
             'projectNameSlug' => $project->getProjectNameSlug(),
+            'applicationType' => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));

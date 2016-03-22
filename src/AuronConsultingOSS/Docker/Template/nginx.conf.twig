@@ -1,9 +1,9 @@
 server {
     listen 80 default;
 
-    client_max_body_size 20M;
+    client_max_body_size {{ maxUploadSize + 8 }}M;
 
-{% if isSymfonyApp %}
+{% if applicationType == 'symfony' %}
     root {{ workdir }}/web;
     
     rewrite ^/app\.php/?(.*)$ /$1 permanent;
@@ -22,12 +22,12 @@ server {
     location ~ ^/(app|app_dev)\.php(/|$) {
         fastcgi_pass {{ phpFpmHostname }}:9000;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
-        include fastcgi_params;
-        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_index app.php;
         send_timeout 1800;
         fastcgi_read_timeout 1800;
+        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectNameSlug }}_php_errors.log";
+        include fastcgi_params;
     }
     
     # Statics
@@ -53,7 +53,7 @@ server {
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectNameSlug }}_php_errors.log";
-        include /etc/nginx/fastcgi_params;
+        include fastcgi_params;
     }
     
 {% endif %}
