@@ -20,20 +20,20 @@ class Application extends Base
      * Allowed application types with short description
      */
     const ALLOWED_APPLICATION_TYPES = [
+        self::APPLICATION_TYPE_SYMFONY => 'Generic: Zend, Laravel... apps available from public/index.php',
         self::APPLICATION_TYPE_GENERIC => 'Symfony 2/3',
-        self::APPLICATION_TYPE_PHALCON => 'Phalcon 2',
-        self::APPLICATION_TYPE_SYMFONY => 'Zend, Laravel...',
+        self::APPLICATION_TYPE_PHALCON => 'Phalcon 2 (PHP 5.6 only)',
     ];
 
     /**
      * @var string
      */
-    private $applicationType = self::APPLICATION_TYPE_GENERIC;
+    protected $applicationType = self::APPLICATION_TYPE_GENERIC;
 
     /**
      * @var int
      */
-    private $uploadSize = 100;
+    protected $uploadSize = 100;
 
     /**
      * @return string
@@ -64,7 +64,7 @@ class Application extends Base
      *
      * @return array
      */
-    public function getChoices() : array
+    public static function getChoices() : array
     {
         return self::ALLOWED_APPLICATION_TYPES;
     }

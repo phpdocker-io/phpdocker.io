@@ -1,11 +1,15 @@
 {% spaceless %}
     {% if phpVersion == '7.0.x' %}
+        {% set phpIniLocation =  '/etc/php/7.0/fpm/php.ini' %}
         FROM phpdockerio/php7-fpm:latest
     {% else %}
+        {% set phpIniLocation =  '/etc/php5/fpm/php.ini' %}
         FROM phpdockerio/php56-fpm:latest
     {% endif %}
-{% endspaceless %}
 
+# POST and max upload sizes on php.ini
+RUN sed -i "/upload_max_filesize = .*/c\upload_max_filesize = {{ maxUploadSize }}M" {{ phpIniLocation }}
+    && sed -i "/post_max_size = .*/c\post_max_size = {{ maxUploadSize + 8 }}M" {{ phpIniLocation }} \
 
 {% if extensionPackages %}
 # Install selected extensions
@@ -15,7 +19,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 {% endif %}
 
-{% if isSymfonyApp %}
+{% if applicationType == 'symfony' %}
 # If you're using symfony and the vagranted environment, I strongly recommend you change your AppKernel to use the following temporary folders
 # for cache, logs and sessions, otherwise application performance may suffer due to these being shared over NFS back to the host
 RUN mkdir -p "/tmp/{{ projectNameSlug }}/cache" \
@@ -25,3 +29,4 @@ RUN mkdir -p "/tmp/{{ projectNameSlug }}/cache" \
 {% endif %}
 
 WORKDIR "{{ workdir }}"
+{% endspaceless %}
