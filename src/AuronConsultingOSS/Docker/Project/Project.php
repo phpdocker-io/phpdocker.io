@@ -38,6 +38,11 @@ class Project
     protected $mysqlOptions;
 
     /**
+     * @var ServiceOptions\Postgres
+     */
+    protected $postgresOptions;
+
+    /**
      * @var ServiceOptions\Php
      */
     protected $phpOptions;
@@ -85,6 +90,7 @@ class Project
         $this->applicationOptions = new ServiceOptions\Application();
         $this->nginxOptions       = new ServiceOptions\Nginx();
         $this->mysqlOptions       = new ServiceOptions\MySQL();
+        $this->postgresOptions    = new ServiceOptions\Postgres();
         $this->phpOptions         = new ServiceOptions\Php();
         $this->redisOptions       = new ServiceOptions\Redis();
         $this->memcachedOptions   = new ServiceOptions\Memcached();
@@ -236,6 +242,34 @@ class Project
     public function setMysqlOptions(ServiceOptions\MySQL $mysqlOptions) : self
     {
         $this->mysqlOptions = $mysqlOptions;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPostgres() : bool
+    {
+        return $this->postgresOptions->isEnabled();
+    }
+
+    /**
+     * @return ServiceOptions\Postgres
+     */
+    public function getPostgresOptions() : ServiceOptions\Postgres
+    {
+        return $this->postgresOptions;
+    }
+
+    /**
+     * @param ServiceOptions\Postgres $postgresOptions
+     *
+     * @return Project
+     */
+    public function setPostgresOptions(ServiceOptions\Postgres $postgresOptions) : self
+    {
+        $this->postgresOptions = $postgresOptions;
 
         return $this;
     }

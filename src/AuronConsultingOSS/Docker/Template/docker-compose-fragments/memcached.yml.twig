@@ -1,0 +1,5 @@
+{% if memcachedHostname %}
+{{ memcachedHostname }}:
+  image: tenstartups/memcached:latest
+  container_name: {{ memcachedHostname }}
+{% endif %}

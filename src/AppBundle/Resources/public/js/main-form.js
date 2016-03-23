@@ -1,50 +1,56 @@
 $(doMainFormMagic);
+
+/**
+ * Builder form JS handles
+ */
 function doMainFormMagic() {
     /**
-     * @type {*|jQuery|HTMLElement}
+     * Enable/disable form elements based on checkboxes
      */
+    ['postgres', 'mysql'].forEach(function (value) {
+        var optionsDiv    = $('#' + value + '-options');
+        var optionsFields = optionsDiv.find('input');
+        var switchNode    = $('#project_' + value + 'Options_has' + ucfirst(value));
 
-    var mysqlOptionsDiv    = $('#mysql-options')
-    var mysqlOptionsFields = mysqlOptionsDiv.find('input');
-    var mysqlSwitch        = $('#project_mysqlOptions_hasMysql');
-    var fields             = $('#generator input[type=text], input[type=number]');
-    var form               = $('#generator');
-
-    // Disable mysql options
-    var disableMysqlOptions = function () {
-        if (mysqlSwitch.prop('checked') == false) {
-            mysqlOptionsDiv.addClass('disabled');
-            mysqlOptionsFields.prop('disabled', true);
+        var disableOptions = function () {
+            if (switchNode.prop('checked') == false) {
+                optionsDiv.addClass('disabled');
+                optionsFields.prop('disabled', true);
+            }
         }
-    };
 
-    disableMysqlOptions();
+        // Disable on page load
+        disableOptions();
 
-    var enableMysqlOptions = function () {
-        mysqlOptionsDiv.removeClass('disabled');
-        mysqlOptionsFields.prop('disabled', false);
-    };
+        var enableOptions = function () {
+            optionsDiv.removeClass('disabled');
+            optionsFields.prop('disabled', false);
+        };
 
-    // Enable mysql options when clicking the switch
-    mysqlSwitch.change(function () {
-        if (mysqlSwitch.prop('checked') == true) {
-            enableMysqlOptions();
-        } else {
-            disableMysqlOptions();
-        }
+        // Toggle on checkbox changes
+        switchNode.change(function () {
+            if (switchNode.prop('checked') == true) {
+                enableOptions();
+            } else {
+                disableOptions();
+            }
+        });
     });
 
     // Select PHP extensions based on service choices
-    var checkboxPrefix                         = 'project_';
-    var extensionServices                      = [];
-    var extensionMultiSelects                  = $('[id^=project_phpOptions_phpExtensions]');
-    extensionServices['hasRedis']              = 'Redis';
-    extensionServices['hasMemcached']          = 'Memcached';
-    extensionServices['mysqlOptions_hasMysql'] = 'MySQL';
+    var checkboxPrefix                               = 'project_';
+    var extensionServices                            = [];
+    var extensionMultiSelects                        = $('[id^=project_phpOptions_phpExtensions]');
+    extensionServices['hasRedis']                    = 'Redis';
+    extensionServices['hasMemcached']                = 'Memcached';
+    extensionServices['mysqlOptions_hasMysql']       = 'MySQL';
+    extensionServices['postgresOptions_hasPostgres'] = 'PostgreSQL';
 
     for (var key in extensionServices) {
         var value      = extensionServices[key];
         var checkboxId = '#' + checkboxPrefix + key;
+
+        console.log(checkboxId);
 
         $(checkboxId)
             .data('multiselect', extensionMultiSelects)
@@ -72,9 +78,8 @@ function doMainFormMagic() {
         }
     });
 
-    // Open multiselect and return focus to first field
+    // Open multiselects
     $('button.multiselect').click();
-    fields.first().focus();
 
     // Change multiselect based on php version chosen
     var phpVersionSelector = $('#project_phpOptions_version');
@@ -95,6 +100,7 @@ function doMainFormMagic() {
     // Phalcon supports PHP 5.6 only
     var applicationType = $('#project_applicationOptions_applicationType');
     var hiddenFieldId   = 'hidden-phpversion';
+    var form            = $('#generator');
 
     applicationType.change(function () {
         if ($(this).val() == 'phalcon') {

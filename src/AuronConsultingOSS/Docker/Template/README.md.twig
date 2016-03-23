@@ -51,11 +51,16 @@ Service|Hostname|Port number
 ------|---------|-----------
 php-fpm|{{ phpFpmHostname }}|9000
 {% if mysqlHostname %}MySQL|{{ mysqlHostname }}|3306 (default){{ "\n" }}{% endif %}
+{% if postgresHostname %}Postgres|{{ postgresHostname }}|5432 (default){{ "\n" }}{% endif %}
 {% if memcachedHostname %}Memcached|{{ memcachedHostname }}|11211 (default){{ "\n" }}{% endif %}
 {% if redisHostname %}Redis|{{ redisHostname }}|6379 (default){{ "\n" }}{% endif %}
 {% if mailhogHostname %}SMTP (Mailhog)|{{ mailhogHostname }}|1025 (default){{ "\n" }}{% endif %}
 
 #Docker compose cheatsheet#
+
+**Note 1:** you need to cd first to where your docker-compose.yml file lives
+
+**Note 2:** if you're using Vagrant, you'll need to ssh into it first
 
   * Start containers in the background: `docker-compose up -d`
   * Start containers on the foreground: `docker-compose up`. You will see a stream of logs for every container running.
@@ -67,5 +72,4 @@ php-fpm|{{ phpFpmHostname }}|9000
 #Recommendations
 
   * If you run the containers through vagrant and use Symfony, or any framework that generates loads of cache/log files, make sure you configure your application so that cache and logs are written outside of your project root. If you selected "symfony app" on the form, you'll have folders available on the PHP container under `/tmp/{{ projectName }}`. This will dramatically improve the performance of your app since these files won't be shared over back to your host (your project folder is a network share). 
-  * If you have a NFS server available on your host (Linux, Mac), use it. Change `Vagrantfile` so that each `synced_folder` has `, nfs: true` at the end. If you do, be advised you'll need admin mojo on your host as `vagrant up` will need permissions to modify your NFS shares.
-  
+  * If you have a NFS server available on your host (Linux, Mac), or SMB (Windows shares, on a Windows host), use them. Virtualbox's default share filesystem works, but is very slow.
