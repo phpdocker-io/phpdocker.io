@@ -1,3 +1,10 @@
+{% spaceless %}
+    {% if (vagrantSharedFs == 'nfs' or vagrantSharedFs == 'smb') %}
+        {% set sharedFsDeclaration =  ', type: "%s"'|format(vagrantSharedFs) %}
+    {% else %}
+        {% set sharedFsDeclaration =  '' %}
+    {% endif %}
+{% endspaceless %}
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -6,13 +13,13 @@ Vagrant.configure(2) do |config|
 
     # Network config & shared folders
     config.vm.network "private_network", ip: "{{ vmIpAddress }}"
-    config.vm.synced_folder "..", "/home/docker/{{ projectNameSlug }}", id: "{{ projectNameSlug }}-dev"
-    config.vm.synced_folder "~/.composer/", "/home/docker/.composer", id: "{{ projectNameSlug }}-composer"
+    config.vm.synced_folder "..", "/home/docker/{{ projectNameSlug }}", id: "{{ projectNameSlug }}-dev" {{ sharedFsDeclaration|raw }}
+    config.vm.synced_folder "~/.composer/", "/home/docker/.composer", id: "{{ projectNameSlug }}-composer" {{ sharedFsDeclaration|raw }}
 
     # VM definition
     config.vm.provider "virtualbox" do |vb|
         vb.name = "{{ projectName }}"
-        vb.memory = 1024
+        vb.memory = {{ vagrantMemory }}
         vb.cpus = 1
     end
 

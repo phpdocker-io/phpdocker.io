@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Form;
 
-use AppBundle\Entity\MySQLOptions;
-use AuronConsultingOSS\Docker\Project\ServiceOptions\MySQL;
+use AppBundle\Entity\PostgresOptions;
+use AuronConsultingOSS\Docker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -10,12 +10,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Form for MySQL options.
+ * Form for Postgres options.
  *
  * @package   AppBundle\Form
  * @copyright Auron Consulting Ltd
  */
-class MySQLType extends AbstractGeneratorType
+class PostgresType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
@@ -26,15 +26,19 @@ class MySQLType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('hasMysql', CheckboxType::class, [
-                'label'    => 'Enable MySQL',
+            ->add('hasPostgres', CheckboxType::class, [
+                'label'    => 'Enable Postgres',
                 'required' => false
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => array_flip(MySQL::getChoices()),
+                'choices'  => array_flip(Postgres::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
                 'label'    => 'Version'
+            ])
+            ->add('rootUser', TextType::class, [
+                'label' => false,
+                'attr'  => ['placeholder' => 'Root username'],
             ])
             ->add('rootPassword', TextType::class, [
                 'label' => false,
@@ -43,14 +47,6 @@ class MySQLType extends AbstractGeneratorType
             ->add('databaseName', TextType::class, [
                 'label' => false,
                 'attr'  => ['placeholder' => 'Your app\'s database name'],
-            ])
-            ->add('username', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Your app\'s database username'],
-            ])
-            ->add('password', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Your app\'s database password'],
             ]);
     }
 
@@ -61,7 +57,7 @@ class MySQLType extends AbstractGeneratorType
      */
     protected function getDataClass()
     {
-        return MySQLOptions::class;
+        return PostgresOptions::class;
     }
 
     /**
@@ -70,12 +66,12 @@ class MySQLType extends AbstractGeneratorType
     protected function getValidationGroups() : callable
     {
         return function (FormInterface $form) {
-            /** @var MySQLOptions $data */
+            /** @var PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];
 
-            if ($data->hasMysql() === true) {
-                $groups[] = 'mysqlOptions';
+            if ($data->hasPostgres() === true) {
+                $groups[] = 'postgresOptions';
             }
 
             return $groups;

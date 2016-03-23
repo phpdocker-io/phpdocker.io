@@ -10,6 +10,24 @@ namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 class MySQL extends Base
 {
     /**
+     * Available versions
+     */
+    const VERSION_55 = '5.5';
+    const VERSION_56 = '5.6';
+    const VERSION_57 = '5.7';
+
+    const ALLOWED_VERSIONS = [
+        self::VERSION_57 => '5.7.x',
+        self::VERSION_56 => '5.6.x',
+        self::VERSION_55 => '5.5.x',
+    ];
+
+    /**
+     * @var string
+     */
+    protected $version = self::VERSION_57;
+
+    /**
      * @var string
      */
     protected $rootPassword;
@@ -28,6 +46,30 @@ class MySQL extends Base
      * @var string
      */
     protected $password;
+
+    /**
+     * @return string
+     */
+    public function getVersion() : string
+    {
+        return $this->version;
+    }
+
+    /**
+     * @param string $version
+     *
+     * @return MySQL
+     */
+    public function setVersion(string $version) : self
+    {
+        if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
+            throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
+        }
+
+        $this->version = $version;
+
+        return $this;
+    }
 
     /**
      * @inheritdoc
@@ -115,5 +157,15 @@ class MySQL extends Base
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * Returns all supported MySQL versions with their descriptions.
+     *
+     * @return array
+     */
+    public static function getChoices() : array
+    {
+        return self::ALLOWED_VERSIONS;
     }
 }

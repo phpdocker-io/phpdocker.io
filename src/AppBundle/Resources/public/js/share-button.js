@@ -11,7 +11,7 @@ function initShareButton() {
         }
     });
 
-    $('.share').click(function() {
+    $('.share').click(function () {
         shareButton.toggle();
     });
 }

@@ -1,0 +1,10 @@
+{{ webserverHostname }}:
+  build: .
+  dockerfile: docker/Dockerfile.nginx.conf
+  container_name: {{ webserverHostname }}
+  volumes:
+      - ..:{{ workdir }}
+  ports:
+   - "{{ webserverPort }}:80"
+  links:
+   - {{ phpFpmHostname }}

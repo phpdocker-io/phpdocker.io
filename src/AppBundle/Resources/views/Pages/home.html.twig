@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block bodyClass %}darker{% endblock %}
-{% block isHomeActive %}active{% endblock %}
+{% set activePage = 'news' %}
+{% block pageTitle %} - News{% endblock %}
 
 {% block body %}
     <div class="row">

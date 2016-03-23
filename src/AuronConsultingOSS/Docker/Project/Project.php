@@ -38,6 +38,11 @@ class Project
     protected $mysqlOptions;
 
     /**
+     * @var ServiceOptions\Postgres
+     */
+    protected $postgresOptions;
+
+    /**
      * @var ServiceOptions\Php
      */
     protected $phpOptions;
@@ -58,6 +63,11 @@ class Project
     protected $mailhogOptions;
 
     /**
+     * @var ServiceOptions\Vagrant
+     */
+    protected $vagrantOptions;
+
+    /**
      * @var string
      */
     protected $projectNameSlug;
@@ -72,15 +82,20 @@ class Project
      */
     private $hostnamesForServices = [];
 
+    /**
+     * Initialise project
+     */
     public function __construct()
     {
         $this->applicationOptions = new ServiceOptions\Application();
         $this->nginxOptions       = new ServiceOptions\Nginx();
         $this->mysqlOptions       = new ServiceOptions\MySQL();
+        $this->postgresOptions    = new ServiceOptions\Postgres();
         $this->phpOptions         = new ServiceOptions\Php();
         $this->redisOptions       = new ServiceOptions\Redis();
         $this->memcachedOptions   = new ServiceOptions\Memcached();
         $this->mailhogOptions     = new ServiceOptions\Mailhog();
+        $this->vagrantOptions     = new ServiceOptions\Vagrant();
     }
 
     /**
@@ -173,7 +188,7 @@ class Project
 
         return $this;
     }
-    
+
 
     /**
      * @return bool
@@ -227,6 +242,34 @@ class Project
     public function setMysqlOptions(ServiceOptions\MySQL $mysqlOptions) : self
     {
         $this->mysqlOptions = $mysqlOptions;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPostgres() : bool
+    {
+        return $this->postgresOptions->isEnabled();
+    }
+
+    /**
+     * @return ServiceOptions\Postgres
+     */
+    public function getPostgresOptions() : ServiceOptions\Postgres
+    {
+        return $this->postgresOptions;
+    }
+
+    /**
+     * @param ServiceOptions\Postgres $postgresOptions
+     *
+     * @return Project
+     */
+    public function setPostgresOptions(ServiceOptions\Postgres $postgresOptions) : self
+    {
+        $this->postgresOptions = $postgresOptions;
 
         return $this;
     }
@@ -392,6 +435,26 @@ class Project
     public function setSlugifier(Slugify $slugifier) : self
     {
         $this->slugifier = $slugifier;
+
+        return $this;
+    }
+
+    /**
+     * @return ServiceOptions\Vagrant
+     */
+    public function getVagrantOptions() : ServiceOptions\Vagrant
+    {
+        return $this->vagrantOptions;
+    }
+
+    /**
+     * @param ServiceOptions\Vagrant $vagrantOptions
+     *
+     * @return Project
+     */
+    public function setVagrantOptions(ServiceOptions\Vagrant $vagrantOptions) : self
+    {
+        $this->vagrantOptions = $vagrantOptions;
 
         return $this;
     }

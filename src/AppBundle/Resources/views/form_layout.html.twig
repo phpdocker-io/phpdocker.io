@@ -9,12 +9,12 @@
 
 {% block form_label -%}
 
-        {% if label is same as(false) %}
-            <div class="{{ block('form_label_class') }}"></div>
-        {% else %}
-            {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ block('form_label_class'))|trim}) %}
-            {{- parent() -}}
-        {% endif %}
+    {% if label is same as(false) %}
+        <div class="{{ block('form_label_class') }}"></div>
+    {% else %}
+        {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ block('form_label_class'))|trim}) %}
+        {{- parent() -}}
+    {% endif %}
 
 {%- endblock form_label %}
 
@@ -44,23 +44,23 @@
 
 {% block checkbox_radio_row -%}
 
-        <div class="form-group{% if not valid %} has-error{% endif %}">
-            <div class="{{ block('form_label_class') }}"></div>
-            <div class="{{ block('form_group_class') }}">
-                {{ form_widget(form) }}
-                {{ form_errors(form) }}
-            </div>
+    <div class="form-group{% if not valid %} has-error{% endif %}">
+        <div class="{{ block('form_label_class') }}"></div>
+        <div class="{{ block('form_group_class') }}">
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
         </div>
+    </div>
 
 {%- endblock checkbox_radio_row %}
 
 {% block submit_row -%}
 
-        <div class="form-group">
-            <div class="{{ block('form_label_class') }}"></div>
-            <div class="{{ block('form_group_class') }}">
-                {{ form_widget(form) }}
-            </div>
+    <div class="form-group">
+        <div class="{{ block('form_label_class') }}"></div>
+        <div class="{{ block('form_group_class') }}">
+            {{ form_widget(form) }}
         </div>
+    </div>
 
 {% endblock submit_row %}

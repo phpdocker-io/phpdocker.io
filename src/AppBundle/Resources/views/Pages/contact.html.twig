@@ -1,8 +1,7 @@
 {% form_theme form 'AppBundle::form_layout_no_labels.html.twig' %}
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block bodyClass %}darker{% endblock %}
-{% block pageName %} - Contact{% endblock %}
+{% set activePage = 'contact' %}
 {% block isContactActive %}active{% endblock %}
 
 {% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
@@ -20,11 +19,6 @@
             <div class="{{ bigColumn }}">
                 {% for field in ['senderName', 'senderEmail']
                 if (attribute(form, field) is defined) %}
-                    {#<div class="form-group{% if attribute(attribute(form, field), error) %} has-error{% endif %}">#}
-                        {#{{ form_widget(attribute(form, field)) }}#}
-                        {#{{ form_errors(attribute(form, field)) }}#}
-                    {#</div>#}
-
                     {{ form_row(attribute(form, field)) }}
                 {% endfor %}
             </div>
@@ -47,6 +41,7 @@
                                value="Send your message">
                     </div>
                 </div>
+            </div>
         </form>
     </div>
 {% endblock %}

@@ -127,6 +127,8 @@ class Generator
             'mailhog'         => $project->hasMailhog(),
             'mailhogPort'     => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
+            'vagrantMemory'   => $project->getVagrantOptions()->getMemory(),
+            'vagrantSharedFs' => $project->getVagrantOptions()->getShareType(),
         ];
 
         return new GeneratedFile\Vagrantfile($this->twig->render('vagrantfile.twig', $data));
@@ -169,16 +171,17 @@ class Generator
             'memcached'       => $project->hasMemcached(),
             'redis'           => $project->hasRedis(),
             'mysql'           => $project->getMysqlOptions(),
+            'postgres'        => $project->getPostgresOptions(),
         ];
 
         // Get hostnames
         $data = array_merge($data, $this->getHostnameDataBlock($project));
 
-        // Render and return
-        $header   = $this->twig->render('docker-compose-header.twig');
+        // Get YML file, raw, then prettify by eliminating excess of blank lines
         $rendered = $this->twig->render('docker-compose.yml.twig', $data);
+        $rendered = ltrim(preg_replace("/[\r\n]{2,}/", "\n\n", $rendered));
 
-        return new GeneratedFile\DockerCompose($header . ltrim($rendered));
+        return new GeneratedFile\DockerCompose($rendered);
     }
 
     /**
@@ -265,6 +268,7 @@ class Generator
                 'webserverHostname' => $project->getHostnameForService($project->getNginxOptions()),
                 'phpFpmHostname'    => $project->getHostnameForService($project->getPhpOptions()),
                 'mysqlHostname'     => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
+                'postgresHostname'  => $project->hasPostgres() ? $project->getHostnameForService($project->getPostgresOptions()) : null,
                 'memcachedHostname' => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
                 'redisHostname'     => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
                 'mailhogHostname'   => $project->hasMailhog() ? $project->getHostnameForService($project->getMailhogOptions()) : null,

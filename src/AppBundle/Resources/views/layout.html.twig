@@ -1,15 +1,20 @@
+{% spaceless %}
+    {% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
+    {% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
+    {% if activePage is not defined %}{% set activePage = '' %}{% endif %}
+{% endspaceless %}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <meta name="description" content="PHP development environments with Docker"/>
+    <meta name="description" content="{% block pageDescription %}PHP development environments with Docker{% endblock %}"/>
     <meta name="author" content="Auron Consulting Ltd"/>
 
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
-    <title>PHPDocker.io{% block pageName %}{% endblock %}</title>
+    <title>PHPDocker.io{% block pageTitle %}{% endblock %}</title>
 
     <link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Hind|Shadows+Into+Light"/>
 
@@ -27,10 +32,7 @@
     {% endstylesheets %}
 </head>
 
-<body data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
-
-{% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
-{% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
+<body data-target="#menu-section">
 
 <div id="wrap">
     <div class="navbar navbar-inverse inner-shadow-bottom" id="menu-section">
@@ -43,9 +45,9 @@
             </div>
             <div class="navbar-collapse collapse" id="navigation-top">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">News</a></li>
-                    <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
-                    <li class="{% block isContactActive %}{% endblock %}"><a href="{{ path('contact') }}">Contact</a></li>
+                    <li class="{% if activePage == 'news' %}active{% endif %}"><a href="{{ path('home') }}">News</a></li>
+                    <li class="{% if activePage == 'generator' %}active{% endif %}"><a href="{{ path('generator') }}">Generator</a></li>
+                    <li class="{% if activePage == 'contact' %}active{% endif %}"><a href="{{ path('contact') }}">Contact</a></li>
                 </ul>
             </div>
         </div>
