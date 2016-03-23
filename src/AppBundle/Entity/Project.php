@@ -68,7 +68,8 @@ class Project extends \AuronConsultingOSS\Docker\Project\Project
     public function __construct()
     {
         parent::__construct();
-        $this->mysqlOptions = new MySQLOptions();
-        $this->phpOptions   = new PhpOptions();
+        $this->mysqlOptions    = new MySQLOptions();
+        $this->postgresOptions = new PostgresOptions();
+        $this->phpOptions      = new PhpOptions();
     }
 }
