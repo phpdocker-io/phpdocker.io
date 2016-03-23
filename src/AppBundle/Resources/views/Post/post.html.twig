@@ -2,6 +2,7 @@
 {% form_theme form 'AppBundle::form_layout_no_labels.html.twig' %}
 
 {% block isHomeActive %}active{% endblock %}
+{% block pageName %} - News - {{ post.getTitle() }}{% endblock %}
 
 {% block body %}
     <div class="row post">
