@@ -50,8 +50,6 @@ function doMainFormMagic() {
         var value      = extensionServices[key];
         var checkboxId = '#' + checkboxPrefix + key;
 
-        console.log(checkboxId);
-
         $(checkboxId)
             .data('multiselect', extensionMultiSelects)
             .data('value', value)
