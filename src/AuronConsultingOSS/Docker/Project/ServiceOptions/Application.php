@@ -20,7 +20,7 @@ class Application extends Base
      * Allowed application types with short description
      */
     const ALLOWED_APPLICATION_TYPES = [
-        self::APPLICATION_TYPE_GENERIC => 'Generic: Zend, Laravel... apps available from public/index.php',
+        self::APPLICATION_TYPE_GENERIC => 'Generic: Zend, Laravel, Lumen...',
         self::APPLICATION_TYPE_SYMFONY => 'Symfony 2/3',
         self::APPLICATION_TYPE_PHALCON => 'Phalcon 2 (PHP 5.6 only)',
     ];
