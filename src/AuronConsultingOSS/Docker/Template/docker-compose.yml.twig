@@ -29,6 +29,8 @@
     - MYSQL_PASSWORD={{ mysql.getPassword() }}
 {% endif %}
 
+{% include 'docker-compose-fragments/postgres.yml.twig' %}
+
 {{ webserverHostname }}:
   build: .
   dockerfile: docker/Dockerfile.nginx.conf
@@ -46,10 +48,11 @@
   container_name: {{ phpFpmHostname }}
   volumes:
     - ..:{{ workdir }}
-{% if mysqlHostname or memcachedHostname or mailhogHostname or redisHostname %}
+{% if mysqlHostname or postgresHostname or memcachedHostname or mailhogHostname or redisHostname %}
   links:
 {% if memcachedHostname %}    - {{ memcachedHostname }}{{ "\n" }}{% endif %}
 {% if mailhogHostname %}    - {{ mailhogHostname }}{{ "\n" }}{% endif %}
 {% if mysqlHostname %}    - {{ mysqlHostname }}{{ "\n" }}{% endif %}
+{% if postgresHostname %}    - {{ postgresHostname }}{{ "\n" }}{% endif %}
 {% if redisHostname %}    - {{ redisHostname }}{% endif %}
 {% endif %}

@@ -171,6 +171,7 @@ class Generator
             'memcached'       => $project->hasMemcached(),
             'redis'           => $project->hasRedis(),
             'mysql'           => $project->getMysqlOptions(),
+            'postgres'        => $project->getPostgresOptions(),
         ];
 
         // Get hostnames
@@ -267,6 +268,7 @@ class Generator
                 'webserverHostname' => $project->getHostnameForService($project->getNginxOptions()),
                 'phpFpmHostname'    => $project->getHostnameForService($project->getPhpOptions()),
                 'mysqlHostname'     => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
+                'postgresHostname'  => $project->hasPostgres() ? $project->getHostnameForService($project->getPostgresOptions()) : null,
                 'memcachedHostname' => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
                 'redisHostname'     => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
                 'mailhogHostname'   => $project->hasMailhog() ? $project->getHostnameForService($project->getMailhogOptions()) : null,

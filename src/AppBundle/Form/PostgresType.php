@@ -36,11 +36,11 @@ class PostgresType extends AbstractGeneratorType
                 'multiple' => false,
                 'label'    => 'Postgres version'
             ])
-            ->add('rootPassword', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Password for root user'],
-            ])
             ->add('rootUser', TextType::class, [
+                'label' => false,
+                'attr'  => ['placeholder' => 'Root username'],
+            ])
+            ->add('rootPassword', TextType::class, [
                 'label' => false,
                 'attr'  => ['placeholder' => 'Password for root user'],
             ])
