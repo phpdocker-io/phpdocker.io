@@ -1,8 +1,9 @@
 {% extends 'AppBundle::layout.html.twig' %}
 {% form_theme form 'AppBundle::form_layout_no_labels.html.twig' %}
 
-{% block bodyClass %}darker{% endblock %}
-{% block isHomeActive %}active{% endblock %}
+{% set activePage = 'news' %}
+{% block pageTitle %} - News - {{ post.getTitle() }}{% endblock %}
+{% block pageDescription %}{{ post.getBodyIntro()|raw|striptags|unescape|truncate(50) }}{% endblock %}
 
 {% block body %}
     <div class="row post">
@@ -44,11 +45,9 @@
             {% endfor %}
         </div>
 
-        <div class="row">
-            <div class="col col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10" id="post-comment">
-                <h2>Leave a reply</h2>
-                {% include 'AppBundle:Post:post-comment-form.html.twig' %}
-            </div>
+        <div class="col col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10" id="post-comment">
+            <h2>Leave a reply</h2>
+            {% include 'AppBundle:Post:post-comment-form.html.twig' %}
         </div>
     </div>
 {% endblock %}

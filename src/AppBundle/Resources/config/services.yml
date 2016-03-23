@@ -14,3 +14,12 @@ services:
       arguments: [%recaptcha_secret_key%, %recaptcha_verify_token_endpoint%]
       calls:
         - [setContainer, ["@service_container"]]
+  twig.extension.text:
+      class: Twig_Extensions_Extension_Text
+      tags:
+        - { name: twig.extension }
+
+  twig.custom_extensions:
+      class: AppBundle\Services\TwigCustomExtensions
+      tags:
+        - { name: twig.extension }
