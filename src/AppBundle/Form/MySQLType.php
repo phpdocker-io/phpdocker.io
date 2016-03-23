@@ -2,7 +2,9 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\MySQLOptions;
+use AuronConsultingOSS\Docker\Project\ServiceOptions\MySQL;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -27,6 +29,12 @@ class MySQLType extends AbstractGeneratorType
             ->add('hasMysql', CheckboxType::class, [
                 'label'    => 'Enable MySQL',
                 'required' => false
+            ])
+            ->add('version', ChoiceType::class, [
+                'choices'  => array_flip(MySQL::getChoices()),
+                'expanded' => false,
+                'multiple' => false,
+                'label'    => 'Postgres version'
             ])
             ->add('rootPassword', TextType::class, [
                 'label' => false,

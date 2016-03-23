@@ -73,7 +73,7 @@
                     {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
 
                     <div id="mysql-options" data-anim-type="fade-in-up">
-                        {% for field in ['rootPassword', 'databaseName', 'username', 'password']
+                        {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
                         if (attribute(form.mysqlOptions, field) is defined) %}
                             {{ form_row(attribute(form.mysqlOptions, field)) }}
                         {% endfor %}
