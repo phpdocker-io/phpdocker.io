@@ -177,11 +177,11 @@ class Generator
         // Get hostnames
         $data = array_merge($data, $this->getHostnameDataBlock($project));
 
-        // Render and return
-        $header   = $this->twig->render('docker-compose-header.twig');
+        // Get YML file, raw, then prettify by eliminating excess of blank lines
         $rendered = $this->twig->render('docker-compose.yml.twig', $data);
+        $rendered = ltrim(preg_replace("/[\r\n]{2,}/", "\n\n", $rendered));
 
-        return new GeneratedFile\DockerCompose($header . ltrim($rendered));
+        return new GeneratedFile\DockerCompose($rendered);
     }
 
     /**
