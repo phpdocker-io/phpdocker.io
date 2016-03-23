@@ -29,20 +29,20 @@ class MySQLType extends AbstractGeneratorType
                 'required' => false
             ])
             ->add('rootPassword', TextType::class, [
-                'label'    => false,
-                'attr'     => ['placeholder' => 'Password for root user'],
+                'label' => false,
+                'attr'  => ['placeholder' => 'Password for root user'],
             ])
             ->add('databaseName', TextType::class, [
-                'label'    => false,
-                'attr'     => ['placeholder' => 'Your app\'s database name'],
+                'label' => false,
+                'attr'  => ['placeholder' => 'Your app\'s database name'],
             ])
             ->add('username', TextType::class, [
-                'label'    => false,
-                'attr'     => ['placeholder' => 'Your app\'s database username'],
+                'label' => false,
+                'attr'  => ['placeholder' => 'Your app\'s database username'],
             ])
             ->add('password', TextType::class, [
-                'label'    => false,
-                'attr'     => ['placeholder' => 'Your app\'s database password'],
+                'label' => false,
+                'attr'  => ['placeholder' => 'Your app\'s database password'],
             ]);
     }
 

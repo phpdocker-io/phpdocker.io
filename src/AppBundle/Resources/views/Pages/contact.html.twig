@@ -20,11 +20,6 @@
             <div class="{{ bigColumn }}">
                 {% for field in ['senderName', 'senderEmail']
                 if (attribute(form, field) is defined) %}
-                    {#<div class="form-group{% if attribute(attribute(form, field), error) %} has-error{% endif %}">#}
-                        {#{{ form_widget(attribute(form, field)) }}#}
-                        {#{{ form_errors(attribute(form, field)) }}#}
-                    {#</div>#}
-
                     {{ form_row(attribute(form, field)) }}
                 {% endfor %}
             </div>
@@ -47,6 +42,7 @@
                                value="Send your message">
                     </div>
                 </div>
+            </div>
         </form>
     </div>
 {% endblock %}

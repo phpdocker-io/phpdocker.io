@@ -19,7 +19,7 @@ class PostCommentType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -37,7 +37,7 @@ class PostCommentType extends AbstractType
                 'required' => true,
             ]);
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

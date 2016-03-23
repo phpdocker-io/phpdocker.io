@@ -34,7 +34,7 @@ class VagrantType extends AbstractGeneratorType
                 'required' => true,
             ]);
     }
-    
+
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
      *
