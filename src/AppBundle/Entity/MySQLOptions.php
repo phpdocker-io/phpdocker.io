@@ -18,6 +18,15 @@ class MySQLOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\MyS
      * @Assert\NotNull(groups={"mysqlOptions"})
      * @Assert\Length(min=1, max=128)
      */
+    protected $version = self::VERSION_57;
+
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank(groups={"mysqlOptions"})
+     * @Assert\NotNull(groups={"mysqlOptions"})
+     * @Assert\Length(min=1, max=128)
+     */
     protected $rootPassword;
 
     /**

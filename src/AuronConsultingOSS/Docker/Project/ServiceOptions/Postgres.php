@@ -55,6 +55,10 @@ class Postgres extends Base
      */
     public function setVersion(string $version) : self
     {
+        if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
+            throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
+        }
+        
         $this->version = $version;
 
         return $this;
@@ -121,7 +125,7 @@ class Postgres extends Base
     }
 
     /**
-     * Returns all supported application types with their descriptions.
+     * Returns all supported Postgres versions with their descriptions.
      *
      * @return array
      */
