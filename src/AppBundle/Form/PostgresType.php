@@ -34,7 +34,7 @@ class PostgresType extends AbstractGeneratorType
                 'choices'  => array_flip(Postgres::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Postgres version'
+                'label'    => 'Version'
             ])
             ->add('rootUser', TextType::class, [
                 'label' => false,
