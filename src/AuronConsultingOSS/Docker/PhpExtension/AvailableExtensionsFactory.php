@@ -29,7 +29,7 @@ class AvailableExtensionsFactory
 
     /**
      * Returns an instance to the appropriate class for extensions for a given php version.
-     * 
+     *
      * @param string $phpVersion
      *
      * @return mixed
@@ -39,8 +39,9 @@ class AvailableExtensionsFactory
         if (array_key_exists($phpVersion, self::SUPPORTED_VERSIONS) === false) {
             throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $phpVersion));
         }
-        
+
         $className = self::SUPPORTED_VERSIONS[$phpVersion];
+
         return $className::create();
     }
 }

@@ -70,7 +70,7 @@
     }
 
     footer {
-        height: 80px;
+        height : 80px;
     }
 
     footer .copyright,
@@ -88,6 +88,6 @@
     }
 
     share-button ul {
-        margin-left: 10em !important;
+        margin-left : 10em !important;
     }
 }

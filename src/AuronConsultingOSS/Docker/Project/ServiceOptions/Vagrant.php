@@ -75,7 +75,7 @@ class Vagrant
 
         return $this;
     }
-    
+
     /**
      * Returns all supported shared folder types with their descriptions.
      *

@@ -192,12 +192,12 @@ form .group .note {
 }
 
 form .group h3 {
-    margin-top: 1.5em;
+    margin-top    : 1.5em;
     margin-bottom : 1em;
 }
 
 form .group h3:first-of-type {
-    margin-top    : 0 !important;
+    margin-top : 0 !important;
 }
 
 form .form-group {
