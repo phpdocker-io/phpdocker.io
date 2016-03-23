@@ -191,6 +191,10 @@ form .group .note {
     clear      : both;
 }
 
+form .group h2 {
+    margin: 0 0 1em 0;
+}
+
 form .group h3 {
     margin-top    : 1.5em;
     margin-bottom : 1em;
