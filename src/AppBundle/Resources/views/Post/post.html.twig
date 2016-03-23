@@ -12,6 +12,7 @@
                             href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
                 <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
                 <div class="body">
+                    {{ post.getBodyIntro()|raw }}
                     {{ post.getBody()|raw }}
                 </div>
             </div>

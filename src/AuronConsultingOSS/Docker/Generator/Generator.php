@@ -1,7 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Generator;
 
-use AuronConsultingOSS\Docker\Archiver\AbstractArchiver;
 use AuronConsultingOSS\Docker\Interfaces\ArchiveInterface;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 use AuronConsultingOSS\Docker\Project\Project;
@@ -55,7 +54,8 @@ class Generator
      */
     public function generate(Project $project) : ArchiveInterface
     {
-        $this->zipArchiver
+        $this
+            ->zipArchiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
             ->addFile($this->getVagrantFile($project))
@@ -103,10 +103,11 @@ class Generator
         static $readmeHtml;
 
         if ($readmeHtml === null) {
-            $readmeHtml = $this->markdownExtra->transform($this->getReadmeMd($project)->getContents());
+            $html       = $this->markdownExtra->transform($this->getReadmeMd($project)->getContents());
+            $readmeHtml = new GeneratedFile\ReadmeHtml($this->twig->render('README.html.twig', ['text' => $html]));
         }
 
-        return new GeneratedFile\ReadmeHtml($this->twig->render('README.html.twig', ['text' => $readmeHtml]));
+        return $readmeHtml;
     }
 
     /**
@@ -199,10 +200,12 @@ class Generator
         }
 
         $data = [
+            'phpVersion'        => $project->getPhpOptions()->getVersion(),
             'projectNameSlug'   => $project->getProjectNameSlug(),
             'workdir'           => $this->getWorkdir($project),
             'extensionPackages' => array_unique($packages),
-            'isSymfonyApp'      => $phpOptions->isSymfonyApp(),
+            'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'     => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
@@ -235,10 +238,12 @@ class Generator
     private function getNginxConf(Project $project) : GeneratedFile\NginxConf
     {
         $data = [
-            'isSymfonyApp'   => $project->getPhpOptions()->isSymfonyApp(),
-            'projectName'    => $project->getName(),
-            'workdir'        => $this->getWorkdir($project),
-            'phpFpmHostname' => $project->getHostnameForService($project->getPhpOptions()),
+            'projectName'     => $project->getName(),
+            'workdir'         => $this->getWorkdir($project),
+            'phpFpmHostname'  => $project->getHostnameForService($project->getPhpOptions()),
+            'projectNameSlug' => $project->getProjectNameSlug(),
+            'applicationType' => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));

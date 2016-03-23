@@ -21,6 +21,7 @@
     {% stylesheets
     '@AppBundle/Resources/public/css/*.css'
     '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
+    '@AppBundle/Resources/public/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css'
     '@AppBundle/Resources/public/vendor/animations/assets/css/animations.min.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -29,7 +30,7 @@
 <body data-target="#menu-section" class="{% block bodyClass %}{% endblock %}">
 
 {% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
-{% set halfColumn = 'group col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
+{% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
 
 <div id="wrap">
     <div class="navbar navbar-inverse inner-shadow-bottom" id="menu-section">
@@ -77,6 +78,7 @@
 '@AppBundle/Resources/public/vendor/animations/assets/js/appear.min.js'
 '@AppBundle/Resources/public/vendor/animations/assets/js/animations.min.js'
 '@AppBundle/Resources/public/vendor/jquery-easing/jquery.easing.min.js'
+'@AppBundle/Resources/public/vendor/jquery-ui/jquery-ui.min.js'
 '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
 '@AppBundle/Resources/public/vendor/share-button/share-button.js'
 '@AppBundle/Resources/public/js/*' %}

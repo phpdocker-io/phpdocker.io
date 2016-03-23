@@ -1,7 +1,7 @@
 <?php
 namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
 
-use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensions;
+use AuronConsultingOSS\Docker\PhpExtension\AvailableExtensionsFactory;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 
 /**
@@ -13,14 +13,32 @@ use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
 class Php extends Base
 {
     /**
+     * PHP 7.0.x
+     */
+    const PHP_VERSION_70 = '7.0.x';
+
+    /**
+     * PHP 5.6.x
+     */
+    const PHP_VERSION_56 = '5.6.x';
+
+    /**
+     * Supported PHP versions
+     */
+    const SUPPORTED_VERSIONS = [
+        self::PHP_VERSION_56,
+        self::PHP_VERSION_70,
+    ];
+
+    /**
      * @var array
      */
     protected $extensions = [];
 
     /**
-     * @var bool
+     * @var string
      */
-    protected $isSymfonyApp = false;
+    protected $version;
 
     public function __construct()
     {
@@ -52,7 +70,13 @@ class Php extends Base
      */
     public function addExtensionByName(string $extensionName) : self
     {
-        $this->addExtension(AvailableExtensions::getPhpExtension($extensionName));
+        static $extensionInstance;
+
+        if ($extensionInstance === null) {
+            $extensionInstance = AvailableExtensionsFactory::create($this->getVersion());
+        }
+
+        $this->addExtension($extensionInstance->getPhpExtension($extensionName));
 
         return $this;
     }
@@ -70,22 +94,36 @@ class Php extends Base
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function isSymfonyApp() : bool
+    public function getVersion()
     {
-        return $this->isSymfonyApp;
+        return $this->version;
     }
 
     /**
-     * @param boolean $isSymfonyApp
+     * @param string $version
      *
      * @return Php
      */
-    public function setIsSymfonyApp(bool $isSymfonyApp) : self
+    public function setVersion(string $version) : self
     {
-        $this->isSymfonyApp = $isSymfonyApp;
+        if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
+            throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
+        }
+
+        $this->version = $version;
 
         return $this;
+    }
+
+    /**
+     * Returns an array of supported PHP versions.
+     *
+     * @return array
+     */
+    public static function getSupportedVersions() : array
+    {
+        return self::SUPPORTED_VERSIONS;
     }
 }
