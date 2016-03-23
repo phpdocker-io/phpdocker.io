@@ -15,16 +15,23 @@
         <div class="row">
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>Global configuration</h3>
-
                 <div class="row">
                     {% for field in ['name', 'basePort']
                     if (attribute(form, field) is defined) %}
                         <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
                     {% endfor %}
                 </div>
+
                 <div class="row">
                     {% for field in ['applicationType', 'uploadSize'] %}
                         <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
+                    {% endfor %}
+                </div>
+
+                <h3>Vagrant options</h3>
+                <div class="row">
+                    {% for field in ['shareType', 'memory'] %}
+                        <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.vagrantOptions, field)) }}</div>
                     {% endfor %}
                 </div>
             </div>

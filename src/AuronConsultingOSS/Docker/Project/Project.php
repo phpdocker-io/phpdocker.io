@@ -58,6 +58,11 @@ class Project
     protected $mailhogOptions;
 
     /**
+     * @var ServiceOptions\Vagrant
+     */
+    protected $vagrantOptions;
+
+    /**
      * @var string
      */
     protected $projectNameSlug;
@@ -72,6 +77,9 @@ class Project
      */
     private $hostnamesForServices = [];
 
+    /**
+     * Initialise project
+     */
     public function __construct()
     {
         $this->applicationOptions = new ServiceOptions\Application();
@@ -81,6 +89,7 @@ class Project
         $this->redisOptions       = new ServiceOptions\Redis();
         $this->memcachedOptions   = new ServiceOptions\Memcached();
         $this->mailhogOptions     = new ServiceOptions\Mailhog();
+        $this->vagrantOptions     = new ServiceOptions\Vagrant();
     }
 
     /**
@@ -173,7 +182,7 @@ class Project
 
         return $this;
     }
-    
+
 
     /**
      * @return bool
@@ -392,6 +401,26 @@ class Project
     public function setSlugifier(Slugify $slugifier) : self
     {
         $this->slugifier = $slugifier;
+
+        return $this;
+    }
+
+    /**
+     * @return ServiceOptions\Vagrant
+     */
+    public function getVagrantOptions() : ServiceOptions\Vagrant
+    {
+        return $this->vagrantOptions;
+    }
+
+    /**
+     * @param ServiceOptions\Vagrant $vagrantOptions
+     *
+     * @return Project
+     */
+    public function setVagrantOptions(ServiceOptions\Vagrant $vagrantOptions) : self
+    {
+        $this->vagrantOptions = $vagrantOptions;
 
         return $this;
     }

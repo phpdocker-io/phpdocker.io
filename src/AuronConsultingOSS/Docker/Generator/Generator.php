@@ -127,6 +127,8 @@ class Generator
             'mailhog'         => $project->hasMailhog(),
             'mailhogPort'     => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
+            'vagrantMemory'   => $project->getVagrantOptions()->getMemory(),
+            'vagrantSharedFs' => $project->getVagrantOptions()->getShareType(),
         ];
 
         return new GeneratedFile\Vagrantfile($this->twig->render('vagrantfile.twig', $data));
