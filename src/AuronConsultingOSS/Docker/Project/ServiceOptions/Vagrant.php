@@ -14,10 +14,12 @@ class Vagrant
      */
     const SHARE_TYPE_VBOXSF = 'vboxsf';
     const SHARE_TYPE_NFS    = 'nfs';
+    const SHARE_TYPE_SMB    = 'smb';
 
     const ALLOWED_SHARE_TYPES = [
-        self::SHARE_TYPE_NFS    => 'NFS',
-        self::SHARE_TYPE_VBOXSF => 'Virtualbox vboxsf',
+        self::SHARE_TYPE_NFS    => 'NFS (Linux, Mac)',
+        self::SHARE_TYPE_VBOXSF => 'Virtualbox vboxsf (any)',
+        self::SHARE_TYPE_SMB    => 'SMB (Windows, experimental)',
     ];
 
     /**

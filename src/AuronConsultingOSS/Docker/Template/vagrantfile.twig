@@ -1,6 +1,6 @@
 {% spaceless %}
-    {% if (vagrantSharedFs == 'nfs') %}
-        {% set sharedFsDeclaration =  ', type: "nfs"' %}
+    {% if (vagrantSharedFs == 'nfs' or vagrantSharedFs == 'smb') %}
+        {% set sharedFsDeclaration =  ', type: "%s"'|format(vagrantSharedFs) %}
     {% else %}
         {% set sharedFsDeclaration =  '' %}
     {% endif %}
@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
     # Network config & shared folders
     config.vm.network "private_network", ip: "{{ vmIpAddress }}"
     config.vm.synced_folder "..", "/home/docker/{{ projectNameSlug }}", id: "{{ projectNameSlug }}-dev" {{ sharedFsDeclaration|raw }}
-    config.vm.synced_folder "~/.composer/", "/home/docker/.composer", id: "{{ projectNameSlug }}-composer"  {{ sharedFsDeclaration|raw }}
+    config.vm.synced_folder "~/.composer/", "/home/docker/.composer", id: "{{ projectNameSlug }}-composer" {{ sharedFsDeclaration|raw }}
 
     # VM definition
     config.vm.provider "virtualbox" do |vb|
