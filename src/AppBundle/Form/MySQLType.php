@@ -34,7 +34,7 @@ class MySQLType extends AbstractGeneratorType
                 'choices'  => array_flip(MySQL::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Postgres version'
+                'label'    => 'Version'
             ])
             ->add('rootPassword', TextType::class, [
                 'label' => false,
