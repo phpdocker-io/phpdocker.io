@@ -1,3 +1,8 @@
+{% spaceless %}
+    {% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
+    {% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
+    {% if activePage is not defined %}{% set activePage = '' %}{% endif %}
+{% endspaceless %}
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
@@ -29,9 +34,6 @@
 
 <body data-target="#menu-section">
 
-{% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
-{% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
-
 <div id="wrap">
     <div class="navbar navbar-inverse inner-shadow-bottom" id="menu-section">
         <div class="container">
@@ -43,9 +45,9 @@
             </div>
             <div class="navbar-collapse collapse" id="navigation-top">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="{% block isHomeActive %}{% endblock %}"><a href="{{ path('home') }}">News</a></li>
-                    <li class="{% block isGennyActive %}{% endblock %}"><a href="{{ path('generator') }}">Generator</a></li>
-                    <li class="{% block isContactActive %}{% endblock %}"><a href="{{ path('contact') }}">Contact</a></li>
+                    <li class="{% if activePage == 'news' %}active{% endif %}"><a href="{{ path('home') }}">News</a></li>
+                    <li class="{% if activePage == 'generator' %}active{% endif %}"><a href="{{ path('generator') }}">Generator</a></li>
+                    <li class="{% if activePage == 'contact' %}active{% endif %}"><a href="{{ path('contact') }}">Contact</a></li>
                 </ul>
             </div>
         </div>

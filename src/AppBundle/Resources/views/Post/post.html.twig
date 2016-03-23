@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 {% form_theme form 'AppBundle::form_layout_no_labels.html.twig' %}
 
-{% block isHomeActive %}active{% endblock %}
+{% set activePage = 'news' %}
 {% block pageTitle %} - News - {{ post.getTitle() }}{% endblock %}
 {% block pageDescription %}{{ post.getBodyIntro()|raw|striptags|unescape|truncate(50) }}{% endblock %}
 
