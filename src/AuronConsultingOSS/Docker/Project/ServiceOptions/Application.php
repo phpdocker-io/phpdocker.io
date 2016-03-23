@@ -7,7 +7,7 @@ namespace AuronConsultingOSS\Docker\Project\ServiceOptions;
  * @package   AuronConsultingOSS\Docker\Project\ServiceOptions
  * @copyright Auron Consulting Ltd
  */
-class Application extends Base
+class Application
 {
     /**
      * Supported application types
@@ -87,15 +87,5 @@ class Application extends Base
         $this->uploadSize = $uploadSize;
 
         return $this;
-    }
-
-    /**
-     * Return the suffix to be used on hostname construction.
-     *
-     * @return string
-     */
-    public function getHostnameSuffix() : string
-    {
-        return '';
     }
 }
