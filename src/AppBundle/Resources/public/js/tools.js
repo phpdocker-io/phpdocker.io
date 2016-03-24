@@ -1,6 +1,6 @@
 /**
  * Equivalent to php ucfirst
- * 
+ *
  * @param value
  * @returns {string}
  */

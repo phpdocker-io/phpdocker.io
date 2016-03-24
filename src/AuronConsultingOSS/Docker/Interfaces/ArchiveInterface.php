@@ -2,7 +2,7 @@
 namespace AuronConsultingOSS\Docker\Interfaces;
 
 /**
- * Interface for archive files.
+ * Interface ArchiveInterface
  *
  * @package AuronConsultingOSS\Docker\Interfaces
  */
