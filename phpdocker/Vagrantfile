@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
     # VM definition
     config.vm.provider "virtualbox" do |vb|
         vb.name = "PHPDocker.io"
-        vb.memory = 512
+        vb.memory = 640
         vb.cpus = 1
     end
 
