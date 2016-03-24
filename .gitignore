@@ -6,3 +6,4 @@
 /web/js
 .idea
 /src/AppBundle/Resources/public/vendor/*
+/phpdocker/.vagrant
