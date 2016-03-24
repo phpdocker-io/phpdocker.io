@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
-use AppBundle\Entity\PhpOptions;
+use AppBundle\Entity\Generator\PhpOptions;
 use AuronConsultingOSS\Docker\PhpExtension\Php56AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\Php70AvailableExtensions;
 use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;

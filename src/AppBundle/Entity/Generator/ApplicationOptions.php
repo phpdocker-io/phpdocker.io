@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Generator;
 
 use AppBundle\Assert as CustomAssert;
 use AuronConsultingOSS\Docker\Project\ServiceOptions\Application;
@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Validation for Application options
  *
- * @package   AppBundle\Entity
+ * @package   AppBundle\Entity\ORM
  * @copyright Auron Consulting Ltd
  */
 class ApplicationOptions extends Application

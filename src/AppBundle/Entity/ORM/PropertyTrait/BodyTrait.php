@@ -1,10 +1,10 @@
 <?php
-namespace AppBundle\Entity\PropertyTrait;
+namespace AppBundle\Entity\ORM\PropertyTrait;
 
 /**
  * Body ORM entity trait.
  *
- * @package   AppBundle\Entity\Traits
+ * @package   AppBundle\Entity\ORM\Traits
  * @copyright Auron Consulting Ltd
  */
 trait BodyTrait

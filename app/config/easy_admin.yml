@@ -16,7 +16,7 @@ easy_admin:
     entities:
         Post:
             label: 'Posts'
-            class: AppBundle\Entity\Post
+            class: AppBundle\Entity\ORM\Post
             list:
                 title: 'Posts'
                 fields:
