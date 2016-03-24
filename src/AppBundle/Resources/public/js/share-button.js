@@ -11,6 +11,7 @@ function initShareButton() {
         }
     });
 
+    // This is our custom share link
     $('.share').click(function () {
         shareButton.toggle();
     });

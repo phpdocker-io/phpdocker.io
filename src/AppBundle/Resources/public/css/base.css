@@ -169,8 +169,6 @@ footer .share {
     }
 }
 
-/***** Boxes *****/
-
 /***** Forms *****/
 
 form input[type=submit] {
@@ -192,7 +190,7 @@ form .group .note {
 }
 
 form .group h2 {
-    margin: 0 0 1em 0;
+    margin : 0 0 1em 0;
 }
 
 form .group h3 {
@@ -231,10 +229,6 @@ form .form-group {
     color      : #666;
     font-style : italic;
     display    : none;
-}
-
-.form-group {
-    /*margin : 2em 0 !important;*/
 }
 
 label {
