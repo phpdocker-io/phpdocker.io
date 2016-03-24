@@ -18,7 +18,7 @@ easy_admin:
             label: 'Categories'
             class: AppBundle\Entity\ORM\Category
             list:
-                title: 'Posts'
+                title: 'Categories'
                 fields:
                     - id
                     - title
@@ -46,6 +46,7 @@ easy_admin:
                     - { property: title, css_class: 'col-lg-6 col-md-6' }
                     - { property: bodyIntro, type: '%rich_text_editor_form_type%' }
                     - { property: body, type: '%rich_text_editor_form_type%' }
-                    - { property: active, label: 'Is active'}
+                    - { property: category, label: 'Link to category', css_class: 'col-lg-6 col-md-6'}
+                    - { property: active, label: 'Is active', css_class: 'col-lg-6 col-md-6'}
             edit:
                 title: 'Edit post'

@@ -66,6 +66,14 @@ class Post
     private $postComments;
 
     /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+    /**
      * Initialise post collection
      */
     public function __construct()
@@ -134,6 +142,26 @@ class Post
     public function getCountPostComments() : int
     {
         return $this->postComments->count();
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return Post
+     */
+    public function setCategory(Category $category) : self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
     /**

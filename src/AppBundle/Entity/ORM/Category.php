@@ -48,12 +48,20 @@ class Category
     /**
      * @param string $slug
      *
-     * @return self
+     * @return Category
      */
     public function setSlug(string $slug) : self
     {
         $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }
