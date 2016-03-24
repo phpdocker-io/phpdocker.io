@@ -76,8 +76,15 @@ function doMainFormMagic() {
         }
     });
 
+    /*** UGLY HACK ***/
     // Open multiselects
     $('button.multiselect').click();
+
+    // Unfortunately, the previous "click" on the multiselects makes the page scroll on load
+    // Negate
+    $(window).scrollTop(0);
+
+    /*** END OF UGLY HACK ***/
 
     // Change multiselect based on php version chosen
     var phpVersionSelector = $('#project_phpOptions_version');
