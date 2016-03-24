@@ -1,6 +1,5 @@
 {
   "name": "PhpDocker",
-  "version": "1.2.0",
   "authors": [
     "Luis Pabon <luis.pabon@auronconsulting.co.uk>"
   ],
@@ -14,12 +13,10 @@
     "tests"
   ],
   "dependencies": {
-    "animations": "*",
     "bootstrap": "^3.3.6",
     "bootstrap-multiselect": "*",
     "jquery": "^2.2.2",
-    "jquery-easing": "*",
-    "share-button": "^1.0.3",
-    "jquery-ui": "^1.11.4"
+    "jquery-ui": "^1.11.4",
+    "share-button": "^1.0.3"
   }
 }

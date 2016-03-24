@@ -2,7 +2,7 @@
 namespace AuronConsultingOSS\Docker\Project;
 
 use AuronConsultingOSS\Docker\Interfaces\HostnameSuffixInterface;
-use Cocur\Slugify\Slugify;
+use AuronConsultingOSS\Docker\Interfaces\SlugifierInterface;
 
 /**
  * Defines a single project.
@@ -73,7 +73,7 @@ class Project
     protected $projectNameSlug;
 
     /**
-     * @var Slugify
+     * @var SlugifierInterface
      */
     private $slugifier;
 
@@ -415,10 +415,10 @@ class Project
     }
 
     /**
-     * @return Slugify
+     * @return SlugifierInterface
      * @throws Exception\MissingDependencyException
      */
-    public function getSlugifier() : Slugify
+    public function getSlugifier() : SlugifierInterface
     {
         if ($this->slugifier === null) {
             throw new Exception\MissingDependencyException('Slugifier hasn\'t been initialised');
@@ -428,11 +428,11 @@ class Project
     }
 
     /**
-     * @param Slugify $slugifier
+     * @param SlugifierInterface $slugifier
      *
      * @return Project
      */
-    public function setSlugifier(Slugify $slugifier) : self
+    public function setSlugifier(SlugifierInterface $slugifier) : self
     {
         $this->slugifier = $slugifier;
 
