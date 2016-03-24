@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
-use AppBundle\Entity\MySQLOptions;
+use AppBundle\Entity\Generator\MySQLOptions;
 use AuronConsultingOSS\Docker\Project\ServiceOptions\MySQL;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

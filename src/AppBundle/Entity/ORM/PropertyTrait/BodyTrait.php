@@ -1,10 +1,13 @@
 <?php
-namespace AppBundle\Entity\PropertyTrait;
+namespace AppBundle\Entity\ORM\PropertyTrait;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Body ORM entity trait.
  *
- * @package   AppBundle\Entity\Traits
+ * @package   AppBundle\Entity\ORM\Traits
  * @copyright Auron Consulting Ltd
  */
 trait BodyTrait

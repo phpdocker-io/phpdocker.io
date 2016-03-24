@@ -1,12 +1,12 @@
 <?php
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Generator;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Entity and validation.
  *
- * @package   AppBundle\Entity
+ * @package   AppBundle\Entity\ORM
  * @copyright Auron Consulting Ltd
  */
 class PhpOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\Php

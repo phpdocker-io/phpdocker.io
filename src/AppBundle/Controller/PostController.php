@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Post;
-use AppBundle\Entity\PostComment;
+use AppBundle\Entity\ORM\Post;
+use AppBundle\Entity\ORM\PostComment;
 use AppBundle\Form\PostCommentType;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
@@ -27,7 +27,7 @@ class PostController extends AbstractController
     {
         $post = $this
             ->getDoctrine()
-            ->getRepository('AppBundle:Post')
+            ->getRepository('AppBundle:ORM\Post')
             ->findOneBy(['slug' => $request->get('slug'), 'active' => true]);
 
         if (!$post) {

@@ -23,7 +23,7 @@ class PagesController extends AbstractController
     {
         $posts = $this
             ->getDoctrine()
-            ->getRepository('AppBundle:Post')
+            ->getRepository('AppBundle:ORM\Post')
             ->findBy(['active' => true], ['id' => 'DESC']);
 
         return $this->render('AppBundle:Pages:home.html.twig', ['posts' => $posts]);
@@ -62,7 +62,7 @@ class PagesController extends AbstractController
     /**
      * Actually send contact request email.
      *
-     * @param ContactRequest $contactRequest
+     * @param \AppBundle\Entity\ContactRequest $contactRequest
      */
     private function sendMessage(ContactRequest $contactRequest)
     {

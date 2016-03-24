@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\PhpOptions;
-use AppBundle\Entity\Project;
+use AppBundle\Entity\Generator\PhpOptions;
+use AppBundle\Entity\Generator\Project;
 use AppBundle\Form\ProjectType;
 use AuronConsultingOSS\Docker\Project\Factory as ProjectFactory;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -60,7 +60,7 @@ class BuilderController extends AbstractController
      * Add php extensions to project based on version on the property the generator expects
      * as phpExtensions56/70 do not exist from its point of view.
      *
-     * @param Project $project
+     * @param \AppBundle\Entity\Generator\Project $project
      *
      * @return Project
      */

@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * This describes a contact communication from the site.
  *
- * @package   AppBundle\Entity
+ * @package   AppBundle\Entity\ORM
  * @copyright Auron Consulting Ltd
  */
 class ContactRequest

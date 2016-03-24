@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity()
  *
- * @package   AppBundle\Entity
+ * @package   AppBundle\Entity\ORM
  * @copyright Auron Consulting Ltd
  */
 class Post
@@ -64,6 +64,14 @@ class Post
      * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post", cascade={"all"})
      */
     private $postComments;
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
 
     /**
      * Initialise post collection
@@ -134,6 +142,26 @@ class Post
     public function getCountPostComments() : int
     {
         return $this->postComments->count();
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return Post
+     */
+    public function setCategory(Category $category) : self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
     /**
