@@ -23,3 +23,10 @@ services:
       class: AppBundle\Services\TwigCustomExtensions
       tags:
         - { name: twig.extension }
+
+  cocur_slugify:
+      class: Cocur\Slugify\Slugify
+
+  slugifier:
+      class: AppBundle\Services\Slugifier
+      arguments: ['@cocur_slugify']

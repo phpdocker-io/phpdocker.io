@@ -28,7 +28,7 @@ class BuilderController extends AbstractController
     public function createAction(Request $request)
     {
         // Set up form
-        $project = ProjectFactory::create(new Project());
+        $project = ProjectFactory::create($this->container->get('slugifier'), new Project());
         $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
 
         // Process form
