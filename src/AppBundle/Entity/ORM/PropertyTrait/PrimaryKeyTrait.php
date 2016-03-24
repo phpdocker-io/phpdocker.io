@@ -1,6 +1,9 @@
 <?php
 namespace AppBundle\Entity\ORM\PropertyTrait;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Primary key ORM entity trait
  *
