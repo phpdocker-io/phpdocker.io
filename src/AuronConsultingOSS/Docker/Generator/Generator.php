@@ -288,7 +288,7 @@ class Generator
         static $vmIpAddress;
 
         if ($vmIpAddress === null) {
-            $vmIpAddress = sprintf(self::VM_IP_ADDRESS_PATTERN, random_int(1, 255));
+            $vmIpAddress = sprintf(self::VM_IP_ADDRESS_PATTERN, random_int(1, 254));
         }
 
         return $vmIpAddress;

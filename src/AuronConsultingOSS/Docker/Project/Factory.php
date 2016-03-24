@@ -1,7 +1,6 @@
 <?php
 namespace AuronConsultingOSS\Docker\Project;
-
-use Cocur\Slugify\Slugify;
+use AuronConsultingOSS\Docker\Interfaces\SlugifierInterface;
 
 /**
  * Factory to create projects.
@@ -15,22 +14,18 @@ class Factory
      * Creates a new project. You can supply a pre-made Project (for instance if you already have one handy, like
      * a children implementation), or if not a new, base Project is created.
      *
-     * @param Project|null $project
-     * @param Slugify|null $slugify
+     * @param SlugifierInterface $slugifier
+     * @param Project|null       $project
      *
      * @return Project
      */
-    public static function create(Project $project = null, Slugify $slugify = null) : Project
+    public static function create(SlugifierInterface $slugifier, Project $project = null) : Project
     {
-        if ($slugify === null) {
-            $slugify = new Slugify();
-        }
-
         if ($project === null) {
             $project = new Project();
         }
 
-        $project->setSlugifier($slugify);
+        $project->setSlugifier($slugifier);
 
         return $project;
     }
