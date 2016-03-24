@@ -6,7 +6,7 @@ sudo rm -Rf var/* -Rf
 rm src/AppBundle/Resources/public/vendor/* -Rf
 
 # Install composer and bower dependencies
-composer -o install
+composer -o install --no-dev --prefer-dist
 bower install
 
 # Install assets
