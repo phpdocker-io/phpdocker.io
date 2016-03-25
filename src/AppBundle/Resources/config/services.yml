@@ -14,6 +14,7 @@ services:
       arguments: [%recaptcha_secret_key%, %recaptcha_verify_token_endpoint%]
       calls:
         - [setContainer, ["@service_container"]]
+
   twig.extension.text:
       class: Twig_Extensions_Extension_Text
       tags:

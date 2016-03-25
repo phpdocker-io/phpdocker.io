@@ -177,7 +177,7 @@ form input[type=submit] {
 form .group {
     border        : 2px rgba(0, 0, 0, 0.42) solid;
     border-radius : 5px;
-    padding       : 1em;
+    padding       : 0.6em;
     margin-bottom : 1em;
 }
 
@@ -194,8 +194,12 @@ form .group h2 {
 }
 
 form .group h3 {
-    margin-top    : 1.5em;
-    margin-bottom : 1em;
+    margin-top       : 1.5em;
+    margin-bottom    : 1em;
+    background-color : #444;
+    border-radius    : 4px;
+    padding          : 0.5em;
+    color            : white;
 }
 
 form .group h3:first-of-type {
