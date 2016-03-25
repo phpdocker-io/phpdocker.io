@@ -64,35 +64,35 @@
         </div>
 
         <div class="row">
-                <div class="{{ formGroupClass }} {{ halfColumn }}">
-                    <h3>MySQL</h3>
-                    {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
+            <div class="{{ formGroupClass }} {{ halfColumn }}">
+                <h3>MySQL</h3>
+                {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
 
-                    <div id="mysql-options" data-anim-type="fade-in-up">
-                        {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
-                        if (attribute(form.mysqlOptions, field) is defined) %}
-                            {{ form_row(attribute(form.mysqlOptions, field)) }}
-                        {% endfor %}
-                    </div>
+                <div id="mysql-options" data-anim-type="fade-in-up">
+                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
+                    if (attribute(form.mysqlOptions, field) is defined) %}
+                        {{ form_row(attribute(form.mysqlOptions, field)) }}
+                    {% endfor %}
                 </div>
+            </div>
 
-                <div class="{{ formGroupClass }} col col-lg-5 col-md-5">
-                    <h3>Postgres</h3>
-                    {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
+            <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
+                <h3>Postgres</h3>
+                {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
 
-                    <div id="postgres-options" data-anim-type="fade-in-up">
-                        {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName']
-                        if (attribute(form.postgresOptions, field) is defined) %}
-                            {{ form_row(attribute(form.postgresOptions, field)) }}
-                        {% endfor %}
-                    </div>
+                <div id="postgres-options" data-anim-type="fade-in-up">
+                    {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName']
+                    if (attribute(form.postgresOptions, field) is defined) %}
+                        {{ form_row(attribute(form.postgresOptions, field)) }}
+                    {% endfor %}
                 </div>
+            </div>
         </div>
 
         <div class="row">
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>Zero-config Services</h3>
-                <p>The following services take no additional configuration parameters.</p>
+                <p class="note">The following services take no additional configuration parameters.</p>
 
                 {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
                 if (attribute(form, field) is defined) %}
@@ -104,12 +104,7 @@
         {{ form_rest(form) }}
 
         <div class="row">
-            <div class="{{ formGroupClass }} col col-lg-4 col-lg-offset-4">
-
-                <p class="note">The zip file contains instructions in detail as well as a list of any services you
-                    might
-                    have enabled with their real hostnames for you to configure on your own application.</p>
-
+            <div class="col col-lg-4 col-lg-offset-4">
                 <div class="text-center">
                     <input type="submit" class="btn button-custom btn-custom-three shadow"
                            value="Generate project archive">

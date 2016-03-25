@@ -3,6 +3,7 @@
 # Container properties
 CONTAINER_NAME=phpdocker-io-php-fpm
 CONTAINER_RUNNING=false
+VAGRANT_IP_ADDRESS='192.168.33.99'
 
 # Is container running?
 if command -v "docker" >/dev/null 2>&1 ; then
@@ -20,7 +21,7 @@ else
     # Install sshpass for much faster commands
     if command -v sshpass >/dev/null 2>&1 ; then
         export SSHPASS="vagrant"
-        cmd="sshpass -e ssh vagrant@192.168.33.99 '${COMMAND}'"
+        cmd="sshpass -e ssh vagrant@${VAGRANT_IP_ADDRESS} '${COMMAND}'"
 
     # Otherwise, fall back to vagrant - it is MUCH slower to authenticate into the box
     else

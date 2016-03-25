@@ -184,7 +184,6 @@ form .group {
 form .group .note {
     font-style : italic;
     font-size  : 0.8em;
-    margin     : 2em 0;
     display    : block;
     clear      : both;
 }
