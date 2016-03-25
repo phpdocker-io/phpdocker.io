@@ -57,6 +57,10 @@
         border-bottom-width : 1px;
         padding-bottom      : 1em;
     }
+
+    form .group {
+        border : 0 !important;
+    }
 }
 
 /* Custom, iPhone Retina */

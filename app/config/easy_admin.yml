@@ -14,9 +14,24 @@ easy_admin:
     design:
         form_theme: 'vertical'
     entities:
+        Category:
+            label: 'Categories'
+            class: AppBundle\Entity\ORM\Category
+            list:
+                title: 'Categories'
+                fields:
+                    - id
+                    - title
+                    - slug
+                    - createdAt
+            form:
+                title: 'Add a new category'
+                fields:
+                    - { property: title, css_class: 'col-lg-6 col-md-6' }
+
         Post:
             label: 'Posts'
-            class: AppBundle\Entity\Post
+            class: AppBundle\Entity\ORM\Post
             list:
                 title: 'Posts'
                 fields:
@@ -26,12 +41,12 @@ easy_admin:
                     - createdAt
                     - active
             form:
-                title: 'Add a new entry to the portfolio'
+                title: 'Add a new post'
                 fields:
                     - { property: title, css_class: 'col-lg-6 col-md-6' }
                     - { property: bodyIntro, type: '%rich_text_editor_form_type%' }
                     - { property: body, type: '%rich_text_editor_form_type%' }
-                    - { property: active, label: 'Is active'}
+                    - { property: category, label: 'Link to category', css_class: 'col-lg-6 col-md-6'}
+                    - { property: active, label: 'Is active', css_class: 'col-lg-6 col-md-6'}
             edit:
                 title: 'Edit post'
-

@@ -4,8 +4,7 @@ namespace AuronConsultingOSS\Docker\Interfaces;
 /**
  * Interface a slugifier MUST fulfil.
  *
- * @package   AuronConsultingOSS\Docker\Interfaces
- * @copyright Auron Consulting Ltd
+ * @package AuronConsultingOSS\Docker\Interfaces
  */
 interface SlugifierInterface
 {

@@ -1,8 +1,24 @@
 <?php
+/**
+ * Copyright 2016 Luis Alberto Pabon Flores
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\PhpOptions;
-use AppBundle\Entity\Project;
+use AppBundle\Entity\Generator\PhpOptions;
+use AppBundle\Entity\Generator\Project;
 use AppBundle\Form\ProjectType;
 use AuronConsultingOSS\Docker\Project\Factory as ProjectFactory;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -13,8 +29,8 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 /**
  * Docker environment builder controller.
  *
- * @package   AppBundle\Controller
- * @copyright Auron Consulting Ltd
+ * @package AppBundle\Controller
+ * @author  Luis A. Pabon Flores
  */
 class BuilderController extends AbstractController
 {
@@ -60,7 +76,7 @@ class BuilderController extends AbstractController
      * Add php extensions to project based on version on the property the generator expects
      * as phpExtensions56/70 do not exist from its point of view.
      *
-     * @param Project $project
+     * @param \AppBundle\Entity\Generator\Project $project
      *
      * @return Project
      */

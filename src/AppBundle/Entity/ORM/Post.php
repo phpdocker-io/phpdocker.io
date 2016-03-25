@@ -1,5 +1,21 @@
 <?php
-namespace AppBundle\Entity;
+/**
+ * Copyright 2016 Luis Alberto Pabon Flores
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace AppBundle\Entity\ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,8 +28,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity()
  *
- * @package   AppBundle\Entity
- * @copyright Auron Consulting Ltd
+ * @package AppBundle\Entity\ORM
+ * @author  Luis A. Pabon Flores
  */
 class Post
 {
@@ -64,6 +80,14 @@ class Post
      * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post", cascade={"all"})
      */
     private $postComments;
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
 
     /**
      * Initialise post collection
@@ -134,6 +158,26 @@ class Post
     public function getCountPostComments() : int
     {
         return $this->postComments->count();
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return Post
+     */
+    public function setCategory(Category $category) : self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
     /**

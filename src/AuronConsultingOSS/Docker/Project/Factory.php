@@ -1,12 +1,13 @@
 <?php
 namespace AuronConsultingOSS\Docker\Project;
+
 use AuronConsultingOSS\Docker\Interfaces\SlugifierInterface;
 
 /**
  * Factory to create projects.
  *
- * @package   AuronConsultingOSS\Docker\Entity
- * @copyright Auron Consulting Ltd
+ * @package AuronConsultingOSS\Docker\Entity
+ * @author  Luis A. Pabon Flores
  */
 class Factory
 {

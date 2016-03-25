@@ -1,11 +1,25 @@
 ###############################################################################
 #                          Generated on phpdocker.io                          #
 ###############################################################################
+
+phpdocker-io-memcached:
+  image: tenstartups/memcached:latest
+  container_name: phpdocker-io-memcached
+
 phpdocker-io-mailhog:
   image: diyan/mailhog
   container_name: phpdocker-io-mailhog
   ports:
     - "10001:8025"
+
+phpdocker-io-mysql:
+  image: mysql:5.7
+  container_name: phpdocker-io-mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=root-password
+    - MYSQL_DATABASE=phpdockerio
+    - MYSQL_USER=username
+    - MYSQL_PASSWORD=password
 
 phpdocker-io-webserver:
   build: .
@@ -17,17 +31,6 @@ phpdocker-io-webserver:
    - "10000:80"
   links:
    - phpdocker-io-php-fpm
-   
-phpdocker-io-mysql:
-  image: mysql:latest
-  container_name: phpdocker-io-mysql
-  volumes:
-      - ..:/var/www/phpdocker-io
-  environment:
-    - MYSQL_ROOT_PASSWORD=root-password
-    - MYSQL_DATABASE=phpdockerio
-    - MYSQL_USER=username
-    - MYSQL_PASSWORD=password
 
 phpdocker-io-php-fpm:
   build: .
@@ -36,5 +39,6 @@ phpdocker-io-php-fpm:
   volumes:
     - ..:/var/www/phpdocker-io
   links:
+    - phpdocker-io-memcached
     - phpdocker-io-mailhog
     - phpdocker-io-mysql
