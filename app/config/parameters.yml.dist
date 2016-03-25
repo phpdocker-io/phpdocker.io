@@ -1,6 +1,5 @@
-# This file is a "template" of what your parameters.yml file should look like
-# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
-# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+# This file contains the right config already for the app to be run from the bundled dev-env,
+# you should be able to copy to parameters.yml and off you go
 parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
@@ -15,13 +14,13 @@ parameters:
 
     # Email config
     mailer_transport: smtp
-    mailer_host: phpdocker-io-mailhog
-    mailer_port: 1025
-    mailer_user: null
-    mailer_password: null
+    mailer_host:      phpdocker-io-mailhog
+    mailer_port:      1025
+    mailer_user:      null
+    mailer_password:  null
 
     # Third party services
-    google_analytics:  foo
+    google_analytics:     foo
     recaptcha_site_key:   lalalala
     recaptcha_secret_key: lerelelele
 
