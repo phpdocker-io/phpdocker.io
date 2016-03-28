@@ -78,6 +78,20 @@ class Php extends Base
     }
 
     /**
+     * @param array $phpExtensions
+     *
+     * @return Php
+     */
+    public function setPhpExtensions(array $phpExtensions) : self
+    {
+        foreach ($phpExtensions as $phpExtension) {
+            $this->addExtensionByName($phpExtension);
+        }
+
+        return $this;
+    }
+
+    /**
      * Adds an extension given the name only.
      *
      * @param string $extensionName

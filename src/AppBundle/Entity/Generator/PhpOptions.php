@@ -52,22 +52,6 @@ class PhpOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\Php
     protected $phpExtensions70 = [];
 
     /**
-     * @param array $phpExtensions
-     *
-     * @return PhpOptions
-     */
-    public function setPhpExtensions($phpExtensions) : self
-    {
-        $this->phpExtensions = $phpExtensions;
-
-        foreach ($phpExtensions as $phpExtension) {
-            $this->addExtensionByName($phpExtension);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return array
      */
     public function getPhpExtensions70()

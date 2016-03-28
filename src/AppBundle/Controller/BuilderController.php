@@ -76,7 +76,7 @@ class BuilderController extends AbstractController
      * Add php extensions to project based on version on the property the generator expects
      * as phpExtensions56/70 do not exist from its point of view.
      *
-     * @param \AppBundle\Entity\Generator\Project $project
+     * @param Project $project
      *
      * @return Project
      */
