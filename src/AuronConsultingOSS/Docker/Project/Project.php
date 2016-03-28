@@ -100,9 +100,15 @@ class Project
 
     /**
      * Initialise project
+     *
+     * @param SlugifierInterface $slugifier
      */
-    public function __construct()
+    public function __construct(SlugifierInterface $slugifier)
     {
+        // Handle dependency injection
+        $this->slugifier = $slugifier;
+
+        // Initialise project properties
         $this->applicationOptions = new ServiceOptions\Application();
         $this->nginxOptions       = new ServiceOptions\Nginx();
         $this->mysqlOptions       = new ServiceOptions\MySQL();
@@ -441,18 +447,6 @@ class Project
         }
 
         return $this->slugifier;
-    }
-
-    /**
-     * @param SlugifierInterface $slugifier
-     *
-     * @return Project
-     */
-    public function setSlugifier(SlugifierInterface $slugifier) : self
-    {
-        $this->slugifier = $slugifier;
-
-        return $this;
     }
 
     /**
