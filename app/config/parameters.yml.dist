@@ -25,6 +25,11 @@ parameters:
     recaptcha_site_key:   lalalala
     recaptcha_secret_key: lerelelele
 
+    # Memcached - make sure on each deployment, cache_namespace is different
+    memcached_host:  phpdocker-io-memcached
+    memcached_port:  11211
+    cache_namespace: phpdocker-io
+
     # Admin user (password: password)
     admin_user_name:     luis
     admin_user_password: $2y$12$jS7zyap2VzijFYr8fWn5WuoHrfZMdPzmfTuVUFJ7NAkQb.ZZc6VLm
