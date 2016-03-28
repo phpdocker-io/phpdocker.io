@@ -1,5 +1,4 @@
 parameters:
-  email_to: "luis.pabon@auronconsulting.co.uk"
   news_category_slug: 'news'
 
 assetic:

@@ -18,6 +18,7 @@ parameters:
     mailer_port:      1025
     mailer_user:      null
     mailer_password:  null
+    email_to:         "foo@faa.com"
 
     # Third party services
     google_analytics:     foo
