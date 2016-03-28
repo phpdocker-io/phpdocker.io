@@ -17,6 +17,7 @@
 
 namespace AppBundle\Entity\Generator;
 
+use AuronConsultingOSS\Docker\Interfaces\SlugifierInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -81,9 +82,10 @@ class Project extends \AuronConsultingOSS\Docker\Project\Project
      */
     protected $hasMailhog = false;
 
-    public function __construct()
+    public function __construct(SlugifierInterface $slugifier)
     {
-        parent::__construct();
+        parent::__construct($slugifier);
+
         $this->mysqlOptions    = new MySQLOptions();
         $this->postgresOptions = new PostgresOptions();
         $this->phpOptions      = new PhpOptions();
