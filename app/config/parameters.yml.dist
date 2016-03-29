@@ -18,11 +18,17 @@ parameters:
     mailer_port:      1025
     mailer_user:      null
     mailer_password:  null
+    email_to:         "foo@faa.com"
 
     # Third party services
     google_analytics:     foo
     recaptcha_site_key:   lalalala
     recaptcha_secret_key: lerelelele
+
+    # Memcached - make sure on each deployment, cache_namespace is different
+    memcached_host:  phpdocker-io-memcached
+    memcached_port:  11211
+    cache_namespace: phpdocker-io
 
     # Admin user (password: password)
     admin_user_name:     luis

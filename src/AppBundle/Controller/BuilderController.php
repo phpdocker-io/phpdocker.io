@@ -20,7 +20,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Generator\PhpOptions;
 use AppBundle\Entity\Generator\Project;
 use AppBundle\Form\ProjectType;
-use AuronConsultingOSS\Docker\Project\Factory as ProjectFactory;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,7 +43,7 @@ class BuilderController extends AbstractController
     public function createAction(Request $request)
     {
         // Set up form
-        $project = ProjectFactory::create($this->container->get('slugifier'), new Project());
+        $project = new Project($this->container->get('slugifier'));
         $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
 
         // Process form
@@ -76,7 +75,7 @@ class BuilderController extends AbstractController
      * Add php extensions to project based on version on the property the generator expects
      * as phpExtensions56/70 do not exist from its point of view.
      *
-     * @param \AppBundle\Entity\Generator\Project $project
+     * @param Project $project
      *
      * @return Project
      */

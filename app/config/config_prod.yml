@@ -7,6 +7,24 @@ framework:
     serializer:
         cache: serializer.mapping.cache.apc
 
+doctrine:
+    orm:
+        metadata_cache_driver:
+            type: apc
+            namespace: "%cache_namespace%"
+
+        result_cache_driver:
+            type: memcached
+            namespace: "%cache_namespace%"
+            host: "%memcached_host%"
+            port: "%memcached_port%"
+
+        query_cache_driver:
+            type: memcached
+            namespace: "%cache_namespace%"
+            host: "%memcached_host%"
+            port: "%memcached_port%"
+
 monolog:
     handlers:
         main:
