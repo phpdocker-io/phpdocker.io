@@ -27,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form for post comments.
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 class PostCommentType extends AbstractType

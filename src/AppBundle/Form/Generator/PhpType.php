@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Generator;
 
 use AppBundle\Entity\Generator\PhpOptions;
 use AuronConsultingOSS\Docker\PhpExtension\Php56AvailableExtensions;
@@ -27,7 +27,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Form for PHP options.
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 class PhpType extends AbstractGeneratorType

@@ -18,6 +18,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\ContactRequest;
+use AppBundle\Form\Generator\AbstractGeneratorType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,7 +26,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Contact request form
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 class ContactRequestType extends AbstractGeneratorType

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Generator;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Base class for forms.
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractType
