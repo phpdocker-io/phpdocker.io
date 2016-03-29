@@ -54,6 +54,7 @@ php-fpm|{{ phpFpmHostname }}|9000
 {% if postgresHostname %}Postgres|{{ postgresHostname }}|5432 (default){{ "\n" }}{% endif %}
 {% if memcachedHostname %}Memcached|{{ memcachedHostname }}|11211 (default){{ "\n" }}{% endif %}
 {% if redisHostname %}Redis|{{ redisHostname }}|6379 (default){{ "\n" }}{% endif %}
+{% if elasticsearchHostname %}Elasticsearch|{{ elasticsearchHostname }}|9200 (HTTP default) / 9300 (ES transport default){{ "\n" }}{% endif %}
 {% if mailhogHostname %}SMTP (Mailhog)|{{ mailhogHostname }}|1025 (default){{ "\n" }}{% endif %}
 
 #Docker compose cheatsheet#
