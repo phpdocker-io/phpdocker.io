@@ -15,43 +15,47 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Services;
+namespace PHPDocker\Project\ServiceOptions;
 
-use PHPDocker\Interfaces\SlugifierInterface;
-use Cocur\Slugify\Slugify;
+use PHPDocker\Interfaces\HostnameSuffixInterface;
 
 /**
- * String slugifier.
+ * Base class for service options.
  *
- * @package AppBundle\Services
+ * @package AuronConsultingOSS\Docker\Entity
  * @author  Luis A. Pabon Flores
  */
-class Slugifier implements SlugifierInterface
+abstract class Base implements HostnameSuffixInterface
 {
     /**
-     * @var Slugify
+     * @var bool
      */
-    protected $slugifier;
+    protected $enabled = false;
 
     /**
-     * Ensure we receive the slugifier.
-     *
-     * @param Slugify $slugifier
-     */
-    public function __construct(Slugify $slugifier)
-    {
-        $this->slugifier = $slugifier;
-    }
-
-    /**
-     * Takes a string and returns a slugified version of it.
-     *
-     * @param string $string
+     * Return the suffix to be used on hostname construction.
      *
      * @return string
      */
-    public function slugify(string $string) : string
+    abstract public function getHostnameSuffix() : string;
+
+    /**
+     * @return boolean
+     */
+    public function isEnabled() : bool
     {
-        return $this->slugifier->slugify($string);
+        return $this->enabled;
+    }
+
+    /**
+     * @param boolean $enabled
+     *
+     * @return Base
+     */
+    public function setEnabled(bool $enabled) : self
+    {
+        $this->enabled = $enabled;
+
+        return $this;
     }
 }

@@ -17,7 +17,7 @@
 
 namespace AppBundle\Assert;
 
-use AuronConsultingOSS\Docker\Project\ServiceOptions\Postgres;
+use PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

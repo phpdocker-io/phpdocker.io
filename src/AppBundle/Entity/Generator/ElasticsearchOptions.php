@@ -16,7 +16,7 @@
  */
 namespace AppBundle\Entity\Generator;
 
-use AuronConsultingOSS\Docker\Project\ServiceOptions\Elasticsearch;
+use PHPDocker\Project\ServiceOptions\Elasticsearch;
 
 /**
  * Elasticsearch options entity for validation.

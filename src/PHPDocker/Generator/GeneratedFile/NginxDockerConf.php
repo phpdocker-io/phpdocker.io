@@ -15,43 +15,21 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Services;
-
-use PHPDocker\Interfaces\SlugifierInterface;
-use Cocur\Slugify\Slugify;
+namespace PHPDocker\Generator\GeneratedFile;
 
 /**
- * String slugifier.
+ * Docker conf for nginx
  *
- * @package AppBundle\Services
+ * @package AuronConsultingOSS\Docker\Generator\GeneratedFile
  * @author  Luis A. Pabon Flores
  */
-class Slugifier implements SlugifierInterface
+class NginxDockerConf extends Base
 {
     /**
-     * @var Slugify
+     * @inheritdoc
      */
-    protected $slugifier;
-
-    /**
-     * Ensure we receive the slugifier.
-     *
-     * @param Slugify $slugifier
-     */
-    public function __construct(Slugify $slugifier)
+    public function getFilename() : string
     {
-        $this->slugifier = $slugifier;
-    }
-
-    /**
-     * Takes a string and returns a slugified version of it.
-     *
-     * @param string $string
-     *
-     * @return string
-     */
-    public function slugify(string $string) : string
-    {
-        return $this->slugifier->slugify($string);
+        return 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.nginx.conf';
     }
 }
