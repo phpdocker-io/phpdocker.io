@@ -86,8 +86,9 @@ class Project extends \AuronConsultingOSS\Docker\Project\Project
     {
         parent::__construct($slugifier);
 
-        $this->mysqlOptions    = new MySQLOptions();
-        $this->postgresOptions = new PostgresOptions();
-        $this->phpOptions      = new PhpOptions();
+        $this->mysqlOptions         = new MySQLOptions();
+        $this->postgresOptions      = new PostgresOptions();
+        $this->phpOptions           = new PhpOptions();
+        $this->elasticsearchOptions = new ElasticsearchOptions();
     }
 }

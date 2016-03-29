@@ -6,7 +6,7 @@ This is the repository for both the website and the generator over at [PHPDocker
 Contributing
 ------------
 
-The usual Github model of forking and pull request. There are no unit tests to keep an eye on, but until I get a functional suite testing ready, code merges can take a while. 
+The usual Github model of forking and pull request. Branch from and open PRs from the `dev` branch. There are no unit tests to keep an eye on, but until I get a functional suite testing ready, code merges can take a while. 
 
 All I ask is to thoroughly test, manually, any changes made to the generators. You will need to run the containers with example apps to ensure they're working. Functional tests in the future will do precisely this, with a combination of PHP versions, frameworks, databases, etc. Setting this up is an area you could contribute on.
 

@@ -188,6 +188,7 @@ class Generator
             'redis'           => $project->hasRedis(),
             'mysql'           => $project->getMysqlOptions(),
             'postgres'        => $project->getPostgresOptions(),
+            'elasticsearch'   => $project->getElasticsearchOptions(),
         ];
 
         // Get hostnames
@@ -281,13 +282,14 @@ class Generator
 
         if (count($hostnameDataBlock) === 0) {
             $hostnameDataBlock = [
-                'webserverHostname' => $project->getHostnameForService($project->getNginxOptions()),
-                'phpFpmHostname'    => $project->getHostnameForService($project->getPhpOptions()),
-                'mysqlHostname'     => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
-                'postgresHostname'  => $project->hasPostgres() ? $project->getHostnameForService($project->getPostgresOptions()) : null,
-                'memcachedHostname' => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
-                'redisHostname'     => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
-                'mailhogHostname'   => $project->hasMailhog() ? $project->getHostnameForService($project->getMailhogOptions()) : null,
+                'webserverHostname'     => $project->getHostnameForService($project->getNginxOptions()),
+                'phpFpmHostname'        => $project->getHostnameForService($project->getPhpOptions()),
+                'mysqlHostname'         => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
+                'postgresHostname'      => $project->hasPostgres() ? $project->getHostnameForService($project->getPostgresOptions()) : null,
+                'memcachedHostname'     => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
+                'redisHostname'         => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
+                'mailhogHostname'       => $project->hasMailhog() ? $project->getHostnameForService($project->getMailhogOptions()) : null,
+                'elasticsearchHostname' => $project->hasElasticsearch() ? $project->getHostnameForService($project->getElasticsearchOptions()) : null,
             ];
         }
 

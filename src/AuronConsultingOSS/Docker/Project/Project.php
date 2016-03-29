@@ -84,6 +84,11 @@ class Project
     protected $vagrantOptions;
 
     /**
+     * @var ServiceOptions\Elasticsearch
+     */
+    protected $elasticsearchOptions;
+
+    /**
      * @var string
      */
     protected $projectNameSlug;
@@ -109,15 +114,16 @@ class Project
         $this->slugifier = $slugifier;
 
         // Initialise project properties
-        $this->applicationOptions = new ServiceOptions\Application();
-        $this->nginxOptions       = new ServiceOptions\Nginx();
-        $this->mysqlOptions       = new ServiceOptions\MySQL();
-        $this->postgresOptions    = new ServiceOptions\Postgres();
-        $this->phpOptions         = new ServiceOptions\Php();
-        $this->redisOptions       = new ServiceOptions\Redis();
-        $this->memcachedOptions   = new ServiceOptions\Memcached();
-        $this->mailhogOptions     = new ServiceOptions\Mailhog();
-        $this->vagrantOptions     = new ServiceOptions\Vagrant();
+        $this->applicationOptions   = new ServiceOptions\Application();
+        $this->nginxOptions         = new ServiceOptions\Nginx();
+        $this->mysqlOptions         = new ServiceOptions\MySQL();
+        $this->postgresOptions      = new ServiceOptions\Postgres();
+        $this->phpOptions           = new ServiceOptions\Php();
+        $this->redisOptions         = new ServiceOptions\Redis();
+        $this->memcachedOptions     = new ServiceOptions\Memcached();
+        $this->mailhogOptions       = new ServiceOptions\Mailhog();
+        $this->vagrantOptions       = new ServiceOptions\Vagrant();
+        $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
     }
 
     /**
@@ -465,6 +471,46 @@ class Project
     public function setVagrantOptions(ServiceOptions\Vagrant $vagrantOptions) : self
     {
         $this->vagrantOptions = $vagrantOptions;
+
+        return $this;
+    }
+
+    /**
+     * @return ServiceOptions\Elasticsearch
+     */
+    public function getElasticsearchOptions() : ServiceOptions\Elasticsearch
+    {
+        return $this->elasticsearchOptions;
+    }
+
+    /**
+     * @param ServiceOptions\Elasticsearch $elasticsearchOptions
+     *
+     * @return Project
+     */
+    public function setElasticsearchOptions(ServiceOptions\Elasticsearch $elasticsearchOptions) : self
+    {
+        $this->elasticsearchOptions = $elasticsearchOptions;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasElasticsearch() : bool
+    {
+        return $this->elasticsearchOptions->isEnabled();
+    }
+
+    /**
+     * @param bool $hasElasticsearch
+     *
+     * @return Project
+     */
+    public function setHasElasticsearch(bool $hasElasticsearch) : self
+    {
+        $this->elasticsearchOptions->setEnabled($hasElasticsearch);
 
         return $this;
     }
