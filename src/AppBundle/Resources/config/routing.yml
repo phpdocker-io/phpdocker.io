@@ -15,5 +15,5 @@ contact:
 
 generator:
     path:      /generator
-    defaults:  { _controller: AppBundle:Builder:create }
+    defaults:  { _controller: AppBundle:Generator:create }
     methods: [GET, POST]
