@@ -18,7 +18,7 @@
 namespace AppBundle\Form\Generator;
 
 use AppBundle\Entity\Generator\ElasticsearchOptions;
-use AuronConsultingOSS\Docker\Project\ServiceOptions\Elasticsearch;
+use PHPDocker\Project\ServiceOptions\Elasticsearch;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

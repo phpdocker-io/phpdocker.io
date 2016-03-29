@@ -3,8 +3,8 @@ parameters:
 
 services:
   docker_generator:
-      class:    AuronConsultingOSS\Docker\Generator\Generator
-      factory: [AuronConsultingOSS\Docker\Generator\Factory, create]
+      class:    PHPDocker\Generator\Generator
+      factory: [PHPDocker\Generator\Factory, create]
 
   guzzle:
       class: GuzzleHttp\Client

@@ -18,7 +18,7 @@
 namespace AppBundle\Form\Generator;
 
 use AppBundle\Entity\Generator\MySQLOptions;
-use AuronConsultingOSS\Docker\Project\ServiceOptions\MySQL;
+use PHPDocker\Project\ServiceOptions\MySQL;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

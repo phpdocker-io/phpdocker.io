@@ -15,36 +15,15 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Entity\Generator;
-
-use AppBundle\Assert as CustomAssert;
-use PHPDocker\Project\ServiceOptions\Application;
-use Symfony\Component\Validator\Constraints as Assert;
+namespace PHPDocker\Project\Exception;
 
 /**
- * Validation for Application options
+ * Thrown when a class has not been properly initialised with a specific dependency.
  *
- * @package AppBundle\Entity\ORM
+ * @package AuronConsultingOSS\Docker\Exception
  * @author  Luis A. Pabon Flores
  */
-class ApplicationOptions extends Application
+class MissingDependencyException extends \Exception
 {
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @CustomAssert\ApplicationType()
-     */
-    protected $applicationType;
 
-    /**
-     * @var int
-     *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @Assert\Type(type="integer")
-     * @Assert\Range(min="2", max="2147483647")
-     */
-    protected $uploadSize;
 }

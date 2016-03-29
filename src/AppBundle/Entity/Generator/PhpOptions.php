@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package AppBundle\Entity\ORM
  * @author  Luis A. Pabon Flores
  */
-class PhpOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\Php
+class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
 {
     /**
      * This does not exist on parent project. Needs to be redirected to $phpExtensions

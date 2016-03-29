@@ -18,9 +18,9 @@
 namespace AppBundle\Form\Generator;
 
 use AppBundle\Entity\Generator\PhpOptions;
-use AuronConsultingOSS\Docker\PhpExtension\Php56AvailableExtensions;
-use AuronConsultingOSS\Docker\PhpExtension\Php70AvailableExtensions;
-use AuronConsultingOSS\Docker\PhpExtension\PhpExtension;
+use PHPDocker\PhpExtension\Php56AvailableExtensions;
+use PHPDocker\PhpExtension\Php70AvailableExtensions;
+use PHPDocker\PhpExtension\PhpExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
