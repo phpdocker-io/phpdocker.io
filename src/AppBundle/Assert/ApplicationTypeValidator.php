@@ -17,7 +17,7 @@
 
 namespace AppBundle\Assert;
 
-use AuronConsultingOSS\Docker\Project\ServiceOptions\Application;
+use PHPDocker\Project\ServiceOptions\Application;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

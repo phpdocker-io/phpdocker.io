@@ -15,43 +15,26 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Services;
-
-use PHPDocker\Interfaces\SlugifierInterface;
-use Cocur\Slugify\Slugify;
+namespace PHPDocker\Project\ServiceOptions;
 
 /**
- * String slugifier.
+ * Options for nginx container.
  *
- * @package AppBundle\Services
+ * @package AuronConsultingOSS\Docker\Entity
  * @author  Luis A. Pabon Flores
  */
-class Slugifier implements SlugifierInterface
+class Nginx extends Base
 {
-    /**
-     * @var Slugify
-     */
-    protected $slugifier;
-
-    /**
-     * Ensure we receive the slugifier.
-     *
-     * @param Slugify $slugifier
-     */
-    public function __construct(Slugify $slugifier)
+    public function __construct()
     {
-        $this->slugifier = $slugifier;
+        $this->setEnabled(true);
     }
 
     /**
-     * Takes a string and returns a slugified version of it.
-     *
-     * @param string $string
-     *
-     * @return string
+     * @inheritdoc
      */
-    public function slugify(string $string) : string
+    public function getHostnameSuffix() : string
     {
-        return $this->slugifier->slugify($string);
+        return 'webserver';
     }
 }

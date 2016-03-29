@@ -17,7 +17,7 @@
 
 namespace AppBundle\Form\Generator;
 
-use AuronConsultingOSS\Docker\Project\ServiceOptions\Application;
+use PHPDocker\Project\ServiceOptions\Application;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;

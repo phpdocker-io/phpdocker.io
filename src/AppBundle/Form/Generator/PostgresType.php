@@ -18,7 +18,7 @@
 namespace AppBundle\Form\Generator;
 
 use AppBundle\Entity\Generator\PostgresOptions;
-use AuronConsultingOSS\Docker\Project\ServiceOptions\Postgres;
+use PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

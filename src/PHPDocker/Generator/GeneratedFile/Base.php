@@ -15,43 +15,38 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Services;
+namespace PHPDocker\Generator\GeneratedFile;
 
-use PHPDocker\Interfaces\SlugifierInterface;
-use Cocur\Slugify\Slugify;
+use PHPDocker\Interfaces\GeneratedFileInterface;
 
 /**
- * String slugifier.
+ * Base class for all generated files.
  *
- * @package AppBundle\Services
+ * @package AuronConsultingOSS\Docker\Generator\GeneratedFile
  * @author  Luis A. Pabon Flores
  */
-class Slugifier implements SlugifierInterface
+abstract class Base implements GeneratedFileInterface
 {
     /**
-     * @var Slugify
+     * @var string
      */
-    protected $slugifier;
+    protected $contents;
 
     /**
-     * Ensure we receive the slugifier.
+     * You MUST provide the file contents on the constructor.
      *
-     * @param Slugify $slugifier
+     * @param string $contents
      */
-    public function __construct(Slugify $slugifier)
+    public function __construct(string $contents)
     {
-        $this->slugifier = $slugifier;
+        $this->contents = $contents;
     }
 
     /**
-     * Takes a string and returns a slugified version of it.
-     *
-     * @param string $string
-     *
      * @return string
      */
-    public function slugify(string $string) : string
+    public function getContents() : string
     {
-        return $this->slugifier->slugify($string);
+        return $this->contents;
     }
 }
