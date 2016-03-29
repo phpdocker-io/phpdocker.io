@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Generator;
 
 use AppBundle\Entity\Generator\Project;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -26,7 +26,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Project forms.
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 class ProjectType extends AbstractGeneratorType

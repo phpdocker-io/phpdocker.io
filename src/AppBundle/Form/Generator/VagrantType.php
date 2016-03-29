@@ -15,22 +15,20 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Generator;
 
-use AppBundle\Entity\Generator\ElasticsearchOptions;
-use AuronConsultingOSS\Docker\Project\ServiceOptions\Elasticsearch;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use AuronConsultingOSS\Docker\Project\ServiceOptions\Vagrant;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 
 /**
- * Class ElasticsearchType
+ * Vagrant options form.
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-class ElasticsearchType extends AbstractGeneratorType
+class VagrantType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
@@ -41,15 +39,15 @@ class ElasticsearchType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('hasElasticsearch', CheckboxType::class, [
-                'label'    => 'Enable Elasticsearch',
-                'required' => false
-            ])
-            ->add('version', ChoiceType::class, [
-                'choices'  => array_flip(Elasticsearch::getChoices()),
+            ->add('shareType', ChoiceType::class, [
+                'choices'  => array_flip(Vagrant::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Version'
+                'label'    => 'Shared folders filesystem'
+            ])
+            ->add('memory', IntegerType::class, [
+                'label'    => 'RAM available',
+                'required' => true,
             ]);
     }
 
@@ -60,24 +58,6 @@ class ElasticsearchType extends AbstractGeneratorType
      */
     protected function getDataClass()
     {
-        return ElasticsearchOptions::class;
-    }
-
-    /**
-     * @return callable
-     */
-    protected function getValidationGroups() : callable
-    {
-        return function (FormInterface $form) {
-            /** @var ElasticsearchOptions $data */
-            $data   = $form->getData();
-            $groups = ['Default'];
-
-            if ($data->hasElasticsearch() === true) {
-                $groups[] = 'elasticsearchOptions';
-            }
-
-            return $groups;
-        };
+        return Vagrant::class;
     }
 }

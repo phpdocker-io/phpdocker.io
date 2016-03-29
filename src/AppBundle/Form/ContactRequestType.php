@@ -18,17 +18,19 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\ContactRequest;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Contact request form
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-class ContactRequestType extends AbstractGeneratorType
+class ContactRequestType extends AbstractType
 {
     /**
      * Builds the form definition.
@@ -52,12 +54,10 @@ class ContactRequestType extends AbstractGeneratorType
     }
 
     /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
+     * @param OptionsResolver $resolver
      */
-    protected function getDataClass()
+    public function configureOptions(OptionsResolver $resolver)
     {
-        return ContactRequest::class;
+        $resolver->setDefaults(['data_class' => ContactRequest::class]);
     }
 }

@@ -19,7 +19,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Generator\PhpOptions;
 use AppBundle\Entity\Generator\Project;
-use AppBundle\Form\ProjectType;
+use AppBundle\Form\Generator\ProjectType;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

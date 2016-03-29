@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Generator;
 
 use AuronConsultingOSS\Docker\Project\ServiceOptions\Application;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,7 +25,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Form for application options.
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 class ApplicationType extends AbstractGeneratorType
