@@ -7,7 +7,11 @@ function doMainFormMagic() {
     /**
      * Enable/disable form elements based on checkboxes
      */
-    ['postgres', 'mysql'].forEach(function (value) {
+    [
+        'postgres',
+        'mysql',
+        'elasticsearch'
+    ].forEach(function (value) {
         var optionsDiv    = $('#' + value + '-options');
         var optionsFields = optionsDiv.find('input');
         var switchNode    = $('#project_' + value + 'Options_has' + ucfirst(value));
@@ -86,7 +90,9 @@ function doMainFormMagic() {
 
     /*** END OF UGLY HACK ***/
 
-    // Change multiselect based on php version chosen
+    /**
+     * Change multiselect based on php version chosen
+     */
     var phpVersionSelector = $('#project_phpOptions_version');
     phpVersionSelector.change(function () {
         extensionMultiSelects.parents('.form-group').hide();
