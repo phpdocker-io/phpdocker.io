@@ -26,12 +26,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
- * Docker environment builder controller.
+ * Docker environment generator controller.
  *
  * @package AppBundle\Controller
  * @author  Luis A. Pabon Flores
  */
-class BuilderController extends AbstractController
+class GeneratorController extends AbstractController
 {
     /**
      * Form and form processor for creating a project.
@@ -66,7 +66,7 @@ class BuilderController extends AbstractController
             return $response;
         }
 
-        return $this->render('AppBundle:Builder:create.html.twig', array(
+        return $this->render('AppBundle:Generator:generator.html.twig', array(
             'form' => $form->createView(),
         ));
     }
