@@ -1,7 +1,7 @@
 $(doMainFormMagic);
 
 /**
- * Builder form JS handles
+ * Generator form JS handles
  */
 function doMainFormMagic() {
     /**
