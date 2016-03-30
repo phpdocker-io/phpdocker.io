@@ -20,6 +20,7 @@
 
     {% stylesheets filter="cssrewrite"
     'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'
+    'bundles/app/vendor/font-awesome/css/font-awesome.min.css'
     'bundles/app/vendor/share-button/share-button.css' %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -66,7 +67,12 @@
         </div>
         <div class="share col col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <share-button></share-button>
-            <a><span class="glyphicon glyphicon-share"></span> Share</a>
+            <a><span class="fa fa-share-alt"></span> Share</a>
+            <span class="github-link">
+                <a class="" href="https://github.com/phpdocker-io/phpdocker.io" target="_blank">
+                    <span class="fa fa-github"></span> Github
+                </a>
+            </span>
         </div>
     </div>
 </footer>

@@ -158,15 +158,11 @@ share-button a:hover {
 }
 
 footer .share {
-    text-align    : right;
-    padding-right : 2em;
+    text-align : right;
 }
 
-/* Firefox overflow fix for share menu */
-@-moz-document url-prefix() {
-    footer .share {
-        margin-left : -11px;
-    }
+footer .github-link {
+    margin-left : 1em;
 }
 
 /***** Forms *****/
