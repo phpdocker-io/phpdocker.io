@@ -15,22 +15,20 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Generator;
 
-use AppBundle\Entity\ContactRequest;
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use PHPDocker\Project\ServiceOptions\Vagrant;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Contact request form
+ * Vagrant options form.
  *
  * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-class ContactRequestType extends AbstractType
+class VagrantType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
@@ -41,23 +39,25 @@ class ContactRequestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('senderEmail', EmailType::class, [
-                'label'    => false,
-                'attr'     => ['placeholder' => 'Your email - optional, only if you\'d like a reply'],
-                'required' => true,
+            ->add('shareType', ChoiceType::class, [
+                'choices'  => array_flip(Vagrant::getChoices()),
+                'expanded' => false,
+                'multiple' => false,
+                'label'    => 'Shared folders filesystem'
             ])
-            ->add('message', TextareaType::class, [
-                'label'    => false,
-                'attr'     => ['placeholder' => 'Feedback, recommendations, feature requests...'],
+            ->add('memory', IntegerType::class, [
+                'label'    => 'RAM available',
                 'required' => true,
             ]);
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * This should return a string with the FQDN of the entity class associated to this form.
+     *
+     * @return string
      */
-    public function configureOptions(OptionsResolver $resolver)
+    protected function getDataClass()
     {
-        $resolver->setDefaults(['data_class' => ContactRequest::class]);
+        return Vagrant::class;
     }
 }

@@ -15,36 +15,15 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Entity\Generator;
-
-use AppBundle\Assert as CustomAssert;
-use PHPDocker\Project\ServiceOptions\Application;
-use Symfony\Component\Validator\Constraints as Assert;
+namespace PHPDocker\PhpExtension\Exception;
 
 /**
- * Validation for Application options
+ * Class NotFoundException
  *
- * @package AppBundle\Entity\ORM
+ * @package AuronConsultingOSS\Docker\PhpExtension
  * @author  Luis A. Pabon Flores
  */
-class ApplicationOptions extends Application
+class NotFoundException extends \Exception
 {
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @CustomAssert\ApplicationType()
-     */
-    protected $applicationType;
 
-    /**
-     * @var int
-     *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @Assert\Type(type="integer")
-     * @Assert\Range(min="2", max="2147483647")
-     */
-    protected $uploadSize;
 }

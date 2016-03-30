@@ -15,36 +15,15 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Entity\Generator;
-
-use AppBundle\Assert as CustomAssert;
-use PHPDocker\Project\ServiceOptions\Application;
-use Symfony\Component\Validator\Constraints as Assert;
+namespace PHPDocker\Zip\Exception;
 
 /**
- * Validation for Application options
+ * When an archive couldn't be created for whatever reason.
  *
- * @package AppBundle\Entity\ORM
+ * @package AuronConsultingOSS\Docker\Exception\Archiver
  * @author  Luis A. Pabon Flores
  */
-class ApplicationOptions extends Application
+class ArchiveNotCreatedException extends \Exception
 {
-    /**
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @CustomAssert\ApplicationType()
-     */
-    protected $applicationType;
 
-    /**
-     * @var int
-     *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @Assert\Type(type="integer")
-     * @Assert\Range(min="2", max="2147483647")
-     */
-    protected $uploadSize;
 }

@@ -17,6 +17,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\ORM\PostComment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -27,7 +28,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Form for post comments.
  *
- * @package AppBundle\Form
+ * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 class PostCommentType extends AbstractType
@@ -58,8 +59,6 @@ class PostCommentType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\ORM\PostComment'
-        ));
+        $resolver->setDefaults(['data_class' => PostComment::class]);
     }
 }

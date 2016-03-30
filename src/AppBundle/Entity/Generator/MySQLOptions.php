@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package AppBundle\Entity\ORM
  * @author  Luis A. Pabon Flores
  */
-class MySQLOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\MySQL
+class MySQLOptions extends \PHPDocker\Project\ServiceOptions\MySQL
 {
     /**
      * @var string

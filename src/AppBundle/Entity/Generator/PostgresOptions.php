@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package AppBundle\Entity\ORM
  * @author  Luis A. Pabon Flores
  */
-class PostgresOptions extends \AuronConsultingOSS\Docker\Project\ServiceOptions\Postgres
+class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
 {
     /**
      * @var string
