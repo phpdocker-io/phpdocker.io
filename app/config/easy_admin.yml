@@ -38,6 +38,7 @@ easy_admin:
                     - id
                     - title
                     - slug
+                    - category
                     - createdAt
                     - active
             form:
