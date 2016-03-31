@@ -19,6 +19,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\ContactRequest;
 use AppBundle\Form\ContactRequestType;
+use Doctrine\ORM\Query;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,12 +38,21 @@ class PagesController extends AbstractController
      */
     public function homeAction()
     {
-        $posts = $this
-            ->getDoctrine()
-            ->getRepository('AppBundle:ORM\Post')
-            ->findBy(['active' => true], ['id' => 'DESC']);
+        $categories = [
+            $this->container->getParameter('news_category_slug'),
+            $this->container->getParameter('homepage_category_slug')
+        ];
 
-        return $this->render('AppBundle:Pages:home.html.twig', ['posts' => $posts]);
+        $content = [];
+        foreach ($categories as $slug) {
+            $content[$slug] = $this
+                ->getHomepageContentQueryBuilder()
+                ->setParameter('slug', $slug)
+                ->getQuery()
+                ->getResult(Query::HYDRATE_SIMPLEOBJECT);
+        }
+
+        return $this->render('AppBundle:Pages:home.html.twig', ['content' => $content]);
     }
 
     /**
@@ -96,5 +106,26 @@ class PagesController extends AbstractController
             ->setBody($messageBody, 'text/html');
 
         $this->container->get('mailer')->send($message);
+    }
+
+    /**
+     * Returns a pre-configured query builder for homepage contents. You'll need to setParameter slug on the
+     * returned object.
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function getHomepageContentQueryBuilder()
+    {
+        $queryBuilder = $this
+            ->getDatabaseTable('AppBundle:ORM\Post')
+            ->createQueryBuilder('p')
+            ->innerJoin('AppBundle:ORM\Category', 'c', Query\Expr\Join::WITH, 'p.category = c.id')
+            ->where('p.active = :active')
+            ->andWhere('c.slug = :slug')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults($this->container->getParameter('homepage_item_limit'))
+            ->setParameter('active', true);
+
+        return $queryBuilder;
     }
 }
