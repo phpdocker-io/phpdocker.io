@@ -53,7 +53,7 @@ class Version20160330171428 extends AbstractMigration implements ContainerAwareI
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine.orm.entity_manager');
 
-        $category = $em->getRepository('AppBundle:ORM\Category')->findBy(['name' => self::CATEGORY_NAME]);
+        $category = $em->getRepository('AppBundle:ORM\Category')->findOneBy(['name' => self::CATEGORY_NAME]);
         if ($category) {
             $em->remove($category);
             $em->flush();
