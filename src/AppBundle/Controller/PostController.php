@@ -42,8 +42,7 @@ class PostController extends AbstractController
     public function showPostAction(Request $request)
     {
         $post = $this
-            ->getDoctrine()
-            ->getRepository('AppBundle:ORM\Post')
+            ->getDatabaseTable('AppBundle:ORM\Post')
             ->findOneBy(['slug' => $request->get('slug'), 'active' => true]);
 
         if (!$post) {
@@ -76,7 +75,7 @@ class PostController extends AbstractController
 
             // If human, persist
             if ($this->checkRecaptcha($request) === true) {
-                $em = $this->getDoctrine()->getManager();
+                $em = $this->getEntityManager();
                 $postComment->setPost($post);
                 $em->persist($postComment);
                 $em->flush();
