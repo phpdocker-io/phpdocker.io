@@ -169,7 +169,7 @@ class Generator
     }
 
     /**
-     * Generates the php-fpm-compose file, and returns as a string of its contents.
+     * Generates the docker-compose file, and returns as a string of its contents.
      *
      * @param Project $project
      *
@@ -204,7 +204,7 @@ class Generator
     }
 
     /**
-     * Returns the php-fpm file for php-fpm.
+     * Returns the dockerfile for php-fpm.
      *
      * @param Project $project
      *
@@ -221,7 +221,6 @@ class Generator
             $packages = array_merge($packages, $extension->getPackages());
         }
 
-        dump($project->getPhpOptions()->getVersion());
         $data = [
             'phpVersion'        => $project->getPhpOptions()->getVersion(),
             'projectNameSlug'   => $project->getProjectNameSlug(),

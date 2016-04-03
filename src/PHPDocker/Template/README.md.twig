@@ -69,8 +69,3 @@ php-fpm|{{ phpFpmHostname }}|9000
   * Kill containers: `docker-compose kill`
   * View container logs: `docker-compose logs`
   * Execute command inside of container: `docker exec -it {{ phpFpmHostname }} COMMAND` where `COMMAND` is whatever you want to run. For instance, `/bin/bash` to open a console prompt.
-
-#Recommendations
-
-  * If you run the containers through vagrant and use Symfony, or any framework that generates loads of cache/log files, make sure you configure your application so that cache and logs are written outside of your project root. If you selected "symfony app" on the form, you'll have folders available on the PHP container under `/tmp/{{ projectName }}`. This will dramatically improve the performance of your app since these files won't be shared over back to your host (your project folder is a network share). 
-  * If you have a NFS server available on your host (Linux, Mac), or SMB (Windows shares, on a Windows host), use them. Virtualbox's default share filesystem works, but is very slow.
