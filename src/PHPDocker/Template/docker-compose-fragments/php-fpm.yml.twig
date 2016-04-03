@@ -1,9 +1,17 @@
+{% spaceless %}    
+    {% if phpVersion == '7.0.x' %}
+        {% set iniLocation =  '/etc/php/7.0/fpm/conf.d/' %}
+    {% else %}
+        {% set iniLocation =  '/etc/php5/fpm/conf.d/' %}
+    {% endif %}
+{% endspaceless %}
 {{ phpFpmHostname }}:
   build: .
-  dockerfile: docker/Dockerfile.php-fpm.conf
+  dockerfile: php-fpm/Dockerfile
   container_name: {{ phpFpmHostname }}
   volumes:
     - ..:{{ workdir }}
+    - ./{{ phpIniOverrides }}:{{ iniLocation }}99-overrides.ini
 {% if mysqlHostname or postgresHostname or memcachedHostname or mailhogHostname or redisHostname or elasticsearchHostname %}
   links:
 {% if memcachedHostname %}    - {{ memcachedHostname }}{{ "\n" }}{% endif %}

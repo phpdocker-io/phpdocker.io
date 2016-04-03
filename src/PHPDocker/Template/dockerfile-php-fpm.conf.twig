@@ -1,16 +1,11 @@
 {% set cleanupCommand = 'apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*' %}
 {% spaceless %}
     {% if phpVersion == '7.0.x' %}
-        {% set phpIniLocation =  '/etc/php/7.0/fpm/php.ini' %}
-        FROM phpdockerio/php7-fpm:latest
+        {% set image = 'phpdockerio/php7-fpm:latest' %}
     {% else %}
-        {% set phpIniLocation =  '/etc/php5/fpm/php.ini' %}
-        FROM phpdockerio/php56-fpm:latest
+        {% set image = 'phpdockerio/php56-fpm:latest' %}
     {% endif %}
-
-# POST and max upload sizes on php.ini
-RUN sed -i "/upload_max_filesize = .*/c\upload_max_filesize = {{ maxUploadSize }}M" {{ phpIniLocation }} \
-    && sed -i "/post_max_size = .*/c\post_max_size = {{ maxUploadSize + 8 }}M" {{ phpIniLocation }}
+FROM {{ image }}
 
 {% if extensionPackages %}
 # Install selected extensions and other stuff
@@ -27,14 +22,6 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1E569794 \
     && apt-get install php5-phalcon \
     && php5enmod phalcon \
     && {{ cleanupCommand }}
-
-{% elseif applicationType == 'symfony' %}
-# If you're using symfony and the vagranted environment, I strongly recommend you change your AppKernel to use the following temporary folders
-# for cache, logs and sessions, otherwise application performance may suffer due to these being shared over NFS back to the host
-RUN mkdir -p "/tmp/{{ projectNameSlug }}/cache" \
-    && mkdir -p "/tmp/{{ projectNameSlug }}/logs" \
-    && mkdir -p "/tmp/{{ projectNameSlug }}/sessions" \
-    && chown www-data:www-data -R "/tmp/{{ projectNameSlug }}"
 {% endif %}
 
 WORKDIR "{{ workdir }}"
