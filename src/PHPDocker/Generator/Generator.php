@@ -77,7 +77,6 @@ class Generator
             ->addFile($this->getVagrantFile($project))
             ->addFile($this->getDockerCompose($project))
             ->addFile($this->getPhpDockerConf($project))
-            ->addFile($this->getNginxDockerConf($project))
             ->addFile($this->getNginxConf($project));
 
         return $this->zipArchiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
@@ -229,23 +228,6 @@ class Generator
         ];
 
         return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
-    }
-
-    /**
-     * Generates and returns the dockerfile for the webserver.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\NginxDockerConf
-     */
-    private function getNginxDockerConf(Project $project) : GeneratedFile\NginxDockerConf
-    {
-        $data = [
-            'projectName' => $project->getName(),
-            'workdir'     => $this->getWorkdir($project),
-        ];
-
-        return new GeneratedFile\NginxDockerConf($this->twig->render('dockerfile-nginx.conf.twig', $data));
     }
 
     /**

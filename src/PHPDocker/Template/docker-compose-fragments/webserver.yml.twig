@@ -1,9 +1,9 @@
 {{ webserverHostname }}:
-  build: .
-  dockerfile: docker/Dockerfile.nginx.conf
+  image: smebberson/alpine-nginx:latest
   container_name: {{ webserverHostname }}
   volumes:
       - ..:{{ workdir }}
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
   ports:
    - "{{ webserverPort }}:80"
   links:
