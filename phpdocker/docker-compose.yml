@@ -34,10 +34,11 @@ phpdocker-io-webserver:
 
 phpdocker-io-php-fpm:
   build: .
-  dockerfile: docker/Dockerfile.php-fpm.conf
+  dockerfile: php-fpm/Dockerfile
   container_name: phpdocker-io-php-fpm
   volumes:
     - ..:/var/www/phpdocker-io
+    - ./php-fpm/php-ini-overrides.ini:/etc/php/7.0/fpm/conf.d/99-overrides.ini
   links:
     - phpdocker-io-memcached
     - phpdocker-io-mailhog
