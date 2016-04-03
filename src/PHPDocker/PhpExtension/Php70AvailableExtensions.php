@@ -62,6 +62,7 @@ class Php70AvailableExtensions extends BaseAvailableExtensions
             'dbg'         => ['packages' => ['php7.0-dbg']],
             'Enchant'     => ['packages' => ['php7.0-enchant']],
             'GD'          => ['packages' => ['php7.0-gd']],
+            'Geoip'       => ['packages' => ['php7.0-geoip']],
             'GMP'         => ['packages' => ['php7.0-gmp']],
             'igbinary'    => ['packages' => ['php7.0-igbinary']],
             'ImageMagick' => ['packages' => ['php7.0-imagick']],
