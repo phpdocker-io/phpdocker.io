@@ -5,7 +5,19 @@
 
 {% block body %}
     <div class="row">
-        <div class="col col-lg-5 col-lg-offset-1 col-md-6">
+        <div class="col col-lg-offset-1 col-lg-5 col-md-6">
+            <div class="content-block">
+                {% for item in content.homepage %}
+                    <div class="row text-center header">
+                        <h1>{{ item.getTitle() }}</h1>
+                        <hr/>
+                    </div>
+                    {{ item.getBodyIntro()|raw }}
+                    {{ item.getBody()|raw }}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col col-lg-5 col-md-6">
             <div class="content-block">
                 <div class="row text-center header">
                     <h2>News</h2>
@@ -13,19 +25,6 @@
                 </div>
                 {% set posts = content.news %}
                 {% include "AppBundle:Post:posts.html.twig" with posts %}
-            </div>
-        </div>
-
-        <div class="col col-lg-5 col-md-6">
-            <div class="content-block">
-                {% for item in content.homepage %}
-                    <div class="row text-center header">
-                        <h2>{{ item.getTitle() }}</h2>
-                        <hr/>
-                    </div>
-                    {{ item.getBodyIntro()|raw }}
-                    {{ item.getBody()|raw }}
-                {% endfor %}
             </div>
         </div>
     </div>
