@@ -1,0 +1,1 @@
+vendor/behat/behat/bin/behat
