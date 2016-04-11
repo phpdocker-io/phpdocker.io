@@ -38,6 +38,11 @@ class AbstractController extends Controller
      */
     protected function checkRecaptcha(Request $request)
     {
+        // Disable checks on test environment
+        if ($this->container->get('kernel')->getEnvironment() === 'test') {
+            return true;
+        }
+
         return $this->container
             ->get('recaptcha_validator')
             ->verify($request->get('g-recaptcha-response'));

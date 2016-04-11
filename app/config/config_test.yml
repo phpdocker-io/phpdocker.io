@@ -11,3 +11,12 @@ framework:
 web_profiler:
     toolbar: false
     intercept_redirects: false
+
+monolog:
+    handlers:
+        main:
+            type: test
+
+# Swiftmailer
+swiftmailer:
+    transport: null
