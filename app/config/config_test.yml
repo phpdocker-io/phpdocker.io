@@ -16,3 +16,7 @@ monolog:
     handlers:
         main:
             type: test
+
+# Swiftmailer
+swiftmailer:
+    transport: null

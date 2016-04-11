@@ -12,5 +12,3 @@ default:
             sessions:
                 default:
                     symfony2: ~
-                goutte:
-                    goutte: ~
