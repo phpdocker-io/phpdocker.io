@@ -1,0 +1,16 @@
+default:
+    suites:
+        phpdocker:
+            type: symfony_bundle
+            bundle: AppBundle
+            contexts:
+                - AppBundle\Features\Context\FeatureContext
+    extensions:
+        Behat\Symfony2Extension: ~
+        Behat\MinkExtension:
+            base_url:  http://localhost
+            sessions:
+                default:
+                    symfony2: ~
+                goutte:
+                    goutte: ~
