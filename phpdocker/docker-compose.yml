@@ -3,11 +3,11 @@
 ###############################################################################
 
 phpdocker-io-memcached:
-  image: tenstartups/memcached:latest
+  image: phpdockerio/memcached:latest
   container_name: phpdocker-io-memcached
 
 phpdocker-io-mailhog:
-  image: diyan/mailhog
+  image: phpdockerio/mailhog:latest
   container_name: phpdocker-io-mailhog
   ports:
     - "10001:8025"
@@ -22,7 +22,7 @@ phpdocker-io-mysql:
     - MYSQL_PASSWORD=password
 
 phpdocker-io-webserver:
-  image: smebberson/alpine-nginx:latest
+  image: phpdockerio/nginx:latest
   container_name: phpdocker-io-webserver
   volumes:
       - ..:/var/www/phpdocker-io

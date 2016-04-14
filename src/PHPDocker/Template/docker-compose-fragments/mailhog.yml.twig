@@ -1,6 +1,6 @@
 {% if mailhogHostname %}
 {{ mailhogHostname }}:
-  image: diyan/mailhog
+  image: phpdockerio/mailhog:latest
   container_name: {{ mailhogHostname }}
   ports:
     - "{{ mailhogPort }}:8025"
