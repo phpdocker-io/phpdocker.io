@@ -17,6 +17,7 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,8 +38,31 @@ class AbstractController extends Controller
      */
     protected function checkRecaptcha(Request $request)
     {
+        // Disable checks on test environment
+        if ($this->container->get('kernel')->getEnvironment() === 'test') {
+            return true;
+        }
+
         return $this->container
             ->get('recaptcha_validator')
             ->verify($request->get('g-recaptcha-response'));
+    }
+
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    protected function getEntityManager()
+    {
+        return $this->getDoctrine()->getManager();
+    }
+
+    /**
+     * @param string $databaseTable
+     *
+     * @return EntityRepository
+     */
+    protected function getDatabaseTable(string $databaseTable) : EntityRepository
+    {
+        return $this->getEntityManager()->getRepository($databaseTable);
     }
 }

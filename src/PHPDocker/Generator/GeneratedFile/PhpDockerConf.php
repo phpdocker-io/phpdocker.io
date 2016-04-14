@@ -30,6 +30,6 @@ class PhpDockerConf extends Base
      */
     public function getFilename() : string
     {
-        return 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.php-fpm.conf';
+        return 'php-fpm' . DIRECTORY_SEPARATOR . 'Dockerfile';
     }
 }

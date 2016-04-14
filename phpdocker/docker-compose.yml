@@ -22,11 +22,11 @@ phpdocker-io-mysql:
     - MYSQL_PASSWORD=password
 
 phpdocker-io-webserver:
-  build: .
-  dockerfile: docker/Dockerfile.nginx.conf
+  image: smebberson/alpine-nginx:latest
   container_name: phpdocker-io-webserver
   volumes:
       - ..:/var/www/phpdocker-io
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
   ports:
    - "10000:80"
   links:
@@ -34,10 +34,11 @@ phpdocker-io-webserver:
 
 phpdocker-io-php-fpm:
   build: .
-  dockerfile: docker/Dockerfile.php-fpm.conf
+  dockerfile: php-fpm/Dockerfile
   container_name: phpdocker-io-php-fpm
   volumes:
     - ..:/var/www/phpdocker-io
+    - ./php-fpm/php-ini-overrides.ini:/etc/php/7.0/fpm/conf.d/99-overrides.ini
   links:
     - phpdocker-io-memcached
     - phpdocker-io-mailhog

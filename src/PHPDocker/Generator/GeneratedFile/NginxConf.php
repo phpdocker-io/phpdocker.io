@@ -30,6 +30,6 @@ class NginxConf extends Base
      */
     public function getFilename() : string
     {
-        return 'docker' . DIRECTORY_SEPARATOR . 'nginx.conf';
+        return 'nginx' . DIRECTORY_SEPARATOR . 'nginx.conf';
     }
 }

@@ -1,6 +1,8 @@
 PHPDocker.io
 ============
 
+[![Build Status](https://semaphoreci.com/api/v1/phpdockerio/phpdocker-io/branches/dev/badge.svg)](https://semaphoreci.com/phpdockerio/phpdocker-io)
+
 This is the repository for both the website and the generator over at [PHPDocker.io](http://phpdocker.io), opensourced on an Apache 2.0 license and open for anyone to contribute as they please
 
 Contributing

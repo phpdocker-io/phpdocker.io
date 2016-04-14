@@ -14,22 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 namespace PHPDocker\Generator\GeneratedFile;
 
 /**
- * Docker conf for nginx
+ * php.ini file in container.
  *
- * @package AuronConsultingOSS\Docker\Generator\GeneratedFile
+ * @package PHPDocker\Generator\GeneratedFile
  * @author  Luis A. Pabon Flores
  */
-class NginxDockerConf extends Base
+class PhpIniOverrides extends Base
 {
     /**
      * @inheritdoc
      */
     public function getFilename() : string
     {
-        return 'docker' . DIRECTORY_SEPARATOR . 'Dockerfile.nginx.conf';
+        return 'php-fpm' . DIRECTORY_SEPARATOR . 'php-ini-overrides.ini';
     }
 }

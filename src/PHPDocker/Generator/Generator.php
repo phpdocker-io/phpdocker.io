@@ -17,11 +17,11 @@
 
 namespace PHPDocker\Generator;
 
+use Michelf\MarkdownExtra;
 use PHPDocker\Interfaces\ArchiveInterface;
 use PHPDocker\PhpExtension\PhpExtension;
 use PHPDocker\Project\Project;
 use PHPDocker\Zip\Archiver;
-use Michelf\MarkdownExtra;
 
 /**
  * Docker environment generator based on a Project.
@@ -77,7 +77,7 @@ class Generator
             ->addFile($this->getVagrantFile($project))
             ->addFile($this->getDockerCompose($project))
             ->addFile($this->getPhpDockerConf($project))
-            ->addFile($this->getNginxDockerConf($project))
+            ->addFile($this->getPhpIniOverrides($project))
             ->addFile($this->getNginxConf($project));
 
         return $this->zipArchiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
@@ -180,6 +180,8 @@ class Generator
         $data = [
             'projectName'     => $project->getName(),
             'projectNameSlug' => $project->getProjectNameSlug(),
+            'phpVersion'      => $project->getPhpOptions()->getVersion(),
+            'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
             'workdir'         => $this->getWorkdir($project),
             'mailhog'         => $project->hasMailhog(),
             'mailhogPort'     => $project->getBasePort() + 1,
@@ -202,7 +204,7 @@ class Generator
     }
 
     /**
-     * Returns the docker file for php-fpm.
+     * Returns the dockerfile for php-fpm.
      *
      * @param Project $project
      *
@@ -232,20 +234,17 @@ class Generator
     }
 
     /**
-     * Generates and returns the dockerfile for the webserver.
+     * Returns the contents of php.ini
      *
      * @param Project $project
      *
-     * @return GeneratedFile\NginxDockerConf
+     * @return GeneratedFile\PhpIniOverrides
      */
-    private function getNginxDockerConf(Project $project) : GeneratedFile\NginxDockerConf
+    private function getPhpIniOverrides(Project $project) : GeneratedFile\PhpIniOverrides
     {
-        $data = [
-            'projectName' => $project->getName(),
-            'workdir'     => $this->getWorkdir($project),
-        ];
+        $data = ['maxUploadSize' => $project->getApplicationOptions()->getUploadSize()];
 
-        return new GeneratedFile\NginxDockerConf($this->twig->render('dockerfile-nginx.conf.twig', $data));
+        return new GeneratedFile\PhpIniOverrides($this->twig->render('php-ini-overrides.ini.twig', $data));
     }
 
     /**
