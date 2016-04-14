@@ -10,14 +10,3 @@ framework:
 web_profiler:
     toolbar: true
     intercept_redirects: false
-
-monolog:
-    handlers:
-        main:
-            type: error_log
-            level: debug
-            channels: [!event]
-        console:
-            type:   console
-            bubble: false
-            channels: [!event, !doctrine]

@@ -90,3 +90,14 @@ stof_doctrine_extensions:
         default:
             timestampable: true
             sluggable: true
+
+monolog:
+    handlers:
+        main:
+            type: error_log
+            level: error
+            channels: [!event]
+        console:
+            type:   console
+            bubble: false
+            channels: [!event, !doctrine]
