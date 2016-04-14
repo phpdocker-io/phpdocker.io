@@ -3,7 +3,7 @@
 ###############################################################################
 
 phpdocker-io-memcached:
-  image: tenstartups/memcached:latest
+  image: phpdockerio/memcached:latest
   container_name: phpdocker-io-memcached
 
 phpdocker-io-mailhog:
