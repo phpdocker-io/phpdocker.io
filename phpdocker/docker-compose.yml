@@ -22,7 +22,7 @@ phpdocker-io-mysql:
     - MYSQL_PASSWORD=password
 
 phpdocker-io-webserver:
-  image: smebberson/alpine-nginx:latest
+  image: phpdockerio/nginx:latest
   container_name: phpdocker-io-webserver
   volumes:
       - ..:/var/www/phpdocker-io

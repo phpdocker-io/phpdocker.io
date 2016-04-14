@@ -1,5 +1,5 @@
 {{ webserverHostname }}:
-  image: smebberson/alpine-nginx:latest
+  image: phpdockerio/nginx:latest
   container_name: {{ webserverHostname }}
   volumes:
       - ..:{{ workdir }}
