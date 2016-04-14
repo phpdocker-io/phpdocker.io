@@ -7,7 +7,7 @@ phpdocker-io-memcached:
   container_name: phpdocker-io-memcached
 
 phpdocker-io-mailhog:
-  image: diyan/mailhog
+  image: phpdockerio/mailhog:latest
   container_name: phpdocker-io-mailhog
   ports:
     - "10001:8025"
