@@ -10,7 +10,7 @@ if command -v "docker" >/dev/null 2>&1 ; then
     CONTAINER_RUNNING=$(docker inspect --format="{{ .State.Running }}" $CONTAINER_NAME 2> /dev/null)
 fi
 
-COMMAND="docker exec -u www-data -t $CONTAINER_NAME $@"
+COMMAND="docker exec -u www-data -it $CONTAINER_NAME $@"
 
 # If we're in vagrant, or container is running, exec through
 if [ `whoami` == 'vagrant' ] || [ "${CONTAINER_RUNNING}" == "true" ]; then
