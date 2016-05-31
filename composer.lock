@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "89bb393713cd8a195bd8224bac5ea0ee",
-    "content-hash": "65766dd654e343c98581025614ef63ab",
+    "hash": "29e0dbf85417e347d03da7f0f385acf3",
+    "content-hash": "d49f29029307b8f679840bc48e375529",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1370,16 +1370,16 @@
         },
         {
             "name": "javiereguiluz/easyadmin-bundle",
-            "version": "v1.13.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/javiereguiluz/EasyAdminBundle.git",
-                "reference": "e3bf2105e60f8fad6cf9beee0879503a81666606"
+                "reference": "6188442d0e53b8bd621a1ab3e28442d96f2352d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/e3bf2105e60f8fad6cf9beee0879503a81666606",
-                "reference": "e3bf2105e60f8fad6cf9beee0879503a81666606",
+                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/6188442d0e53b8bd621a1ab3e28442d96f2352d1",
+                "reference": "6188442d0e53b8bd621a1ab3e28442d96f2352d1",
                 "shasum": ""
             },
             "require": {
@@ -1449,7 +1449,7 @@
                 "backend",
                 "generator"
             ],
-            "time": "2016-05-11 17:22:05"
+            "time": "2016-05-29 19:00:47"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1756,21 +1756,21 @@
         },
         {
             "name": "ocramius/proxy-manager",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/ProxyManager.git",
-                "reference": "6c89b7bd6039d8047b1473e2074cb56baa4bc15d"
+                "reference": "001e730968f17cb36816ad68914994341d16e029"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/6c89b7bd6039d8047b1473e2074cb56baa4bc15d",
-                "reference": "6c89b7bd6039d8047b1473e2074cb56baa4bc15d",
+                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/001e730968f17cb36816ad68914994341d16e029",
+                "reference": "001e730968f17cb36816ad68914994341d16e029",
                 "shasum": ""
             },
             "require": {
                 "ocramius/package-versions": "^1.0",
-                "php": "~7.0",
+                "php": "7.0.0 - 7.0.5 || ^7.0.7",
                 "zendframework/zend-code": "~3.0"
             },
             "require-dev": {
@@ -1816,7 +1816,7 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "time": "2016-02-08 13:50:05"
+            "time": "2016-05-27 01:59:56"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -1932,6 +1932,52 @@
                 "random"
             ],
             "time": "2016-04-03 06:00:07"
+        },
+        {
+            "name": "psr/cache",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/cache.git",
+                "reference": "9e66031f41fbbdda45ee11e93c45d480ccba3eb3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/9e66031f41fbbdda45ee11e93c45d480ccba3eb3",
+                "reference": "9e66031f41fbbdda45ee11e93c45d480ccba3eb3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for caching libraries",
+            "keywords": [
+                "cache",
+                "psr",
+                "psr-6"
+            ],
+            "time": "2015-12-11 02:52:07"
         },
         {
             "name": "psr/http-message",
@@ -2765,21 +2811,22 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.0.6",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "a821ed51b87f5ceda834140e5f0c06e9547a86d4"
+                "reference": "e71d4713c506686e6cf027af44c97ee5d94c7db4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/a821ed51b87f5ceda834140e5f0c06e9547a86d4",
-                "reference": "a821ed51b87f5ceda834140e5f0c06e9547a86d4",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/e71d4713c506686e6cf027af44c97ee5d94c7db4",
+                "reference": "e71d4713c506686e6cf027af44c97ee5d94c7db4",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.4",
                 "php": ">=5.5.9",
+                "psr/cache": "~1.0",
                 "psr/log": "~1.0",
                 "symfony/polyfill-intl-icu": "~1.0",
                 "symfony/polyfill-mbstring": "~1.0",
@@ -2789,11 +2836,12 @@
                 "twig/twig": "~1.23|~2.0"
             },
             "conflict": {
-                "phpdocumentor/reflection": "<1.0.7"
+                "phpdocumentor/reflection-docblock": "<3.0"
             },
             "replace": {
                 "symfony/asset": "self.version",
                 "symfony/browser-kit": "self.version",
+                "symfony/cache": "self.version",
                 "symfony/class-loader": "self.version",
                 "symfony/config": "self.version",
                 "symfony/console": "self.version",
@@ -2838,6 +2886,8 @@
                 "symfony/yaml": "self.version"
             },
             "require-dev": {
+                "cache/integration-tests": "dev-master",
+                "doctrine/cache": "~1.6",
                 "doctrine/data-fixtures": "1.0.*",
                 "doctrine/dbal": "~2.4",
                 "doctrine/doctrine-bundle": "~1.4",
@@ -2845,14 +2895,15 @@
                 "egulias/email-validator": "~1.2",
                 "monolog/monolog": "~1.11",
                 "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
-                "phpdocumentor/reflection": "^1.0.7",
+                "phpdocumentor/reflection-docblock": "^3.0",
+                "predis/predis": "~1.0",
                 "symfony/polyfill-apcu": "~1.1",
                 "symfony/security-acl": "~2.8|~3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -2891,7 +2942,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-05-09 22:13:31"
+            "time": "2016-05-30 07:24:54"
         },
         {
             "name": "twig/extensions",
@@ -2947,16 +2998,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.24.0",
+            "version": "v1.24.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8"
+                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3566d311a92aae4deec6e48682dc5a4528c4a512",
+                "reference": "3566d311a92aae4deec6e48682dc5a4528c4a512",
                 "shasum": ""
             },
             "require": {
@@ -3004,7 +3055,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-01-25 21:22:18"
+            "time": "2016-05-30 09:11:59"
         },
         {
             "name": "zendframework/zend-code",
@@ -3590,61 +3641,6 @@
             ],
             "description": "This bundle generates code for you",
             "time": "2016-02-26 04:36:01"
-        },
-        {
-            "name": "symfony/phpunit-bridge",
-            "version": "v2.8.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "9d30940765450ccc58bc39f4bda30cc412101b4b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/9d30940765450ccc58bc39f4bda30cc412101b4b",
-                "reference": "9d30940765450ccc58bc39f4bda30cc412101b4b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "suggest": {
-                "symfony/debug": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
-            },
-            "type": "symfony-bridge",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.8-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ],
-                "psr-4": {
-                    "Symfony\\Bridge\\PhpUnit\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony PHPUnit Bridge",
-            "homepage": "https://symfony.com",
-            "time": "2016-04-05 16:36:54"
         }
     ],
     "aliases": [],
@@ -3653,7 +3649,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=7.0.4"
     },
     "platform-dev": []
 }
