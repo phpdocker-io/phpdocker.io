@@ -17,8 +17,8 @@
     }
   },
   "require":      {
-    "php":                             ">=7.0.0",
-    "symfony/symfony":                 "3.0.*",
+    "php":                             ">=7.0.4",
+    "symfony/symfony":                 "3.1.*",
     "symfony/monolog-bundle":          "^2.8",
     "symfony/assetic-bundle":          "^2.7",
     "symfony/swiftmailer-bundle":      "^2.3",
@@ -37,7 +37,6 @@
   },
   "require-dev":  {
     "sensio/generator-bundle":      "^3.0",
-    "symfony/phpunit-bridge":       "^2.7",
     "symfony/var-dumper":           "^3.0",
     "behat/symfony2-extension":     "^2.1",
     "behat/mink-extension":         "^2.2",
