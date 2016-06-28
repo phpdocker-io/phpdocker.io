@@ -40,6 +40,8 @@ class Php70AvailableExtensions extends BaseAvailableExtensions
             'MCrypt'   => ['packages' => ['php7.0-mcrypt']],
             'OPCache'  => ['packages' => ['php7.0-opcache']],
             'Readline' => ['packages' => ['php7.0-readline']],
+            'XML'      => ['packages' => ['php7.0-xml']],
+            'Zip'      => ['packages' => ['php7.0-zip']],
         ];
     }
 
@@ -70,12 +72,15 @@ class Php70AvailableExtensions extends BaseAvailableExtensions
             'Interbase'   => ['packages' => ['php7.0-interbase']],
             'Intl'        => ['packages' => ['php7.0-intl']],
             'LDAP'        => ['packages' => ['php7.0-ldap']],
+            'MBSTRING'    => ['packages' => ['php7.0-mbstring']],
             'MessagePack' => ['packages' => ['php7.0-msgpack']],
             'ODBC'        => ['packages' => ['php7.0-odbc']],
             'PHPDBG'      => ['packages' => ['php7.0-phpdbg']],
             'PSpell'      => ['packages' => ['php7.0-pspell']],
             'Recode'      => ['packages' => ['php7.0-recode']],
             'SNMP'        => ['packages' => ['php7.0-snmp']],
+            'SOAP'        => ['packages' => ['php7.0-soap']],
+            'SSH2'        => ['packages' => ['php7.0-ssh2']],
             'Sybase'      => ['packages' => ['php7.0-sybase']],
             'Tidy'        => ['packages' => ['php7.0-tidy']],
             'XDebug'      => ['packages' => ['php7.0-xdebug']],
