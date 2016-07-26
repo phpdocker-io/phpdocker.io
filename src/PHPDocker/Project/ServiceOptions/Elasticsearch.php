@@ -32,8 +32,10 @@ class Elasticsearch extends Base
     const VERSION_20 = '2.0';
     const VERSION_21 = '2.1';
     const VERSION_22 = '2.2';
+    const VERSION_23 = '2.3';
 
     const ALLOWED_VERSIONS = [
+        self::VERSION_23 => '2.3.x',
         self::VERSION_22 => '2.2.x',
         self::VERSION_21 => '2.1.x',
         self::VERSION_20 => '2.0.x',
@@ -43,7 +45,7 @@ class Elasticsearch extends Base
     /**
      * @var string
      */
-    protected $version = self::VERSION_22;
+    protected $version = self::VERSION_23;
 
     /**
      * @return string
