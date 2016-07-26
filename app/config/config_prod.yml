@@ -20,10 +20,8 @@ doctrine:
             port: "%memcached_port%"
 
         query_cache_driver:
-            type: memcached
+            type: apc
             namespace: "%cache_namespace%"
-            host: "%memcached_host%"
-            port: "%memcached_port%"
 
 monolog:
     handlers:

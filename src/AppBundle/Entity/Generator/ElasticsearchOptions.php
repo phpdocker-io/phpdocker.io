@@ -33,7 +33,7 @@ class ElasticsearchOptions extends Elasticsearch
      * @Assert\NotNull(groups={"elasticsearchOptions"})
      * @Assert\Length(min=1, max=128)
      */
-    protected $version = self::VERSION_22;
+    protected $version = self::VERSION_23;
 
     /**
      * Redirect hasElasticsearch to enabled.
