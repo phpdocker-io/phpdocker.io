@@ -102,6 +102,10 @@ function doMainFormMagic() {
                 extensionMultiSelects.filter('[id$=70]').parents('.form-group').show();
                 break;
 
+            case '7.1.x':
+                extensionMultiSelects.filter('[id$=71]').parents('.form-group').show();
+                break;
+
             default:
                 extensionMultiSelects.filter('[id$=56]').parents('.form-group').show();
                 break;
