@@ -66,7 +66,7 @@ abstract class BaseAvailableExtensions
      */
     public function isAvailable(string $name) : bool
     {
-        return array_key_exists($name, $this->getAllExtensions());
+        return array_key_exists($name, $this->getAll());
     }
 
     /**
@@ -74,7 +74,7 @@ abstract class BaseAvailableExtensions
      *
      * @return array
      */
-    public function getAllExtensions() : array
+    public function getAll() : array
     {
         static $allExtensions;
 
@@ -99,7 +99,7 @@ abstract class BaseAvailableExtensions
             throw new Exception\NotFoundException(sprintf('PHP extension %s is not available to install', $name));
         }
 
-        $raw = $this->getAllExtensions()[$name];
+        $raw = $this->getAll()[$name];
 
         $extension = new PhpExtension();
         $extension->setName($name);
@@ -117,7 +117,7 @@ abstract class BaseAvailableExtensions
      * @return array
      * @throws Exception\NotFoundException
      */
-    public function getMandatoryPhpExtensions() : array
+    public function getMandatory() : array
     {
         $extensions = [];
         foreach ($this->getMandatoryExtensionsMap() as $name => $value) {
@@ -133,7 +133,7 @@ abstract class BaseAvailableExtensions
      * @return array
      * @throws Exception\NotFoundException
      */
-    public function getOptionalPhpExtensions() : array
+    public function getOptional() : array
     {
         $extensions = [];
         foreach ($this->getOptionalExtensionsMap() as $name => $value) {

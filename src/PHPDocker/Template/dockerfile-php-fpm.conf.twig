@@ -2,6 +2,8 @@
 {% spaceless %}
     {% if phpVersion == '7.0.x' %}
         {% set image = 'phpdockerio/php7-fpm:latest' %}
+    {% elseif phpVersion == '7.1.x' %}
+        {% set image = 'phpdockerio/php71-fpm:latest' %}
     {% else %}
         {% set image = 'phpdockerio/php56-fpm:latest' %}
     {% endif %}
