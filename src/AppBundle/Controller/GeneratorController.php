@@ -78,14 +78,33 @@ class GeneratorController extends AbstractController
      * @param Project $project
      *
      * @return Project
+     * @throws \InvalidArgumentException
      */
     private function fixPhpExtensionGeneratorExpectation(Project $project) : Project
     {
-        if ($project->getPhpOptions()->getVersion() === PhpOptions::PHP_VERSION_56) {
-            $project->getPhpOptions()->setPhpExtensions($project->getPhpOptions()->getPhpExtensions56());
-        } else {
-            $project->getPhpOptions()->setPhpExtensions($project->getPhpOptions()->getPhpExtensions70());
+        /** @var PhpOptions $phpOptions */
+        $phpOptions = $project->getPhpOptions();
+        $phpVersion = $phpOptions->getVersion();
+
+        switch ($phpVersion) {
+            case PhpOptions::PHP_VERSION_56:
+                $extensions = $phpOptions->getPhpExtensions56();
+                break;
+
+            case PhpOptions::PHP_VERSION_70:
+                $extensions = $phpOptions->getPhpExtensions70();
+                break;
+
+            case PhpOptions::PHP_VERSION_71:
+                $extensions = $phpOptions->getPhpExtensions71();
+                break;
+
+            default:
+                throw new \InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion));
+
         }
+
+        $project->getPhpOptions()->setPhpExtensions($extensions);
 
         return $project;
     }

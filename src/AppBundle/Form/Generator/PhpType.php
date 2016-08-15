@@ -20,6 +20,7 @@ namespace AppBundle\Form\Generator;
 use AppBundle\Entity\Generator\PhpOptions;
 use PHPDocker\PhpExtension\Php56AvailableExtensions;
 use PHPDocker\PhpExtension\Php70AvailableExtensions;
+use PHPDocker\PhpExtension\Php71AvailableExtensions;
 use PHPDocker\PhpExtension\PhpExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -48,15 +49,21 @@ class PhpType extends AbstractGeneratorType
                 'label'    => 'PHP Version'
             ])
             ->add('phpExtensions56', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php56AvailableExtensions::create()->getOptionalPhpExtensions()),
+                'choices'  => $this->getExtensionChoices(Php56AvailableExtensions::create()->getOptional()),
                 'multiple' => true,
                 'label'    => 'Extensions (PHP 5.6.x)',
                 'required' => false,
             ])
             ->add('phpExtensions70', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php70AvailableExtensions::create()->getOptionalPhpExtensions()),
+                'choices'  => $this->getExtensionChoices(Php70AvailableExtensions::create()->getOptional()),
                 'multiple' => true,
                 'label'    => 'Extensions (PHP 7.0.x)',
+                'required' => false,
+            ])
+            ->add('phpExtensions71', ChoiceType::class, [
+                'choices'  => $this->getExtensionChoices(Php71AvailableExtensions::create()->getOptional()),
+                'multiple' => true,
+                'label'    => 'Extensions (PHP 7.1.x)',
                 'required' => false,
             ]);
     }
@@ -88,8 +95,6 @@ class PhpType extends AbstractGeneratorType
         foreach (PhpOptions::getSupportedVersions() as $version) {
             $versions[$version] = $version;
         }
-
-        arsort($versions);
 
         return $versions;
     }
