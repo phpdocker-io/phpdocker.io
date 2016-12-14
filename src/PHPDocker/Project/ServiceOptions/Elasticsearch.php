@@ -33,8 +33,14 @@ class Elasticsearch extends Base
     const VERSION_21 = '2.1';
     const VERSION_22 = '2.2';
     const VERSION_23 = '2.3';
+    const VERSION_24 = '2.4';
+    const VERSION_50 = '5.0';
+    const VERSION_51 = '5.1';
 
     const ALLOWED_VERSIONS = [
+        self::VERSION_51 => '5.1.x',
+        self::VERSION_50 => '5.0.x',
+        self::VERSION_24 => '2.4.x',
         self::VERSION_23 => '2.3.x',
         self::VERSION_22 => '2.2.x',
         self::VERSION_21 => '2.1.x',
