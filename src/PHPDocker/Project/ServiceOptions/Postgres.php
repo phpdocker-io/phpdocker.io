@@ -28,10 +28,12 @@ class Postgres extends Base
     /**
      * Available versions
      */
+    const VERSION_96 = '9.6';
     const VERSION_95 = '9.5';
     const VERSION_94 = '9.4';
 
     const ALLOWED_VERSIONS = [
+        self::VERSION_96 => '9.6.x',
         self::VERSION_95 => '9.5.x',
         self::VERSION_94 => '9.4.x',
     ];
