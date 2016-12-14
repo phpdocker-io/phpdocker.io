@@ -42,23 +42,23 @@ class ProjectType extends AbstractGeneratorType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Project name',
-                'attr'  => ['placeholder' => 'Used on host, container, vm and folder names']
+                'attr'  => ['placeholder' => 'Used on host, container, vm and folder names'],
             ])
             ->add('basePort', IntegerType::class, [
                 'label' => 'Base port',
-                'attr'  => ['placeholder' => 'For nginx, Mailhog control panel...']
+                'attr'  => ['placeholder' => 'For nginx, Mailhog control panel...'],
             ])
             ->add('hasMemcached', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Enable Memcached'
+                'label'    => 'Enable Memcached',
             ])
             ->add('hasRedis', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Enable Redis'
+                'label'    => 'Enable Redis',
             ])
             ->add('hasMailhog', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Enable Mailhog'
+                'label'    => 'Enable Mailhog',
             ])
             ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
             ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])

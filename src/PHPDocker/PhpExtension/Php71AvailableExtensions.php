@@ -31,7 +31,7 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
      *
      * @return array
      */
-    protected function getMandatoryExtensionsMap() : array
+    protected function getMandatoryExtensionsMap(): array
     {
         return [
             'cURL'     => ['packages' => ['php7.1-curl']],
@@ -50,14 +50,14 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
      *
      * @return array
      */
-    protected function getOptionalExtensionsMap() : array
+    protected function getOptionalExtensionsMap(): array
     {
         return [
             'Memcached'   => ['packages' => ['php-memcached']],
             'MySQL'       => ['packages' => ['php7.1-mysql']],
             'PostgreSQL'  => ['packages' => ['php7.1-pgsql']],
             'SQLite3'     => ['packages' => ['php7.1-sqlite3']],
-            'Bcmath'         => ['packages' => ['php7.1-bcmath']],
+            'Bcmath'      => ['packages' => ['php7.1-bcmath']],
             'bz2'         => ['packages' => ['php7.1-bz2']],
             'DBA'         => ['packages' => ['php7.1-dba']],
             'Enchant'     => ['packages' => ['php7.1-enchant']],

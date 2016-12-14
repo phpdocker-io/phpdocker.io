@@ -54,7 +54,7 @@ class Application
     /**
      * @return string
      */
-    public function getApplicationType() : string
+    public function getApplicationType(): string
     {
         return $this->applicationType;
     }
@@ -64,7 +64,7 @@ class Application
      *
      * @return Application
      */
-    public function setApplicationType(string $applicationType) : self
+    public function setApplicationType(string $applicationType): self
     {
         if (array_key_exists($applicationType, self::ALLOWED_APPLICATION_TYPES) === false) {
             throw new \InvalidArgumentException(sprintf('Application type %s not supported', $applicationType));
@@ -80,7 +80,7 @@ class Application
      *
      * @return array
      */
-    public static function getChoices() : array
+    public static function getChoices(): array
     {
         return self::ALLOWED_APPLICATION_TYPES;
     }
@@ -88,7 +88,7 @@ class Application
     /**
      * @return int
      */
-    public function getUploadSize() : int
+    public function getUploadSize(): int
     {
         return $this->uploadSize;
     }
@@ -98,7 +98,7 @@ class Application
      *
      * @return Application
      */
-    public function setUploadSize(int $uploadSize) : self
+    public function setUploadSize(int $uploadSize): self
     {
         $this->uploadSize = $uploadSize;
 

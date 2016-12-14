@@ -28,7 +28,7 @@ class DockerCompose extends Base
     /**
      * @inheritdoc
      */
-    public function getFilename() : string
+    public function getFilename(): string
     {
         return 'docker-compose.yml';
     }

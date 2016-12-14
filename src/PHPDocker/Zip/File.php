@@ -40,7 +40,7 @@ class File implements ArchiveInterface
     /**
      * @return string
      */
-    public function getFilename() : string
+    public function getFilename(): string
     {
         return $this->filename;
     }
@@ -50,7 +50,7 @@ class File implements ArchiveInterface
      *
      * @return File
      */
-    public function setFilename(string $filename) : self
+    public function setFilename(string $filename): self
     {
         $this->filename = $filename;
 
@@ -60,7 +60,7 @@ class File implements ArchiveInterface
     /**
      * @return string
      */
-    public function getTmpFilename() : string
+    public function getTmpFilename(): string
     {
         return $this->tmpFilename;
     }
@@ -70,7 +70,7 @@ class File implements ArchiveInterface
      *
      * @return File
      */
-    public function setTmpFilename(string $tmpFilename) : self
+    public function setTmpFilename(string $tmpFilename): self
     {
         $this->tmpFilename = $tmpFilename;
 

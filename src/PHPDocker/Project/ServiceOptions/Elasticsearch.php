@@ -76,7 +76,7 @@ class Elasticsearch extends Base
      *
      * @return array
      */
-    public static function getChoices() : array
+    public static function getChoices(): array
     {
         return self::ALLOWED_VERSIONS;
     }
@@ -86,7 +86,7 @@ class Elasticsearch extends Base
      *
      * @return string
      */
-    public function getHostnameSuffix() : string
+    public function getHostnameSuffix(): string
     {
         return 'elasticsearch';
     }

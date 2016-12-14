@@ -52,7 +52,8 @@ class PostController extends AbstractController
         // Post comment form generation and processing
         $postCommentForm = $this->postCommentFormProcessor($request, $post);
 
-        return $this->render('AppBundle:Post:post.html.twig', ['post' => $post, 'form' => $postCommentForm->createView()]);
+        return $this->render('AppBundle:Post:post.html.twig',
+            ['post' => $post, 'form' => $postCommentForm->createView()]);
     }
 
     /**
@@ -63,7 +64,7 @@ class PostController extends AbstractController
      *
      * @return FormInterface
      */
-    private function postCommentFormProcessor(Request $request, Post $post) : FormInterface
+    private function postCommentFormProcessor(Request $request, Post $post): FormInterface
     {
         // Comments form
         $postComment = new PostComment();

@@ -31,7 +31,7 @@ class Php70AvailableExtensions extends BaseAvailableExtensions
      *
      * @return array
      */
-    protected function getMandatoryExtensionsMap() : array
+    protected function getMandatoryExtensionsMap(): array
     {
         return [
             'APC'      => ['packages' => ['php7.0-apcu', 'php7.0-apcu-bc']],
@@ -51,7 +51,7 @@ class Php70AvailableExtensions extends BaseAvailableExtensions
      *
      * @return array
      */
-    protected function getOptionalExtensionsMap() : array
+    protected function getOptionalExtensionsMap(): array
     {
         return [
             'Memcached'   => ['packages' => ['php7.0-memcached']],

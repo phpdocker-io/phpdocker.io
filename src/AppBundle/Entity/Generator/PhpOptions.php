@@ -51,7 +51,6 @@ class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
      */
     protected $phpExtensions70 = [];
 
-
     /**
      * This does not exist on parent project. Needs to be redirected to $phpExtensions
      * based on version.

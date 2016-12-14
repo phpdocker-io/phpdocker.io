@@ -61,7 +61,7 @@ class AbstractController extends Controller
      *
      * @return EntityRepository
      */
-    protected function getDatabaseTable(string $databaseTable) : EntityRepository
+    protected function getDatabaseTable(string $databaseTable): EntityRepository
     {
         return $this->getEntityManager()->getRepository($databaseTable);
     }

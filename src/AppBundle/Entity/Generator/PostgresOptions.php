@@ -70,7 +70,7 @@ class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
      *
      * @return PostgresOptions
      */
-    public function setHasPostgres(bool $hasPostgres = false) : self
+    public function setHasPostgres(bool $hasPostgres = false): self
     {
         return $this->setEnabled($hasPostgres);
     }
@@ -78,7 +78,7 @@ class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
     /**
      * @return bool
      */
-    public function hasPostgres() : bool
+    public function hasPostgres(): bool
     {
         return $this->isEnabled();
     }

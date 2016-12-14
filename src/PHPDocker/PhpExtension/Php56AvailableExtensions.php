@@ -31,7 +31,7 @@ class Php56AvailableExtensions extends BaseAvailableExtensions
      *
      * @return array
      */
-    protected function getMandatoryExtensionsMap() : array
+    protected function getMandatoryExtensionsMap(): array
     {
         return [
             'APC'      => ['packages' => ['php5-apcu']],
@@ -48,7 +48,7 @@ class Php56AvailableExtensions extends BaseAvailableExtensions
      *
      * @return array
      */
-    protected function getOptionalExtensionsMap() : array
+    protected function getOptionalExtensionsMap(): array
     {
         return [
             'Memcached'                     => ['packages' => ['php5-memcached']],

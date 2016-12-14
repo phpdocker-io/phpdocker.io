@@ -79,7 +79,7 @@ class MySQLOptions extends \PHPDocker\Project\ServiceOptions\MySQL
      *
      * @return MySQLOptions
      */
-    public function setHasMysql(bool $hasMysql = false) : self
+    public function setHasMysql(bool $hasMysql = false): self
     {
         return $this->setEnabled($hasMysql);
     }
@@ -87,7 +87,7 @@ class MySQLOptions extends \PHPDocker\Project\ServiceOptions\MySQL
     /**
      * @return bool
      */
-    public function hasMysql() : bool
+    public function hasMysql(): bool
     {
         return $this->isEnabled();
     }
