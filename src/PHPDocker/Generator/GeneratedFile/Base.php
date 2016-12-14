@@ -45,7 +45,7 @@ abstract class Base implements GeneratedFileInterface
     /**
      * @return string
      */
-    public function getContents() : string
+    public function getContents(): string
     {
         return $this->contents;
     }

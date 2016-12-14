@@ -53,7 +53,7 @@ class Vagrant
     /**
      * @return string
      */
-    public function getShareType() : string
+    public function getShareType(): string
     {
         return $this->shareType;
     }
@@ -63,7 +63,7 @@ class Vagrant
      *
      * @return Vagrant
      */
-    public function setShareType(string $shareType) : self
+    public function setShareType(string $shareType): self
     {
         if (array_key_exists($shareType, self::ALLOWED_SHARE_TYPES) === false) {
             throw new \InvalidArgumentException(sprintf('Share type %s is unsupported', $shareType));
@@ -77,7 +77,7 @@ class Vagrant
     /**
      * @return int
      */
-    public function getMemory() : int
+    public function getMemory(): int
     {
         return $this->memory;
     }
@@ -87,7 +87,7 @@ class Vagrant
      *
      * @return Vagrant
      */
-    public function setMemory(int $memory) : self
+    public function setMemory(int $memory): self
     {
         $this->memory = $memory;
 
@@ -99,7 +99,7 @@ class Vagrant
      *
      * @return array
      */
-    public static function getChoices() : array
+    public static function getChoices(): array
     {
         return self::ALLOWED_SHARE_TYPES;
     }

@@ -38,7 +38,7 @@ class PhpExtension
     /**
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -48,7 +48,7 @@ class PhpExtension
      *
      * @return PhpExtension
      */
-    public function setName(string $name) : PhpExtension
+    public function setName(string $name): PhpExtension
     {
         $this->name = $name;
 
@@ -58,7 +58,7 @@ class PhpExtension
     /**
      * @return array
      */
-    public function getPackages() : array
+    public function getPackages(): array
     {
         return $this->packages;
     }
@@ -68,7 +68,7 @@ class PhpExtension
      *
      * @return PhpExtension
      */
-    public function addPackage(string $package) : PhpExtension
+    public function addPackage(string $package): PhpExtension
     {
         $this->packages[] = $package;
 

@@ -28,7 +28,7 @@ class NginxConf extends Base
     /**
      * @inheritdoc
      */
-    public function getFilename() : string
+    public function getFilename(): string
     {
         return 'nginx' . DIRECTORY_SEPARATOR . 'nginx.conf';
     }

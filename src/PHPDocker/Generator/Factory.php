@@ -17,8 +17,8 @@
 
 namespace PHPDocker\Generator;
 
-use PHPDocker\Zip\Archiver;
 use Michelf\MarkdownExtra;
+use PHPDocker\Zip\Archiver;
 
 /**
  * Factory for generator. If not provided, it will spawn and inject default dependencies.
@@ -42,8 +42,11 @@ class Factory
      *
      * @return Generator
      */
-    public static function create(Archiver $archiver = null, \Twig_Environment $twig = null, MarkdownExtra $markdownExtra = null) : Generator
-    {
+    public static function create(
+        Archiver $archiver = null,
+        \Twig_Environment $twig = null,
+        MarkdownExtra $markdownExtra = null
+    ): Generator {
         if ($archiver === null) {
             $archiver = new Archiver();
         }

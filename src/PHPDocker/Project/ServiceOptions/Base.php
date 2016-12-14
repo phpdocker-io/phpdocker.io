@@ -37,12 +37,12 @@ abstract class Base implements HostnameSuffixInterface
      *
      * @return string
      */
-    abstract public function getHostnameSuffix() : string;
+    abstract public function getHostnameSuffix(): string;
 
     /**
      * @return boolean
      */
-    public function isEnabled() : bool
+    public function isEnabled(): bool
     {
         return $this->enabled;
     }
@@ -52,7 +52,7 @@ abstract class Base implements HostnameSuffixInterface
      *
      * @return Base
      */
-    public function setEnabled(bool $enabled) : self
+    public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
 

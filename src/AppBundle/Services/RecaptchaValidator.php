@@ -60,7 +60,7 @@ class RecaptchaValidator implements ContainerAwareInterface
      *
      * @return bool
      */
-    public function verify(string $token) : bool
+    public function verify(string $token): bool
     {
         $data = [
             'secret'   => $this->serviceSecret,

@@ -40,7 +40,7 @@ class PagesController extends AbstractController
     {
         $categories = [
             $this->container->getParameter('news_category_slug'),
-            $this->container->getParameter('homepage_category_slug')
+            $this->container->getParameter('homepage_category_slug'),
         ];
 
         $content = [];
@@ -66,7 +66,8 @@ class PagesController extends AbstractController
     {
         // Set up form
         $contactRequest = new ContactRequest();
-        $form           = $this->createForm(ContactRequestType::class, $contactRequest, ['method' => Request::METHOD_POST]);
+        $form           = $this->createForm(ContactRequestType::class, $contactRequest,
+            ['method' => Request::METHOD_POST]);
 
         // Process form
         $form->handleRequest($request);

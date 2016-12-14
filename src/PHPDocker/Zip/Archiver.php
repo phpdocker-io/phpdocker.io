@@ -59,7 +59,7 @@ class Archiver
      *
      * @return Archiver
      */
-    public function addFile(GeneratedFileInterface $generatedFile) : self
+    public function addFile(GeneratedFileInterface $generatedFile): self
     {
         $this->zipfile->addFromString(
             $this->prefixFilename($generatedFile->getFilename()),
@@ -77,7 +77,7 @@ class Archiver
      * @return ArchiveInterface
      * @throws Exception\ArchiveNotCreatedException
      */
-    public function generateArchive(string $archiveFilename) : ArchiveInterface
+    public function generateArchive(string $archiveFilename): ArchiveInterface
     {
         $filename = $this->zipfile->filename;
 
@@ -100,7 +100,7 @@ class Archiver
      *
      * @return Archiver
      */
-    public function setBaseFolder(string $baseFolder) : self
+    public function setBaseFolder(string $baseFolder): self
     {
         $this->baseFolder = $baseFolder;
 
@@ -114,7 +114,7 @@ class Archiver
      *
      * @return string
      */
-    private function prefixFilename(string $filename) : string
+    private function prefixFilename(string $filename): string
     {
         if ($this->baseFolder !== '') {
             return sprintf('%s%s%s', $this->baseFolder, DIRECTORY_SEPARATOR, $filename);

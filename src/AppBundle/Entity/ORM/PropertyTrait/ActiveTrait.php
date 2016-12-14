@@ -48,7 +48,7 @@ trait ActiveTrait
      *
      * @return self
      */
-    public function setActive(bool $active) : self
+    public function setActive(bool $active): self
     {
         $this->active = $active;
 

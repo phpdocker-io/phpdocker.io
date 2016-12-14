@@ -68,7 +68,7 @@ class Generator
      *
      * @return ArchiveInterface
      */
-    public function generate(Project $project) : ArchiveInterface
+    public function generate(Project $project): ArchiveInterface
     {
         $this
             ->zipArchiver
@@ -90,7 +90,7 @@ class Generator
      *
      * @return GeneratedFile\ReadmeMd
      */
-    private function getReadmeMd(Project $project) : GeneratedFile\ReadmeMd
+    private function getReadmeMd(Project $project): GeneratedFile\ReadmeMd
     {
         static $readme;
 
@@ -101,7 +101,8 @@ class Generator
                 'vmIpAddress'   => $this->getVmIpAddress(),
             ];
 
-            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig', array_merge($data, $this->getHostnameDataBlock($project))));
+            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig',
+                array_merge($data, $this->getHostnameDataBlock($project))));
         }
 
         return $readme;
@@ -114,7 +115,7 @@ class Generator
      *
      * @return GeneratedFile\ReadmeHtml
      */
-    private function getReadmeHtml(Project $project) : GeneratedFile\ReadmeHtml
+    private function getReadmeHtml(Project $project): GeneratedFile\ReadmeHtml
     {
         static $readmeHtml;
 
@@ -133,7 +134,7 @@ class Generator
      *
      * @return GeneratedFile\Vagrantfile
      */
-    private function getVagrantFile(Project $project) : GeneratedFile\Vagrantfile
+    private function getVagrantFile(Project $project): GeneratedFile\Vagrantfile
     {
         $data = [
             'projectName'     => $project->getName(),
@@ -175,7 +176,7 @@ class Generator
      *
      * @return GeneratedFile\DockerCompose
      */
-    private function getDockerCompose(Project $project) : GeneratedFile\DockerCompose
+    private function getDockerCompose(Project $project): GeneratedFile\DockerCompose
     {
         $data = [
             'projectName'     => $project->getName(),
@@ -210,7 +211,7 @@ class Generator
      *
      * @return GeneratedFile\PhpDockerConf
      */
-    private function getPhpDockerConf(Project $project) : GeneratedFile\PhpDockerConf
+    private function getPhpDockerConf(Project $project): GeneratedFile\PhpDockerConf
     {
         $phpOptions = $project->getPhpOptions();
         $packages   = [];
@@ -240,7 +241,7 @@ class Generator
      *
      * @return GeneratedFile\PhpIniOverrides
      */
-    private function getPhpIniOverrides(Project $project) : GeneratedFile\PhpIniOverrides
+    private function getPhpIniOverrides(Project $project): GeneratedFile\PhpIniOverrides
     {
         $data = ['maxUploadSize' => $project->getApplicationOptions()->getUploadSize()];
 
@@ -254,7 +255,7 @@ class Generator
      *
      * @return GeneratedFile\NginxConf
      */
-    private function getNginxConf(Project $project) : GeneratedFile\NginxConf
+    private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {
         $data = [
             'projectName'     => $project->getName(),
@@ -300,7 +301,7 @@ class Generator
      *
      * @return string
      */
-    private function getVmIpAddress() : string
+    private function getVmIpAddress(): string
     {
         static $vmIpAddress;
 

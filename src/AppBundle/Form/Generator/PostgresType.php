@@ -44,13 +44,13 @@ class PostgresType extends AbstractGeneratorType
         $builder
             ->add('hasPostgres', CheckboxType::class, [
                 'label'    => 'Enable Postgres',
-                'required' => false
+                'required' => false,
             ])
             ->add('version', ChoiceType::class, [
                 'choices'  => array_flip(Postgres::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Version'
+                'label'    => 'Version',
             ])
             ->add('rootUser', TextType::class, [
                 'label' => false,
@@ -79,7 +79,7 @@ class PostgresType extends AbstractGeneratorType
     /**
      * @return callable
      */
-    protected function getValidationGroups() : callable
+    protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
             /** @var \AppBundle\Entity\Generator\PostgresOptions $data */

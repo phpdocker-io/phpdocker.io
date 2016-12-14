@@ -42,7 +42,7 @@ class ElasticsearchOptions extends Elasticsearch
      *
      * @return ElasticsearchOptions
      */
-    public function setHasElasticsearch(bool $hasElasticsearch = false) : self
+    public function setHasElasticsearch(bool $hasElasticsearch = false): self
     {
         return $this->setEnabled($hasElasticsearch);
     }
@@ -50,7 +50,7 @@ class ElasticsearchOptions extends Elasticsearch
     /**
      * @return bool
      */
-    public function hasElasticsearch() : bool
+    public function hasElasticsearch(): bool
     {
         return $this->isEnabled();
     }

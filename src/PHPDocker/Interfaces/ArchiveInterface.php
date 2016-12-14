@@ -13,12 +13,12 @@ interface ArchiveInterface
      *
      * @return string
      */
-    public function getFilename() : string;
+    public function getFilename(): string;
 
     /**
      * Returns the filename of the temporary file on temp storage.
      *
      * @return string
      */
-    public function getTmpFilename() : string;
+    public function getTmpFilename(): string;
 }
