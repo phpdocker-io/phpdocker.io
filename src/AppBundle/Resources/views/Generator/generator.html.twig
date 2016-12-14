@@ -46,19 +46,18 @@
                     <div class="note">
                         <p>Please note:</p>
                         <ul>
-                            <li>The following extensions are already included on the base image: APC (except PHP7.1),
-                                cURL, JSON,
-                                MCrypt, OPCache, Readline, XML and Zip.
+                            <li>The following extensions are already included on the base image: APC,
+                                cURL, JSON, MCrypt (libsodium on 7.1), OPCache, Readline, XML and Zip.
                             </li>
-                            <li>PHP5 and 7 support a different set of extensions.</li>
+                            <li>PHP5, 7.0 and 7.1 support a different set of extensions.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
-
                     {{ form_row(attribute(form.phpOptions, 'phpExtensions71')) }}
+
+                    {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
 
                     {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
                 </div>

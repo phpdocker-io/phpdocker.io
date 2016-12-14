@@ -39,6 +39,7 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
             'MCrypt'   => ['packages' => ['php7.1-mcrypt']],
             'OPCache'  => ['packages' => ['php7.1-opcache']],
             'Readline' => ['packages' => ['php7.1-readline']],
+            'Sodium'   => ['packages' => ['php-libsodium']],
             'XML'      => ['packages' => ['php7.1-xml']],
             'Zip'      => ['packages' => ['php7.1-zip']],
         ];
@@ -56,6 +57,7 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
             'Memcached'   => ['packages' => ['php-memcached']],
             'MySQL'       => ['packages' => ['php7.1-mysql']],
             'PostgreSQL'  => ['packages' => ['php7.1-pgsql']],
+            'Redis'       => ['packages' => ['php-redis']],
             'SQLite3'     => ['packages' => ['php7.1-sqlite3']],
             'Bcmath'      => ['packages' => ['php7.1-bcmath']],
             'bz2'         => ['packages' => ['php7.1-bz2']],
@@ -66,10 +68,10 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
             'GMP'         => ['packages' => ['php7.1-gmp']],
             'igbinary'    => ['packages' => ['php-igbinary']],
             'IMAP'        => ['packages' => ['php7.1-imap']],
+            'ImageMagick' => ['packages' => ['php-imagick']],
             'Interbase'   => ['packages' => ['php7.1-interbase']],
             'Intl'        => ['packages' => ['php7.1-intl']],
             'LDAP'        => ['packages' => ['php7.1-ldap']],
-            'libsodium'   => ['packages' => ['php-libsodium']],
             'MBSTRING'    => ['packages' => ['php7.1-mbstring']],
             'MessagePack' => ['packages' => ['php-msgpack']],
             'ODBC'        => ['packages' => ['php7.1-odbc']],
@@ -85,6 +87,10 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
             'XMLRPC-EPI'  => ['packages' => ['php7.1-xmlrpc']],
             'XSL'         => ['packages' => ['php7.1-xsl']],
             'YAML'        => ['packages' => ['php-yaml']],
+            'Tideways'    => ['packages' => ['php-tideways']],
+            'Xhprof'      => ['packages' => ['php-xhprof']],
+            'Xdebug'      => ['packages' => ['php-xdebug']],
+            'ZeroMQ'      => ['packages' => ['php-zmq']],
         ];
     }
 }
