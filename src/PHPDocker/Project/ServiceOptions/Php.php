@@ -52,8 +52,8 @@ class Php extends Base
      * Supported PHP versions
      */
     const SUPPORTED_VERSIONS = [
-        self::PHP_VERSION_70,
         self::PHP_VERSION_71,
+        self::PHP_VERSION_70,
         self::PHP_VERSION_56,
     ];
 
