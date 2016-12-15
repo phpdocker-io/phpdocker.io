@@ -17,16 +17,18 @@ RUN apt-get update \
 {% endif %}
 
 {% if applicationType == 'phalcon' %}
-    {% if phpVersion == '5.6.x' %}
-        {% set phalconPackage = 'php5-phalcon' %}
-    {% else %}
-        {% set phalconPackage = 'php7.0-phalcon' %}
-    {% endif %}
+    {% spaceless %}
+        {% if phpVersion == '5.6.x' %}
+            {% set phalconPackage = 'php5-phalcon' %}
+        {% else %}
+            {% set phalconPackage = 'php7.0-phalcon' %}
+        {% endif %}
+    {% endspaceless %}
 
 # Install phalcon
-RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | sudo bash \
+RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash \
     && apt-get update \
-    && apt-get install {{ phalconPackage }} \
+    && apt-get install -y {{ phalconPackage }} \
     && {{ cleanupCommand }}
 {% endif %}
 

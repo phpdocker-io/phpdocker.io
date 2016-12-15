@@ -38,7 +38,7 @@ class Application
     const ALLOWED_APPLICATION_TYPES = [
         self::APPLICATION_TYPE_GENERIC => 'Generic: Zend, Laravel, Lumen...',
         self::APPLICATION_TYPE_SYMFONY => 'Symfony 2/3',
-        self::APPLICATION_TYPE_PHALCON => 'Phalcon 2 (PHP 5.6 only)',
+        self::APPLICATION_TYPE_PHALCON => 'Phalcon 3 (PHP 5.6/7.0 only)',
     ];
 
     /**
