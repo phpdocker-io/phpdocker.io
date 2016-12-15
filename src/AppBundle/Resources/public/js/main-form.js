@@ -112,8 +112,52 @@ function doMainFormMagic() {
         }
     });
 
+    // Phalcon supports PHP 5.6/7.0 only - proper jquery spaghetti, remove as soon as 7.1 is supported
+    /*** HACK ***/
+    var applicationType = $('#project_applicationOptions_applicationType');
+    var hiddenFieldId   = 'hidden-phpversion';
+    var form            = $('#generator');
+
+    applicationType.change(function () {
+        var hiddenField = $('#' + hiddenFieldId);
+
+        if ($(this).val() == 'phalcon') {
+            var supportedVersion = '5.6.x';
+            if (phpVersionSelector.val() == '7.1.x') {
+                supportedVersion = '7.0.x'
+            }
+
+            phpVersionSelector.val(supportedVersion).change();
+            phpVersionSelector.parent().parent().effect('bounce');
+            phpVersionSelector.children().each(function () {
+                if (this.value == '7.1.x') {
+                    $(this).prop('disabled', true);
+                }
+            });
+
+            $('<input>').attr('type', 'hidden').appendTo(form).attr('id', hiddenFieldId).attr('name', phpVersionSelector.attr('name')).val(phpVersionSelector.val());
+        } else {
+            phpVersionSelector.children().each(function () {
+                if (this.value == '7.1.x') {
+                    $(this).prop('disabled', false);
+                }
+            });
+
+            hiddenField.remove();
+        }
+    });
+
+    phpVersionSelector.change(function () {
+        var hiddenField = $('#' + hiddenFieldId);
+        if (hiddenField.length) {
+            hiddenField.val(phpVersionSelector.val());
+        }
+    });
+
+    /*** END OF HACK ***/
+
     // Analytics
-    $('#generator').submit(function (event) {
+    form.submit(function (event) {
         $('input[type=checkbox]').each(function () {
             ga('send', 'event', 'builder-form', 'builder-choices', $(this).attr('name'), $(this).is(':checked'));
         });
