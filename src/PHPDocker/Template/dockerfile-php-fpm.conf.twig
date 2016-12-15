@@ -17,12 +17,18 @@ RUN apt-get update \
 {% endif %}
 
 {% if applicationType == 'phalcon' %}
+    {% spaceless %}
+        {% if phpVersion == '5.6.x' %}
+            {% set phalconPackage = 'php5-phalcon' %}
+        {% else %}
+            {% set phalconPackage = 'php7.0-phalcon' %}
+        {% endif %}
+    {% endspaceless %}
+
 # Install phalcon
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1E569794 \
-    && echo "deb http://ppa.launchpad.net/phalcon/stable/ubuntu wily main" > /etc/apt/sources.list.d/phalcon.list \
+RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash \
     && apt-get update \
-    && apt-get install php5-phalcon \
-    && php5enmod phalcon \
+    && apt-get install -y {{ phalconPackage }} \
     && {{ cleanupCommand }}
 {% endif %}
 
