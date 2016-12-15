@@ -112,21 +112,6 @@ function doMainFormMagic() {
         }
     });
 
-    // Phalcon supports PHP 5.6 only
-    var applicationType = $('#project_applicationOptions_applicationType');
-    var hiddenFieldId   = 'hidden-phpversion';
-    var form            = $('#generator');
-
-    applicationType.change(function () {
-        if ($(this).val() == 'phalcon') {
-            phpVersionSelector.val('5.6.x').change().prop('disabled', true).parent().parent().effect('bounce');
-            $('<input>').attr('type', 'hidden').appendTo(form).attr('id', hiddenFieldId).attr('name', phpVersionSelector.attr('name')).val(phpVersionSelector.val());
-        } else if (phpVersionSelector.prop('disabled') == true) {
-            phpVersionSelector.prop('disabled', false).parent().parent().effect('bounce');
-            $('#' + hiddenFieldId).remove();
-        }
-    });
-
     // Analytics
     $('#generator').submit(function (event) {
         $('input[type=checkbox]').each(function () {
