@@ -33,7 +33,7 @@ class ElasticsearchOptions extends Elasticsearch
      * @Assert\NotNull(groups={"elasticsearchOptions"})
      * @Assert\Length(min=1, max=128)
      */
-    protected $version = self::VERSION_23;
+    protected $version = self::VERSION_51;
 
     /**
      * Redirect hasElasticsearch to enabled.
@@ -42,7 +42,7 @@ class ElasticsearchOptions extends Elasticsearch
      *
      * @return ElasticsearchOptions
      */
-    public function setHasElasticsearch(bool $hasElasticsearch = false) : self
+    public function setHasElasticsearch(bool $hasElasticsearch = false): self
     {
         return $this->setEnabled($hasElasticsearch);
     }
@@ -50,7 +50,7 @@ class ElasticsearchOptions extends Elasticsearch
     /**
      * @return bool
      */
-    public function hasElasticsearch() : bool
+    public function hasElasticsearch(): bool
     {
         return $this->isEnabled();
     }

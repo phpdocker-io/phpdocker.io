@@ -5,15 +5,22 @@ server {
 
     access_log /var/log/nginx/{{ projectNameSlug }}.access.log;
 
-{% if applicationType == 'symfony' %}
+{% if applicationType == 'symfony' or applicationType == 'silex' %}
+    {% spaceless %}
+        {% if applicationType == 'symfony' %}
+            {% set indexFile = 'app' %}
+        {% else %}
+            {% set indexFile = 'index' %}
+        {% endif %}
+
     root {{ workdir }}/web;
     
-    rewrite ^/app\.php/?(.*)$ /$1 permanent;
+    rewrite ^/{{ indexFile }}\.php/?(.*)$ /$1 permanent;
     
     try_files $uri @rewriteapp;
     
     location @rewriteapp {
-        rewrite ^(.*)$ /app.php/$1 last;
+        rewrite ^(.*)$ /{{ indexFile }}.php/$1 last;
     }
     
     # Deny all . files
@@ -21,10 +28,10 @@ server {
         deny all;
     }
     
-    location ~ ^/(app|app_dev)\.php(/|$) {
+    location ~ ^/({{ indexFile }}|{{ indexFile }}_dev)\.php(/|$) {
         fastcgi_pass {{ phpFpmHostname }}:9000;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
-        fastcgi_index app.php;
+        fastcgi_index {{ indexFile }}.php;
         send_timeout 1800;
         fastcgi_read_timeout 1800;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -40,7 +47,8 @@ server {
         expires 30d;
         try_files $uri @rewriteapp;
     }
-    
+
+    {% endspaceless %}
 {% else %}
 
     root {{ workdir }}/public;

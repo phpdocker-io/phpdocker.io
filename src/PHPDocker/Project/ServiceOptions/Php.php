@@ -39,21 +39,21 @@ class Php extends Base
     const PHP_VERSION_71 = '7.1.x';
 
     /**
-     * @var array
-     */
-    protected $extensions = [];
-
-    /**
      * PHP 5.6.x
      */
     const PHP_VERSION_56 = '5.6.x';
 
     /**
+     * @var array
+     */
+    protected $extensions = [];
+
+    /**
      * Supported PHP versions
      */
     const SUPPORTED_VERSIONS = [
-        self::PHP_VERSION_70,
         self::PHP_VERSION_71,
+        self::PHP_VERSION_70,
         self::PHP_VERSION_56,
     ];
 
@@ -70,7 +70,7 @@ class Php extends Base
     /**
      * @inheritdoc
      */
-    public function getHostnameSuffix() : string
+    public function getHostnameSuffix(): string
     {
         return 'php-fpm';
     }
@@ -78,7 +78,7 @@ class Php extends Base
     /**
      * @return array
      */
-    public function getExtensions() : array
+    public function getExtensions(): array
     {
         return $this->extensions;
     }
@@ -88,7 +88,7 @@ class Php extends Base
      *
      * @return Php
      */
-    public function setPhpExtensions(array $phpExtensions) : self
+    public function setPhpExtensions(array $phpExtensions): self
     {
         foreach ($phpExtensions as $phpExtension) {
             $this->addExtensionByName($phpExtension);
@@ -104,7 +104,7 @@ class Php extends Base
      *
      * @return Php
      */
-    public function addExtensionByName(string $extensionName) : self
+    public function addExtensionByName(string $extensionName): self
     {
         static $extensionInstance;
 
@@ -122,7 +122,7 @@ class Php extends Base
      *
      * @return Php
      */
-    public function addExtension(PhpExtension $extension) : self
+    public function addExtension(PhpExtension $extension): self
     {
         $this->extensions[] = $extension;
 
@@ -142,7 +142,7 @@ class Php extends Base
      *
      * @return Php
      */
-    public function setVersion(string $version) : self
+    public function setVersion(string $version): self
     {
         if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
             throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
@@ -158,7 +158,7 @@ class Php extends Base
      *
      * @return array
      */
-    public static function getSupportedVersions() : array
+    public static function getSupportedVersions(): array
     {
         return self::SUPPORTED_VERSIONS;
     }

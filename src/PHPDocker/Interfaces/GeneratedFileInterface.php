@@ -17,12 +17,12 @@ interface GeneratedFileInterface
      *
      * @return string
      */
-    public function getFilename() : string;
+    public function getFilename(): string;
 
     /**
      * Must return the file contents as a string.
      *
      * @return string
      */
-    public function getContents() : string;
+    public function getContents(): string;
 }

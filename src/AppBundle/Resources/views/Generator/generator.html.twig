@@ -27,7 +27,14 @@
                     {% endfor %}
                 </div>
 
-                <h3>Vagrant options</h3>
+                <h3>Vagrant options (legacy)</h3>
+                <div class="row">
+                    <div class="col col-lg-12">
+                        <div class="note">
+                            <p>Note: Windows 10 Pro and Mac have `native` versions of docker and docker-compose.</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     {% for field in ['shareType', 'memory'] %}
                         <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.vagrantOptions, field)) }}</div>
@@ -46,19 +53,18 @@
                     <div class="note">
                         <p>Please note:</p>
                         <ul>
-                            <li>PHP7.1 is at beta 1 and is <strong>NOT READY FOR PRODUCTION</strong>. Also, many extensions are not yet available (including APCu). See list of installable extensions for more information.</li>
-                            <li>The following extensions are already included on the base image: APC (except PHP7.1), cURL, JSON,
-                                MCrypt, OPCache, Readline, XML and Zip.
+                            <li>The following extensions are already included on the base image: APC,
+                                cURL, JSON, MCrypt (libsodium on 7.1), OPCache, Readline, XML and Zip.
                             </li>
-                            <li>PHP5 and 7 support a different set of extensions.</li>
+                            <li>PHP5, 7.0 and 7.1 support a different set of extensions.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
-
                     {{ form_row(attribute(form.phpOptions, 'phpExtensions71')) }}
+
+                    {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
 
                     {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
                 </div>

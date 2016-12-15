@@ -66,7 +66,7 @@ class MySQL extends Base
     /**
      * @return string
      */
-    public function getVersion() : string
+    public function getVersion(): string
     {
         return $this->version;
     }
@@ -76,7 +76,7 @@ class MySQL extends Base
      *
      * @return MySQL
      */
-    public function setVersion(string $version) : self
+    public function setVersion(string $version): self
     {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
             throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
@@ -90,7 +90,7 @@ class MySQL extends Base
     /**
      * @inheritdoc
      */
-    public function getHostnameSuffix() : string
+    public function getHostnameSuffix(): string
     {
         return 'mysql';
     }
@@ -108,7 +108,7 @@ class MySQL extends Base
      *
      * @return MySQL
      */
-    public function setRootPassword(string $rootPassword = null) : MySQL
+    public function setRootPassword(string $rootPassword = null): MySQL
     {
         $this->rootPassword = $rootPassword;
 
@@ -128,7 +128,7 @@ class MySQL extends Base
      *
      * @return MySQL
      */
-    public function setDatabaseName(string $databaseName = null) : MySQL
+    public function setDatabaseName(string $databaseName = null): MySQL
     {
         $this->databaseName = $databaseName;
 
@@ -148,7 +148,7 @@ class MySQL extends Base
      *
      * @return MySQL
      */
-    public function setUsername(string $username = null) : self
+    public function setUsername(string $username = null): self
     {
         $this->username = $username;
 
@@ -168,7 +168,7 @@ class MySQL extends Base
      *
      * @return MySQL
      */
-    public function setPassword(string $password = null) : self
+    public function setPassword(string $password = null): self
     {
         $this->password = $password;
 
@@ -180,7 +180,7 @@ class MySQL extends Base
      *
      * @return array
      */
-    public static function getChoices() : array
+    public static function getChoices(): array
     {
         return self::ALLOWED_VERSIONS;
     }

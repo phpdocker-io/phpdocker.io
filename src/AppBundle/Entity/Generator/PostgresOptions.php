@@ -34,7 +34,7 @@ class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
      * @Assert\NotNull(groups={"postgresOptions"})
      * @Assert\Length(min=1, max=128)
      */
-    protected $version = self::VERSION_95;
+    protected $version = self::VERSION_96;
 
     /**
      * @var string
@@ -70,7 +70,7 @@ class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
      *
      * @return PostgresOptions
      */
-    public function setHasPostgres(bool $hasPostgres = false) : self
+    public function setHasPostgres(bool $hasPostgres = false): self
     {
         return $this->setEnabled($hasPostgres);
     }
@@ -78,7 +78,7 @@ class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
     /**
      * @return bool
      */
-    public function hasPostgres() : bool
+    public function hasPostgres(): bool
     {
         return $this->isEnabled();
     }

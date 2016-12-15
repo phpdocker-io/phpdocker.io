@@ -31,7 +31,7 @@ abstract class BaseAvailableExtensions
      *
      * @return array
      */
-    abstract protected function getMandatoryExtensionsMap() : array;
+    abstract protected function getMandatoryExtensionsMap(): array;
 
     /**
      * Must return an array of all available optional extensions, indexed by display name
@@ -39,14 +39,14 @@ abstract class BaseAvailableExtensions
      *
      * @return array
      */
-    abstract protected function getOptionalExtensionsMap() : array;
+    abstract protected function getOptionalExtensionsMap(): array;
 
     /**
      * Spawns a new instance to this class.
      *
      * @return self
      */
-    public static function create() : self
+    public static function create(): self
     {
         static $instance;
 
@@ -64,7 +64,7 @@ abstract class BaseAvailableExtensions
      *
      * @return bool
      */
-    public function isAvailable(string $name) : bool
+    public function isAvailable(string $name): bool
     {
         return array_key_exists($name, $this->getAll());
     }
@@ -74,7 +74,7 @@ abstract class BaseAvailableExtensions
      *
      * @return array
      */
-    public function getAll() : array
+    public function getAll(): array
     {
         static $allExtensions;
 
@@ -93,7 +93,7 @@ abstract class BaseAvailableExtensions
      * @return PhpExtension
      * @throws Exception\NotFoundException
      */
-    public function getPhpExtension(string $name) : PhpExtension
+    public function getPhpExtension(string $name): PhpExtension
     {
         if (self::isAvailable($name) === false) {
             throw new Exception\NotFoundException(sprintf('PHP extension %s is not available to install', $name));
@@ -117,7 +117,7 @@ abstract class BaseAvailableExtensions
      * @return array
      * @throws Exception\NotFoundException
      */
-    public function getMandatory() : array
+    public function getMandatory(): array
     {
         $extensions = [];
         foreach ($this->getMandatoryExtensionsMap() as $name => $value) {
@@ -133,7 +133,7 @@ abstract class BaseAvailableExtensions
      * @return array
      * @throws Exception\NotFoundException
      */
-    public function getOptional() : array
+    public function getOptional(): array
     {
         $extensions = [];
         foreach ($this->getOptionalExtensionsMap() as $name => $value) {

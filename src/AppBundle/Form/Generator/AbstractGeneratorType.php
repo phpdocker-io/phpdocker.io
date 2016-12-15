@@ -42,7 +42,7 @@ abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractTyp
     {
         $resolver->setDefaults([
             'data_class'        => $this->getDataClass(),
-            'validation_groups' => $this->getValidationGroups()
+            'validation_groups' => $this->getValidationGroups(),
         ]);
     }
 
@@ -51,7 +51,7 @@ abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractTyp
      *
      * @return callable
      */
-    protected function getValidationGroups() : callable
+    protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
             return ['Default'];

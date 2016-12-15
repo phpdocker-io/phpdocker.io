@@ -28,10 +28,12 @@ class Postgres extends Base
     /**
      * Available versions
      */
+    const VERSION_96 = '9.6';
     const VERSION_95 = '9.5';
     const VERSION_94 = '9.4';
 
     const ALLOWED_VERSIONS = [
+        self::VERSION_96 => '9.6.x',
         self::VERSION_95 => '9.5.x',
         self::VERSION_94 => '9.4.x',
     ];
@@ -59,7 +61,7 @@ class Postgres extends Base
     /**
      * @return string
      */
-    public function getVersion() : string
+    public function getVersion(): string
     {
         return $this->version;
     }
@@ -69,7 +71,7 @@ class Postgres extends Base
      *
      * @return Postgres
      */
-    public function setVersion(string $version) : self
+    public function setVersion(string $version): self
     {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
             throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
@@ -93,7 +95,7 @@ class Postgres extends Base
      *
      * @return Postgres
      */
-    public function setRootUser(string $rootUser) : self
+    public function setRootUser(string $rootUser): self
     {
         $this->rootUser = $rootUser;
 
@@ -113,7 +115,7 @@ class Postgres extends Base
      *
      * @return Postgres
      */
-    public function setRootPassword(string $rootPassword) : self
+    public function setRootPassword(string $rootPassword): self
     {
         $this->rootPassword = $rootPassword;
 
@@ -133,7 +135,7 @@ class Postgres extends Base
      *
      * @return Postgres
      */
-    public function setDatabaseName(string $databaseName) : self
+    public function setDatabaseName(string $databaseName): self
     {
         $this->databaseName = $databaseName;
 
@@ -145,7 +147,7 @@ class Postgres extends Base
      *
      * @return array
      */
-    public static function getChoices() : array
+    public static function getChoices(): array
     {
         return self::ALLOWED_VERSIONS;
     }
@@ -155,7 +157,7 @@ class Postgres extends Base
      *
      * @return string
      */
-    public function getHostnameSuffix() : string
+    public function getHostnameSuffix(): string
     {
         return 'postgres';
     }

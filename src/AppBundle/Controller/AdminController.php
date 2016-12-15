@@ -39,7 +39,7 @@ class AdminController extends BaseAdminController
      *
      * @return Form
      */
-    public function createPostNewForm(Post $entity, array $fields) : Form
+    public function createPostNewForm(Post $entity, array $fields): Form
     {
         $form = parent::createNewForm($entity, $fields);
 
@@ -52,7 +52,7 @@ class AdminController extends BaseAdminController
                 'choices'  => [
                     'Yes' => true,
                     'No'  => false,
-                ]
+                ],
             ]);
 
         return $form;
@@ -67,7 +67,7 @@ class AdminController extends BaseAdminController
      *
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function createPostListQueryBuilder(string $entityClass, string $sortDirection, $sortField) : QueryBuilder
+    public function createPostListQueryBuilder(string $entityClass, string $sortDirection, $sortField): QueryBuilder
     {
         $queryBuilder = $this->createListQueryBuilder($entityClass, $sortDirection, $sortField);
 

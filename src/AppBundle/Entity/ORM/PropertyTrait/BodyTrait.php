@@ -51,7 +51,7 @@ trait BodyTrait
      *
      * @return self
      */
-    public function setBody(string $body) : self
+    public function setBody(string $body): self
     {
         $this->body = $body;
 

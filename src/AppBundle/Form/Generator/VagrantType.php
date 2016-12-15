@@ -43,7 +43,7 @@ class VagrantType extends AbstractGeneratorType
                 'choices'  => array_flip(Vagrant::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Shared folders filesystem'
+                'label'    => 'Shared folders filesystem',
             ])
             ->add('memory', IntegerType::class, [
                 'label'    => 'RAM available',

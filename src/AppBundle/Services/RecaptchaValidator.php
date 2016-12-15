@@ -17,8 +17,8 @@
 
 namespace AppBundle\Services;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use GuzzleHttp\Client as Guzzle;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Recaptcha token verifier
@@ -26,31 +26,43 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
  * @package AppBundle\Services
  * @author  Luis A. Pabon Flores
  */
-class RecaptchaValidator implements ContainerAwareInterface
+class RecaptchaValidator
 {
-    use ContainerAwareTrait;
+    /**
+     * @var Guzzle
+     */
+    private $guzzle;
+
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
 
     /**
      * @var string
      */
-    private $serviceSecret;
+    private $secret;
 
     /**
      * @var string
      */
-    private $serviceEndpoint;
+    private $endpoint;
 
     /**
      * Provides the secret key and endpoint required to actually verify a token with
      * reCAPTCHA.
      *
-     * @param string $serviceSecret
-     * @param string $serviceEndpoint
+     * @param Guzzle       $guzzle
+     * @param RequestStack $requestStack
+     * @param string       $secret
+     * @param string       $endpoint
      */
-    public function __construct(string $serviceSecret, string $serviceEndpoint)
+    public function __construct(Guzzle $guzzle, RequestStack $requestStack, string $secret, string $endpoint)
     {
-        $this->serviceSecret   = $serviceSecret;
-        $this->serviceEndpoint = $serviceEndpoint;
+        $this->guzzle       = $guzzle;
+        $this->requestStack = $requestStack;
+        $this->secret       = $secret;
+        $this->endpoint     = $endpoint;
     }
 
     /**
@@ -60,17 +72,16 @@ class RecaptchaValidator implements ContainerAwareInterface
      *
      * @return bool
      */
-    public function verify(string $token) : bool
+    public function verify(string $token): bool
     {
         $data = [
-            'secret'   => $this->serviceSecret,
+            'secret'   => $this->secret,
             'response' => $token,
-            'remoteip' => $this->container->get('request_stack')->getMasterRequest()->getClientIp(),
+            'remoteip' => $this->requestStack->getMasterRequest()->getClientIp(),
         ];
 
-        $response = $this->container
-            ->get('guzzle')
-            ->post($this->serviceEndpoint, ['form_params' => $data])
+        $response = $this->guzzle
+            ->post($this->endpoint, ['form_params' => $data])
             ->getBody()
             ->getContents();
 

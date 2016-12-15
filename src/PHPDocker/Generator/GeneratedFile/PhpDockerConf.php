@@ -28,7 +28,7 @@ class PhpDockerConf extends Base
     /**
      * @inheritdoc
      */
-    public function getFilename() : string
+    public function getFilename(): string
     {
         return 'php-fpm' . DIRECTORY_SEPARATOR . 'Dockerfile';
     }

@@ -31,7 +31,7 @@ class TwigCustomExtensions extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('unescape', array($this, 'unescape')),
+            new \Twig_SimpleFilter('unescape', [$this, 'unescape']),
         ];
     }
 
@@ -42,7 +42,7 @@ class TwigCustomExtensions extends \Twig_Extension
      *
      * @return mixed
      */
-    public function unescape(string $value) : string
+    public function unescape(string $value): string
     {
         return html_entity_decode($value);
     }
@@ -52,7 +52,7 @@ class TwigCustomExtensions extends \Twig_Extension
      *
      * @return string The extension name
      */
-    public function getName() : string
+    public function getName(): string
     {
         return 'Twig custom extensions';
     }

@@ -43,7 +43,7 @@ class ApplicationType extends AbstractGeneratorType
                 'choices'  => array_flip(Application::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Application type'
+                'label'    => 'Application type',
             ])
             ->add('uploadSize', IntegerType::class, [
                 'label'    => 'Max upload size (MB)',

@@ -17,8 +17,8 @@
 
 namespace AppBundle\Services;
 
-use PHPDocker\Interfaces\SlugifierInterface;
 use Cocur\Slugify\Slugify;
+use PHPDocker\Interfaces\SlugifierInterface;
 
 /**
  * String slugifier.
@@ -50,7 +50,7 @@ class Slugifier implements SlugifierInterface
      *
      * @return string
      */
-    public function slugify(string $string) : string
+    public function slugify(string $string): string
     {
         return $this->slugifier->slugify($string);
     }

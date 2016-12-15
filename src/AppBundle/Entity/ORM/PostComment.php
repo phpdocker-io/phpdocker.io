@@ -83,7 +83,7 @@ class PostComment
      *
      * @return self
      */
-    public function setPosterName(string $posterName = null) : self
+    public function setPosterName(string $posterName = null): self
     {
         $this->posterName = $posterName;
 
@@ -103,7 +103,7 @@ class PostComment
      *
      * @return self
      */
-    public function setPosterUrl(string $posterUrl = null) : self
+    public function setPosterUrl(string $posterUrl = null): self
     {
         $this->posterUrl = $posterUrl;
 
@@ -113,7 +113,7 @@ class PostComment
     /**
      * @return Post
      */
-    public function getPost() : Post
+    public function getPost(): Post
     {
         return $this->post;
     }
@@ -123,7 +123,7 @@ class PostComment
      *
      * @return self
      */
-    public function setPost(Post $post) : self
+    public function setPost(Post $post): self
     {
         $this->post = $post;
 

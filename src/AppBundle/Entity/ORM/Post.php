@@ -110,7 +110,7 @@ class Post
      *
      * @return self
      */
-    public function setSlug(string $slug) : self
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
@@ -122,7 +122,7 @@ class Post
      *
      * @return self
      */
-    public function addPostComment(PostComment $postComment) : self
+    public function addPostComment(PostComment $postComment): self
     {
         $this->postComments[] = $postComment;
         $postComment->setPost($this);
@@ -135,7 +135,7 @@ class Post
      *
      * @return self
      */
-    public function removePostComment(PostComment $postComment) : self
+    public function removePostComment(PostComment $postComment): self
     {
         $this->postComments->removeElement($postComment);
 
@@ -145,7 +145,7 @@ class Post
     /**
      * @return Collection
      */
-    public function getPostComments() : Collection
+    public function getPostComments(): Collection
     {
         return $this->postComments;
     }
@@ -155,7 +155,7 @@ class Post
      *
      * @return int
      */
-    public function getCountPostComments() : int
+    public function getCountPostComments(): int
     {
         return $this->postComments->count();
     }
@@ -173,7 +173,7 @@ class Post
      *
      * @return Post
      */
-    public function setCategory(Category $category) : self
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
 
@@ -193,7 +193,7 @@ class Post
      *
      * @return Post
      */
-    public function setBodyIntro(string $bodyIntro) : self
+    public function setBodyIntro(string $bodyIntro): self
     {
         $this->bodyIntro = $bodyIntro;
 
@@ -203,7 +203,7 @@ class Post
     /**
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return sprintf('%s (%s)', $this->getTitle(), $this->getCreatedAt());
     }

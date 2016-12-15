@@ -43,13 +43,13 @@ class ElasticsearchType extends AbstractGeneratorType
         $builder
             ->add('hasElasticsearch', CheckboxType::class, [
                 'label'    => 'Enable Elasticsearch',
-                'required' => false
+                'required' => false,
             ])
             ->add('version', ChoiceType::class, [
                 'choices'  => array_flip(Elasticsearch::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Version'
+                'label'    => 'Version',
             ]);
     }
 
@@ -66,7 +66,7 @@ class ElasticsearchType extends AbstractGeneratorType
     /**
      * @return callable
      */
-    protected function getValidationGroups() : callable
+    protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
             /** @var ElasticsearchOptions $data */

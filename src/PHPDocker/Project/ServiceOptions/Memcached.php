@@ -30,7 +30,7 @@ class Memcached extends Base
      *
      * @return string
      */
-    public function getHostnameSuffix() : string
+    public function getHostnameSuffix(): string
     {
         return 'memcached';
     }

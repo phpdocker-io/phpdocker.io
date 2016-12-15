@@ -11,5 +11,5 @@ interface HostnameSuffixInterface
      *
      * @return string
      */
-    public function getHostnameSuffix() : string;
+    public function getHostnameSuffix(): string;
 }

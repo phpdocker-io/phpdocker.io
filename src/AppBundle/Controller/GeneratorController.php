@@ -66,9 +66,9 @@ class GeneratorController extends AbstractController
             return $response;
         }
 
-        return $this->render('AppBundle:Generator:generator.html.twig', array(
+        return $this->render('AppBundle:Generator:generator.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -80,7 +80,7 @@ class GeneratorController extends AbstractController
      * @return Project
      * @throws \InvalidArgumentException
      */
-    private function fixPhpExtensionGeneratorExpectation(Project $project) : Project
+    private function fixPhpExtensionGeneratorExpectation(Project $project): Project
     {
         /** @var PhpOptions $phpOptions */
         $phpOptions = $project->getPhpOptions();
@@ -101,7 +101,6 @@ class GeneratorController extends AbstractController
 
             default:
                 throw new \InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion));
-
         }
 
         $project->getPhpOptions()->setPhpExtensions($extensions);

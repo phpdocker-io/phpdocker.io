@@ -46,7 +46,7 @@ class PhpType extends AbstractGeneratorType
                 'choices'  => $this->getVersionChoices(),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'PHP Version'
+                'label'    => 'PHP Version',
             ])
             ->add('phpExtensions56', ChoiceType::class, [
                 'choices'  => $this->getExtensionChoices(Php56AvailableExtensions::create()->getOptional()),
