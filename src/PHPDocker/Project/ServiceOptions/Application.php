@@ -31,6 +31,7 @@ class Application
     const APPLICATION_TYPE_SYMFONY = 'symfony';
     const APPLICATION_TYPE_PHALCON = 'phalcon';
     const APPLICATION_TYPE_GENERIC = 'generic';
+    const APPLICATION_TYPE_SILEX   = 'silex';
 
     /**
      * Allowed application types with short description
@@ -39,6 +40,7 @@ class Application
         self::APPLICATION_TYPE_GENERIC => 'Generic: Zend, Laravel, Lumen...',
         self::APPLICATION_TYPE_SYMFONY => 'Symfony 2/3',
         self::APPLICATION_TYPE_PHALCON => 'Phalcon 3 (PHP 5.6/7.0 only)',
+        self::APPLICATION_TYPE_SILEX   => 'Silex',
     ];
 
     /**
