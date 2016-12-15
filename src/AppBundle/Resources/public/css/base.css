@@ -234,6 +234,11 @@ label {
     font-size : 0.9em;
 }
 
+option:disabled {
+    background-color : #ccc;
+    font-style       : italic;
+}
+
 /***** Buttons *****/
 
 .button-custom {
