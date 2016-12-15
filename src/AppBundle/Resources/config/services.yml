@@ -11,9 +11,7 @@ services:
 
   recaptcha_validator:
       class:     AppBundle\Services\RecaptchaValidator
-      arguments: [%recaptcha_secret_key%, %recaptcha_verify_token_endpoint%]
-      calls:
-        - [setContainer, ["@service_container"]]
+      arguments: ['@guzzle', '@request_stack', '%recaptcha_secret_key%', '%recaptcha_verify_token_endpoint%']
 
   twig.extension.text:
       class: Twig_Extensions_Extension_Text
