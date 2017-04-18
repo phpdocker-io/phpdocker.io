@@ -1,45 +1,47 @@
 ###############################################################################
 #                          Generated on phpdocker.io                          #
 ###############################################################################
+version: "3.1"
+services:
+  phpdocker-io-memcached:
+    image: phpdockerio/memcached:latest
+    container_name: phpdocker-io-memcached
 
-phpdocker-io-memcached:
-  image: phpdockerio/memcached:latest
-  container_name: phpdocker-io-memcached
+  phpdocker-io-mailhog:
+    image: phpdockerio/mailhog:latest
+    container_name: phpdocker-io-mailhog
+    ports:
+      - "10001:8025"
 
-phpdocker-io-mailhog:
-  image: phpdockerio/mailhog:latest
-  container_name: phpdocker-io-mailhog
-  ports:
-    - "10001:8025"
+  phpdocker-io-mysql:
+    image: mysql:5.7
+    container_name: phpdocker-io-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root-password
+      - MYSQL_DATABASE=phpdockerio
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
 
-phpdocker-io-mysql:
-  image: mysql:5.7
-  container_name: phpdocker-io-mysql
-  environment:
-    - MYSQL_ROOT_PASSWORD=root-password
-    - MYSQL_DATABASE=phpdockerio
-    - MYSQL_USER=username
-    - MYSQL_PASSWORD=password
+  phpdocker-io-webserver:
+    image: phpdockerio/nginx:latest
+    container_name: phpdocker-io-webserver
+    volumes:
+        - ..:/var/www/phpdocker-io
+        - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+     - "10000:80"
+    links:
+     - phpdocker-io-php-fpm
 
-phpdocker-io-webserver:
-  image: phpdockerio/nginx:latest
-  container_name: phpdocker-io-webserver
-  volumes:
+  phpdocker-io-php-fpm:
+    build:
+      context: .
+      dockerfile: php-fpm/Dockerfile
+    container_name: phpdocker-io-php-fpm
+    volumes:
       - ..:/var/www/phpdocker-io
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-  ports:
-   - "10000:80"
-  links:
-   - phpdocker-io-php-fpm
-
-phpdocker-io-php-fpm:
-  build: .
-  dockerfile: php-fpm/Dockerfile
-  container_name: phpdocker-io-php-fpm
-  volumes:
-    - ..:/var/www/phpdocker-io
-    - ./php-fpm/php-ini-overrides.ini:/etc/php/7.1/fpm/conf.d/99-overrides.ini
-  links:
-    - phpdocker-io-memcached
-    - phpdocker-io-mailhog
-    - phpdocker-io-mysql
+      - ./php-fpm/php-ini-overrides.ini:/etc/php/7.1/fpm/conf.d/99-overrides.ini
+    links:
+      - phpdocker-io-memcached
+      - phpdocker-io-mailhog
+      - phpdocker-io-mysql
