@@ -3,8 +3,8 @@
       container_name: {{ webserverContainerName }}
       working_dir: /application
       volumes:
-          - ..:/application
-          - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+          - .:/application
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
        - "{{ webserverPort }}:80"
       links:
