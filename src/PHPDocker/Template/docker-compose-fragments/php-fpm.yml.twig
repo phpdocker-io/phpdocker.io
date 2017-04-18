@@ -12,8 +12,9 @@
         context: .
         dockerfile: php-fpm/Dockerfile
       container_name: {{ phpFpmContainerName }}
+      working_dir: /application
       volumes:
-        - ..:{{ workdir }}
+        - ..:/application
         - ./{{ phpIniOverrides }}:{{ iniLocation }}99-overrides.ini
 {% if mysqlContainerName or postgresContainerName or memcachedContainerName or mailhogContainerName or redisContainerName or elasticsearchContainerName %}{{ "\n" }}
       links:

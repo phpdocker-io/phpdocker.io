@@ -32,5 +32,5 @@ RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.d
     && {{ cleanupCommand }}
 {% endif %}
 
-WORKDIR "{{ workdir }}"
+WORKDIR "/application"
 {% endspaceless %}

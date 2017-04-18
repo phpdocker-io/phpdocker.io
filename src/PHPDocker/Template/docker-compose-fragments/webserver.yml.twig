@@ -1,8 +1,9 @@
     webserver:
       image: phpdockerio/nginx:latest
       container_name: {{ webserverContainerName }}
+      working_dir: /application
       volumes:
-          - ..:{{ workdir }}
+          - ..:/application
           - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
        - "{{ webserverPort }}:80"

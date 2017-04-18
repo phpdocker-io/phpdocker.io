@@ -31,8 +31,6 @@ use PHPDocker\Zip\Archiver;
  */
 class Generator
 {
-    const WORKDIR_PATTERN = '/var/www/%s';
-
     const VM_IP_ADDRESS_PATTERN = '192.168.33.%d';
 
     const BASE_ZIP_FOLDER = 'phpdocker';
@@ -127,24 +125,6 @@ class Generator
     }
 
     /**
-     * Works out the workdir based on the Project.
-     *
-     * @param Project $project
-     *
-     * @return string
-     */
-    private function getWorkdir(Project $project)
-    {
-        static $workdir;
-
-        if ($workdir === null) {
-            $workdir = sprintf(self::WORKDIR_PATTERN, $project->getProjectNameSlug());
-        }
-
-        return $workdir;
-    }
-
-    /**
      * Generates the docker-compose file, and returns as a string of its contents.
      *
      * @param Project $project
@@ -158,7 +138,6 @@ class Generator
             'projectNameSlug' => $project->getProjectNameSlug(),
             'phpVersion'      => $project->getPhpOptions()->getVersion(),
             'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
-            'workdir'         => $this->getWorkdir($project),
             'mailhog'         => $project->hasMailhog(),
             'mailhogPort'     => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
@@ -200,7 +179,6 @@ class Generator
         $data = [
             'phpVersion'        => $project->getPhpOptions()->getVersion(),
             'projectNameSlug'   => $project->getProjectNameSlug(),
-            'workdir'           => $this->getWorkdir($project),
             'extensionPackages' => array_unique($packages),
             'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
             'maxUploadSize'     => $project->getApplicationOptions()->getUploadSize(),
@@ -233,12 +211,12 @@ class Generator
     private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {
         $data = [
-            'projectName'     => $project->getName(),
-            'workdir'         => $this->getWorkdir($project),
-            'phpFpmContainerName'  => $project->getContainerNameForService($project->getPhpOptions()),
-            'projectNameSlug' => $project->getProjectNameSlug(),
-            'applicationType' => $project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
+            'projectName'         => $project->getName(),
+            'phpFpmHostname'      => $project->getHostnameForService($project->getPhpOptions()),
+            'phpFpmContainerName' => $project->getContainerNameForService($project->getPhpOptions()),
+            'projectNameSlug'     => $project->getProjectNameSlug(),
+            'applicationType'     => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'       => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));
