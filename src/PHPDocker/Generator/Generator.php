@@ -31,8 +31,6 @@ use PHPDocker\Zip\Archiver;
  */
 class Generator
 {
-    const VM_IP_ADDRESS_PATTERN = '192.168.33.%d';
-
     const BASE_ZIP_FOLDER = 'phpdocker';
 
     /**
@@ -95,7 +93,6 @@ class Generator
             $data = [
                 'webserverPort' => $project->getBasePort(),
                 'mailhogPort'   => $project->getBasePort() + 1,
-                'vmIpAddress'   => $this->getVmIpAddress(),
             ];
 
             $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig',
@@ -134,15 +131,10 @@ class Generator
     private function getDockerCompose(Project $project): GeneratedFile\DockerCompose
     {
         $data = [
-            'projectName'     => $project->getName(),
-            'projectNameSlug' => $project->getProjectNameSlug(),
             'phpVersion'      => $project->getPhpOptions()->getVersion(),
             'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
-            'mailhog'         => $project->hasMailhog(),
             'mailhogPort'     => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
-            'memcached'       => $project->hasMemcached(),
-            'redis'           => $project->hasRedis(),
             'mysql'           => $project->getMysqlOptions(),
             'postgres'        => $project->getPostgresOptions(),
             'elasticsearch'   => $project->getElasticsearchOptions(),
@@ -178,10 +170,8 @@ class Generator
 
         $data = [
             'phpVersion'        => $project->getPhpOptions()->getVersion(),
-            'projectNameSlug'   => $project->getProjectNameSlug(),
             'extensionPackages' => array_unique($packages),
             'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'     => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
@@ -211,12 +201,10 @@ class Generator
     private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {
         $data = [
-            'projectName'         => $project->getName(),
-            'phpFpmHostname'      => $project->getHostnameForService($project->getPhpOptions()),
-            'phpFpmContainerName' => $project->getContainerNameForService($project->getPhpOptions()),
-            'projectNameSlug'     => $project->getProjectNameSlug(),
-            'applicationType'     => $project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'       => $project->getApplicationOptions()->getUploadSize(),
+            'projectName'     => $project->getName(),
+            'projectNameSlug' => $project->getProjectNameSlug(),
+            'applicationType' => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));
