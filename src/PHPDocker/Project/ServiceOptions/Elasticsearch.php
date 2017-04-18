@@ -92,7 +92,7 @@ class Elasticsearch extends Base
      *
      * @return string
      */
-    public function getHostnameSuffix(): string
+    public function getContainerNameSuffix(): string
     {
         return 'elasticsearch';
     }

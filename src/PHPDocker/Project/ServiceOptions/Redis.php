@@ -30,7 +30,7 @@ class Redis extends Base
      *
      * @return string
      */
-    public function getHostnameSuffix(): string
+    public function getContainerNameSuffix(): string
     {
         return 'redis';
     }

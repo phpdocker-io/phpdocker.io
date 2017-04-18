@@ -1,10 +1,10 @@
-    {{ webserverHostname }}:
+    webserver:
       image: phpdockerio/nginx:latest
-      container_name: {{ webserverHostname }}
+      container_name: {{ webserverContainerName }}
       volumes:
           - ..:{{ workdir }}
           - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
        - "{{ webserverPort }}:80"
       links:
-       - {{ phpFpmHostname }}
+       - php-fpm

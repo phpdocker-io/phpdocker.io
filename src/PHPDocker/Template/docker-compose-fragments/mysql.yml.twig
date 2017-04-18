@@ -1,7 +1,7 @@
-{% if mysqlHostname %}
-    {{ mysqlHostname }}:
+{% if mysqlContainerName %}
+    mysql:
       image: mysql:{{ mysql.getVersion() }}
-      container_name: {{ mysqlHostname }}
+      container_name: {{ mysqlContainerName }}
       environment:
         - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
         - MYSQL_DATABASE={{ mysql.getDatabaseName() }}

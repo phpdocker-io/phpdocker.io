@@ -1,7 +1,7 @@
-{% if mailhogHostname %}
-    {{ mailhogHostname }}:
+{% if mailhogContainerName %}
+    mailhog:
       image: phpdockerio/mailhog:latest
-      container_name: {{ mailhogHostname }}
+      container_name: {{ mailhogContainerName }}
       ports:
         - "{{ mailhogPort }}:8025"
 {% endif %}

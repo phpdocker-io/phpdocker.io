@@ -17,7 +17,7 @@
 
 namespace PHPDocker\Project;
 
-use PHPDocker\Interfaces\HostnameSuffixInterface;
+use PHPDocker\Interfaces\ContainerNameSuffixInterface;
 use PHPDocker\Interfaces\SlugifierInterface;
 
 /**
@@ -123,16 +123,16 @@ class Project
     /**
      * Calculates the hostname of a service based on the project name, and the service's hostname suffix.
      *
-     * @param HostnameSuffixInterface $service
+     * @param ContainerNameSuffixInterface $service
      *
      * @return string
      */
-    public function getHostnameForService(HostnameSuffixInterface $service): string
+    public function getContainerNameForService(ContainerNameSuffixInterface $service): string
     {
         $serviceKey = get_class($service);
         if (array_key_exists($serviceKey, $this->hostnamesForServices) === false) {
             $this->hostnamesForServices[$serviceKey] = sprintf('%s-%s', $this->getProjectNameSlug(),
-                $service->getHostnameSuffix());
+                $service->getContainerNameSuffix());
         }
 
         return $this->hostnamesForServices[$serviceKey];

@@ -101,7 +101,7 @@ class Generator
             ];
 
             $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig',
-                array_merge($data, $this->getHostnameDataBlock($project))));
+                array_merge($data, $this->getContainerNameDataBlock($project))));
         }
 
         return $readme;
@@ -170,7 +170,7 @@ class Generator
         ];
 
         // Get hostnames
-        $data = array_merge($data, $this->getHostnameDataBlock($project));
+        $data = array_merge($data, $this->getContainerNameDataBlock($project));
 
         // Get YML file, raw, then prettify by eliminating excess of blank lines
         $rendered = $this->twig->render('docker-compose.yml.twig', $data);
@@ -235,7 +235,7 @@ class Generator
         $data = [
             'projectName'     => $project->getName(),
             'workdir'         => $this->getWorkdir($project),
-            'phpFpmHostname'  => $project->getHostnameForService($project->getPhpOptions()),
+            'phpFpmContainerName'  => $project->getContainerNameForService($project->getPhpOptions()),
             'projectNameSlug' => $project->getProjectNameSlug(),
             'applicationType' => $project->getApplicationOptions()->getApplicationType(),
             'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
@@ -251,20 +251,20 @@ class Generator
      *
      * @return array
      */
-    private function getHostnameDataBlock(Project $project)
+    private function getContainerNameDataBlock(Project $project)
     {
         static $hostnameDataBlock = [];
 
         if (count($hostnameDataBlock) === 0) {
             $hostnameDataBlock = [
-                'webserverHostname'     => $project->getHostnameForService($project->getNginxOptions()),
-                'phpFpmHostname'        => $project->getHostnameForService($project->getPhpOptions()),
-                'mysqlHostname'         => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
-                'postgresHostname'      => $project->hasPostgres() ? $project->getHostnameForService($project->getPostgresOptions()) : null,
-                'memcachedHostname'     => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
-                'redisHostname'         => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
-                'mailhogHostname'       => $project->hasMailhog() ? $project->getHostnameForService($project->getMailhogOptions()) : null,
-                'elasticsearchHostname' => $project->hasElasticsearch() ? $project->getHostnameForService($project->getElasticsearchOptions()) : null,
+                'webserverContainerName'     => $project->getContainerNameForService($project->getNginxOptions()),
+                'phpFpmContainerName'        => $project->getContainerNameForService($project->getPhpOptions()),
+                'mysqlContainerName'         => $project->hasMysql() ? $project->getContainerNameForService($project->getMysqlOptions()) : null,
+                'postgresContainerName'      => $project->hasPostgres() ? $project->getContainerNameForService($project->getPostgresOptions()) : null,
+                'memcachedContainerName'     => $project->hasMemcached() ? $project->getContainerNameForService($project->getMemcachedOptions()) : null,
+                'redisContainerName'         => $project->hasRedis() ? $project->getContainerNameForService($project->getRedisOptions()) : null,
+                'mailhogContainerName'       => $project->hasMailhog() ? $project->getContainerNameForService($project->getMailhogOptions()) : null,
+                'elasticsearchContainerName' => $project->hasElasticsearch() ? $project->getContainerNameForService($project->getElasticsearchOptions()) : null,
             ];
         }
 

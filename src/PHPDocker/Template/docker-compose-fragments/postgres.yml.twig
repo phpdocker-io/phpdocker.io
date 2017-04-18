@@ -1,7 +1,7 @@
-{% if postgresHostname %}
-    {{ postgresHostname }}:
+{% if postgresContainerName %}
+    postgres:
       image: postgres:{{ postgres.getVersion() }}
-      container_name: {{ postgresHostname }}
+      container_name: {{ postgresContainerName }}
       environment:
         - POSTGRES_USER={{ postgres.getRootUser() }}
         - POSTGRES_PASSWORD={{ postgres.getRootPassword() }}
