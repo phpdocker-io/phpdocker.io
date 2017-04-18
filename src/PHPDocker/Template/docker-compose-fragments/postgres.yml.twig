@@ -2,6 +2,7 @@
     postgres:
       image: postgres:{{ postgres.getVersion() }}
       container_name: {{ postgresContainerName }}
+      working_dir: /application
       environment:
         - POSTGRES_USER={{ postgres.getRootUser() }}
         - POSTGRES_PASSWORD={{ postgres.getRootPassword() }}
