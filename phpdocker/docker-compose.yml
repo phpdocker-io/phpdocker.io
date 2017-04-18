@@ -38,7 +38,7 @@ phpdocker-io-php-fpm:
   container_name: phpdocker-io-php-fpm
   volumes:
     - ..:/var/www/phpdocker-io
-    - ./php-fpm/php-ini-overrides.ini:/etc/php/7.0/fpm/conf.d/99-overrides.ini
+    - ./php-fpm/php-ini-overrides.ini:/etc/php/7.1/fpm/conf.d/99-overrides.ini
   links:
     - phpdocker-io-memcached
     - phpdocker-io-mailhog
