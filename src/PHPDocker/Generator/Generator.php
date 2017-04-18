@@ -70,10 +70,10 @@ class Generator
             ->zipArchiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
-            ->addFile($this->getDockerCompose($project))
             ->addFile($this->getPhpDockerConf($project))
             ->addFile($this->getPhpIniOverrides($project))
-            ->addFile($this->getNginxConf($project));
+            ->addFile($this->getNginxConf($project))
+            ->addFile($this->getDockerCompose($project), true);
 
         return $this->zipArchiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
     }
