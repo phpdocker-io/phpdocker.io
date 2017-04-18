@@ -1,5 +1,5 @@
-{% if elasticsearchHostname %}
-{{ elasticsearchHostname }}:
-  image: elasticsearch:{{ elasticsearch.getVersion() }}
-  container_name: {{ elasticsearchHostname }}
+{% if elasticsearchContainerName %}
+    elasticsearch:
+      image: elasticsearch:{{ elasticsearch.getVersion() }}
+      container_name: {{ elasticsearchContainerName }}
 {% endif %}

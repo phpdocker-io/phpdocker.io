@@ -157,7 +157,7 @@ class Postgres extends Base
      *
      * @return string
      */
-    public function getHostnameSuffix(): string
+    public function getContainerNameSuffix(): string
     {
         return 'postgres';
     }

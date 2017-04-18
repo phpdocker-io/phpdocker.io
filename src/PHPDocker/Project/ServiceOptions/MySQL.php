@@ -90,7 +90,7 @@ class MySQL extends Base
     /**
      * @inheritdoc
      */
-    public function getHostnameSuffix(): string
+    public function getContainerNameSuffix(): string
     {
         return 'mysql';
     }

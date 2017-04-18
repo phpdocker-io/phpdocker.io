@@ -1,10 +1,10 @@
-{% if mysqlHostname %}
-{{ mysqlHostname }}:
-  image: mysql:{{ mysql.getVersion() }}
-  container_name: {{ mysqlHostname }}
-  environment:
-    - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
-    - MYSQL_DATABASE={{ mysql.getDatabaseName() }}
-    - MYSQL_USER={{ mysql.getUsername() }}
-    - MYSQL_PASSWORD={{ mysql.getPassword() }}
+{% if mysqlContainerName %}
+    mysql:
+      image: mysql:{{ mysql.getVersion() }}
+      container_name: {{ mysqlContainerName }}
+      environment:
+        - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
+        - MYSQL_DATABASE={{ mysql.getDatabaseName() }}
+        - MYSQL_USER={{ mysql.getUsername() }}
+        - MYSQL_PASSWORD={{ mysql.getPassword() }}
 {% endif %}

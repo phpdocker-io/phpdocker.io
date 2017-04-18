@@ -13,8 +13,8 @@ Note: you may place the files elsewhere in your project. Make sure you modify th
 
 Dependencies:
 
-  * Ensure you have the latest `docker engine` installed. Your distribution's package might be a little old, if you encounter problems, do upgrade. See https://docs.docker.com/engine/installation/
-  * Ensure you have the latest `docker-compose` installed. See [docs.docker.com/compose/install](https://docs.docker.com/compose/install/)
+  * Docker engine v1.13 or higher. Your OS provided package might be a little old, if you encounter problems, do upgrade. See [https://docs.docker.com/engine/installation](https://docs.docker.com/engine/installation)
+  * Docker compose v1.12 pr higher. See [docs.docker.com/compose/install](https://docs.docker.com/compose/install/)
 
 Once you're done, simply `cd` to the folder where you placed the files, then `docker-compose up -d`. This will initialise and start all the containers, then leave them running in the background.
 
@@ -25,21 +25,21 @@ You can access your application via **`localhost`**, if you're running the conta
 Service|Address outside containers
 ------|---------|-----------
 Webserver|[localhost:{{ webserverPort }}](http://localhost:{{ webserverPort }})
-{% if mailhogHostname %}Mailhog web interface|[localhost:{{ mailhogPort }}](http://localhost:{{ mailhogPort }}){{ "\n" }}{% endif %}
+{% if mailhogContainerName %}Mailhog web interface|[localhost:{{ mailhogPort }}](http://localhost:{{ mailhogPort }}){{ "\n" }}{% endif %}
 
 ##Hosts within your environment##
 
 You'll need to configure your application to use any services you enabled:
 
-Service|Hostname|Port number
+Service|ContainerName|Port number
 ------|---------|-----------
-php-fpm|{{ phpFpmHostname }}|9000
-{% if mysqlHostname %}MySQL|{{ mysqlHostname }}|3306 (default){{ "\n" }}{% endif %}
-{% if postgresHostname %}Postgres|{{ postgresHostname }}|5432 (default){{ "\n" }}{% endif %}
-{% if memcachedHostname %}Memcached|{{ memcachedHostname }}|11211 (default){{ "\n" }}{% endif %}
-{% if redisHostname %}Redis|{{ redisHostname }}|6379 (default){{ "\n" }}{% endif %}
-{% if elasticsearchHostname %}Elasticsearch|{{ elasticsearchHostname }}|9200 (HTTP default) / 9300 (ES transport default){{ "\n" }}{% endif %}
-{% if mailhogHostname %}SMTP (Mailhog)|{{ mailhogHostname }}|1025 (default){{ "\n" }}{% endif %}
+php-fpm|{{ phpFpmContainerName }}|9000
+{% if mysqlContainerName %}MySQL|{{ mysqlContainerName }}|3306 (default){{ "\n" }}{% endif %}
+{% if postgresContainerName %}Postgres|{{ postgresContainerName }}|5432 (default){{ "\n" }}{% endif %}
+{% if memcachedContainerName %}Memcached|{{ memcachedContainerName }}|11211 (default){{ "\n" }}{% endif %}
+{% if redisContainerName %}Redis|{{ redisContainerName }}|6379 (default){{ "\n" }}{% endif %}
+{% if elasticsearchContainerName %}Elasticsearch|{{ elasticsearchContainerName }}|9200 (HTTP default) / 9300 (ES transport default){{ "\n" }}{% endif %}
+{% if mailhogContainerName %}SMTP (Mailhog)|{{ mailhogContainerName }}|1025 (default){{ "\n" }}{% endif %}
 
 #Docker compose cheatsheet#
 
@@ -50,4 +50,4 @@ php-fpm|{{ phpFpmHostname }}|9000
   * Stop containers: `docker-compose stop`
   * Kill containers: `docker-compose kill`
   * View container logs: `docker-compose logs`
-  * Execute command inside of container: `docker exec -it {{ phpFpmHostname }} COMMAND` where `COMMAND` is whatever you want to run. For instance, `/bin/bash` to open a console prompt.
+  * Execute command inside of container: `docker exec -it {{ phpFpmContainerName }} COMMAND` where `COMMAND` is whatever you want to run. For instance, `/bin/bash` to open a console prompt.

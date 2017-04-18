@@ -1,5 +1,5 @@
-{% if memcachedHostname %}
-{{ memcachedHostname }}:
-  image: phpdockerio/memcached:latest
-  container_name: {{ memcachedHostname }}
+{% if memcachedContainerName %}
+    memcached:
+      image: phpdockerio/memcached:latest
+      container_name: {{ memcachedContainerName }}
 {% endif %}
