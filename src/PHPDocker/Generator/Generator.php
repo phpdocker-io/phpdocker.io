@@ -217,7 +217,7 @@ class Generator
      *
      * @return array
      */
-    private function getContainerNameDataBlock(Project $project)
+    private function getContainerNameDataBlock(Project $project): array
     {
         static $hostnameDataBlock = [];
 
