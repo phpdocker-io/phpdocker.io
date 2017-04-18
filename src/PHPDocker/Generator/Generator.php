@@ -74,7 +74,6 @@ class Generator
             ->zipArchiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
-            ->addFile($this->getVagrantFile($project))
             ->addFile($this->getDockerCompose($project))
             ->addFile($this->getPhpDockerConf($project))
             ->addFile($this->getPhpIniOverrides($project))
@@ -125,30 +124,6 @@ class Generator
         }
 
         return $readmeHtml;
-    }
-
-    /**
-     * Generates the vagrant file.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\Vagrantfile
-     */
-    private function getVagrantFile(Project $project): GeneratedFile\Vagrantfile
-    {
-        $data = [
-            'projectName'     => $project->getName(),
-            'projectNameSlug' => $project->getProjectNameSlug(),
-            'phpDockerFolder' => self::BASE_ZIP_FOLDER,
-            'vmIpAddress'     => $this->getVmIpAddress(),
-            'mailhog'         => $project->hasMailhog(),
-            'mailhogPort'     => $project->getBasePort() + 1,
-            'webserverPort'   => $project->getBasePort(),
-            'vagrantMemory'   => $project->getVagrantOptions()->getMemory(),
-            'vagrantSharedFs' => $project->getVagrantOptions()->getShareType(),
-        ];
-
-        return new GeneratedFile\Vagrantfile($this->twig->render('vagrantfile.twig', $data));
     }
 
     /**

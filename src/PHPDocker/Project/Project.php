@@ -79,11 +79,6 @@ class Project
     protected $mailhogOptions;
 
     /**
-     * @var ServiceOptions\Vagrant
-     */
-    protected $vagrantOptions;
-
-    /**
      * @var ServiceOptions\Elasticsearch
      */
     protected $elasticsearchOptions;
@@ -122,7 +117,6 @@ class Project
         $this->redisOptions         = new ServiceOptions\Redis();
         $this->memcachedOptions     = new ServiceOptions\Memcached();
         $this->mailhogOptions       = new ServiceOptions\Mailhog();
-        $this->vagrantOptions       = new ServiceOptions\Vagrant();
         $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
     }
 
@@ -453,26 +447,6 @@ class Project
         }
 
         return $this->slugifier;
-    }
-
-    /**
-     * @return ServiceOptions\Vagrant
-     */
-    public function getVagrantOptions(): ServiceOptions\Vagrant
-    {
-        return $this->vagrantOptions;
-    }
-
-    /**
-     * @param ServiceOptions\Vagrant $vagrantOptions
-     *
-     * @return Project
-     */
-    public function setVagrantOptions(ServiceOptions\Vagrant $vagrantOptions): self
-    {
-        $this->vagrantOptions = $vagrantOptions;
-
-        return $this;
     }
 
     /**

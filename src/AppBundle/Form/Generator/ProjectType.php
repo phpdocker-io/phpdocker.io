@@ -64,8 +64,7 @@ class ProjectType extends AbstractGeneratorType
             ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
             ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
             ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
-            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch'])
-            ->add('vagrantOptions', VagrantType::class, ['label' => 'Vagrant options']);
+            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
     }
 
     /**
