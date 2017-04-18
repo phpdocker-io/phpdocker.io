@@ -236,20 +236,4 @@ class Generator
 
         return $hostnameDataBlock;
     }
-
-    /**
-     * Calculates a random IP address based on a pattern.
-     *
-     * @return string
-     */
-    private function getVmIpAddress(): string
-    {
-        static $vmIpAddress;
-
-        if ($vmIpAddress === null) {
-            $vmIpAddress = sprintf(self::VM_IP_ADDRESS_PATTERN, random_int(1, 254));
-        }
-
-        return $vmIpAddress;
-    }
 }
