@@ -12,7 +12,6 @@ interface GeneratedFileInterface
      * Must return the relative filename this file will be described by.
      *
      * Eg:
-     *   - Vagrantfile
      *   - Folder\SomeFile
      *
      * @return string
