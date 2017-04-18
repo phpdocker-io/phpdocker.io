@@ -7,19 +7,19 @@
         {% set iniLocation =  '/etc/php5/fpm/conf.d/' %}
     {% endif %}
 {% endspaceless %}
-{{ phpFpmHostname }}:
-  build: .
-  dockerfile: php-fpm/Dockerfile
-  container_name: {{ phpFpmHostname }}
-  volumes:
-    - ..:{{ workdir }}
-    - ./{{ phpIniOverrides }}:{{ iniLocation }}99-overrides.ini
-{% if mysqlHostname or postgresHostname or memcachedHostname or mailhogHostname or redisHostname or elasticsearchHostname %}
-  links:
-{% if memcachedHostname %}    - {{ memcachedHostname }}{{ "\n" }}{% endif %}
-{% if mailhogHostname %}    - {{ mailhogHostname }}{{ "\n" }}{% endif %}
-{% if mysqlHostname %}    - {{ mysqlHostname }}{{ "\n" }}{% endif %}
-{% if postgresHostname %}    - {{ postgresHostname }}{{ "\n" }}{% endif %}
-{% if redisHostname %}    - {{ redisHostname }}{{ "\n" }}{% endif %}
-{% if elasticsearchHostname %}    - {{ elasticsearchHostname }}{% endif %}
+    {{ phpFpmHostname }}:
+      build: .
+      dockerfile: php-fpm/Dockerfile
+      container_name: {{ phpFpmHostname }}
+      volumes:
+        - ..:{{ workdir }}
+        - ./{{ phpIniOverrides }}:{{ iniLocation }}99-overrides.ini
+    {% if mysqlHostname or postgresHostname or memcachedHostname or mailhogHostname or redisHostname or elasticsearchHostname %}
+      links:
+    {% if memcachedHostname %}    - {{ memcachedHostname }}{{ "\n" }}{% endif %}
+    {% if mailhogHostname %}    - {{ mailhogHostname }}{{ "\n" }}{% endif %}
+    {% if mysqlHostname %}    - {{ mysqlHostname }}{{ "\n" }}{% endif %}
+    {% if postgresHostname %}    - {{ postgresHostname }}{{ "\n" }}{% endif %}
+    {% if redisHostname %}    - {{ redisHostname }}{{ "\n" }}{% endif %}
+    {% if elasticsearchHostname %}    - {{ elasticsearchHostname }}{% endif %}
 {% endif %}
