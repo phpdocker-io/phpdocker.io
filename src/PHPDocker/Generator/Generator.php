@@ -211,12 +211,12 @@ class Generator
     private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {
         $data = [
-            'projectName'     => $project->getName(),
-            'phpFpmHostname'  => $project->getHostnameForService($project->getPhpOptions()),
-            'phpFpmContainerName'  => $project->getContainerNameForService($project->getPhpOptions()),
-            'projectNameSlug' => $project->getProjectNameSlug(),
-            'applicationType' => $project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
+            'projectName'         => $project->getName(),
+            'phpFpmHostname'      => $project->getHostnameForService($project->getPhpOptions()),
+            'phpFpmContainerName' => $project->getContainerNameForService($project->getPhpOptions()),
+            'projectNameSlug'     => $project->getProjectNameSlug(),
+            'applicationType'     => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'       => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));
