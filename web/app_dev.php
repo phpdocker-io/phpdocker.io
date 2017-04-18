@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 // This check prevents access to debug front controllers that are deployed by accident to production servers.
 // Feel free to remove this, extend it, or make something more sophisticated.
-$allowedDevAddresses = ['172.22.0.1', '172.17.42.1', '127.0.0.1', 'fe80::1', '::1'];
+$allowedDevAddresses = ['172.18.0.1', '172.17.42.1', '127.0.0.1', 'fe80::1', '::1'];
 if (isset($_SERVER['HTTP_CLIENT_IP'])
     || isset($_SERVER['HTTP_X_FORWARDED_FOR'])
     || !(in_array(@$_SERVER['REMOTE_ADDR'], $allowedDevAddresses) || php_sapi_name() === 'cli-server')
