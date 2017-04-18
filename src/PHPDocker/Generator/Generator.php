@@ -95,8 +95,10 @@ class Generator
                 'mailhogPort'   => $project->getBasePort() + 1,
             ];
 
-            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig',
-                array_merge($data, $this->getContainerNameDataBlock($project))));
+            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig', array_merge(
+                $data,
+                $this->getContainerNameDataBlock($project)
+            )));
         }
 
         return $readme;
