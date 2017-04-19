@@ -31,15 +31,15 @@ Webserver|[localhost:{{ webserverPort }}](http://localhost:{{ webserverPort }})
 
 You'll need to configure your application to use any services you enabled:
 
-Service|ContainerName|Port number
+Service|Hostname|Port number
 ------|---------|-----------
-php-fpm|{{ phpFpmContainerName }}|9000
-{% if mysqlContainerName %}MySQL|{{ mysqlContainerName }}|3306 (default){{ "\n" }}{% endif %}
-{% if postgresContainerName %}Postgres|{{ postgresContainerName }}|5432 (default){{ "\n" }}{% endif %}
-{% if memcachedContainerName %}Memcached|{{ memcachedContainerName }}|11211 (default){{ "\n" }}{% endif %}
-{% if redisContainerName %}Redis|{{ redisContainerName }}|6379 (default){{ "\n" }}{% endif %}
-{% if elasticsearchContainerName %}Elasticsearch|{{ elasticsearchContainerName }}|9200 (HTTP default) / 9300 (ES transport default){{ "\n" }}{% endif %}
-{% if mailhogContainerName %}SMTP (Mailhog)|{{ mailhogContainerName }}|1025 (default){{ "\n" }}{% endif %}
+php-fpm|php-fpm|9000
+{% if mysqlContainerName %}MySQL|mysql|3306 (default){{ "\n" }}{% endif %}
+{% if postgresContainerName %}Postgres|postgres|5432 (default){{ "\n" }}{% endif %}
+{% if memcachedContainerName %}Memcached|memcached|11211 (default){{ "\n" }}{% endif %}
+{% if redisContainerName %}Redis|redis|6379 (default){{ "\n" }}{% endif %}
+{% if elasticsearchContainerName %}Elasticsearch|elasticsearch|9200 (HTTP default) / 9300 (ES transport default){{ "\n" }}{% endif %}
+{% if mailhogContainerName %}SMTP (Mailhog)|mailhog|1025 (default){{ "\n" }}{% endif %}
 
 #Docker compose cheatsheet#
 
