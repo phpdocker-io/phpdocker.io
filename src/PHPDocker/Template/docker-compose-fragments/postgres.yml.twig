@@ -1,6 +1,6 @@
 {% if postgresContainerName %}
     postgres:
-      image: postgres:{{ postgres.getVersion() }}
+      image: postgres:{{ postgres.getVersion() }}-alpine
       container_name: {{ postgresContainerName }}
       working_dir: /application
       environment:
