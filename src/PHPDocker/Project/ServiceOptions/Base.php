@@ -22,7 +22,7 @@ use PHPDocker\Interfaces\ContainerNameSuffixInterface;
 /**
  * Base class for service options.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 abstract class Base implements ContainerNameSuffixInterface

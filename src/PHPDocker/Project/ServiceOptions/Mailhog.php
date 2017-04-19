@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Options for Mailhog container.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 class Mailhog extends Base

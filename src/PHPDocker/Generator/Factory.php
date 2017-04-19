@@ -23,7 +23,7 @@ use PHPDocker\Zip\Archiver;
 /**
  * Factory for generator. If not provided, it will spawn and inject default dependencies.
  *
- * @package AuronConsultingOSS\Docker\Generator
+ * @package PHPDocker\Generator
  * @author  Luis A. Pabon Flores
  */
 class Factory

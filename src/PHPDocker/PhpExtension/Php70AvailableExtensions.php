@@ -20,7 +20,7 @@ namespace PHPDocker\PhpExtension;
 /**
  * Extensions available on PHP 7.0.x.
  *
- * @package AuronConsultingOSS\Docker\PhpExtension
+ * @package PHPDocker\PhpExtension
  * @author  Luis A. Pabon Flores
  */
 class Php70AvailableExtensions extends BaseAvailableExtensions

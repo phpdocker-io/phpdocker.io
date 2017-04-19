@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Postgres configuration
  *
- * @package AuronConsultingOSS\Docker\Project\ServiceOptions
+ * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
 class Postgres extends Base

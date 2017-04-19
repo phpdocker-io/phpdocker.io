@@ -2,7 +2,7 @@
 namespace PHPDocker\Interfaces;
 
 /**
- * @package AuronConsultingOSS\Docker\Interfaces
+ * @package PHPDocker\Interfaces
  */
 interface ContainerNameSuffixInterface
 {

@@ -20,7 +20,7 @@ namespace PHPDocker\PhpExtension;
 /**
  * Factory to specific PHP extensions list based on php version.
  *
- * @package AuronConsultingOSS\Docker\PhpExtension
+ * @package PHPDocker\PhpExtension
  * @author  Luis A. Pabon Flores
  */
 class AvailableExtensionsFactory

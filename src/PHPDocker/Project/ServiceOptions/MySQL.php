@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Options for MySQL container.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 class MySQL extends Base

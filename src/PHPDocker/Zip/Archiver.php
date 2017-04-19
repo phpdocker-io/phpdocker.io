@@ -23,7 +23,7 @@ use PHPDocker\Interfaces\GeneratedFileInterface;
 /**
  * Creates a zip file.
  *
- * @package AuronConsultingOSS\Docker\Archiver
+ * @package PHPDocker\Archiver
  * @author  Luis A. Pabon Flores
  */
 class Archiver

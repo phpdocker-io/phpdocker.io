@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Options for Memcached container.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 class Memcached extends Base

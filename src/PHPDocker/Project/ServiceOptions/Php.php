@@ -23,7 +23,7 @@ use PHPDocker\PhpExtension\PhpExtension;
 /**
  * Options for PHP container.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 class Php extends Base

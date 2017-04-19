@@ -20,7 +20,7 @@ namespace PHPDocker\Generator\GeneratedFile;
 /**
  * PHP docker config
  *
- * @package AuronConsultingOSS\Docker\Generator\GeneratedFile
+ * @package PHPDocker\Generator\GeneratedFile
  * @author  Luis A. Pabon Flores
  */
 class PhpDockerConf extends Base

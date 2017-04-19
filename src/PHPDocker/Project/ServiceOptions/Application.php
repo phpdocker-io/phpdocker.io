@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Describes a few things about the user's project.
  *
- * @package AuronConsultingOSS\Docker\Project\ServiceOptions
+ * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
 class Application

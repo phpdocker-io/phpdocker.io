@@ -22,7 +22,7 @@ use PHPDocker\Interfaces\ArchiveInterface;
 /**
  * Represents a zip file.
  *
- * @package AuronConsultingOSS\Docker\Archive
+ * @package PHPDocker\Archive
  * @author  Luis A. Pabon Flores
  */
 class File implements ArchiveInterface

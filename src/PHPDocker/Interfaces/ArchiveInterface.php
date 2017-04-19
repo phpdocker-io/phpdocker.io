@@ -4,7 +4,7 @@ namespace PHPDocker\Interfaces;
 /**
  * Interface ArchiveInterface
  *
- * @package AuronConsultingOSS\Docker\Interfaces
+ * @package PHPDocker\Interfaces
  */
 interface ArchiveInterface
 {

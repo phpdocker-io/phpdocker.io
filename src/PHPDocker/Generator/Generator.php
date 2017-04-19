@@ -26,7 +26,7 @@ use PHPDocker\Zip\Archiver;
 /**
  * Docker environment generator based on a Project.
  *
- * @package AuronConsultingOSS\Docker
+ * @package PHPDocker
  * @author  Luis A. Pabon Flores
  */
 class Generator
