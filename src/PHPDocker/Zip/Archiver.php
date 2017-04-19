@@ -23,7 +23,7 @@ use PHPDocker\Interfaces\GeneratedFileInterface;
 /**
  * Creates a zip file.
  *
- * @package AuronConsultingOSS\Docker\Archiver
+ * @package PHPDocker\Archiver
  * @author  Luis A. Pabon Flores
  */
 class Archiver
@@ -56,15 +56,18 @@ class Archiver
      * Adds a file to the list.
      *
      * @param GeneratedFileInterface $generatedFile
+     * @param bool                   $ignorePrefix
      *
      * @return Archiver
      */
-    public function addFile(GeneratedFileInterface $generatedFile): self
+    public function addFile(GeneratedFileInterface $generatedFile, bool $ignorePrefix = false): self
     {
-        $this->zipfile->addFromString(
-            $this->prefixFilename($generatedFile->getFilename()),
-            $generatedFile->getContents()
-        );
+        $localName = $generatedFile->getFilename();
+        if ($ignorePrefix === false) {
+            $localName = $this->prefixFilename($localName);
+        }
+
+        $this->zipfile->addFromString($localName, $generatedFile->getContents());
 
         return $this;
     }

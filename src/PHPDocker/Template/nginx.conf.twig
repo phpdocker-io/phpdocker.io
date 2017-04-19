@@ -3,7 +3,7 @@ server {
 
     client_max_body_size {{ maxUploadSize + 8 }}M;
 
-    access_log /var/log/nginx/{{ projectNameSlug }}.access.log;
+    access_log /var/log/nginx/application.access.log;
 
 {% if applicationType == 'symfony' or applicationType == 'silex' %}
     {% spaceless %}
@@ -13,7 +13,7 @@ server {
             {% set indexFile = 'index' %}
         {% endif %}
 
-    root {{ workdir }}/web;
+    root /application/web;
     
     rewrite ^/{{ indexFile }}\.php/?(.*)$ /$1 permanent;
     
@@ -29,13 +29,13 @@ server {
     }
     
     location ~ ^/({{ indexFile }}|{{ indexFile }}_dev)\.php(/|$) {
-        fastcgi_pass {{ phpFpmHostname }}:9000;
+        fastcgi_pass php-fpm:9000;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         fastcgi_index {{ indexFile }}.php;
         send_timeout 1800;
         fastcgi_read_timeout 1800;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectNameSlug }}_php_errors.log";
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/application_php_errors.log";
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
         include fastcgi_params;
@@ -51,7 +51,7 @@ server {
     {% endspaceless %}
 {% else %}
 
-    root {{ workdir }}/public;
+    root /application/public;
     index index.php;
 
     if (!-e $request_filename) {
@@ -59,10 +59,10 @@ server {
     }
 
     location ~ \.php$ {
-        fastcgi_pass {{ phpFpmHostname }}:9000;
+        fastcgi_pass php-fpm:9000;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/{{ projectNameSlug }}_php_errors.log";
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/application_php_errors.log";
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
         include fastcgi_params;

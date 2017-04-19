@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Options for nginx container.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 class Nginx extends Base
@@ -33,7 +33,7 @@ class Nginx extends Base
     /**
      * @inheritdoc
      */
-    public function getHostnameSuffix(): string
+    public function getContainerNameSuffix(): string
     {
         return 'webserver';
     }

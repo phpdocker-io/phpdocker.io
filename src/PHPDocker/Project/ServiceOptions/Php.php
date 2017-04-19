@@ -23,7 +23,7 @@ use PHPDocker\PhpExtension\PhpExtension;
 /**
  * Options for PHP container.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 class Php extends Base
@@ -70,7 +70,7 @@ class Php extends Base
     /**
      * @inheritdoc
      */
-    public function getHostnameSuffix(): string
+    public function getContainerNameSuffix(): string
     {
         return 'php-fpm';
     }

@@ -20,7 +20,7 @@ namespace PHPDocker\Generator\GeneratedFile;
 /**
  * nginx.conf file
  *
- * @package AuronConsultingOSS\Docker\Generator\GeneratedFile
+ * @package PHPDocker\Generator\GeneratedFile
  * @author  Luis A. Pabon Flores
  */
 class NginxConf extends Base

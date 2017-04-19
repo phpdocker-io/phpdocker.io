@@ -20,17 +20,18 @@ RUN apt-get update \
     {% spaceless %}
         {% if phpVersion == '5.6.x' %}
             {% set phalconPackage = 'php5-phalcon' %}
-        {% else %}
+        {% elseif phpVersion == '7.0.x' %}
             {% set phalconPackage = 'php7.0-phalcon' %}
+        {% elseif phpVersion == '7.1.x' %}
+            {% set phalconPackage = 'php7.1-phalcon' %}
         {% endif %}
     {% endspaceless %}
 
 # Install phalcon
 RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash \
-    && apt-get update \
     && apt-get install -y {{ phalconPackage }} \
     && {{ cleanupCommand }}
 {% endif %}
 
-WORKDIR "{{ workdir }}"
+WORKDIR "/application"
 {% endspaceless %}

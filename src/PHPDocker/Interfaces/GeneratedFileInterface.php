@@ -4,7 +4,7 @@ namespace PHPDocker\Interfaces;
 /**
  * Describes a parsed, generated file by its filename and contents.
  *
- * @package AuronConsultingOSS\Docker\Interfaces
+ * @package PHPDocker\Interfaces
  */
 interface GeneratedFileInterface
 {
@@ -12,7 +12,6 @@ interface GeneratedFileInterface
      * Must return the relative filename this file will be described by.
      *
      * Eg:
-     *   - Vagrantfile
      *   - Folder\SomeFile
      *
      * @return string

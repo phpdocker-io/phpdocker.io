@@ -26,20 +26,6 @@
                         <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
                     {% endfor %}
                 </div>
-
-                <h3>Vagrant options (legacy)</h3>
-                <div class="row">
-                    <div class="col col-lg-12">
-                        <div class="note">
-                            <p>Note: Windows 10 Pro and Mac have `native` versions of docker and docker-compose.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    {% for field in ['shareType', 'memory'] %}
-                        <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.vagrantOptions, field)) }}</div>
-                    {% endfor %}
-                </div>
             </div>
         </div>
 

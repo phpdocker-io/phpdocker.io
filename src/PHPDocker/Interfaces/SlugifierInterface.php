@@ -4,7 +4,7 @@ namespace PHPDocker\Interfaces;
 /**
  * Interface a slugifier MUST fulfil.
  *
- * @package AuronConsultingOSS\Docker\Interfaces
+ * @package PHPDocker\Interfaces
  */
 interface SlugifierInterface
 {

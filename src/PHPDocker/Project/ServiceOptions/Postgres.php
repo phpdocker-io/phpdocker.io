@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Postgres configuration
  *
- * @package AuronConsultingOSS\Docker\Project\ServiceOptions
+ * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
 class Postgres extends Base
@@ -157,7 +157,7 @@ class Postgres extends Base
      *
      * @return string
      */
-    public function getHostnameSuffix(): string
+    public function getContainerNameSuffix(): string
     {
         return 'postgres';
     }

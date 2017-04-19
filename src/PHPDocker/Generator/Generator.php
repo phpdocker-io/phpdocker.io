@@ -26,15 +26,11 @@ use PHPDocker\Zip\Archiver;
 /**
  * Docker environment generator based on a Project.
  *
- * @package AuronConsultingOSS\Docker
+ * @package PHPDocker
  * @author  Luis A. Pabon Flores
  */
 class Generator
 {
-    const WORKDIR_PATTERN = '/var/www/%s';
-
-    const VM_IP_ADDRESS_PATTERN = '192.168.33.%d';
-
     const BASE_ZIP_FOLDER = 'phpdocker';
 
     /**
@@ -74,11 +70,10 @@ class Generator
             ->zipArchiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
-            ->addFile($this->getVagrantFile($project))
-            ->addFile($this->getDockerCompose($project))
             ->addFile($this->getPhpDockerConf($project))
             ->addFile($this->getPhpIniOverrides($project))
-            ->addFile($this->getNginxConf($project));
+            ->addFile($this->getNginxConf($project))
+            ->addFile($this->getDockerCompose($project), true);
 
         return $this->zipArchiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
     }
@@ -98,11 +93,12 @@ class Generator
             $data = [
                 'webserverPort' => $project->getBasePort(),
                 'mailhogPort'   => $project->getBasePort() + 1,
-                'vmIpAddress'   => $this->getVmIpAddress(),
             ];
 
-            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig',
-                array_merge($data, $this->getHostnameDataBlock($project))));
+            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig', array_merge(
+                $data,
+                $this->getContainerNameDataBlock($project)
+            )));
         }
 
         return $readme;
@@ -128,48 +124,6 @@ class Generator
     }
 
     /**
-     * Generates the vagrant file.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\Vagrantfile
-     */
-    private function getVagrantFile(Project $project): GeneratedFile\Vagrantfile
-    {
-        $data = [
-            'projectName'     => $project->getName(),
-            'projectNameSlug' => $project->getProjectNameSlug(),
-            'phpDockerFolder' => self::BASE_ZIP_FOLDER,
-            'vmIpAddress'     => $this->getVmIpAddress(),
-            'mailhog'         => $project->hasMailhog(),
-            'mailhogPort'     => $project->getBasePort() + 1,
-            'webserverPort'   => $project->getBasePort(),
-            'vagrantMemory'   => $project->getVagrantOptions()->getMemory(),
-            'vagrantSharedFs' => $project->getVagrantOptions()->getShareType(),
-        ];
-
-        return new GeneratedFile\Vagrantfile($this->twig->render('vagrantfile.twig', $data));
-    }
-
-    /**
-     * Works out the workdir based on the Project.
-     *
-     * @param Project $project
-     *
-     * @return string
-     */
-    private function getWorkdir(Project $project)
-    {
-        static $workdir;
-
-        if ($workdir === null) {
-            $workdir = sprintf(self::WORKDIR_PATTERN, $project->getProjectNameSlug());
-        }
-
-        return $workdir;
-    }
-
-    /**
      * Generates the docker-compose file, and returns as a string of its contents.
      *
      * @param Project $project
@@ -179,23 +133,17 @@ class Generator
     private function getDockerCompose(Project $project): GeneratedFile\DockerCompose
     {
         $data = [
-            'projectName'     => $project->getName(),
-            'projectNameSlug' => $project->getProjectNameSlug(),
             'phpVersion'      => $project->getPhpOptions()->getVersion(),
             'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
-            'workdir'         => $this->getWorkdir($project),
-            'mailhog'         => $project->hasMailhog(),
             'mailhogPort'     => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
-            'memcached'       => $project->hasMemcached(),
-            'redis'           => $project->hasRedis(),
             'mysql'           => $project->getMysqlOptions(),
             'postgres'        => $project->getPostgresOptions(),
             'elasticsearch'   => $project->getElasticsearchOptions(),
         ];
 
         // Get hostnames
-        $data = array_merge($data, $this->getHostnameDataBlock($project));
+        $data = array_merge($data, $this->getContainerNameDataBlock($project));
 
         // Get YML file, raw, then prettify by eliminating excess of blank lines
         $rendered = $this->twig->render('docker-compose.yml.twig', $data);
@@ -224,11 +172,8 @@ class Generator
 
         $data = [
             'phpVersion'        => $project->getPhpOptions()->getVersion(),
-            'projectNameSlug'   => $project->getProjectNameSlug(),
-            'workdir'           => $this->getWorkdir($project),
             'extensionPackages' => array_unique($packages),
             'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'     => $project->getApplicationOptions()->getUploadSize(),
         ];
 
         return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
@@ -259,8 +204,6 @@ class Generator
     {
         $data = [
             'projectName'     => $project->getName(),
-            'workdir'         => $this->getWorkdir($project),
-            'phpFpmHostname'  => $project->getHostnameForService($project->getPhpOptions()),
             'projectNameSlug' => $project->getProjectNameSlug(),
             'applicationType' => $project->getApplicationOptions()->getApplicationType(),
             'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
@@ -276,39 +219,23 @@ class Generator
      *
      * @return array
      */
-    private function getHostnameDataBlock(Project $project)
+    private function getContainerNameDataBlock(Project $project): array
     {
         static $hostnameDataBlock = [];
 
         if (count($hostnameDataBlock) === 0) {
             $hostnameDataBlock = [
-                'webserverHostname'     => $project->getHostnameForService($project->getNginxOptions()),
-                'phpFpmHostname'        => $project->getHostnameForService($project->getPhpOptions()),
-                'mysqlHostname'         => $project->hasMysql() ? $project->getHostnameForService($project->getMysqlOptions()) : null,
-                'postgresHostname'      => $project->hasPostgres() ? $project->getHostnameForService($project->getPostgresOptions()) : null,
-                'memcachedHostname'     => $project->hasMemcached() ? $project->getHostnameForService($project->getMemcachedOptions()) : null,
-                'redisHostname'         => $project->hasRedis() ? $project->getHostnameForService($project->getRedisOptions()) : null,
-                'mailhogHostname'       => $project->hasMailhog() ? $project->getHostnameForService($project->getMailhogOptions()) : null,
-                'elasticsearchHostname' => $project->hasElasticsearch() ? $project->getHostnameForService($project->getElasticsearchOptions()) : null,
+                'webserverContainerName'     => $project->getContainerNameForService($project->getNginxOptions()),
+                'phpFpmContainerName'        => $project->getContainerNameForService($project->getPhpOptions()),
+                'mysqlContainerName'         => $project->hasMysql() ? $project->getContainerNameForService($project->getMysqlOptions()) : null,
+                'postgresContainerName'      => $project->hasPostgres() ? $project->getContainerNameForService($project->getPostgresOptions()) : null,
+                'memcachedContainerName'     => $project->hasMemcached() ? $project->getContainerNameForService($project->getMemcachedOptions()) : null,
+                'redisContainerName'         => $project->hasRedis() ? $project->getContainerNameForService($project->getRedisOptions()) : null,
+                'mailhogContainerName'       => $project->hasMailhog() ? $project->getContainerNameForService($project->getMailhogOptions()) : null,
+                'elasticsearchContainerName' => $project->hasElasticsearch() ? $project->getContainerNameForService($project->getElasticsearchOptions()) : null,
             ];
         }
 
         return $hostnameDataBlock;
-    }
-
-    /**
-     * Calculates a random IP address based on a pattern.
-     *
-     * @return string
-     */
-    private function getVmIpAddress(): string
-    {
-        static $vmIpAddress;
-
-        if ($vmIpAddress === null) {
-            $vmIpAddress = sprintf(self::VM_IP_ADDRESS_PATTERN, random_int(1, 254));
-        }
-
-        return $vmIpAddress;
     }
 }

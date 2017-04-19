@@ -17,15 +17,15 @@
 
 namespace PHPDocker\Project\ServiceOptions;
 
-use PHPDocker\Interfaces\HostnameSuffixInterface;
+use PHPDocker\Interfaces\ContainerNameSuffixInterface;
 
 /**
  * Base class for service options.
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
-abstract class Base implements HostnameSuffixInterface
+abstract class Base implements ContainerNameSuffixInterface
 {
     /**
      * @var bool
@@ -37,7 +37,7 @@ abstract class Base implements HostnameSuffixInterface
      *
      * @return string
      */
-    abstract public function getHostnameSuffix(): string;
+    abstract public function getContainerNameSuffix(): string;
 
     /**
      * @return boolean

@@ -20,7 +20,7 @@ namespace PHPDocker\PhpExtension;
 /**
  * Describes a PHP extension
  *
- * @package AuronConsultingOSS\Docker\Entity
+ * @package PHPDocker\Entity
  * @author  Luis A. Pabon Flores
  */
 class PhpExtension

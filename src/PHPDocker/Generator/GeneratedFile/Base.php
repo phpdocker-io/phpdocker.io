@@ -22,7 +22,7 @@ use PHPDocker\Interfaces\GeneratedFileInterface;
 /**
  * Base class for all generated files.
  *
- * @package AuronConsultingOSS\Docker\Generator\GeneratedFile
+ * @package PHPDocker\Generator\GeneratedFile
  * @author  Luis A. Pabon Flores
  */
 abstract class Base implements GeneratedFileInterface

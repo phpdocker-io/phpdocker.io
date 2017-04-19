@@ -20,7 +20,7 @@ namespace PHPDocker\Zip\Exception;
 /**
  * When an archive couldn't be created for whatever reason.
  *
- * @package AuronConsultingOSS\Docker\Exception\Archiver
+ * @package PHPDocker\Exception\Archiver
  * @author  Luis A. Pabon Flores
  */
 class ArchiveNotCreatedException extends \Exception
