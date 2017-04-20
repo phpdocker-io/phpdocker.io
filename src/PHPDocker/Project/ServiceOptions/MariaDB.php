@@ -18,24 +18,24 @@
 namespace PHPDocker\Project\ServiceOptions;
 
 /**
- * Options for MySQL container.
+ * Options for MariaDB container.
  *
  * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
-class MySQL extends AbstractMySQL
+class MariaDB extends AbstractMySQL
 {
     /**
      * Available versions
      */
-    protected const VERSION_55 = '5.5';
-    protected const VERSION_56 = '5.6';
-    protected const VERSION_57 = '5.7';
+    protected const VERSION_55  = '5.5';
+    protected const VERSION_100 = '10.0';
+    protected const VERSION_101 = '10.1';
 
     protected const ALLOWED_VERSIONS = [
-        self::VERSION_57 => '5.7.x',
-        self::VERSION_56 => '5.6.x',
-        self::VERSION_55 => '5.5.x',
+        self::VERSION_101 => '10.1.x',
+        self::VERSION_100 => '10.0.x',
+        self::VERSION_55  => '5.5.x',
     ];
 
     /**
@@ -43,7 +43,7 @@ class MySQL extends AbstractMySQL
      */
     public function __construct()
     {
-        $this->version = self::VERSION_57;
+        $this->version = self::VERSION_101;
     }
 
     /**
@@ -59,6 +59,6 @@ class MySQL extends AbstractMySQL
      */
     public function getContainerNameSuffix(): string
     {
-        return 'mysql';
+        return 'mariadb';
     }
 }

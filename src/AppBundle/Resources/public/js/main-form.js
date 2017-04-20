@@ -10,6 +10,7 @@ function doMainFormMagic() {
     [
         'postgres',
         'mysql',
+        'mariadb',
         'elasticsearch'
     ].forEach(function (value) {
         var optionsDiv    = $('#' + value + '-options');
@@ -48,6 +49,7 @@ function doMainFormMagic() {
     extensionServices['hasRedis']                    = 'Redis';
     extensionServices['hasMemcached']                = 'Memcached';
     extensionServices['mysqlOptions_hasMysql']       = 'MySQL';
+    extensionServices['mariadbOptions_hasMariadb']   = 'MySQL';
     extensionServices['postgresOptions_hasPostgres'] = 'PostgreSQL';
 
     for (var key in extensionServices) {

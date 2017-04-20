@@ -35,6 +35,7 @@ Service|Hostname|Port number
 ------|---------|-----------
 php-fpm|php-fpm|9000
 {% if mysqlContainerName %}MySQL|mysql|3306 (default){{ "\n" }}{% endif %}
+{% if mariadbContainerName %}MariaDB|mariadb|3306 (default){{ "\n" }}{% endif %}
 {% if postgresContainerName %}Postgres|postgres|5432 (default){{ "\n" }}{% endif %}
 {% if memcachedContainerName %}Memcached|memcached|11211 (default){{ "\n" }}{% endif %}
 {% if redisContainerName %}Redis|redis|6379 (default){{ "\n" }}{% endif %}

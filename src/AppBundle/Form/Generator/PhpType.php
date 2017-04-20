@@ -104,7 +104,7 @@ class PhpType extends AbstractGeneratorType
      *
      * @return string
      */
-    protected function getDataClass()
+    protected function getDataClass(): string
     {
         return PhpOptions::class;
     }

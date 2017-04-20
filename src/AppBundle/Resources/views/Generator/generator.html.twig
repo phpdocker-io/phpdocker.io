@@ -71,6 +71,19 @@
             </div>
 
             <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
+                <h3>MariaDB</h3>
+                {{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}
+
+                <div id="mariadb-options">
+                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
+                    if (attribute(form.mariadbOptions, field) is defined) %}
+                        {{ form_row(attribute(form.mariadbOptions, field)) }}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="{{ formGroupClass }} {{ halfColumn }}">
                 <h3>Postgres</h3>
                 {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
 
@@ -81,17 +94,17 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="{{ formGroupClass }} {{ halfColumn }}">
+            <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
                 <h3>Elasticsearch</h3>
                 {{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}
                 <div id="elasticsearch-options">
                     {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
                 </div>
             </div>
-            <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
+        </div>
+
+        <div class="row">
+            <div class="{{ formGroupClass }} col col-md-4 col-lg-4 col-lg-offset-4 col-sm-12 col-xs-12">
                 <h3>Zero-config Services</h3>
                 <p class="note">The following services take no additional configuration parameters.</p>
 

@@ -1,0 +1,11 @@
+{% if mariadbContainerName %}
+    mariadb:
+      image: mariadb:{{ mariadb.getVersion() }}
+      container_name: {{ mariadbContainerName }}
+      working_dir: /application
+      environment:
+        - MYSQL_ROOT_PASSWORD={{ mariadb.getRootPassword() }}
+        - MYSQL_DATABASE={{ mariadb.getDatabaseName() }}
+        - MYSQL_USER={{ mariadb.getUsername() }}
+        - MYSQL_PASSWORD={{ mariadb.getPassword() }}
+{% endif %}

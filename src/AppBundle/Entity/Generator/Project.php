@@ -86,7 +86,9 @@ class Project extends \PHPDocker\Project\Project
     {
         parent::__construct($slugifier);
 
+        // Override some of the options with our own tweaked versions
         $this->mysqlOptions         = new MySQLOptions();
+        $this->mariadbOptions       = new MariaDBOptions();
         $this->postgresOptions      = new PostgresOptions();
         $this->phpOptions           = new PhpOptions();
         $this->elasticsearchOptions = new ElasticsearchOptions();
