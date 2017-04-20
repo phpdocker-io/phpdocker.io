@@ -73,7 +73,6 @@ class MariaDBOptions extends MariaDB
      */
     protected $password;
 
-
     /**
      * Redirect hasMariaDB to enabled.
      *
