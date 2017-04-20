@@ -33,7 +33,7 @@ abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractTyp
      *
      * @return string
      */
-    abstract protected function getDataClass();
+    abstract protected function getDataClass(): string;
 
     /**
      * @param OptionsResolver $resolver

@@ -17,8 +17,6 @@
 
 namespace AppBundle\Form\Generator;
 
-use AppBundle\Entity\Generator\PostgresOptions;
-use PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,13 +24,48 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Form for Postgres options.
+ * Base form for MySQL-like options.
  *
  * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-class PostgresType extends AbstractGeneratorType
+abstract class AbstractMySQLType extends AbstractGeneratorType
 {
+    /**
+     * Return the name of the field for 'hasWhatever'.
+     *
+     * @return string
+     */
+    abstract protected function getHasOptionFieldName(): string;
+
+    /**
+     * Return the label of the field 'hasWhatever'.
+     *
+     * @return string
+     */
+    abstract protected function getHasOptionLabel(): string;
+
+    /**
+     * Return the list of available versions for the version selector field.
+     *
+     * @return array
+     */
+    abstract protected function getVersionChoices(): array;
+
+    /**
+     * Return the method name (bool) on the entity to work out whether option is enabled.
+     *
+     * @return string
+     */
+    abstract protected function getHasOptionFunctionName(): string;
+
+    /**
+     * Return the name of the validation group for this form type.
+     *
+     * @return string
+     */
+    abstract protected function getValidationGroup(): string;
+
     /**
      * Builds the form definition.
      *
@@ -42,19 +75,15 @@ class PostgresType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('hasPostgres', CheckboxType::class, [
-                'label'    => 'Enable Postgres',
+            ->add($this->getHasOptionFieldName(), CheckboxType::class, [
+                'label'    => $this->getHasOptionLabel(),
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => array_flip(Postgres::getChoices()),
+                'choices'  => $this->getVersionChoices(),
                 'expanded' => false,
                 'multiple' => false,
                 'label'    => 'Version',
-            ])
-            ->add('rootUser', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Root username'],
             ])
             ->add('rootPassword', TextType::class, [
                 'label' => false,
@@ -63,17 +92,15 @@ class PostgresType extends AbstractGeneratorType
             ->add('databaseName', TextType::class, [
                 'label' => false,
                 'attr'  => ['placeholder' => 'Your app\'s database name'],
+            ])
+            ->add('username', TextType::class, [
+                'label' => false,
+                'attr'  => ['placeholder' => 'Your app\'s database username'],
+            ])
+            ->add('password', TextType::class, [
+                'label' => false,
+                'attr'  => ['placeholder' => 'Your app\'s database password'],
             ]);
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
-     */
-    protected function getDataClass(): string
-    {
-        return PostgresOptions::class;
     }
 
     /**
@@ -82,12 +109,12 @@ class PostgresType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
-            /** @var \AppBundle\Entity\Generator\PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];
 
-            if ($data->hasPostgres() === true) {
-                $groups[] = 'postgresOptions';
+            $hasOption = $this->getHasOptionFunctionName();
+            if ($data->{$hasOption}() === true) {
+                $groups[] = $this->getValidationGroup();
             }
 
             return $groups;

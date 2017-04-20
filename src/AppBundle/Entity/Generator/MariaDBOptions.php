@@ -17,31 +17,31 @@
 
 namespace AppBundle\Entity\Generator;
 
-use PHPDocker\Project\ServiceOptions\MySQL;
+use PHPDocker\Project\ServiceOptions\MariaDB;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * MySQLOptions entity and validation
+ * MariaDBOptions entity and validation
  *
  * @package AppBundle\Entity\ORM
  * @author  Luis A. Pabon Flores
  */
-class MySQLOptions extends MySQL
+class MariaDBOptions extends MariaDB
 {
     /**
      * @var string
      *
-     * @Assert\NotBlank(groups={"mysqlOptions"})
-     * @Assert\NotNull(groups={"mysqlOptions"})
+     * @Assert\NotBlank(groups={"mariadbOptions"})
+     * @Assert\NotNull(groups={"mariadbOptions"})
      * @Assert\Length(min=1, max=128)
      */
-    protected $version = self::VERSION_57;
+    protected $version = self::VERSION_101;
 
     /**
      * @var string
      *
-     * @Assert\NotBlank(groups={"mysqlOptions"})
-     * @Assert\NotNull(groups={"mysqlOptions"})
+     * @Assert\NotBlank(groups={"mariadbOptions"})
+     * @Assert\NotNull(groups={"mariadbOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $rootPassword;
@@ -49,8 +49,8 @@ class MySQLOptions extends MySQL
     /**
      * @var string
      *
-     * @Assert\NotBlank(groups={"mysqlOptions"})
-     * @Assert\NotNull(groups={"mysqlOptions"})
+     * @Assert\NotBlank(groups={"mariadbOptions"})
+     * @Assert\NotNull(groups={"mariadbOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $databaseName;
@@ -58,8 +58,8 @@ class MySQLOptions extends MySQL
     /**
      * @var string
      *
-     * @Assert\NotBlank(groups={"mysqlOptions"})
-     * @Assert\NotNull(groups={"mysqlOptions"})
+     * @Assert\NotBlank(groups={"mariadbOptions"})
+     * @Assert\NotNull(groups={"mariadbOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $username;
@@ -67,28 +67,29 @@ class MySQLOptions extends MySQL
     /**
      * @var string
      *
-     * @Assert\NotBlank(groups={"mysqlOptions"})
-     * @Assert\NotNull(groups={"mysqlOptions"})
+     * @Assert\NotBlank(groups={"mariadbOptions"})
+     * @Assert\NotNull(groups={"mariadbOptions"})
      * @Assert\Length(min=1, max=128)
      */
     protected $password;
 
+
     /**
-     * Redirect hasMysql to enabled.
+     * Redirect hasMariaDB to enabled.
      *
-     * @param bool $hasMysql
+     * @param bool $hasMariaDB
      *
      * @return self
      */
-    public function setHasMysql(bool $hasMysql = false): self
+    public function setHasMariaDB(bool $hasMariaDB = false): self
     {
-        return $this->setEnabled($hasMysql);
+        return $this->setEnabled($hasMariaDB);
     }
 
     /**
      * @return bool
      */
-    public function hasMysql(): bool
+    public function hasMariaDB(): bool
     {
         return $this->isEnabled();
     }

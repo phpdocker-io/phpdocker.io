@@ -58,7 +58,7 @@ class ElasticsearchType extends AbstractGeneratorType
      *
      * @return string
      */
-    protected function getDataClass()
+    protected function getDataClass(): string
     {
         return ElasticsearchOptions::class;
     }
