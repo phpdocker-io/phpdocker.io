@@ -76,7 +76,7 @@ abstract class AbstractMySQL extends Base
      */
     public function setVersion(string $version): self
     {
-        if (array_key_exists($version, self::getChoices()) === false) {
+        if (array_key_exists($version, static::getChoices()) === false) {
             throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
         }
 
