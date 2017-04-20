@@ -20,7 +20,7 @@ namespace PHPDocker\Project\ServiceOptions;
 /**
  * Options for Elasticsearch container.
  *
- * @package PHPDocker\Entity
+ * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
 class Elasticsearch extends Base

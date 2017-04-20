@@ -22,7 +22,7 @@ use PHPDocker\Interfaces\ContainerNameSuffixInterface;
 /**
  * Base class for service options.
  *
- * @package PHPDocker\Entity
+ * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
 abstract class Base implements ContainerNameSuffixInterface
@@ -50,7 +50,7 @@ abstract class Base implements ContainerNameSuffixInterface
     /**
      * @param boolean $enabled
      *
-     * @return Base
+     * @return self
      */
     public function setEnabled(bool $enabled): self
     {
