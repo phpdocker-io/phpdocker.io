@@ -18,20 +18,47 @@
 namespace PHPDocker\Project\ServiceOptions;
 
 /**
- * Options for redis container
+ * Options for MariaDB container.
  *
  * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
-class Redis extends Base
+class MariaDB extends AbstractMySQL
 {
     /**
-     * Return the suffix to be used on hostname construction.
-     *
-     * @return string
+     * Available versions
+     */
+    protected const VERSION_55  = '5.5';
+    protected const VERSION_100 = '10.0';
+    protected const VERSION_101 = '10.1';
+
+    protected const ALLOWED_VERSIONS = [
+        self::VERSION_101 => '10.1.x',
+        self::VERSION_100 => '10.0.x',
+        self::VERSION_55  => '5.5.x',
+    ];
+
+    /**
+     * Set default version.
+     */
+    public function __construct()
+    {
+        $this->version = self::VERSION_101;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getChoices(): array
+    {
+        return self::ALLOWED_VERSIONS;
+    }
+
+    /**
+     * @inheritdoc
      */
     public function getContainerNameSuffix(): string
     {
-        return 'redis';
+        return 'mariadb';
     }
 }

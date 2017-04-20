@@ -138,6 +138,7 @@ class Generator
             'mailhogPort'     => $project->getBasePort() + 1,
             'webserverPort'   => $project->getBasePort(),
             'mysql'           => $project->getMysqlOptions(),
+            'mariadb'         => $project->getMariadbOptions(),
             'postgres'        => $project->getPostgresOptions(),
             'elasticsearch'   => $project->getElasticsearchOptions(),
         ];
@@ -228,6 +229,7 @@ class Generator
                 'webserverContainerName'     => $project->getContainerNameForService($project->getNginxOptions()),
                 'phpFpmContainerName'        => $project->getContainerNameForService($project->getPhpOptions()),
                 'mysqlContainerName'         => $project->hasMysql() ? $project->getContainerNameForService($project->getMysqlOptions()) : null,
+                'mariadbContainerName'       => $project->hasMariadb() ? $project->getContainerNameForService($project->getMariadbOptions()) : null,
                 'postgresContainerName'      => $project->hasPostgres() ? $project->getContainerNameForService($project->getPostgresOptions()) : null,
                 'memcachedContainerName'     => $project->hasMemcached() ? $project->getContainerNameForService($project->getMemcachedOptions()) : null,
                 'redisContainerName'         => $project->hasRedis() ? $project->getContainerNameForService($project->getRedisOptions()) : null,

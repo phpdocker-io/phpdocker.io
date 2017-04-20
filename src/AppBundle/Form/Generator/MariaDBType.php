@@ -17,23 +17,23 @@
 
 namespace AppBundle\Form\Generator;
 
-use AppBundle\Entity\Generator\MySQLOptions;
-use PHPDocker\Project\ServiceOptions\MySQL;
+use AppBundle\Entity\Generator\MariaDBOptions;
+use PHPDocker\Project\ServiceOptions\MariaDB;
 
 /**
- * Form for MySQL options.
+ * Form for Mariadb options.
  *
  * @package AppBundle\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-class MySQLType extends AbstractMySQLType
+class MariaDBType extends AbstractMySQLType
 {
     /**
      * @inheritdoc
      */
     protected function getDataClass(): string
     {
-        return MySQLOptions::class;
+        return MariaDBOptions::class;
     }
 
     /**
@@ -41,7 +41,7 @@ class MySQLType extends AbstractMySQLType
      */
     protected function getHasOptionFieldName(): string
     {
-        return 'hasMysql';
+        return 'hasMariadb';
     }
 
     /**
@@ -49,7 +49,7 @@ class MySQLType extends AbstractMySQLType
      */
     protected function getHasOptionLabel(): string
     {
-        return 'Enable MySQL';
+        return 'Enable MariaDB';
     }
 
     /**
@@ -57,7 +57,7 @@ class MySQLType extends AbstractMySQLType
      */
     protected function getVersionChoices(): array
     {
-        return array_flip(MySQL::getChoices());
+        return array_flip(MariaDB::getChoices());
     }
 
     /**
@@ -65,7 +65,7 @@ class MySQLType extends AbstractMySQLType
      */
     protected function getHasOptionFunctionName(): string
     {
-        return 'hasMysql';
+        return 'hasMariadb';
     }
 
     /**
@@ -73,6 +73,6 @@ class MySQLType extends AbstractMySQLType
      */
     protected function getValidationGroup(): string
     {
-        return 'mysqlOptions';
+        return 'mariadbOptions';
     }
 }

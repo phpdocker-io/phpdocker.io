@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-bin/run-in-container php bin/console $@
+docker-compose exec --user www-data php-fpm bin/console $@

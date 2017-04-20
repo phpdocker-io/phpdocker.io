@@ -54,6 +54,11 @@ class Project
     protected $mysqlOptions;
 
     /**
+     * @var ServiceOptions\MariaDB
+     */
+    protected $mariadbOptions;
+
+    /**
      * @var ServiceOptions\Postgres
      */
     protected $postgresOptions;
@@ -112,6 +117,7 @@ class Project
         $this->applicationOptions   = new ServiceOptions\Application();
         $this->nginxOptions         = new ServiceOptions\Nginx();
         $this->mysqlOptions         = new ServiceOptions\MySQL();
+        $this->mariadbOptions       = new ServiceOptions\MariaDB();
         $this->postgresOptions      = new ServiceOptions\Postgres();
         $this->phpOptions           = new ServiceOptions\Php();
         $this->redisOptions         = new ServiceOptions\Redis();
@@ -264,6 +270,34 @@ class Project
     public function setMysqlOptions(ServiceOptions\MySQL $mysqlOptions): self
     {
         $this->mysqlOptions = $mysqlOptions;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMariadb(): bool
+    {
+        return $this->mariadbOptions->isEnabled();
+    }
+
+    /**
+     * @return ServiceOptions\MariaDB
+     */
+    public function getMariadbOptions(): ServiceOptions\MariaDB
+    {
+        return $this->mariadbOptions;
+    }
+
+    /**
+     * @param ServiceOptions\MariaDB $mariadbOptions
+     *
+     * @return Project
+     */
+    public function setMariadbOptions(ServiceOptions\MariaDB $mariadbOptions): self
+    {
+        $this->mariadbOptions = $mariadbOptions;
 
         return $this;
     }

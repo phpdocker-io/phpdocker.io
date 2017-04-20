@@ -17,7 +17,7 @@
     }
   },
   "require":      {
-    "php":                             ">=7.0.4",
+    "php":                             ">=7.1.1",
     "symfony/symfony":                 "^3.0",
     "symfony/monolog-bundle":          "^2.8",
     "symfony/assetic-bundle":          "^2.7",
