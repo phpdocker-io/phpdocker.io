@@ -1,5 +1,5 @@
 {% if redisContainerName %}
     redis:
-      image: phpdockerio/redis:latest
+      image: redis:alpine
       container_name: {{ redisContainerName }}
 {% endif %}
