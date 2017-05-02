@@ -8,29 +8,25 @@
     "packages": [
         {
             "name": "behat/transliterator",
-            "version": "v1.2.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/868e05be3a9f25ba6424c2dd4849567f50715003",
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "require-dev": {
-                "chuyskywalker/rolling-curl": "^3.1",
-                "php-yaoi/php-yaoi": "^1.0"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -48,7 +44,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2017-04-04T11:38:05+00:00"
+            "time": "2015-09-28T16:26:35+00:00"
         },
         {
             "name": "cocur/slugify",
@@ -1189,20 +1185,20 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.27",
+            "version": "v2.4.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36"
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/fe152e1239f2f46287d369e43cc9fa817cc3cd36",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/58038d5d217b6ba2c75de90cb2f6d424d86fab56",
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56",
                 "shasum": ""
             },
             "require": {
-                "behat/transliterator": "~1.0",
+                "behat/transliterator": "1.1",
                 "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
@@ -1263,7 +1259,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2017-03-22T09:48:22+00:00"
+            "time": "2017-04-23T08:59:41+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2162,16 +2158,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.18",
+            "version": "v5.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "17846680901003d26d823c2e3ac9228702837916"
+                "reference": "654c4fa3d11448c8005400a244987896243a990a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/17846680901003d26d823c2e3ac9228702837916",
-                "reference": "17846680901003d26d823c2e3ac9228702837916",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/654c4fa3d11448c8005400a244987896243a990a",
+                "reference": "654c4fa3d11448c8005400a244987896243a990a",
                 "shasum": ""
             },
             "require": {
@@ -2210,7 +2206,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2017-01-10T14:58:45+00:00"
+            "time": "2017-04-23T22:28:23+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2390,16 +2386,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.6",
+            "version": "v5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
                 "shasum": ""
             },
             "require": {
@@ -2440,7 +2436,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-02-13T07:52:53+00:00"
+            "time": "2017-04-20T17:32:18+00:00"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2917,16 +2913,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.2.7",
+            "version": "v3.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "1631040ea8fc5e0e405c00d35cbf2c0b7b555f64"
+                "reference": "85959c2abbe4d2f050f950f39c9c3cf83819f3df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/1631040ea8fc5e0e405c00d35cbf2c0b7b555f64",
-                "reference": "1631040ea8fc5e0e405c00d35cbf2c0b7b555f64",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/85959c2abbe4d2f050f950f39c9c3cf83819f3df",
+                "reference": "85959c2abbe4d2f050f950f39c9c3cf83819f3df",
                 "shasum": ""
             },
             "require": {
@@ -3057,7 +3053,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-04-05T12:52:29+00:00"
+            "time": "2017-05-01T17:47:03+00:00"
         },
         {
             "name": "twig/extensions",
@@ -3113,16 +3109,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "437efc435619c8e67acacda37b3984344854142c"
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/437efc435619c8e67acacda37b3984344854142c",
-                "reference": "437efc435619c8e67acacda37b3984344854142c",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/85e8372c451510165c04bf781295f9d922fa524b",
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b",
                 "shasum": ""
             },
             "require": {
@@ -3172,7 +3168,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-04-18T21:50:11+00:00"
+            "time": "2017-04-21T00:13:02+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -3285,16 +3281,16 @@
     "packages-dev": [
         {
             "name": "beberlei/assert",
-            "version": "v2.7.4",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/assert.git",
-                "reference": "3ee3bc468a3ce4bbfc3d74f53c6cdb5242d39d1a"
+                "reference": "2f688ee39ea9ce9e2c2164c9db62df3246b8fbff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/assert/zipball/3ee3bc468a3ce4bbfc3d74f53c6cdb5242d39d1a",
-                "reference": "3ee3bc468a3ce4bbfc3d74f53c6cdb5242d39d1a",
+                "url": "https://api.github.com/repos/beberlei/assert/zipball/2f688ee39ea9ce9e2c2164c9db62df3246b8fbff",
+                "reference": "2f688ee39ea9ce9e2c2164c9db62df3246b8fbff",
                 "shasum": ""
             },
             "require": {
@@ -3336,7 +3332,7 @@
                 "assertion",
                 "validation"
             ],
-            "time": "2017-03-14T18:06:52+00:00"
+            "time": "2017-04-26T09:32:13+00:00"
         },
         {
             "name": "behat/behat",
