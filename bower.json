@@ -18,6 +18,7 @@
     "jquery": "^2.2.2",
     "jquery-ui": "^1.11.4",
     "share-button": "^1.0.3",
-    "font-awesome": "fontawesome#^4.5.0"
+    "font-awesome": "fontawesome#^4.5.0",
+    "bootstrap-toggle": "^2.2.2"
   }
 }
