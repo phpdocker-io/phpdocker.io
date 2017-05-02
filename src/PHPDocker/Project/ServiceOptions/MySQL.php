@@ -31,8 +31,10 @@ class MySQL extends AbstractMySQL
     protected const VERSION_55 = '5.5';
     protected const VERSION_56 = '5.6';
     protected const VERSION_57 = '5.7';
+    protected const VERSION_80 = '8.0';
 
     protected const ALLOWED_VERSIONS = [
+        self::VERSION_80 => '8.0.x',
         self::VERSION_57 => '5.7.x',
         self::VERSION_56 => '5.6.x',
         self::VERSION_55 => '5.5.x',
@@ -43,7 +45,7 @@ class MySQL extends AbstractMySQL
      */
     public function __construct()
     {
-        $this->version = self::VERSION_57;
+        $this->version = self::VERSION_80;
     }
 
     /**

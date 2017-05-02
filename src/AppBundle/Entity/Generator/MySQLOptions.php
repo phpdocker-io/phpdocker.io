@@ -35,7 +35,7 @@ class MySQLOptions extends MySQL
      * @Assert\NotNull(groups={"mysqlOptions"})
      * @Assert\Length(min=1, max=128)
      */
-    protected $version = self::VERSION_57;
+    protected $version = self::VERSION_80;
 
     /**
      * @var string
