@@ -4,11 +4,11 @@
 version: "3.1"
 services:
   memcached:
-    image: phpdockerio/memcached:latest
+    image: memcached:alpine
     container_name: phpdocker-io-memcached
 
   mailhog:
-    image: phpdockerio/mailhog:latest
+    image: mailhog/mailhog:latest
     container_name: phpdocker-io-mailhog
     ports:
       - "10001:8025"
@@ -23,7 +23,7 @@ services:
       - MYSQL_PASSWORD=password
 
   webserver:
-    image: phpdockerio/nginx:latest
+    image: nginx:alpine
     container_name: phpdocker-io-webserver
     volumes:
         - .:/var/www/phpdocker-io
