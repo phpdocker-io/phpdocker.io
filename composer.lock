@@ -1831,16 +1831,16 @@
         },
         {
             "name": "ocramius/proxy-manager",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/ProxyManager.git",
-                "reference": "d9e5a00ca2d87b7e0f1bff36b897e02afd7d5435"
+                "reference": "e18ac876b2e4819c76349de8f78ccc8ef1554cd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/d9e5a00ca2d87b7e0f1bff36b897e02afd7d5435",
-                "reference": "d9e5a00ca2d87b7e0f1bff36b897e02afd7d5435",
+                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/e18ac876b2e4819c76349de8f78ccc8ef1554cd7",
+                "reference": "e18ac876b2e4819c76349de8f78ccc8ef1554cd7",
                 "shasum": ""
             },
             "require": {
@@ -1852,7 +1852,9 @@
                 "couscous/couscous": "^1.5.2",
                 "ext-phar": "*",
                 "humbug/humbug": "dev-master@DEV",
+                "nikic/php-parser": "^3.0.4",
                 "phpbench/phpbench": "^0.12.2",
+                "phpstan/phpstan": "^0.6.4",
                 "phpunit/phpunit": "^5.6.4",
                 "phpunit/phpunit-mock-objects": "^3.4.1",
                 "squizlabs/php_codesniffer": "^2.7.0"
@@ -1894,7 +1896,7 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "time": "2016-11-30T15:45:00+00:00"
+            "time": "2017-05-04T11:12:50+00:00"
         },
         {
             "name": "pagerfanta/pagerfanta",
@@ -3281,16 +3283,16 @@
     "packages-dev": [
         {
             "name": "beberlei/assert",
-            "version": "v2.7.5",
+            "version": "v2.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/beberlei/assert.git",
-                "reference": "2f688ee39ea9ce9e2c2164c9db62df3246b8fbff"
+                "reference": "8726e183ebbb0169cb6cb4832e22ebd355524563"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beberlei/assert/zipball/2f688ee39ea9ce9e2c2164c9db62df3246b8fbff",
-                "reference": "2f688ee39ea9ce9e2c2164c9db62df3246b8fbff",
+                "url": "https://api.github.com/repos/beberlei/assert/zipball/8726e183ebbb0169cb6cb4832e22ebd355524563",
+                "reference": "8726e183ebbb0169cb6cb4832e22ebd355524563",
                 "shasum": ""
             },
             "require": {
@@ -3332,7 +3334,7 @@
                 "assertion",
                 "validation"
             ],
-            "time": "2017-04-26T09:32:13+00:00"
+            "time": "2017-05-04T02:00:24+00:00"
         },
         {
             "name": "behat/behat",
