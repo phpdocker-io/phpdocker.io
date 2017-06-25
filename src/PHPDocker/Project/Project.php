@@ -89,6 +89,11 @@ class Project
     protected $elasticsearchOptions;
 
     /**
+     * @var ServiceOptions\Clickhouse
+     */
+    protected $clickhouseOptions;
+
+    /**
      * @var string
      */
     protected $projectNameSlug;
@@ -124,6 +129,7 @@ class Project
         $this->memcachedOptions     = new ServiceOptions\Memcached();
         $this->mailhogOptions       = new ServiceOptions\Mailhog();
         $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
+        $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
     }
 
     /**
@@ -519,6 +525,42 @@ class Project
     public function setHasElasticsearch(bool $hasElasticsearch): self
     {
         $this->elasticsearchOptions->setEnabled($hasElasticsearch);
+
+        return $this;
+    }
+
+    /**
+     * @return ServiceOptions\Clickhouse
+     */
+    public function getClickhouseOptions(): ServiceOptions\Clickhouse
+    {
+        return $this->clickhouseOptions;
+    }
+
+    /**
+     * @param ServiceOptions\Clickhouse $clickhouseOptions
+     */
+    public function setClickhouseOptions(ServiceOptions\Clickhouse $clickhouseOptions)
+    {
+        $this->clickhouseOptions = $clickhouseOptions;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasClickhouse(): bool
+    {
+        return $this->clickhouseOptions->isEnabled();
+    }
+
+    /**
+     * @param bool $hasClickhouse
+     *
+     * @return Project
+     */
+    public function setHasClickhouse(bool $hasClickhouse): self
+    {
+        $this->clickhouseOptions->setEnabled($hasClickhouse);
 
         return $this;
     }

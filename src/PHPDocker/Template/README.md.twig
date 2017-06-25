@@ -40,6 +40,7 @@ php-fpm|php-fpm|9000
 {% if memcachedContainerName %}Memcached|memcached|11211 (default){{ "\n" }}{% endif %}
 {% if redisContainerName %}Redis|redis|6379 (default){{ "\n" }}{% endif %}
 {% if elasticsearchContainerName %}Elasticsearch|elasticsearch|9200 (HTTP default) / 9300 (ES transport default){{ "\n" }}{% endif %}
+{% if clickhouseContainerName %}ClickHouse|clickhouse|9000 (HTTP default){{ "\n" }}{% endif %}
 {% if mailhogContainerName %}SMTP (Mailhog)|mailhog|1025 (default){{ "\n" }}{% endif %}
 
 #Docker compose cheatsheet#
