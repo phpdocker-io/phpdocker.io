@@ -8,9 +8,7 @@
     {% endif %}
 {% endspaceless %}
     php-fpm:
-      build:
-        context: .
-        dockerfile: phpdocker/php-fpm/Dockerfile
+      build: phpdocker/php-fpm
       container_name: {{ phpFpmContainerName }}
       working_dir: /application
       volumes:
