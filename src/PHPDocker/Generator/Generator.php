@@ -235,6 +235,7 @@ class Generator
                 'redisContainerName'         => $project->hasRedis() ? $project->getContainerNameForService($project->getRedisOptions()) : null,
                 'mailhogContainerName'       => $project->hasMailhog() ? $project->getContainerNameForService($project->getMailhogOptions()) : null,
                 'elasticsearchContainerName' => $project->hasElasticsearch() ? $project->getContainerNameForService($project->getElasticsearchOptions()) : null,
+                'clickhouseContainerName'    => $project->hasClickhouse() ? $project->getContainerNameForService($project->getClickhouseOptions()) : null,
             ];
         }
 

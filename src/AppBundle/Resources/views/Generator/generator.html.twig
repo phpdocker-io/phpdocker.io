@@ -108,7 +108,7 @@
                 <h3>Zero-config Services</h3>
                 <p class="note">The following services take no additional configuration parameters.</p>
 
-                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog']
+                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse']
                 if (attribute(form, field) is defined) %}
                     <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
                 {% endfor %}
