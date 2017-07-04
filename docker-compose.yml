@@ -45,3 +45,5 @@ services:
       - memcached
       - mailhog
       - mysql
+    environment:
+      - APP_ENVIRONMENT=dev
