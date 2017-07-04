@@ -1,23 +1,22 @@
 <?php
 
+use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @var Composer\Autoload\ClassLoader
  */
-$loader = require __DIR__ . '/../app/autoload.php';
-include_once __DIR__ . '/../var/bootstrap.php.cache';
+$loader = require __DIR__ . '/../vendor/autoload.php';
 
-// Enable APC for autoloading to improve performance.
-$apcLoader = new Symfony\Component\ClassLoader\ApcClassLoader(sha1('phpdocker.io' . __FILE__), $loader);
-$loader->unregister();
-$apcLoader->register(true);
+// Capture app environment & enable debug on dev
+$env = strtolower(getenv('APP_ENVIRONMENT') ?: 'prod');
 
-// Load up app kernel in production mode
-$kernel = new AppKernel('prod', false);
-$kernel->loadClassCache();
+if ($env === 'dev') {
+    Debug::enable();
+}
 
-// Request/Response
+// Kernel & dispatch
+$kernel   = new AppKernel($env, false);
 $request  = Request::createFromGlobals();
 $response = $kernel->handle($request)->send();
 
