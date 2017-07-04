@@ -9,11 +9,11 @@ This is the repository for both the website and the generator over at [PHPDocker
 Contributing
 ------------
 
-The usual Github model of forking and pull request. Branch from and open PRs from the `dev` branch. There are no unit tests to keep an eye on, but until I get a functional suite testing ready, code merges can take a while. 
+The usual Github model of forking and pull request. We're following trunk based development, so please create your branches against the `master` branch. There are no unit tests to keep an eye on, but until I get a functional suite testing ready, code merges can take a while.
 
 All I ask is to thoroughly test, manually, any changes made to the generators. You will need to run the containers with example apps to ensure they're working. Functional tests in the future will do precisely this, with a combination of PHP versions, frameworks, databases, etc. Setting this up is an area you could contribute on.
 
-If you would like to add new containers, please either base them on `alpine` images, or `debian:jessie` as these are in use for the generated environments and will optimise deployment and provisioning to users.
+If you would like to add new containers, please either base them on `alpine` images, `debian:jessie` (used by many official images such as MySQL, ElasticSearch...) or Ubuntu 16.04 as these are in use for the generated environments and will optimise deployment and provisioning to users.
 
 Please follow PSR code formatting standards, and Symfony best practices and, in general, do what you see already done in the current code.
 
