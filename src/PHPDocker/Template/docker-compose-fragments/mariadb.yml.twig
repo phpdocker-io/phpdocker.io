@@ -3,6 +3,8 @@
       image: mariadb:{{ mariadb.getVersion() }}
       container_name: {{ mariadbContainerName }}
       working_dir: /application
+      volumes:
+        - .:/application
       environment:
         - MYSQL_ROOT_PASSWORD={{ mariadb.getRootPassword() }}
         - MYSQL_DATABASE={{ mariadb.getDatabaseName() }}
