@@ -46,4 +46,4 @@ services:
       - mailhog
       - mysql
     environment:
-      - APP_ENVIRONMENT=dev
+      - SYMFONY_ENV=dev
