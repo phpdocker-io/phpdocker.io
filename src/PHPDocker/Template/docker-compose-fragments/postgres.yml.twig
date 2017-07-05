@@ -1,7 +1,7 @@
-{% if postgresContainerName %}
+{% if project.hasPostgres() %}
     postgres:
       image: postgres:{{ postgres.getVersion() }}-alpine
-      container_name: {{ postgresContainerName }}
+      container_name: {{ slug }}-postgres
       working_dir: /application
       volumes:
         - .:/application

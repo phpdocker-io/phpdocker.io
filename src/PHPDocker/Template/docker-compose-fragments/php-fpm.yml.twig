@@ -9,7 +9,7 @@
 {% endspaceless %}
     php-fpm:
       build: phpdocker/php-fpm
-      container_name: {{ phpFpmContainerName }}
+      container_name: {{ slug }}-php-fpm
       working_dir: /application
       volumes:
         - .:/application

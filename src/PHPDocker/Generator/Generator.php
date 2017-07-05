@@ -135,20 +135,14 @@ class Generator
         $data = [
             'phpVersion'      => $project->getPhpOptions()->getVersion(),
             'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
-            'mailhogPort'     => $project->getBasePort() + 1,
-            'webserverPort'   => $project->getBasePort(),
-            'mysql'           => $project->getMysqlOptions(),
-            'mariadb'         => $project->getMariadbOptions(),
-            'postgres'        => $project->getPostgresOptions(),
-            'elasticsearch'   => $project->getElasticsearchOptions(),
+            'slug'            => $project->getProjectNameSlug(),
+            'project'         => $project,
         ];
 
-        // Get hostnames
-        $data = array_merge($data, $this->getContainerNameDataBlock($project));
-
-        // Get YML file, raw, then prettify by eliminating excess of blank lines
+        // Get YML file, raw, then prettify by eliminating excess of blank lines and ensuring a blank line at the end
         $rendered = $this->twig->render('docker-compose.yml.twig', $data);
-        $rendered = ltrim(preg_replace("/[\r\n]{2,}/", "\n\n", $rendered));
+        $rendered = preg_replace("/[\r\n]{2,}/", "\n\n", $rendered);
+        $rendered .= "\n";
 
         return new GeneratedFile\DockerCompose($rendered);
     }

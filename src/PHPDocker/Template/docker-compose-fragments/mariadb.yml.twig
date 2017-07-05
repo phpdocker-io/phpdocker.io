@@ -1,7 +1,7 @@
-{% if mariadbContainerName %}
+{% if project.hasMariadb() %}
     mariadb:
       image: mariadb:{{ mariadb.getVersion() }}
-      container_name: {{ mariadbContainerName }}
+      container_name: {{ slug }}-mariadb
       working_dir: /application
       volumes:
         - .:/application

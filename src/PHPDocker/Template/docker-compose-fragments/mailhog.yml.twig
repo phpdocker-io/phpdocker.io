@@ -1,7 +1,7 @@
-{% if mailhogContainerName %}
+{% if project.hasMailhog() %}
     mailhog:
       image: mailhog/mailhog:latest
-      container_name: {{ mailhogContainerName }}
+      container_name: {{ slug }}-mailhog
       ports:
-        - "{{ mailhogPort }}:8025"
+        - "{{ project.getBasePort() + 1 }}:8025"
 {% endif %}
