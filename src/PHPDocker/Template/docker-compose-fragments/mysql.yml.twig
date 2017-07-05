@@ -3,6 +3,8 @@
       image: mysql:{{ mysql.getVersion() }}
       container_name: {{ mysqlContainerName }}
       working_dir: /application
+      volumes:
+        - .:/application
       environment:
         - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
         - MYSQL_DATABASE={{ mysql.getDatabaseName() }}
