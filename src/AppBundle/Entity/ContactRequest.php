@@ -48,27 +48,7 @@ class ContactRequest
     /**
      * @return mixed
      */
-    public function getSenderName()
-    {
-        return $this->senderName;
-    }
-
-    /**
-     * @param mixed $senderName
-     *
-     * @return ContactRequest
-     */
-    public function setSenderName($senderName)
-    {
-        $this->senderName = $senderName;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSenderEmail()
+    public function getSenderEmail(): ?string
     {
         return $this->senderEmail;
     }
@@ -78,7 +58,7 @@ class ContactRequest
      *
      * @return ContactRequest
      */
-    public function setSenderEmail($senderEmail)
+    public function setSenderEmail(string $senderEmail)
     {
         $this->senderEmail = $senderEmail;
 
@@ -88,7 +68,7 @@ class ContactRequest
     /**
      * @return mixed
      */
-    public function getMessage()
+    public function getMessage(): ?string
     {
         return $this->message;
     }
@@ -98,7 +78,7 @@ class ContactRequest
      *
      * @return ContactRequest
      */
-    public function setMessage($message)
+    public function setMessage(string $message)
     {
         $this->message = $message;
 

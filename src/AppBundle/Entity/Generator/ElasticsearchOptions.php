@@ -40,7 +40,7 @@ class ElasticsearchOptions extends Elasticsearch
      *
      * @param bool $hasElasticsearch
      *
-     * @return ElasticsearchOptions
+     * @return self
      */
     public function setHasElasticsearch(bool $hasElasticsearch = false): self
     {

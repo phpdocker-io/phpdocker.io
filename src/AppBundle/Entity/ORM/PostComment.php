@@ -73,7 +73,7 @@ class PostComment
     /**
      * @return string
      */
-    public function getPosterName()
+    public function getPosterName(): string
     {
         return $this->posterName;
     }
@@ -93,7 +93,7 @@ class PostComment
     /**
      * @return string
      */
-    public function getPosterUrl()
+    public function getPosterUrl(): ?string
     {
         return $this->posterUrl;
     }

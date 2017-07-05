@@ -144,7 +144,7 @@ class Project
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -164,7 +164,7 @@ class Project
     /**
      * @return int
      */
-    public function getBasePort()
+    public function getBasePort(): ?int
     {
         return $this->basePort;
     }
@@ -516,10 +516,14 @@ class Project
 
     /**
      * @param ServiceOptions\Clickhouse $clickhouseOptions
+     *
+     * @return \PHPDocker\Project\Project
      */
-    public function setClickhouseOptions(ServiceOptions\Clickhouse $clickhouseOptions)
+    public function setClickhouseOptions(ServiceOptions\Clickhouse $clickhouseOptions): self
     {
         $this->clickhouseOptions = $clickhouseOptions;
+
+        return $this;
     }
 
     /**
