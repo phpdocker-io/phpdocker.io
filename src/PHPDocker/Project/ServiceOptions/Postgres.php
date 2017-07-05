@@ -151,14 +151,4 @@ class Postgres extends Base
     {
         return self::ALLOWED_VERSIONS;
     }
-
-    /**
-     * Return the suffix to be used on hostname construction.
-     *
-     * @return string
-     */
-    public function getContainerNameSuffix(): string
-    {
-        return 'postgres';
-    }
 }

@@ -104,11 +104,6 @@ class Project
     private $slugifier;
 
     /**
-     * @var array
-     */
-    private $hostnamesForServices = [];
-
-    /**
      * Initialise project
      *
      * @param SlugifierInterface $slugifier
@@ -130,24 +125,6 @@ class Project
         $this->mailhogOptions       = new ServiceOptions\Mailhog();
         $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
         $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
-    }
-
-    /**
-     * Calculates the hostname of a service based on the project name, and the service's hostname suffix.
-     *
-     * @param ContainerNameSuffixInterface $service
-     *
-     * @return string
-     */
-    public function getContainerNameForService(ContainerNameSuffixInterface $service): string
-    {
-        $serviceKey = get_class($service);
-        if (array_key_exists($serviceKey, $this->hostnamesForServices) === false) {
-            $this->hostnamesForServices[$serviceKey] = sprintf('%s-%s', $this->getProjectNameSlug(),
-                $service->getContainerNameSuffix());
-        }
-
-        return $this->hostnamesForServices[$serviceKey];
     }
 
     /**

@@ -25,19 +25,12 @@ use PHPDocker\Interfaces\ContainerNameSuffixInterface;
  * @package PHPDocker\Project\ServiceOptions
  * @author  Luis A. Pabon Flores
  */
-abstract class Base implements ContainerNameSuffixInterface
+abstract class Base
 {
     /**
      * @var bool
      */
     protected $enabled = false;
-
-    /**
-     * Return the suffix to be used on hostname construction.
-     *
-     * @return string
-     */
-    abstract public function getContainerNameSuffix(): string;
 
     /**
      * @return boolean

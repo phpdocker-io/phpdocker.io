@@ -55,12 +55,4 @@ class MySQL extends AbstractMySQL
     {
         return self::ALLOWED_VERSIONS;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function getContainerNameSuffix(): string
-    {
-        return 'mysql';
-    }
 }

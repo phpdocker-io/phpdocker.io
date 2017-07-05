@@ -25,13 +25,4 @@ namespace PHPDocker\Project\ServiceOptions;
  */
 class Clickhouse extends Base
 {
-    /**
-     * Return the suffix to be used on hostname construction.
-     *
-     * @return string
-     */
-    public function getContainerNameSuffix(): string
-    {
-        return 'clickhouse';
-    }
 }
