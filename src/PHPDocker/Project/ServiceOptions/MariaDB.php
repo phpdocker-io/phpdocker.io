@@ -53,12 +53,4 @@ class MariaDB extends AbstractMySQL
     {
         return self::ALLOWED_VERSIONS;
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function getContainerNameSuffix(): string
-    {
-        return 'mariadb';
-    }
 }

@@ -29,12 +29,4 @@ class Nginx extends Base
     {
         $this->setEnabled(true);
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function getContainerNameSuffix(): string
-    {
-        return 'webserver';
-    }
 }

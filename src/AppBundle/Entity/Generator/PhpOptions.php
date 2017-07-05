@@ -66,39 +66,47 @@ class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
     /**
      * @return array
      */
-    public function getPhpExtensions70()
+    public function getPhpExtensions70(): array
     {
         return $this->phpExtensions70;
     }
 
     /**
      * @param array $phpExtensions70
+     *
+     * @return self
      */
-    public function setPhpExtensions70(array $phpExtensions70 = [])
+    public function setPhpExtensions70(array $phpExtensions70 = []): self
     {
         $this->phpExtensions70 = $phpExtensions70;
+
+        return $this;
     }
 
     /**
      * @return array
      */
-    public function getPhpExtensions71()
+    public function getPhpExtensions71(): array
     {
         return $this->phpExtensions71;
     }
 
     /**
      * @param array $phpExtensions71
+     *
+     * @return self
      */
-    public function setPhpExtensions71(array $phpExtensions71 = [])
+    public function setPhpExtensions71(array $phpExtensions71 = []): self
     {
         $this->phpExtensions71 = $phpExtensions71;
+
+        return $this;
     }
 
     /**
      * @return array
      */
-    public function getPhpExtensions56()
+    public function getPhpExtensions56(): array
     {
         return $this->phpExtensions56;
     }
@@ -106,9 +114,9 @@ class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
     /**
      * @param array $phpExtensions56
      *
-     * @return PhpOptions
+     * @return self
      */
-    public function setPhpExtensions56(array $phpExtensions56 = [])
+    public function setPhpExtensions56(array $phpExtensions56 = []): self
     {
         $this->phpExtensions56 = $phpExtensions56;
 

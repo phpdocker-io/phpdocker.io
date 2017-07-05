@@ -16,6 +16,7 @@ services:
   mysql:
     image: mysql:5.7
     container_name: phpdocker-io-mysql
+    working_dir: /application
     volumes:
         - .:/application
     environment:
@@ -34,12 +35,12 @@ services:
      - "10000:80"
 
   php-fpm:
-    build:
-      context: .
-      dockerfile: phpdocker/php-fpm/Dockerfile
+    build: phpdocker/php-fpm
     container_name: phpdocker-io-php-fpm
+    working_dir: /application
     volumes:
       - .:/application
       - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.1/fpm/conf.d/99-overrides.ini
     environment:
       - SYMFONY_ENV=dev
+

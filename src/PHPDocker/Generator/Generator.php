@@ -90,15 +90,7 @@ class Generator
         static $readme;
 
         if ($readme === null) {
-            $data = [
-                'webserverPort' => $project->getBasePort(),
-                'mailhogPort'   => $project->getBasePort() + 1,
-            ];
-
-            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig', array_merge(
-                $data,
-                $this->getContainerNameDataBlock($project)
-            )));
+            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig', ['project' => $project]));
         }
 
         return $readme;
@@ -135,20 +127,14 @@ class Generator
         $data = [
             'phpVersion'      => $project->getPhpOptions()->getVersion(),
             'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
-            'mailhogPort'     => $project->getBasePort() + 1,
-            'webserverPort'   => $project->getBasePort(),
-            'mysql'           => $project->getMysqlOptions(),
-            'mariadb'         => $project->getMariadbOptions(),
-            'postgres'        => $project->getPostgresOptions(),
-            'elasticsearch'   => $project->getElasticsearchOptions(),
+            'slug'            => $project->getProjectNameSlug(),
+            'project'         => $project,
         ];
 
-        // Get hostnames
-        $data = array_merge($data, $this->getContainerNameDataBlock($project));
-
-        // Get YML file, raw, then prettify by eliminating excess of blank lines
+        // Get YML file, raw, then prettify by eliminating excess of blank lines and ensuring a blank line at the end
         $rendered = $this->twig->render('docker-compose.yml.twig', $data);
-        $rendered = ltrim(preg_replace("/[\r\n]{2,}/", "\n\n", $rendered));
+        $rendered = preg_replace("/[\r\n]{2,}/", "\n\n", $rendered);
+        $rendered .= "\n";
 
         return new GeneratedFile\DockerCompose($rendered);
     }
@@ -211,34 +197,5 @@ class Generator
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));
-    }
-
-    /**
-     * Returns a data block with hostnames for all configured services.
-     *
-     * @param Project $project
-     *
-     * @return array
-     */
-    private function getContainerNameDataBlock(Project $project): array
-    {
-        static $hostnameDataBlock = [];
-
-        if (count($hostnameDataBlock) === 0) {
-            $hostnameDataBlock = [
-                'webserverContainerName'     => $project->getContainerNameForService($project->getNginxOptions()),
-                'phpFpmContainerName'        => $project->getContainerNameForService($project->getPhpOptions()),
-                'mysqlContainerName'         => $project->hasMysql() ? $project->getContainerNameForService($project->getMysqlOptions()) : null,
-                'mariadbContainerName'       => $project->hasMariadb() ? $project->getContainerNameForService($project->getMariadbOptions()) : null,
-                'postgresContainerName'      => $project->hasPostgres() ? $project->getContainerNameForService($project->getPostgresOptions()) : null,
-                'memcachedContainerName'     => $project->hasMemcached() ? $project->getContainerNameForService($project->getMemcachedOptions()) : null,
-                'redisContainerName'         => $project->hasRedis() ? $project->getContainerNameForService($project->getRedisOptions()) : null,
-                'mailhogContainerName'       => $project->hasMailhog() ? $project->getContainerNameForService($project->getMailhogOptions()) : null,
-                'elasticsearchContainerName' => $project->hasElasticsearch() ? $project->getContainerNameForService($project->getElasticsearchOptions()) : null,
-                'clickhouseContainerName'    => $project->hasClickhouse() ? $project->getContainerNameForService($project->getClickhouseOptions()) : null,
-            ];
-        }
-
-        return $hostnameDataBlock;
     }
 }

@@ -100,7 +100,7 @@ class Post
     /**
      * @return string
      */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -163,7 +163,7 @@ class Post
     /**
      * @return Category
      */
-    public function getCategory()
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
@@ -183,7 +183,7 @@ class Post
     /**
      * @return string
      */
-    public function getBodyIntro()
+    public function getBodyIntro(): ?string
     {
         return $this->bodyIntro;
     }

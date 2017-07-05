@@ -68,14 +68,6 @@ class Php extends Base
     }
 
     /**
-     * @inheritdoc
-     */
-    public function getContainerNameSuffix(): string
-    {
-        return 'php-fpm';
-    }
-
-    /**
      * @return array
      */
     public function getExtensions(): array

@@ -25,13 +25,4 @@ namespace PHPDocker\Project\ServiceOptions;
  */
 class Mailhog extends Base
 {
-    /**
-     * Returns the default hostname on each particular service.
-     *
-     * @return string
-     */
-    public function getContainerNameSuffix(): string
-    {
-        return 'mailhog';
-    }
 }

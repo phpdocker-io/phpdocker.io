@@ -1,5 +1,5 @@
-{% if redisContainerName %}
+{% if project.hasRedis() %}
     redis:
       image: redis:alpine
-      container_name: {{ redisContainerName }}
+      container_name: {{ slug }}-redis
 {% endif %}
