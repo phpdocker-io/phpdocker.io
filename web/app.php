@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 $loader = require __DIR__ . '/../vendor/autoload.php';
 
 // Capture app environment & enable debug on dev
-$env = strtolower(getenv('APP_ENVIRONMENT') ?: 'prod');
+$env = strtolower(getenv('SYMFONY_ENV') ?: 'prod');
 
 if ($env === 'dev') {
     Debug::enable();
