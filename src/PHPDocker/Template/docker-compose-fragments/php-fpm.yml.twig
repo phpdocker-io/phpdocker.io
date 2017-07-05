@@ -14,14 +14,3 @@
       volumes:
         - .:/application
         - ./phpdocker/{{ phpIniOverrides }}:{{ iniLocation }}99-overrides.ini
-{% if mysqlContainerName or postgresContainerName or memcachedContainerName or mailhogContainerName or redisContainerName or elasticsearchContainerName or clickhouseContainerName %}{{ "\n" }}
-      links:
-{% if memcachedContainerName %}        - memcached{{ "\n" }}{% endif %}
-{% if mailhogContainerName %}        - mailhog{{ "\n" }}{% endif %}
-{% if mysqlContainerName %}        - mysql{{ "\n" }}{% endif %}
-{% if mariadbContainerName %}        - mariadb{{ "\n" }}{% endif %}
-{% if postgresContainerName %}        - postgres{{ "\n" }}{% endif %}
-{% if redisContainerName %}        - redis{{ "\n" }}{% endif %}
-{% if elasticsearchContainerName %}        - elasticsearch{{ "\n" }}{% endif %}
-{% if clickhouseContainerName %}        - clickhouse{{ "\n" }}{% endif %}
-{% endif %}
