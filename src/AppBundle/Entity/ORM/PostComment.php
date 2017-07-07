@@ -73,7 +73,7 @@ class PostComment
     /**
      * @return string
      */
-    public function getPosterName(): string
+    public function getPosterName(): ?string
     {
         return $this->posterName;
     }
