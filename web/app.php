@@ -16,7 +16,7 @@ if ($env === 'dev') {
 }
 
 // Kernel & dispatch
-$kernel   = new AppKernel($env, false);
+$kernel   = new AppKernel($env, $env !== 'prod');
 $request  = Request::createFromGlobals();
 $response = $kernel->handle($request)->send();
 
