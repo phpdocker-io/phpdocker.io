@@ -39,7 +39,7 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
             'MCrypt'   => ['packages' => ['php7.1-mcrypt']],
             'OPCache'  => ['packages' => ['php7.1-opcache']],
             'Readline' => ['packages' => ['php7.1-readline']],
-            'Sodium'   => ['packages' => ['php-libsodium']],
+            'Sodium'   => ['packages' => ['php-sodium']],
             'XML'      => ['packages' => ['php7.1-xml']],
             'Zip'      => ['packages' => ['php7.1-zip']],
         ];
