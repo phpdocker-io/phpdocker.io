@@ -10,4 +10,6 @@
         - MYSQL_DATABASE={{ mariadb.getDatabaseName() }}
         - MYSQL_USER={{ mariadb.getUsername() }}
         - MYSQL_PASSWORD={{ mariadb.getPassword() }}
+      ports:
+        - "{{ project.getBasePort() + 3 }}:3306"
 {% endif %}

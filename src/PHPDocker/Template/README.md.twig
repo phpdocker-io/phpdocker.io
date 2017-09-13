@@ -27,6 +27,7 @@ Service|Address outside containers
 Webserver|[localhost:{{ project.getBasePort() }}](http://localhost:{{ project.getBasePort() }})
 {% if project.hasMailhog() %}Mailhog web interface|[localhost:{{ project.getBasePort() + 1 }}](http://localhost:{{ project.getBasePort() + 1 }}){{ "\n" }}{% endif %}
 {% if project.hasMysql() %}MySQL|**host:** `localhost`; **port:** `{{ project.getBasePort() + 2 }}`{{ "\n" }}{% endif %}
+{% if project.hasMariadb() %}MariaDB|**host:** `localhost`; **port:** `{{ project.getBasePort() + 3 }}`{{ "\n" }}{% endif %}
 
 ##Hosts within your environment##
 
