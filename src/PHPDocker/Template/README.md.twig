@@ -25,7 +25,8 @@ You can access your application via **`localhost`**, if you're running the conta
 Service|Address outside containers
 ------|---------|-----------
 Webserver|[localhost:{{ project.getBasePort() }}](http://localhost:{{ project.getBasePort() }})
-{% if mailhogContainerName %}Mailhog web interface|[localhost:{{ project.getBasePort() + 1 }}](http://localhost:{{ project.getBasePort() + 1 }}){{ "\n" }}{% endif %}
+{% if project.hasMailhog() %}Mailhog web interface|[localhost:{{ project.getBasePort() + 1 }}](http://localhost:{{ project.getBasePort() + 1 }}){{ "\n" }}{% endif %}
+{% if project.hasMysql() %}MySQL|**host:** `localhost`; **port:** `{{ project.getBasePort() + 2 }}`{{ "\n" }}{% endif %}
 
 ##Hosts within your environment##
 
