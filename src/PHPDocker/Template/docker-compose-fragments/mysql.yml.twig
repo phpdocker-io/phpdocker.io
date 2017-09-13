@@ -10,4 +10,6 @@
         - MYSQL_DATABASE={{ mysql.getDatabaseName() }}
         - MYSQL_USER={{ mysql.getUsername() }}
         - MYSQL_PASSWORD={{ mysql.getPassword() }}
+      ports:
+        - "{{ project.getBasePort() + 2 }}:3306"
 {% endif %}
