@@ -1,6 +1,6 @@
 {
-  "name":         "development/php-docker",
-  "license":      "proprietary",
+  "name":         "phpdocker-io/phpdocker.io",
+  "license":      "Apache-2.0",
   "type":         "project",
   "autoload":     {
     "psr-4":    {
