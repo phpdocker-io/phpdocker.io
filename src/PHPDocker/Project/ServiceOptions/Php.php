@@ -49,6 +49,11 @@ class Php extends Base
     protected $extensions = [];
 
     /**
+     * @var bool
+     */
+    protected $hasGit = false;
+
+    /**
      * Supported PHP versions
      */
     const SUPPORTED_VERSIONS = [
@@ -153,5 +158,25 @@ class Php extends Base
     public static function getSupportedVersions(): array
     {
         return self::SUPPORTED_VERSIONS;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasGit(): bool
+    {
+        return $this->hasGit;
+    }
+
+    /**
+     * @param bool $hasGit
+     *
+     * @return self
+     */
+    public function setHasGit(bool $hasGit): self
+    {
+        $this->hasGit = $hasGit;
+
+        return $this;
     }
 }
