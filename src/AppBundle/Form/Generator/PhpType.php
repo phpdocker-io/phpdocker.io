@@ -22,6 +22,7 @@ use PHPDocker\PhpExtension\Php56AvailableExtensions;
 use PHPDocker\PhpExtension\Php70AvailableExtensions;
 use PHPDocker\PhpExtension\Php71AvailableExtensions;
 use PHPDocker\PhpExtension\PhpExtension;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -42,6 +43,10 @@ class PhpType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('hasGit', CheckboxType::class, [
+                'label'    => 'Add git (eg for composer)',
+                'required' => false,
+            ])
             ->add('version', ChoiceType::class, [
                 'choices'  => $this->getVersionChoices(),
                 'expanded' => false,

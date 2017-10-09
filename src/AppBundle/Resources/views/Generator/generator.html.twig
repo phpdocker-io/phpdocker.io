@@ -35,6 +35,7 @@
 
                 <div class="col col-lg-6 col-md-6">
                     {{ form_row(attribute(form.phpOptions, 'version')) }}
+                    {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
 
                     <div class="note">
                         <p>Please note:</p>
@@ -43,6 +44,7 @@
                                 cURL, JSON, MCrypt (libsodium on 7.1), OPCache, Readline, XML and Zip.
                             </li>
                             <li>PHP5, 7.0 and 7.1 support a different set of extensions.</li>
+                            <li>Adding git to the container adds ~75MB to it.</li>
                         </ul>
                     </div>
                 </div>
