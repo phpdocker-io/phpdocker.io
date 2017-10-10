@@ -64,6 +64,18 @@ class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
     protected $phpExtensions71 = [];
 
     /**
+     * This does not exist on parent project. Needs to be redirected to $phpExtensions
+     * based on version.
+     *
+     * @var array
+     *
+     * @Assert\All({
+     *     @Assert\NotBlank
+     * })
+     */
+    protected $phpExtensions72 = [];
+
+    /**
      * @return array
      */
     public function getPhpExtensions70(): array
@@ -119,6 +131,26 @@ class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
     public function setPhpExtensions56(array $phpExtensions56 = []): self
     {
         $this->phpExtensions56 = $phpExtensions56;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPhpExtensions72(): array
+    {
+        return $this->phpExtensions72;
+    }
+
+    /**
+     * @param array $phpExtensions72
+     *
+     * @return self
+     */
+    public function setPhpExtensions72(array $phpExtensions72 = []): self
+    {
+        $this->phpExtensions72 = $phpExtensions72;
 
         return $this;
     }
