@@ -36,7 +36,6 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
         return [
             'cURL'     => ['packages' => ['php7.2-curl']],
             'JSON'     => ['packages' => ['php7.2-json']],
-            'MCrypt'   => ['packages' => ['php7.2-mcrypt']],
             'OPCache'  => ['packages' => ['php7.2-opcache']],
             'Readline' => ['packages' => ['php7.2-readline']],
             'Sodium'   => ['packages' => ['php7.2-sodium']],
@@ -64,11 +63,9 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'DBA'         => ['packages' => ['php7.2-dba']],
             'Enchant'     => ['packages' => ['php7.2-enchant']],
             'GD'          => ['packages' => ['php7.2-gd']],
-            'Gearman'     => ['packages' => ['php-gearman']],
             'GMP'         => ['packages' => ['php7.2-gmp']],
             'igbinary'    => ['packages' => ['php-igbinary']],
             'IMAP'        => ['packages' => ['php7.2-imap']],
-            'ImageMagick' => ['packages' => ['php-imagick']],
             'Interbase'   => ['packages' => ['php7.2-interbase']],
             'Intl'        => ['packages' => ['php7.2-intl']],
             'LDAP'        => ['packages' => ['php7.2-ldap']],
@@ -83,14 +80,25 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'SOAP'        => ['packages' => ['php7.2-soap']],
             'SSH2'        => ['packages' => ['php-ssh2']],
             'Sybase'      => ['packages' => ['php7.2-sybase']],
+            'Tideways'    => ['packages' => ['php-tideways']],
             'Tidy'        => ['packages' => ['php7.2-tidy']],
             'XMLRPC-EPI'  => ['packages' => ['php7.2-xmlrpc']],
             'XSL'         => ['packages' => ['php7.2-xsl']],
             'YAML'        => ['packages' => ['php-yaml']],
-            'Tideways'    => ['packages' => ['php-tideways']],
-            'Xhprof'      => ['packages' => ['php-xhprof']],
-            'Xdebug'      => ['packages' => ['php-xdebug']],
             'ZeroMQ'      => ['packages' => ['php-zmq']],
+
+            // Disabled (not yet on php72 or broken)
+
+            // libgearman broken
+            //            'Gearman'     => ['packages' => ['php-gearman']],
+
+            // Still depends on php71 max
+            //            'ImageMagick' => ['packages' => ['php-imagick']],
+            //            'Xdebug'      => ['packages' => ['php-xdebug']],
+
+            // Installs php56
+            //            'Xhprof'      => ['packages' => ['php-xhprof']],
+
         ];
     }
 }
