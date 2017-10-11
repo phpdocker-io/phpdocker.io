@@ -40,10 +40,13 @@
                     <div class="note">
                         <p>Please note:</p>
                         <ul>
-                            <li>The following extensions are already included on the base image: APC,
-                                cURL, JSON, MCrypt (libsodium on 7.1), OPCache, Readline, XML and Zip.
+                            <li>PHP 7.2 is currently in RC stage - many extensions (including xdebug and phalcon) are
+                                unavailable.
                             </li>
-                            <li>PHP5, 7.0 and 7.1 support a different set of extensions.</li>
+                            <li>The following extensions are already included on the base image: APC,
+                                cURL, JSON, MCrypt (sodium in PHP>=7.1), OPCache, Readline, XML and Zip.
+                            </li>
+                            <li>Each PHP version supports a different set of extensions to the others.</li>
                             <li>Adding git to the container adds ~75MB to it.</li>
                         </ul>
                     </div>
@@ -51,6 +54,8 @@
 
                 <div class="col col-lg-6 col-md-6">
                     {{ form_row(attribute(form.phpOptions, 'phpExtensions71')) }}
+
+                    {{ form_row(attribute(form.phpOptions, 'phpExtensions72')) }}
 
                     {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
 

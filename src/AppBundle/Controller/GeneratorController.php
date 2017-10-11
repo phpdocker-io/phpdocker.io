@@ -99,6 +99,10 @@ class GeneratorController extends AbstractController
                 $extensions = $phpOptions->getPhpExtensions71();
                 break;
 
+            case PhpOptions::PHP_VERSION_72:
+                $extensions = $phpOptions->getPhpExtensions72();
+                break;
+
             default:
                 throw new \InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion));
         }
