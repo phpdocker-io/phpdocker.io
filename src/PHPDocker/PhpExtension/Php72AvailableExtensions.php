@@ -36,6 +36,7 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
         return [
             'cURL'     => ['packages' => ['php7.2-curl']],
             'JSON'     => ['packages' => ['php7.2-json']],
+            'MBSTRING' => ['packages' => ['php7.2-mbstring']],
             'OPCache'  => ['packages' => ['php7.2-opcache']],
             'Readline' => ['packages' => ['php7.2-readline']],
             'Sodium'   => ['packages' => ['php7.2-sodium']],
@@ -70,7 +71,6 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'Interbase'   => ['packages' => ['php7.2-interbase']],
             'Intl'        => ['packages' => ['php7.2-intl']],
             'LDAP'        => ['packages' => ['php7.2-ldap']],
-            'MBSTRING'    => ['packages' => ['php7.2-mbstring']],
             'MongoDB'     => ['packages' => ['php-mongodb']],
             'MessagePack' => ['packages' => ['php-msgpack']],
             'ODBC'        => ['packages' => ['php7.2-odbc']],
