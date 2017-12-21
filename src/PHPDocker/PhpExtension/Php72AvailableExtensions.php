@@ -65,11 +65,13 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'GD'          => ['packages' => ['php7.2-gd']],
             'GMP'         => ['packages' => ['php7.2-gmp']],
             'igbinary'    => ['packages' => ['php-igbinary']],
+            'ImageMagick' => ['packages' => ['php-imagick']],
             'IMAP'        => ['packages' => ['php7.2-imap']],
             'Interbase'   => ['packages' => ['php7.2-interbase']],
             'Intl'        => ['packages' => ['php7.2-intl']],
             'LDAP'        => ['packages' => ['php7.2-ldap']],
             'MBSTRING'    => ['packages' => ['php7.2-mbstring']],
+            'MongoDB'     => ['packages' => ['php-mongodb']],
             'MessagePack' => ['packages' => ['php-msgpack']],
             'ODBC'        => ['packages' => ['php7.2-odbc']],
             'PHPDBG'      => ['packages' => ['php7.2-phpdbg']],
@@ -89,11 +91,10 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
 
             // Disabled (not yet on php72 or broken)
 
-            // libgearman broken
+            // libgearman broken (libgearman8 not on repos)
             //            'Gearman'     => ['packages' => ['php-gearman']],
 
             // Still depends on php71 max
-            //            'ImageMagick' => ['packages' => ['php-imagick']],
             //            'Xdebug'      => ['packages' => ['php-xdebug']],
 
             // Installs php56
