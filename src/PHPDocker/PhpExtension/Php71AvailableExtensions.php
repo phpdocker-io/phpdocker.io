@@ -73,6 +73,7 @@ class Php71AvailableExtensions extends BaseAvailableExtensions
             'Intl'        => ['packages' => ['php7.1-intl']],
             'LDAP'        => ['packages' => ['php7.1-ldap']],
             'MBSTRING'    => ['packages' => ['php7.1-mbstring']],
+            'MongoDB'     => ['packages' => ['php-mongodb']],
             'MessagePack' => ['packages' => ['php-msgpack']],
             'ODBC'        => ['packages' => ['php7.1-odbc']],
             'PHPDBG'      => ['packages' => ['php7.1-phpdbg']],
