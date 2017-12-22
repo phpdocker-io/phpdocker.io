@@ -37,8 +37,8 @@ class Application
      * Allowed application types with short description
      */
     const ALLOWED_APPLICATION_TYPES = [
-        self::APPLICATION_TYPE_GENERIC => 'Generic: Zend, Laravel, Lumen...',
-        self::APPLICATION_TYPE_SYMFONY => 'Symfony',
+        self::APPLICATION_TYPE_GENERIC => 'Generic: Symfony 4, Zend, Laravel, Lumen...',
+        self::APPLICATION_TYPE_SYMFONY => 'Symfony 2/3',
         self::APPLICATION_TYPE_PHALCON => 'Phalcon 3',
         self::APPLICATION_TYPE_SILEX   => 'Silex',
     ];
