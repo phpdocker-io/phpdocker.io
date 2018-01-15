@@ -118,41 +118,15 @@ function doMainFormMagic() {
         }
     });
 
-    // Phalcon is not supported by PHP 7.2 yet - proper jquery spaghetti, remove as soon as 7.2 is supported
-    /*** HACK ***/
-    var applicationType = $('#project_applicationOptions_applicationType');
-    var form            = $('#generator');
-    var hiddenFieldId   = 'hidden-phpversion';
+    var hiddenFieldId = 'hidden-phpversion';
+    var form          = $('#generator');
 
-    applicationType.change(function () {
+    phpVersionSelector.change(function () {
         var hiddenField = $('#' + hiddenFieldId);
-
-        if ($(this).val() == 'phalcon') {
-            var supportedVersion = '7.1.x';
-            if (phpVersionSelector.val() == '7.2.x') {
-                phpVersionSelector.val(supportedVersion).change();
-                phpVersionSelector.parent().parent().effect('bounce');
-
-                $('<input>').attr('type', 'hidden').appendTo(form).attr('id', hiddenFieldId).attr('name', phpVersionSelector.attr('name')).val(phpVersionSelector.val());
-            }
-
-            phpVersionSelector.children().each(function () {
-                if (this.value == '7.2.x') {
-                    $(this).prop('disabled', true);
-                }
-            });
-        } else {
-            phpVersionSelector.children().each(function () {
-                if (this.value == '7.2.x') {
-                    $(this).prop('disabled', false);
-                }
-            });
-
-            hiddenField.remove();
+        if (hiddenField.length) {
+            hiddenField.val(phpVersionSelector.val());
         }
     });
-
-    /*** END OF HACK ***/
 
     phpVersionSelector.change(function () {
         var hiddenField = $('#' + hiddenFieldId);

@@ -34,6 +34,8 @@ RUN apt-get update \
             {% set phalconPackage = 'php7.0-phalcon' %}
         {% elseif phpVersion == '7.1.x' %}
             {% set phalconPackage = 'php7.1-phalcon' %}
+        {% elseif phpVersion == '7.2.x' %}
+            {% set phalconPackage = 'php7.2-phalcon' %}
         {% endif %}
     {% endspaceless %}
 
