@@ -24,12 +24,18 @@ Running the project
 
 Project is given with a [PHPDocker.io](http://phpdocker.io) generated environment. 
 
+I would recommend you install in your host php cli 7.1+, bower and composer and run the usual steps manually, but it's not necessary - the [`./prepare-dev.sh`](prepare-dev.sh) script will set up the app (bower install, composer install, etc) through docker and docker-compose commands.
+
   * Clone
-  * Copy `app/config/parameters.yml.dist` into `app/config/parameters.yml`
-  * `composer install`
-  * `bower install`
-  * `php bin/console assets:install --symlink --relative`
-  * cd into the project folder and run`docker-compose up -d`. More specific information on [phpdocker/README.md](phpdocker/README.md).
-  * You can then head off to the `/generator` route; you'll need to run `bin/console doctrine:schema:create` within the PHP container (or use the `console` script at the root of the project) to avoid SQL errors on the homepage
+  * Run [`./prepare-dev.sh`](prepare-dev.sh) - this will:
+     * populate default dev config
+     * composer and bower install
+     * clean up caches
+     * ensure web assets are available
+     * load up the database schema (this is just for the CMS side of the website, it has no bearing over the generator)
+     * start up the environment
+  * You can then head off to the [/generator](http://localhost:10000/generator) route.
+
+This is an initial fail-safe set up and not always you need to run it, after it's done once you'll just need to do a good old `docker-compose up -d`. More specific information on [phpdocker/README.md](phpdocker/README.md).
 
 **Note:** you'll notice a `console` script at the root of the project. It does some voodoo to run `bin/console` within the container.
