@@ -10,7 +10,7 @@ set -e
 
 bold=$(tput bold)
 normal=$(tput sgr0)
-FIX_OWNERSHIP="sudo chown `id -u`:`id -g` . -Rf"
+FIX_OWNERSHIP="sudo chown -Rf `id -u`:`id -g` . "
 PHP_IN_CONTAINER="docker-compose exec php-fpm php "
 
 echo -e "\n${bold} ## Preparing phpdocker.io for local dev ## \n${normal}"
@@ -28,8 +28,8 @@ fi
 ${FIX_OWNERSHIP}
 
 sudo rm -Rf web/bundles web/css web/js
-sudo rm -Rf var/* -Rf
-rm src/AppBundle/Resources/public/vendor/* -Rf
+sudo rm -Rf var/*
+rm -Rf src/AppBundle/Resources/public/vendor/*
 
 # Install static assets through bower
 if hash bower 2>/dev/null; then
@@ -66,10 +66,9 @@ ${PHP_IN_CONTAINER} bin/console doctrine:schema:update --force
 
 # Ensure both container and host can write into the var/ folder
 ${FIX_OWNERSHIP}
-sudo chmod 777 var/* -Rf
+sudo chmod -Rf 777 var/*
 
 
 
 # Done!
 echo -e "\n${bold} ## Application is now set up ${normal} for localdev, and the environment is up; head off to ${bold}>>> http://localhost:10000 <<< ## \n${normal}"
-
