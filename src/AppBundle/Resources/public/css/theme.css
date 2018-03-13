@@ -29,6 +29,7 @@ body {
 .multiselect-container.dropdown-menu {
     position: relative;
     box-shadow: none;
+    width: 100%;
 }
 
 .btn-group .dropdown-toggle.btn-default~.dropdown-menu {
