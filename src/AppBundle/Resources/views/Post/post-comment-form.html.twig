@@ -4,10 +4,18 @@
     {{ form_errors(form) }}
 
     <div class="row">
-        {% for field in ['posterName', 'posterUrl', 'body']
-        if (attribute(form, field) is defined) %}
-            {{ form_row(attribute(form, field)) }}
-        {% endfor %}
+        <div class="col-md-4">
+            {{ form_row(form.posterName) }}
+        </div>
+        <div class="col-md-8">
+            {{ form_row(form.posterUrl) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.body) }}
+        </div>
     </div>
 
     {{ form_rest(form) }}
@@ -17,7 +25,7 @@
             {% include 'AppBundle:form:recaptcha.html.twig' %}
         </div>
         <div class="col-lg-8 col-md-7 text-right">
-            <input type="submit" class="btn button-custom btn-custom-three shadow" value="Add reply">
+            <input type="submit" class="btn btn-primary" value="Add reply">
         </div>
     </div>
 </form>

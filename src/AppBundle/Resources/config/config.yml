@@ -1,7 +1,7 @@
 parameters:
   news_category_slug:     'news'
   homepage_category_slug: 'homepage'
-  homepage_item_limit:    4
+  homepage_item_limit:    3
 
 assetic:
   debug:          '%kernel.debug%'

@@ -6,49 +6,51 @@
 {% block pageDescription %}{{ post.getBodyIntro()|raw|striptags|unescape|truncate(50) }}{% endblock %}
 
 {% block body %}
-    <div class="row post">
-        <div class="{{ bigColumn }}">
-            <div class="content-block">
-                <h1><a href="{{ path('home') }}">News &gt;</a> <a
-                            href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></h1>
-                <div class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</div>
-                <div class="body">
-                    {{ post.getBodyIntro()|raw }}
-                    {{ post.getBody()|raw }}
-                </div>
-            </div>
+    <div class="jumbotron">
+        <div class="container">
+            <h2 class="display-3">{{ post.getTitle() }}</h2>
         </div>
     </div>
 
-    <div class="row comments">
-        <div class="{{ bigColumn }}" id="comments">
-            <h2>Comments</h2>
-            {% for comment in post.getPostComments() %}
-                <div class="comment row">
-                    <div class="metadata col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        {% if comment.getPosterUrl() %}
-                            <h3>
-                                <a href="{{ comment.getPosterUrl() }}"
-                                   target="_blank">{{ comment.getPosterName() }}</a>
-                            </h3>
-                        {% else %}
-                            <h3>{{ comment.getPosterName() }}</h3>
-                        {% endif %}
-                        <div class="date">{{ comment.getCreatedAt()|date("F jS, Y, H:i") }}</div>
-                    </div>
-                    <div class="body col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                        {{ comment.getBody()|nl2br }}
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li><a href="{{ path('home') }}">News</a></li>
+                    <li class="active">{{ post.getTitle() }} @ {{ post.getCreatedAt()|date("F jS, Y") }}</li>
+                </ul>
+                <div class="well">
+                    {{ post.getBody()|raw }}
                 </div>
-            {% else %}
-                <p>No comments on this post</p>
-            {% endfor %}
-        </div>
+                <div class="well">
+                    <h4>Comments</h4>
 
-        <div class="col col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10"
-             id="post-comment">
-            <h2>Leave a reply</h2>
-            {% include 'AppBundle:Post:post-comment-form.html.twig' %}
+                    {% for comment in post.getPostComments() %}
+                        <div class="container">
+                            <div class="row">
+                                {% if comment.getPosterUrl() %}
+                                    <h5>
+                                        <a href="{{ comment.getPosterUrl() }}"
+                                           target="_blank">{{ comment.getPosterName() }}</a>
+                                    </h5>
+                                {% else %}
+                                    <h3>{{ comment.getPosterName() }}</h3>
+                                {% endif %}
+                                <small class="text-muted">{{ comment.getCreatedAt()|date("F jS, Y, H:i") }}</small>
+
+                                <div class="">
+                                    {{ comment.getBody()|nl2br }}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    {% else %}
+                        <p>No comments on this post</p>
+                    {% endfor %}
+
+                    {% include 'AppBundle:Post:post-comment-form.html.twig' %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
