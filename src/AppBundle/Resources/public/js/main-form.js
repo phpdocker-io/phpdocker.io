@@ -70,7 +70,7 @@ function doMainFormMagic() {
             enableCaseInsensitiveFiltering: true,
             maxHeight: 200,
             buttonWidth: "100%",
-            dropUp: true,
+            dropUp: false,
             onDropdownHide: function (event) {
                 event.preventDefault();
             }

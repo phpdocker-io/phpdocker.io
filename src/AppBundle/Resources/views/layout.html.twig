@@ -46,12 +46,9 @@
                 </div>
                 <div class="navbar-collapse collapse" id="navigation-top">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="/">News</a>
-                        </li>
-                        <li class=""><a href="/generator">Generator</a>
-                        </li>
-                        <li class=""><a href="/contact">Contact</a>
-                        </li>
+                        <li {% if activePage == 'news' %}class="active"{% endif %}><a href="{{ path('home') }}">News</a></li>
+                        <li {% if activePage == 'generator' %}class="active"{% endif %}><a href="{{ path('generator') }}">Generator</a></li>
+                        <li {% if activePage == 'contact' %}class="active"{% endif %}><a href="{{ path('contact') }}">Contact</a></li>
                     </ul>
                 </div>
             </div>

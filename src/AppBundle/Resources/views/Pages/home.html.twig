@@ -10,7 +10,7 @@
                 {% set item = content.homepage[0] %}
                 <h1 class="display-3">{{ item.getTitle() }}</h1>
                 <p>{{ item.getBody()|raw }}</p>
-                <p><a class="btn btn-primary btn-lg" href="#" role="button">Generate your Docker configuration &raquo;</a></p>
+                <p><a class="btn btn-primary btn-lg" href="{{ path('generator') }}" role="button">Generate your Docker configuration &raquo;</a></p>
             {% endif %}
         </div>
     </div>
@@ -24,8 +24,8 @@
                     {{ post.getBodyIntro()|raw }}
 
                     <div class="btn-group btn-group-justified">
-                        <a class="btn btn-secondary" href="{{ path('post', {'slug': post.getSlug()}) }}">Continue reading &raquo;</a>
-                        <a class="btn btn-primary" href="{{ path('post', {'slug': post.getSlug()}) }}#comments">({{ post.getCountPostComments() }}) comment(s)</a>
+                        <a class="btn btn-primary" href="{{ path('post', {'slug': post.getSlug()}) }}">Continue reading &raquo;</a>
+                        <a class="btn btn-secondary" href="{{ path('post', {'slug': post.getSlug()}) }}#comments">({{ post.getCountPostComments() }}) comment(s)</a>
                     </div>
                 </div>
             {% endfor %}

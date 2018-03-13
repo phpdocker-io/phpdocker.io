@@ -11,101 +11,182 @@
         <div class="row">
             {{ form_errors(form) }}
         </div>
-        <div class="row">
-            <div class="{{ formGroupClass }} {{ bigColumn }}">
-                <h3>Global configuration</h3>
-                <div class="row">
-                    {% for field in ['name', 'basePort']
-                    if (attribute(form, field) is defined) %}
-                        <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
-                    {% endfor %}
-                </div>
 
-                <div class="row">
-                    {% for field in ['applicationType', 'uploadSize'] %}
-                        <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+        <div class="row config-row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Global configuration</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.name) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.basePort) }}
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="{{ formGroupClass }} {{ bigColumn }}">
-                <h3>PHP configuration</h3>
-
-                <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'version')) }}
-                    {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
-
-                    <div class="note">
-                        <p>Please note:</p>
-                        <ul>
-                            <li>The following extensions are already included on the base image: APC,
-                                cURL, JSON, MCrypt (sodium in PHP>=7.1), MBString, OPCache, Readline, XML and Zip.
-                            </li>
-                            <li>Each PHP version supports a different set of extensions to the others.</li>
-                            <li>Adding git to the container adds ~75MB to it.</li>
-                        </ul>
+                        <div class="row config-row-inner">
+                            <div class="col-md-6">
+                                {{ form_row(form.applicationOptions.applicationType) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.applicationOptions.uploadSize) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions72')) }}
+        <div class="row config-row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">PHP configuration</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(attribute(form.phpOptions, 'version')) }}
+                                {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
 
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions71')) }}
+                                <p class="text-muted"><em>Please note:</em></p>
 
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
+                                <ul class="text-muted">
+                                    <li><em>The following extensions are already included on the base image: APC, cURL, JSON, MCrypt (sodium in PHP>=7.1), MBString, OPCache, Readline, XML and Zip.</em></li>
+                                    <li><em>Each PHP version supports a different set of extensions to the others.</em></li>
+                                    <li><em>Adding git to the container adds ~75MB to it.</em></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(attribute(form.phpOptions, 'phpExtensions72')) }}
 
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
+                                {{ form_row(attribute(form.phpOptions, 'phpExtensions71')) }}
+
+                                {{ form_row(attribute(form.phpOptions, 'phpExtensions70')) }}
+
+                                {{ form_row(attribute(form.phpOptions, 'phpExtensions56')) }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="row config-row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">MySQL</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
+
+                        <div id="mysql-options">
+                            {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
+                                {% if (attribute(form.mysqlOptions, field) is defined) %}
+                                    <div class="row config-row-inner">
+                                        {{ form_row(attribute(form.mysqlOptions, field)) }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">MariaDB</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}
+
+                        <div id="mariadb-options">
+                            {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
+                                {% if (attribute(form.mariadbOptions, field) is defined) %}
+                                    <div class="row config-row-inner">
+                                        {{ form_row(attribute(form.mariadbOptions, field)) }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row config-row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Postgres</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
+
+                        <div id="postgres-options">
+                            {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
+                                {% if (attribute(form.postgresOptions, field) is defined) %}
+                                    <div class="row config-row-inner">
+                                        {{ form_row(attribute(form.postgresOptions, field)) }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Elasticsearch</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}
+                        <div id="elasticsearch-options">
+                            {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row config-row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Zero-config Services</h3>
+                    </div>
+                    <div class="panel-body">
+                        <small>The following services take no additional configuration parameters.</small>
+
+                        {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse']
+                            if (attribute(form, field) is defined) %}
+                            <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
 
         <div class="row">
-            <div class="{{ formGroupClass }} {{ halfColumn }}">
-                <h3>MySQL</h3>
-                {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
-
-                <div id="mysql-options">
-                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
-                    if (attribute(form.mysqlOptions, field) is defined) %}
-                        {{ form_row(attribute(form.mysqlOptions, field)) }}
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
-                <h3>MariaDB</h3>
-                {{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}
-
-                <div id="mariadb-options">
-                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
-                    if (attribute(form.mariadbOptions, field) is defined) %}
-                        {{ form_row(attribute(form.mariadbOptions, field)) }}
-                    {% endfor %}
-                </div>
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Generate project archive">
             </div>
         </div>
-        <div class="row">
-            <div class="{{ formGroupClass }} {{ halfColumn }}">
-                <h3>Postgres</h3>
-                {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
+    </form>
+{% endblock %}
 
-                <div id="postgres-options">
-                    {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName']
-                    if (attribute(form.postgresOptions, field) is defined) %}
-                        {{ form_row(attribute(form.postgresOptions, field)) }}
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
-                <h3>Elasticsearch</h3>
-                {{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}
-                <div id="elasticsearch-options">
-                    {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
-                </div>
-            </div>
-        </div>
+{% block bodys %}
+    <form method="post" id="generator" action="{{ path('generator') }}">
 
         <div class="row">
             <div class="{{ formGroupClass }} col col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12">

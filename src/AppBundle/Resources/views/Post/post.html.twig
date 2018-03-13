@@ -6,7 +6,7 @@
 {% block pageDescription %}{{ post.getBodyIntro()|raw|striptags|unescape|truncate(50) }}{% endblock %}
 
 {% block body %}
-    <div class="jumbotron">
+    <div class="jumbotron post-jumbotron">
         <div class="container">
             <h2 class="display-3">{{ post.getTitle() }}</h2>
         </div>
@@ -34,11 +34,12 @@
                                            target="_blank">{{ comment.getPosterName() }}</a>
                                     </h5>
                                 {% else %}
-                                    <h3>{{ comment.getPosterName() }}</h3>
+                                    <h5>{{ comment.getPosterName() }}</h5>
                                 {% endif %}
+
                                 <small class="text-muted">{{ comment.getCreatedAt()|date("F jS, Y, H:i") }}</small>
 
-                                <div class="">
+                                <div>
                                     {{ comment.getBody()|nl2br }}
                                 </div>
                             </div>
