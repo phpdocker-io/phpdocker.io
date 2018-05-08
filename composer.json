@@ -29,7 +29,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/App/",
-            "PhpDockerIo\\": "src/PhpDockerIo/"
+            "PhpDockerIo\\": "src/Generator/"
         }
     },
     "autoload-dev": {
