@@ -1,0 +1,89 @@
+{
+    "psr/cache": {
+        "version": "1.0.1"
+    },
+    "psr/container": {
+        "version": "1.0.0"
+    },
+    "psr/log": {
+        "version": "1.0.2"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
+    },
+    "symfony/cache": {
+        "version": "v4.0.9"
+    },
+    "symfony/config": {
+        "version": "v4.0.9"
+    },
+    "symfony/console": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "e3868d2f4a5104f19f844fe551099a00c6562527"
+        }
+    },
+    "symfony/debug": {
+        "version": "v4.0.9"
+    },
+    "symfony/dependency-injection": {
+        "version": "v4.0.9"
+    },
+    "symfony/dotenv": {
+        "version": "v4.0.9"
+    },
+    "symfony/event-dispatcher": {
+        "version": "v4.0.9"
+    },
+    "symfony/filesystem": {
+        "version": "v4.0.9"
+    },
+    "symfony/finder": {
+        "version": "v4.0.9"
+    },
+    "symfony/flex": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "cc1afd81841db36fbef982fe56b48ade6716fac4"
+        }
+    },
+    "symfony/framework-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "8a2f7fa50a528f0aad1d7a87ae3730c981b367ce"
+        }
+    },
+    "symfony/http-foundation": {
+        "version": "v4.0.9"
+    },
+    "symfony/http-kernel": {
+        "version": "v4.0.9"
+    },
+    "symfony/lts": {
+        "version": "4-dev"
+    },
+    "symfony/polyfill-mbstring": {
+        "version": "v1.8.0"
+    },
+    "symfony/routing": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "cda8b550123383d25827705d05a42acf6819fe4e"
+        }
+    },
+    "symfony/yaml": {
+        "version": "v4.0.9"
+    }
+}
