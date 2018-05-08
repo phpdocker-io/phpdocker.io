@@ -129,8 +129,7 @@ footer {
     height           : 55px;
 }
 
-footer .copyright,
-footer .share a {
+footer .copyright {
     text-shadow : 2px 2px 6px rgba(0, 0, 0, .7);
 }
 
@@ -141,24 +140,6 @@ footer a {
 footer a:hover {
     cursor          : pointer;
     text-decoration : none;
-}
-
-/* Footer / Share button */
-share-button,
-share-button:after,
-share-button:before {
-    background : none !important;
-    content    : '' !important;
-    color      : transparent !important;
-    cursor     : default;
-}
-
-share-button a:hover {
-    color : transparent !important;
-}
-
-footer .share {
-    text-align : right;
 }
 
 footer .github-link {
@@ -206,7 +187,7 @@ form .form-group {
 }
 
 .multiselect-container.dropdown-menu {
-    z-index    : 10;
+    z-index    : 1000;
     box-shadow : none;
     width      : 100%;
     position   : relative;

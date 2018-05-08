@@ -8,3 +8,7 @@
 .idea
 *.sql
 config/parameters.yaml
+node_modules
+public/assets
+
+scratchpad.php

@@ -41,3 +41,10 @@ services:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
 
+    frontend-builder:
+      image: node:9-alpine
+      container_name: phpdocker-io-frontend-builder
+      working_dir: /application
+      volumes:
+          - .:/application
+      command: ['bin/frontend-builder.sh']

@@ -1,0 +1,16 @@
+{
+  "name": "PhpDocker.io",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "bootstrap-multiselect": "^0.9.12",
+    "bootstrap-toggle": "^2.2.2",
+    "font-awesome": "~4.5.0",
+    "jquery": "^2.2.2",
+    "jquery-ui-bundle": "^1.12.1-migrate"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.19.0",
+    "jscs": "^3.0.7"
+  }
+}
