@@ -12,6 +12,9 @@
 FROM {{ image }}
 WORKDIR "/application"
 
+# Fix debconf warnings upon build
+ARG DEBIAN_FRONTEND=noninteractive
+
 {% if extensionPackages %}
 # Install selected extensions and other stuff
 RUN apt-get update \
