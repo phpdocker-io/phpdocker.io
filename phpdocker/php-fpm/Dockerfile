@@ -1,4 +1,5 @@
 FROM phpdockerio/php71-fpm:latest
+ARG DEBIAN_FRONTEND=noninteractive
 
 # Install selected extensions and other stuff
 RUN apt-get update \
