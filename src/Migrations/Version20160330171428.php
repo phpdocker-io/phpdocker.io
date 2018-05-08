@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Migrations;
+namespace DoctrineMigrations;
 
 use AppBundle\Entity\ORM\Category;
 use Doctrine\DBAL\Migrations\AbstractMigration;

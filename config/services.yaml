@@ -7,6 +7,11 @@ parameters:
     locale: 'en'
     recaptcha_verify_token_endpoint: https://www.google.com/recaptcha/api/siteverify
 
+    # Homepage and news defaults
+    news_category_slug:     'news'
+    homepage_category_slug: 'homepage'
+    homepage_item_limit:    4
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -29,7 +34,7 @@ services:
         tags: ['controller.service_arguments']
 
     docker_generator:
-        class:    PHPDocker\Generator\Generator
+        class:    PhpDockerIo\Generator\Generator
         factory: [PHPDocker\Generator\Factory, create]
 
     guzzle:
