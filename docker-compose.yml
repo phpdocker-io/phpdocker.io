@@ -3,44 +3,46 @@
 ###############################################################################
 version: "3.1"
 services:
-  memcached:
-    image: memcached:alpine
-    container_name: phpdocker-io-memcached
 
-  mailhog:
-    image: mailhog/mailhog:latest
-    container_name: phpdocker-io-mailhog
-    ports:
-      - "10001:8025"
+    memcached:
+      image: memcached:alpine
+      container_name: phpdocker-io-memcached
 
-  mysql:
-    image: mysql:5.7
-    container_name: phpdocker-io-mysql
-    working_dir: /application
-    volumes:
+    mailhog:
+      image: mailhog/mailhog:latest
+      container_name: phpdocker-io-mailhog
+      ports:
+        - "10001:8025"
+
+    mysql:
+      image: mysql:8.0
+      container_name: phpdocker-io-mysql
+      working_dir: /application
+      volumes:
         - .:/application
-    environment:
-      - MYSQL_ROOT_PASSWORD=root-password
-      - MYSQL_DATABASE=phpdockerio
-      - MYSQL_USER=username
-      - MYSQL_PASSWORD=password
+      environment:
+        - MYSQL_ROOT_PASSWORD=root-password
+        - MYSQL_DATABASE=phpdockerio
+        - MYSQL_USER=username
+        - MYSQL_PASSWORD=password
+      ports:
+        - "10002:3306"
 
-  webserver:
-    image: nginx:alpine
-    container_name: phpdocker-io-webserver
-    volumes:
+    webserver:
+      image: nginx:alpine
+      container_name: phpdocker-io-webserver
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "10000:80"
+
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: phpdocker-io-php-fpm
+      working_dir: /application
+      volumes:
         - .:/application
-        - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-     - "10000:80"
-
-  php-fpm:
-    build: phpdocker/php-fpm
-    container_name: phpdocker-io-php-fpm
-    working_dir: /application
-    volumes:
-      - .:/application
-      - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.1/fpm/conf.d/99-overrides.ini
-    environment:
-      - SYMFONY_ENV=dev
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
 
