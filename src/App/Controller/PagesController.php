@@ -52,7 +52,7 @@ class PagesController extends AbstractController
                 ->getResult(Query::HYDRATE_SIMPLEOBJECT);
         }
 
-        return $this->render(':Pages:home.html.twig', ['content' => $content]);
+        return $this->render('Pages/home.html.twig', ['content' => $content]);
     }
 
     /**
@@ -83,7 +83,7 @@ class PagesController extends AbstractController
             $form->addError(new FormError('We failed to verify you are human'));
         }
 
-        return $this->render(':Pages:contact.html.twig', ['form' => $form->createView()]);
+        return $this->render('Pages/contact.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -93,7 +93,7 @@ class PagesController extends AbstractController
      */
     private function sendMessage(ContactRequest $contactRequest)
     {
-        $messageBody = $this->renderView(':emails:contact-email.html.twig', [
+        $messageBody = $this->renderView('emails/contact-email.html.twig', [
             'senderEmail' => $contactRequest->getSenderEmail(),
             'message'     => $contactRequest->getMessage(),
         ]);
@@ -117,9 +117,9 @@ class PagesController extends AbstractController
     private function getHomepageContentQueryBuilder()
     {
         $queryBuilder = $this
-            ->getDatabaseTable('AppBundle:ORM\Post')
+            ->getDatabaseTable('App:Post')
             ->createQueryBuilder('p')
-            ->innerJoin('App:ORM\Category', 'c', Query\Expr\Join::WITH, 'p.category = c.id')
+            ->innerJoin('App:Category', 'c', Query\Expr\Join::WITH, 'p.category = c.id')
             ->where('p.active = :active')
             ->andWhere('c.slug = :slug')
             ->orderBy('p.id', 'DESC')

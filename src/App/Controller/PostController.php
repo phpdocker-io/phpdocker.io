@@ -20,9 +20,12 @@ namespace App\Controller;
 use App\Entity\ORM\Post;
 use App\Entity\ORM\PostComment;
 use App\Form\PostCommentType;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller for posts and post comments
@@ -37,7 +40,10 @@ class PostController extends AbstractController
      *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function showPostAction(Request $request)
     {
@@ -52,7 +58,7 @@ class PostController extends AbstractController
         // Post comment form generation and processing
         $postCommentForm = $this->postCommentFormProcessor($request, $post);
 
-        return $this->render(':Post:post.html.twig',
+        return $this->render('Post/post.html.twig',
             ['post' => $post, 'form' => $postCommentForm->createView()]);
     }
 
@@ -64,8 +70,8 @@ class PostController extends AbstractController
      *
      * @return FormInterface
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     private function postCommentFormProcessor(Request $request, Post $post): FormInterface
     {

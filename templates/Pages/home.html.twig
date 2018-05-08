@@ -1,4 +1,4 @@
-{% extends 'AppBundle::layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% set activePage = 'news' %}
 {% block pageTitle %} - PHP and Docker development environment generator{% endblock %}
@@ -24,7 +24,7 @@
                     <hr/>
                 </div>
                 {% set posts = content.news %}
-                {% include "AppBundle:Post:posts.html.twig" with posts %}
+                {% include "Post/posts.html.twig" with posts %}
             </div>
         </div>
     </div>

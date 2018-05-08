@@ -21,19 +21,22 @@
     <link property="stylesheet" rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Oswald%7CHind%7CShadows+Into+Light"/>
 
-    {% stylesheets filter="cssrewrite"
-    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'
-    'bundles/app/vendor/font-awesome/css/font-awesome.min.css'
-    'bundles/app/vendor/better-share-button/dist/share-button.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
-    {% stylesheets
-    '@AppBundle/Resources/public/css/*.css'
-    '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
-    '@AppBundle/Resources/public/vendor/bootstrap-toggle/css/bootstrap-toggle.css'
-    '@AppBundle/Resources/public/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/base.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/media-queries.css') }}"/>
+
+    {#{% stylesheets filter="cssrewrite"#}
+    {#'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'#}
+    {#'bundles/app/vendor/font-awesome/css/font-awesome.min.css'#}
+    {#'bundles/app/vendor/better-share-button/dist/share-button.css' %}#}
+    {#<link rel="stylesheet" href="{{ asset_url }}"/>#}
+    {#{% endstylesheets %}#}
+    {#{% stylesheets#}
+    {#'@AppBundle/Resources/public/css/*.css'#}
+    {#'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'#}
+    {#'@AppBundle/Resources/public/vendor/bootstrap-toggle/css/bootstrap-toggle.css'#}
+    {#'@AppBundle/Resources/public/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css' %}#}
+    {#<link rel="stylesheet" href="{{ asset_url }}"/>#}
+    {#{% endstylesheets %}#}
 </head>
 
 <body data-target="#menu-section">
@@ -85,18 +88,24 @@
     </div>
 </footer>
 
-{% include 'AppBundle::analytics.html.twig' %}
+{% include 'analytics.html.twig' %}
 
-{% javascripts
-'@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
-'@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
-'@AppBundle/Resources/public/vendor/jquery-ui/jquery-ui.min.js'
-'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
-'@AppBundle/Resources/public/vendor/bootstrap-toggle/js/bootstrap-toggle.js'
-'@AppBundle/Resources/public/vendor/better-share-button/dist/share-button.js'
-'@AppBundle/Resources/public/js/*' %}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="{{ asset('assets/vendor/js/tools.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/contact-form.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/main-form.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/share-button.js') }}"></script>
+
+
+{#{% javascripts#}
+{#'@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'#}
+{#'@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'#}
+{#'@AppBundle/Resources/public/vendor/jquery-ui/jquery-ui.min.js'#}
+{#'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'#}
+{#'@AppBundle/Resources/public/vendor/bootstrap-toggle/js/bootstrap-toggle.js'#}
+{#'@AppBundle/Resources/public/vendor/better-share-button/dist/share-button.js'#}
+{#'@AppBundle/Resources/public/js/*' %}#}
+{#<script src="{{ asset_url }}"></script>#}
+{#{% endjavascripts %}#}
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-{% form_theme form 'AppBundle::form_layout_no_labels.html.twig' %}
+{% form_theme form 'form_layout_no_labels.html.twig' %}
 
 <form method="post" id="post-comment" action="{{ path('post', {'slug': post.getSlug()}) }}#post-comment">
     {{ form_errors(form) }}
@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-lg-4 col-md-5">
-            {% include 'AppBundle:form:recaptcha.html.twig' %}
+            {% include 'form/recaptcha.html.twig' %}
         </div>
         <div class="col-lg-8 col-md-7 text-right">
             <input type="submit" class="btn button-custom btn-custom-three shadow" value="Add reply">
