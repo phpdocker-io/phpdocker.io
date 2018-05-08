@@ -7,3 +7,4 @@
 
 .idea
 *.sql
+config/parameters.yaml
