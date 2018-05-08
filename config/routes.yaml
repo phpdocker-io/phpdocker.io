@@ -1,24 +1,28 @@
-easy_admin_bundle:
-    resource: "@AppBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /site-admin
+#easy_admin_bundle:
+#    resource: "@App/Controller/AdminController.php"
+#    type:     annotation
+#    prefix:   /site-admin
 
 home:
     path:      /
-    defaults:  { _controller: AppBundle:Pages:home }
+    defaults: { _controller: App\Controller\Pages::home}
+#    defaults:  { _controller: AppBundle:Pages:home }
     methods: [GET]
 
 post:
     path:     /post/{slug}
-    defaults:  { _controller: AppBundle:Post:showPost }
+    defaults: { _controller: App\Controller\Post::showPost }
+#    defaults:  { _controller: AppBundle:Post:showPost }
     methods: [GET, POST]
 
 contact:
     path:      /contact
-    defaults:  { _controller: AppBundle:Pages:contactRequest }
+    defaults: { _controller: App\Controller\Pages::contactRequest}
+#    defaults:  { _controller: AppBundle:Pages:contactRequest }
     methods: [GET, POST]
 
 generator:
     path:      /generator
-    defaults:  { _controller: AppBundle:Generator:create }
+    defaults: { _controller: App\Controller\Generator::create}
+#    defaults:  { _controller: AppBundle:Generator:create }
     methods: [GET, POST]
