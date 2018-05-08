@@ -36,22 +36,22 @@ services:
         class: GuzzleHttp\Client
 
     recaptcha_validator:
-        class:     AppBundle\Services\RecaptchaValidator
+        class:     App\Services\RecaptchaValidator
         arguments: ['@guzzle', '@request_stack', '%recaptcha_secret_key%', '%recaptcha_verify_token_endpoint%']
 
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
         tags:
           - { name: twig.extension }
-
-    twig.custom_extensions:
-        class: AppBundle\Services\TwigCustomExtensions
-        tags:
-          - { name: twig.extension }
+#
+#    twig.custom_extensions:
+#        class: App\Services\TwigCustomExtensions
+#        tags:
+#          - { name: twig.extension }
 
     cocur_slugify:
         class: Cocur\Slugify\Slugify
 
     slugifier:
-        class: AppBundle\Services\Slugifier
+        class: App\Services\Slugifier
         arguments: ['@cocur_slugify']
