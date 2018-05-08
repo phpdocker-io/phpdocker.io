@@ -3,11 +3,6 @@
 ###############################################################################
 version: "3.1"
 services:
-
-    memcached:
-      image: memcached:alpine
-      container_name: phpdocker-io-memcached
-
     mailhog:
       image: mailhog/mailhog:latest
       container_name: phpdocker-io-mailhog

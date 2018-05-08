@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.2.0"
+    },
     "cocur/slugify": {
         "version": "v3.1"
     },
@@ -71,6 +74,9 @@
     "egulias/email-validator": {
         "version": "2.1.4"
     },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.34"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.3"
     },
@@ -117,6 +123,15 @@
             "branch": "master",
             "version": "4.0",
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
+        }
+    },
+    "stof/doctrine-extensions-bundle": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.2",
+            "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
         }
     },
     "swiftmailer/swiftmailer": {
