@@ -17,7 +17,7 @@
 
 namespace App\Assert;
 
-use PHPDocker\Project\ServiceOptions\Application;
+use PhpDockerIo\Project\ServiceOptions\Application;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

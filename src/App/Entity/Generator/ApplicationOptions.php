@@ -18,7 +18,7 @@
 namespace App\Entity\Generator;
 
 use App\Assert as CustomAssert;
-use PHPDocker\Project\ServiceOptions\Application;
+use PhpDockerIo\Project\ServiceOptions\Application;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

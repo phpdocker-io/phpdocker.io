@@ -17,7 +17,7 @@
 
 namespace App\Entity\Generator;
 
-use PHPDocker\Project\ServiceOptions\MariaDB;
+use PhpDockerIo\Project\ServiceOptions\MariaDB;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

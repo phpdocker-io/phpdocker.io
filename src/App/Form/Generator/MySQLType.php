@@ -18,7 +18,7 @@
 namespace App\Form\Generator;
 
 use App\Entity\Generator\MySQLOptions;
-use PHPDocker\Project\ServiceOptions\MySQL;
+use PhpDockerIo\Project\ServiceOptions\MySQL;
 
 /**
  * Form for MySQL options.

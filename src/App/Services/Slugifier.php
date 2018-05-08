@@ -18,7 +18,7 @@
 namespace App\Services;
 
 use Cocur\Slugify\Slugify;
-use PHPDocker\Interfaces\SlugifierInterface;
+use PhpDockerIo\Interfaces\SlugifierInterface;
 
 /**
  * String slugifier.

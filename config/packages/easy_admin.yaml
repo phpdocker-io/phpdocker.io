@@ -1,14 +1,3 @@
-parameters:
-    rich_text_editor_form_type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType'
-
-ivory_ck_editor:
-    input_sync: true
-    default_config: base_config
-    configs:
-        base_config:
-            toolbar:
-                - { name: "styles", items: ['Bold', 'Italic', 'BulletedList', 'Link', 'PasteFromWord', 'Source'] }
-
 easy_admin:
     site_name: "PHPDocker.io"
     design:
@@ -45,8 +34,8 @@ easy_admin:
                 title: 'Add a new post'
                 fields:
                     - { property: title, css_class: 'col-lg-6 col-md-6' }
-                    - { property: bodyIntro, type: '%rich_text_editor_form_type%' }
-                    - { property: body, type: '%rich_text_editor_form_type%' }
+                    - { property: bodyIntro }
+                    - { property: body }
                     - { property: category, label: 'Link to category', css_class: 'col-lg-6 col-md-6'}
                     - { property: active, label: 'Is active', css_class: 'col-lg-6 col-md-6'}
             edit:

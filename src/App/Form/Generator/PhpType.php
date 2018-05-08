@@ -18,11 +18,11 @@
 namespace App\Form\Generator;
 
 use App\Entity\Generator\PhpOptions;
-use PHPDocker\PhpExtension\Php56AvailableExtensions;
-use PHPDocker\PhpExtension\Php70AvailableExtensions;
-use PHPDocker\PhpExtension\Php71AvailableExtensions;
-use PHPDocker\PhpExtension\Php72AvailableExtensions;
-use PHPDocker\PhpExtension\PhpExtension;
+use PhpDockerIo\PhpExtension\Php56AvailableExtensions;
+use PhpDockerIo\PhpExtension\Php70AvailableExtensions;
+use PhpDockerIo\PhpExtension\Php71AvailableExtensions;
+use PhpDockerIo\PhpExtension\Php72AvailableExtensions;
+use PhpDockerIo\PhpExtension\PhpExtension;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

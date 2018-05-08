@@ -57,6 +57,6 @@ services:
     cocur_slugify:
         class: Cocur\Slugify\Slugify
 
-    slugifier:
-        class: App\Services\Slugifier
+    App\Services\Slugifier:
         arguments: ['@cocur_slugify']
+        autowire: true

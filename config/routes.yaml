@@ -4,25 +4,21 @@
 #    prefix:   /site-admin
 
 home:
-    path:      /
-    defaults: { _controller: App\Controller\Pages::home}
-#    defaults:  { _controller: AppBundle:Pages:home }
-    methods: [GET]
+    path:     /
+    defaults: { _controller: App\Controller\PagesController::homeAction }
+    methods:  [GET]
 
 post:
     path:     /post/{slug}
-    defaults: { _controller: App\Controller\Post::showPost }
-#    defaults:  { _controller: AppBundle:Post:showPost }
-    methods: [GET, POST]
+    defaults: { _controller: App\Controller\PostController::showPostAction }
+    methods:  [GET, POST]
 
 contact:
-    path:      /contact
-    defaults: { _controller: App\Controller\Pages::contactRequest}
-#    defaults:  { _controller: AppBundle:Pages:contactRequest }
-    methods: [GET, POST]
+    path:     /contact
+    defaults: { _controller: App\Controller\PagesController::contactRequestAction }
+    methods:  [GET, POST]
 
 generator:
-    path:      /generator
-    defaults: { _controller: App\Controller\Generator::create}
-#    defaults:  { _controller: AppBundle:Generator:create }
-    methods: [GET, POST]
+    path:     /generator
+    defaults: { _controller: App\Controller\GeneratorController::createAction }
+    methods:  [GET, POST]

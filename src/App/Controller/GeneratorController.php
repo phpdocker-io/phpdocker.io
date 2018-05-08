@@ -20,6 +20,7 @@ namespace App\Controller;
 use App\Entity\Generator\PhpOptions;
 use App\Entity\Generator\Project;
 use App\Form\Generator\ProjectType;
+use App\Services\Slugifier;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,10 +41,10 @@ class GeneratorController extends AbstractController
      *
      * @return BinaryFileResponse|Response
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, Slugifier $slugifier)
     {
         // Set up form
-        $project = new Project($this->container->get('slugifier'));
+        $project = new Project($slugifier);
         $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
 
         // Process form
@@ -66,7 +67,7 @@ class GeneratorController extends AbstractController
             return $response;
         }
 
-        return $this->render('AppBundle:Generator:generator.html.twig', [
+        return $this->render(':Generator:generator.html.twig', [
             'form' => $form->createView(),
         ]);
     }

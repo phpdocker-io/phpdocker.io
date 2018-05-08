@@ -16,7 +16,7 @@
  */
 namespace App\Entity\Generator;
 
-use PHPDocker\Project\ServiceOptions\Elasticsearch;
+use PhpDockerIo\Project\ServiceOptions\Elasticsearch;
 
 /**
  * Elasticsearch options entity for validation.

@@ -17,7 +17,7 @@
 
 namespace App\Entity\Generator;
 
-use PHPDocker\Interfaces\SlugifierInterface;
+use PhpDockerIo\Interfaces\SlugifierInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package App\Entity\ORM
  * @author  Luis A. Pabon Flores
  */
-class Project extends \PHPDocker\Project\Project
+class Project extends \PhpDockerIo\Project\Project
 {
     /**
      * @var string

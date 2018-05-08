@@ -52,7 +52,7 @@ class PagesController extends AbstractController
                 ->getResult(Query::HYDRATE_SIMPLEOBJECT);
         }
 
-        return $this->render('AppBundle:Pages:home.html.twig', ['content' => $content]);
+        return $this->render(':Pages:home.html.twig', ['content' => $content]);
     }
 
     /**
@@ -77,13 +77,13 @@ class PagesController extends AbstractController
             if ($this->checkRecaptcha($request) === true) {
                 $this->sendMessage($contactRequest);
 
-                return $this->render('AppBundle:Pages:contact-success.html.twig');
+                return $this->render(':Pages:contact-success.html.twig');
             }
 
             $form->addError(new FormError('We failed to verify you are human'));
         }
 
-        return $this->render('AppBundle:Pages:contact.html.twig', ['form' => $form->createView()]);
+        return $this->render(':Pages:contact.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -93,13 +93,12 @@ class PagesController extends AbstractController
      */
     private function sendMessage(ContactRequest $contactRequest)
     {
-        $messageBody = $this->renderView('AppBundle:emails:contact-email.html.twig', [
+        $messageBody = $this->renderView(':emails:contact-email.html.twig', [
             'senderEmail' => $contactRequest->getSenderEmail(),
             'message'     => $contactRequest->getMessage(),
         ]);
 
-        $message = \Swift_Message::newInstance();
-        $message
+        $message = (new \Swift_Message())
             ->setSubject('PHPDocker.io - Contact request')
             ->setFrom('automaton@phpdocker.io')
             ->setReplyTo($contactRequest->getSenderEmail())
@@ -120,7 +119,7 @@ class PagesController extends AbstractController
         $queryBuilder = $this
             ->getDatabaseTable('AppBundle:ORM\Post')
             ->createQueryBuilder('p')
-            ->innerJoin('AppBundle:ORM\Category', 'c', Query\Expr\Join::WITH, 'p.category = c.id')
+            ->innerJoin('App:ORM\Category', 'c', Query\Expr\Join::WITH, 'p.category = c.id')
             ->where('p.active = :active')
             ->andWhere('c.slug = :slug')
             ->orderBy('p.id', 'DESC')
