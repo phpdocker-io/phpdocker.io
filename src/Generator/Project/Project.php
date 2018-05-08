@@ -135,7 +135,7 @@ class Project
     public function getProjectNameSlug(): string
     {
         if ($this->projectNameSlug === null) {
-            $this->projectNameSlug = $this->getSlugifier()->slugify($this->getName());
+            $this->projectNameSlug = $this->slugifier->slugify($this->getName());
         }
 
         return $this->projectNameSlug;
@@ -451,19 +451,6 @@ class Project
         $this->mailhogOptions->setEnabled($hasMailhog);
 
         return $this;
-    }
-
-    /**
-     * @return SlugifierInterface
-     * @throws Exception\MissingDependencyException
-     */
-    public function getSlugifier(): SlugifierInterface
-    {
-        if ($this->slugifier === null) {
-            throw new Exception\MissingDependencyException('Slugifier hasn\'t been initialised');
-        }
-
-        return $this->slugifier;
     }
 
     /**

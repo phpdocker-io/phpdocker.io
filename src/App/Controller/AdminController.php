@@ -19,7 +19,7 @@ namespace App\Controller;
 
 use App\Entity\ORM\Post;
 use Doctrine\ORM\QueryBuilder;
-use JavierEguiluz\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Form;
 
@@ -65,7 +65,7 @@ class AdminController extends BaseAdminController
      * @param string $sortDirection
      * @param string $sortField
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     public function createPostListQueryBuilder(string $entityClass, string $sortDirection, $sortField): QueryBuilder
     {

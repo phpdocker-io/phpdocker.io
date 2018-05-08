@@ -20,7 +20,7 @@ Once you're done, simply `cd` to your project and run `docker-compose up -d`. Th
 
 ## Services exposed outside your environment ##
 
-You can access your application via **`localhost`**, if you're running the containers directly, or through **`{{ vmIpAddress }}`** when run on a vm. nginx and mailhog both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts` 
+You can access your application via **`localhost`**. nginx and mailhog both respond to any hostname, in case you want to add your own hostname on your `/etc/hosts`
 
 Service|Address outside containers
 ------|---------|-----------
@@ -38,7 +38,7 @@ Service|Hostname|Port number
 php-fpm|php-fpm|9000
 {% if project.hasMysql() %}MySQL|mysql|3306 (default){{ "\n" }}{% endif %}
 {% if project.hasMariadb() %}MariaDB|mariadb|3306 (default){{ "\n" }}{% endif %}
-{% if project.hasPosgres() %}Postgres|postgres|5432 (default){{ "\n" }}{% endif %}
+{% if project.hasPostgres() %}Postgres|postgres|5432 (default){{ "\n" }}{% endif %}
 {% if project.hasMemcached() %}Memcached|memcached|11211 (default){{ "\n" }}{% endif %}
 {% if project.hasRedis() %}Redis|redis|6379 (default){{ "\n" }}{% endif %}
 {% if project.hasElasticsearch() %}Elasticsearch|elasticsearch|9200 (HTTP default) / 9300 (ES transport default){{ "\n" }}{% endif %}
