@@ -33,9 +33,9 @@ services:
         resource: '../src/App/Controller'
         tags: ['controller.service_arguments']
 
-    docker_generator:
-        class:    PhpDockerIo\Generator\Generator
-        factory: [PHPDocker\Generator\Factory, create]
+    PhpDockerIo\Generator\Generator:
+        factory: [PhpDockerIo\Generator\Factory, create]
+        autowire: true
 
     guzzle:
         class: GuzzleHttp\Client
