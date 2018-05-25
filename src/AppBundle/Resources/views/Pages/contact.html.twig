@@ -18,7 +18,7 @@
 
             <div class="{{ bigColumn }}">
                 {% for field in ['senderEmail', 'message']
-                if (attribute(form, field) is defined) %}
+                    if (attribute(form, field) is defined) %}
                     {{ form_row(attribute(form, field)) }}
                 {% endfor %}
             </div>
@@ -35,6 +35,12 @@
                                value="Send your message">
                     </div>
                 </div>
+            </div>
+            <div class="{{ bigColumn }}">
+                <strong>Privacy notice:</strong> this contact form sends an email to the website maintainer with your
+                email address as reply-to, and obviously your message. Other than my email inbox, neither your email
+                address nor your message are stored or logged anywhere else nor will they be used for anything other
+                than replying back to you.
             </div>
         </form>
     </div>
