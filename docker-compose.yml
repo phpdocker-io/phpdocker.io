@@ -4,9 +4,9 @@
 version: "3.1"
 services:
 
-    postgres:
+    database:
       image: postgres:11-alpine
-      container_name: phpdocker-io-postgres
+      container_name: phpdocker-io-database
       working_dir: /application
       volumes:
         - .:/application
