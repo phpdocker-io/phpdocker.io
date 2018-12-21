@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -73,6 +76,9 @@
             "version": "1.0",
             "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
         }
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.36"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
