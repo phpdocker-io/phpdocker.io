@@ -32,3 +32,13 @@ services:
       volumes:
         - ./backend:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+
+    frontend:
+      image: node:alpine
+      container_name: phpdocker-io-frontend
+      working_dir: /application
+      volumes:
+        - ./frontend:/application
+      ports:
+        - "5001:3000"
+      command: yarn start
