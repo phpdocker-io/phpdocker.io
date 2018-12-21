@@ -64,6 +64,7 @@
         }
     },
     "require-dev": {
+        "nelmio/alice": "^3.5",
         "symfony/debug-pack": "^1.0"
     }
 }
