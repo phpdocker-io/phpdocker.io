@@ -17,8 +17,7 @@
 
 namespace App\ORM;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,6 +26,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Describes a news post.
  *
  * @ORM\Entity()
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     itemOperations={"get"}
+ * )
  *
  * @package App\ORM
  * @author  Luis A. Pabon Flores
@@ -77,25 +80,12 @@ class Post
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="PostComment", mappedBy="post", cascade={"all"})
-     */
-    private $postComments;
-
-    /**
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      */
     private $category;
-
-    /**
-     * Initialise post collection
-     */
-    public function __construct()
-    {
-        $this->postComments = new ArrayCollection();
-    }
 
     /**
      * @return string
@@ -115,49 +105,6 @@ class Post
         $this->slug = $slug;
 
         return $this;
-    }
-
-    /**
-     * @param PostComment $postComment
-     *
-     * @return self
-     */
-    public function addPostComment(PostComment $postComment): self
-    {
-        $this->postComments[] = $postComment;
-        $postComment->setPost($this);
-
-        return $this;
-    }
-
-    /**
-     * @param PostComment $postComment
-     *
-     * @return self
-     */
-    public function removePostComment(PostComment $postComment): self
-    {
-        $this->postComments->removeElement($postComment);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getPostComments(): Collection
-    {
-        return $this->postComments;
-    }
-
-    /**
-     * Returns a count of all post comments associated to this post
-     *
-     * @return int
-     */
-    public function getCountPostComments(): int
-    {
-        return $this->postComments->count();
     }
 
     /**
