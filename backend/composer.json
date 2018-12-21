@@ -55,5 +55,8 @@
             "allow-contrib": false,
             "require": "4.2.*"
         }
+    },
+    "require-dev": {
+        "symfony/debug-pack": "^1.0"
     }
 }
