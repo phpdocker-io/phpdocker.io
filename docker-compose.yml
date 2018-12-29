@@ -31,7 +31,7 @@ services:
       working_dir: /application
       volumes:
         - ./backend:/application
-        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
 
     frontend:
       image: node:alpine
