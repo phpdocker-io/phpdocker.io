@@ -34,7 +34,7 @@ class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
      * @Assert\NotNull(groups={"postgresOptions"})
      * @Assert\Length(min=1, max=128)
      */
-    protected $version = self::VERSION_96;
+    protected $version = self::VERSION_111;
 
     /**
      * @var string
