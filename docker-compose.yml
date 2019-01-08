@@ -47,5 +47,3 @@ services:
       volumes:
         - .:/application
         - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
-        - ./phpdocker/php-fpm/opcache-blacklist.txt:/opcache-blacklist.txt
-
