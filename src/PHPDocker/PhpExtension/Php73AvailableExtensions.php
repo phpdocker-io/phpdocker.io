@@ -18,12 +18,12 @@
 namespace PHPDocker\PhpExtension;
 
 /**
- * Extensions available on PHP 7.2.x.
+ * Extensions available on PHP .x.
  *
  * @package PHPDocker\PhpExtension
  * @author  Luis A. Pabon Flores
  */
-class Php72AvailableExtensions extends BaseAvailableExtensions
+class Php73AvailableExtensions extends BaseAvailableExtensions
 {
     /**
      * Must return an array of all available mandatory extensions, indexed by display name
@@ -34,14 +34,14 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
     protected function getMandatoryExtensionsMap(): array
     {
         return [
-            'cURL'     => ['packages' => ['php7.2-curl']],
-            'JSON'     => ['packages' => ['php7.2-json']],
-            'MBSTRING' => ['packages' => ['php7.2-mbstring']],
-            'OPCache'  => ['packages' => ['php7.2-opcache']],
-            'Readline' => ['packages' => ['php7.2-readline']],
-            'Sodium'   => ['packages' => ['php7.2-sodium']],
-            'XML'      => ['packages' => ['php7.2-xml']],
-            'Zip'      => ['packages' => ['php7.2-zip']],
+            'cURL'     => ['packages' => ['php-curl']],
+            'JSON'     => ['packages' => ['php-json']],
+            'MBSTRING' => ['packages' => ['php-mbstring']],
+            'OPCache'  => ['packages' => ['php-opcache']],
+            'Readline' => ['packages' => ['php-readline']],
+            'Sodium'   => ['packages' => ['php-sodium']],
+            'XML'      => ['packages' => ['php-xml']],
+            'Zip'      => ['packages' => ['php-zip']],
         ];
     }
 
@@ -55,50 +55,46 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
     {
         return [
             'Memcached'   => ['packages' => ['php-memcached']],
-            'MySQL'       => ['packages' => ['php7.2-mysql']],
-            'PostgreSQL'  => ['packages' => ['php7.2-pgsql']],
+            'MySQL'       => ['packages' => ['php7.3-mysql']],
+            'PostgreSQL'  => ['packages' => ['php7.3-pgsql']],
             'Redis'       => ['packages' => ['php-redis']],
-            'SQLite3'     => ['packages' => ['php7.2-sqlite3']],
+            'SQLite3'     => ['packages' => ['php7.3-sqlite3']],
             'XDebug'      => ['packages' => ['php-xdebug']],
-            'Bcmath'      => ['packages' => ['php7.2-bcmath']],
-            'bz2'         => ['packages' => ['php7.2-bz2']],
-            'DBA'         => ['packages' => ['php7.2-dba']],
-            'Enchant'     => ['packages' => ['php7.2-enchant']],
-            'GD'          => ['packages' => ['php7.2-gd']],
+            'Bcmath'      => ['packages' => ['php7.3-bcmath']],
+            'bz2'         => ['packages' => ['php7.3-bz2']],
+            'DBA'         => ['packages' => ['php7.3-dba']],
+            'Enchant'     => ['packages' => ['php7.3-enchant']],
+            'GD'          => ['packages' => ['php7.3-gd']],
             'Gearman'     => ['packages' => ['php-gearman']],
-            'GMP'         => ['packages' => ['php7.2-gmp']],
+            'GMP'         => ['packages' => ['php7.3-gmp']],
             'igbinary'    => ['packages' => ['php-igbinary']],
             'ImageMagick' => ['packages' => ['php-imagick']],
-            'IMAP'        => ['packages' => ['php7.2-imap']],
-            'Interbase'   => ['packages' => ['php7.2-interbase']],
-            'Intl'        => ['packages' => ['php7.2-intl']],
-            'LDAP'        => ['packages' => ['php7.2-ldap']],
+            'IMAP'        => ['packages' => ['php7.3-imap']],
+            'Interbase'   => ['packages' => ['php7.3-interbase']],
+            'Intl'        => ['packages' => ['php7.3-intl']],
+            'LDAP'        => ['packages' => ['php7.3-ldap']],
             'MongoDB'     => ['packages' => ['php-mongodb']],
             'MessagePack' => ['packages' => ['php-msgpack']],
-            'ODBC'        => ['packages' => ['php7.2-odbc']],
-            'PHPDBG'      => ['packages' => ['php7.2-phpdbg']],
-            'PSpell'      => ['packages' => ['php7.2-pspell']],
+            'ODBC'        => ['packages' => ['php7.3-odbc']],
+            'PHPDBG'      => ['packages' => ['php7.3-phpdbg']],
+            'PSpell'      => ['packages' => ['php7.3-pspell']],
             'raphf'       => ['packages' => ['php-raphf']],
-            'Recode'      => ['packages' => ['php7.2-recode']],
-            'SNMP'        => ['packages' => ['php7.2-snmp']],
-            'SOAP'        => ['packages' => ['php7.2-soap']],
+            'Recode'      => ['packages' => ['php7.3-recode']],
+            'SNMP'        => ['packages' => ['php7.3-snmp']],
+            'SOAP'        => ['packages' => ['php7.3-soap']],
             'SSH2'        => ['packages' => ['php-ssh2']],
-            'Sybase'      => ['packages' => ['php7.2-sybase']],
+            'Sybase'      => ['packages' => ['php7.3-sybase']],
             'Tideways'    => ['packages' => ['php-tideways']],
-            'Tidy'        => ['packages' => ['php7.2-tidy']],
-            'XMLRPC-EPI'  => ['packages' => ['php7.2-xmlrpc']],
-            'XSL'         => ['packages' => ['php7.2-xsl']],
+            'Tidy'        => ['packages' => ['php7.3-tidy']],
+            'XMLRPC-EPI'  => ['packages' => ['php7.3-xmlrpc']],
+            'XSL'         => ['packages' => ['php7.3-xsl']],
             'YAML'        => ['packages' => ['php-yaml']],
             'ZeroMQ'      => ['packages' => ['php-zmq']],
 
-            // Disabled (not yet on php72 or broken)
-
-            // libgearman broken (libgearman8 not on repos)
-            //
-
+            // Disabled (not yet on php73 or broken)
+            
             // Installs php56
             //            'Xhprof'      => ['packages' => ['php-xhprof']],
-
         ];
     }
 }

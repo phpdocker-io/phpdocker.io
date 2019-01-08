@@ -41,6 +41,11 @@ class AvailableExtensionsFactory
     const PHP_VERSION_72 = '7.2.x';
 
     /**
+     * PHP 7.0.x
+     */
+    const PHP_VERSION_73 = '7.3.x';
+
+    /**
      * PHP 5.6.x
      */
     const PHP_VERSION_56 = '5.6.x';
@@ -53,6 +58,7 @@ class AvailableExtensionsFactory
         self::PHP_VERSION_70 => Php70AvailableExtensions::class,
         self::PHP_VERSION_71 => Php71AvailableExtensions::class,
         self::PHP_VERSION_72 => Php72AvailableExtensions::class,
+        self::PHP_VERSION_73 => Php73AvailableExtensions::class,
     ];
 
     /**
