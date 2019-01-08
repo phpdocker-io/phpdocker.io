@@ -6,6 +6,8 @@
         {% set image = 'phpdockerio/php71-fpm:latest' %}
     {% elseif phpVersion == '7.2.x' %}
         {% set image = 'phpdockerio/php72-fpm:latest' %}
+    {% elseif phpVersion == '7.3.x' %}
+        {% set image = 'phpdockerio/php73-fpm:latest' %}
     {% else %}
         {% set image = 'phpdockerio/php56-fpm:latest' %}
     {% endif %}
@@ -39,6 +41,8 @@ RUN apt-get update \
             {% set phalconPackage = 'php7.1-phalcon' %}
         {% elseif phpVersion == '7.2.x' %}
             {% set phalconPackage = 'php7.2-phalcon' %}
+        {% elseif phpVersion == '7.3.x' %}
+            {% set phalconPackage = 'php7.3-phalcon' %}
         {% endif %}
     {% endspaceless %}
 
