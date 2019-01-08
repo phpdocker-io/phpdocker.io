@@ -87,7 +87,7 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
             'Tideways'    => ['packages' => ['php-tideways']],
             'Tidy'        => ['packages' => ['php-tidy']],
             'XMLRPC-EPI'  => ['packages' => ['php-xmlrpc']],
-            'XSL'         => ['packages' => ['php-xdebug']],
+            'XSL'         => ['packages' => ['php-xsl']],
             'YAML'        => ['packages' => ['php-yaml']],
             'ZeroMQ'      => ['packages' => ['php-zmq']],
 
