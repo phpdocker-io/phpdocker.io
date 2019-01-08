@@ -65,6 +65,7 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'DBA'         => ['packages' => ['php7.2-dba']],
             'Enchant'     => ['packages' => ['php7.2-enchant']],
             'GD'          => ['packages' => ['php7.2-gd']],
+            'Gearman'     => ['packages' => ['php-gearman']],
             'GMP'         => ['packages' => ['php7.2-gmp']],
             'igbinary'    => ['packages' => ['php-igbinary']],
             'ImageMagick' => ['packages' => ['php-imagick']],
@@ -86,6 +87,7 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'Tideways'    => ['packages' => ['php-tideways']],
             'Tidy'        => ['packages' => ['php7.2-tidy']],
             'XMLRPC-EPI'  => ['packages' => ['php7.2-xmlrpc']],
+            'XDebug'      => ['packages' => ['php-xdebug']],
             'XSL'         => ['packages' => ['php7.2-xsl']],
             'YAML'        => ['packages' => ['php-yaml']],
             'ZeroMQ'      => ['packages' => ['php-zmq']],
@@ -93,10 +95,7 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             // Disabled (not yet on php72 or broken)
 
             // libgearman broken (libgearman8 not on repos)
-            //            'Gearman'     => ['packages' => ['php-gearman']],
-
-            // Still depends on php71 max
-            //            'Xdebug'      => ['packages' => ['php-xdebug']],
+            //
 
             // Installs php56
             //            'Xhprof'      => ['packages' => ['php-xhprof']],
