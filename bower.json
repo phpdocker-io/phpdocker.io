@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "bootstrap-multiselect": "*",
+    "bootstrap-multiselect": "0.9.13",
     "jquery": "^2.2.2",
     "jquery-ui": "^1.11.4",
     "font-awesome": "fontawesome#^4.5.0",
