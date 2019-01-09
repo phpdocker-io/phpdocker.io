@@ -35,7 +35,7 @@ class MariaDBOptions extends MariaDB
      * @Assert\NotNull(groups={"mariadbOptions"})
      * @Assert\Length(min=1, max=128)
      */
-    protected $version = self::VERSION_101;
+    protected $version = self::VERSION_104;
 
     /**
      * @var string
