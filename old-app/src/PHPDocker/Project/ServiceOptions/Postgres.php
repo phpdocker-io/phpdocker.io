@@ -28,20 +28,38 @@ class Postgres extends Base
     /**
      * Available versions
      */
-    const VERSION_96 = '9.6';
-    const VERSION_95 = '9.5';
-    const VERSION_94 = '9.4';
+    protected const VERSION_111 = '11.1';
+    protected const VERSION_110 = '11.0';
+    protected const VERSION_106 = '10.6';
+    protected const VERSION_105 = '10.5';
+    protected const VERSION_104 = '10.4';
+    protected const VERSION_103 = '10.3';
+    protected const VERSION_102 = '10.2';
+    protected const VERSION_101 = '10.1';
+    protected const VERSION_100 = '10.0';
+    protected const VERSION_96  = '9.6';
+    protected const VERSION_95  = '9.5';
+    protected const VERSION_94  = '9.4';
 
-    const ALLOWED_VERSIONS = [
-        self::VERSION_96 => '9.6.x',
-        self::VERSION_95 => '9.5.x',
-        self::VERSION_94 => '9.4.x',
+    protected const ALLOWED_VERSIONS = [
+        self::VERSION_111 => '11.1.x',
+        self::VERSION_110 => '11.0.x',
+        self::VERSION_106 => '10.6.x',
+        self::VERSION_105 => '10.5.x',
+        self::VERSION_104 => '10.4.x',
+        self::VERSION_103 => '10.3.x',
+        self::VERSION_102 => '10.2.x',
+        self::VERSION_101 => '10.1.x',
+        self::VERSION_100 => '10.0.x',
+        self::VERSION_96  => '9.6.x',
+        self::VERSION_95  => '9.5.x',
+        self::VERSION_94  => '9.4.x',
     ];
 
     /**
      * @var string
      */
-    protected $version = self::VERSION_95;
+    protected $version = self::VERSION_111;
 
     /**
      * @var string

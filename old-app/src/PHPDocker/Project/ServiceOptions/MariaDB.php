@@ -31,8 +31,14 @@ class MariaDB extends AbstractMySQL
     protected const VERSION_55  = '5.5';
     protected const VERSION_100 = '10.0';
     protected const VERSION_101 = '10.1';
+    protected const VERSION_102 = '10.2';
+    protected const VERSION_103 = '10.3';
+    protected const VERSION_104 = '10.4';
 
     protected const ALLOWED_VERSIONS = [
+        self::VERSION_104 => '10.4.x',
+        self::VERSION_103 => '10.3.x',
+        self::VERSION_102 => '10.2.x',
         self::VERSION_101 => '10.1.x',
         self::VERSION_100 => '10.0.x',
         self::VERSION_55  => '5.5.x',
@@ -43,7 +49,7 @@ class MariaDB extends AbstractMySQL
      */
     public function __construct()
     {
-        $this->version = self::VERSION_101;
+        $this->version = self::VERSION_104;
     }
 
     /**
