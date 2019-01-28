@@ -59,7 +59,7 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
             'PostgreSQL'  => ['packages' => ['php7.3-pgsql']],
             'Redis'       => ['packages' => ['php-redis']],
             'SQLite3'     => ['packages' => ['php7.3-sqlite3']],
-            'XDebug'      => ['packages' => ['php-xdebug']],
+//            'XDebug'      => ['packages' => ['php-xdebug']],
             'Bcmath'      => ['packages' => ['php7.3-bcmath']],
             'bz2'         => ['packages' => ['php7.3-bz2']],
             'DBA'         => ['packages' => ['php7.3-dba']],

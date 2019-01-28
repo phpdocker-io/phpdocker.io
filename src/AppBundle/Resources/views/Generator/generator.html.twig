@@ -16,7 +16,7 @@
                 <h3>Global configuration</h3>
                 <div class="row">
                     {% for field in ['name', 'basePort']
-                    if (attribute(form, field) is defined) %}
+                        if (attribute(form, field) is defined) %}
                         <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
                     {% endfor %}
                 </div>
@@ -40,6 +40,10 @@
                     <div class="note">
                         <p>Please note:</p>
                         <ul>
+                            <li>XDebug is currently disabled in PHP 7.3 due to
+                                <a href="https://bugs.php.net/bug.php?id=77287" target="_blank">a bug in
+                                    opcache</a>. Will re-enable once PHP 7.3.2 is available.
+                            </li>
                             <li>The following extensions are already included on the base image: APC,
                                 cURL, JSON, MCrypt (sodium in PHP>=7.1), MBString, OPCache, Readline, XML and Zip.
                             </li>
@@ -70,7 +74,7 @@
 
                 <div id="mysql-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
-                    if (attribute(form.mysqlOptions, field) is defined) %}
+                        if (attribute(form.mysqlOptions, field) is defined) %}
                         {{ form_row(attribute(form.mysqlOptions, field)) }}
                     {% endfor %}
                 </div>
@@ -82,7 +86,7 @@
 
                 <div id="mariadb-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
-                    if (attribute(form.mariadbOptions, field) is defined) %}
+                        if (attribute(form.mariadbOptions, field) is defined) %}
                         {{ form_row(attribute(form.mariadbOptions, field)) }}
                     {% endfor %}
                 </div>
@@ -95,7 +99,7 @@
 
                 <div id="postgres-options">
                     {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName']
-                    if (attribute(form.postgresOptions, field) is defined) %}
+                        if (attribute(form.postgresOptions, field) is defined) %}
                         {{ form_row(attribute(form.postgresOptions, field)) }}
                     {% endfor %}
                 </div>
@@ -115,7 +119,7 @@
                 <p class="note">The following services take no additional configuration parameters.</p>
 
                 {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse']
-                if (attribute(form, field) is defined) %}
+                    if (attribute(form, field) is defined) %}
                     <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
                 {% endfor %}
             </div>
