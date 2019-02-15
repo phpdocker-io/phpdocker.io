@@ -16,6 +16,10 @@
         "symfony/yaml": "4.2.*",
         "webonyx/graphql-php": "^0.13.0"
     },
+    "require-dev": {
+        "nelmio/alice": "^3.5",
+        "symfony/debug-pack": "^1.0"
+    },
     "config": {
         "preferred-install": {
             "*": "dist"
@@ -62,9 +66,5 @@
             "allow-contrib": false,
             "require": "4.2.*"
         }
-    },
-    "require-dev": {
-        "nelmio/alice": "^3.5",
-        "symfony/debug-pack": "^1.0"
     }
 }
