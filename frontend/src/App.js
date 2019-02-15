@@ -1,28 +1,71 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+
+const postApiBaseUrl = require('./config').postApiBaseUrl
 
 class App extends Component {
-  render() {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      posts: []
+    }
+  }
+
+  componentDidMount () {
+    let posts = []
+
+    const request = new Request(postApiBaseUrl, {
+      method: 'GET',
+      headers: new Headers()
+    })
+
+    request.headers.append('accept', 'application/json')
+
+    fetch(request)
+      .then(response => {
+        return response.json()
+      })
+      .then(json => {
+        posts = json.map((post) => {
+          return {
+            title: post.title,
+            bodyIntro: post.bodyIntro,
+          }
+        })
+
+        this.setState({
+          posts: posts
+        })
+      })
+
+  }
+
+  news () {
+    let posts = []
+
+    this.state.posts.map(post => {
+      posts.push(
+        <div class="post">
+          <h2>{post.title}</h2>
+          <div>{post.bodyIntro}</div>
+        </div>
+      )
+    })
+
+    return posts
+  }
+
+  render () {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>News</h1>
+        {this.news()}
       </div>
-    );
+
+    )
   }
 }
 
-export default App;
+export default App
