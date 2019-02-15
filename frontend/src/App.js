@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import 'semantic-ui-css/semantic.min.css'
 
 const postApiBaseUrl = require('./config').postApiBaseUrl
 
@@ -31,6 +32,8 @@ class App extends Component {
           return {
             title: post.title,
             bodyIntro: post.bodyIntro,
+            slug: post.slug,
+
           }
         })
 
@@ -45,8 +48,8 @@ class App extends Component {
     let posts = []
 
     this.state.posts.map(post => {
-      posts.push(
-        <div class="post">
+      return posts.push(
+        <div className="post" key={post.slug}>
           <h2>{post.title}</h2>
           <div>{post.bodyIntro}</div>
         </div>
