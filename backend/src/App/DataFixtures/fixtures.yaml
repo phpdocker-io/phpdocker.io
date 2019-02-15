@@ -1,0 +1,12 @@
+App\ORM\Category:
+  news:
+    title: News
+
+App\ORM\Post:
+  post{1..10}:
+    category: '@news'
+    title: '<sentence()>'
+    bodyIntro: '<paragraph()>'
+    body: '<paragraphs(5, true)>'
+
+
