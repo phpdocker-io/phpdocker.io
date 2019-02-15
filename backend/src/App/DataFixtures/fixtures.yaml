@@ -8,5 +8,3 @@ App\ORM\Post:
     title: '<sentence()>'
     bodyIntro: '<paragraph()>'
     body: '<paragraphs(5, true)>'
-
-
