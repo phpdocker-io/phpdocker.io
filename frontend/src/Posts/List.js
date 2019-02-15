@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
-const postApiBaseUrl = require('../config').postApiBaseUrl
-
-
+const { postApiBaseUrl } = require('../config')
 
 class List extends Component {
   constructor (props) {
@@ -21,6 +19,7 @@ class List extends Component {
       headers: new Headers()
     })
 
+    // Forces plain JSON insteda of JSON-LD
     request.headers.append('accept', 'application/json')
 
     fetch(request)
@@ -33,7 +32,6 @@ class List extends Component {
             title: post.title,
             bodyIntro: post.bodyIntro,
             slug: post.slug,
-
           }
         })
 
@@ -41,7 +39,6 @@ class List extends Component {
           posts: posts
         })
       })
-
   }
 
   news () {
@@ -66,7 +63,6 @@ class List extends Component {
         <h1>News</h1>
         {this.news()}
       </div>
-
     )
   }
 }
