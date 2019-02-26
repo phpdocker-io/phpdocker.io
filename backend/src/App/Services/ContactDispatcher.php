@@ -1,14 +1,23 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: luis
- * Date: 26/02/19
- * Time: 20:36
- */
 
 namespace App\Services;
 
-class ContactDispatcher
-{
+use PHPDocker\Contact\DispatcherInterface;
+use PHPDocker\Contact\Message;
 
+class ContactDispatcher implements DispatcherInterface
+{
+    public function __construct()
+    {
+    }
+
+    /**
+     * Sends a message.
+     *
+     * @param Message $message
+     */
+    public function send(Message $message): void
+    {
+        // TODO: Implement send() method.
+    }
 }
