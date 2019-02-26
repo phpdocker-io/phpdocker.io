@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const { postApiBaseUrl } = require('../config')
+const { contentApiUri } = require('../config')
 
 class List extends Component {
   constructor (props) {

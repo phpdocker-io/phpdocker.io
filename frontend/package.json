@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "formik": "^1.5.1",
     "jsonld": "^1.5.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

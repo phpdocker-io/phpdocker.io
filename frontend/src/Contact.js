@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { Formik } from 'formik';
 
-const { postApiBaseUrl } = require('./config')
+const { contactApiUri } = require('./config')
 
 class List extends Component {
   constructor (props) {

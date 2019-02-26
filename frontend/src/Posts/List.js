@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const { postApiBaseUrl } = require('../config')
+const { contentApiUri } = require('../config')
 
 class List extends Component {
   constructor (props) {
@@ -14,7 +14,7 @@ class List extends Component {
   componentDidMount () {
     let posts = []
 
-    const request = new Request(postApiBaseUrl, {
+    const request = new Request(contentApiUri, {
       method: 'GET',
       headers: new Headers()
     })

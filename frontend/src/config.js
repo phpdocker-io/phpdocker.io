@@ -1,3 +1,4 @@
 module.exports = {
-  postApiBaseUrl: process.env.POST_API_BASE_URL || 'http://localhost:5002/api/posts',
+  contentApiUri: process.env.POST_API_URI || 'http://localhost:5002/content/posts',
+  contactApiUri: process.env.CONTACT_API_URI || 'http://localhost:5002/contact'
 }
