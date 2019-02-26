@@ -1,3 +1,7 @@
 api_platform:
+    formats:
+        jsonapi:  ['application/vnd.api+json']
+        html:     ['text/html']
+        jsonld:   ['application/ld+json']
     mapping:
         paths: ['%kernel.project_dir%/src/App/ORM']

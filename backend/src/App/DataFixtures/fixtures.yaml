@@ -3,7 +3,7 @@ App\ORM\Category:
     title: News
 
 App\ORM\Post:
-  post{1..10}:
+  post{1..10000}:
     category: '@news'
     title: '<sentence()>'
     bodyIntro: '<paragraph()>'

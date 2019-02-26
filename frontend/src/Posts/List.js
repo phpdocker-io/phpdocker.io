@@ -20,18 +20,20 @@ class List extends Component {
     })
 
     // Forces plain JSON insteda of JSON-LD
-    request.headers.append('accept', 'application/json')
+    request.headers.append('accept', 'application/vnd.api+json')
 
     fetch(request)
       .then(response => {
         return response.json()
       })
       .then(json => {
-        posts = json.map((post) => {
+        posts = json.data.map((post) => {
+          const attributes = post.attributes
+
           return {
-            title: post.title,
-            bodyIntro: post.bodyIntro,
-            slug: post.slug,
+            title: attributes.title,
+            bodyIntro: attributes.bodyIntro,
+            slug: attributes.slug,
           }
         })
 
