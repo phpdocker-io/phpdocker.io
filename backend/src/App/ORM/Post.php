@@ -26,10 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Describes a news post.
  *
  * @ORM\Entity()
- * @ApiResource(
- *     collectionOperations={"get"},
- *     itemOperations={"get"}
- * )
+ * @ApiResource()
  *
  * @package App\ORM
  * @author  Luis A. Pabon Flores

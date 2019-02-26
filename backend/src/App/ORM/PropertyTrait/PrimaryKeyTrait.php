@@ -44,16 +44,4 @@ trait PrimaryKeyTrait
     {
         return $this->id;
     }
-
-    /**
-     * @param int $id
-     *
-     * @return self
-     */
-    public function setId($id): self
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 }

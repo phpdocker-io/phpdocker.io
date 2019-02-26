@@ -17,6 +17,7 @@
 
 namespace App\ORM;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -24,6 +25,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * Categories
  *
  * @ORM\Entity()
+ * @ApiResource()
  *
  * @package App\ORM
  * @author  Luis A. Pabon Flores
