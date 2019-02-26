@@ -1,3 +1,8 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+contact:
+  path: /contact
+  controller: App\Controller\ContactController::process
+  methods: ['POST']

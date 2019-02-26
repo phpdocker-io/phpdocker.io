@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    contact_email_from: 'automaton@phpdocker.io'
+    contact_email_to:   '%env(CONTACT_EMAIL_TO)%'
 
 services:
     # default configuration for services in *this* file
@@ -15,13 +17,21 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/App/*'
-        exclude: '../src/App/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/App/{DependencyInjection,Entity,Services,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/App/Controller'
         tags: ['controller.service_arguments']
+
+    PHPDocker\Contact\DispatcherInterface:
+        class: App\Services\ContactDispatcher
+        arguments:
+            - '@swiftmailer.mailer.default'
+            - '@twig'
+            - '%contact_email_from%'
+            - '%contact_email_to%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
