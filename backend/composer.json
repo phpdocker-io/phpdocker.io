@@ -16,8 +16,7 @@
         "symfony/orm-pack": "^1.0",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/validator": "^4.2.0",
-        "symfony/yaml": "^4.2.0",
-        "webonyx/graphql-php": "^0.13.0"
+        "symfony/yaml": "^4.2.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.1",
