@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PHPDocker.io</title>
+    <meta charset="utf-8">
+
+    <style>
+        body {
+            font-family : Ubuntu, Droid, Roboto, sans-serif;
+        }
+
+        h1 {
+            margin-top : 0;
+        }
+
+        main#contents {
+            width         : 80%;
+            margin        : 1em auto;
+            border        : 2px #666666 solid;
+            border-radius : 10px;
+            padding       : 2em;
+        }
+
+        blockquote {
+            border           : 2px #dddddd solid;
+            border-radius    : 5px;
+            background-color : #dddddd;
+            font-style       : italic;
+            padding          : 2em;
+        }
+    </style>
+</head>
+<body>
+
+<main id="contents">
+    <h1 style="margin-top: 0;">Contact request</h1>
+
+    <p>Hi Luis,</p>
+
+    <p>You've received a contact request from <strong>{{ senderEmail }}</strong>
+        on {{ "now"|date('l, d F Y ') }} at {{ "now"|date('H:i') }}</p>
+
+    <p>Message:</p>
+    <blockquote>{{ message|nl2br }}</blockquote>
+
+    {% if senderEmail %}
+        <p>You can just reply to this email to get back to them.</p>
+    {% endif %}
+
+    <p>Regards, <br>Computer</p>
+</main>
+
+</body>
+</html>

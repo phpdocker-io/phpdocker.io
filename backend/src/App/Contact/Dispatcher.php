@@ -61,7 +61,7 @@ class Dispatcher implements DispatcherInterface
      */
     public function send(Message $message): void
     {
-        $messageBody = $this->twig->render('AppBundle:emails:contact-email.html.twig', [
+        $messageBody = $this->twig->render('contact-email.html.twig', [
             'senderEmail' => $message->getEmail(),
             'message'     => $message->getMessage(),
         ]);

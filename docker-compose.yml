@@ -51,4 +51,10 @@ services:
         - ./admin:/application
       ports:
         - "5001:3000"
-      command: yarn start
+      command: yarn
+
+    mailhog:
+      image: mailhog/mailhog:latest
+      container_name: phpdocker-io-mailhog
+      ports:
+        - "5003:8025"

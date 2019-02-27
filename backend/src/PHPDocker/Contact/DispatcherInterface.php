@@ -15,6 +15,8 @@ interface DispatcherInterface
      * Sends a message.
      *
      * @param Message $message
+     *
+     * @throws DispatcherException
      */
     public function send(Message $message): void;
 }
