@@ -19,7 +19,6 @@
 namespace App\Contact;
 
 use PHPDocker\Contact\DispatcherInterface;
-use App\Contact\Message;
 
 class Dispatcher implements DispatcherInterface
 {

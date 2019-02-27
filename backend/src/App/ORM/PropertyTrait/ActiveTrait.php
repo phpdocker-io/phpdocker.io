@@ -19,7 +19,6 @@
 namespace App\ORM\PropertyTrait;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Is active ORM entity trait.

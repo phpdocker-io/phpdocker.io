@@ -20,7 +20,6 @@ namespace App\Http;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\ConstraintViolationInterface;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Represents a JSON error response.
@@ -33,8 +32,8 @@ class ErrorResponse extends JsonResponse
      * Enforce taking a list of errors and the HTTP status code.
      *
      * @param Error[]|ConstraintViolationInterface[] $errors
-     * @param int                                      $status
-     * @param array                                    $headers
+     * @param int                                    $status
+     * @param array                                  $headers
      */
     public function __construct(iterable $errors, int $status, array $headers = [])
     {
