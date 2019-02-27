@@ -26,7 +26,7 @@ services:
         tags: ['controller.service_arguments']
 
     PHPDocker\Contact\DispatcherInterface:
-        class: App\Services\ContactDispatcher
+        class: App\Contact\Dispatcher
         arguments:
             - '@swiftmailer.mailer.default'
             - '@twig'

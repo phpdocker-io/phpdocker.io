@@ -18,11 +18,14 @@
 
 namespace App\Controller;
 
+use App\Contact\Message;
+use App\Http\Error;
+use App\Http\ErrorResponse;
 use PHPDocker\Contact\DispatcherInterface as EmailDispatcher;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\SerializerInterface as Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface as Validator;
 
 class ContactController
@@ -45,15 +48,24 @@ class ContactController
     public function __construct(EmailDispatcher $emailDispatcher, Serializer $serializer, Validator $validator)
     {
         $this->emailDispatcher = $emailDispatcher;
-        $this->serializer = $serializer;
-        $this->validator = $validator;
+        $this->serializer      = $serializer;
+        $this->validator       = $validator;
     }
 
     public function process(Request $request): JsonResponse
     {
-        $message = $this->serializer->deserialize($request->getContent(), 'json');
+        try {
+            dump($request->getContent());
+            $message    = $this->serializer->deserialize($request->getContent(), Message::class, 'json');
+            $violations = $this->validator->validate($message);
 
+            if ($violations->count() > 0) {
+                return new ErrorResponse($violations, 400);
+            }
+        } catch (NotEncodableValueException $ex) {
+            return new ErrorResponse([new Error('empty-body', 'Request body is empty')], 400);
+        }
 
-        return new JsonResponse(['ok']);
+        return new JsonResponse(['success' => true]);
     }
 }

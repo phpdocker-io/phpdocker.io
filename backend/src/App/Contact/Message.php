@@ -19,6 +19,7 @@
 namespace App\Contact;
 
 use PHPDocker\Contact\MessageInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contact message
@@ -29,11 +30,20 @@ class Message implements MessageInterface
 {
     /**
      * @var string
+     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Email()
      */
+
     private $email;
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Length(min=1, max=2048)
      */
     private $message;
 
