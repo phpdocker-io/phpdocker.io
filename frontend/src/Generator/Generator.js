@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-const { contentApiUri } = require('../config')
-
 class List extends Component {
   constructor (props) {
     super(props)
