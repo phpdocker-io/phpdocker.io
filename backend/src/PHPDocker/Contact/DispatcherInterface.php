@@ -2,6 +2,8 @@
 
 namespace PHPDocker\Contact;
 
+use App\Contact\Message;
+
 /**
  * Defines a dispatcher for the contact message.
  *
