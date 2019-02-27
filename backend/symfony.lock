@@ -344,6 +344,9 @@
     "symfony/serializer": {
         "version": "v4.2.1"
     },
+    "symfony/serializer-pack": {
+        "version": "v1.0.2"
+    },
     "symfony/stopwatch": {
         "version": "v4.2.1"
     },
