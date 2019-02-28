@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 
+
 const { contactApiUri } = require('./config')
 
 class List extends Component {
@@ -34,7 +35,6 @@ class List extends Component {
       message,
     })
 
-    console.log(this.state)
     if (result.status !== 200) {
       const response = await result.json()
       if (response.errors) {
@@ -81,9 +81,8 @@ class List extends Component {
                 {errorMessage => <div className="error">{errorMessage}</div>}
               </ErrorMessage>
 
-
               <Field type="text" component="textarea" name="message"
-                     placeholder="Feedback, recommendations, feature requsts..."/>
+                     placeholder="Feedback, recommendations, feature requests..."/>
               <ErrorMessage name="message">
                 {errorMessage => <div className="error">{errorMessage}</div>}
               </ErrorMessage>
@@ -95,7 +94,8 @@ class List extends Component {
                 <strong>Privacy notice:</strong> this contact form sends an email to the website maintainer with your email address as
                 reply-to, and obviously your message. Other than my email inbox, neither your email address nor your
                 message are stored or logged anywhere else nor will they be used for anything other than replying back
-                to you. </p>
+                to you.
+              </p>
             </Form>
           )}
         />
