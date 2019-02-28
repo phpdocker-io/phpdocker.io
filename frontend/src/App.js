@@ -3,7 +3,6 @@ import List from './Posts/List'
 import Generator from './Generator/Generator'
 import Contact from './Contact'
 import './App.css'
-import 'semantic-ui-css/semantic.min.css'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
