@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 
-
 const { contactApiUri } = require('./config')
 
 class List extends Component {
@@ -39,10 +38,9 @@ class List extends Component {
       const response = await result.json()
       if (response.errors) {
 
-        const firstErrors = response.errors
-          .filter((value, key) => {
-            return key === 0
-          })
+        const firstErrors = response.errors.filter((value, key) => {
+          return key === 0
+        })
 
         const errors = {}
 
@@ -91,7 +89,8 @@ class List extends Component {
                 Send your message
               </button>
               <p>
-                <strong>Privacy notice:</strong> this contact form sends an email to the website maintainer with your email address as
+                <strong>Privacy notice:</strong> this contact form sends an email to the website maintainer with your
+                email address as
                 reply-to, and obviously your message. Other than my email inbox, neither your email address nor your
                 message are stored or logged anywhere else nor will they be used for anything other than replying back
                 to you.
