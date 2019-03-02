@@ -17,7 +17,7 @@ class List extends Component {
 
   }
 
-  handleSubmit = async (email, message, actions) => {
+  handleSubmit = async (email, message) => {
     const result = await fetch(contactApiUri, {
       method: 'POST',
       headers: {

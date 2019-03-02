@@ -46,7 +46,7 @@ class App extends Component {
                 onClick={this.handleItemClick}
               />
             </Menu>
-            
+
             <Route exact path="/" component={List}/>
             <Route path="/generator" component={Generator}/>
             <Route path="/contact" component={Contact}/>
