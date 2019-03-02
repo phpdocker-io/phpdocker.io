@@ -1,7 +1,7 @@
 ###############################################################################
 #                          Generated on phpdocker.io                          #
 ###############################################################################
-version: "3.1"
+version: "3.4"
 services:
 
     database:
@@ -21,17 +21,20 @@ services:
       working_dir: /application
       volumes:
           - ./backend:/application
-          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+          - ./backend/docker//nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
        - "5002:80"
 
     php-fpm:
-      build: phpdocker/php-fpm
+      build:
+        dockerfile: docker/php-fpm/Dockerfile
+        context: backend
+        target: base
       container_name: phpdocker-io-php-fpm
       working_dir: /application
       volumes:
         - ./backend:/application
-        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
+        - ./backend/docker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
 
     frontend:
       image: node:alpine
