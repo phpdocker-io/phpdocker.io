@@ -4040,6 +4040,14 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
+formik-semantic-ui@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/formik-semantic-ui/-/formik-semantic-ui-0.9.0.tgz#9ff4d434d91b3a9b268b411fb4766c690e45fc1d"
+  integrity sha512-MbJKRV83UqqxnGwHkXo/uutuysih4p2YMwl0hJEL1Ng0gITz3TkUkPV1OyDwgrmAYVWbUddZ1LsQGxw8Ts33ZQ==
+  dependencies:
+    hoist-non-react-statics "^3.0.1"
+    prop-types "^15.6.2"
+
 formik@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/formik/-/formik-1.5.1.tgz#ef5687e1ade5b1fe5f1d51435b422238aad107e9"
@@ -4487,6 +4495,13 @@ hoist-non-react-statics@^2.5.0, hoist-non-react-statics@^2.5.5:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
+
+hoist-non-react-statics@^3.0.1:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
+  integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
+  dependencies:
+    react-is "^16.7.0"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"

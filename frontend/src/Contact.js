@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { ErrorMessage, Field, Form, Formik } from 'formik'
-import { Input, TextArea } from 'semantic-ui-react'
+import { ErrorMessage, Field } from 'formik'
+import { Form, } from 'formik-semantic-ui'
 
 const { contactApiUri } = require('./config')
 
@@ -58,14 +58,10 @@ class List extends Component {
 
   render () {
 
-    const SInput = ({ field, ...props }) => (
-      <Input {...field} {...props} />
-    )
-
     return (
       <div>
         <h1>Contact</h1>
-        <Formik
+        <Form
           initialValues={this.state}
           onSubmit={(values, actions) => {
             this.handleSubmit(values.email, values.message, actions).then(
@@ -76,41 +72,37 @@ class List extends Component {
                 actions.setStatus({ msg: 'Set some arbitrary status or data' })
               })
           }}
+        >
+          <Field
+            type="email"
+            name="email"
+            placeholder="Your email"
+          />
+          <ErrorMessage name="email">
+            {errorMessage => <div className="error">{errorMessage}</div>}
+          </ErrorMessage>
 
-          render={({ errors, status, touched, isSubmitting }) => (
-            <Form>
-              <Field
-                type="email"
-                component={SInput}
-                name="email"
-                placeholder="Your email"
-              />
-              <ErrorMessage name="email">
-                {errorMessage => <div className="error">{errorMessage}</div>}
-              </ErrorMessage>
+          <Field
+            component="textarea"
+            name="message"
+            placeholder="Feedback, recommendations, feature requests..."
+          />
+          <ErrorMessage name="message">
+            {errorMessage => <div className="error">{errorMessage}</div>}
+          </ErrorMessage>
 
-              <Field
-                component={TextArea}
-                name="message"
-                placeholder="Feedback, recommendations, feature requests..."
-              />
-              <ErrorMessage name="message">
-                {errorMessage => <div className="error">{errorMessage}</div>}
-              </ErrorMessage>
-
-              <button type="submit" disabled={isSubmitting}>
-                Send your message
-              </button>
-              <p>
-                <strong>Privacy notice:</strong> this contact form sends an email to the website maintainer with your
-                email address as
-                reply-to, and obviously your message. Other than my email inbox, neither your email address nor your
-                message are stored or logged anywhere else nor will they be used for anything other than replying back
-                to you.
-              </p>
-            </Form>
-          )}
-        />
+          <button type="submit">
+            Send your message
+          </button>
+          <p>
+            <strong>Privacy notice:</strong> this contact form sends an email to the website maintainer with your
+            email address as
+            reply-to, and obviously your message. Other than my email inbox, neither your email address nor your
+            message are stored or logged anywhere else nor will they be used for anything other than replying back
+            to you.
+          </p>
+        </Form>
+        )}
       </div>
     )
   }
