@@ -102,7 +102,6 @@ class List extends Component {
             to you.
           </p>
         </Form>
-        )}
       </div>
     )
   }
