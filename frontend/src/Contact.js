@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
+import { Input, TextArea } from 'semantic-ui-react'
 
 const { contactApiUri } = require('./config')
 
@@ -57,6 +58,10 @@ class List extends Component {
 
   render () {
 
+    const SInput = ({ field, ...props }) => (
+      <Input {...field} {...props} />
+    )
+
     return (
       <div>
         <h1>Contact</h1>
@@ -74,13 +79,21 @@ class List extends Component {
 
           render={({ errors, status, touched, isSubmitting }) => (
             <Form>
-              <Field type="email" component="input" name="email" placeholder="Your email"/>
+              <Field
+                type="email"
+                component={SInput}
+                name="email"
+                placeholder="Your email"
+              />
               <ErrorMessage name="email">
                 {errorMessage => <div className="error">{errorMessage}</div>}
               </ErrorMessage>
 
-              <Field type="text" component="textarea" name="message"
-                     placeholder="Feedback, recommendations, feature requests..."/>
+              <Field
+                component={TextArea}
+                name="message"
+                placeholder="Feedback, recommendations, feature requests..."
+              />
               <ErrorMessage name="message">
                 {errorMessage => <div className="error">{errorMessage}</div>}
               </ErrorMessage>
