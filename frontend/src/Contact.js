@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { ErrorMessage, Field } from 'formik'
-import { Form, } from 'formik-semantic-ui'
+import { Button, Form } from 'formik-semantic-ui'
 
 const { contactApiUri } = require('./config')
 
@@ -8,10 +7,7 @@ class List extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      email: '',
-      message: '',
-    }
+    this.state = {}
   }
 
   componentDidMount () {
@@ -30,22 +26,12 @@ class List extends Component {
       })
     })
 
-    this.setState({
-      email,
-      message,
-    })
-
     if (result.status !== 200) {
       const response = await result.json()
       if (response.errors) {
-
-        const firstErrors = response.errors.filter((value, key) => {
-          return key === 0
-        })
-
         const errors = {}
 
-        for (let { property, description } of firstErrors) {
+        for (let { property, description } of response.errors) {
           errors[property] = description
         }
 
@@ -62,7 +48,6 @@ class List extends Component {
       <div>
         <h1>Contact</h1>
         <Form
-          initialValues={this.state}
           onSubmit={(values, actions) => {
             this.handleSubmit(values.email, values.message, actions).then(
               ok => {},
@@ -72,28 +57,25 @@ class List extends Component {
                 actions.setStatus({ msg: 'Set some arbitrary status or data' })
               })
           }}
+
+          schema={{
+            email: {
+              inputProps: {
+                placeholder: 'Your email',
+              },
+              type: 'text',
+            },
+            message: {
+              type: 'textarea',
+              inputProps: {
+                placeholder: 'Feedback, recommendations, feature requests...',
+              }
+            }
+          }}
         >
-          <Field
-            type="email"
-            name="email"
-            placeholder="Your email"
-          />
-          <ErrorMessage name="email">
-            {errorMessage => <div className="error">{errorMessage}</div>}
-          </ErrorMessage>
 
-          <Field
-            component="textarea"
-            name="message"
-            placeholder="Feedback, recommendations, feature requests..."
-          />
-          <ErrorMessage name="message">
-            {errorMessage => <div className="error">{errorMessage}</div>}
-          </ErrorMessage>
+          <Button.Submit>Send your message</Button.Submit>
 
-          <button type="submit">
-            Send your message
-          </button>
           <p>
             <strong>Privacy notice:</strong> this contact form sends an email to the website maintainer with your
             email address as
