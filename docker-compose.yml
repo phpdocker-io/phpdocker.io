@@ -6,7 +6,6 @@ services:
 
     database:
       image: postgres:11-alpine
-      container_name: phpdocker-io-database
       working_dir: /application
       volumes:
         - .:/application
@@ -17,7 +16,6 @@ services:
 
     api:
       image: nginx:alpine
-      container_name: phpdocker-io-api
       working_dir: /application
       volumes:
           - ./backend:/application
@@ -30,7 +28,6 @@ services:
         dockerfile: docker/php-fpm/Dockerfile
         context: backend
         target: base
-      container_name: phpdocker-io-php-fpm
       working_dir: /application
       volumes:
         - ./backend:/application
@@ -38,7 +35,6 @@ services:
 
     frontend:
       image: node:alpine
-      container_name: phpdocker-io-frontend
       working_dir: /application
       volumes:
         - ./frontend:/application
@@ -48,16 +44,14 @@ services:
 
     admin:
       image: node:alpine
-      container_name: phpdocker-io-admin
       working_dir: /application
       volumes:
         - ./admin:/application
       ports:
         - "5001:3000"
-      command: yarn
+      command: yarn start
 
     mailhog:
       image: mailhog/mailhog:latest
-      container_name: phpdocker-io-mailhog
       ports:
         - "5003:8025"
