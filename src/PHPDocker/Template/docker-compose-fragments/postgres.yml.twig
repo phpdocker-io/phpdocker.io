@@ -9,4 +9,6 @@
         - POSTGRES_USER={{ postgres.getRootUser() }}
         - POSTGRES_PASSWORD={{ postgres.getRootPassword() }}
         - POSTGRES_DB={{ postgres.getDatabaseName() }}
+      ports:
+        - "{{ project.getBasePort() + 4 }}:5432"
 {% endif %}
