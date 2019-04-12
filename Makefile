@@ -7,14 +7,32 @@ start:
 stop:
 	docker-compose kill
 
-init: stop clean
+install-dependencies:
 	cd ./frontend; yarn install
 	cd ./admin; yarn install
 	composer -o install --working-dir backend/
-	make start
-	cd ./backend; ./console doctrine:schema:update --force; ./console doctrine:fixtures:load -n
+
+init: stop clean install-dependencies start load-fixtures
 
 clean: stop
 	docker-compose rm -f
 	cd ./frontend; sudo rm -rf node_modules
 	cd ./admin; sudo rm -rf node_modules
+
+load-fixtures:
+	cd ./backend; ./console doctrine:schema:update --force; ./console doctrine:fixtures:load -n
+
+open-frontend:
+	xdg-open http://localhost:5000
+
+open-admin:
+	xdg-open http://localhost:5001
+
+open-content-api:
+	xdg-open http://localhost:5002/content
+
+open-mailhog:
+	xdg-open http://localhost:5003/
+
+open-api-profiler:
+	xdg-open http://localhost:5002/_profiler/latest?limit=10
