@@ -1,4 +1,0 @@
-App\ORM\Category:
-  category{1..2}:
-    title: <realText(10)>
-
