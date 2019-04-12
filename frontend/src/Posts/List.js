@@ -12,8 +12,6 @@ class List extends Component {
   }
 
   componentDidMount () {
-    let posts = []
-
     const request = new Request(contentApiUri, {
       method: 'GET',
       headers: new Headers()
@@ -27,7 +25,7 @@ class List extends Component {
         return response.json()
       })
       .then(json => {
-        posts = json.data.map((post) => {
+        const posts = json.data.map((post) => {
           const attributes = post.attributes
 
           return {
