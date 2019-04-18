@@ -16,28 +16,21 @@
  *
  */
 
-namespace App\Controller;
+namespace PHPDocker\Util;
 
-use App\Generator\Entity\Project;
-use PHPDocker\Util\SlugifierInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-class GeneratorController
+/**
+ * Interface a slugifier MUST fulfil.
+ *
+ * @package PHPDocker\Interfaces
+ */
+interface SlugifierInterface
 {
     /**
-     * @var SlugifierInterface
+     * Takes a string and returns a slugified version of it.
+     *
+     * @param string $string
+     *
+     * @return string
      */
-    private $slugifier;
-
-    public function __construct(SlugifierInterface $slugifier)
-    {
-        $this->slugifier = $slugifier;
-    }
-
-    public function getGeneratorOptions(): JsonResponse
-    {
-        $project = new Project($this->slugifier);
-
-        return new JsonResponse($project);
-    }
+    public function slugify(string $string): string;
 }

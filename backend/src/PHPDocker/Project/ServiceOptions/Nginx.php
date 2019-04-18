@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Luis Alberto Pabón Flores
+ * Copyright 2016 Luis Alberto Pabon Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,31 +13,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
-namespace App\Controller;
+namespace PHPDocker\Project\ServiceOptions;
 
-use App\Generator\Entity\Project;
-use PHPDocker\Util\SlugifierInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-class GeneratorController
+/**
+ * Options for nginx container.
+ *
+ * @package PHPDocker\Project\ServiceOptions
+ * @author  Luis A. Pabon Flores
+ */
+class Nginx extends Base
 {
-    /**
-     * @var SlugifierInterface
-     */
-    private $slugifier;
-
-    public function __construct(SlugifierInterface $slugifier)
+    public function __construct()
     {
-        $this->slugifier = $slugifier;
-    }
-
-    public function getGeneratorOptions(): JsonResponse
-    {
-        $project = new Project($this->slugifier);
-
-        return new JsonResponse($project);
+        $this->setEnabled(true);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Luis Alberto Pabón Flores
+ * Copyright 2016 Luis Alberto Pabon Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,31 +13,17 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
 
-namespace App\Controller;
+namespace PHPDocker\Project\Exception;
 
-use App\Generator\Entity\Project;
-use PHPDocker\Util\SlugifierInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-class GeneratorController
+/**
+ * Thrown when a class has not been properly initialised with a specific dependency.
+ *
+ * @package PHPDocker\Exception
+ * @author  Luis A. Pabon Flores
+ */
+class MissingDependencyException extends \Exception
 {
-    /**
-     * @var SlugifierInterface
-     */
-    private $slugifier;
 
-    public function __construct(SlugifierInterface $slugifier)
-    {
-        $this->slugifier = $slugifier;
-    }
-
-    public function getGeneratorOptions(): JsonResponse
-    {
-        $project = new Project($this->slugifier);
-
-        return new JsonResponse($project);
-    }
 }

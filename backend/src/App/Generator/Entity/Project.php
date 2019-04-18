@@ -18,7 +18,7 @@
 
 namespace App\Generator\Entity;
 
-use PHPDocker\Interfaces\SlugifierInterface;
+use PHPDocker\Util\SlugifierInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

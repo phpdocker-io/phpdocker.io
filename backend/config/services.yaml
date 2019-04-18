@@ -25,6 +25,11 @@ services:
         resource: '../src/App/Controller'
         tags: ['controller.service_arguments']
 
+    Cocur\Slugify\Slugify: ~
+
+    PHPDocker\Util\SlugifierInterface:
+        alias: App\Service\Slugifier
+
     PHPDocker\Contact\DispatcherInterface:
         class: App\Contact\Dispatcher
         arguments:
