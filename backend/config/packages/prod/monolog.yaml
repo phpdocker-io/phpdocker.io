@@ -9,7 +9,7 @@ monolog:
                 - ^/
         nested:
             type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            path: "php://stdout"
             level: debug
         console:
             type: console
@@ -17,7 +17,7 @@ monolog:
             channels: ["!event", "!doctrine"]
         deprecation:
             type: stream
-            path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
+            path: "php://stdout"
         deprecation_filter:
             type: filter
             handler: deprecation
