@@ -18,7 +18,12 @@
 
 namespace App\Contact;
 
+use PHPDocker\Contact\DispatcherException;
 use PHPDocker\Contact\DispatcherInterface;
+use Twig\Environment as Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class Dispatcher implements DispatcherInterface
 {
@@ -42,7 +47,7 @@ class Dispatcher implements DispatcherInterface
      */
     private $twig;
 
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $twig, string $emailFrom, string $emailTo)
+    public function __construct(\Swift_Mailer $mailer, Twig $twig, string $emailFrom, string $emailTo)
     {
         $this->mailer    = $mailer;
         $this->twig      = $twig;
@@ -55,16 +60,18 @@ class Dispatcher implements DispatcherInterface
      *
      * @param Message $message
      *
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @throws DispatcherException
      */
     public function send(Message $message): void
     {
-        $messageBody = $this->twig->render('contact-email.html.twig', [
-            'senderEmail' => $message->getEmail(),
-            'message'     => $message->getMessage(),
-        ]);
+        try {
+            $messageBody = $this->twig->render('contact-email.html.twig', [
+                'senderEmail' => $message->getEmail(),
+                'message'     => $message->getMessage(),
+            ]);
+        } catch (LoaderError|RuntimeError|SyntaxError $ex) {
+            throw new DispatcherException('Message composing error', $ex->getCode(), $ex);
+        }
 
         $swiftMessage = new \Swift_Message();
         $swiftMessage
