@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Form } from 'formik-semantic-ui'
 
 const { contactApiUri } = require('./config')
-
+g
 class List extends Component {
   constructor (props) {
     super(props)

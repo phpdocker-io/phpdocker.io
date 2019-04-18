@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Form from 'react-jsonschema-form'
+import 'semantic-ui-css/semantic.min.css'
+
 
 const { generatorApiUri } = require('../config')
 
@@ -7,7 +10,7 @@ class List extends Component {
     super(props)
 
     this.state = {
-      formOptions: {}
+      formSchema: {}
     }
   }
 
@@ -23,13 +26,9 @@ class List extends Component {
       .then(response => {
         return response.json()
       })
-      .then(json => {
-        const formOptions = json.data.map((formOption) => {
-          return {}
-        })
-
+      .then(schema => {
         this.setState({
-          formOptions: formOptions
+          formSchema: schema
         })
       })
   }
@@ -39,6 +38,7 @@ class List extends Component {
     return (
       <div>
         <h1>Generator</h1>
+        <Form schema={this.state.formSchema}/>
       </div>
     )
   }
