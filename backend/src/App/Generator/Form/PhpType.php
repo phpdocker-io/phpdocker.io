@@ -18,7 +18,7 @@
 
 namespace App\Generator\Form;
 
-use App\Entity\Generator\PhpOptions;
+use App\Generator\Entity\PhpOptions;
 use PHPDocker\PhpExtension\Php56AvailableExtensions;
 use PHPDocker\PhpExtension\Php70AvailableExtensions;
 use PHPDocker\PhpExtension\Php71AvailableExtensions;

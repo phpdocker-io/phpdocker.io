@@ -18,7 +18,7 @@
 
 namespace App\Generator\Form;
 
-use App\Entity\Generator\Project;
+use App\Generator\Entity\Project;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
