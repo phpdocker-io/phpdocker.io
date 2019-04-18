@@ -21,6 +21,7 @@ namespace App\Controller;
 use App\Generator\Entity\Project;
 use PHPDocker\Util\SlugifierInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class GeneratorController
 {
@@ -29,15 +30,22 @@ class GeneratorController
      */
     private $slugifier;
 
-    public function __construct(SlugifierInterface $slugifier)
+    /**
+     * @var SerializerInterface
+     */
+    private $serializer;
+
+    public function __construct(SlugifierInterface $slugifier, SerializerInterface $serializer)
     {
-        $this->slugifier = $slugifier;
+        $this->slugifier  = $slugifier;
+        $this->serializer = $serializer;
     }
 
     public function getGeneratorOptions(): JsonResponse
     {
         $project = new Project($this->slugifier);
+        dd($this->serializer->serialize($project, 'json'));
 
-        return new JsonResponse($project);
+        return new JsonResponse($this->serializer->serialize($project, 'json'));
     }
 }

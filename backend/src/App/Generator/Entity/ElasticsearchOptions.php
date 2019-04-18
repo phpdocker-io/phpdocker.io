@@ -15,9 +15,11 @@
  * limitations under the License.
  *
  */
+
 namespace App\Generator\Entity;
 
 use PHPDocker\Project\ServiceOptions\Elasticsearch;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Elasticsearch options entity for validation.
