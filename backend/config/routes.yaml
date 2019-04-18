@@ -6,3 +6,8 @@ contact:
   path: /contact
   controller: App\Controller\ContactController::process
   methods: ['POST']
+
+generator_get_options:
+  path: /generator
+  controller: App\Controller\GeneratorController::getGeneratorOptions
+  methods: ['GET']

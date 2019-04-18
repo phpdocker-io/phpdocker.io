@@ -17,7 +17,7 @@ class List extends Component {
       headers: new Headers()
     })
 
-    // Forces plain JSON insteda of JSON-LD
+    // Request JSONAPI format
     request.headers.append('accept', 'application/vnd.api+json')
 
     fetch(request)
