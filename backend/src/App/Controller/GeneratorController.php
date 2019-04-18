@@ -18,34 +18,33 @@
 
 namespace App\Controller;
 
-use App\Generator\Entity\Project;
-use PHPDocker\Util\SlugifierInterface;
+use App\Generator\Form\ProjectType;
+use Limenius\Liform\Liform;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class GeneratorController
 {
     /**
-     * @var SlugifierInterface
+     * @var Liform
      */
-    private $slugifier;
+    private $liform;
 
     /**
-     * @var SerializerInterface
+     * @var FormFactoryInterface
      */
-    private $serializer;
+    private $formFactory;
 
-    public function __construct(SlugifierInterface $slugifier, SerializerInterface $serializer)
+    public function __construct(Liform $liform, FormFactoryInterface $formFactory)
     {
-        $this->slugifier  = $slugifier;
-        $this->serializer = $serializer;
+        $this->liform      = $liform;
+        $this->formFactory = $formFactory;
     }
 
     public function getGeneratorOptions(): JsonResponse
     {
-        $project = new Project($this->slugifier);
-        dd($this->serializer->serialize($project, 'json'));
+        $schema = $this->liform->transform($this->formFactory->create(ProjectType::class));
 
-        return new JsonResponse($this->serializer->serialize($project, 'json'));
+        return new JsonResponse($schema);
     }
 }

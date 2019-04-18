@@ -119,6 +119,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "limenius/liform-bundle": {
+        "version": "v0.13.0"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
