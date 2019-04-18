@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2019 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,24 +13,26 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace AppBundle\Form\Generator;
+namespace App\Generator\Form;
 
-use AppBundle\Entity\Generator\ElasticsearchOptions;
-use PHPDocker\Project\ServiceOptions\Elasticsearch;
+use App\Entity\Generator\PostgresOptions;
+use PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * Class ElasticsearchType
+ * Form for Postgres options.
  *
- * @package AppBundle\Form\Generator
+ * @package App\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-class ElasticsearchType extends AbstractGeneratorType
+class PostgresType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
@@ -41,15 +43,27 @@ class ElasticsearchType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('hasElasticsearch', CheckboxType::class, [
-                'label'    => 'Enable Elasticsearch',
+            ->add('hasPostgres', CheckboxType::class, [
+                'label'    => 'Enable Postgres',
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => array_flip(Elasticsearch::getChoices()),
+                'choices'  => array_flip(Postgres::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
                 'label'    => 'Version',
+            ])
+            ->add('rootUser', TextType::class, [
+                'label' => false,
+                'attr'  => ['placeholder' => 'Root username'],
+            ])
+            ->add('rootPassword', TextType::class, [
+                'label' => false,
+                'attr'  => ['placeholder' => 'Password for root user'],
+            ])
+            ->add('databaseName', TextType::class, [
+                'label' => false,
+                'attr'  => ['placeholder' => 'Your app\'s database name'],
             ]);
     }
 
@@ -60,7 +74,7 @@ class ElasticsearchType extends AbstractGeneratorType
      */
     protected function getDataClass(): string
     {
-        return ElasticsearchOptions::class;
+        return PostgresOptions::class;
     }
 
     /**
@@ -69,12 +83,12 @@ class ElasticsearchType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
-            /** @var ElasticsearchOptions $data */
+            /** @var \App\Entity\Generator\PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];
 
-            if ($data->hasElasticsearch() === true) {
-                $groups[] = 'elasticsearchOptions';
+            if ($data->hasPostgres() === true) {
+                $groups[] = 'postgresOptions';
             }
 
             return $groups;

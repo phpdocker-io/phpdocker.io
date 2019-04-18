@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2019 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,17 +13,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace AppBundle\Form\Generator;
+namespace App\Generator\Form;
 
-use AppBundle\Entity\Generator\MariaDBOptions;
+use App\Entity\Generator\MariaDBOptions;
 use PHPDocker\Project\ServiceOptions\MariaDB;
 
 /**
  * Form for Mariadb options.
  *
- * @package AppBundle\Form\Generator
+ * @package App\Form\Generator
  * @author  Luis A. Pabon Flores
  */
 class MariaDBType extends AbstractMySQLType

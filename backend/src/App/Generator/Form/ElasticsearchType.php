@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2019 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,25 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace AppBundle\Form\Generator;
+namespace App\Generator\Form;
 
-use PHPDocker\Project\ServiceOptions\Application;
+use App\Entity\Generator\ElasticsearchOptions;
+use PHPDocker\Project\ServiceOptions\Elasticsearch;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 
 /**
- * Form for application options.
+ * Class ElasticsearchType
  *
- * @package AppBundle\Form\Generator
+ * @package App\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-class ApplicationType extends AbstractGeneratorType
+class ElasticsearchType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
@@ -39,15 +42,15 @@ class ApplicationType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('applicationType', ChoiceType::class, [
-                'choices'  => array_flip(Application::getChoices()),
+            ->add('hasElasticsearch', CheckboxType::class, [
+                'label'    => 'Enable Elasticsearch',
+                'required' => false,
+            ])
+            ->add('version', ChoiceType::class, [
+                'choices'  => array_flip(Elasticsearch::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Application type',
-            ])
-            ->add('uploadSize', IntegerType::class, [
-                'label'    => 'Max upload size (MB)',
-                'required' => true,
+                'label'    => 'Version',
             ]);
     }
 
@@ -58,6 +61,24 @@ class ApplicationType extends AbstractGeneratorType
      */
     protected function getDataClass(): string
     {
-        return Application::class;
+        return ElasticsearchOptions::class;
+    }
+
+    /**
+     * @return callable
+     */
+    protected function getValidationGroups(): callable
+    {
+        return function (FormInterface $form) {
+            /** @var ElasticsearchOptions $data */
+            $data   = $form->getData();
+            $groups = ['Default'];
+
+            if ($data->hasElasticsearch() === true) {
+                $groups[] = 'elasticsearchOptions';
+            }
+
+            return $groups;
+        };
     }
 }
