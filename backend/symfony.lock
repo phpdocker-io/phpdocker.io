@@ -119,6 +119,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "limenius/liform": {
+        "version": "v0.12.0"
+    },
     "limenius/liform-bundle": {
         "version": "v0.13.0"
     },
@@ -389,6 +392,19 @@
             "config/packages/dev/swiftmailer.yaml",
             "config/packages/swiftmailer.yaml",
             "config/packages/test/swiftmailer.yaml"
+        ]
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "1fb02a6e1c8f3d4232cce485c9afa868d63b115a"
+        },
+        "files": [
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
         ]
     },
     "symfony/twig-bridge": {
