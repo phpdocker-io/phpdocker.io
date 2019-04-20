@@ -20,7 +20,7 @@ clean: stop
 	cd ./admin; sudo rm -rf node_modules
 
 load-fixtures:
-	cd ./backend; ./console doctrine:schema:update --force; ./console doctrine:fixtures:load -n
+	cd ./backend; chmod 777 var/* -Rf; ./console doctrine:schema:update --force; ./console doctrine:fixtures:load -n
 
 open-frontend:
 	xdg-open http://localhost:5000
