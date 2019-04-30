@@ -19,7 +19,6 @@
 namespace App\Generator\Form;
 
 use App\Generator\Entity\Project;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,8 +41,9 @@ class ProjectType extends AbstractGeneratorType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Project name',
-                'attr'  => ['placeholder' => 'Used on host, container, vm and folder names'],
+                'label'      => 'Project name',
+                'attr'       => ['placeholder' => 'Used on host, container, vm and folder names'],
+                'empty_data' => '',
             ])
             ->add('basePort', IntegerType::class, [
                 'label' => 'Base port',

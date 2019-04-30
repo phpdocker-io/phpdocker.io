@@ -20,9 +20,12 @@ namespace App\Controller;
 
 use App\Generator\Entity\Project;
 use App\Generator\Form\ProjectType;
+use App\Http\Error;
+use App\Http\ErrorResponse;
 use Limenius\Liform\Liform;
 use PHPDocker\Generator\Generator;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,6 +56,11 @@ class GeneratorController
         $this->generator   = $generator;
     }
 
+    /**
+     * This endpoint provides with the generator form schema, as a JSON schema.
+     *
+     * @return JsonResponse
+     */
     public function getGeneratorOptions(): JsonResponse
     {
         $schema = $this->liform->transform($this->formFactory->create(ProjectType::class));
@@ -60,16 +68,25 @@ class GeneratorController
         return new JsonResponse($schema);
     }
 
+    /**
+     * This endpoint processes form submission and project generation.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function generate(Request $request): Response
     {
         $project = new Project();
         $form    = $this->formFactory->create(ProjectType::class, $project, ['csrf_protection' => false]);
 
-        $data = json_decode($request->getContent(), true);
+        try {
+            $decoded = json_decode($request->getContent(), true);
+        } catch (\JsonException $ex) {
+            return new ErrorResponse([new Error('validation-error', 'Not valid json', '.')], 400);
+        }
 
-        $form->submit($data);
-
-        dump($project);
+        $form->submit($decoded);
 
         if ($form->isValid() === true) {
             // Generate zip file with docker project
@@ -80,11 +97,30 @@ class GeneratorController
             $response
                 ->prepare($request)
                 ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
-                ->deleteFileAfterSend(true);
+                ->deleteFileAfterSend();
 
             return $response;
         }
 
-        return new JsonResponse(['errors' => $form->getErrors()], 400);
+        return new ErrorResponse($this->getErrorsFromForm($form), 400);
+    }
+
+    /**
+     * Given the submitted form, parse out all the errors and return as a list of Error
+     *
+     * @param FormInterface $form
+     *
+     * @return Error[]
+     */
+    private function getErrorsFromForm(FormInterface $form): array
+    {
+        $errors = [];
+        foreach ($form->all() as $formField) {
+            foreach ($formField->getErrors() as $error) {
+                $errors[] = new Error('validation-error', $error->getMessage(), $formField->getName());
+            }
+        }
+
+        return $errors;
     }
 }
