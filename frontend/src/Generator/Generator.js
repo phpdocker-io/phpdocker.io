@@ -50,9 +50,9 @@ class Generator extends Component {
         return response.json()
       })
       .then(schema => {
-        this.setState({
-          formSchema: schema
-        })
+        // this.setState({
+        //   formSchema: schema
+        // })
       })
   }
 
