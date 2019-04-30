@@ -1,0 +1,4 @@
+{% if project.hasClickhouse() %}
+    clickhouse:
+      image: yandex/clickhouse-server:latest
+{% endif %}

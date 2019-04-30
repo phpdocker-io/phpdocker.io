@@ -98,21 +98,8 @@ class Project
      */
     protected $projectNameSlug;
 
-    /**
-     * @var SlugifierInterface
-     */
-    private $slugifier;
-
-    /**
-     * Initialise project
-     *
-     * @param SlugifierInterface $slugifier
-     */
-    public function __construct(SlugifierInterface $slugifier)
+    public function __construct()
     {
-        // Handle dependency injection
-        $this->slugifier = $slugifier;
-
         // Initialise project properties
         $this->name                 = '';
         $this->applicationOptions   = new ServiceOptions\Application();
@@ -126,20 +113,6 @@ class Project
         $this->mailhogOptions       = new ServiceOptions\Mailhog();
         $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
         $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
-    }
-
-    /**
-     * Returns a slugged-up version of the project name.
-     *
-     * @return string
-     */
-    public function getProjectNameSlug(): string
-    {
-        if ($this->projectNameSlug === null) {
-            $this->projectNameSlug = $this->slugifier->slugify($this->getName());
-        }
-
-        return $this->projectNameSlug;
     }
 
     /**

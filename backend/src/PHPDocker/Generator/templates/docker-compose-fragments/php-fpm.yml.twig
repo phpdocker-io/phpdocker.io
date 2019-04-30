@@ -1,0 +1,19 @@
+{% spaceless %}
+    {% if phpVersion == '7.0.x' %}
+        {% set iniLocation =  '/etc/php/7.0/fpm/conf.d/' %}
+    {% elseif phpVersion == '7.1.x' %}
+        {% set iniLocation =  '/etc/php/7.1/fpm/conf.d/' %}
+    {% elseif phpVersion == '7.2.x' %}
+        {% set iniLocation =  '/etc/php/7.2/fpm/conf.d/' %}
+    {% elseif phpVersion == '7.3.x' %}
+        {% set iniLocation =  '/etc/php/7.3/fpm/conf.d/' %}
+    {% else %}
+        {% set iniLocation =  '/etc/php5/fpm/conf.d/' %}
+    {% endif %}
+{% endspaceless %}
+    php-fpm:
+      build: phpdocker/php-fpm
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./phpdocker/{{ phpIniOverrides }}:{{ iniLocation }}99-overrides.ini

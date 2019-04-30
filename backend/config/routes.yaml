@@ -11,3 +11,8 @@ generator_get_options:
   path: /generator
   controller: App\Controller\GeneratorController::getGeneratorOptions
   methods: ['GET']
+
+generator_generate:
+  path: /generator
+  controller: App\Controller\GeneratorController::generate
+  methods: ['POST']

@@ -19,7 +19,6 @@
 namespace App\Generator\Entity;
 
 use PHPDocker\Project\Project as PHPDockerProject;
-use PHPDocker\Util\SlugifierInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -84,9 +83,9 @@ class Project extends PHPDockerProject
      */
     protected $hasMailhog = false;
 
-    public function __construct(SlugifierInterface $slugifier)
+    public function __construct()
     {
-        parent::__construct($slugifier);
+        parent::__construct();
 
         // Override some of the options with our own tweaked versions
         $this->mysqlOptions         = new MySQLOptions();

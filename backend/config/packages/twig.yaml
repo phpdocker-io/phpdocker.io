@@ -1,4 +1,4 @@
 twig:
-    default_path: '%kernel.project_dir%/src/App/templates'
+    default_path: '%kernel.project_dir%/src/PHPDocker/Generator/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'

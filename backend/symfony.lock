@@ -125,6 +125,9 @@
     "limenius/liform-bundle": {
         "version": "v0.13.0"
     },
+    "michelf/php-markdown": {
+        "version": "1.8.0"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },

@@ -18,10 +18,16 @@
 
 namespace App\Controller;
 
+use App\Generator\Entity\Project;
 use App\Generator\Form\ProjectType;
 use Limenius\Liform\Liform;
+use PHPDocker\Generator\Generator;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class GeneratorController
 {
@@ -35,10 +41,16 @@ class GeneratorController
      */
     private $formFactory;
 
-    public function __construct(Liform $liform, FormFactoryInterface $formFactory)
+    /**
+     * @var Generator
+     */
+    private $generator;
+
+    public function __construct(Liform $liform, FormFactoryInterface $formFactory, Generator $generator)
     {
         $this->liform      = $liform;
         $this->formFactory = $formFactory;
+        $this->generator   = $generator;
     }
 
     public function getGeneratorOptions(): JsonResponse
@@ -46,5 +58,33 @@ class GeneratorController
         $schema = $this->liform->transform($this->formFactory->create(ProjectType::class));
 
         return new JsonResponse($schema);
+    }
+
+    public function generate(Request $request): Response
+    {
+        $project = new Project();
+        $form    = $this->formFactory->create(ProjectType::class, $project, ['csrf_protection' => false]);
+
+        $data = json_decode($request->getContent(), true);
+
+        $form->submit($data);
+
+        dump($project);
+
+        if ($form->isValid() === true) {
+            // Generate zip file with docker project
+            $zipFile = $this->generator->generate($project);
+
+            // Generate file download & cleanup
+            $response = new BinaryFileResponse($zipFile->getTmpFilename());
+            $response
+                ->prepare($request)
+                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
+                ->deleteFileAfterSend(true);
+
+            return $response;
+        }
+
+        return new JsonResponse(['errors' => $form->getErrors()], 400);
     }
 }

@@ -47,30 +47,30 @@ class ProjectType extends AbstractGeneratorType
             ])
             ->add('basePort', IntegerType::class, [
                 'label' => 'Base port',
-                'attr'  => ['placeholder' => 'For nginx, Mailhog control panel...'],
-            ])
-            ->add('hasMemcached', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Memcached',
-            ])
-            ->add('hasRedis', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Redis',
-            ])
-            ->add('hasMailhog', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Mailhog',
-            ])
-            ->add('hasClickhouse', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Clickhouse',
-            ])
-            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
-            ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
-            ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
-            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
-            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
-            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
+                'attr'  => ['placeholder' => 'Ports exposed on the different services will start at this port number'],
+            ]);
+//            ->add('hasMemcached', CheckboxType::class, [
+//                'required' => false,
+//                'label'    => 'Enable Memcached',
+//            ])
+//            ->add('hasRedis', CheckboxType::class, [
+//                'required' => false,
+//                'label'    => 'Enable Redis',
+//            ])
+//            ->add('hasMailhog', CheckboxType::class, [
+//                'required' => false,
+//                'label'    => 'Enable Mailhog',
+//            ])
+//            ->add('hasClickhouse', CheckboxType::class, [
+//                'required' => false,
+//                'label'    => 'Enable Clickhouse',
+//            ])
+//            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
+//            ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
+//            ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
+//            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
+//            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
+//            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
     }
 
     /**

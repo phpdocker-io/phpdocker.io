@@ -39,5 +39,17 @@ services:
             - '%contact_email_from%'
             - '%contact_email_to%'
 
+    PHPDocker\Zip\Archiver: ~
+
+    Michelf\MarkdownExtra: ~
+
+    PHPDocker\Generator\Generator:
+        arguments:
+            - '@PHPDocker\Zip\Archiver'
+            - '@twig'
+            - '@Michelf\MarkdownExtra'
+            - '@PHPDocker\Util\SlugifierInterface'
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
