@@ -5,6 +5,7 @@
         "php": "^7.3.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-zip": "^1.15",
         "api-platform/api-pack": "^1.1",
         "cocur/slugify": "^3.2",
         "gedmo/doctrine-extensions": "^2.4",
