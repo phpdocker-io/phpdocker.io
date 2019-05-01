@@ -22,15 +22,14 @@ use App\Generator\Entity\Project;
 use App\Generator\Form\ProjectType;
 use App\Http\Error;
 use App\Http\ErrorResponse;
+use const JSON_THROW_ON_ERROR;
 use Limenius\Liform\Liform;
 use PHPDocker\Generator\Generator;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
  * Contains the project generator endpoints.
@@ -84,9 +83,9 @@ class GeneratorController
         $form    = $this->formFactory->create(ProjectType::class, $project, ['csrf_protection' => false]);
 
         try {
-            $decoded = json_decode($request->getContent(), true);
+            $decoded = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
         } catch (\JsonException $ex) {
-            return new ErrorResponse([new Error('validation-error', 'Not valid json', '.')], 400);
+            return new ErrorResponse([new Error('validation-error', 'Not valid json', '')], 400);
         }
 
         $form->submit($decoded);
@@ -94,15 +93,15 @@ class GeneratorController
         if ($form->isValid() === true) {
             // Generate zip file with docker project
             $zipFile = $this->generator->generate($project);
+            $payload = [
+                'success'    => true,
+                'filename'   => $zipFile->getFilename(),
+                'base64Blob' => $zipFile->getBase64EncodedPayload(),
+            ];
 
-            // Generate file download & cleanup
-            $response = new BinaryFileResponse($zipFile->getTmpFilename());
-            $response
-                ->prepare($request)
-                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
-                ->deleteFileAfterSend();
+            $zipFile->delete();
 
-            return $response;
+            return new JsonResponse($payload);
         }
 
         return new ErrorResponse($this->getErrorsFromForm($form), 400);

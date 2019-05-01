@@ -18,10 +18,13 @@
 
 namespace PHPDocker\Zip;
 
+use function base64_encode;
+use function file_get_contents;
+use function unlink;
+
 /**
  * Represents a zip file.
  *
- * @package PHPDocker\Archive
  * @author  Luis A. Pabon Flores
  */
 class File
@@ -74,5 +77,25 @@ class File
         $this->tmpFilename = $tmpFilename;
 
         return $this;
+    }
+
+    /**
+     * Returns the file as a base64 encoded blob.
+     *
+     * @return string
+     */
+    public function getBase64EncodedPayload(): string
+    {
+        return base64_encode(file_get_contents($this->tmpFilename));
+    }
+
+    /**
+     * Deletes the file from its temporary location.
+     *
+     * @return bool
+     */
+    public function delete(): bool
+    {
+        return unlink($this->tmpFilename);
     }
 }
