@@ -19,6 +19,7 @@ import React, { Component } from 'react'
 import Form2 from 'react-jsonschema-form'
 import 'semantic-ui-css/semantic.min.css'
 import ProjectOptions from './ProjectOptions'
+import {saveSync} from 'save-file'
 
 import { Button, Form } from 'formik-semantic-ui'
 
@@ -49,10 +50,8 @@ class Generator extends Component {
       .then(response => {
         return response.json()
       })
-      .then(schema => {
-        // this.setState({
-        //   formSchema: schema
-        // })
+      .then(json => {
+        saveSync(json.base64Blob, json.filename)
       })
   }
 
