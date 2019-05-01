@@ -16,7 +16,8 @@
  */
 
 import React, { Component } from 'react'
-import { Input } from 'formik-semantic-ui'
+import { Dropdown, Input } from 'formik-semantic-ui'
+import { enumToOptions } from './semanticUiTools'
 
 class ProjectOptions extends Component {
   constructor (props) {
@@ -40,6 +41,9 @@ class ProjectOptions extends Component {
       return null
     }
 
+    const appOptions = properties.applicationOptions.properties
+    const appType    = appOptions.applicationType
+
     return (
       <fieldset>
         <legend>Project options</legend>
@@ -47,7 +51,7 @@ class ProjectOptions extends Component {
           name={'name'}
           label={properties.name.title}
           inputProps={{
-            type: "text",
+            type: 'text',
             placeholder: properties.name.attr.placeholder,
           }}
         />
@@ -56,8 +60,22 @@ class ProjectOptions extends Component {
           name={'basePort'}
           label={properties.basePort.title}
           inputProps={{
-            type: "number",
+            type: 'number',
             placeholder: properties.basePort.attr.placeholder,
+          }}
+        />
+
+        <Dropdown
+          name={'applicationOptions.applicationType'}
+          label={appType.title}
+          options={enumToOptions(appOptions.applicationType)}
+        />
+
+        <Input
+          name={'applicationOptions.uploadSize'}
+          label={appOptions.uploadSize.title}
+          inputProps={{
+            type: 'number',
           }}
         />
       </fieldset>

@@ -75,11 +75,6 @@ class Generator extends Component {
   }
 
   render () {
-
-    // console.log('here')
-    // console.log(this.state.formSchema)
-    // console.log('there')
-
     return (
       <div>
         <h1>Generator</h1>
@@ -91,7 +86,6 @@ class Generator extends Component {
 
 
           <Button.Submit>Submit</Button.Submit>
-          <Button.Reset>Cancel</Button.Reset>
         </Form>
 
         <hr/>

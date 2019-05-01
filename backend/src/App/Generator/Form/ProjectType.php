@@ -48,7 +48,7 @@ class ProjectType extends AbstractGeneratorType
             ->add('basePort', IntegerType::class, [
                 'label' => 'Base port',
                 'attr'  => ['placeholder' => 'Ports exposed on the different services will start at this port number'],
-            ]);
+            ])
 //            ->add('hasMemcached', CheckboxType::class, [
 //                'required' => false,
 //                'label'    => 'Enable Memcached',
@@ -69,8 +69,10 @@ class ProjectType extends AbstractGeneratorType
 //            ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
 //            ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
 //            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
-//            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
+            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
 //            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
+
+        ;
     }
 
     /**
