@@ -16,6 +16,13 @@
  */
 
 module.exports = {
+  /**
+   * Given a JSON schema enum property, return a list of objects that can be sent to semantic-ui options (eg for
+   * dropdown or multi selects).
+   *
+   * @param enumProperty The JSON schema node that contains the enum property.
+   * @returns {Array}
+   */
   enumToOptions: enumProperty => {
     const enumValues = enumProperty.enum
     const enumTitles = enumProperty.enum_titles
@@ -39,11 +46,6 @@ module.exports = {
       reduced[enumValues[i]] = enumTitles[i]
     }
 
-    console.log(reduced)
-
     return reduced
   }
 }
-
-
-
