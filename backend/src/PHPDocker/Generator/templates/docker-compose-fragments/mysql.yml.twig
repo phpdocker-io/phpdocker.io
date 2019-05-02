@@ -1,14 +1,14 @@
 {% if project.hasMysql() %}
-mysql:
-    image: mysql:{{ mysql.getVersion() }}
-    working_dir: /application
-    volumes:
-        - .:/application
-    environment:
-        - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
-        - MYSQL_DATABASE={{ mysql.getDatabaseName() }}
-        - MYSQL_USER={{ mysql.getUsername() }}
-        - MYSQL_PASSWORD={{ mysql.getPassword() }}
-    ports:
-        - "{{ project.getBasePort() + 2 }}:3306"
-        {% endif %}
+    mysql:
+        image: mysql:{{ mysql.getVersion() }}
+        working_dir: /application
+        volumes:
+            - .:/application
+        environment:
+            - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
+            - MYSQL_DATABASE={{ mysql.getDatabaseName() }}
+            - MYSQL_USER={{ mysql.getUsername() }}
+            - MYSQL_PASSWORD={{ mysql.getPassword() }}
+        ports:
+            - "{{ project.getBasePort() + 2 }}:3306"
+{% endif %}

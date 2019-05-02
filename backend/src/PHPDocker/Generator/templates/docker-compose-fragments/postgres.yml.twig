@@ -1,11 +1,11 @@
 {% if project.hasPostgres() %}
-postgres:
-    image: postgres:{{ postgres.getVersion() }}-alpine
-    working_dir: /application
-    volumes:
-        - .:/application
-    environment:
-        - POSTGRES_USER={{ postgres.getRootUser() }}
-        - POSTGRES_PASSWORD={{ postgres.getRootPassword() }}
-        - POSTGRES_DB={{ postgres.getDatabaseName() }}
-        {% endif %}
+    postgres:
+        image: postgres:{{ postgres.getVersion() }}-alpine
+        working_dir: /application
+        volumes:
+            - .:/application
+        environment:
+            - POSTGRES_USER={{ postgres.getRootUser() }}
+            - POSTGRES_PASSWORD={{ postgres.getRootPassword() }}
+            - POSTGRES_DB={{ postgres.getDatabaseName() }}
+{% endif %}

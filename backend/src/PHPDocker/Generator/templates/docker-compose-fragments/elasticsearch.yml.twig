@@ -1,4 +1,4 @@
 {% if project.hasElasticsearch() %}
-elasticsearch:
-    image: elasticsearch:{{ elasticsearch.getVersion() }}
-        {% endif %}
+    elasticsearch:
+        image: elasticsearch:{{ elasticsearch.getVersion() }}
+{% endif %}
