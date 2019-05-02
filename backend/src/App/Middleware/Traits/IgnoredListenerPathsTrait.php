@@ -20,6 +20,8 @@ declare(strict_types=1);
 
 namespace App\Middleware\Traits;
 
+use function preg_match;
+
 /**
  * There are a number of paths that ideally we'd like to skip most of our custom listeners on. Stuff like the web debug
  * profiler, the swagger.yaml endpoint etc. This trait brings in awareness of that.
@@ -42,6 +44,6 @@ trait IgnoredListenerPathsTrait
      */
     private function isPathIgnored(string $path): bool
     {
-        return \preg_match($this->pathRegex, $path) > 0;
+        return preg_match($this->pathRegex, $path) > 0;
     }
 }

@@ -23,6 +23,7 @@ use App\Generator\Form\ProjectType;
 use App\Http\Error;
 use App\Http\ErrorResponse;
 use const JSON_THROW_ON_ERROR;
+use JsonException;
 use Limenius\Liform\Liform;
 use PHPDocker\Generator\Generator;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -84,7 +85,7 @@ class GeneratorController
 
         try {
             $decoded = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
-        } catch (\JsonException $ex) {
+        } catch (JsonException $ex) {
             return new ErrorResponse([new Error('validation-error', 'Not valid json', '')], 400);
         }
 

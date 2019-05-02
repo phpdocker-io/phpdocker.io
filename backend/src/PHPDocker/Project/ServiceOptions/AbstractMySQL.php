@@ -17,6 +17,8 @@
 
 namespace PHPDocker\Project\ServiceOptions;
 
+use InvalidArgumentException;
+
 /**
  * Options for MySQL-like containers.
  *
@@ -77,7 +79,7 @@ abstract class AbstractMySQL extends Base
     public function setVersion(string $version): self
     {
         if (array_key_exists($version, static::getChoices()) === false) {
-            throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
+            throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
         }
 
         $this->version = $version;

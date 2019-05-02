@@ -18,12 +18,14 @@
 
 namespace PHPDocker\Contact;
 
+use RuntimeException;
+
 /**
  * Describes a message dispatch error.
  *
  * @package PHPDocker\Contact
  */
-class DispatcherException extends \RuntimeException
+class DispatcherException extends RuntimeException
 {
 
 }

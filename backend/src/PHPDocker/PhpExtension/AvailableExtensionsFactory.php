@@ -17,6 +17,8 @@
 
 namespace PHPDocker\PhpExtension;
 
+use InvalidArgumentException;
+
 /**
  * Factory to specific PHP extensions list based on php version.
  *
@@ -28,32 +30,32 @@ class AvailableExtensionsFactory
     /**
      * PHP 7.0.x
      */
-    const PHP_VERSION_70 = '7.0.x';
+    private const PHP_VERSION_70 = '7.0.x';
 
     /**
      * PHP 7.0.x
      */
-    const PHP_VERSION_71 = '7.1.x';
+    private const PHP_VERSION_71 = '7.1.x';
 
     /**
      * PHP 7.0.x
      */
-    const PHP_VERSION_72 = '7.2.x';
+    private const PHP_VERSION_72 = '7.2.x';
 
     /**
      * PHP 7.0.x
      */
-    const PHP_VERSION_73 = '7.3.x';
+    private const PHP_VERSION_73 = '7.3.x';
 
     /**
      * PHP 5.6.x
      */
-    const PHP_VERSION_56 = '5.6.x';
+    private const PHP_VERSION_56 = '5.6.x';
 
     /**
      * Supported PHP versions
      */
-    const SUPPORTED_VERSIONS = [
+    private const SUPPORTED_VERSIONS = [
         self::PHP_VERSION_56 => Php56AvailableExtensions::class,
         self::PHP_VERSION_70 => Php70AvailableExtensions::class,
         self::PHP_VERSION_71 => Php71AvailableExtensions::class,
@@ -71,7 +73,7 @@ class AvailableExtensionsFactory
     public static function create(string $phpVersion)
     {
         if (array_key_exists($phpVersion, self::SUPPORTED_VERSIONS) === false) {
-            throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $phpVersion));
+            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $phpVersion));
         }
 
         $className = self::SUPPORTED_VERSIONS[$phpVersion];

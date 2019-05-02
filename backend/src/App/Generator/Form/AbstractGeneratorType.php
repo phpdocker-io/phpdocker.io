@@ -18,6 +18,7 @@
 
 namespace App\Generator\Form;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,7 +28,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @package App\Form\Generator
  * @author  Luis A. Pabon Flores
  */
-abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractType
+abstract class AbstractGeneratorType extends AbstractType
 {
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
@@ -54,7 +55,7 @@ abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractTyp
      */
     protected function getValidationGroups(): callable
     {
-        return function (FormInterface $form) {
+        return static function (FormInterface $form) {
             return ['Default'];
         };
     }

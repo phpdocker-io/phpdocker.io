@@ -95,7 +95,7 @@ abstract class BaseAvailableExtensions
      */
     public function getPhpExtension(string $name): PhpExtension
     {
-        if (self::isAvailable($name) === false) {
+        if ($this->isAvailable($name) === false) {
             throw new Exception\NotFoundException(sprintf('PHP extension %s is not available to install', $name));
         }
 

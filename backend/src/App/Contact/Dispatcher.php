@@ -21,6 +21,8 @@ namespace App\Contact;
 use PHPDocker\Contact\DispatcherException;
 use PHPDocker\Contact\DispatcherInterface;
 use PHPDocker\Contact\MessageInterface;
+use Swift_Mailer;
+use Swift_Message;
 use Twig\Environment as Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -48,7 +50,7 @@ class Dispatcher implements DispatcherInterface
      */
     private $twig;
 
-    public function __construct(\Swift_Mailer $mailer, Twig $twig, string $emailFrom, string $emailTo)
+    public function __construct(Swift_Mailer $mailer, Twig $twig, string $emailFrom, string $emailTo)
     {
         $this->mailer    = $mailer;
         $this->twig      = $twig;
@@ -74,7 +76,7 @@ class Dispatcher implements DispatcherInterface
             throw new DispatcherException('Message composing error', $ex->getCode(), $ex);
         }
 
-        $swiftMessage = new \Swift_Message();
+        $swiftMessage = new Swift_Message();
         $swiftMessage
             ->setSubject('PHPDocker.io - Contact request')
             ->setFrom($this->emailFrom)

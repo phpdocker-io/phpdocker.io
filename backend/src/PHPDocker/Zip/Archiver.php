@@ -19,6 +19,7 @@
 namespace PHPDocker\Zip;
 
 use PHPDocker\Generator\GeneratedFile\GeneratedFileInterface;
+use ZipArchive;
 
 /**
  * Creates a zip file.
@@ -48,8 +49,8 @@ class Archiver
      */
     public function __construct()
     {
-        $this->zipfile = new \ZipArchive();
-        $this->zipfile->open(tempnam(sys_get_temp_dir(), get_class($this)), \ZipArchive::CREATE);
+        $this->zipfile = new ZipArchive();
+        $this->zipfile->open(tempnam(sys_get_temp_dir(), get_class($this)), ZipArchive::CREATE);
     }
 
     /**

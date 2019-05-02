@@ -18,6 +18,7 @@
 
 namespace App\Generator\Entity;
 
+use PHPDocker\Project\ServiceOptions\Php;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -26,7 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package App\Entity\ORM
  * @author  Luis A. Pabon Flores
  */
-class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
+class PhpOptions extends Php
 {
     /**
      * This does not exist on parent project. Needs to be redirected to $phpExtensions

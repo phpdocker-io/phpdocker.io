@@ -18,6 +18,7 @@
 
 namespace App\Http;
 
+use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 
@@ -53,7 +54,7 @@ class ErrorResponse extends JsonResponse
                     break;
 
                 default:
-                    throw new \InvalidArgumentException('Unsupported error type');
+                    throw new InvalidArgumentException('Unsupported error type');
             }
         }
 

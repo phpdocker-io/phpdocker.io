@@ -91,9 +91,11 @@ class PhpType extends AbstractGeneratorType
     /**
      * Returns all available extensions as an array we can feed to ChoiceType.
      *
-     * @return array
+     * @param PhpExtension[] $rawChoices
+     *
+     * @return string[]
      */
-    private function getExtensionChoices($rawChoices)
+    private function getExtensionChoices(iterable $rawChoices): array
     {
         $choices = [];
         foreach ($rawChoices as $extension) {
@@ -109,7 +111,7 @@ class PhpType extends AbstractGeneratorType
      *
      * @return array
      */
-    private function getVersionChoices()
+    private function getVersionChoices(): array
     {
         $versions = [];
         foreach (PhpOptions::getSupportedVersions() as $version) {

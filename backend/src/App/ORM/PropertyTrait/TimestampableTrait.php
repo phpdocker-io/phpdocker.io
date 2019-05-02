@@ -18,6 +18,7 @@
 
 namespace App\ORM\PropertyTrait;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -58,7 +59,7 @@ trait TimestampableTrait
      *
      * @return self
      */
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt(DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -78,7 +79,7 @@ trait TimestampableTrait
      *
      * @return self
      */
-    public function setUpdatedAt(\DateTime $updatedAt): self
+    public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
