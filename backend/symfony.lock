@@ -161,6 +161,18 @@
             "ref": "f0436fc35fca88eada758311f8de43bfb61f1980"
         }
     },
+    "nyholm/psr7": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "5e29a795c9996269c4cea2e87eeb3052c33cf98e"
+        },
+        "files": [
+            "config/packages/nyholm_psr7.yaml"
+        ]
+    },
     "ocramius/package-versions": {
         "version": "1.3.0"
     },
@@ -169,6 +181,9 @@
     },
     "opis/json-schema": {
         "version": "1.0.16"
+    },
+    "php-http/message-factory": {
+        "version": "v1.0.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
