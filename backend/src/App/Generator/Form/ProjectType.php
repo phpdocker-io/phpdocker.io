@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace App\Generator\Form;
 
 use App\Generator\Entity\Project;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -70,10 +71,8 @@ class ProjectType extends AbstractGeneratorType
             ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
             ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
             ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
-            ->add('applicationOptions', ApplicationType::class,
-                ['label' => 'Application options'])//            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
-
-        ;
+            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
+            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
     }
 
     /**
