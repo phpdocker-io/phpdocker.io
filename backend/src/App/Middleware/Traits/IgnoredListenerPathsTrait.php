@@ -33,7 +33,7 @@ trait IgnoredListenerPathsTrait
     /**
      * Request paths we'll be skipping our app's code - for instance, the dev profiler.
      */
-    private $pathRegex = '/^\/(_profiler|_wdt|_error|env|v2\/swagger\.yaml)/';
+    private $pathRegex = '/^\/(_profiler|_wdt|_error|env)/';
 
     /**
      * Works out whether a path must be ignored, as per regex.

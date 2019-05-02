@@ -2,6 +2,7 @@ services:
   # Validate request against swagger validator
   middleware.request.validator:
     class: App\Middleware\RequestValidator
-    arguments: ~
+    arguments:
+      - '@sensio_framework_extra.psr7.http_message_factory'
     tags:
       - { name: kernel.event_listener, event: kernel.request, priority: 20 }

@@ -21,6 +21,7 @@ namespace App\Middleware;
 
 use App\Middleware\Traits\CorsPreflightAwareTrait;
 use App\Middleware\Traits\IgnoredListenerPathsTrait;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 /**
@@ -30,6 +31,16 @@ class RequestValidator
 {
     use CorsPreflightAwareTrait;
     use IgnoredListenerPathsTrait;
+
+    /**
+     * @var \Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory
+     */
+    private $psrHttpFactory;
+
+    public function __construct(PsrHttpFactory $psrHttpFactory)
+    {
+        $this->psrHttpFactory = $psrHttpFactory;
+    }
 
     public function onKernelRequest(GetResponseEvent $event): void
     {
@@ -44,5 +55,7 @@ class RequestValidator
         if ($this->isCorsPreflight($request) === true) {
             return;
         }
+
+//        $psrRequest = $this->psrHttpFactory->createRequest($request);
     }
 }
