@@ -20,6 +20,7 @@ namespace App\Contact;
 
 use PHPDocker\Contact\DispatcherException;
 use PHPDocker\Contact\DispatcherInterface;
+use PHPDocker\Contact\MessageInterface;
 use Twig\Environment as Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -58,11 +59,11 @@ class Dispatcher implements DispatcherInterface
     /**
      * Sends a message.
      *
-     * @param Message $message
+     * @param MessageInterface $message
      *
      * @throws DispatcherException
      */
-    public function send(Message $message): void
+    public function send(MessageInterface $message): void
     {
         try {
             $messageBody = $this->twig->render('contact-email.html.twig', [

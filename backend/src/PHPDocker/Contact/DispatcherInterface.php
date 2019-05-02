@@ -2,8 +2,6 @@
 
 namespace PHPDocker\Contact;
 
-use App\Contact\Message;
-
 /**
  * Defines a dispatcher for the contact message.
  *
@@ -14,9 +12,8 @@ interface DispatcherInterface
     /**
      * Sends a message.
      *
-     * @param Message $message
+     * @param MessageInterface $message
      *
-     * @throws DispatcherException
      */
-    public function send(Message $message): void;
+    public function send(MessageInterface $message): void;
 }
