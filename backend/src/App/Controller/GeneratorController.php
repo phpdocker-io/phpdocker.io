@@ -32,6 +32,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use const JSON_THROW_ON_ERROR;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Contains the project generator endpoints.
@@ -52,12 +53,17 @@ class GeneratorController
      * @var Generator
      */
     private $generator;
+    /**
+     * @var \Symfony\Component\Serializer\SerializerInterface
+     */
+    private $serializer;
 
-    public function __construct(Liform $liform, FormFactoryInterface $formFactory, Generator $generator)
+    public function __construct(Liform $liform, FormFactoryInterface $formFactory, Generator $generator, SerializerInterface $serializer)
     {
         $this->liform      = $liform;
         $this->formFactory = $formFactory;
         $this->generator   = $generator;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -79,8 +85,48 @@ class GeneratorController
      *
      * @return Response
      */
+//    public function generate(Request $request): Response
+//    {
+//        dump($request->getContent());
+//        $project = $this->serializer->deserialize($request->getContent(), Project::class, 'json');
+//
+//        dump($project);
+//
+//        die;
+//
+//
+//
+//        $project = new Project();
+//        $form    = $this->formFactory->create(ProjectType::class, $project, ['csrf_protection' => false]);
+//
+//        try {
+//            $decoded = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
+//        } catch (JsonException $ex) {
+//            return new ErrorResponse([new Error('validation-error', 'Not valid json', '')], 400);
+//        }
+//
+//        $form->submit($decoded);
+//
+//        if ($form->isValid() === true) {
+//            // Generate zip file with docker project
+//            $zipFile = $this->generator->generate($project);
+//            $payload = [
+//                'success'    => true,
+//                'filename'   => $zipFile->getFilename(),
+//                'base64Blob' => $zipFile->getBase64EncodedPayload(),
+//            ];
+//
+//            $zipFile->delete();
+//
+//            return new JsonResponse($payload);
+//        }
+//
+//        return new ErrorResponse($this->getErrorsFromForm($form), 400);
+//    }
+
     public function generate(Request $request): Response
     {
+        dump($request->getContent());
         $project = new Project();
         $form    = $this->formFactory->create(ProjectType::class, $project, ['csrf_protection' => false]);
 

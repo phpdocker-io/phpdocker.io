@@ -16,22 +16,21 @@
  */
 
 import React, { Component } from 'react'
-import { Dropdown, Input } from 'formik-semantic-ui'
+import { Form } from 'semantic-ui-react'
 import { enumToOptions } from './semanticUiTools'
 
 class ProjectOptions extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      formData: {
-        name: null,
-        basePort: null,
-      }
-    }
+    this.state = {}
   }
 
   componentDidMount () {
+  }
+
+  static randomRange (min, max) {
+    return ~~(Math.random() * (max - min + 1)) + min
   }
 
   render () {
@@ -41,43 +40,44 @@ class ProjectOptions extends Component {
       return null
     }
 
-    const appOptions = properties.applicationOptions.properties
-    const appType    = appOptions.applicationType
+    const appOptions     = properties.applicationOptions.properties
+    const appTypeOptions = enumToOptions(appOptions.applicationType)
+    const randomPort     = ProjectOptions.randomRange(1025, 32768)
 
     return (
       <fieldset>
         <legend>Project options</legend>
-        <Input
-          name={'name'}
-          label={properties.name.title}
-          inputProps={{
-            type: 'text',
-            placeholder: properties.name.attr.placeholder,
-          }}
-        />
+        <Form.Group widths={'equal'}>
+          <Form.Input
+            fluid
+            name={'name'}
+            label={properties.name.title}
+            type={'text'}
+            placeholder={properties.name.attr.placeholder}
+          />
+          <Form.Input
+            fluid
+            name={'basePort'}
+            label={properties.basePort.title}
+            type={'number'}
+            placeholder={properties.basePort.attr.placeholder}
+          />
+        </Form.Group>
 
-        <Input
-          name={'basePort'}
-          label={properties.basePort.title}
-          inputProps={{
-            type: 'number',
-            placeholder: properties.basePort.attr.placeholder,
-          }}
-        />
-
-        <Dropdown
-          name={'applicationOptions.applicationType'}
-          label={appType.title}
-          options={enumToOptions(appOptions.applicationType)}
-        />
-
-        <Input
-          name={'applicationOptions.uploadSize'}
-          label={appOptions.uploadSize.title}
-          inputProps={{
-            type: 'number',
-          }}
-        />
+        <Form.Group widths={'equal'}>
+          <Form.Select
+            name={'applicationOptions.applicationType'}
+            label={appOptions.applicationType.title}
+            options={appTypeOptions}
+            defaultValue={appTypeOptions[0].value}
+          />
+          <Form.Input
+            name={'applicationOptions.uploadSize'}
+            label={appOptions.uploadSize.title}
+            type={'number'}
+            defaultValue={randomPort}
+          />
+        </Form.Group>
       </fieldset>
     )
   }

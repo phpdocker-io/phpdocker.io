@@ -23,7 +23,7 @@ import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
 
 import { saveSync } from 'save-file'
 
-import { Button, Form } from 'formik-semantic-ui'
+import { Form, Button } from 'semantic-ui-react'
 
 const { generatorApiUri } = require('../config')
 
@@ -37,13 +37,28 @@ class Generator extends Component {
     }
   }
 
-  submitProject (values) {
-    console.log(values)
+  submitProject(event) {
+    const formData = new FormData(event.target)
+    const normalised = {}
+
+    event.preventDefault()
+
+    for (let entry of formData.entries()) {
+      console.log(entry)
+      let name = entry[0]
+      let value = entry[1]
+
+      if (isNaN(value) === false) {
+        value = parseInt(value, 10)
+      }
+
+      normalised[name] = value
+    }
 
     const request = new Request(generatorApiUri, {
       method: 'POST',
       headers: new Headers(),
-      body: JSON.stringify(values)
+      body: JSON.stringify(normalised)
     })
 
     request.headers.append('accept', 'application/json')
@@ -85,10 +100,10 @@ class Generator extends Component {
           this.submitProject(values)
         }}>
           <ProjectOptions schema={this.state.formSchema}/>
-          <ZeroConfigServiceOptions schema={this.state.formSchema}/>
+          {/*<ZeroConfigServiceOptions schema={this.state.formSchema}/>*/}
 
 
-          <Button.Submit>Submit</Button.Submit>
+          <Button type={'submit'}>Submit</Button>
         </Form>
 
         <hr/>
