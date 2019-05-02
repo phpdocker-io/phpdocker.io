@@ -88,12 +88,9 @@ class Archiver
             throw new Exception\ArchiveNotCreatedException('Archive creation failed for an unknown reason');
         }
 
-        $file = new File();
-        $file
+        return (new File())
             ->setFilename($archiveFilename)
             ->setTmpFilename($filename);
-
-        return $file;
     }
 
     /**

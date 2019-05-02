@@ -34,7 +34,7 @@ use Twig\Environment as Twig;
  */
 class Generator
 {
-    const BASE_ZIP_FOLDER = 'phpdocker';
+    private const BASE_ZIP_FOLDER = 'phpdocker';
 
     /**
      * @var Archiver
