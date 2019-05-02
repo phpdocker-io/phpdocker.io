@@ -19,7 +19,9 @@ import React, { Component } from 'react'
 import Form2 from 'react-jsonschema-form'
 import 'semantic-ui-css/semantic.min.css'
 import ProjectOptions from './ProjectOptions'
-import {saveSync} from 'save-file'
+import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
+
+import { saveSync } from 'save-file'
 
 import { Button, Form } from 'formik-semantic-ui'
 
@@ -83,6 +85,7 @@ class Generator extends Component {
           this.submitProject(values)
         }}>
           <ProjectOptions schema={this.state.formSchema}/>
+          <ZeroConfigServiceOptions schema={this.state.formSchema}/>
 
 
           <Button.Submit>Submit</Button.Submit>
