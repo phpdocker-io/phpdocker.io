@@ -36,3 +36,6 @@ open-mailhog:
 
 open-api-profiler:
 	xdg-open http://localhost:5002/_profiler/latest?limit=10
+
+api-clear-cache:
+	docker-compose exec php-fpm bin/console cache:clear
