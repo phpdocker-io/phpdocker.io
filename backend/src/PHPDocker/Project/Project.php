@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright 2019 Luis Alberto Pabón Flores
  *
@@ -17,8 +18,6 @@
  */
 
 namespace PHPDocker\Project;
-
-use PHPDocker\Util\SlugifierInterface;
 
 /**
  * Defines a single project.

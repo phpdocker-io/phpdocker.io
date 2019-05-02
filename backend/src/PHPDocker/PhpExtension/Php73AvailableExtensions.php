@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright 2016 Luis Alberto Pabon Flores
  *
@@ -92,7 +93,7 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
             'ZeroMQ'      => ['packages' => ['php-zmq']],
 
             // Disabled (not yet on php73 or broken)
-            
+
             // Installs php56
             //            'Xhprof'      => ['packages' => ['php-xhprof']],
         ];

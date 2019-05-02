@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright 2019 Luis Alberto Pabón Flores
  *
@@ -69,8 +70,8 @@ class ProjectType extends AbstractGeneratorType
 //            ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
 //            ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
 //            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
-            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
-//            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
+            ->add('applicationOptions', ApplicationType::class,
+                ['label' => 'Application options'])//            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
 
         ;
     }

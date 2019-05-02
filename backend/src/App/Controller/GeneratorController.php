@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright 2019 Luis Alberto Pabón Flores
  *
@@ -22,7 +23,6 @@ use App\Generator\Entity\Project;
 use App\Generator\Form\ProjectType;
 use App\Http\Error;
 use App\Http\ErrorResponse;
-use const JSON_THROW_ON_ERROR;
 use JsonException;
 use Limenius\Liform\Liform;
 use PHPDocker\Generator\Generator;
@@ -31,6 +31,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use const JSON_THROW_ON_ERROR;
 
 /**
  * Contains the project generator endpoints.
