@@ -18,8 +18,6 @@ declare(strict_types=1);
 
 namespace PHPDocker\Project\ServiceOptions;
 
-use PHPDocker\Interfaces\ContainerNameSuffixInterface;
-
 /**
  * Base class for service options.
  *
