@@ -9,6 +9,7 @@
         "api-platform/api-pack": "^1.1",
         "cocur/slugify": "^3.2",
         "gedmo/doctrine-extensions": "^2.4",
+        "hkarlstrom/openapi-validation-middleware": "^0.3.9",
         "limenius/liform-bundle": "^0.13.0",
         "michelf/php-markdown": "^1.8",
         "sensio/framework-extra-bundle": "^5.2",
