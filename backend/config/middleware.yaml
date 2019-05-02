@@ -1,0 +1,7 @@
+services:
+  # Validate request against swagger validator
+  middleware.request.validator:
+    class: App\Middleware\RequestValidator
+    arguments: ~
+    tags:
+      - { name: kernel.event_listener, event: kernel.request, priority: 20 }
