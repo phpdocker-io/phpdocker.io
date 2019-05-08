@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dot-object": "^1.7.1",
     "formik": "^1.5.1",
     "formik-semantic-ui": "^0.9.0",
     "jsonld": "^1.5.1",
