@@ -19,6 +19,8 @@ import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import { enumToOptions } from './semanticUiTools'
 
+import { Dropdown, Input, } from './controls/index'
+
 class ProjectOptions extends Component {
   constructor (props) {
     super(props)
@@ -48,35 +50,43 @@ class ProjectOptions extends Component {
       <fieldset>
         <legend>Project options</legend>
         <Form.Group widths={'equal'}>
-          <Form.Input
+          <Input
             fluid
             name={'name'}
             label={properties.name.title}
-            type={'text'}
-            placeholder={properties.name.attr.placeholder}
+            inputProps={{
+              type: 'text',
+              placeholder: properties.name.attr.placeholder,
+            }}
           />
-          <Form.Input
+          <Input
             fluid
             name={'basePort'}
             label={properties.basePort.title}
-            type={'number'}
-            placeholder={properties.basePort.attr.placeholder}
-            defaultValue={randomPort}
+            inputProps={{
+              type: 'number',
+              placeholder: properties.basePort.attr.placeholder,
+              defaultValue: randomPort,
+            }}
           />
         </Form.Group>
 
         <Form.Group widths={'equal'}>
-          <Form.Select
+          <Dropdown
             name={'applicationOptions.applicationType'}
             label={appOptions.applicationType.title}
             options={appTypeOptions}
-            defaultValue={appTypeOptions[0].value}
+            inputProps={{
+              defaultValue: appTypeOptions[0].value,
+            }}
           />
-          <Form.Input
+          <Input
             name={'applicationOptions.uploadSize'}
             label={appOptions.uploadSize.title}
-            type={'number'}
-            defaultValue={100}
+            inputProps={{
+              type: 'number',
+              defaultValue: 100,
+            }}
           />
         </Form.Group>
       </fieldset>

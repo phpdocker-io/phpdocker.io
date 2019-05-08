@@ -16,8 +16,9 @@
  */
 
 import React, { Component } from 'react'
-import { Dropdown, Input, Checkbox } from 'formik-semantic-ui'
-import { enumToOptions } from './semanticUiTools'
+import { Form } from 'semantic-ui-react'
+
+import { Checkbox } from './controls/index'
 
 class ZeroConfigServiceOptions extends Component {
   constructor (props) {
@@ -44,27 +45,29 @@ class ZeroConfigServiceOptions extends Component {
     return (
       <fieldset>
         <legend>Zero-config services</legend>
+        <Form.Group widths={'equal'}>
+          <Checkbox
+            name={'hasRedis'}
+            label={properties.hasRedis.title}
+          />
 
-        <Checkbox
-          name={'hasRedis'}
-          label={properties.hasRedis.title}
-        />
+          <Checkbox
+            name={'hasMemcached'}
+            label={properties.hasMemcached.title}
+          />
+        </Form.Group>
 
-        <Checkbox
-          name={'hasMemcached'}
-          label={properties.hasMemcached.title}
-        />
+        <Form.Group widths={'equal'}>
+          <Checkbox
+            name={'hasMailhog'}
+            label={properties.hasMailhog.title}
+          />
 
-        <Checkbox
-          name={'hasMailhog'}
-          label={properties.hasMailhog.title}
-        />
-
-        <Checkbox
-          name={'hasClickhouse'}
-          label={properties.hasClickhouse.title}
-        />
-
+          <Checkbox
+            name={'hasClickhouse'}
+            label={properties.hasClickhouse.title}
+          />
+        </Form.Group>
       </fieldset>
     )
   }

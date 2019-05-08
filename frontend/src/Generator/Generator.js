@@ -17,13 +17,14 @@
 
 import React, { Component } from 'react'
 import Form2 from 'react-jsonschema-form'
-import 'semantic-ui-css/semantic.min.css'
+import { saveSync } from 'save-file'
+import { Button, Form } from 'semantic-ui-react'
+import { Formik } from 'formik'
+
 import ProjectOptions from './ProjectOptions'
 import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
 
-import { saveSync } from 'save-file'
-
-import { Form, Button } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 const { generatorApiUri } = require('../config')
 
@@ -33,32 +34,16 @@ class Generator extends Component {
 
     this.state = {
       formSchema: {},
-      formData: {},
     }
   }
 
-  submitProject(event) {
-    const formData = new FormData(event.target)
-    const normalised = {}
-
-    event.preventDefault()
-
-    for (let entry of formData.entries()) {
-      console.log(entry)
-      let name = entry[0]
-      let value = entry[1]
-
-      if (isNaN(value) === false) {
-        value = parseInt(value, 10)
-      }
-
-      normalised[name] = value
-    }
+  submitProject (values, formikApi) {
+    console.log(values)
 
     const request = new Request(generatorApiUri, {
       method: 'POST',
       headers: new Headers(),
-      body: JSON.stringify(normalised)
+      body: JSON.stringify(values)
     })
 
     request.headers.append('accept', 'application/json')
@@ -69,7 +54,16 @@ class Generator extends Component {
       })
       .then(json => {
         saveSync(json.base64Blob, json.filename)
+        formikApi.setSubmitting(false)
       })
+
+    // console.log(values);
+    // setTimeout(() => {
+    //   Object.keys(values).forEach(key => {
+    //     formikApi.setFieldError(key, "Some Error");
+    //   });
+    //   formikApi.setSubmitting(false);
+    // }, 1000);
   }
 
   componentDidMount () {
@@ -91,20 +85,27 @@ class Generator extends Component {
       })
   }
 
+  renderForm = ({ handleSubmit, handleReset, isSubmitting }) => (
+    <Form onSubmit={handleSubmit}>
+
+      <ProjectOptions schema={this.state.formSchema}/>
+      <ZeroConfigServiceOptions schema={this.state.formSchema}/>
+
+      <Button type="submit" loading={isSubmitting} primary>
+        Submit
+      </Button>
+    </Form>
+  )
+
   render () {
     return (
       <div>
         <h1>Generator</h1>
 
-        <Form onSubmit={(values) => {
-          this.submitProject(values)
-        }}>
-          <ProjectOptions schema={this.state.formSchema}/>
-          {/*<ZeroConfigServiceOptions schema={this.state.formSchema}/>*/}
-
-
-          <Button type={'submit'}>Submit</Button>
-        </Form>
+        <Formik
+          onSubmit={this.submitProject}
+          render={this.renderForm}
+        />
 
         <hr/>
         <h2>Schema'd form</h2>
