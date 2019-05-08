@@ -26,6 +26,7 @@ use App\Http\ErrorResponse;
 use JsonException;
 use Limenius\Liform\Liform;
 use PHPDocker\Generator\Generator;
+use function preg_replace;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -125,7 +126,7 @@ class GeneratorController
             $propertyPath = $error->getOrigin()->getName();
 
             if ($cause instanceof ConstraintViolation) {
-                $propertyPath = \preg_replace('/^data\./', '', $cause->getPropertyPath());
+                $propertyPath = preg_replace('/^data\./', '', $cause->getPropertyPath());
             }
 
             $errors[] = new Error('validation-error', $error->getMessage(), $propertyPath);
