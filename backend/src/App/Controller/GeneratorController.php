@@ -32,9 +32,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use const JSON_THROW_ON_ERROR;
-use Symfony\Component\Serializer\Exception\NotEncodableValueException;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Contains the project generator endpoints.
@@ -55,22 +52,12 @@ class GeneratorController
      * @var Generator
      */
     private $generator;
-    /**
-     * @var \Symfony\Component\Serializer\SerializerInterface
-     */
-    private $serializer;
-    /**
-     * @var \Symfony\Component\Validator\Validator\ValidatorInterface
-     */
-    private $validator;
 
-    public function __construct(Liform $liform, FormFactoryInterface $formFactory, Generator $generator, SerializerInterface $serializer, ValidatorInterface $validator)
+    public function __construct(Liform $liform, FormFactoryInterface $formFactory, Generator $generator)
     {
         $this->liform      = $liform;
         $this->formFactory = $formFactory;
         $this->generator   = $generator;
-        $this->serializer = $serializer;
-        $this->validator = $validator;
     }
 
     /**
@@ -92,33 +79,6 @@ class GeneratorController
      *
      * @return Response
      */
-//    public function generate(Request $request): Response
-//    {
-//        try {
-//            /** @var Project $project */
-//            $project = $this->serializer->deserialize($request->getContent(), Project::class, 'json');
-//            $violations = $this->validator->validate($project);
-//
-//            if ($violations->count() > 0) {
-//                return new ErrorResponse($violations, 400);
-//            }
-//
-//            // Generate zip file with docker project
-//            $zipFile = $this->generator->generate($project);
-//            $payload = [
-//                'success'    => true,
-//                'filename'   => $zipFile->getFilename(),
-//                'base64Blob' => $zipFile->getBase64EncodedPayload(),
-//            ];
-//
-//            $zipFile->delete();
-//
-//            return new JsonResponse($payload);
-//        } catch (NotEncodableValueException $ex) {
-//            return new ErrorResponse([new Error('empty-body', 'Request body is empty')], 400);
-//        }
-//    }
-
     public function generate(Request $request): Response
     {
         dump($request->getContent());
