@@ -21,6 +21,7 @@ namespace App\Generator\Entity;
 
 use PHPDocker\Project\ServiceOptions\Application;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Generator\Assert as CustomAssert;
 
 /**
  * Validation for Application options
@@ -37,7 +38,7 @@ class ApplicationOptions extends Application
      * @Assert\NotNull()
      * @CustomAssert\ApplicationType()
      */
-    protected $applicationType;
+    protected $applicationType = self::APPLICATION_TYPE_GENERIC;
 
     /**
      * @var int
@@ -47,5 +48,5 @@ class ApplicationOptions extends Application
      * @Assert\Type(type="integer")
      * @Assert\Range(min="2", max="2147483647")
      */
-    protected $uploadSize;
+    protected $uploadSize = 100;
 }

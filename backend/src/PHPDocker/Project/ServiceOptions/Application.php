@@ -31,10 +31,10 @@ class Application
     /**
      * Supported application types
      */
-    private const APPLICATION_TYPE_SYMFONY = 'symfony';
-    private const APPLICATION_TYPE_PHALCON = 'phalcon';
-    private const APPLICATION_TYPE_GENERIC = 'generic';
-    private const APPLICATION_TYPE_SILEX   = 'silex';
+    protected const APPLICATION_TYPE_SYMFONY = 'symfony';
+    protected const APPLICATION_TYPE_PHALCON = 'phalcon';
+    protected const APPLICATION_TYPE_GENERIC = 'generic';
+    protected const APPLICATION_TYPE_SILEX   = 'silex';
 
     /**
      * Allowed application types with short description

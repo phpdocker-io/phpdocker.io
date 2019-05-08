@@ -57,6 +57,13 @@ class Project extends PHPDockerProject
     protected $mysqlOptions;
 
     /**
+     * @var ApplicationOptions
+     *
+     * @Assert\Valid()
+     */
+    protected $applicationOptions;
+
+    /**
      * @var PhpOptions
      *
      * @Assert\Valid()
@@ -89,6 +96,7 @@ class Project extends PHPDockerProject
         parent::__construct();
 
         // Override some of the options with our own tweaked versions
+        $this->applicationOptions   = new ApplicationOptions();
         $this->mysqlOptions         = new MySQLOptions();
         $this->mariadbOptions       = new MariaDBOptions();
         $this->postgresOptions      = new PostgresOptions();
