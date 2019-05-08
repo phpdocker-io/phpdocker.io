@@ -15,4 +15,15 @@
  *
  */
 
-
+module.exports = {
+  /**
+   * Returns a random number within the given range
+   *
+   * @param min {number} Start of the range
+   * @param max {number} End of range
+   * @returns {Array}
+   */
+  randomRange: (min, max) => {
+    return ~~(Math.random() * (max - min + 1)) + min
+  }
+}
