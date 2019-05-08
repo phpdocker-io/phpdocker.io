@@ -26,6 +26,8 @@ import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
 
 import 'semantic-ui-css/semantic.min.css'
 
+import { randomRange } from '../util'
+
 const { generatorApiUri } = require('../config')
 
 class Generator extends Component {
@@ -105,6 +107,13 @@ class Generator extends Component {
         <Formik
           onSubmit={this.submitProject}
           render={this.renderForm}
+          initialValues={{
+            basePort: randomRange(2, 65) * 1000,
+            applicationOptions: {
+              applicationType: 'generic',
+              uploadSize: 100,
+            },
+          }}
         />
 
         <hr/>

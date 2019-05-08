@@ -20,20 +20,8 @@ import { Form } from 'semantic-ui-react'
 import { Dropdown, Input, } from './controls/index'
 
 import { enumToOptions } from './semanticUiTools'
-import { randomRange } from '../util'
 
 class ProjectOptions extends Component {
-  /**
-   * Returns a random port number between 2000 and 65000.
-   *
-   * Step is multiples of 1000 to make it easy to remember for someone generating a project here.
-   *
-   * @returns {number}
-   */
-  static randomPort () {
-    return randomRange(2, 65) * 1000
-  }
-
   render () {
     const properties = this.props.schema.properties
 
@@ -43,7 +31,6 @@ class ProjectOptions extends Component {
 
     const appOptions     = properties.applicationOptions.properties
     const appTypeOptions = enumToOptions(appOptions.applicationType)
-    const randomPort     = ProjectOptions.randomPort(1025, 32768)
 
     return (
       <fieldset>
@@ -64,7 +51,6 @@ class ProjectOptions extends Component {
             label={properties.basePort.title}
             inputProps={{
               type: 'number',
-              defaultValue: randomPort,
             }}
           />
         </Form.Group>
@@ -74,16 +60,13 @@ class ProjectOptions extends Component {
             name={'applicationOptions.applicationType'}
             label={appOptions.applicationType.title}
             options={appTypeOptions}
-            inputProps={{
-              defaultValue: appTypeOptions[0].value,
-            }}
+
           />
           <Input
             name={'applicationOptions.uploadSize'}
             label={appOptions.uploadSize.title}
             inputProps={{
               type: 'number',
-              defaultValue: 100,
             }}
           />
         </Form.Group>
