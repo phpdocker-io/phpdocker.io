@@ -61,6 +61,7 @@ class ProjectOptions extends Component {
             label={properties.basePort.title}
             type={'number'}
             placeholder={properties.basePort.attr.placeholder}
+            defaultValue={randomPort}
           />
         </Form.Group>
 
@@ -75,7 +76,7 @@ class ProjectOptions extends Component {
             name={'applicationOptions.uploadSize'}
             label={appOptions.uploadSize.title}
             type={'number'}
-            defaultValue={randomPort}
+            defaultValue={100}
           />
         </Form.Group>
       </fieldset>
