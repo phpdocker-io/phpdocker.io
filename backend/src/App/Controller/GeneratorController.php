@@ -31,6 +31,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\ConstraintViolation;
 use const JSON_THROW_ON_ERROR;
 
 /**
@@ -81,7 +82,6 @@ class GeneratorController
      */
     public function generate(Request $request): Response
     {
-        dump($request->getContent());
         $project = new Project();
         $form    = $this->formFactory->create(ProjectType::class, $project, ['csrf_protection' => false]);
 
@@ -120,10 +120,15 @@ class GeneratorController
     private function getErrorsFromForm(FormInterface $form): array
     {
         $errors = [];
-        foreach ($form->all() as $formField) {
-            foreach ($formField->getErrors() as $error) {
-                $errors[] = new Error('validation-error', $error->getMessage(), $formField->getName());
+        foreach ($form->getErrors(true) as $error) {
+            $cause        = $error->getCause();
+            $propertyPath = $error->getOrigin()->getName();
+
+            if ($cause instanceof ConstraintViolation) {
+                $propertyPath = \preg_replace('/^data\./', '', $cause->getPropertyPath());
             }
+
+            $errors[] = new Error('validation-error', $error->getMessage(), $propertyPath);
         }
 
         return $errors;
