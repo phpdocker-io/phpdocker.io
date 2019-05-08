@@ -1,27 +1,32 @@
-import React, { Component } from "react";
-import { Form, Dropdown } from "semantic-ui-react";
-import { Field } from "formik";
+/*
+ * Lifted from https://github.com/justinobney/formik-semantic-ui-example
+ */
 
-let fieldCounter = 0;
+import React, { Component } from 'react'
+import { Dropdown, Form } from 'semantic-ui-react'
+import { Field } from 'formik'
+
+let fieldCounter = 0
+
 class FormikDropdown extends Component {
-  constructor(props) {
-    super(props);
-    this.id = props.id || `field_dropdown_${fieldCounter++}`;
+  constructor (props) {
+    super(props)
+    this.id = props.id || `field_dropdown_${fieldCounter++}`
   }
 
-  render() {
+  render () {
     const {
-      name,
-      label,
-      options,
-      inputProps = {},
-      fieldProps = {}
-    } = this.props;
+            name,
+            label,
+            options,
+            inputProps = {},
+            fieldProps = {}
+          } = this.props
     return (
       <Field
         name={name}
         render={({ field, form }) => {
-          const error = form.touched[name] && form.errors[name];
+          const error = form.touched[name] && form.errors[name]
           return (
             <Form.Field error={!!error} {...fieldProps}>
               {!!label && (
@@ -40,28 +45,28 @@ class FormikDropdown extends Component {
                 {...inputProps}
                 value={field.value}
                 onChange={(e, { name, value }) => {
-                  form.setFieldValue(name, value, true);
+                  form.setFieldValue(name, value, true)
                 }}
               />
               {form.errors[name] &&
-                form.touched[name] && (
-                  <span
-                    style={{
-                      display: "block",
-                      margin: ".28571429rem 0",
-                      color: "rgb(159, 58, 56)",
-                      fontSize: ".92857143em"
-                    }}
-                  >
+              form.touched[name] && (
+                <span
+                  style={{
+                    display: 'block',
+                    margin: '.28571429rem 0',
+                    color: 'rgb(159, 58, 56)',
+                    fontSize: '.92857143em'
+                  }}
+                >
                     {form.errors[name]}
                   </span>
-                )}
+              )}
             </Form.Field>
-          );
+          )
         }}
       />
-    );
+    )
   }
 }
 
-export default FormikDropdown;
+export default FormikDropdown
