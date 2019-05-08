@@ -39,7 +39,31 @@ class Generator extends Component {
     }
   }
 
-  submitProject (values, formikApi) {
+  handleRequestErrors = (response, formik) => {
+    if (response.ok) {
+      return response.json()
+    }
+
+    if (response.status === 400) {
+      response.json()
+        .then(json => {
+          json.errors.forEach(error => {
+            formik.setFieldError(error.property, error.description)
+          })
+
+          formik.setSubmitting(false)
+        })
+    }
+
+    throw Error('Failed to generate project due to errors in the request')
+  }
+
+  handleRequestSuccess = (json, formik) => {
+    saveSync(json.base64Blob, json.filename)
+    formik.setSubmitting(false)
+  }
+
+  submitProject = (values, formik) => {
     console.log(values)
 
     const request = new Request(generatorApiUri, {
@@ -52,20 +76,11 @@ class Generator extends Component {
 
     fetch(request)
       .then(response => {
-        return response.json()
+        return this.handleRequestErrors(response, formik)
       })
       .then(json => {
-        saveSync(json.base64Blob, json.filename)
-        formikApi.setSubmitting(false)
+        this.handleRequestSuccess(json, formik)
       })
-
-    // console.log(values);
-    // setTimeout(() => {
-    //   Object.keys(values).forEach(key => {
-    //     formikApi.setFieldError(key, "Some Error");
-    //   });
-    //   formikApi.setSubmitting(false);
-    // }, 1000);
   }
 
   componentDidMount () {

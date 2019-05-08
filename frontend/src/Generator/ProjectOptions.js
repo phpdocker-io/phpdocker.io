@@ -44,6 +44,9 @@ class ProjectOptions extends Component {
               type: 'text',
               placeholder: properties.name.attr.placeholder,
             }}
+            fieldProps={{
+              required: true
+            }}
           />
           <Input
             fluid
@@ -51,6 +54,9 @@ class ProjectOptions extends Component {
             label={properties.basePort.title}
             inputProps={{
               type: 'number',
+            }}
+            fieldProps={{
+              required: true
             }}
           />
         </Form.Group>
@@ -60,13 +66,18 @@ class ProjectOptions extends Component {
             name={'applicationOptions.applicationType'}
             label={appOptions.applicationType.title}
             options={appTypeOptions}
-
+            fieldProps={{
+              required: true
+            }}
           />
           <Input
             name={'applicationOptions.uploadSize'}
             label={appOptions.uploadSize.title}
             inputProps={{
               type: 'number',
+            }}
+            fieldProps={{
+              required: true
             }}
           />
         </Form.Group>
