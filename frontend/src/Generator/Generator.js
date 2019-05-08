@@ -64,8 +64,6 @@ class Generator extends Component {
   }
 
   submitProject = (values, formik) => {
-    console.log(values)
-
     const request = new Request(generatorApiUri, {
       method: 'POST',
       headers: new Headers(),
@@ -80,6 +78,9 @@ class Generator extends Component {
       })
       .then(json => {
         this.handleRequestSuccess(json, formik)
+      })
+      .catch(error => {
+        console.error(error.message)
       })
   }
 
