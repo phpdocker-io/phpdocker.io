@@ -6,6 +6,8 @@ import React, { Component } from 'react'
 import { Form, TextArea } from 'semantic-ui-react'
 import { Field } from 'formik'
 
+const dot = require('dot-object')
+
 let fieldCounter = 0
 
 class FormikTextArea extends Component {
@@ -20,7 +22,10 @@ class FormikTextArea extends Component {
       <Field
         name={name}
         render={({ field, form }) => {
-          const error = form.touched[name] && form.errors[name]
+          // Even though formik serialises correctly dot notation, setFieldError creates objects - work around
+          const dotErrors = dot.dot(form.errors)
+          const error     = dotErrors[name]
+
           return (
             <Form.Field error={!!error} {...fieldProps}>
               {!!label && <label htmlFor={this.id}>{label}</label>}
@@ -34,8 +39,7 @@ class FormikTextArea extends Component {
                 rows={4}
                 {...inputProps}
               />
-              {form.errors[name] &&
-              form.touched[name] && (
+              {error && (
                 <span
                   style={{
                     display: 'block',
@@ -44,7 +48,7 @@ class FormikTextArea extends Component {
                     fontSize: '.92857143em'
                   }}
                 >
-                    {form.errors[name]}
+                    {error}
                   </span>
               )}
             </Form.Field>

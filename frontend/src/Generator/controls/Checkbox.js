@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import { Checkbox, Form } from 'semantic-ui-react'
 import { Field } from 'formik'
+const dot = require('dot-object')
 
 let fieldCounter = 0
 
@@ -20,7 +21,10 @@ class FormikCheckbox extends Component {
       <Field
         name={name}
         render={({ field, form }) => {
-          const error = form.touched[name] && form.errors[name]
+          // Even though formik serialises correctly dot notation, setFieldError creates objects - work around
+          const dotErrors = dot.dot(form.errors)
+          const error = dotErrors[name]
+
           return (
             <Form.Field error={!!error} {...fieldProps}>
               <Checkbox
@@ -33,8 +37,7 @@ class FormikCheckbox extends Component {
                 }}
                 {...inputProps}
               />
-              {form.errors[name] &&
-              form.touched[name] && (
+              {error && (
                 <span
                   style={{
                     display: 'block',
@@ -43,7 +46,7 @@ class FormikCheckbox extends Component {
                     fontSize: '.92857143em'
                   }}
                 >
-                    {form.errors[name]}
+                    {error}
                   </span>
               )}
             </Form.Field>
