@@ -25,6 +25,7 @@ import ProjectOptions from './ProjectOptions'
 import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
 
 import 'semantic-ui-css/semantic.min.css'
+import './generator.css'
 
 import { randomRange } from '../util'
 

@@ -49,11 +49,17 @@ class ZeroConfigServiceOptions extends Component {
           <Checkbox
             name={'hasRedis'}
             label={properties.hasRedis.title}
+            inputProps={{
+              toggle: true,
+            }}
           />
 
           <Checkbox
             name={'hasMemcached'}
             label={properties.hasMemcached.title}
+            inputProps={{
+              toggle: true,
+            }}
           />
         </Form.Group>
 
@@ -61,11 +67,17 @@ class ZeroConfigServiceOptions extends Component {
           <Checkbox
             name={'hasMailhog'}
             label={properties.hasMailhog.title}
+            inputProps={{
+              toggle: true,
+            }}
           />
 
           <Checkbox
             name={'hasClickhouse'}
             label={properties.hasClickhouse.title}
+            inputProps={{
+              toggle: true,
+            }}
           />
         </Form.Group>
       </fieldset>
