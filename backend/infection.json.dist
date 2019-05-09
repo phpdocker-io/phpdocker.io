@@ -1,0 +1,24 @@
+{
+    "timeout": 10,
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "Certbot/ShellExec.php"
+        ]
+    },
+    "logs": {
+        "text": "reports/infection/infection-log.txt"
+    },
+    "mutators": {
+        "@default": true,
+        "IdenticalEqual": false,
+        "NotIdenticalNotEqual": false,
+        "FalseValue": {
+            "ignore": [
+                "PhpDockerIo\\KongCertbot\\Certbot\\Handler::acquireCertificate"
+            ]
+        }
+    }
+}

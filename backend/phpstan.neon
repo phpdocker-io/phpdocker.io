@@ -1,0 +1,7 @@
+parameters:
+  autoload_files:
+    - '%rootDir%/../../autoload.php'
+
+  # This enables extra-strictness
+  includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
