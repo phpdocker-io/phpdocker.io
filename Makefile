@@ -39,3 +39,9 @@ open-api-profiler:
 
 api-clear-cache:
 	docker-compose exec php-fpm bin/console cache:clear
+
+test-frontend-watch:
+	cd frontend; yarn test
+
+test-frontend:
+	cd frontend; yarn test --no-watch
