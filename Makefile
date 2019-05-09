@@ -44,4 +44,4 @@ test-frontend-watch:
 	cd frontend; yarn test
 
 test-frontend:
-	cd frontend; yarn test --no-watch
+	cd frontend; yarn test --no-watch --coverage
