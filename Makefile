@@ -48,3 +48,9 @@ test-frontend:
 
 test-backend-static:
 	cd backend; vendor/bin/phpstan -v analyse -l 7 src/
+
+test-backend-infection:
+	cd backend; vendor/bin/infection  --threads=4 -s
+
+test-backend-infection-no-initial-coverage:
+	cd backend; vendor/bin/infection  --threads=4 -s --coverage=reports/infection/
