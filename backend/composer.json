@@ -29,6 +29,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.1",
         "nelmio/alice": "^3.5",
         "phpstan/phpstan": "^0.11.6",
+        "phpunit/phpunit": "^8.1",
         "symfony/debug-pack": "^1.0"
     },
     "config": {
