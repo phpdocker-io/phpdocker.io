@@ -30,7 +30,8 @@
         "nelmio/alice": "^3.5",
         "phpstan/phpstan": "^0.11.6",
         "phpunit/phpunit": "^8.1",
-        "symfony/debug-pack": "^1.0"
+        "symfony/debug-pack": "^1.0",
+        "symfony/phpunit-bridge": "^4.2"
     },
     "config": {
         "preferred-install": {
