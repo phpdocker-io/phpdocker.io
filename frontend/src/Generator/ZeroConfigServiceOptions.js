@@ -21,20 +21,6 @@ import { Form } from 'semantic-ui-react'
 import { Checkbox } from './controls/index'
 
 class ZeroConfigServiceOptions extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      formData: {
-        name: null,
-        basePort: null,
-      }
-    }
-  }
-
-  componentDidMount () {
-  }
-
   render () {
     const properties = this.props.schema.properties
 

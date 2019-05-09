@@ -16,8 +16,11 @@
  */
 
 fieldset {
+    border-radius : 10px;
+    border-width  : 2px;
+    margin        : 1em;
+}
+
+fieldset legend {
     font-weight : bold;
-    border-radius: 3px;
-    border-width: 2px;
-    margin: 1em;
 }

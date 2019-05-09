@@ -25,5 +25,15 @@ module.exports = {
    */
   randomRange: (min, max) => {
     return ~~(Math.random() * (max - min + 1)) + min
+  },
+
+  /**
+   * Capitalises the first char of a string.
+   *
+   * @param str {string}
+   * @returns {string}
+   */
+  capitalize: (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1)
   }
 }

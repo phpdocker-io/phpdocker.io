@@ -47,5 +47,15 @@ module.exports = {
     }
 
     return reduced
+  },
+
+  /**
+   * Given a json schema property node, return the value of the placeholder (if any).
+   *
+   * @param property {object}
+   * @returns {string}
+   */
+  getPlaceholder: property => {
+    return property.attr.placeholder || ''
   }
 }

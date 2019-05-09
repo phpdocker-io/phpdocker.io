@@ -23,6 +23,7 @@ import { Formik } from 'formik'
 
 import ProjectOptions from './ProjectOptions'
 import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
+import MySQLCompatibleOptions from './MySQLCompatibleOptions'
 
 import 'semantic-ui-css/semantic.min.css'
 import './generator.css'
@@ -109,6 +110,7 @@ class Generator extends Component {
 
       <ProjectOptions schema={this.state.formSchema}/>
       <ZeroConfigServiceOptions schema={this.state.formSchema}/>
+      <MySQLCompatibleOptions schema={this.state.formSchema} schemaNode={'mysqlOptions'}/>
 
       <Button type="submit" loading={isSubmitting} primary>
         Submit
@@ -116,6 +118,10 @@ class Generator extends Component {
     </Form>
   )
 
+  /*
+   * @todo: find a way to do default values properly. Setting these here as using the input props
+   *   doesn't seem to trigger setFieldValue in Formik.
+   */
   render () {
     return (
       <div>
@@ -130,6 +136,9 @@ class Generator extends Component {
               applicationType: 'generic',
               uploadSize: 100,
             },
+            mysqlOptions: {
+              version: '8.0'
+            }
           }}
         />
 

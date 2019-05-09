@@ -19,7 +19,7 @@ import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import { Dropdown, Input, } from './controls/index'
 
-import { enumToOptions } from './semanticUiTools'
+import { enumToOptions, getPlaceholder } from './semanticUiTools'
 
 class ProjectOptions extends Component {
   render () {
@@ -42,7 +42,7 @@ class ProjectOptions extends Component {
             label={properties.name.title}
             inputProps={{
               type: 'text',
-              placeholder: properties.name.attr.placeholder,
+              placeholder: getPlaceholder(properties.name),
             }}
             fieldProps={{
               required: true
