@@ -45,3 +45,6 @@ test-frontend-watch:
 
 test-frontend:
 	cd frontend; yarn test --no-watch --coverage
+
+test-backend-static:
+	cd backend; vendor/bin/phpstan -v analyse -l 7 src/

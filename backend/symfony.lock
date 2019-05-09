@@ -20,6 +20,9 @@
     "cocur/slugify": {
         "version": "v3.2"
     },
+    "composer/xdebug-handler": {
+        "version": "1.3.2"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -128,6 +131,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "jean85/pretty-package-versions": {
+        "version": "1.2"
+    },
     "limenius/liform": {
         "version": "v0.12.0"
     },
@@ -161,6 +167,33 @@
             "ref": "f0436fc35fca88eada758311f8de43bfb61f1980"
         }
     },
+    "nette/bootstrap": {
+        "version": "v3.0.0"
+    },
+    "nette/di": {
+        "version": "v3.0.0"
+    },
+    "nette/finder": {
+        "version": "v2.5.0"
+    },
+    "nette/neon": {
+        "version": "v3.0.0"
+    },
+    "nette/php-generator": {
+        "version": "v3.2.2"
+    },
+    "nette/robot-loader": {
+        "version": "v3.2.0"
+    },
+    "nette/schema": {
+        "version": "v1.0.0"
+    },
+    "nette/utils": {
+        "version": "v3.0.1"
+    },
+    "nikic/php-parser": {
+        "version": "v4.2.1"
+    },
     "nyholm/psr7": {
         "version": "1.0",
         "recipe": {
@@ -193,6 +226,12 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
+    },
+    "phpstan/phpdoc-parser": {
+        "version": "0.3.3"
+    },
+    "phpstan/phpstan": {
+        "version": "0.11.6"
     },
     "psr/cache": {
         "version": "1.0.1"
