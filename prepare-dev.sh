@@ -12,7 +12,7 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 FIX_OWNERSHIP="sudo chown -Rf `id -u`:`id -g` . "
 PHP_IN_CONTAINER="docker-compose exec php-fpm php "
-SUDO_NOT_FOUND="echo -e \n${bold} ## WARNING: The following command requested elevated access but sudo is not installed. ## ${normal}"
+SUDO_NOT_FOUND="\n${bold} ## WARNING: The following command requested elevated access but sudo is not installed. ## ${normal}"
 
 echo -e "\n${bold} ## Preparing phpdocker.io for local dev ## \n${normal}"
 echo -e "\n In order to fix up symfony cache permissions for both container and host, we'll need to sudo a few commands.\n"
@@ -26,7 +26,7 @@ else
 fi
 
 # Address environments that dont have sudo installed (CYGWIN/MINGW/ect)
-hash sudo 2>/dev/null || sudo(){ ${SUDO_NOT_FOUND}; $@; }
+hash sudo 2>/dev/null || sudo(){ echo -e ${SUDO_NOT_FOUND} >&2; $@; }
 
 # Cleanup
 ${FIX_OWNERSHIP}
