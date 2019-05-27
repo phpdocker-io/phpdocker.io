@@ -24,6 +24,9 @@ else
     echo -e "${bold}parameters.yml file present, leaving alone.${normal}\n"
 fi
 
+# Address environments that dont have sudo installed (CYGWIN/MINGW/ect)
+hash sudo 2>/dev/null || sudo(){ $@; }
+
 # Cleanup
 ${FIX_OWNERSHIP}
 
