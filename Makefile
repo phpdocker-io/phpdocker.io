@@ -20,6 +20,7 @@ clean: stop
 	cd ./admin; sudo rm -rf node_modules
 
 load-fixtures:
+	docker-compose exec database backend/bin/wait-for-db.sh
 	cd ./backend; chmod 777 var/* -Rf; ./console doctrine:schema:update --force; ./console doctrine:fixtures:load -n
 
 open-frontend:
