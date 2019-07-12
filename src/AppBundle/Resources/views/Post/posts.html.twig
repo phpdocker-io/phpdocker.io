@@ -1,6 +1,7 @@
 {% for post in posts %}
     <dl class="post posts">
-        <dt><a href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></dt>
+{#        <dt><a href="{{ path('post', {'slug': post.getSlug()}) }}">{{ post.getTitle() }}</a></dt>#}
+        <dt>{{ post.getTitle() }}</dt>
         <dd class="date">{{ post.getCreatedAt()|date("F jS, Y") }}</dd>
         <dd class="body">
             {{ post.getBodyIntro()|raw }}
