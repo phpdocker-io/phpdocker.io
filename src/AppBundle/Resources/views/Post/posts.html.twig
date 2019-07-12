@@ -6,5 +6,12 @@
             {{ post.getBodyIntro()|raw }}
             {{ post.getBody()|raw }}
         </dd>
+{#        <dd class="read-more">#}
+{#            <a href="{{ path('post', {'slug': post.getSlug()}) }}">Continue reading &gt;</a>#}
+{#        </dd>#}
+{#        <dd class="comment-count">#}
+{#            <a href="{{ path('post', {'slug': post.getSlug()}) }}#comments">({{ post.getCountPostComments() }})#}
+{#                comment(s)</a>#}
+{#        </dd>#}
     </dl>
 {% endfor %}
