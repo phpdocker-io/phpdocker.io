@@ -42,10 +42,6 @@ services:
         - ./infrastructure/local:/etc/infrastructure
       ports:
         - "5000:3000"
-      environment:
-        - POST_API_URI=https://phpdocker.local:5002/content/posts
-        - CONTACT_API_URI=https://phpdocker.local:5002/contact
-        - GENERATOR_API_URI=https://phpdocker.local:5002/generator
       command: yarn start
 
     admin:
