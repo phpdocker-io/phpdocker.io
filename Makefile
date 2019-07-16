@@ -20,7 +20,7 @@ start:
 	docker-compose up -d
 
 stop:
-	docker-compose kill
+	docker-compose stop
 
 install-dependencies:
 	cd ./frontend; yarn install
@@ -33,15 +33,20 @@ install-mkcert:
 	bin/mkcert -install
 
 create-certs:
-	bin/mkcert -cert-file=infrastructure/local/local.pem  -key-file=infrastructure/local/local.key.pem $(PHPDOCKER_HOST)
+	bin/mkcert -cert-file=infrastructure/local/local.pem -key-file=infrastructure/local/local.key.pem $(PHPDOCKER_HOST)
+	cp infrastructure/local/local.pem infrastructure/local/webpack.pem
+	cat infrastructure/local/local.key.pem >> infrastructure/local/webpack.pem
+
+clean-hosts:
+	sudo bin/hosts remove --force *phpdocker.local > /dev/null 2>&1 || exit 0
 
 init-hosts: clean-hosts
 	sudo bin/hosts add 127.0.0.1 $(PHPDOCKER_HOST)
 
-init: stop clean install-dependencies start load-fixtures
+init: clean install-dependencies install-mkcert create-certs init-hosts start load-fixtures
 
-clean: stop
-	docker-compose rm -f
+clean:
+	docker-compose down
 	cd ./frontend; sudo rm -rf node_modules
 	cd ./admin; sudo rm -rf node_modules
 
@@ -50,19 +55,19 @@ load-fixtures:
 	cd ./backend; chmod 777 var/* -Rf; ./console doctrine:schema:update --force; ./console doctrine:fixtures:load -n
 
 open-frontend:
-	xdg-open http://localhost:5000
+	xdg-open https://phpdocker.local:5000
 
 open-admin:
-	xdg-open http://localhost:5001
+	xdg-open https://phpdocker.local:5001
 
 open-content-api:
-	xdg-open http://localhost:5002/content
+	xdg-open https://phpdocker.local:5002/content
 
 open-mailhog:
-	xdg-open http://localhost:5003/
+	xdg-open https://phpdocker.local:5003/
 
 open-api-profiler:
-	xdg-open http://localhost:5002/_profiler/latest?limit=10
+	xdg-open https://phpdocker.local:5002/_profiler/latest?limit=10
 
 api-clear-cache:
 	docker-compose exec php-fpm bin/console cache:clear
