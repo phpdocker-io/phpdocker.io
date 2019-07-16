@@ -1,3 +1,18 @@
+SHELL=/bin/bash
+MKCERT_VERSION=v1.3.0
+MKCERT_LOCATION=$(PWD)/bin/mkcert
+PHPDOCKER_HOST=phpdocker.local
+
+# linux-amd64, darwin-amd64, linux-arm
+# On windows, override with windows-amd64.exe
+ifndef BINARY_SUFFIX
+	BINARY_SUFFIX:=$(shell [[ "`uname -s`" == "Linux" ]] && echo linux || echo darwin)-amd64
+endif
+
+ifndef BINARY_ARCH
+	BUILD_TAG:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
+endif
+
 build-backend-php:
 	docker build --target=deployment -t backend-php -f backend/docker/php-fpm/Dockerfile ./backend/
 
@@ -11,6 +26,17 @@ install-dependencies:
 	cd ./frontend; yarn install
 	cd ./admin; yarn install
 	composer -o install --working-dir backend/
+
+install-mkcert:
+	@echo "Installing mkcert for OS type ${BINARY_SUFFIX}"
+	@if [[ ! -f '$(MKCERT_LOCATION)' ]]; then curl -sL 'https://github.com/FiloSottile/mkcert/releases/download/$(MKCERT_VERSION)/mkcert-$(MKCERT_VERSION)-$(BINARY_SUFFIX)' -o $(MKCERT_LOCATION); chmod +x $(MKCERT_LOCATION);	fi;
+	bin/mkcert -install
+
+create-certs:
+	bin/mkcert -cert-file=infrastructure/local/local.pem  -key-file=infrastructure/local/local.key.pem $(PHPDOCKER_HOST)
+
+init-hosts: clean-hosts
+	sudo bin/hosts add 127.0.0.1 $(PHPDOCKER_HOST)
 
 init: stop clean install-dependencies start load-fixtures
 
