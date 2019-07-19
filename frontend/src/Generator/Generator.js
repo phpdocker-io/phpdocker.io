@@ -111,6 +111,7 @@ class Generator extends Component {
       <ProjectOptions schema={this.state.formSchema}/>
       <ZeroConfigServiceOptions schema={this.state.formSchema}/>
       <MySQLCompatibleOptions schema={this.state.formSchema} schemaNode={'mysqlOptions'}/>
+      <MySQLCompatibleOptions schema={this.state.formSchema} schemaNode={'mariadbOptions'}/>
 
       <Button type="submit" loading={isSubmitting} primary>
         Submit
