@@ -81,7 +81,7 @@ class Php56AvailableExtensions extends BaseAvailableExtensions
             'libvirt'                       => ['packages' => ['php5-libvirt-php']],
             'MapServer'                     => ['packages' => ['php5-mapscript']],
             'Memcache'                      => ['packages' => ['php5-memcache']],
-            'MessagePack'                   => ['packages' => ['php5-msgpack']],
+            'MessagePack/msgpack'           => ['packages' => ['php5-msgpack']],
             'OAuth 1.0'                     => ['packages' => ['php5-oauth']],
             'ODBC'                          => ['packages' => ['php5-odbc']],
             'PECL radius'                   => ['packages' => ['php5-radius']],
