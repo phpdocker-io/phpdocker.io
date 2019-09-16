@@ -1,2 +1,16 @@
 upload_max_filesize = {{ maxUploadSize }}M
 post_max_size = {{ maxUploadSize + 8 }}M
+
+{%- if xdebug_enabled %}
+; Instead of hardcoding the machine IP, we use this hostname.
+xdebug.remote_host=host.docker.internal
+xdebug.remote_port=9001
+xdebug.remote_enable=1
+xdebug.remote_autostart=0
+
+; Very important for Docker to be set to off or else the debug won't work
+xdebug.remote_connect_back=0
+xdebug.remote_mode=req
+xdebug.idekey=PHPSTORM
+xdebug.remote_log=/tmp/xdebug.log
+{% endif %}
