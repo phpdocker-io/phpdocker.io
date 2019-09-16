@@ -193,7 +193,10 @@ class Generator
      */
     private function getPhpIniOverrides(Project $project): GeneratedFile\PhpIniOverrides
     {
-        $data = ['maxUploadSize' => $project->getApplicationOptions()->getUploadSize()];
+        $data = [
+            'maxUploadSize' => $project->getApplicationOptions()->getUploadSize(),
+            'xdebugEnabled' => true,  // @todo
+        ];
 
         return new GeneratedFile\PhpIniOverrides($this->twig->render('php-ini-overrides.ini.twig', $data));
     }

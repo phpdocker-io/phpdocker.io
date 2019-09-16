@@ -1,7 +1,7 @@
 upload_max_filesize = {{ maxUploadSize }}M
 post_max_size = {{ maxUploadSize + 8 }}M
 
-{%- if xdebug_enabled %}
+{% if xdebugEnabled %}
 ; Instead of hardcoding the machine IP, we use this hostname.
 xdebug.remote_host=host.docker.internal
 xdebug.remote_port=9001
