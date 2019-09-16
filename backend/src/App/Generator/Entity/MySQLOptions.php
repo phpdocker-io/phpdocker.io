@@ -19,6 +19,7 @@ declare(strict_types=1);
 
 namespace App\Generator\Entity;
 
+use PHPDocker\Project\ServiceOptions\AbstractMySQL;
 use PHPDocker\Project\ServiceOptions\MySQL;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -93,5 +94,42 @@ class MySQLOptions extends MySQL
     public function hasMysql(): bool
     {
         return $this->isEnabled();
+    }
+
+    public function setVersion(?string $version): AbstractMySQL
+    {
+        if ($version !== null) {
+            $this->version = $version;
+        }
+
+        return $this;
+    }
+
+    public function setRootPassword(string $rootPassword = null): AbstractMySQL
+    {
+        $this->rootPassword = $rootPassword;
+
+        return $this;
+    }
+
+    public function setDatabaseName(string $databaseName = null): AbstractMySQL
+    {
+        $this->databaseName = $databaseName;
+
+        return $this;
+    }
+
+    public function setUsername(string $username = null): AbstractMySQL
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function setPassword(string $password = null): AbstractMySQL
+    {
+        $this->password = $password;
+
+        return $this;
     }
 }

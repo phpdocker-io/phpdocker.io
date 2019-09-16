@@ -85,4 +85,28 @@ class PostgresOptions extends Postgres
     {
         return $this->isEnabled();
     }
+
+    public function setVersion(?string $version): Postgres
+    {
+        if ($version !== null) {
+            $this->version = $version;
+        }
+
+        return $this;
+    }
+
+    public function setRootPassword(string $rootPassword): Postgres
+    {
+        $this->rootPassword = $rootPassword;
+
+        return $this;
+    }
+
+    public function setDatabaseName(string $databaseName): Postgres
+    {
+        $this->databaseName = $databaseName;
+
+        return $this;
+    }
+
 }
