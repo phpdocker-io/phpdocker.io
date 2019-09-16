@@ -29,6 +29,7 @@ import 'semantic-ui-css/semantic.min.css'
 import './generator.css'
 
 import { randomRange } from '../util'
+import PostgresOptions from './PostgresOptions'
 
 const { generatorApiUri } = require('../config')
 
@@ -112,6 +113,7 @@ class Generator extends Component {
       <ZeroConfigServiceOptions schema={this.state.formSchema}/>
       <MySQLCompatibleOptions schema={this.state.formSchema} schemaNode={'mysqlOptions'}/>
       <MySQLCompatibleOptions schema={this.state.formSchema} schemaNode={'mariadbOptions'}/>
+      <PostgresOptions schema={this.state.formSchema}/>
 
       <Button type="submit" loading={isSubmitting} primary>
         Submit
@@ -139,6 +141,12 @@ class Generator extends Component {
             },
             mysqlOptions: {
               version: '8.0'
+            },
+            mariadbOptions: {
+              version: '10.4'
+            },
+            postgresOptions: {
+              version: '11.1'
             }
           }}
         />
