@@ -69,8 +69,8 @@ class ProjectType extends AbstractGeneratorType
             ])
 //            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
             ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
-           ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
-//            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
+            ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
+            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
             ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
 //            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
 
