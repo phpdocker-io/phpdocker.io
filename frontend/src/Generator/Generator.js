@@ -43,19 +43,25 @@ class Generator extends Component {
   }
 
   handleRequestErrors = (response, formik) => {
-    if (response.ok) {
-      return response.json()
-    }
+    switch (true) {
+      case response.ok:
+        return response.json()
 
-    if (response.status === 400) {
-      response.json()
-        .then(json => {
-          json.errors.forEach(error => {
-            formik.setFieldError(error.property, error.description)
+      case response.status === 400:
+        response.json()
+          .then(json => {
+            json.errors.forEach(error => {
+              formik.setFieldError(error.property, error.description)
+            })
+
+            formik.setSubmitting(false)
           })
+        break
 
-          formik.setSubmitting(false)
-        })
+      default:
+        formik.setSubmitting(false)
+        break
+
     }
 
     throw Error('Failed to generate project due to errors in the request')
