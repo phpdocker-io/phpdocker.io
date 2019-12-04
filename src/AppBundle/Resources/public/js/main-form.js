@@ -116,21 +116,50 @@ function doMainFormMagic() {
                 extensionMultiSelects.filter('[id$=73]').parents('.form-group').show();
                 break;
 
+            case '7.4.x':
+                extensionMultiSelects.filter('[id$=74]').parents('.form-group').show();
+                break;
+
             default:
                 extensionMultiSelects.filter('[id$=56]').parents('.form-group').show();
                 break;
         }
     });
 
-    var hiddenFieldId = 'hidden-phpversion';
-    var form          = $('#generator');
+    // Phalcon is not supported by PHP 7.4 yet - proper jquery spaghetti, remove as soon as 7.4 is supported
+    /*** HACK ***/
+    var applicationType = $('#project_applicationOptions_applicationType');
+    var form            = $('#generator');
+    var hiddenFieldId   = 'hidden-phpversion';
 
-    phpVersionSelector.change(function () {
+    applicationType.change(function () {
         var hiddenField = $('#' + hiddenFieldId);
-        if (hiddenField.length) {
-            hiddenField.val(phpVersionSelector.val());
+
+        if ($(this).val() === 'phalcon') {
+            if (phpVersionSelector.val() === '7.4.x') {
+                phpVersionSelector.val('7.3.x').change()
+                phpVersionSelector.parent().parent().effect('bounce')
+
+                $('<input>').attr('type', 'hidden').appendTo(form).attr('id', hiddenFieldId).attr('name', phpVersionSelector.attr('name')).val(phpVersionSelector.val())
+            }
+
+            phpVersionSelector.children().each(function () {
+                if (this.value === '7.4.x') {
+                    $(this).prop('disabled', true)
+                }
+            })
+        } else {
+            phpVersionSelector.children().each(function () {
+                if (this.value === '7.4.x') {
+                    $(this).prop('disabled', false);
+                }
+            });
+
+            hiddenField.remove();
         }
     });
+
+    /*** END OF HACK ***/
 
     phpVersionSelector.change(function () {
         var hiddenField = $('#' + hiddenFieldId);
