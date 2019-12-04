@@ -132,11 +132,8 @@ function doMainFormMagic() {
     var form            = $('#generator');
     var hiddenFieldId   = 'hidden-phpversion';
 
-    console.log(applicationType.val())
-
     applicationType.change(function () {
         var hiddenField = $('#' + hiddenFieldId);
-        console.log($(this).val())
 
         if ($(this).val() === 'phalcon') {
             if (phpVersionSelector.val() === '7.4.x') {
