@@ -19,6 +19,7 @@ namespace PHPDocker\Zip;
 
 use PHPDocker\Interfaces\ArchiveInterface;
 use PHPDocker\Interfaces\GeneratedFileInterface;
+use ZipArchive;
 
 /**
  * Creates a zip file.
@@ -39,7 +40,7 @@ class Archiver
     protected $files = [];
 
     /**
-     * @var \ZipArchive
+     * @var ZipArchive
      */
     private $zipfile;
 
@@ -48,8 +49,10 @@ class Archiver
      */
     public function __construct()
     {
-        $this->zipfile = new \ZipArchive();
-        $this->zipfile->open(tempnam(sys_get_temp_dir(), get_class($this)), \ZipArchive::CREATE);
+        $this->zipfile = new ZipArchive();
+
+        $zipFilename = tempnam(sys_get_temp_dir(), str_replace('\\', '_', self::class));
+        $this->zipfile->open(sprintf('%s.zip', $zipFilename), ZipArchive::CREATE);
     }
 
     /**
