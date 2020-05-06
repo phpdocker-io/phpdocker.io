@@ -38,7 +38,7 @@ framework:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
+        driver:   pdo_pgsql
         host:     "%database_host%"
         port:     "%database_port%"
         dbname:   "%database_name%"
@@ -91,13 +91,9 @@ stof_doctrine_extensions:
             timestampable: true
             sluggable: true
 
-monolog:
-    handlers:
-        main:
-            type: error_log
-            level: error
-            channels: [!event]
-        console:
-            type:   console
-            bubble: false
-            channels: [!event, !doctrine]
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: true
+    bundles:
+        - AppBundle
+        - EasyAdminBundle

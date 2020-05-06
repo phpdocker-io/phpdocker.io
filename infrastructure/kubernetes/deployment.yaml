@@ -1,0 +1,238 @@
+# See https://github.com/idev4u/concourse-ci-kube
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: phpdocker-io-old
+  labels:
+    name: phpdocker-io-old
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: phpdocker-io-old
+  namespace: phpdocker-io-old
+  labels:
+    app: phpdocker-io-old
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: phpdocker-io-old
+
+---
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: phpdocker-io-old
+  namespace: phpdocker-io-old
+data:
+  mailer.transport: "smtp"
+  mailer.port:      "587"
+  memcached.host:   "memcached-phpdocker-io-old"
+  memcached.port:   "11211"
+  cache_namespace:  "latest"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpdocker-io-old
+  namespace: phpdocker-io-old
+  labels:
+    app: phpdocker-io-old
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: phpdocker-io-old
+  template:
+    metadata:
+      labels:
+        app: phpdocker-io-old
+    spec:
+      containers:
+        - image: eu.gcr.io/auron-infrastructure/phpdocker-old-nginx:latest
+          name: nginx
+
+        - image: eu.gcr.io/auron-infrastructure/phpdocker-old-php-fpm:latest
+          name: php-fpm
+
+          env:
+            - name: APP_ENV
+              value: prod
+
+            - name: SYMFONY_ENV
+              value: prod
+
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: app.secret
+
+            - name: MEMCACHED_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: phpdocker-io-old
+                  key: memcached.host
+
+            - name: MEMCACHED_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: phpdocker-io-old
+                  key: memcached.port
+
+            - name: CACHE_NAMESPACE
+              valueFrom:
+                configMapKeyRef:
+                  name: phpdocker-io-old
+                  key: cache_namespace
+
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: db.host
+
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: db.user
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: db.password
+
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: db.name
+
+            - name: CONTACT_EMAIL_TO
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: contact.email_to
+
+            - name: CONTACT_EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: contact.email_from
+
+            - name: CONTACT_EMAIL_SUBJECT
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: contact.email_subject
+
+            - name: GOOGLE_ANALYTICS
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: google_analytics
+
+            - name: RECAPTCHA_SITE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: recaptcha.site_key
+
+            - name: RECAPTCHA_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: recaptcha.secret_key
+
+            - name: MAILER_TRANSPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: phpdocker-io-old
+                  key: mailer.transport
+
+            - name: MAILER_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: mailer.host
+
+            - name: MAILER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: phpdocker-io-old
+                  key: mailer.port
+
+            - name: MAILER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: mailer.user
+
+            - name: MAILER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: mailer.password
+
+            - name: ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: admin.user
+
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: phpdocker-io-old
+                  key: admin.password
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: memcached-phpdocker-io-old
+  namespace: phpdocker-io-old
+  labels:
+    app: memcached-phpdocker-io-old
+spec:
+  ports:
+    - port: 11211
+      targetPort: 11211
+      protocol: TCP
+  selector:
+    app: memcached-phpdocker-io-old
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: memcached-phpdocker-io-old
+  namespace: phpdocker-io-old
+  labels:
+    app: memcached-phpdocker-io-old
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: memcached-phpdocker-io-old
+    spec:
+      containers:
+        - image: memcached:alpine
+          name: memcached

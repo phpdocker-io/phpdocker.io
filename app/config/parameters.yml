@@ -1,0 +1,42 @@
+# This file contains the right config already for the app to be run from the bundled dev-env,
+# you should be able to copy to parameters.yml and off you go
+parameters:
+    # Database
+    database_host:     '%env(DB_HOST)%'
+    database_port:     5432
+    database_name:     '%env(DB_NAME)%'
+    database_user:     '%env(DB_USER)%'
+    database_password: '%env(DB_PASSWORD)%'
+    database_version:  9.6
+    database_driver:   pdo_pgsql
+    database_protocol: pgsql
+
+    # Email config
+    mailer_transport: '%env(MAILER_TRANSPORT)%'
+    mailer_host:      '%env(MAILER_HOST)%'
+    mailer_port:      '%env(MAILER_PORT)%'
+    mailer_user:      '%env(MAILER_USER)%'
+    mailer_password:  '%env(MAILER_PASSWORD)%'
+
+    # Contact page email preferences
+    email_to:      '%env(CONTACT_EMAIL_TO)%'
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: '%env(APP_SECRET)%'
+
+    # Admin user (password: password)
+    admin_user_name:     '%env(ADMIN_USER)%'
+    admin_user_password: '%env(ADMIN_PASSWORD)%'
+
+    # Third party services
+    google_analytics:  '%env(GOOGLE_ANALYTICS)%'
+
+    # Third party services
+    recaptcha_site_key:   '%env(RECAPTCHA_SITE_KEY)%'
+    recaptcha_secret_key: '%env(RECAPTCHA_SECRET_KEY)%'
+
+    # Memcached - make sure on each deployment, cache_namespace is different
+    memcached_host:  '%env(MEMCACHED_HOST)%'
+    memcached_port:  '%env(MEMCACHED_PORT)%'
+    cache_namespace: '%env(CACHE_NAMESPACE)%'
+

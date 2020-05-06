@@ -1,4 +1,3 @@
-/app/config/parameters.yml
 /var/*
 /vendor/
 /web/bundles/
@@ -9,3 +8,4 @@
 /phpdocker/.vagrant
 *.sql
 
+bin/mkcert
