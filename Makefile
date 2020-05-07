@@ -48,7 +48,6 @@ install-assets-dev:
 	docker-compose run php-fpm bin/console assets:install --symlink --relative
 
 install-dependencies:
-	# Start environment and use docker-compose exec to ensure symfony commands don't crash cause redis is offline
 	docker-compose run php-fpm composer -o install
 
 	docker run  \
