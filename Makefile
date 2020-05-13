@@ -25,7 +25,7 @@ stop:
 install-dependencies:
 	cd ./frontend; yarn install
 	cd ./admin; yarn install
-	composer -o install --working-dir backend/
+	docker-compose run --rm php-fpm composer -o install
 
 install-mkcert:
 	@echo "Installing mkcert for OS type ${BINARY_SUFFIX}"
