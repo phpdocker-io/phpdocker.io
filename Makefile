@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-MKCERT_VERSION=v1.3.0
+MKCERT_VERSION=v1.4.1
 MKCERT_LOCATION=$(PWD)/bin/mkcert
 PHPDOCKER_HOST=phpdocker.local
 
