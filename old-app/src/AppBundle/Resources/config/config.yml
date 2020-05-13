@@ -1,9 +1,0 @@
-parameters:
-  news_category_slug:     'news'
-  homepage_category_slug: 'homepage'
-  homepage_item_limit:    4
-
-assetic:
-  debug:          '%kernel.debug%'
-  filters:
-      cssrewrite: ~

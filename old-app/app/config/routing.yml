@@ -1,7 +1,0 @@
-app:
-  resource: "@AppBundle/Resources/config/routing.yml"
-
-easy_admin_bundle:
-    resource: "@AppBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /site-admin

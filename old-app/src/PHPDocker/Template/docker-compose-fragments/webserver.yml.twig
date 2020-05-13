@@ -1,9 +1,0 @@
-    webserver:
-      image: nginx:alpine
-      container_name: {{ slug }}-webserver
-      working_dir: /application
-      volumes:
-          - .:/application
-          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      ports:
-       - "{{ project.getBasePort() }}:80"
