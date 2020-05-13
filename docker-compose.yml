@@ -37,6 +37,7 @@ services:
     frontend:
       image: node:12.0-alpine
       working_dir: /application
+      stdin_open: true # Regression in react-scripts 3.4.1, fixed in 4.0 https://github.com/facebook/create-react-app/pull/8845
       volumes:
         - ./frontend:/application
         - ./infrastructure/local:/etc/infrastructure
