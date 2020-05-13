@@ -71,7 +71,7 @@ open-content-api:
 	xdg-open https://phpdocker.local:5002/content
 
 open-mailhog:
-	xdg-open https://phpdocker.local:5003/
+	xdg-open http://phpdocker.local:5003/
 
 open-api-profiler:
 	xdg-open https://phpdocker.local:5002/_profiler/latest?limit=10
