@@ -1,5 +1,13 @@
 framework:
     cache:
+        pools:
+            doctrine_result_cache_pool:
+                adapter: cache.app
+            doctrine_system_cache_pool:
+                adapter: cache.system
+
+        app: cache.adapter.apcu
+
         # Put the unique name of your app here: the prefix seed
         # is used to compute stable namespaces for cache keys.
         #prefix_seed: your_vendor_name/app_name

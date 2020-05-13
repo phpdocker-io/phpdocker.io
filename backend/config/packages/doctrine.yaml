@@ -23,3 +23,13 @@ doctrine:
                 dir: '%kernel.project_dir%/src/App/ORM'
                 prefix: 'App\ORM'
                 alias: App
+
+        metadata_cache_driver:
+            type: pool
+            pool: doctrine_system_cache_pool
+        query_cache_driver:
+            type: pool
+            pool: doctrine_system_cache_pool
+        result_cache_driver:
+            type: pool
+            pool: doctrine_result_cache_pool
