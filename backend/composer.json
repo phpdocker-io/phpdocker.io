@@ -9,31 +9,27 @@
         "antishov/doctrine-extensions-bundle": "^1.3",
         "api-platform/api-pack": "^1.1",
         "cocur/slugify": "^3.2",
-        "doctrine/doctrine-cache-bundle": "^1.4",
         "gedmo/doctrine-extensions": "^2.4",
-        "limenius/liform-bundle": "^0.13.0",
+        "limenius/liform-bundle": "^0.16.0",
         "michelf/php-markdown": "^1.8",
         "sensio/framework-extra-bundle": "^5.2",
-        "symfony/console": "^4.2",
-        "symfony/dotenv": "^4.2",
+        "symfony/cache": "^5.0",
+        "symfony/console": "^5.0",
+        "symfony/dotenv": "^5.0",
         "symfony/flex": "^1.1",
-        "symfony/form": "^4.2",
-        "symfony/framework-bundle": "^4.2",
+        "symfony/form": "^5.0",
+        "symfony/framework-bundle": "^5.0",
         "symfony/monolog-bundle": "^3.3",
         "symfony/orm-pack": "^1.0",
         "symfony/serializer-pack": "^1.0",
         "symfony/swiftmailer-bundle": "^3.2",
-        "symfony/validator": "^4.2",
-        "symfony/yaml": "^4.2"
+        "symfony/validator": "^5.0",
+        "symfony/yaml": "^5.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.1",
-        "infection/infection": "^0.12.2",
         "nelmio/alice": "^3.5",
-        "phpstan/phpstan": "^0.11.6",
-        "phpunit/phpunit": "^8.1",
-        "symfony/debug-pack": "^1.0",
-        "symfony/phpunit-bridge": "^4.2"
+        "symfony/debug-pack": "^1.0"
     },
     "config": {
         "preferred-install": {
@@ -79,7 +75,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "^4.2"
+            "require": "^5.0"
         }
     }
 }

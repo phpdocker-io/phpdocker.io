@@ -320,6 +320,9 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/event-dispatcher": {
+        "version": "1.0.0"
+    },
     "psr/http-factory": {
         "version": "1.0.1"
     },
