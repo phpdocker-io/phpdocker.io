@@ -45,14 +45,14 @@ services:
         - "5000:3000"
       command: yarn start
 
-    admin:
-      image: node:12.0-alpine
-      working_dir: /application
-      volumes:
-        - ./admin:/application
-      ports:
-        - "5001:3000"
-      command: yarn start
+#    admin:
+#      image: node:12.0-alpine
+#      working_dir: /application
+#      volumes:
+#        - ./admin:/application
+#      ports:
+#        - "5001:3000"
+#      command: yarn start
 
     mailhog:
       image: mailhog/mailhog:latest

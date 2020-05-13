@@ -26,7 +26,7 @@ stop:
 
 install-dependencies:
 	cd ./frontend; yarn install
-	cd ./admin; yarn install
+#	cd ./admin; yarn install
 	docker-compose run --rm php-fpm composer -o install
 
 install-mkcert:
@@ -55,7 +55,7 @@ init: clean install-dependencies install-mkcert create-certs init-hosts start lo
 clean:
 	docker-compose down
 	cd ./frontend; sudo rm -rf node_modules
-	cd ./admin; sudo rm -rf node_modules
+#	cd ./admin; sudo rm -rf node_modules
 
 load-fixtures:
 	docker-compose exec database backend/bin/wait-for-db.sh
@@ -64,8 +64,8 @@ load-fixtures:
 open-frontend:
 	xdg-open https://phpdocker.local:5000
 
-open-admin:
-	xdg-open https://phpdocker.local:5001
+#open-admin:
+#	xdg-open https://phpdocker.local:5001
 
 open-content-api:
 	xdg-open https://phpdocker.local:5002/content
@@ -88,8 +88,8 @@ test-frontend:
 test-backend-static:
 	cd backend; vendor/bin/phpstan -v analyse -l 7 src/
 
-test-backend-infection:
-	cd backend; vendor/bin/infection  --threads=4 -s
-
-test-backend-infection-no-initial-coverage:
-	cd backend; vendor/bin/infection  --threads=4 -s --coverage=reports/infection/
+#test-backend-infection:
+#	cd backend; vendor/bin/infection  --threads=4 -s
+#
+#test-backend-infection-no-initial-coverage:
+#	cd backend; vendor/bin/infection  --threads=4 -s --coverage=reports/infection/
