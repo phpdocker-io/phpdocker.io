@@ -1,6 +1,8 @@
 SHELL=/bin/bash
 MKCERT_VERSION=v1.4.1
 MKCERT_LOCATION=$(PWD)/bin/mkcert
+HOSTS_VERSION=3.5.0
+HOSTS_LOCATION=$(PWD)/bin/hosts
 PHPDOCKER_HOST=phpdocker.local
 
 # linux-amd64, darwin-amd64, linux-arm
@@ -31,6 +33,11 @@ install-mkcert:
 	@echo "Installing mkcert for OS type ${BINARY_SUFFIX}"
 	@if [[ ! -f '$(MKCERT_LOCATION)' ]]; then curl -sL 'https://github.com/FiloSottile/mkcert/releases/download/$(MKCERT_VERSION)/mkcert-$(MKCERT_VERSION)-$(BINARY_SUFFIX)' -o $(MKCERT_LOCATION); chmod +x $(MKCERT_LOCATION);	fi;
 	bin/mkcert -install
+
+install-hosts:
+	@echo "Installing hosts.sh for OS type ${BINARY_SUFFIX}"
+	echo 'https://raw.githubusercontent.com/xwmx/hosts/$(HOSTS_VERSION)/hosts'
+	@if [[ ! -f '$(HOSTS_LOCATION)' ]]; then curl -sL 'https://raw.githubusercontent.com/xwmx/hosts/$(HOSTS_VERSION)/hosts' -o $(HOSTS_LOCATION); chmod +x $(HOSTS_LOCATION);	fi;
 
 create-certs:
 	bin/mkcert -cert-file=infrastructure/local/local.pem -key-file=infrastructure/local/local.key.pem $(PHPDOCKER_HOST)
