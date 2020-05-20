@@ -43,7 +43,6 @@ install-mkcert:
 
 install-hosts:
 	@echo "Installing hosts.sh for OS type ${BINARY_SUFFIX}"
-	echo 'https://raw.githubusercontent.com/xwmx/hosts/$(HOSTS_VERSION)/hosts'
 	@if [[ ! -f '$(HOSTS_LOCATION)' ]]; then curl -sL 'https://raw.githubusercontent.com/xwmx/hosts/$(HOSTS_VERSION)/hosts' -o $(HOSTS_LOCATION); chmod +x $(HOSTS_LOCATION);	fi;
 
 create-certs:
