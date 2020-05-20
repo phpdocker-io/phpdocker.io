@@ -15,6 +15,8 @@ ifndef BINARY_ARCH
 	BUILD_TAG:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
 endif
 
+init: clean install-dependencies install-mkcert create-certs init-hosts build-local-php-container start load-fixtures
+
 build-backend-php:
 	docker build --target=deployment -t backend-php -f backend/docker/php-fpm/Dockerfile ./backend/
 
@@ -23,6 +25,11 @@ start:
 
 stop:
 	docker-compose stop
+
+build-local-php-container:
+	docker-compose stop php-fpm
+	docker-compose rm php-fpm
+	docker-compose build --pull php-fpm
 
 install-dependencies:
 	cd ./frontend; yarn install
@@ -49,8 +56,6 @@ clean-hosts:
 
 init-hosts: clean-hosts
 	sudo bin/hosts add 127.0.0.1 $(PHPDOCKER_HOST)
-
-init: clean install-dependencies install-mkcert create-certs init-hosts start load-fixtures
 
 clean:
 	docker-compose down
@@ -85,8 +90,8 @@ test-frontend-watch:
 test-frontend:
 	cd frontend; yarn test --no-watch --coverage
 
-test-backend-static:
-	cd backend; vendor/bin/phpstan -v analyse -l 7 src/
+#test-backend-static:
+#	cd backend; vendor/bin/phpstan -v analyse -l 7 src/
 
 #test-backend-infection:
 #	cd backend; vendor/bin/infection  --threads=4 -s
