@@ -24,9 +24,11 @@ import { Formik } from 'formik'
 import ProjectOptions from './ProjectOptions'
 import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
 import MySQLCompatibleOptions from './MySQLCompatibleOptions'
+import ElasticSearchOptions from './ElasticSearchOptions'
 
 import 'semantic-ui-css/semantic.min.css'
 import './generator.css'
+
 
 import { randomRange } from '../util'
 import PostgresOptions from './PostgresOptions'
@@ -120,6 +122,7 @@ class Generator extends Component {
       <MySQLCompatibleOptions schema={this.state.formSchema} schemaNode={'mysqlOptions'}/>
       <MySQLCompatibleOptions schema={this.state.formSchema} schemaNode={'mariadbOptions'}/>
       <PostgresOptions schema={this.state.formSchema}/>
+      <ElasticSearchOptions schema={this.state.formSchema}/>
 
       <Button type="submit" loading={isSubmitting} primary>
         Submit

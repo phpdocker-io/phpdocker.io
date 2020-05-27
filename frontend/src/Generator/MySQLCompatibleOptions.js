@@ -37,7 +37,6 @@ class MySQLCompatibleOptions extends Component {
     const name            = dbOptions.title
     const enableFieldName = 'has' + capitalize(name.toLowerCase())
     const dbVersions      = enumToOptions(dbOptions.properties.version)
-    console.log(dbOptions)
 
     return (
       <fieldset>

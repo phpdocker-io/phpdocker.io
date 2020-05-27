@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Luis Alberto Pabón Flores
+ * Copyright 2020 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,27 +16,27 @@
  */
 
 import React, { Component } from 'react'
-import { Checkbox, Dropdown, Input, } from './controls/index'
+import { Checkbox, Dropdown, } from './controls/index'
 import { Form } from 'semantic-ui-react'
 
-import { enumToOptions, getPlaceholder } from './semanticUiTools'
+import { enumToOptions } from './semanticUiTools'
 
 import { capitalize } from '../util'
 
-class PostgresOptions extends Component {
+class ElasticSearchOptions extends Component {
   render () {
     const properties = this.props.schema.properties
-    const schemaNode = 'postgresOptions'
+    const schemaNode = 'elasticsearchOptions'
 
     if (properties === undefined) {
       return null
     }
 
-    const dbOptions = properties[schemaNode]
+    const esOptions = properties[schemaNode]
 
-    const name            = dbOptions.title
+    const name            = esOptions.title
     const enableFieldName = 'has' + capitalize(name.toLowerCase())
-    const dbVersions      = enumToOptions(dbOptions.properties.version)
+    const dbVersions      = enumToOptions(esOptions.properties.version)
 
     return (
       <fieldset>
@@ -44,7 +44,7 @@ class PostgresOptions extends Component {
         <Form.Group>
           <Checkbox
             name={schemaNode + '.' + enableFieldName}
-            label={dbOptions.properties[enableFieldName].title}
+            label={esOptions.properties[enableFieldName].title}
             inputProps={{
               toggle: true,
             }}
@@ -54,31 +54,8 @@ class PostgresOptions extends Component {
         <Form.Group widths={'equal'}>
           <Dropdown
             name={schemaNode + '.version'}
-            label={dbOptions.properties.version.title}
+            label={esOptions.properties.version.title}
             options={dbVersions}
-            fieldProps={{
-              required: true
-            }}
-          />
-          <Input
-            name={schemaNode + '.databaseName'}
-            label={getPlaceholder(dbOptions.properties.databaseName)}
-            fieldProps={{
-              required: true
-            }}
-          />
-        </Form.Group>
-        <Form.Group widths={'equal'}>
-          <Input
-            name={schemaNode + '.rootUser'}
-            label={getPlaceholder(dbOptions.properties.rootUser)}
-            fieldProps={{
-              required: true
-            }}
-          />
-          <Input
-            name={schemaNode + '.rootPassword'}
-            label={getPlaceholder(dbOptions.properties.rootPassword)}
             fieldProps={{
               required: true
             }}
@@ -89,4 +66,4 @@ class PostgresOptions extends Component {
   }
 }
 
-export default PostgresOptions
+export default ElasticSearchOptions
