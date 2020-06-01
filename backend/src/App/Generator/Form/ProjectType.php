@@ -67,7 +67,7 @@ class ProjectType extends AbstractGeneratorType
                 'required' => false,
                 'label'    => 'Enable Clickhouse',
             ])
-//            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
+            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
             ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
             ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
             ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
