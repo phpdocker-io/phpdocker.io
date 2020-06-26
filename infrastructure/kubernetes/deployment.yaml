@@ -217,7 +217,7 @@ spec:
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: memcached-phpdocker-io-old
@@ -228,6 +228,9 @@ spec:
   replicas: 1
   strategy:
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: memcached-phpdocker-io-old
   template:
     metadata:
       labels:
