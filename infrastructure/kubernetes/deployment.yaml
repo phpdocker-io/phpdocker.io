@@ -239,7 +239,7 @@ spec:
         app: memcached-phpdocker-io-old
     spec:
       nodeSelector:
-        preemptible: false
+        preemptible: "false"
       containers:
         - image: memcached:alpine
           name: memcached
