@@ -68,7 +68,7 @@ load-fixtures:
 	cd ./backend; chmod 777 var/* -Rf; ./console doctrine:schema:update --force; ./console doctrine:fixtures:load -n
 
 open-frontend:
-	xdg-open https://phpdocker.local:5000
+	xdg-open https://phpdocker.local
 
 #open-admin:
 #	xdg-open https://phpdocker.local:5001
