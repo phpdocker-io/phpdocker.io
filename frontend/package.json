@@ -18,11 +18,10 @@
     "semantic-ui-react": "^0.88.1"
   },
   "scripts": {
-    "start": "HTTPS=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prestart": "rm ./node_modules/webpack-dev-server/ssl/server.pem -f && cp -f /etc/infrastructure/webpack.pem ./node_modules/webpack-dev-server/ssl/server.pem"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

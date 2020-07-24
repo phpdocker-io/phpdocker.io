@@ -4,6 +4,22 @@
 version: "3.4"
 services:
 
+    # Main gateway to act as reverse proxy for all the other services via https://phpdocker.local
+    # Uses the same certs as the others - we don't need them if we close their outside p
+    gateway:
+      depends_on:
+        - api
+        - frontend
+        - mailhog
+      image: nginx:alpine
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./infrastructure/local/gateway.nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+        - "443:443"
+        - "80:80"
+
     database:
       image: postgres:9.6-alpine
       working_dir: /application
@@ -18,11 +34,9 @@ services:
       image: nginx:alpine
       working_dir: /application
       volumes:
-          - ./backend:/application
-          - ./backend/docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-          - ./infrastructure/local:/etc/infrastructure
-      ports:
-       - "5002:443"
+        - ./backend:/application
+        - ./backend/docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        - ./infrastructure/local:/etc/infrastructure
 
     php-fpm:
       build:
@@ -38,23 +52,14 @@ services:
       image: node:12.0-alpine
       working_dir: /application
       stdin_open: true # Regression in react-scripts 3.4.1, fixed in 4.0 https://github.com/facebook/create-react-app/pull/8845
+      environment:
+        - REACT_APP_POST_API_URI=https://api.phpdocker.local/content/posts
+        - REACT_APP_CONTACT_API_URI=https://api.phpdocker.local/contact
+        - REACT_APP_GENERATOR_API_URI=https://api.phpdocker.local/generator
       volumes:
         - ./frontend:/application
         - ./infrastructure/local:/etc/infrastructure
-      ports:
-        - "5000:3000"
       command: yarn start
-
-#    admin:
-#      image: node:12.0-alpine
-#      working_dir: /application
-#      volumes:
-#        - ./admin:/application
-#      ports:
-#        - "5001:3000"
-#      command: yarn start
 
     mailhog:
       image: mailhog/mailhog:latest
-      ports:
-        - "5003:8025"
