@@ -3,7 +3,7 @@ import List from './Posts/List'
 import Generator from './Generator/Generator'
 import Contact from './Contact'
 import './App.css'
-import 'semantic-ui-css/semantic.min.css'
+import 'fomantic-ui-css/semantic.min.css';
 import { Menu } from 'semantic-ui-react'
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 

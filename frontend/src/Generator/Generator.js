@@ -26,7 +26,7 @@ import ZeroConfigServiceOptions from './ZeroConfigServiceOptions'
 import MySQLCompatibleOptions from './MySQLCompatibleOptions'
 import ElasticSearchOptions from './ElasticSearchOptions'
 
-import 'semantic-ui-css/semantic.min.css'
+import 'fomantic-ui-css/semantic.min.css';
 import './generator.css'
 
 

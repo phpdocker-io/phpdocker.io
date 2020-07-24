@@ -14,7 +14,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.0",
     "save-file": "^2.3.1",
-    "semantic-ui-css": "^2.4.1",
+    "fomantic-ui-css": "^2.8.6",
     "semantic-ui-react": "^0.88.1"
   },
   "scripts": {
