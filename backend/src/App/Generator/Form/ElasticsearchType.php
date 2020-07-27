@@ -20,7 +20,6 @@ declare(strict_types=1);
 namespace App\Generator\Form;
 
 use App\Generator\Entity\ElasticsearchOptions;
-use PHPDocker\Project\ServiceOptions\Elasticsearch;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -48,7 +47,7 @@ class ElasticsearchType extends AbstractGeneratorType
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => array_flip(Elasticsearch::getChoices()),
+                'choices'  => array_flip(ElasticsearchOptions::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
                 'label'    => 'Version',
