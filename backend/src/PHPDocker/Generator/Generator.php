@@ -24,8 +24,12 @@ use PHPDocker\PhpExtension\PhpExtension;
 use PHPDocker\Project\Project;
 use PHPDocker\Util\SlugifierInterface as Slugifier;
 use PHPDocker\Zip\Archiver;
+use PHPDocker\Zip\Exception\ArchiveNotCreatedException;
 use PHPDocker\Zip\File as ZipFile;
 use Twig\Environment as Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 /**
  * Docker environment generator based on a Project.
@@ -37,30 +41,15 @@ class Generator
 {
     private const BASE_ZIP_FOLDER = 'phpdocker';
 
-    /**
-     * @var Archiver
-     */
-    protected $zipArchiver;
+    protected Archiver $zipArchiver;
 
-    /**
-     * @var \Twig_Environment
-     */
-    protected $twig;
+    protected Twig $twig;
 
-    /**
-     * @var Markdown
-     */
-    protected $markdownExtra;
+    protected Markdown $markdownExtra;
 
-    /**
-     * @var Slugifier
-     */
-    private $slugifier;
+    private Slugifier $slugifier;
 
-    /**
-     * @var string
-     */
-    private $projectSlug;
+    private string $projectSlug;
 
     public function __construct(Archiver $archiver, Twig $twig, Markdown $markdown, Slugifier $slugifier)
     {
@@ -75,9 +64,7 @@ class Generator
     /**
      * Generates all the files from the Project, and returns as an archive file.
      *
-     * @param Project $project
-     *
-     * @return ZipFile
+     * @throws ArchiveNotCreatedException
      */
     public function generate(Project $project): ZipFile
     {
@@ -98,9 +85,9 @@ class Generator
     /**
      * Generates the Readme file in Markdown format.
      *
-     * @param Project $project
-     *
-     * @return GeneratedFile\ReadmeMd
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     private function getReadmeMd(Project $project): GeneratedFile\ReadmeMd
     {
@@ -116,9 +103,9 @@ class Generator
     /**
      * Returns the HTML readme, converted off Markdown.
      *
-     * @param Project $project
-     *
-     * @return GeneratedFile\ReadmeHtml
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     private function getReadmeHtml(Project $project): GeneratedFile\ReadmeHtml
     {
@@ -135,9 +122,10 @@ class Generator
     /**
      * Generates the docker-compose file, and returns as a string of its contents.
      *
-     * @param Project $project
-     *
      * @return GeneratedFile\DockerCompose
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     private function getDockerCompose(Project $project): GeneratedFile\DockerCompose
     {
@@ -159,9 +147,9 @@ class Generator
     /**
      * Returns the dockerfile for php-fpm.
      *
-     * @param Project $project
-     *
-     * @return GeneratedFile\PhpDockerConf
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     private function getPhpDockerConf(Project $project): GeneratedFile\PhpDockerConf
     {
@@ -187,9 +175,9 @@ class Generator
     /**
      * Returns the contents of php.ini
      *
-     * @param Project $project
-     *
-     * @return GeneratedFile\PhpIniOverrides
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     private function getPhpIniOverrides(Project $project): GeneratedFile\PhpIniOverrides
     {
@@ -204,9 +192,9 @@ class Generator
     /**
      * Generates and returns the nginx.conf file.
      *
-     * @param Project $project
-     *
-     * @return GeneratedFile\NginxConf
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {
