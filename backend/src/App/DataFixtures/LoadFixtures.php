@@ -20,7 +20,7 @@ declare(strict_types=1);
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager ;
 use Nelmio\Alice\Loader\NativeLoader;
 
 class LoadFixtures extends Fixture
