@@ -1,4 +1,4 @@
-{% spaceless %}
+{% apply spaceless %}
 {% if phpVersion == '7.0.x' %}
 {% set iniLocation =  '/etc/php/7.0/fpm/conf.d/' %}
 {% elseif phpVersion == '7.1.x' %}
@@ -10,7 +10,7 @@
 {% else %}
 {% set iniLocation =  '/etc/php5/fpm/conf.d/' %}
 {% endif %}
-{% endspaceless %}
+{% endapply %}
     php-fpm:
         build: phpdocker/php-fpm
         working_dir: /application
