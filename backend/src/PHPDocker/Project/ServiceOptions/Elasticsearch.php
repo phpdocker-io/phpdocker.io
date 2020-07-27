@@ -31,18 +31,22 @@ class Elasticsearch extends Base
     /**
      * Available versions
      */
-    protected const VERSION_56 = '5.6';
-    protected const VERSION_65 = '6.5.4';
+    protected const VERSION_78 = '7.8.0';
+    protected const VERSION_77 = '7.7.1';
+    protected const VERSION_76 = '7.6.2';
+    protected const VERSION_68 = '6.8.10';
 
     private const ALLOWED_VERSIONS = [
-        self::VERSION_65 => '6.5.x',
-        self::VERSION_56 => '5.6.x',
+        self::VERSION_78 => '7.8.x',
+        self::VERSION_77 => '7.7.x',
+        self::VERSION_76 => '7.6.x',
+        self::VERSION_68 => '6.8.x',
     ];
 
     /**
      * @var string
      */
-    protected $version = self::VERSION_65;
+    protected $version = self::VERSION_78;
 
     /**
      * @return string
