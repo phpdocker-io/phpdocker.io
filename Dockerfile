@@ -3,7 +3,7 @@
 ###########
 
 # Dev env base container
-FROM phpdockerio/php73-fpm:latest AS backend-dev
+FROM phpdockerio/php74-fpm:latest AS backend-dev
 WORKDIR "/application"
 
 # Fix debconf warnings upon build
@@ -12,7 +12,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install selected extensions and other stuff
 RUN apt-get update; \
     apt-get -y --no-install-recommends install \
-        php7.3-pgsql \
+        php7.4-pgsql \
         php-memcached; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/log/* /var/cache/* /usr/share/doc/*

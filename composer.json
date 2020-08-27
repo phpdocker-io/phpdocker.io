@@ -16,7 +16,7 @@
     }
   },
   "require":      {
-    "php":                                 ">=7.1.1",
+    "php":                                 "7.4.*",
     "ext-zip":                             "*",
     "symfony/symfony":                     "^3.0",
     "symfony/monolog-bundle":              "^2.8",
