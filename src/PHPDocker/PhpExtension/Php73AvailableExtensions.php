@@ -34,14 +34,13 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
     protected function getMandatoryExtensionsMap(): array
     {
         return [
-            'cURL'     => ['packages' => ['php-curl']],
-            'JSON'     => ['packages' => ['php-json']],
-            'MBSTRING' => ['packages' => ['php-mbstring']],
-            'OPCache'  => ['packages' => ['php-opcache']],
-            'Readline' => ['packages' => ['php-readline']],
-            'Sodium'   => ['packages' => ['php-sodium']],
-            'XML'      => ['packages' => ['php-xml']],
-            'Zip'      => ['packages' => ['php-zip']],
+            'cURL'     => ['packages' => ['php7.3-curl']],
+            'JSON'     => ['packages' => ['php7.3-json']],
+            'MBSTRING' => ['packages' => ['php7.3-mbstring']],
+            'OPCache'  => ['packages' => ['php7.3-opcache']],
+            'Readline' => ['packages' => ['php7.3-readline']],
+            'XML'      => ['packages' => ['php7.3-xml']],
+            'Zip'      => ['packages' => ['php7.3-zip']],
         ];
     }
 
@@ -54,47 +53,43 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
     protected function getOptionalExtensionsMap(): array
     {
         return [
-            'Memcached'           => ['packages' => ['php-memcached']],
+            'Memcached'           => ['packages' => ['php7.3-memcached']],
             'MySQL'               => ['packages' => ['php7.3-mysql']],
             'PostgreSQL'          => ['packages' => ['php7.3-pgsql']],
-            'Redis'               => ['packages' => ['php-redis']],
+            'Redis'               => ['packages' => ['php7.3-redis']],
             'SQLite3'             => ['packages' => ['php7.3-sqlite3']],
-            'XDebug'              => ['packages' => ['php-xdebug']],
+            'XDebug'              => ['packages' => ['php7.3-xdebug']],
             'Bcmath'              => ['packages' => ['php7.3-bcmath']],
             'bz2'                 => ['packages' => ['php7.3-bz2']],
             'DBA'                 => ['packages' => ['php7.3-dba']],
             'Enchant'             => ['packages' => ['php7.3-enchant']],
             'GD'                  => ['packages' => ['php7.3-gd']],
-            'Gearman'             => ['packages' => ['php-gearman']],
+            'Gearman'             => ['packages' => ['php7.3-gearman']],
             'GMP'                 => ['packages' => ['php7.3-gmp']],
-            'igbinary'            => ['packages' => ['php-igbinary']],
-            'ImageMagick'         => ['packages' => ['php-imagick']],
+            'igbinary'            => ['packages' => ['php7.3-igbinary']],
+            'ImageMagick'         => ['packages' => ['php7.3-imagick']],
             'IMAP'                => ['packages' => ['php7.3-imap']],
             'Interbase'           => ['packages' => ['php7.3-interbase']],
             'Intl'                => ['packages' => ['php7.3-intl']],
             'LDAP'                => ['packages' => ['php7.3-ldap']],
-            'MongoDB'             => ['packages' => ['php-mongodb']],
-            'MessagePack/msgpack' => ['packages' => ['php-msgpack']],
+            'MongoDB'             => ['packages' => ['php7.3-mongodb']],
+            'MessagePack/msgpack' => ['packages' => ['php7.3-msgpack']],
             'ODBC'                => ['packages' => ['php7.3-odbc']],
             'PHPDBG'              => ['packages' => ['php7.3-phpdbg']],
             'PSpell'              => ['packages' => ['php7.3-pspell']],
-            'raphf'               => ['packages' => ['php-raphf']],
+            'raphf'               => ['packages' => ['php7.3-raphf']],
             'Recode'              => ['packages' => ['php7.3-recode']],
             'SNMP'                => ['packages' => ['php7.3-snmp']],
             'SOAP'                => ['packages' => ['php7.3-soap']],
-            'SSH2'                => ['packages' => ['php-ssh2']],
+            'SSH2'                => ['packages' => ['php7.3-ssh2']],
             'Sybase'              => ['packages' => ['php7.3-sybase']],
-            'Tideways'            => ['packages' => ['php-tideways']],
+            'Tideways'            => ['packages' => ['php7.3-tideways']],
             'Tidy'                => ['packages' => ['php7.3-tidy']],
             'XMLRPC-EPI'          => ['packages' => ['php7.3-xmlrpc']],
             'XSL'                 => ['packages' => ['php7.3-xsl']],
-            'YAML'                => ['packages' => ['php-yaml']],
-            'ZeroMQ'              => ['packages' => ['php-zmq']],
-
-            // Disabled (not yet on php73 or broken)
-
-            // Installs php56
-            //            'Xhprof'      => ['packages' => ['php-xhprof']],
+            'Xhprof'              => ['packages' => ['php7.3-xhprof']],
+            'YAML'                => ['packages' => ['php7.3-yaml']],
+            'ZeroMQ'              => ['packages' => ['php7.3-zmq']],
         ];
     }
 }

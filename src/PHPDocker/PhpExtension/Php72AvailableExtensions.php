@@ -39,7 +39,6 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'MBSTRING' => ['packages' => ['php7.2-mbstring']],
             'OPCache'  => ['packages' => ['php7.2-opcache']],
             'Readline' => ['packages' => ['php7.2-readline']],
-            'Sodium'   => ['packages' => ['php7.2-sodium']],
             'XML'      => ['packages' => ['php7.2-xml']],
             'Zip'      => ['packages' => ['php7.2-zip']],
         ];
@@ -54,51 +53,43 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
     protected function getOptionalExtensionsMap(): array
     {
         return [
-            'Memcached'           => ['packages' => ['php-memcached']],
+            'Memcached'           => ['packages' => ['php7.2-memcached']],
             'MySQL'               => ['packages' => ['php7.2-mysql']],
             'PostgreSQL'          => ['packages' => ['php7.2-pgsql']],
-            'Redis'               => ['packages' => ['php-redis']],
+            'Redis'               => ['packages' => ['php7.2-redis']],
             'SQLite3'             => ['packages' => ['php7.2-sqlite3']],
-            'XDebug'              => ['packages' => ['php-xdebug']],
+            'XDebug'              => ['packages' => ['php7.2-xdebug']],
             'Bcmath'              => ['packages' => ['php7.2-bcmath']],
             'bz2'                 => ['packages' => ['php7.2-bz2']],
             'DBA'                 => ['packages' => ['php7.2-dba']],
             'Enchant'             => ['packages' => ['php7.2-enchant']],
             'GD'                  => ['packages' => ['php7.2-gd']],
-            'Gearman'             => ['packages' => ['php-gearman']],
+            'Gearman'             => ['packages' => ['php7.2-gearman']],
             'GMP'                 => ['packages' => ['php7.2-gmp']],
-            'igbinary'            => ['packages' => ['php-igbinary']],
-            'ImageMagick'         => ['packages' => ['php-imagick']],
+            'igbinary'            => ['packages' => ['php7.2-igbinary']],
+            'ImageMagick'         => ['packages' => ['php7.2-imagick']],
             'IMAP'                => ['packages' => ['php7.2-imap']],
             'Interbase'           => ['packages' => ['php7.2-interbase']],
             'Intl'                => ['packages' => ['php7.2-intl']],
             'LDAP'                => ['packages' => ['php7.2-ldap']],
-            'MongoDB'             => ['packages' => ['php-mongodb']],
-            'MessagePack/msgpack' => ['packages' => ['php-msgpack']],
+            'MongoDB'             => ['packages' => ['php7.2-mongodb']],
+            'MessagePack/msgpack' => ['packages' => ['php7.2-msgpack']],
             'ODBC'                => ['packages' => ['php7.2-odbc']],
             'PHPDBG'              => ['packages' => ['php7.2-phpdbg']],
             'PSpell'              => ['packages' => ['php7.2-pspell']],
-            'raphf'               => ['packages' => ['php-raphf']],
+            'raphf'               => ['packages' => ['php7.2-raphf']],
             'Recode'              => ['packages' => ['php7.2-recode']],
             'SNMP'                => ['packages' => ['php7.2-snmp']],
             'SOAP'                => ['packages' => ['php7.2-soap']],
-            'SSH2'                => ['packages' => ['php-ssh2']],
+            'SSH2'                => ['packages' => ['php7.2-ssh2']],
             'Sybase'              => ['packages' => ['php7.2-sybase']],
-            'Tideways'            => ['packages' => ['php-tideways']],
+            'Tideways'            => ['packages' => ['php7.2-tideways']],
             'Tidy'                => ['packages' => ['php7.2-tidy']],
             'XMLRPC-EPI'          => ['packages' => ['php7.2-xmlrpc']],
             'XSL'                 => ['packages' => ['php7.2-xsl']],
-            'YAML'                => ['packages' => ['php-yaml']],
-            'ZeroMQ'              => ['packages' => ['php-zmq']],
-
-            // Disabled (not yet on php72 or broken)
-
-            // libgearman broken (libgearman8 not on repos)
-            //
-
-            // Installs php56
-            //            'Xhprof'      => ['packages' => ['php-xhprof']],
-
+            'Xhprof'              => ['packages' => ['php7.2-xhprof']],
+            'YAML'                => ['packages' => ['php7.1-yaml']],
+            'ZeroMQ'              => ['packages' => ['php7.1-zmq']],
         ];
     }
 }
