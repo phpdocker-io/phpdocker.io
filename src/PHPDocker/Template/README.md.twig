@@ -77,18 +77,18 @@ It's hard to avoid file permission issues when fiddling about with containers du
 ## To config xdebug you need add these lines in php-fpm/php-ini-overrides.ini:
 
 ### For linux:
-`xdebug.remote_enable=1`
-
-`xdebug.remote_connect_back=1`
-
-`xdebug.remote_autostart = 1`
+```
+xdebug.remote_enable=1
+xdebug.remote_connect_back=1
+xdebug.remote_autostart = 1
+```
 
 ### For MacOS and Windows:
-`xdebug.remote_enable=1`
-
-`xdebug.remote_host=host.docker.internal`
-
-`xdebug.remote_autostart = 1`
+```
+xdebug.remote_enable=1
+xdebug.remote_host=host.docker.internal
+xdebug.remote_autostart = 1
+```
 
 ## Add the section “environment” to the php-fpm service in docker-compose.yml:
 
