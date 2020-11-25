@@ -58,9 +58,9 @@ COPY app/AppKernel.php /application/app/
 RUN composer install --no-dev --no-scripts; \
     composer clear-cache
 
-COPY infrastructure/php-fpm/php-ini-overrides.ini  /etc/php/7.3/fpm/conf.d/z-overrides.ini
-COPY infrastructure/php-fpm/opcache-prod.ini       /etc/php/7.3/fpm/conf.d/z-opcache.ini
-COPY infrastructure/php-fpm/php-fpm-pool-prod.conf /etc/php/7.3/fpm/pool.d/z-optimised.conf
+COPY infrastructure/php-fpm/php-ini-overrides.ini  /etc/php/7.4/fpm/conf.d/z-overrides.ini
+COPY infrastructure/php-fpm/opcache-prod.ini       /etc/php/7.4/fpm/conf.d/z-opcache.ini
+COPY infrastructure/php-fpm/php-fpm-pool-prod.conf /etc/php/7.4/fpm/pool.d/z-optimised.conf
 
 COPY app         ./app
 COPY web/app.php ./web/
