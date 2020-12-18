@@ -54,8 +54,13 @@ access_log /var/log/nginx/application.access.log;
     root /application/public;
     index index.php;
 
+    # try to serve file directly, fallback to index.php
+    location / {
+        try_files $uri /index.php$is_args$args;
+    }
+
     if (!-e $request_filename) {
-    rewrite ^.*$ /index.php last;
+        rewrite ^.*$ /index.php last;
     }
 
     location ~ \.php$ {
