@@ -131,8 +131,14 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "fakerphp/faker": {
+        "version": "v1.13.0"
+    },
     "fig/link-util": {
         "version": "1.0.0"
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.2"
     },
     "fzaninotto/faker": {
         "version": "v1.8.0"
@@ -502,6 +508,9 @@
     },
     "symfony/intl": {
         "version": "v4.2.7"
+    },
+    "symfony/mime": {
+        "version": "v5.2.1"
     },
     "symfony/monolog-bridge": {
         "version": "v4.2.1"
