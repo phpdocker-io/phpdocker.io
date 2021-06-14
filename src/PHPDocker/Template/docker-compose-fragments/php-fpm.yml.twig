@@ -3,8 +3,10 @@
         {% set iniLocation = '/etc/php/7.2/fpm/conf.d/' %}
     {% elseif phpVersion == '7.3.x' %}
         {% set iniLocation = '/etc/php/7.3/fpm/conf.d/' %}
-    {% else %}
+    {% elseif phpVersion == '7.4.x' %}
         {% set iniLocation = '/etc/php/7.4/fpm/conf.d/' %}
+    {% else %}
+        {% set iniLocation = '/etc/php/8.0/fpm/conf.d/' %}
     {% endif %}
 {% endspaceless %}
     php-fpm:

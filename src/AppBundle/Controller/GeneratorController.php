@@ -20,6 +20,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Generator\PhpOptions;
 use AppBundle\Entity\Generator\Project;
 use AppBundle\Form\Generator\ProjectType;
+use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,7 +80,7 @@ class GeneratorController extends Controller
      * @param Project $project
      *
      * @return Project
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     private function fixPhpExtensionGeneratorExpectation(Project $project): Project
     {
@@ -100,8 +101,12 @@ class GeneratorController extends Controller
                 $extensions = $phpOptions->getPhpExtensions74();
                 break;
 
+            case PhpOptions::PHP_VERSION_80:
+                $extensions = $phpOptions->getPhpExtensions80();
+                break;
+
             default:
-                throw new \InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion));
+                throw new InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion));
         }
 
         $project->getPhpOptions()->setPhpExtensions($extensions);

@@ -17,6 +17,7 @@
 
 namespace AppBundle\Entity\Generator;
 
+use PHPDocker\Project\ServiceOptions\Php as BasePhpOptions;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -25,44 +26,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package AppBundle\Entity\ORM
  * @author  Luis A. Pabon Flores
  */
-class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
+class PhpOptions extends BasePhpOptions
 {
-    /**
-     * This does not exist on parent project. Needs to be redirected to $phpExtensions
-     * based on version.
-     *
-     * @var array
-     *
-     * @Assert\All({
-     *     @Assert\NotBlank
-     * })
-     */
-    protected $phpExtensions56 = [];
-
-    /**
-     * This does not exist on parent project. Needs to be redirected to $phpExtensions
-     * based on version.
-     *
-     * @var array
-     *
-     * @Assert\All({
-     *     @Assert\NotBlank
-     * })
-     */
-    protected $phpExtensions70 = [];
-
-    /**
-     * This does not exist on parent project. Needs to be redirected to $phpExtensions
-     * based on version.
-     *
-     * @var array
-     *
-     * @Assert\All({
-     *     @Assert\NotBlank
-     * })
-     */
-    protected $phpExtensions71 = [];
-
     /**
      * This does not exist on parent project. Needs to be redirected to $phpExtensions
      * based on version.
@@ -100,64 +65,16 @@ class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
     protected $phpExtensions74 = [];
 
     /**
-     * @return array
-     */
-    public function getPhpExtensions70(): array
-    {
-        return $this->phpExtensions70;
-    }
-
-    /**
-     * @param array $phpExtensions70
+     * This does not exist on parent project. Needs to be redirected to $phpExtensions
+     * based on version.
      *
-     * @return self
-     */
-    public function setPhpExtensions70(array $phpExtensions70 = []): self
-    {
-        $this->phpExtensions70 = $phpExtensions70;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPhpExtensions71(): array
-    {
-        return $this->phpExtensions71;
-    }
-
-    /**
-     * @param array $phpExtensions71
+     * @var array
      *
-     * @return self
+     * @Assert\All({
+     *     @Assert\NotBlank
+     * })
      */
-    public function setPhpExtensions71(array $phpExtensions71 = []): self
-    {
-        $this->phpExtensions71 = $phpExtensions71;
-
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPhpExtensions56(): array
-    {
-        return $this->phpExtensions56;
-    }
-
-    /**
-     * @param array $phpExtensions56
-     *
-     * @return self
-     */
-    public function setPhpExtensions56(array $phpExtensions56 = []): self
-    {
-        $this->phpExtensions56 = $phpExtensions56;
-
-        return $this;
-    }
+    protected $phpExtensions80 = [];
 
     /**
      * @return array
@@ -215,6 +132,26 @@ class PhpOptions extends \PHPDocker\Project\ServiceOptions\Php
     public function setPhpExtensions74(array $phpExtensions74 = []): self
     {
         $this->phpExtensions74 = $phpExtensions74;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPhpExtensions80(): array
+    {
+        return $this->phpExtensions80;
+    }
+
+    /**
+     * @param array $phpExtensions80
+     *
+     * @return self
+     */
+    public function setPhpExtensions80(array $phpExtensions80): self
+    {
+        $this->phpExtensions80 = $phpExtensions80;
 
         return $this;
     }
