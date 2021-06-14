@@ -9,13 +9,10 @@
 ###< symfony/framework-bundle ###
 
 old/var/*
-/vendor/
 old/web/bundles/
 old/web/css
 old/web/js
 .idea
-**/src/AppBundle/Resources/public/vendor/*
-/phpdocker/.vagrant
-*.sql
+src/AppBundle/Resources/public/vendor/*
 
-old/bin/mkcert
+bin/mkcert

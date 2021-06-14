@@ -21,7 +21,7 @@ use AppBundle\Entity\Generator\PhpOptions;
 use AppBundle\Entity\Generator\Project;
 use AppBundle\Form\Generator\ProjectType;
 use InvalidArgumentException;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +33,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  * @package AppBundle\Controller
  * @author  Luis A. Pabon Flores
  */
-class GeneratorController extends Controller
+class GeneratorController extends AbstractController
 {
     /**
      * Form and form processor for creating a project.
