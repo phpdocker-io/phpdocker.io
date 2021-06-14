@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form\Generator;
+namespace App\Form\Generator;
 
 use PHPDocker\Project\ServiceOptions\Application;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

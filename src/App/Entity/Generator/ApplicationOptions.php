@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Entity\Generator;
+namespace App\Entity\Generator;
 
 use AppBundle\Assert as CustomAssert;
 use PHPDocker\Project\ServiceOptions\Application;

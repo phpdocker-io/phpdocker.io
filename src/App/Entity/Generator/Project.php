@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Entity\Generator;
+namespace App\Entity\Generator;
 
 use PHPDocker\Interfaces\SlugifierInterface;
 use Symfony\Component\Validator\Constraints as Assert;

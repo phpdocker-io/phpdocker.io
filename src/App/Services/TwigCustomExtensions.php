@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Services;
+namespace App\Services;
 
 /**
  * Custom twig extensions

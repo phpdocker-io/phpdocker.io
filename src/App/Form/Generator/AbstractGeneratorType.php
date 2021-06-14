@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form\Generator;
+namespace App\Form\Generator;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

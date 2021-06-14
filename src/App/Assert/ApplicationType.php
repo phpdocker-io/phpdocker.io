@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Assert;
+namespace App\Assert;
 
 use Symfony\Component\Validator\Constraint;
 

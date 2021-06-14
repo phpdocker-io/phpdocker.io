@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace AppBundle\Entity\Generator;
+namespace App\Entity\Generator;
 
 use PHPDocker\Project\ServiceOptions\Elasticsearch;
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Assert;
+namespace App\Assert;
 
 use PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Validator\Constraint;

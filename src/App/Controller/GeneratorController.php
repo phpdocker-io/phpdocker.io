@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Controller;
+namespace App\Controller;
 
 use AppBundle\Entity\Generator\PhpOptions;
 use AppBundle\Entity\Generator\Project;

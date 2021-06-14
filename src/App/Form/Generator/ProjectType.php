@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Form\Generator;
+namespace App\Form\Generator;
 
 use AppBundle\Entity\Generator\Project;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

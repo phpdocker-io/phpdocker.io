@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace AppBundle\Services;
+namespace App\Services;
 
 use Cocur\Slugify\Slugify;
 use PHPDocker\Interfaces\SlugifierInterface;
