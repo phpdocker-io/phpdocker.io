@@ -1,4 +1,7 @@
 {
+    "cocur/slugify": {
+        "version": "v4.0.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
