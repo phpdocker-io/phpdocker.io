@@ -76,6 +76,8 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
             'MessagePack/msgpack' => ['packages' => ['php7.3-msgpack']],
             'ODBC'                => ['packages' => ['php7.3-odbc']],
             'PHPDBG'              => ['packages' => ['php7.3-phpdbg']],
+            'Phalcon3'            => ['packages' => ['php7.3-phalcon3']],
+            'Phalcon4'            => ['packages' => ['php7.3-phalcon4', 'php7.3-psr']],
             'PSpell'              => ['packages' => ['php7.3-pspell']],
             'raphf'               => ['packages' => ['php7.3-raphf']],
             'Recode'              => ['packages' => ['php7.3-recode']],

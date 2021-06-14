@@ -28,18 +28,16 @@ class Application
     /**
      * Supported application types
      */
-    const APPLICATION_TYPE_SYMFONY = 'symfony';
-    const APPLICATION_TYPE_PHALCON = 'phalcon';
-    const APPLICATION_TYPE_GENERIC = 'generic';
-    const APPLICATION_TYPE_SILEX   = 'silex';
+    private const APPLICATION_TYPE_SYMFONY = 'symfony';
+    private const APPLICATION_TYPE_GENERIC = 'generic';
+    private const APPLICATION_TYPE_SILEX   = 'silex';
 
     /**
      * Allowed application types with short description
      */
-    const ALLOWED_APPLICATION_TYPES = [
+    private const ALLOWED_APPLICATION_TYPES = [
         self::APPLICATION_TYPE_GENERIC => 'Generic: Symfony 4, Zend, Laravel, Lumen...',
         self::APPLICATION_TYPE_SYMFONY => 'Symfony 2/3',
-        self::APPLICATION_TYPE_PHALCON => 'Phalcon 3',
         self::APPLICATION_TYPE_SILEX   => 'Silex',
     ];
 

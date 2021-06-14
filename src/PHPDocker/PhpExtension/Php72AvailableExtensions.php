@@ -75,6 +75,8 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
             'MongoDB'             => ['packages' => ['php7.2-mongodb']],
             'MessagePack/msgpack' => ['packages' => ['php7.2-msgpack']],
             'ODBC'                => ['packages' => ['php7.2-odbc']],
+            'Phalcon3'            => ['packages' => ['php7.2-phalcon3']],
+            'Phalcon4'            => ['packages' => ['php7.2-phalcon4', 'php7.2-psr']],
             'PHPDBG'              => ['packages' => ['php7.2-phpdbg']],
             'PSpell'              => ['packages' => ['php7.2-pspell']],
             'raphf'               => ['packages' => ['php7.2-raphf']],
