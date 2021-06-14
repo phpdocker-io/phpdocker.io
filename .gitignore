@@ -13,6 +13,6 @@ old/web/bundles/
 old/web/css
 old/web/js
 .idea
-src/AppBundle/Resources/public/vendor/*
+src/App/Resources/public/vendor/*
 
 bin/mkcert
