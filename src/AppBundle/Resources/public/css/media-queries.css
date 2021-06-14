@@ -41,23 +41,6 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 800px) {
-
-    /**** Format post comments better for sm and xs ****/
-    .comment .body {
-        border-width : 0 !important;
-    }
-
-    .comment:last-child {
-        border-width   : 0 !important;
-        padding-bottom : 0;
-    }
-
-    .comment {
-        border              : 0 dashed #4d4d4d;
-        border-bottom-width : 1px;
-        padding-bottom      : 1em;
-    }
-
     form .group {
         border : 0 !important;
     }

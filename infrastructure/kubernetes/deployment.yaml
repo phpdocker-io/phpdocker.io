@@ -31,11 +31,7 @@ metadata:
   name: phpdocker-io-old
   namespace: phpdocker-io-old
 data:
-  mailer.transport: "smtp"
-  mailer.port:      "587"
-  memcached.host:   "memcached-phpdocker-io-old"
-  memcached.port:   "11211"
-  cache_namespace:  "latest"
+  dummy: yes
 
 ---
 
@@ -98,48 +94,6 @@ spec:
                   name: phpdocker-io-old
                   key: cache_namespace
 
-            - name: DB_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: db.host
-
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: db.user
-
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: db.password
-
-            - name: DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: db.name
-
-            - name: CONTACT_EMAIL_TO
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: contact.email_to
-
-            - name: CONTACT_EMAIL_FROM
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: contact.email_from
-
-            - name: CONTACT_EMAIL_SUBJECT
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: contact.email_subject
-
             - name: GOOGLE_ANALYTICS
               valueFrom:
                 secretKeyRef:
@@ -151,54 +105,6 @@ spec:
                 secretKeyRef:
                   name: phpdocker-io-old
                   key: recaptcha.site_key
-
-            - name: RECAPTCHA_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: recaptcha.secret_key
-
-            - name: MAILER_TRANSPORT
-              valueFrom:
-                configMapKeyRef:
-                  name: phpdocker-io-old
-                  key: mailer.transport
-
-            - name: MAILER_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: mailer.host
-
-            - name: MAILER_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: phpdocker-io-old
-                  key: mailer.port
-
-            - name: MAILER_USER
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: mailer.user
-
-            - name: MAILER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: mailer.password
-
-            - name: ADMIN_USER
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: admin.user
-
-            - name: ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: phpdocker-io-old
-                  key: admin.password
 
 ---
 

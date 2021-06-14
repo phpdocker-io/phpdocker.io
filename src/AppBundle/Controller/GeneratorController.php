@@ -1,6 +1,6 @@
 <?php
-/**
- * Copyright 2016 Luis Alberto Pabon Flores
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Generator\PhpOptions;
 use AppBundle\Entity\Generator\Project;
 use AppBundle\Form\Generator\ProjectType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  * @package AppBundle\Controller
  * @author  Luis A. Pabon Flores
  */
-class GeneratorController extends AbstractController
+class GeneratorController extends Controller
 {
     /**
      * Form and form processor for creating a project.

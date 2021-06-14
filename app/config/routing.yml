@@ -1,7 +1,11 @@
-app:
-  resource: "@AppBundle/Resources/config/routing.yml"
+home:
+  path:      /
+  defaults:
+    _controller: FrameworkBundle:Redirect:urlRedirect
+    path: /generator
+    permanent: true
 
-easy_admin_bundle:
-    resource: "@AppBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /site-admin
+generator:
+  path:      /generator
+  defaults:  { _controller: AppBundle:Generator:create }
+  methods: [GET, POST]

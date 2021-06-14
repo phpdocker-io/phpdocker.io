@@ -19,7 +19,7 @@
     <title>PHPDocker.io{% block pageTitle %}{% endblock %}</title>
 
     <link property="stylesheet" rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Oswald%7CHind%7CShadows+Into+Light"/>
+          href="https://fonts.googleapis.com/css?family=Oswald%7CHind"/>
 
     {% stylesheets filter="cssrewrite"
     'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'
@@ -43,20 +43,8 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ path('home') }}">
-                    PHPDocker.io <span class="beta">beta</span>
+                    PHPDocker.io
                 </a>
-                <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger"
-                        data-toggle="collapse" data-target="#navigation-top" id="navbar-button"></button>
-            </div>
-            <div class="navbar-collapse collapse" id="navigation-top">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="{% if activePage == 'news' %}active{% endif %}"><a href="{{ path('home') }}">News</a>
-                    </li>
-                    <li class="{% if activePage == 'generator' %}active{% endif %}"><a href="{{ path('generator') }}">Generator</a>
-                    </li>
-                    <li class="{% if activePage == 'contact' %}active{% endif %}"><a href="{{ path('contact') }}">Contact</a>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
