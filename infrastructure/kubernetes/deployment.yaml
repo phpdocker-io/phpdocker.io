@@ -31,7 +31,7 @@ metadata:
   name: phpdocker-io-old
   namespace: phpdocker-io-old
 data:
-  dummy: yes
+  dummy: "yes"
 
 ---
 
@@ -75,24 +75,6 @@ spec:
                 secretKeyRef:
                   name: phpdocker-io-old
                   key: app.secret
-
-            - name: MEMCACHED_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: phpdocker-io-old
-                  key: memcached.host
-
-            - name: MEMCACHED_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: phpdocker-io-old
-                  key: memcached.port
-
-            - name: CACHE_NAMESPACE
-              valueFrom:
-                configMapKeyRef:
-                  name: phpdocker-io-old
-                  key: cache_namespace
 
             - name: GOOGLE_ANALYTICS
               valueFrom:
