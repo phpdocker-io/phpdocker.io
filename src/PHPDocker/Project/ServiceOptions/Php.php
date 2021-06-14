@@ -29,16 +29,6 @@ use PHPDocker\PhpExtension\PhpExtension;
 class Php extends Base
 {
     /**
-     * PHP 7.0.x
-     */
-    public const PHP_VERSION_70 = '7.0.x';
-
-    /**
-     * PHP 7.1.x
-     */
-    public const PHP_VERSION_71 = '7.1.x';
-
-    /**
      * PHP 7.2.x
      */
     public const PHP_VERSION_72 = '7.2.x';
@@ -52,11 +42,6 @@ class Php extends Base
      * PHP 7.4.x
      */
     public const PHP_VERSION_74 = '7.4.x';
-
-    /**
-     * PHP 5.6.x
-     */
-    public const PHP_VERSION_56 = '5.6.x';
 
     /**
      * @var array
@@ -75,9 +60,6 @@ class Php extends Base
         self::PHP_VERSION_74,
         self::PHP_VERSION_73,
         self::PHP_VERSION_72,
-        self::PHP_VERSION_71,
-        self::PHP_VERSION_70,
-        self::PHP_VERSION_56,
     ];
 
     /**

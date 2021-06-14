@@ -100,18 +100,6 @@ function doMainFormMagic() {
         extensionMultiSelects.parents('.form-group').hide();
 
         switch ($(this).val()) {
-            case '7.0.x':
-                extensionMultiSelects.filter('[id$=70]').parents('.form-group').show();
-                break;
-
-            case '7.1.x':
-                extensionMultiSelects.filter('[id$=71]').parents('.form-group').show();
-                break;
-
-            case '7.2.x':
-                extensionMultiSelects.filter('[id$=72]').parents('.form-group').show();
-                break;
-
             case '7.3.x':
                 extensionMultiSelects.filter('[id$=73]').parents('.form-group').show();
                 break;
@@ -121,7 +109,7 @@ function doMainFormMagic() {
                 break;
 
             default:
-                extensionMultiSelects.filter('[id$=56]').parents('.form-group').show();
+                extensionMultiSelects.filter('[id$=72]').parents('.form-group').show();
                 break;
         }
     });
