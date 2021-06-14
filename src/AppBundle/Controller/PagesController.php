@@ -17,11 +17,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\ContactRequest;
-use AppBundle\Form\ContactRequestType;
 use Doctrine\ORM\Query;
-use Symfony\Component\Form\FormError;
-use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller for simpler pages.
@@ -34,7 +32,7 @@ class PagesController extends AbstractController
     /**
      * Homepage
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function homeAction()
     {
@@ -56,64 +54,10 @@ class PagesController extends AbstractController
     }
 
     /**
-     * ContactRequest page
-     *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function contactRequestAction(Request $request)
-    {
-        // Set up form
-        $contactRequest = new ContactRequest();
-        $form           = $this->createForm(ContactRequestType::class, $contactRequest,
-            ['method' => Request::METHOD_POST]);
-
-        // Process form
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() === true) {
-
-            // If human, compose and send message
-            if ($this->checkRecaptcha($request) === true) {
-                $this->sendMessage($contactRequest);
-
-                return $this->render('AppBundle:Pages:contact-success.html.twig');
-            }
-
-            $form->addError(new FormError('We failed to verify you are human'));
-        }
-
-        return $this->render('AppBundle:Pages:contact.html.twig', ['form' => $form->createView()]);
-    }
-
-    /**
-     * Actually send contact request email.
-     *
-     * @param \AppBundle\Entity\ContactRequest $contactRequest
-     */
-    private function sendMessage(ContactRequest $contactRequest)
-    {
-        $messageBody = $this->renderView('AppBundle:emails:contact-email.html.twig', [
-            'senderEmail' => $contactRequest->getSenderEmail(),
-            'message'     => $contactRequest->getMessage(),
-        ]);
-
-        $message = \Swift_Message::newInstance();
-        $message
-            ->setSubject('PHPDocker.io - Contact request')
-            ->setFrom('automaton@phpdocker.io')
-            ->setReplyTo($contactRequest->getSenderEmail())
-            ->setTo($this->container->getParameter('email_to'))
-            ->setBody($messageBody, 'text/html');
-
-        $this->container->get('mailer')->send($message);
-    }
-
-    /**
      * Returns a pre-configured query builder for homepage contents. You'll need to setParameter slug on the
      * returned object.
      *
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return QueryBuilder
      */
     private function getHomepageContentQueryBuilder()
     {
