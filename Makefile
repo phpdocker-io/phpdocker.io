@@ -34,11 +34,11 @@ clean: clear-cache
 	make clear-cache
 
 fix-permissions:
-	sudo chown $(shell id -u):$(shell id -g) . -Rf
-	sudo chown $(shell id -u):$(shell id -g) ~/.cache/composer -Rf
+	sudo chown -Rf $(shell id -u):$(shell id -g) .
+	sudo chown -Rf $(shell id -u):$(shell id -g) ~/.cache/composer
 
 fix-cache-permissions-dev:
-	sudo chmod 777 var/* -Rf
+	sudo chmod -Rf 777 var/*
 
 clear-cache:
 	docker-compose run php-fpm rm var/* -rf
