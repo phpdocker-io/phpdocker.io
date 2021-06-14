@@ -9,8 +9,3 @@ generator:
   path:      /generator
   defaults:  { _controller: AppBundle:Generator:create }
   methods: [GET, POST]
-
-easy_admin_bundle:
-    resource: "@AppBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /site-admin

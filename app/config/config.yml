@@ -1,9 +1,6 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: easy_admin.yml }
-    - { resource: '@AppBundle/Resources/config/config.yml' }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -15,7 +12,6 @@ framework:
     translator:      { fallbacks: ["en"] }
     secret:          "%secret%"
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
@@ -35,65 +31,17 @@ framework:
     http_method_override: true
     assets: ~
 
-# Doctrine Configuration
-doctrine:
-    dbal:
-        driver:   pdo_pgsql
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-
-        # DBAL 2.5 needs to connect to the DB to check its version, unless provided beneath
-        # This avoids unnecessary connections when using the console, or when on CI
-        # This is also a per-connection setting, for when we have several connections configured (eg master/slaves) instead of a main, root one
-        server_version: "%database_version%"
-
-        charset:  UTF8
-
-        # DoctrineEnumBundle
-        mapping_types:
-            enum: string
-
-    orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
-
-
-# Doctrine migrations
-doctrine_migrations:
-    dir_name: "%kernel.root_dir%/DoctrineMigrations"
-    namespace: Application\Migrations
-    table_name: migration_versions
-    name: Application Migrations
-
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
         google_analytics:     '%google_analytics%'
-        recaptcha_site_key:   '%recaptcha_site_key%'
-
-# Swiftmailer
-swiftmailer:
-    transport: '%mailer_transport%'
-    host:      '%mailer_host%'
-    port:      '%mailer_port%'
-    username:  '%mailer_user%'
-    password:  '%mailer_password%'
-
-stof_doctrine_extensions:
-    orm:
-        default:
-            timestampable: true
-            sluggable: true
 
 assetic:
     debug:          "%kernel.debug%"
     use_controller: true
+    filters:
+        cssrewrite: ~
     bundles:
         - AppBundle
-        - EasyAdminBundle

@@ -26,7 +26,7 @@ start:
 stop:
 	docker-compose stop
 
-init: clean install-mkcert create-certs clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start refresh-db
+init: clean install-mkcert create-certs clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 
 clean: clear-cache
 	docker-compose down
@@ -71,13 +71,6 @@ clean-hosts:
 
 init-hosts: clean-hosts
 	sudo bin/hosts add 127.0.0.1 $(SITE_HOST)
-
-refresh-db: stop
-	docker-compose rm -f postgres
-	make start
-	docker-compose exec postgres bin/wait-for-db.sh
-	docker-compose exec php-fpm bin/console doctrine:schema:update --force
-
 open-frontend:
 	xdg-open https://$(SITE_HOST):10000
 
