@@ -87,18 +87,6 @@ class GeneratorController extends AbstractController
         $phpVersion = $phpOptions->getVersion();
 
         switch ($phpVersion) {
-            case PhpOptions::PHP_VERSION_56:
-                $extensions = $phpOptions->getPhpExtensions56();
-                break;
-
-            case PhpOptions::PHP_VERSION_70:
-                $extensions = $phpOptions->getPhpExtensions70();
-                break;
-
-            case PhpOptions::PHP_VERSION_71:
-                $extensions = $phpOptions->getPhpExtensions71();
-                break;
-
             case PhpOptions::PHP_VERSION_72:
                 $extensions = $phpOptions->getPhpExtensions72();
                 break;
