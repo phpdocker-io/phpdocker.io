@@ -43,9 +43,9 @@ function doMainFormMagic() {
     });
 
     // Select PHP extensions based on service choices
-    var checkboxPrefix                               = 'project_';
-    var extensionServices                            = [];
-    var extensionMultiSelects                        = $('[id^=project_phpOptions_phpExtensions]');
+    let checkboxPrefix                               = 'project_';
+    let extensionServices                            = [];
+    let extensionMultiSelects                        = $('[id^=project_phpOptions_phpExtensions]');
     extensionServices['hasRedis']                    = 'Redis';
     extensionServices['hasMemcached']                = 'Memcached';
     extensionServices['mysqlOptions_hasMysql']       = 'MySQL';
@@ -114,40 +114,8 @@ function doMainFormMagic() {
         }
     });
 
-    // Phalcon is not supported by PHP 7.4 yet - proper jquery spaghetti, remove as soon as 7.4 is supported
-    /*** HACK ***/
-    var applicationType = $('#project_applicationOptions_applicationType');
-    var form            = $('#generator');
-    var hiddenFieldId   = 'hidden-phpversion';
-
-    applicationType.change(function () {
-        var hiddenField = $('#' + hiddenFieldId);
-
-        if ($(this).val() === 'phalcon') {
-            if (phpVersionSelector.val() === '7.4.x') {
-                phpVersionSelector.val('7.3.x').change()
-                phpVersionSelector.parent().parent().effect('bounce')
-
-                $('<input>').attr('type', 'hidden').appendTo(form).attr('id', hiddenFieldId).attr('name', phpVersionSelector.attr('name')).val(phpVersionSelector.val())
-            }
-
-            phpVersionSelector.children().each(function () {
-                if (this.value === '7.4.x') {
-                    $(this).prop('disabled', true)
-                }
-            })
-        } else {
-            phpVersionSelector.children().each(function () {
-                if (this.value === '7.4.x') {
-                    $(this).prop('disabled', false);
-                }
-            });
-
-            hiddenField.remove();
-        }
-    });
-
-    /*** END OF HACK ***/
+    const form            = $('#generator');
+    const hiddenFieldId   = 'hidden-phpversion';
 
     phpVersionSelector.change(function () {
         var hiddenField = $('#' + hiddenFieldId);

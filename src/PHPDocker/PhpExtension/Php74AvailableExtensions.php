@@ -71,6 +71,7 @@ class Php74AvailableExtensions extends BaseAvailableExtensions
             'MessagePack/msgpack' => ['packages' => ['php7.4-msgpack']],
             'ODBC'                => ['packages' => ['php7.4-odbc']],
             'PHPDBG'              => ['packages' => ['php7.4-phpdbg']],
+            'Phalcon4'            => ['packages' => ['php7.4-phalcon4', 'php7.4-psr']],
             'PSpell'              => ['packages' => ['php7.4-pspell']],
             'raphf'               => ['packages' => ['php7.4-raphf']],
             'SNMP'                => ['packages' => ['php7.4-snmp']],

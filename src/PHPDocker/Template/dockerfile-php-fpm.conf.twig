@@ -33,26 +33,4 @@ RUN apt-get update \
     && {{ cleanupCommand }}
 {% endif %}
 
-{% if applicationType == 'phalcon' %}
-    {% spaceless %}
-        {% if phpVersion == '5.6.x' %}
-            {% set phalconPackage = 'php5-phalcon' %}
-        {% elseif phpVersion == '7.0.x' %}
-            {% set phalconPackage = 'php7.0-phalcon' %}
-        {% elseif phpVersion == '7.1.x' %}
-            {% set phalconPackage = 'php7.1-phalcon' %}
-        {% elseif phpVersion == '7.2.x' %}
-            {% set phalconPackage = 'php7.2-phalcon' %}
-        {% elseif phpVersion == '7.3.x' %}
-            {% set phalconPackage = 'php7.3-phalcon' %}
-        {% elseif phpVersion == '7.4.x' %}
-            {% set phalconPackage = 'php7.4-phalcon' %}
-        {% endif %}
-    {% endspaceless %}
-
-# Install phalcon
-RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash \
-    && apt-get install -y {{ phalconPackage }} \
-    && {{ cleanupCommand }}
-{% endif %}
 {% endspaceless %}
