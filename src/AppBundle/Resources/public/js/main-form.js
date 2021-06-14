@@ -95,11 +95,15 @@ function doMainFormMagic() {
     /**
      * Change multiselect based on php version chosen
      */
-    var phpVersionSelector = $('#project_phpOptions_version');
+    let phpVersionSelector = $('#project_phpOptions_version');
     phpVersionSelector.change(function () {
         extensionMultiSelects.parents('.form-group').hide();
 
         switch ($(this).val()) {
+            case '7.2.x':
+                extensionMultiSelects.filter('[id$=72]').parents('.form-group').show();
+                break;
+
             case '7.3.x':
                 extensionMultiSelects.filter('[id$=73]').parents('.form-group').show();
                 break;
@@ -109,7 +113,7 @@ function doMainFormMagic() {
                 break;
 
             default:
-                extensionMultiSelects.filter('[id$=72]').parents('.form-group').show();
+                extensionMultiSelects.filter('[id$=80]').parents('.form-group').show();
                 break;
         }
     });
@@ -118,7 +122,7 @@ function doMainFormMagic() {
     const hiddenFieldId   = 'hidden-phpversion';
 
     phpVersionSelector.change(function () {
-        var hiddenField = $('#' + hiddenFieldId);
+        let hiddenField = $('#' + hiddenFieldId);
         if (hiddenField.length) {
             hiddenField.val(phpVersionSelector.val());
         }

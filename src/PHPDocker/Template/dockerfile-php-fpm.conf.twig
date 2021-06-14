@@ -4,8 +4,10 @@
         {% set image = 'phpdockerio/php72-fpm:latest' %}
     {% elseif phpVersion == '7.3.x' %}
         {% set image = 'phpdockerio/php73-fpm:latest' %}
-    {% else %}
+    {% elseif phpVersion == '7.4.x' %}
         {% set image = 'phpdockerio/php74-fpm:latest' %}
+    {% else %}
+        {% set image = 'phpdockerio/php80-fpm:latest' %}
     {% endif %}
 FROM {{ image }}
 WORKDIR "/application"

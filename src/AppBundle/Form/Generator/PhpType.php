@@ -24,6 +24,7 @@ use PHPDocker\PhpExtension\Php71AvailableExtensions;
 use PHPDocker\PhpExtension\Php72AvailableExtensions;
 use PHPDocker\PhpExtension\Php73AvailableExtensions;
 use PHPDocker\PhpExtension\Php74AvailableExtensions;
+use PHPDocker\PhpExtension\Php80AvailableExtensions;
 use PHPDocker\PhpExtension\PhpExtension;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -72,6 +73,12 @@ class PhpType extends AbstractGeneratorType
                 'choices'  => $this->getExtensionChoices(Php74AvailableExtensions::create()->getOptional()),
                 'multiple' => true,
                 'label'    => 'Extensions (PHP 7.4.x)',
+                'required' => false,
+            ])
+            ->add('phpExtensions80', ChoiceType::class, [
+                'choices'  => $this->getExtensionChoices(Php80AvailableExtensions::create()->getOptional()),
+                'multiple' => true,
+                'label'    => 'Extensions (PHP 8.0.x)',
                 'required' => false,
             ]);
     }
