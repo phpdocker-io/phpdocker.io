@@ -30,15 +30,13 @@ class Application
      */
     private const APPLICATION_TYPE_SYMFONY = 'symfony';
     private const APPLICATION_TYPE_GENERIC = 'generic';
-    private const APPLICATION_TYPE_SILEX   = 'silex';
 
     /**
      * Allowed application types with short description
      */
     private const ALLOWED_APPLICATION_TYPES = [
-        self::APPLICATION_TYPE_GENERIC => 'Generic: Symfony 4, Zend, Laravel, Lumen...',
-        self::APPLICATION_TYPE_SYMFONY => 'Symfony 2/3',
-        self::APPLICATION_TYPE_SILEX   => 'Silex',
+        self::APPLICATION_TYPE_GENERIC => 'Generic: Symfony, Laravel, Slim...',
+        self::APPLICATION_TYPE_SYMFONY => '[Legacy] Symfony 2/3',
     ];
 
     /**

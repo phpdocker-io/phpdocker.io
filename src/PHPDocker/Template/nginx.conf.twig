@@ -5,7 +5,7 @@ server {
 
     access_log /var/log/nginx/application.access.log;
 
-{% if applicationType == 'symfony' or applicationType == 'silex' %}
+{% if applicationType == 'symfony' %}
     {% spaceless %}
         {% if applicationType == 'symfony' %}
             {% set indexFile = 'app' %}
