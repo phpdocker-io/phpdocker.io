@@ -1,11 +1,11 @@
-/var/*
+old/var/*
 /vendor/
-/web/bundles/
-/web/css
-/web/js
+old/web/bundles/
+old/web/css
+old/web/js
 .idea
-/src/AppBundle/Resources/public/vendor/*
+**/src/AppBundle/Resources/public/vendor/*
 /phpdocker/.vagrant
 *.sql
 
-bin/mkcert
+old/bin/mkcert
