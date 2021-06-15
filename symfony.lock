@@ -5,6 +5,9 @@
     "michelf/php-markdown": {
         "version": "1.9.0"
     },
+    "monolog/monolog": {
+        "version": "1.26.1"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -38,6 +41,21 @@
     },
     "symfony/debug": {
         "version": "v4.4.25"
+    },
+    "symfony/debug-bundle": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "0ce7a032d344fb7b661cd25d31914cd703ad445b"
+        },
+        "files": [
+            "config/packages/dev/debug.yaml"
+        ]
+    },
+    "symfony/debug-pack": {
+        "version": "v1.0.9"
     },
     "symfony/dependency-injection": {
         "version": "v4.4.25"
@@ -114,6 +132,24 @@
     "symfony/mime": {
         "version": "v4.4.25"
     },
+    "symfony/monolog-bridge": {
+        "version": "v4.4.25"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.7",
+            "ref": "329f6a5ef2e7aa033f802be833ef8d1268dd0848"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/deprecations.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
+    },
     "symfony/options-resolver": {
         "version": "v4.4.25"
     },
@@ -141,6 +177,9 @@
     "symfony/polyfill-php81": {
         "version": "v1.23.0"
     },
+    "symfony/profiler-pack": {
+        "version": "v1.0.5"
+    },
     "symfony/property-access": {
         "version": "v4.4.25"
     },
@@ -160,6 +199,9 @@
     },
     "symfony/service-contracts": {
         "version": "v2.4.0"
+    },
+    "symfony/stopwatch": {
+        "version": "v4.4.25"
     },
     "symfony/translation-contracts": {
         "version": "v2.4.0"
@@ -202,6 +244,20 @@
     },
     "symfony/var-exporter": {
         "version": "v4.4.25"
+    },
+    "symfony/web-profiler-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+        },
+        "files": [
+            "config/packages/dev/web_profiler.yaml",
+            "config/packages/test/web_profiler.yaml",
+            "config/routes/dev/web_profiler.yaml"
+        ]
     },
     "symfony/yaml": {
         "version": "v4.4.25"
