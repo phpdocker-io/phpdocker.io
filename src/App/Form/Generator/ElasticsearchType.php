@@ -17,7 +17,7 @@
 
 namespace App\Form\Generator;
 
-use AppBundle\Entity\Generator\ElasticsearchOptions;
+use App\Entity\Generator\ElasticsearchOptions;
 use PHPDocker\Project\ServiceOptions\Elasticsearch;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,9 +26,6 @@ use Symfony\Component\Form\FormInterface;
 
 /**
  * Class ElasticsearchType
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 class ElasticsearchType extends AbstractGeneratorType
 {

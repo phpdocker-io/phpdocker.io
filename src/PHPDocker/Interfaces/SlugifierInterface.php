@@ -3,8 +3,6 @@ namespace PHPDocker\Interfaces;
 
 /**
  * Interface a slugifier MUST fulfil.
- *
- * @package PHPDocker\Interfaces
  */
 interface SlugifierInterface
 {

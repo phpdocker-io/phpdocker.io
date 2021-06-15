@@ -22,9 +22,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Base class for forms.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractType
 {

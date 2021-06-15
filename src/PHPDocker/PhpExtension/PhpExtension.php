@@ -19,9 +19,6 @@ namespace PHPDocker\PhpExtension;
 
 /**
  * Describes a PHP extension
- *
- * @package PHPDocker\Entity
- * @author  Luis A. Pabon Flores
  */
 class PhpExtension
 {

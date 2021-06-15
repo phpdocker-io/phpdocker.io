@@ -21,9 +21,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PostgresOptions entity and validation
- *
- * @package AppBundle\Entity\ORM
- * @author  Luis A. Pabon Flores
  */
 class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
 {

@@ -22,9 +22,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * MariaDBOptions entity and validation
- *
- * @package AppBundle\Entity\ORM
- * @author  Luis A. Pabon Flores
  */
 class MariaDBOptions extends MariaDB
 {

@@ -19,9 +19,6 @@ namespace PHPDocker\Project\Exception;
 
 /**
  * Thrown when a class has not been properly initialised with a specific dependency.
- *
- * @package PHPDocker\Exception
- * @author  Luis A. Pabon Flores
  */
 class MissingDependencyException extends \Exception
 {

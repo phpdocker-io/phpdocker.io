@@ -17,7 +17,7 @@
 
 namespace App\Form\Generator;
 
-use AppBundle\Entity\Generator\PhpOptions;
+use App\Entity\Generator\PhpOptions;
 use PHPDocker\PhpExtension\Php56AvailableExtensions;
 use PHPDocker\PhpExtension\Php70AvailableExtensions;
 use PHPDocker\PhpExtension\Php71AvailableExtensions;
@@ -32,9 +32,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Form for PHP options.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 class PhpType extends AbstractGeneratorType
 {

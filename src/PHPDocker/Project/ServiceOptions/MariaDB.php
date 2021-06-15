@@ -19,9 +19,6 @@ namespace PHPDocker\Project\ServiceOptions;
 
 /**
  * Options for MariaDB container.
- *
- * @package PHPDocker\Project\ServiceOptions
- * @author  Luis A. Pabon Flores
  */
 class MariaDB extends AbstractMySQL
 {

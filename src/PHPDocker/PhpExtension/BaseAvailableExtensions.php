@@ -19,9 +19,6 @@ namespace PHPDocker\PhpExtension;
 
 /**
  * List of available php extensions and their dependencies.
- *
- * @package PHPDocker\Resources
- * @author  Luis A. Pabon Flores
  */
 abstract class BaseAvailableExtensions
 {

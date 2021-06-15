@@ -17,7 +17,7 @@
 
 namespace App\Form\Generator;
 
-use AppBundle\Entity\Generator\Project;
+use App\Entity\Generator\Project;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,9 +25,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Project forms.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 class ProjectType extends AbstractGeneratorType
 {

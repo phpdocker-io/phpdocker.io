@@ -17,14 +17,11 @@
 
 namespace App\Form\Generator;
 
-use AppBundle\Entity\Generator\MySQLOptions;
+use App\Entity\Generator\MySQLOptions;
 use PHPDocker\Project\ServiceOptions\MySQL;
 
 /**
  * Form for MySQL options.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 class MySQLType extends AbstractMySQLType
 {

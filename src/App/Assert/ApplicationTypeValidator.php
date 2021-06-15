@@ -23,9 +23,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 /**
  * Application type validator.
- *
- * @package AppBundle\Assert
- * @author  Luis A. Pabon Flores
  */
 class ApplicationTypeValidator extends ConstraintValidator
 {

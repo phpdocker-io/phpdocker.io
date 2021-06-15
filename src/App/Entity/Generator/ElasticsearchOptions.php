@@ -20,9 +20,6 @@ use PHPDocker\Project\ServiceOptions\Elasticsearch;
 
 /**
  * Elasticsearch options entity for validation.
- *
- * @package AppBundle\Entity\Generator
- * @author  Luis A. Pabon Flores
  */
 class ElasticsearchOptions extends Elasticsearch
 {

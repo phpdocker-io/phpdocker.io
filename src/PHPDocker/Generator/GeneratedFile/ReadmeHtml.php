@@ -19,9 +19,6 @@ namespace PHPDocker\Generator\GeneratedFile;
 
 /**
  * HTML readme file
- *
- * @package PHPDocker\Generator\GeneratedFile
- * @author  Luis A. Pabon Flores
  */
 class ReadmeHtml extends Base
 {

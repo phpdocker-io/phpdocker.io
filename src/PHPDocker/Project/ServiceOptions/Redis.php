@@ -19,9 +19,6 @@ namespace PHPDocker\Project\ServiceOptions;
 
 /**
  * Options for redis container
- *
- * @package PHPDocker\Project\ServiceOptions
- * @author  Luis A. Pabon Flores
  */
 class Redis extends Base
 {

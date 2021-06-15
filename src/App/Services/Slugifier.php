@@ -22,9 +22,6 @@ use PHPDocker\Interfaces\SlugifierInterface;
 
 /**
  * String slugifier.
- *
- * @package AppBundle\Services
- * @author  Luis A. Pabon Flores
  */
 class Slugifier implements SlugifierInterface
 {

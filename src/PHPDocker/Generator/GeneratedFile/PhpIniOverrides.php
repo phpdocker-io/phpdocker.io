@@ -18,9 +18,6 @@ namespace PHPDocker\Generator\GeneratedFile;
 
 /**
  * php.ini file in container.
- *
- * @package PHPDocker\Generator\GeneratedFile
- * @author  Luis A. Pabon Flores
  */
 class PhpIniOverrides extends Base
 {

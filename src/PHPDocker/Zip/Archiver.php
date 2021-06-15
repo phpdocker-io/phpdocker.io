@@ -23,9 +23,6 @@ use ZipArchive;
 
 /**
  * Creates a zip file.
- *
- * @package PHPDocker\Archiver
- * @author  Luis A. Pabon Flores
  */
 class Archiver
 {

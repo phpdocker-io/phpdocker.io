@@ -22,9 +22,6 @@ use PHPDocker\Interfaces\SlugifierInterface;
 
 /**
  * Defines a single project.
- *
- * @package PHPDocker\Entity
- * @author  Luis A. Pabon Flores
  */
 class Project
 {

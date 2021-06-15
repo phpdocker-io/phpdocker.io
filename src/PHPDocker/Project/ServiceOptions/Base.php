@@ -21,9 +21,6 @@ use PHPDocker\Interfaces\ContainerNameSuffixInterface;
 
 /**
  * Base class for service options.
- *
- * @package PHPDocker\Project\ServiceOptions
- * @author  Luis A. Pabon Flores
  */
 abstract class Base
 {

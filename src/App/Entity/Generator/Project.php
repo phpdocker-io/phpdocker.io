@@ -22,9 +22,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Project entity and validation.
- *
- * @package AppBundle\Entity\ORM
- * @author  Luis A. Pabon Flores
  */
 class Project extends \PHPDocker\Project\Project
 {

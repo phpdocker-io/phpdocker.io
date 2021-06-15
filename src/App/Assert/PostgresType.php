@@ -21,9 +21,6 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Validation constraint for postgresql types.
- *
- * @package AppBundle\Assert
- * @author  Luis A. Pabon Flores
  */
 class PostgresType extends Constraint
 {

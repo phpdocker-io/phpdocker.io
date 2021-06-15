@@ -17,7 +17,7 @@
 
 namespace App\Form\Generator;
 
-use AppBundle\Entity\Generator\PostgresOptions;
+use App\Entity\Generator\PostgresOptions;
 use PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -27,9 +27,6 @@ use Symfony\Component\Form\FormInterface;
 
 /**
  * Form for Postgres options.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 class PostgresType extends AbstractGeneratorType
 {
@@ -82,7 +79,7 @@ class PostgresType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
-            /** @var \AppBundle\Entity\Generator\PostgresOptions $data */
+            /** @var \App\Entity\Generator\PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];
 

@@ -17,9 +17,9 @@
 
 namespace App\Controller;
 
-use AppBundle\Entity\Generator\PhpOptions;
-use AppBundle\Entity\Generator\Project;
-use AppBundle\Form\Generator\ProjectType;
+use App\Entity\Generator\PhpOptions;
+use App\Entity\Generator\Project;
+use App\Form\Generator\ProjectType;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -29,9 +29,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
  * Docker environment generator controller.
- *
- * @package AppBundle\Controller
- * @author  Luis A. Pabon Flores
  */
 class GeneratorController extends AbstractController
 {
@@ -42,7 +39,7 @@ class GeneratorController extends AbstractController
      *
      * @return BinaryFileResponse|Response
      */
-    public function createAction(Request $request)
+    public function create(Request $request)
     {
         // Set up form
         $project = new Project($this->container->get('slugifier'));

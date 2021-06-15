@@ -17,15 +17,12 @@
 
 namespace App\Entity\Generator;
 
-use AppBundle\Assert as CustomAssert;
+use App\Assert as CustomAssert;
 use PHPDocker\Project\ServiceOptions\Application;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Validation for Application options
- *
- * @package AppBundle\Entity\ORM
- * @author  Luis A. Pabon Flores
  */
 class ApplicationOptions extends Application
 {

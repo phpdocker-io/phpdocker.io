@@ -21,9 +21,6 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Validation constraint for application types.
- *
- * @package AppBundle\Assert
- * @author  Luis A. Pabon Flores
  */
 class ApplicationType extends Constraint
 {

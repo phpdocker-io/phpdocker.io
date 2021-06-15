@@ -25,9 +25,6 @@ use Symfony\Component\Form\FormInterface;
 
 /**
  * Base form for MySQL-like options.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 abstract class AbstractMySQLType extends AbstractGeneratorType
 {

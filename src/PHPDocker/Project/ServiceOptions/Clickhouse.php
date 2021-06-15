@@ -19,9 +19,6 @@ namespace PHPDocker\Project\ServiceOptions;
 
 /**
  * Options for clickhouse container
- *
- * @package PHPDocker\Project\ServiceOptions
- * @author  Luis A. Pabon Flores
  */
 class Clickhouse extends Base
 {

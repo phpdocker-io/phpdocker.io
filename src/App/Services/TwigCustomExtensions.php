@@ -19,9 +19,6 @@ namespace App\Services;
 
 /**
  * Custom twig extensions
- *
- * @package AppBundle\Services
- * @author  Luis A. Pabon Flores
  */
 class TwigCustomExtensions extends \Twig_Extension
 {

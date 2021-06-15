@@ -17,14 +17,11 @@
 
 namespace App\Form\Generator;
 
-use AppBundle\Entity\Generator\MariaDBOptions;
+use App\Entity\Generator\MariaDBOptions;
 use PHPDocker\Project\ServiceOptions\MariaDB;
 
 /**
  * Form for Mariadb options.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 class MariaDBType extends AbstractMySQLType
 {

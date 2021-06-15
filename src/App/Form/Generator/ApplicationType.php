@@ -24,9 +24,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Form for application options.
- *
- * @package AppBundle\Form\Generator
- * @author  Luis A. Pabon Flores
  */
 class ApplicationType extends AbstractGeneratorType
 {
