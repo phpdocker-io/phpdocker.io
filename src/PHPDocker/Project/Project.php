@@ -17,7 +17,6 @@
 
 namespace PHPDocker\Project;
 
-use PHPDocker\Interfaces\ContainerNameSuffixInterface;
 use PHPDocker\Interfaces\SlugifierInterface;
 
 /**
@@ -171,7 +170,7 @@ class Project
      *
      * @return Project
      */
-    public function setBasePort($basePort): self
+    public function setBasePort(int $basePort): self
     {
         $this->basePort = $basePort;
 
@@ -514,7 +513,7 @@ class Project
     /**
      * @param ServiceOptions\Clickhouse $clickhouseOptions
      *
-     * @return \PHPDocker\Project\Project
+     * @return Project
      */
     public function setClickhouseOptions(ServiceOptions\Clickhouse $clickhouseOptions): self
     {

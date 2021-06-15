@@ -17,12 +17,13 @@
 
 namespace App\Entity\Generator;
 
+use PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PostgresOptions entity and validation
  */
-class PostgresOptions extends \PHPDocker\Project\ServiceOptions\Postgres
+class PostgresOptions extends Postgres
 {
     /**
      * @var string

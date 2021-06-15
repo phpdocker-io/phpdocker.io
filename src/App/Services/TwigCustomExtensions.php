@@ -17,10 +17,13 @@
 
 namespace App\Services;
 
+use Twig_Extension;
+use Twig_SimpleFilter;
+
 /**
  * Custom twig extensions
  */
-class TwigCustomExtensions extends \Twig_Extension
+class TwigCustomExtensions extends Twig_Extension
 {
     /**
      * @inheritdoc
@@ -28,7 +31,7 @@ class TwigCustomExtensions extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('unescape', [$this, 'unescape']),
+            new Twig_SimpleFilter('unescape', [$this, 'unescape']),
         ];
     }
 

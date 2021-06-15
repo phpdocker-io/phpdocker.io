@@ -79,7 +79,7 @@ class PostgresType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
-            /** @var \App\Entity\Generator\PostgresOptions $data */
+            /** @var PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];
 

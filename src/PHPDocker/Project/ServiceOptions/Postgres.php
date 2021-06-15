@@ -17,6 +17,8 @@
 
 namespace PHPDocker\Project\ServiceOptions;
 
+use InvalidArgumentException;
+
 /**
  * Postgres configuration
  */
@@ -89,7 +91,7 @@ class Postgres extends Base
     public function setVersion(string $version): self
     {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
-            throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
+            throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
         }
 
         $this->version = $version;

@@ -17,13 +17,14 @@
 
 namespace App\Form\Generator;
 
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Base class for forms.
  */
-abstract class AbstractGeneratorType extends \Symfony\Component\Form\AbstractType
+abstract class AbstractGeneratorType extends AbstractType
 {
     /**
      * This should return a string with the FQDN of the entity class associated to this form.

@@ -17,6 +17,8 @@
 
 namespace PHPDocker\Project\ServiceOptions;
 
+use InvalidArgumentException;
+
 /**
  * Options for Elasticsearch container.
  */
@@ -51,10 +53,10 @@ class Elasticsearch extends Base
      *
      * @return Elasticsearch
      */
-    public function setVersion($version)
+    public function setVersion(string $version)
     {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
-            throw new \InvalidArgumentException(sprintf('Version %s is not supported', $version));
+            throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
         }
 
         $this->version = $version;

@@ -17,6 +17,7 @@
 namespace App\Entity\Generator;
 
 use PHPDocker\Project\ServiceOptions\Elasticsearch;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Elasticsearch options entity for validation.
