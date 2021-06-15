@@ -19,9 +19,6 @@ namespace PHPDocker\Project\ServiceOptions;
 
 /**
  * Options for MySQL container.
- *
- * @package PHPDocker\Project\ServiceOptions
- * @author  Luis A. Pabon Flores
  */
 class MySQL extends AbstractMySQL
 {

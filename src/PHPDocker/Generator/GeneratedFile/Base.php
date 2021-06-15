@@ -21,9 +21,6 @@ use PHPDocker\Interfaces\GeneratedFileInterface;
 
 /**
  * Base class for all generated files.
- *
- * @package PHPDocker\Generator\GeneratedFile
- * @author  Luis A. Pabon Flores
  */
 abstract class Base implements GeneratedFileInterface
 {

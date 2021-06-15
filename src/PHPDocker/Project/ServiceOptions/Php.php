@@ -17,14 +17,12 @@
 
 namespace PHPDocker\Project\ServiceOptions;
 
+use InvalidArgumentException;
 use PHPDocker\PhpExtension\AvailableExtensionsFactory;
 use PHPDocker\PhpExtension\PhpExtension;
 
 /**
  * Options for PHP container.
- *
- * @package PHPDocker\Project\ServiceOptions
- * @author  Luis A. Pabon Flores
  */
 class Php extends Base
 {
@@ -133,7 +131,7 @@ class Php extends Base
     public function setVersion(string $version): self
     {
         if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
-            throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
+            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
         }
 
         $this->version = $version;

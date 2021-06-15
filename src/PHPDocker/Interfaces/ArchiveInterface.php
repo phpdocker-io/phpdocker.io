@@ -3,8 +3,6 @@ namespace PHPDocker\Interfaces;
 
 /**
  * Interface ArchiveInterface
- *
- * @package PHPDocker\Interfaces
  */
 interface ArchiveInterface
 {

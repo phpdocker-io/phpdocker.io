@@ -19,9 +19,6 @@ namespace PHPDocker\PhpExtension;
 
 /**
  * Extensions available on PHP 7.2.x.
- *
- * @package PHPDocker\PhpExtension
- * @author  Luis A. Pabon Flores
  */
 class Php72AvailableExtensions extends BaseAvailableExtensions
 {

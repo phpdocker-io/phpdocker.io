@@ -3,8 +3,6 @@ namespace PHPDocker\Interfaces;
 
 /**
  * Describes a parsed, generated file by its filename and contents.
- *
- * @package PHPDocker\Interfaces
  */
 interface GeneratedFileInterface
 {

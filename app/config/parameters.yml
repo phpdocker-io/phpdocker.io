@@ -1,8 +1,0 @@
-# This file contains the right config already for the app to be run from the bundled dev-env,
-# you should be able to copy to parameters.yml and off you go
-parameters:
-    # A secret key that's used to generate certain security-related tokens
-    secret: '%env(APP_SECRET)%'
-
-    # Third party services
-    google_analytics:  '%env(GOOGLE_ANALYTICS)%'

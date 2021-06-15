@@ -17,11 +17,10 @@
 
 namespace PHPDocker\Project\ServiceOptions;
 
+use InvalidArgumentException;
+
 /**
  * Describes a few things about the user's project.
- *
- * @package PHPDocker\Project\ServiceOptions
- * @author  Luis A. Pabon Flores
  */
 class Application
 {
@@ -52,7 +51,7 @@ class Application
     /**
      * @return string
      */
-    public function getApplicationType(): string
+    public function getApplicationType(): ?string
     {
         return $this->applicationType;
     }
@@ -65,7 +64,7 @@ class Application
     public function setApplicationType(string $applicationType): self
     {
         if (array_key_exists($applicationType, self::ALLOWED_APPLICATION_TYPES) === false) {
-            throw new \InvalidArgumentException(sprintf('Application type %s not supported', $applicationType));
+            throw new InvalidArgumentException(sprintf('Application type %s not supported', $applicationType));
         }
 
         $this->applicationType = $applicationType;
@@ -86,7 +85,7 @@ class Application
     /**
      * @return int
      */
-    public function getUploadSize(): int
+    public function getUploadSize(): ?int
     {
         return $this->uploadSize;
     }

@@ -17,13 +17,12 @@
 
 namespace PHPDocker\PhpExtension\Exception;
 
+use Exception;
+
 /**
  * Class NotFoundException
- *
- * @package PHPDocker\PhpExtension
- * @author  Luis A. Pabon Flores
  */
-class NotFoundException extends \Exception
+class NotFoundException extends Exception
 {
 
 }

@@ -22,33 +22,20 @@ use PHPDocker\Interfaces\ArchiveInterface;
 use PHPDocker\PhpExtension\PhpExtension;
 use PHPDocker\Project\Project;
 use PHPDocker\Zip\Archiver;
+use Twig\Environment;
 
 /**
  * Docker environment generator based on a Project.
- *
- * @package PHPDocker
- * @author  Luis A. Pabon Flores
  */
 class Generator
 {
-    const BASE_ZIP_FOLDER = 'phpdocker';
+    private const BASE_ZIP_FOLDER = 'phpdocker';
 
-    /**
-     * @var Archiver
-     */
-    protected $zipArchiver;
+    protected Archiver      $zipArchiver;
+    protected Environment   $twig;
+    protected MarkdownExtra $markdownExtra;
 
-    /**
-     * @var \Twig_Environment
-     */
-    protected $twig;
-
-    /**
-     * @var MarkdownExtra
-     */
-    protected $markdownExtra;
-
-    public function __construct(Archiver $archiver, \Twig_Environment $twig, MarkdownExtra $markdownExtra)
+    public function __construct(Archiver $archiver, Environment $twig, MarkdownExtra $markdownExtra)
     {
         $this->zipArchiver   = $archiver;
         $this->twig          = $twig;
@@ -59,10 +46,6 @@ class Generator
 
     /**
      * Generates all the files from the Project, and returns as an archive file.
-     *
-     * @param Project $project
-     *
-     * @return ArchiveInterface
      */
     public function generate(Project $project): ArchiveInterface
     {
@@ -129,6 +112,7 @@ class Generator
             'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
             'slug'            => $project->getProjectNameSlug(),
             'project'         => $project,
+            'hasClickhouse'   => $project->hasClickhouse(),
         ];
 
         // Get YML file, raw, then prettify by eliminating excess of blank lines and ensuring a blank line at the end

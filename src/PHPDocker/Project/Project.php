@@ -17,14 +17,10 @@
 
 namespace PHPDocker\Project;
 
-use PHPDocker\Interfaces\ContainerNameSuffixInterface;
 use PHPDocker\Interfaces\SlugifierInterface;
 
 /**
  * Defines a single project.
- *
- * @package PHPDocker\Entity
- * @author  Luis A. Pabon Flores
  */
 class Project
 {
@@ -174,7 +170,7 @@ class Project
      *
      * @return Project
      */
-    public function setBasePort($basePort): self
+    public function setBasePort(int $basePort): self
     {
         $this->basePort = $basePort;
 
@@ -517,7 +513,7 @@ class Project
     /**
      * @param ServiceOptions\Clickhouse $clickhouseOptions
      *
-     * @return \PHPDocker\Project\Project
+     * @return Project
      */
     public function setClickhouseOptions(ServiceOptions\Clickhouse $clickhouseOptions): self
     {

@@ -6,7 +6,7 @@ server {
     access_log /var/log/nginx/application.access.log;
 
 {% if applicationType == 'symfony' %}
-    {% spaceless %}
+    {% apply spaceless %}
         {% if applicationType == 'symfony' %}
             {% set indexFile = 'app' %}
         {% else %}
@@ -48,7 +48,7 @@ server {
         try_files $uri @rewriteapp;
     }
 
-    {% endspaceless %}
+    {% endapply %}
 {% else %}
 
     root /application/public;

@@ -17,11 +17,10 @@
 
 namespace PHPDocker\PhpExtension;
 
+use InvalidArgumentException;
+
 /**
  * Factory to specific PHP extensions list based on php version.
- *
- * @package PHPDocker\PhpExtension
- * @author  Luis A. Pabon Flores
  */
 class AvailableExtensionsFactory
 {
@@ -50,7 +49,7 @@ class AvailableExtensionsFactory
     public static function create(string $phpVersion)
     {
         if (array_key_exists($phpVersion, self::SUPPORTED_VERSIONS) === false) {
-            throw new \InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $phpVersion));
+            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $phpVersion));
         }
 
         $className = self::SUPPORTED_VERSIONS[$phpVersion];

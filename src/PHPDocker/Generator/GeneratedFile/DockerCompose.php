@@ -19,9 +19,6 @@ namespace PHPDocker\Generator\GeneratedFile;
 
 /**
  * Docker compose file.
- *
- * @package PHPDocker\Generator\GeneratedFile
- * @author  Luis A. Pabon Flores
  */
 class DockerCompose extends Base
 {
