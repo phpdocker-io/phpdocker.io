@@ -19,29 +19,22 @@ namespace PHPDocker\Generator;
 
 use Michelf\MarkdownExtra;
 use PHPDocker\Zip\Archiver;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 /**
  * Factory for generator. If not provided, it will spawn and inject default dependencies.
  */
 class Factory
 {
-    /**
-     * Location for
-     */
-    const DEFAULT_TEMPLATE_LOCATION = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Template';
+    private const DEFAULT_TEMPLATE_LOCATION = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'Template';
 
     /**
      * Builds and returns a Generator. Will spawn all dependencies also, if not already supplied by consumer.
-     *
-     * @param Archiver          $archiver
-     * @param \Twig_Environment $twig
-     * @param MarkdownExtra     $markdownExtra
-     *
-     * @return Generator
      */
     public static function create(
         Archiver $archiver = null,
-        \Twig_Environment $twig = null,
+        Environment $twig = null,
         MarkdownExtra $markdownExtra = null
     ): Generator {
         if ($archiver === null) {
@@ -49,8 +42,8 @@ class Factory
         }
 
         if ($twig === null) {
-            $loader = new \Twig_Loader_Filesystem(self::DEFAULT_TEMPLATE_LOCATION);
-            $twig   = new \Twig_Environment($loader);
+            $loader = new FilesystemLoader(self::DEFAULT_TEMPLATE_LOCATION);
+            $twig   = new Environment($loader);
         }
 
         if ($markdownExtra === null) {
