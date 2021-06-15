@@ -1,5 +1,5 @@
-{% form_theme form 'AppBundle::form_layout.html.twig' %}
-{% extends 'AppBundle::layout.html.twig' %}
+{% form_theme form 'form_layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% set activePage = 'generator' %}
 {% block pageTitle %} - Generator{% endblock %}
@@ -15,9 +15,10 @@
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>Global configuration</h3>
                 <div class="row">
-                    {% for field in ['name', 'basePort']
-                        if (attribute(form, field) is defined) %}
+                    {% for field in ['name', 'basePort'] %}
+                        {% if (attribute(form, field) is defined) %}
                         <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                        {% endif %}
                     {% endfor %}
                 </div>
 
@@ -71,9 +72,10 @@
                 {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
 
                 <div id="mysql-options">
-                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
-                        if (attribute(form.mysqlOptions, field) is defined) %}
+                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
+                        {% if (attribute(form.mysqlOptions, field) is defined) %}
                         {{ form_row(attribute(form.mysqlOptions, field)) }}
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -83,9 +85,10 @@
                 {{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}
 
                 <div id="mariadb-options">
-                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password']
-                        if (attribute(form.mariadbOptions, field) is defined) %}
+                    {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
+                        {% if (attribute(form.mariadbOptions, field) is defined) %}
                         {{ form_row(attribute(form.mariadbOptions, field)) }}
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -96,9 +99,10 @@
                 {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
 
                 <div id="postgres-options">
-                    {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName']
-                        if (attribute(form.postgresOptions, field) is defined) %}
+                    {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
+                        {% if (attribute(form.postgresOptions, field) is defined) %}
                         {{ form_row(attribute(form.postgresOptions, field)) }}
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -116,9 +120,10 @@
                 <h3>Zero-config Services</h3>
                 <p class="note">The following services take no additional configuration parameters.</p>
 
-                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse']
-                    if (attribute(form, field) is defined) %}
+                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse'] %}
+                    {% if (attribute(form, field) is defined) %}
                     <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

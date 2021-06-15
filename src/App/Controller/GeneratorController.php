@@ -66,7 +66,7 @@ class GeneratorController extends AbstractController
             return $response;
         }
 
-        return $this->render('AppBundle:Generator:generator.html.twig', [
+        return $this->render('generator.html.twig', [
             'form' => $form->createView(),
         ]);
     }

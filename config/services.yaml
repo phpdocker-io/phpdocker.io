@@ -34,15 +34,15 @@ services:
         class:    PHPDocker\Generator\Generator
         factory: [PHPDocker\Generator\Factory, create]
 
-    twig.extension.text:
-        class: Twig_Extensions_Extension_Text
-        tags:
-            - { name: twig.extension }
+#    twig.extension.text:
+#        class: Twig_Extensions_Extension_Text
+#        tags:
+#            - { name: twig.extension }
 
-    twig.custom_extensions:
-        class: App\Services\TwigCustomExtensions
-        tags:
-            - { name: twig.extension }
+#    twig.custom_extensions:
+#        class: App\Services\TwigCustomExtensions
+#        tags:
+#            - { name: twig.extension }
 
     cocur_slugify:
         class: Cocur\Slugify\Slugify
