@@ -21,6 +21,7 @@ use App\Entity\Generator\PhpOptions;
 use App\Entity\Generator\Project;
 use App\Form\Generator\ProjectType;
 use InvalidArgumentException;
+use PHPDocker\Interfaces\SlugifierInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,10 +40,10 @@ class GeneratorController extends AbstractController
      *
      * @return BinaryFileResponse|Response
      */
-    public function create(Request $request)
+    public function create(Request $request, SlugifierInterface $slugifier)
     {
         // Set up form
-        $project = new Project($this->container->get('slugifier'));
+        $project = new Project($slugifier);
         $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
 
         // Process form

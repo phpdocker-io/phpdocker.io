@@ -47,6 +47,6 @@ services:
     cocur_slugify:
         class: Cocur\Slugify\Slugify
 
-    slugifier:
+    PHPDocker\Interfaces\SlugifierInterface:
         class: App\Services\Slugifier
         arguments: ['@cocur_slugify']
