@@ -1,15 +1,12 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
 
 home:
-  path:      /
+  path: /
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
   defaults:
     path: /generator
     permanent: true
 
 generator:
-  path:      /generator
+  path: /generator
   controller: App\Controller\GeneratorController::create
   methods: [GET, POST]
