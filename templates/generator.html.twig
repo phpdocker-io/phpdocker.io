@@ -6,6 +6,9 @@
 
 {% set formGroupClass = 'group' %}
 
+{% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
+{% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
+
 {% block body %}
     <form method="post" id="generator" action="{{ path('generator') }}">
         <div class="row">
@@ -17,7 +20,7 @@
                 <div class="row">
                     {% for field in ['name', 'basePort'] %}
                         {% if (attribute(form, field) is defined) %}
-                        <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
+                            <div class="col col-lg-6 col-md-6">{{ form_row(attribute(form, field)) }}</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -46,7 +49,7 @@
                         <p>Please note:</p>
                         <ul>
                             <li>The following extensions are already included on the base image: APC,
-                                cURL, JSON, MCrypt (sodium in PHP>=7.1), MBString, OPCache, Readline, XML and Zip.
+                                cURL, JSON, Sodium, MBString, OPCache, Readline, XML and Zip.
                             </li>
                             <li>Each PHP version supports a different set of extensions to the others.</li>
                             <li>Adding git to the container adds ~75MB to it.</li>
@@ -74,7 +77,7 @@
                 <div id="mysql-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mysqlOptions, field) is defined) %}
-                        {{ form_row(attribute(form.mysqlOptions, field)) }}
+                            {{ form_row(attribute(form.mysqlOptions, field)) }}
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -87,7 +90,7 @@
                 <div id="mariadb-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mariadbOptions, field) is defined) %}
-                        {{ form_row(attribute(form.mariadbOptions, field)) }}
+                            {{ form_row(attribute(form.mariadbOptions, field)) }}
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -101,7 +104,7 @@
                 <div id="postgres-options">
                     {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
                         {% if (attribute(form.postgresOptions, field) is defined) %}
-                        {{ form_row(attribute(form.postgresOptions, field)) }}
+                            {{ form_row(attribute(form.postgresOptions, field)) }}
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -122,7 +125,7 @@
 
                 {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse'] %}
                     {% if (attribute(form, field) is defined) %}
-                    <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
+                        <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
                     {% endif %}
                 {% endfor %}
             </div>
