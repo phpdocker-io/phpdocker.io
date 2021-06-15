@@ -51,7 +51,7 @@ class Application
     /**
      * @return string
      */
-    public function getApplicationType(): string
+    public function getApplicationType(): ?string
     {
         return $this->applicationType;
     }
@@ -85,7 +85,7 @@ class Application
     /**
      * @return int
      */
-    public function getUploadSize(): int
+    public function getUploadSize(): ?int
     {
         return $this->uploadSize;
     }

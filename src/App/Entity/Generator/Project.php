@@ -59,6 +59,13 @@ class Project extends \PHPDocker\Project\Project
     protected $phpOptions;
 
     /**
+     * @var ApplicationOptions
+     *
+     * @Assert\Valid()
+     */
+    protected $applicationOptions;
+
+    /**
      * @var bool
      *
      * @Assert\Type(type="bool")
@@ -89,5 +96,6 @@ class Project extends \PHPDocker\Project\Project
         $this->postgresOptions      = new PostgresOptions();
         $this->phpOptions           = new PhpOptions();
         $this->elasticsearchOptions = new ElasticsearchOptions();
+        $this->applicationOptions   = new ApplicationOptions();
     }
 }
