@@ -18,22 +18,16 @@
     <![endif]-->
     <title>PHPDocker.io{% block pageTitle %}{% endblock %}</title>
 
-    <link property="stylesheet" rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Oswald%7CHind"/>
+    <link property="stylesheet" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald%7CHind"/>
 
-    {% stylesheets filter="cssrewrite"
-    'bundles/app/vendor/bootstrap/dist/css/bootstrap.min.css'
-    'bundles/app/vendor/font-awesome/css/font-awesome.min.css'
-    'bundles/app/vendor/better-share-button/dist/share-button.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
-    {% stylesheets
-    '@AppBundle/Resources/public/css/*.css'
-    '@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css'
-    '@AppBundle/Resources/public/vendor/bootstrap-toggle/css/bootstrap-toggle.css'
-    '@AppBundle/Resources/public/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
+    <link rel="stylesheet" href="//vendor/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//vendor/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="//vendor/better-share-button/dist/share-button.css"/>
+    <link rel="stylesheet" href="//css/base.css"/>
+    <link rel="stylesheet" href="//css/media-queries.css"/>
+    <link rel="stylesheet" href="//vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="//vendor/bootstrap-toggle/css/bootstrap-toggle.css"/>
+    <link rel="stylesheet" href="//vendor/jquery-ui/themes/smoothness/jquery-ui.min.css"/>
 </head>
 
 <body data-target="#menu-section">
@@ -73,18 +67,18 @@
     </div>
 </footer>
 
-{% include 'AppBundle::analytics.html.twig' %}
+{% include 'analytics.html.twig' %}
 
-{% javascripts
-'@AppBundle/Resources/public/vendor/jquery/dist/jquery.min.js'
-'@AppBundle/Resources/public/vendor/bootstrap/dist/js/bootstrap.min.js'
-'@AppBundle/Resources/public/vendor/jquery-ui/jquery-ui.min.js'
-'@AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js'
-'@AppBundle/Resources/public/vendor/bootstrap-toggle/js/bootstrap-toggle.js'
-'@AppBundle/Resources/public/vendor/better-share-button/dist/share-button.js'
-'@AppBundle/Resources/public/js/*' %}
-<script src="{{ asset_url }}"></script>
-{% endjavascripts %}
+
+<script src="//vendor/jquery/dist/jquery.min.js"></script>
+<script src="//vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="//vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="//vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+<script src="//vendor/bootstrap-toggle/js/bootstrap-toggle.js"></script>
+<script src="//vendor/better-share-button/dist/share-button.js"></script>
+<script src="//js/main-form.js"></script>
+<script src="//js/share-button.js"></script>
+<script src="//js/tools.js"></script>
 
 </body>
 </html>

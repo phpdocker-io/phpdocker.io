@@ -15,4 +15,5 @@ old/web/js
 .idea
 src/App/Resources/public/vendor/*
 
+public/vendor/
 bin/mkcert
