@@ -9,6 +9,7 @@ services:
     volumes:
       - .:/application
       - ./infrastructure/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./infrastructure/nginx/pagespeed.conf:/etc/nginx/pagespeed.conf
       - ./infrastructure/local/:/etc/ssl/local/
     ports:
       - "10000:443"

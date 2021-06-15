@@ -55,6 +55,7 @@ WORKDIR /application
 RUN mkdir ./web; \
     touch ./web/app.php
 
+COPY infrastructure/nginx/pagespeed.conf /etc/nginx/pagespeed.conf
 COPY infrastructure/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # NGINX config: update php-fpm hostname to localhost (same pod in k8s), activate pagespeed config, deactivate SSL
