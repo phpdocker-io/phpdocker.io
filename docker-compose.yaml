@@ -3,35 +3,23 @@
 ###############################################################################
 version: "3.4"
 services:
-    webserver:
-        image: pagespeed/nginx-pagespeed:stable
-        working_dir: /application
-        volumes:
-            - .:/application
-            - ./infrastructure/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-            - ./infrastructure/local/:/etc/ssl/local/
-        ports:
-            - "10000:443"
+  webserver:
+    image: pagespeed/nginx-pagespeed:stable
+    working_dir: /application
+    volumes:
+      - .:/application
+      - ./infrastructure/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./infrastructure/local/:/etc/ssl/local/
+    ports:
+      - "10000:443"
 
-    php-fpm:
-        build:
-            dockerfile: Dockerfile
-            target: backend-dev
-            context: .
-        environment:
-            - SYMFONY_ENV=dev
-            - APP_ENV=dev
-            - APP_SECRET=ThisTokenIsNotSoSecretChangeIt
-
-            - GOOGLE_ANALYTICS=foo
-
-            - ADMIN_USER=luis
-            - ADMIN_PASSWORD="$$2y$$12$$jS7zyap2VzijFYr8fWn5WuoHrfZMdPzmfTuVUFJ7NAkQb.ZZc6VL"
-            - MEMCACHED_HOST=memcached
-            - MEMCACHED_PORT=11211
-            - CACHE_NAMESPACE=foo
-        working_dir: /application
-        volumes:
-            - .:/application
-            - ./infrastructure/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
-            - ~/.cache/composer:/root/.composer/cache
+  php-fpm:
+    build:
+      dockerfile: Dockerfile
+      target: backend-dev
+      context: .
+    working_dir: /application
+    volumes:
+      - .:/application
+      - ./infrastructure/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      - ~/.cache/composer:/root/.composer/cache
