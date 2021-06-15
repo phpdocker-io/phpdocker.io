@@ -8,7 +8,7 @@ monolog:
             buffer_size: 50 # How many messages should be saved? Prevent memory leaks
         nested:
             type: stream
-            path: php://stderr
+            path: php://stdout
             level: debug
             formatter: monolog.formatter.json
         console:
