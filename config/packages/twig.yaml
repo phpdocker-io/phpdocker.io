@@ -6,7 +6,6 @@ twig:
     - "%kernel.project_dir%/templates"
     - "%kernel.project_dir%/src/PHPDocker/Template"
 
-
 when@test:
   twig:
     strict_variables: true
