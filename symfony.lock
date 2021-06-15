@@ -141,6 +141,9 @@
     "symfony/http-kernel": {
         "version": "v4.4.25"
     },
+    "symfony/mime": {
+        "version": "v5.3.0"
+    },
     "symfony/monolog-bridge": {
         "version": "v4.4.25"
     },
@@ -168,10 +171,16 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.23.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.23.0"
+    },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.23.0"
     },
     "symfony/polyfill-mbstring": {
+        "version": "v1.23.0"
+    },
+    "symfony/polyfill-php72": {
         "version": "v1.23.0"
     },
     "symfony/polyfill-php73": {
