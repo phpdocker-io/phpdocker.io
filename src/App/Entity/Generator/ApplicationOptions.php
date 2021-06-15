@@ -43,5 +43,5 @@ class ApplicationOptions extends Application
      * @Assert\Type(type="integer")
      * @Assert\Range(min="2", max="2147483647")
      */
-    protected $uploadSize;
+    protected $uploadSize = 100;
 }
