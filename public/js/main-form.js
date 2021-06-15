@@ -92,6 +92,9 @@ function doMainFormMagic() {
 
     /*** END OF UGLY HACK ***/
 
+    // Focus on the first form field
+    $('form:not(.filter) :input:visible:enabled:first').focus()
+
     /**
      * Change multiselect based on php version chosen
      */
