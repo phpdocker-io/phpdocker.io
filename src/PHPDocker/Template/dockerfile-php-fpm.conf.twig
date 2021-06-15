@@ -1,5 +1,5 @@
 {% set cleanupCommand = 'apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*' %}
-{% spaceless %}
+{% apply spaceless %}
     {% if phpVersion == '7.2.x' %}
         {% set image = 'phpdockerio/php72-fpm:latest' %}
     {% elseif phpVersion == '7.3.x' %}
@@ -26,4 +26,4 @@ RUN apt-get update \
     && {{ cleanupCommand }}
 {% endif %}
 
-{% endspaceless %}
+{% endapply %}
