@@ -76,8 +76,6 @@ section#header {
     color : #fff;
 }
 
-
-
 /***** Footer *****/
 
 footer {
@@ -129,9 +127,9 @@ form input[type=submit] {
 }
 
 form .group {
-    border        : 2px rgba(0, 0, 0, 0.42) solid;
+    border        : 2px #444 solid;
     border-radius : 5px;
-    padding       : 0.6em;
+    padding-bottom: 10px;
     margin-bottom : 1em;
 }
 
@@ -147,10 +145,8 @@ form .group h2 {
 }
 
 form .group h3 {
-    margin-top       : 1.5em;
-    margin-bottom    : 1em;
+    margin           : -15px -15px 15px -15px;
     background-color : #444;
-    border-radius    : 4px;
     padding          : 0.5em;
     color            : white;
 }
