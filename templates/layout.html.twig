@@ -33,21 +33,24 @@
 <body data-target="#menu-section">
 
 <div id="wrap">
-    <div class="navbar navbar-inverse inner-shadow-bottom" id="menu-section">
+    <!-- Header -->
+    <section id="header" class="inner-shadow-bottom">
         <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="{{ path('home') }}">
-                    PHPDocker.io
-                </a>
-            </div>
+            <a href="{{ path('home') }}">
+                <h1> PHPDocker.io </h1>
+            </a>
+            <p>A PHP development environment generator built with Docker containers.</p>
         </div>
-    </div>
-    <!--MENU SECTION END-->
+    </section>
+    <!-- End header -->
+
+    <!-- Content -->
     <section id="content">
         <div class="container-fluid">
             {% block body %}{% endblock %}
         </div>
     </section>
+    <!-- End of content -->
 </div>
 
 <footer class="inner-shadow-top container-fluid">
@@ -68,7 +71,6 @@
 </footer>
 
 {% include 'analytics.html.twig' %}
-
 
 <script src="/vendor/jquery/dist/jquery.min.js"></script>
 <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
