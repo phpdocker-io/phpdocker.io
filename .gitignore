@@ -8,12 +8,6 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-old/var/*
-old/web/bundles/
-old/web/css
-old/web/js
 .idea
-src/App/Resources/public/vendor/*
-
 public/vendor/
 bin/mkcert
