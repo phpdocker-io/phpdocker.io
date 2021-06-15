@@ -21,6 +21,7 @@ use App\Entity\Generator\PhpOptions;
 use App\Entity\Generator\Project;
 use App\Form\Generator\ProjectType;
 use InvalidArgumentException;
+use PHPDocker\Generator\Generator;
 use PHPDocker\Interfaces\SlugifierInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -36,11 +37,9 @@ class GeneratorController extends AbstractController
     /**
      * Form and form processor for creating a project.
      *
-     * @param Request $request
-     *
      * @return BinaryFileResponse|Response
      */
-    public function create(Request $request, SlugifierInterface $slugifier)
+    public function create(Request $request, SlugifierInterface $slugifier, Generator $generator): Response
     {
         // Set up form
         $project = new Project($slugifier);
@@ -53,8 +52,7 @@ class GeneratorController extends AbstractController
             $project = $this->fixPhpExtensionGeneratorExpectation($project);
 
             // Generate zip file with docker project
-            $generator = $this->container->get('docker_generator');
-            $zipFile   = $generator->generate($project);
+            $zipFile = $generator->generate($project);
 
             // Generate file download & cleanup
             $response = new BinaryFileResponse($zipFile->getTmpFilename());
