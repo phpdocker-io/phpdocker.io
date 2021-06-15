@@ -15,9 +15,8 @@ ENV APP_SECRET=""
 
 ENV GOOGLE_ANALYTICS=""
 
-COPY bin/console       /application/bin/
-COPY composer.*        /application/
-COPY app/AppKernel.php /application/app/
+COPY bin/console /application/bin/
+COPY composer.*  /application/
 
 RUN composer install --no-dev --no-scripts; \
     composer clear-cache
@@ -26,9 +25,10 @@ COPY infrastructure/php-fpm/php-ini-overrides.ini  /etc/php/7.4/fpm/conf.d/z-ove
 COPY infrastructure/php-fpm/opcache-prod.ini       /etc/php/7.4/fpm/conf.d/z-opcache.ini
 COPY infrastructure/php-fpm/php-fpm-pool-prod.conf /etc/php/7.4/fpm/pool.d/z-optimised.conf
 
-COPY app         ./app
-COPY web/app.php ./web/
-COPY src         ./src
+COPY config           ./config
+COPY src              ./src
+COPY templates        ./templates
+COPY public/index.php ./public/
 
 RUN composer dump-autoload --optimize --classmap-authoritative --no-scripts; \
     bin/console cache:warmup; \
@@ -47,13 +47,6 @@ RUN apk add git --no-cache; \
     npm i -g bower; \
     bower install --allow-root
 
-FROM backend-deployment AS backend-bundle-installer
-
-COPY --from=bower-installer src/AppBundle/Resources/public/vendor src/AppBundle/Resources/public/vendor
-
-RUN php bin/console assets:install --env=prod;  \
-    php bin/console assetic:dump --env=prod
-
 ## Actual deployable frontend image
 FROM pagespeed/nginx-pagespeed:stable AS frontend-deployment
 
@@ -70,6 +63,7 @@ RUN sed -i "s/php-fpm/localhost/g"       /etc/nginx/conf.d/default.conf; \
     sed -i "s/listen 443/#listen 443/g"  /etc/nginx/conf.d/default.conf; \
     sed -i "s/ssl_/#ssl_/g"              /etc/nginx/conf.d/default.conf
 
-COPY --from=backend-bundle-installer /application/web/bundles ./web/bundles
-COPY --from=backend-bundle-installer /application/web/css     ./web/css
-COPY --from=backend-bundle-installer /application/web/js      ./web/js
+COPY --from=bower-installer public/vendor public/vendor
+
+COPY public/css public/css
+COPY public/js  public/js
