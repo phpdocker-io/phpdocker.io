@@ -1,5 +1,6 @@
-$(initShareButton);
-function initShareButton() {
+$(initShareButton)
+
+function initShareButton () {
     var shareButton = new ShareButton({
         networks: {
             pinterest: {
@@ -9,10 +10,10 @@ function initShareButton() {
                 enabled: false
             }
         }
-    });
+    })
 
     // This is our custom share link
     $('.share').click(function () {
-        shareButton.toggle();
-    });
+        shareButton.toggle()
+    })
 }
