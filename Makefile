@@ -61,6 +61,10 @@ install-dependencies-frontend:
 
 install-dependencies: install-dependencies-php install-dependencies-frontend
 
+update-dependencies-php:
+	docker-compose run php-fpm composer update
+	make install-dependencies-php
+
 install-mkcert:
 	@echo "Installing mkcert for OS type ${BINARY_SUFFIX}"
 	@if [[ ! -f '$(MKCERT_LOCATION)' ]]; then curl -sL 'https://github.com/FiloSottile/mkcert/releases/download/$(MKCERT_VERSION)/mkcert-$(MKCERT_VERSION)-$(BINARY_SUFFIX)' -o $(MKCERT_LOCATION); chmod +x $(MKCERT_LOCATION);	fi;
