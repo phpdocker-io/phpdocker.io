@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,24 +24,10 @@ use PHPDocker\Interfaces\GeneratedFileInterface;
  */
 abstract class Base implements GeneratedFileInterface
 {
-    /**
-     * @var string
-     */
-    protected $contents;
-
-    /**
-     * You MUST provide the file contents on the constructor.
-     *
-     * @param string $contents
-     */
-    public function __construct(string $contents)
+    public function __construct(protected string $contents)
     {
-        $this->contents = $contents;
     }
 
-    /**
-     * @return string
-     */
     public function getContents(): string
     {
         return $this->contents;

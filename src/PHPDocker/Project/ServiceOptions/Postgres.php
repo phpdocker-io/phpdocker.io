@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,19 +75,11 @@ class Postgres extends Base
      */
     protected $databaseName;
 
-    /**
-     * @return string
-     */
     public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * @param string $version
-     *
-     * @return Postgres
-     */
     public function setVersion(string $version): self
     {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
@@ -99,19 +91,11 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getRootUser()
+    public function getRootUser(): string
     {
         return $this->rootUser;
     }
 
-    /**
-     * @param string $rootUser
-     *
-     * @return Postgres
-     */
     public function setRootUser(string $rootUser): self
     {
         $this->rootUser = $rootUser;
@@ -119,19 +103,11 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getRootPassword()
+    public function getRootPassword(): string
     {
         return $this->rootPassword;
     }
 
-    /**
-     * @param string $rootPassword
-     *
-     * @return Postgres
-     */
     public function setRootPassword(string $rootPassword): self
     {
         $this->rootPassword = $rootPassword;
@@ -139,19 +115,11 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getDatabaseName()
+    public function getDatabaseName(): string
     {
         return $this->databaseName;
     }
 
-    /**
-     * @param string $databaseName
-     *
-     * @return Postgres
-     */
     public function setDatabaseName(string $databaseName): self
     {
         $this->databaseName = $databaseName;
@@ -159,11 +127,6 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * Returns all supported Postgres versions with their descriptions.
-     *
-     * @return array
-     */
     public static function getChoices(): array
     {
         return self::ALLOWED_VERSIONS;

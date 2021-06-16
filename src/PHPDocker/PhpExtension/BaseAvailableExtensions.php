@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,23 +25,17 @@ abstract class BaseAvailableExtensions
     /**
      * Must return an array of all available mandatory extensions, indexed by display name
      * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
-     *
-     * @return array
      */
     abstract protected function getMandatoryExtensionsMap(): array;
 
     /**
      * Must return an array of all available optional extensions, indexed by display name
      * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
-     *
-     * @return array
      */
     abstract protected function getOptionalExtensionsMap(): array;
 
     /**
      * Spawns a new instance to this class.
-     *
-     * @return self
      */
     public static function create(): self
     {
@@ -56,10 +50,6 @@ abstract class BaseAvailableExtensions
 
     /**
      * Returns true if extension exists and is available.
-     *
-     * @param string $name
-     *
-     * @return bool
      */
     public function isAvailable(string $name): bool
     {
@@ -68,8 +58,6 @@ abstract class BaseAvailableExtensions
 
     /**
      * Returns all available extensions, mandatory or not.
-     *
-     * @return array
      */
     public function getAll(): array
     {
@@ -85,14 +73,11 @@ abstract class BaseAvailableExtensions
     /**
      * Returns a PhpExtension given its name.
      *
-     * @param string $name
-     *
-     * @return PhpExtension
      * @throws Exception\NotFoundException
      */
     public function getPhpExtension(string $name): PhpExtension
     {
-        if (self::isAvailable($name) === false) {
+        if ($this->isAvailable($name) === false) {
             throw new Exception\NotFoundException(sprintf('PHP extension %s is not available to install', $name));
         }
 
@@ -109,25 +94,8 @@ abstract class BaseAvailableExtensions
     }
 
     /**
-     * Returns all mandatory php extensions as an array of PhpExtension.
-     *
-     * @return array
-     * @throws Exception\NotFoundException
-     */
-    public function getMandatory(): array
-    {
-        $extensions = [];
-        foreach ($this->getMandatoryExtensionsMap() as $name => $value) {
-            $extensions[] = $this->getPhpExtension($name);
-        }
-
-        return $extensions;
-    }
-
-    /**
      * Returns all optional php extensions as an array of PhpExtension.
      *
-     * @return array
      * @throws Exception\NotFoundException
      */
     public function getOptional(): array

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,24 +55,14 @@ abstract class AbstractMySQL extends Base
      *    'version' => 'version_name',
      *    ...
      * ]
-     *
-     * @return array
      */
     abstract public static function getChoices(): array;
 
-    /**
-     * @return string
-     */
     public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * @param string $version
-     *
-     * @return self
-     */
     public function setVersion(string $version): self
     {
         if (array_key_exists($version, static::getChoices()) === false) {
@@ -84,19 +74,11 @@ abstract class AbstractMySQL extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getRootPassword(): ?string
     {
         return $this->rootPassword;
     }
 
-    /**
-     * @param string $rootPassword
-     *
-     * @return self
-     */
     public function setRootPassword(string $rootPassword = null): self
     {
         $this->rootPassword = $rootPassword;
@@ -104,19 +86,11 @@ abstract class AbstractMySQL extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDatabaseName(): ?string
     {
         return $this->databaseName;
     }
 
-    /**
-     * @param string $databaseName
-     *
-     * @return self
-     */
     public function setDatabaseName(string $databaseName = null): self
     {
         $this->databaseName = $databaseName;
@@ -124,19 +98,11 @@ abstract class AbstractMySQL extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    /**
-     * @param string $username
-     *
-     * @return self
-     */
     public function setUsername(string $username = null): self
     {
         $this->username = $username;
@@ -144,19 +110,11 @@ abstract class AbstractMySQL extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     *
-     * @return self
-     */
     public function setPassword(string $password = null): self
     {
         $this->password = $password;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,17 +31,12 @@ class Generator
 {
     private const BASE_ZIP_FOLDER = 'phpdocker';
 
-    protected Archiver      $zipArchiver;
-    protected Environment   $twig;
-    protected MarkdownExtra $markdownExtra;
-
-    public function __construct(Archiver $archiver, Environment $twig, MarkdownExtra $markdownExtra)
-    {
-        $this->zipArchiver   = $archiver;
-        $this->twig          = $twig;
-        $this->markdownExtra = $markdownExtra;
-
-        $this->zipArchiver->setBaseFolder(self::BASE_ZIP_FOLDER);
+    public function __construct(
+        protected Archiver $archiver,
+        protected Environment $twig,
+        protected MarkdownExtra $markdownExtra
+    ) {
+        $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
 
     /**
@@ -50,7 +45,7 @@ class Generator
     public function generate(Project $project): ArchiveInterface
     {
         $this
-            ->zipArchiver
+            ->archiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
             ->addFile($this->getPhpDockerConf($project))
@@ -58,15 +53,11 @@ class Generator
             ->addFile($this->getNginxConf($project))
             ->addFile($this->getDockerCompose($project), true);
 
-        return $this->zipArchiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
+        return $this->archiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
     }
 
     /**
      * Generates the Readme file in Markdown format.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\ReadmeMd
      */
     private function getReadmeMd(Project $project): GeneratedFile\ReadmeMd
     {
@@ -81,10 +72,6 @@ class Generator
 
     /**
      * Returns the HTML readme, converted off Markdown.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\ReadmeHtml
      */
     private function getReadmeHtml(Project $project): GeneratedFile\ReadmeHtml
     {
@@ -100,10 +87,6 @@ class Generator
 
     /**
      * Generates the docker-compose file, and returns as a string of its contents.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\DockerCompose
      */
     private function getDockerCompose(Project $project): GeneratedFile\DockerCompose
     {
@@ -125,10 +108,6 @@ class Generator
 
     /**
      * Returns the dockerfile for php-fpm.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\PhpDockerConf
      */
     private function getPhpDockerConf(Project $project): GeneratedFile\PhpDockerConf
     {
@@ -153,10 +132,6 @@ class Generator
 
     /**
      * Returns the contents of php.ini
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\PhpIniOverrides
      */
     private function getPhpIniOverrides(Project $project): GeneratedFile\PhpIniOverrides
     {
@@ -167,10 +142,6 @@ class Generator
 
     /**
      * Generates and returns the nginx.conf file.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\NginxConf
      */
     private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,25 +35,14 @@ class Elasticsearch extends Base
         self::VERSION_56 => '5.6.x',
     ];
 
-    /**
-     * @var string
-     */
     protected $version = self::VERSION_65;
 
-    /**
-     * @return string
-     */
-    public function getVersion()
+    public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * @param string $version
-     *
-     * @return Elasticsearch
-     */
-    public function setVersion(string $version)
+    public function setVersion(string $version): self
     {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
             throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
@@ -66,8 +55,6 @@ class Elasticsearch extends Base
 
     /**
      * Returns all supported MySQL versions with their descriptions.
-     *
-     * @return array
      */
     public static function getChoices(): array
     {

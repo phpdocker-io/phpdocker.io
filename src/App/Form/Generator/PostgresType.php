@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,11 +32,8 @@ class PostgresType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('hasPostgres', CheckboxType::class, [
@@ -65,20 +62,15 @@ class PostgresType extends AbstractGeneratorType
 
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
      */
     protected function getDataClass(): string
     {
         return PostgresOptions::class;
     }
 
-    /**
-     * @return callable
-     */
     protected function getValidationGroups(): callable
     {
-        return function (FormInterface $form) {
+        return static function (FormInterface $form) {
             /** @var PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];

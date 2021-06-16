@@ -36,11 +36,12 @@ class GeneratorController extends AbstractController
 {
     /**
      * Form and form processor for creating a project.
-     *
-     * @return BinaryFileResponse|Response
      */
-    public function create(Request $request, SlugifierInterface $slugifier, Generator $generator): Response
-    {
+    public function create(
+        Request $request,
+        SlugifierInterface $slugifier,
+        Generator $generator
+    ): BinaryFileResponse|Response {
         // Set up form
         $project = new Project($slugifier);
         $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
@@ -73,9 +74,6 @@ class GeneratorController extends AbstractController
      * Add php extensions to project based on version on the property the generator expects
      * as phpExtensions56/70 do not exist from its point of view.
      *
-     * @param Project $project
-     *
-     * @return Project
      * @throws InvalidArgumentException
      */
     private function fixPhpExtensionGeneratorExpectation(Project $project): Project
@@ -84,26 +82,13 @@ class GeneratorController extends AbstractController
         $phpOptions = $project->getPhpOptions();
         $phpVersion = $phpOptions->getVersion();
 
-        switch ($phpVersion) {
-            case PhpOptions::PHP_VERSION_72:
-                $extensions = $phpOptions->getPhpExtensions72();
-                break;
-
-            case PhpOptions::PHP_VERSION_73:
-                $extensions = $phpOptions->getPhpExtensions73();
-                break;
-
-            case PhpOptions::PHP_VERSION_74:
-                $extensions = $phpOptions->getPhpExtensions74();
-                break;
-
-            case PhpOptions::PHP_VERSION_80:
-                $extensions = $phpOptions->getPhpExtensions80();
-                break;
-
-            default:
-                throw new InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion));
-        }
+        $extensions = match ($phpVersion) {
+            PhpOptions::PHP_VERSION_72 => $phpOptions->getPhpExtensions72(),
+            PhpOptions::PHP_VERSION_73 => $phpOptions->getPhpExtensions73(),
+            PhpOptions::PHP_VERSION_74 => $phpOptions->getPhpExtensions74(),
+            PhpOptions::PHP_VERSION_80 => $phpOptions->getPhpExtensions80(),
+            default => throw new InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion)),
+        };
 
         $project->getPhpOptions()->setPhpExtensions($extensions);
 

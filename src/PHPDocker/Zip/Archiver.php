@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,39 +26,23 @@ use ZipArchive;
  */
 class Archiver
 {
-    /**
-     * @var string
-     */
-    protected $baseFolder = '';
-
-    /**
-     * @var array
-     */
-    protected $files = [];
-
-    /**
-     * @var ZipArchive
-     */
-    private $zipfile;
+    protected string   $baseFolder = '';
+    protected array    $files      = [];
+    private ZipArchive $zipFile;
 
     /**
      * Initialise Zip File via the zip PECL extension into a temporary file on local storage.
      */
     public function __construct()
     {
-        $this->zipfile = new ZipArchive();
+        $this->zipFile = new ZipArchive();
 
         $zipFilename = tempnam(sys_get_temp_dir(), str_replace('\\', '_', self::class));
-        $this->zipfile->open(sprintf('%s.zip', $zipFilename), ZipArchive::CREATE);
+        $this->zipFile->open(sprintf('%s.zip', $zipFilename), ZipArchive::CREATE);
     }
 
     /**
      * Adds a file to the list.
-     *
-     * @param GeneratedFileInterface $generatedFile
-     * @param bool                   $ignorePrefix
-     *
-     * @return Archiver
      */
     public function addFile(GeneratedFileInterface $generatedFile, bool $ignorePrefix = false): self
     {
@@ -67,7 +51,7 @@ class Archiver
             $localName = $this->prefixFilename($localName);
         }
 
-        $this->zipfile->addFromString($localName, $generatedFile->getContents());
+        $this->zipFile->addFromString($localName, $generatedFile->getContents());
 
         return $this;
     }
@@ -75,16 +59,13 @@ class Archiver
     /**
      * Generate and return archive.
      *
-     * @param string $archiveFilename
-     *
-     * @return ArchiveInterface
      * @throws Exception\ArchiveNotCreatedException
      */
     public function generateArchive(string $archiveFilename): ArchiveInterface
     {
-        $filename = $this->zipfile->filename;
+        $filename = $this->zipFile->filename;
 
-        if ($this->zipfile->close() === false) {
+        if ($this->zipFile->close() === false) {
             throw new Exception\ArchiveNotCreatedException('Archive creation failed for an unknown reason');
         }
 
@@ -98,10 +79,6 @@ class Archiver
 
     /**
      * Sets the base folder all given files will be added into.
-     *
-     * @param string $baseFolder
-     *
-     * @return Archiver
      */
     public function setBaseFolder(string $baseFolder): self
     {
@@ -112,10 +89,6 @@ class Archiver
 
     /**
      * Prefixes a filename with the base folder.
-     *
-     * @param string $filename
-     *
-     * @return string
      */
     private function prefixFilename(string $filename): string
     {

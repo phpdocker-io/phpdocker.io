@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,29 +24,14 @@ use PHPDocker\Interfaces\ArchiveInterface;
  */
 class File implements ArchiveInterface
 {
-    /**
-     * @var string
-     */
-    protected $filename;
+    protected string $filename;
+    protected string $tmpFilename;
 
-    /**
-     * @var string
-     */
-    protected $tmpFilename;
-
-    /**
-     * @return string
-     */
     public function getFilename(): string
     {
         return $this->filename;
     }
 
-    /**
-     * @param string $filename
-     *
-     * @return File
-     */
     public function setFilename(string $filename): self
     {
         $this->filename = $filename;
@@ -54,19 +39,11 @@ class File implements ArchiveInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getTmpFilename(): string
     {
         return $this->tmpFilename;
     }
 
-    /**
-     * @param string $tmpFilename
-     *
-     * @return File
-     */
     public function setTmpFilename(string $tmpFilename): self
     {
         $this->tmpFilename = $tmpFilename;

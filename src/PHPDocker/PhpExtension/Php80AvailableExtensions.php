@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpArrayShapeAttributeCanBeAddedInspection */
+
 /**
  * Copyright 2019 Luis Alberto Pabón Flores
  *
@@ -21,10 +22,7 @@ namespace PHPDocker\PhpExtension;
 class Php80AvailableExtensions extends BaseAvailableExtensions
 {
     /**
-     * Must return an array of all available mandatory extensions, indexed by display name
-     * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
-     *
-     * @return array
+     * @inheritDoc
      */
     protected function getMandatoryExtensionsMap(): array
     {
@@ -39,10 +37,7 @@ class Php80AvailableExtensions extends BaseAvailableExtensions
     }
 
     /**
-     * Must return an array of all available optional extensions, indexed by display name
-     * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
-     *
-     * @return array
+     * @inheritDoc
      */
     protected function getOptionalExtensionsMap(): array
     {

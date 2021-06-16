@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
 namespace App\Form\Generator;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -28,15 +27,10 @@ abstract class AbstractGeneratorType extends AbstractType
 {
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
      */
     abstract protected function getDataClass(): string;
 
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class'        => $this->getDataClass(),
@@ -46,12 +40,10 @@ abstract class AbstractGeneratorType extends AbstractType
 
     /**
      * Override to set any additional validation groups.
-     *
-     * @return callable
      */
     protected function getValidationGroups(): callable
     {
-        return function (FormInterface $form) {
+        return static function () {
             return ['Default'];
         };
     }

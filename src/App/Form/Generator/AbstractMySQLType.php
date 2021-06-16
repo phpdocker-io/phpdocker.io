@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,46 +30,33 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
 {
     /**
      * Return the name of the field for 'hasWhatever'.
-     *
-     * @return string
      */
     abstract protected function getHasOptionFieldName(): string;
 
     /**
      * Return the label of the field 'hasWhatever'.
-     *
-     * @return string
      */
     abstract protected function getHasOptionLabel(): string;
 
     /**
      * Return the list of available versions for the version selector field.
-     *
-     * @return array
      */
     abstract protected function getVersionChoices(): array;
 
     /**
      * Return the method name (bool) on the entity to work out whether option is enabled.
-     *
-     * @return string
      */
     abstract protected function getHasOptionFunctionName(): string;
 
     /**
      * Return the name of the validation group for this form type.
-     *
-     * @return string
      */
     abstract protected function getValidationGroup(): string;
 
     /**
      * Builds the form definition.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add($this->getHasOptionFieldName(), CheckboxType::class, [
@@ -100,9 +87,6 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
             ]);
     }
 
-    /**
-     * @return callable
-     */
     protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {

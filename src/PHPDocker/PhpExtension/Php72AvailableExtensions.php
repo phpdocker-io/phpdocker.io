@@ -1,6 +1,7 @@
-<?php
+<?php /** @noinspection PhpArrayShapeAttributeCanBeAddedInspection */
+
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,16 +18,10 @@
 
 namespace PHPDocker\PhpExtension;
 
-/**
- * Extensions available on PHP 7.2.x.
- */
 class Php72AvailableExtensions extends BaseAvailableExtensions
 {
     /**
-     * Must return an array of all available mandatory extensions, indexed by display name
-     * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
-     *
-     * @return array
+     * @inheritDoc
      */
     protected function getMandatoryExtensionsMap(): array
     {
@@ -42,53 +37,50 @@ class Php72AvailableExtensions extends BaseAvailableExtensions
     }
 
     /**
-     * Must return an array of all available optional extensions, indexed by display name
-     * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
-     *
-     * @return array
+     * @inheritDoc
      */
     protected function getOptionalExtensionsMap(): array
     {
         return [
-            'Memcached'           => ['packages' => ['php7.2-memcached']],
-            'MySQL'               => ['packages' => ['php7.2-mysql']],
-            'PostgreSQL'          => ['packages' => ['php7.2-pgsql']],
-            'Redis'               => ['packages' => ['php7.2-redis']],
-            'SQLite3'             => ['packages' => ['php7.2-sqlite3']],
-            'XDebug'              => ['packages' => ['php7.2-xdebug']],
             'Bcmath'              => ['packages' => ['php7.2-bcmath']],
-            'bz2'                 => ['packages' => ['php7.2-bz2']],
+            'bzip2'               => ['packages' => ['php7.2-bz2']],
             'DBA'                 => ['packages' => ['php7.2-dba']],
             'Enchant'             => ['packages' => ['php7.2-enchant']],
             'GD'                  => ['packages' => ['php7.2-gd']],
-            'Gearman'             => ['packages' => ['php7.2-gearman']],
             'GMP'                 => ['packages' => ['php7.2-gmp']],
+            'Gearman'             => ['packages' => ['php7.2-gearman']],
             'igbinary'            => ['packages' => ['php7.2-igbinary']],
-            'ImageMagick'         => ['packages' => ['php7.2-imagick']],
             'IMAP'                => ['packages' => ['php7.2-imap']],
+            'ImageMagick'         => ['packages' => ['php7.2-imagick']],
             'Interbase'           => ['packages' => ['php7.2-interbase']],
             'Intl'                => ['packages' => ['php7.2-intl']],
             'LDAP'                => ['packages' => ['php7.2-ldap']],
-            'MongoDB'             => ['packages' => ['php7.2-mongodb']],
+            'Memcached'           => ['packages' => ['php7.2-memcached']],
             'MessagePack/msgpack' => ['packages' => ['php7.2-msgpack']],
+            'MongoDB'             => ['packages' => ['php7.2-mongodb']],
+            'MySQL'               => ['packages' => ['php7.2-mysql']],
             'ODBC'                => ['packages' => ['php7.2-odbc']],
-            'Phalcon3'            => ['packages' => ['php7.2-phalcon3']],
-            'Phalcon4'            => ['packages' => ['php7.2-phalcon4', 'php7.2-psr']],
             'PHPDBG'              => ['packages' => ['php7.2-phpdbg']],
             'PSpell'              => ['packages' => ['php7.2-pspell']],
+            'Phalcon3'            => ['packages' => ['php7.2-phalcon3']],
+            'Phalcon4'            => ['packages' => ['php7.2-phalcon4', 'php7.2-psr']],
+            'PostgreSQL'          => ['packages' => ['php7.2-pgsql']],
             'raphf'               => ['packages' => ['php7.2-raphf']],
             'Recode'              => ['packages' => ['php7.2-recode']],
+            'Redis'               => ['packages' => ['php7.2-redis']],
             'SNMP'                => ['packages' => ['php7.2-snmp']],
             'SOAP'                => ['packages' => ['php7.2-soap']],
+            'SQLite3'             => ['packages' => ['php7.2-sqlite3']],
             'SSH2'                => ['packages' => ['php7.2-ssh2']],
             'Sybase'              => ['packages' => ['php7.2-sybase']],
             'Tideways'            => ['packages' => ['php7.2-tideways']],
             'Tidy'                => ['packages' => ['php7.2-tidy']],
+            'XDebug'              => ['packages' => ['php7.2-xdebug']],
             'XMLRPC-EPI'          => ['packages' => ['php7.2-xmlrpc']],
             'XSL'                 => ['packages' => ['php7.2-xsl']],
             'Xhprof'              => ['packages' => ['php7.2-xhprof']],
-            'YAML'                => ['packages' => ['php7.1-yaml']],
-            'ZeroMQ'              => ['packages' => ['php7.1-zmq']],
+            'YAML'                => ['packages' => ['php7.2-yaml']],
+            'ZeroMQ'              => ['packages' => ['php7.2-zmq']],
         ];
     }
 }
