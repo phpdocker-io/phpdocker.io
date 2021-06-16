@@ -25,11 +25,9 @@ use PHPDocker\Interfaces\SlugifierInterface;
  */
 class Slugifier implements SlugifierInterface
 {
-    protected Slugify $slugifier;
 
-    public function __construct(Slugify $slugifier)
+    public function __construct(protected Slugify $slugifier)
     {
-        $this->slugifier = $slugifier;
     }
 
     /**

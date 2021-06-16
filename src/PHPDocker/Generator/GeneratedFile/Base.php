@@ -24,14 +24,8 @@ use PHPDocker\Interfaces\GeneratedFileInterface;
  */
 abstract class Base implements GeneratedFileInterface
 {
-    protected string $contents;
-
-    /**
-     * You MUST provide the file contents on the constructor.
-     */
-    public function __construct(string $contents)
+    public function __construct(protected string $contents)
     {
-        $this->contents = $contents;
     }
 
     public function getContents(): string

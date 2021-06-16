@@ -31,17 +31,12 @@ class Generator
 {
     private const BASE_ZIP_FOLDER = 'phpdocker';
 
-    protected Archiver      $zipArchiver;
-    protected Environment   $twig;
-    protected MarkdownExtra $markdownExtra;
-
-    public function __construct(Archiver $archiver, Environment $twig, MarkdownExtra $markdownExtra)
-    {
-        $this->zipArchiver   = $archiver;
-        $this->twig          = $twig;
-        $this->markdownExtra = $markdownExtra;
-
-        $this->zipArchiver->setBaseFolder(self::BASE_ZIP_FOLDER);
+    public function __construct(
+        protected Archiver $archiver,
+        protected Environment $twig,
+        protected MarkdownExtra $markdownExtra
+    ) {
+        $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
 
     /**
@@ -50,7 +45,7 @@ class Generator
     public function generate(Project $project): ArchiveInterface
     {
         $this
-            ->zipArchiver
+            ->archiver
             ->addFile($this->getReadmeMd($project))
             ->addFile($this->getReadmeHtml($project))
             ->addFile($this->getPhpDockerConf($project))
@@ -58,7 +53,7 @@ class Generator
             ->addFile($this->getNginxConf($project))
             ->addFile($this->getDockerCompose($project), true);
 
-        return $this->zipArchiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
+        return $this->archiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
     }
 
     /**

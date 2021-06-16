@@ -103,21 +103,8 @@ class Project
      */
     protected $projectNameSlug;
 
-    /**
-     * @var SlugifierInterface
-     */
-    private $slugifier;
-
-    /**
-     * Initialise project
-     *
-     * @param SlugifierInterface $slugifier
-     */
-    public function __construct(SlugifierInterface $slugifier)
+    public function __construct(protected SlugifierInterface $slugifier)
     {
-        // Handle dependency injection
-        $this->slugifier = $slugifier;
-
         // Initialise project properties
         $this->applicationOptions   = new ServiceOptions\Application();
         $this->nginxOptions         = new ServiceOptions\Nginx();
