@@ -30,11 +30,8 @@ class ProjectType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
@@ -71,8 +68,6 @@ class ProjectType extends AbstractGeneratorType
 
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
      */
     protected function getDataClass(): string
     {

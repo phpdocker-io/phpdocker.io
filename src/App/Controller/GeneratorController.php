@@ -36,11 +36,12 @@ class GeneratorController extends AbstractController
 {
     /**
      * Form and form processor for creating a project.
-     *
-     * @return BinaryFileResponse|Response
      */
-    public function create(Request $request, SlugifierInterface $slugifier, Generator $generator): Response
-    {
+    public function create(
+        Request $request,
+        SlugifierInterface $slugifier,
+        Generator $generator
+    ): BinaryFileResponse|Response {
         // Set up form
         $project = new Project($slugifier);
         $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
@@ -73,9 +74,6 @@ class GeneratorController extends AbstractController
      * Add php extensions to project based on version on the property the generator expects
      * as phpExtensions56/70 do not exist from its point of view.
      *
-     * @param Project $project
-     *
-     * @return Project
      * @throws InvalidArgumentException
      */
     private function fixPhpExtensionGeneratorExpectation(Project $project): Project

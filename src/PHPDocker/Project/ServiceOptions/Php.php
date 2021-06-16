@@ -61,19 +61,12 @@ class Php extends Base
         $this->setEnabled(true);
     }
 
-    /**
-     * @return array
-     */
+
     public function getExtensions(): array
     {
         return $this->extensions;
     }
 
-    /**
-     * @param array $phpExtensions
-     *
-     * @return Php
-     */
     public function setPhpExtensions(array $phpExtensions): self
     {
         foreach ($phpExtensions as $phpExtension) {
@@ -85,10 +78,6 @@ class Php extends Base
 
     /**
      * Adds an extension given the name only.
-     *
-     * @param string $extensionName
-     *
-     * @return Php
      */
     public function addExtensionByName(string $extensionName): self
     {
@@ -103,11 +92,6 @@ class Php extends Base
         return $this;
     }
 
-    /**
-     * @param PhpExtension $extension
-     *
-     * @return Php
-     */
     public function addExtension(PhpExtension $extension): self
     {
         $this->extensions[] = $extension;
@@ -115,19 +99,11 @@ class Php extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getVersion()
+    public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * @param string $version
-     *
-     * @return Php
-     */
     public function setVersion(string $version): self
     {
         if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
@@ -141,27 +117,17 @@ class Php extends Base
 
     /**
      * Returns an array of supported PHP versions.
-     *
-     * @return array
      */
     public static function getSupportedVersions(): array
     {
         return self::SUPPORTED_VERSIONS;
     }
 
-    /**
-     * @return bool
-     */
     public function hasGit(): bool
     {
         return $this->hasGit;
     }
 
-    /**
-     * @param bool $hasGit
-     *
-     * @return self
-     */
     public function setHasGit(bool $hasGit): self
     {
         $this->hasGit = $hasGit;

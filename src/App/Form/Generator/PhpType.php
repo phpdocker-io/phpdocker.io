@@ -34,11 +34,8 @@ class PhpType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('hasGit', CheckboxType::class, [
@@ -79,10 +76,8 @@ class PhpType extends AbstractGeneratorType
 
     /**
      * Returns all available extensions as an array we can feed to ChoiceType.
-     *
-     * @return array
      */
-    private function getExtensionChoices($rawChoices)
+    private function getExtensionChoices($rawChoices): array
     {
         $choices = [];
         foreach ($rawChoices as $extension) {
@@ -95,10 +90,8 @@ class PhpType extends AbstractGeneratorType
 
     /**
      * Gets ChoiceType choices for available PHP versions.
-     *
-     * @return array
      */
-    private function getVersionChoices()
+    private function getVersionChoices(): array
     {
         $versions = [];
         foreach (PhpOptions::getSupportedVersions() as $version) {
@@ -110,8 +103,6 @@ class PhpType extends AbstractGeneratorType
 
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
      */
     protected function getDataClass(): string
     {

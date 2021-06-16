@@ -63,10 +63,6 @@ class Generator
 
     /**
      * Generates the Readme file in Markdown format.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\ReadmeMd
      */
     private function getReadmeMd(Project $project): GeneratedFile\ReadmeMd
     {
@@ -81,10 +77,6 @@ class Generator
 
     /**
      * Returns the HTML readme, converted off Markdown.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\ReadmeHtml
      */
     private function getReadmeHtml(Project $project): GeneratedFile\ReadmeHtml
     {
@@ -100,10 +92,6 @@ class Generator
 
     /**
      * Generates the docker-compose file, and returns as a string of its contents.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\DockerCompose
      */
     private function getDockerCompose(Project $project): GeneratedFile\DockerCompose
     {
@@ -125,10 +113,6 @@ class Generator
 
     /**
      * Returns the dockerfile for php-fpm.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\PhpDockerConf
      */
     private function getPhpDockerConf(Project $project): GeneratedFile\PhpDockerConf
     {
@@ -153,10 +137,6 @@ class Generator
 
     /**
      * Returns the contents of php.ini
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\PhpIniOverrides
      */
     private function getPhpIniOverrides(Project $project): GeneratedFile\PhpIniOverrides
     {
@@ -167,10 +147,6 @@ class Generator
 
     /**
      * Generates and returns the nginx.conf file.
-     *
-     * @param Project $project
-     *
-     * @return GeneratedFile\NginxConf
      */
     private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {

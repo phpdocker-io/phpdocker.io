@@ -125,8 +125,6 @@ class Project
 
     /**
      * Returns a slugged-up version of the project name.
-     *
-     * @return string
      */
     public function getProjectNameSlug(): string
     {
@@ -137,19 +135,11 @@ class Project
         return $this->projectNameSlug;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return Project
-     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -157,19 +147,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getBasePort(): ?int
     {
         return $this->basePort;
     }
 
-    /**
-     * @param int $basePort
-     *
-     * @return Project
-     */
     public function setBasePort(int $basePort): self
     {
         $this->basePort = $basePort;
@@ -177,19 +159,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return ServiceOptions\Application
-     */
     public function getApplicationOptions(): ServiceOptions\Application
     {
         return $this->applicationOptions;
     }
 
-    /**
-     * @param ServiceOptions\Application $applicationOptions
-     *
-     * @return Project
-     */
     public function setApplicationOptions(ServiceOptions\Application $applicationOptions): self
     {
         $this->applicationOptions = $applicationOptions;
@@ -197,27 +171,16 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function hasNginx(): bool
     {
         return $this->nginxOptions->isEnabled();
     }
 
-    /**
-     * @return ServiceOptions\Nginx
-     */
     public function getNginxOptions(): ServiceOptions\Nginx
     {
         return $this->nginxOptions;
     }
 
-    /**
-     * @param ServiceOptions\Nginx $nginxOptions
-     *
-     * @return Project
-     */
     public function setNginxOptions(ServiceOptions\Nginx $nginxOptions): self
     {
         $this->nginxOptions = $nginxOptions;
@@ -225,27 +188,16 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function hasMysql(): bool
     {
         return $this->mysqlOptions->isEnabled();
     }
 
-    /**
-     * @return ServiceOptions\MySQL
-     */
     public function getMysqlOptions(): ServiceOptions\MySQL
     {
         return $this->mysqlOptions;
     }
 
-    /**
-     * @param ServiceOptions\MySQL $mysqlOptions
-     *
-     * @return Project
-     */
     public function setMysqlOptions(ServiceOptions\MySQL $mysqlOptions): self
     {
         $this->mysqlOptions = $mysqlOptions;
@@ -253,27 +205,16 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function hasMariadb(): bool
+     public function hasMariadb(): bool
     {
         return $this->mariadbOptions->isEnabled();
     }
 
-    /**
-     * @return ServiceOptions\MariaDB
-     */
     public function getMariadbOptions(): ServiceOptions\MariaDB
     {
         return $this->mariadbOptions;
     }
 
-    /**
-     * @param ServiceOptions\MariaDB $mariadbOptions
-     *
-     * @return Project
-     */
     public function setMariadbOptions(ServiceOptions\MariaDB $mariadbOptions): self
     {
         $this->mariadbOptions = $mariadbOptions;
@@ -281,27 +222,16 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function hasPostgres(): bool
     {
         return $this->postgresOptions->isEnabled();
     }
 
-    /**
-     * @return ServiceOptions\Postgres
-     */
     public function getPostgresOptions(): ServiceOptions\Postgres
     {
         return $this->postgresOptions;
     }
 
-    /**
-     * @param ServiceOptions\Postgres $postgresOptions
-     *
-     * @return Project
-     */
     public function setPostgresOptions(ServiceOptions\Postgres $postgresOptions): self
     {
         $this->postgresOptions = $postgresOptions;
@@ -309,19 +239,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return ServiceOptions\Php
-     */
     public function getPhpOptions(): ServiceOptions\Php
     {
         return $this->phpOptions;
     }
 
-    /**
-     * @param ServiceOptions\Php $phpOptions
-     *
-     * @return Project
-     */
     public function setPhpOptions(ServiceOptions\Php $phpOptions): self
     {
         $this->phpOptions = $phpOptions;
@@ -329,19 +251,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return ServiceOptions\Memcached
-     */
     public function getMemcachedOptions(): ServiceOptions\Memcached
     {
         return $this->memcachedOptions;
     }
 
-    /**
-     * @param ServiceOptions\Memcached $memcachedOptions
-     *
-     * @return Project
-     */
     public function setMemcachedOptions(ServiceOptions\Memcached $memcachedOptions): self
     {
         $this->memcachedOptions = $memcachedOptions;
@@ -349,19 +263,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function hasMemcached(): bool
     {
         return $this->memcachedOptions->isEnabled();
     }
 
-    /**
-     * @param bool $hasMemcached
-     *
-     * @return Project
-     */
     public function setHasMemcached(bool $hasMemcached): self
     {
         $this->memcachedOptions->setEnabled($hasMemcached);
@@ -369,19 +275,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return ServiceOptions\Redis
-     */
     public function getRedisOptions(): ServiceOptions\Redis
     {
         return $this->redisOptions;
     }
 
-    /**
-     * @param ServiceOptions\Redis $redisOptions
-     *
-     * @return Project
-     */
     public function setRedisOptions(ServiceOptions\Redis $redisOptions): self
     {
         $this->redisOptions = $redisOptions;
@@ -389,19 +287,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function hasRedis(): bool
     {
         return $this->redisOptions->isEnabled();
     }
 
-    /**
-     * @param bool $hasRedis
-     *
-     * @return Project
-     */
     public function setHasRedis(bool $hasRedis): self
     {
         $this->redisOptions->setEnabled($hasRedis);
@@ -409,19 +299,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return ServiceOptions\Mailhog
-     */
     public function getMailhogOptions(): ServiceOptions\Mailhog
     {
         return $this->mailhogOptions;
     }
 
-    /**
-     * @param ServiceOptions\Mailhog $mailhogOptions
-     *
-     * @return Project
-     */
     public function setMailhogOptions(ServiceOptions\Mailhog $mailhogOptions): self
     {
         $this->mailhogOptions = $mailhogOptions;
@@ -429,19 +311,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return boolean
-     */
     public function hasMailhog(): bool
     {
         return $this->mailhogOptions->isEnabled();
     }
 
-    /**
-     * @param boolean $hasMailhog
-     *
-     * @return Project
-     */
     public function setHasMailhog(bool $hasMailhog): self
     {
         $this->mailhogOptions->setEnabled($hasMailhog);
@@ -450,7 +324,6 @@ class Project
     }
 
     /**
-     * @return SlugifierInterface
      * @throws Exception\MissingDependencyException
      */
     public function getSlugifier(): SlugifierInterface
@@ -462,19 +335,11 @@ class Project
         return $this->slugifier;
     }
 
-    /**
-     * @return ServiceOptions\Elasticsearch
-     */
     public function getElasticsearchOptions(): ServiceOptions\Elasticsearch
     {
         return $this->elasticsearchOptions;
     }
 
-    /**
-     * @param ServiceOptions\Elasticsearch $elasticsearchOptions
-     *
-     * @return Project
-     */
     public function setElasticsearchOptions(ServiceOptions\Elasticsearch $elasticsearchOptions): self
     {
         $this->elasticsearchOptions = $elasticsearchOptions;
@@ -482,19 +347,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function hasElasticsearch(): bool
     {
         return $this->elasticsearchOptions->isEnabled();
     }
 
-    /**
-     * @param bool $hasElasticsearch
-     *
-     * @return Project
-     */
     public function setHasElasticsearch(bool $hasElasticsearch): self
     {
         $this->elasticsearchOptions->setEnabled($hasElasticsearch);
@@ -502,19 +359,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return ServiceOptions\Clickhouse
-     */
     public function getClickhouseOptions(): ServiceOptions\Clickhouse
     {
         return $this->clickhouseOptions;
     }
 
-    /**
-     * @param ServiceOptions\Clickhouse $clickhouseOptions
-     *
-     * @return Project
-     */
     public function setClickhouseOptions(ServiceOptions\Clickhouse $clickhouseOptions): self
     {
         $this->clickhouseOptions = $clickhouseOptions;
@@ -522,19 +371,11 @@ class Project
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function hasClickhouse(): bool
     {
         return $this->clickhouseOptions->isEnabled();
     }
 
-    /**
-     * @param bool $hasClickhouse
-     *
-     * @return Project
-     */
     public function setHasClickhouse(bool $hasClickhouse): self
     {
         $this->clickhouseOptions->setEnabled($hasClickhouse);

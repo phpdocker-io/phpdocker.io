@@ -65,11 +65,8 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
 
     /**
      * Builds the form definition.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add($this->getHasOptionFieldName(), CheckboxType::class, [
@@ -100,9 +97,6 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
             ]);
     }
 
-    /**
-     * @return callable
-     */
     protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {

@@ -29,11 +29,8 @@ class ApplicationType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('applicationType', ChoiceType::class, [

@@ -28,15 +28,10 @@ abstract class AbstractGeneratorType extends AbstractType
 {
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
      */
     abstract protected function getDataClass(): string;
 
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class'        => $this->getDataClass(),
@@ -51,7 +46,7 @@ abstract class AbstractGeneratorType extends AbstractType
      */
     protected function getValidationGroups(): callable
     {
-        return function (FormInterface $form) {
+        return static function () {
             return ['Default'];
         };
     }

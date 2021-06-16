@@ -32,11 +32,8 @@ class PostgresType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
-     *
-     * @param FormBuilderInterface $builder
-     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('hasPostgres', CheckboxType::class, [
@@ -78,7 +75,7 @@ class PostgresType extends AbstractGeneratorType
      */
     protected function getValidationGroups(): callable
     {
-        return function (FormInterface $form) {
+        return static function (FormInterface $form) {
             /** @var PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];

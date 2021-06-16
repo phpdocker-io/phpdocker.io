@@ -48,19 +48,11 @@ class Application
      */
     protected $uploadSize = 100;
 
-    /**
-     * @return string
-     */
     public function getApplicationType(): ?string
     {
         return $this->applicationType;
     }
 
-    /**
-     * @param string $applicationType
-     *
-     * @return Application
-     */
     public function setApplicationType(string $applicationType): self
     {
         if (array_key_exists($applicationType, self::ALLOWED_APPLICATION_TYPES) === false) {
@@ -72,29 +64,16 @@ class Application
         return $this;
     }
 
-    /**
-     * Returns all supported application types with their descriptions.
-     *
-     * @return array
-     */
     public static function getChoices(): array
     {
         return self::ALLOWED_APPLICATION_TYPES;
     }
 
-    /**
-     * @return int
-     */
     public function getUploadSize(): ?int
     {
         return $this->uploadSize;
     }
 
-    /**
-     * @param int $uploadSize
-     *
-     * @return Application
-     */
     public function setUploadSize(int $uploadSize): self
     {
         $this->uploadSize = $uploadSize;

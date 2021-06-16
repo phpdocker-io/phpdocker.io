@@ -99,19 +99,11 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getRootUser()
+    public function getRootUser(): string
     {
         return $this->rootUser;
     }
 
-    /**
-     * @param string $rootUser
-     *
-     * @return Postgres
-     */
     public function setRootUser(string $rootUser): self
     {
         $this->rootUser = $rootUser;
@@ -119,19 +111,11 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getRootPassword()
+    public function getRootPassword(): string
     {
         return $this->rootPassword;
     }
 
-    /**
-     * @param string $rootPassword
-     *
-     * @return Postgres
-     */
     public function setRootPassword(string $rootPassword): self
     {
         $this->rootPassword = $rootPassword;
@@ -139,19 +123,11 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getDatabaseName()
+    public function getDatabaseName(): string
     {
         return $this->databaseName;
     }
 
-    /**
-     * @param string $databaseName
-     *
-     * @return Postgres
-     */
     public function setDatabaseName(string $databaseName): self
     {
         $this->databaseName = $databaseName;
@@ -159,11 +135,6 @@ class Postgres extends Base
         return $this;
     }
 
-    /**
-     * Returns all supported Postgres versions with their descriptions.
-     *
-     * @return array
-     */
     public static function getChoices(): array
     {
         return self::ALLOWED_VERSIONS;
