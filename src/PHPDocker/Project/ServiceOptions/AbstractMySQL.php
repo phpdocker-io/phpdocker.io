@@ -55,8 +55,6 @@ abstract class AbstractMySQL extends Base
      *    'version' => 'version_name',
      *    ...
      * ]
-     *
-     * @return array
      */
     abstract public static function getChoices(): array;
 

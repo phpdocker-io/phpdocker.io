@@ -22,11 +22,6 @@ namespace PHPDocker\Project\ServiceOptions;
  */
 class Memcached extends Base
 {
-    /**
-     * Return the suffix to be used on hostname construction.
-     *
-     * @return string
-     */
     public function getContainerNameSuffix(): string
     {
         return 'memcached';

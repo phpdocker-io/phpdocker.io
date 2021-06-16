@@ -75,19 +75,11 @@ class Postgres extends Base
      */
     protected $databaseName;
 
-    /**
-     * @return string
-     */
     public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * @param string $version
-     *
-     * @return Postgres
-     */
     public function setVersion(string $version): self
     {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {

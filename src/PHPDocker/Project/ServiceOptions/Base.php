@@ -27,19 +27,11 @@ abstract class Base
      */
     protected $enabled = false;
 
-    /**
-     * @return boolean
-     */
     public function isEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @param boolean $enabled
-     *
-     * @return self
-     */
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;

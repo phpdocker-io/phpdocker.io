@@ -37,9 +37,6 @@ class MySQL extends AbstractMySQL
         self::VERSION_55 => '5.5.x',
     ];
 
-    /**
-     * Set default version.
-     */
     public function __construct()
     {
         $this->version = self::VERSION_80;

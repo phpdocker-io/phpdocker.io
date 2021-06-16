@@ -30,36 +30,26 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
 {
     /**
      * Return the name of the field for 'hasWhatever'.
-     *
-     * @return string
      */
     abstract protected function getHasOptionFieldName(): string;
 
     /**
      * Return the label of the field 'hasWhatever'.
-     *
-     * @return string
      */
     abstract protected function getHasOptionLabel(): string;
 
     /**
      * Return the list of available versions for the version selector field.
-     *
-     * @return array
      */
     abstract protected function getVersionChoices(): array;
 
     /**
      * Return the method name (bool) on the entity to work out whether option is enabled.
-     *
-     * @return string
      */
     abstract protected function getHasOptionFunctionName(): string;
 
     /**
      * Return the name of the validation group for this form type.
-     *
-     * @return string
      */
     abstract protected function getValidationGroup(): string;
 

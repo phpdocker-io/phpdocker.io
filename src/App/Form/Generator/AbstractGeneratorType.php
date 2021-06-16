@@ -40,8 +40,6 @@ abstract class AbstractGeneratorType extends AbstractType
 
     /**
      * Override to set any additional validation groups.
-     *
-     * @return callable
      */
     protected function getValidationGroups(): callable
     {

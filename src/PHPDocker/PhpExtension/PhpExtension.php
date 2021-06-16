@@ -30,7 +30,7 @@ class PhpExtension
         return $this->name;
     }
 
-    public function setName(string $name): PhpExtension
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -42,7 +42,7 @@ class PhpExtension
         return $this->packages;
     }
 
-    public function addPackage(string $package): PhpExtension
+    public function addPackage(string $package): self
     {
         $this->packages[] = $package;
 

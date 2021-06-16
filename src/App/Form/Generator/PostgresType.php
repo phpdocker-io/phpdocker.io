@@ -62,17 +62,12 @@ class PostgresType extends AbstractGeneratorType
 
     /**
      * This should return a string with the FQDN of the entity class associated to this form.
-     *
-     * @return string
      */
     protected function getDataClass(): string
     {
         return PostgresOptions::class;
     }
 
-    /**
-     * @return callable
-     */
     protected function getValidationGroups(): callable
     {
         return static function (FormInterface $form) {
