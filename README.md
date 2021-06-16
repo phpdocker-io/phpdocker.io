@@ -24,20 +24,21 @@ Running the project
 
 Project is given with a [PHPDocker.io](http://phpdocker.io) generated environment. 
 
-I would recommend you install in your host php cli 7.1+, bower and composer and run the usual steps manually, but it's not necessary - the [`./prepare-dev.sh`](prepare-dev.sh) script will set up the app (bower install, composer install, etc) through docker and docker-compose commands.
+Recommended installation is running a `make init` script: this will set up the app (bower install, composer install, etc) through docker and docker-compose commands.
 
   * Clone
   * Run `make init` - this will:
-     * populate default dev config
-     * composer and bower install
      * clean up caches
-     * ensure web assets are available
-     * load up the database schema (this is just for the CMS side of the website, it has no bearing over the generator)
-     * start up the environment
-     * create a hosts entry (`phpdocker.local`)
      * provision a cert using `mkcert`
+     * create a hosts entry (`phpdocker.local`)
+     * composer and bower install
+     * ensure web assets are available    
+     * start up the environment
+
   * You can then head off to the [/generator](https://phpdocker.local:10000/generator) route.
 
-This is an initial fail-safe set up and not always you need to run it, after it's done once you'll just need to do a good old `docker-compose up -d`. More specific information on [phpdocker/README.md](phpdocker/README.md).
+This is an initial fail-safe set up and not always you need to run it, after it's done once you'll just need to do a good old `docker-compose up -d`.
+
+Running the app on **Windows** is possible using Wsl2 and Docker. More info here: [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). App will be available at [https://localhost:10000/generator](https://phpdocker.local:10000/generator) route.
 
 **Note:** you'll notice a `console` script at the root of the project. It does some voodoo to run `bin/console` within the container.
