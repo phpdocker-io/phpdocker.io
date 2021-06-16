@@ -22,5 +22,5 @@ services:
     working_dir: /application
     volumes:
       - .:/application
-      - ./infrastructure/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      - ./infrastructure/php-fpm/php-ini-overrides.ini:/etc/php/8.0/fpm/conf.d/99-overrides.ini
       - ~/.cache/composer:/root/.composer/cache
