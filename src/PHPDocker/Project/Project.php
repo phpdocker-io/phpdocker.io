@@ -201,7 +201,7 @@ class Project
         return $this;
     }
 
-     public function hasMariadb(): bool
+    public function hasMariadb(): bool
     {
         return $this->mariadbOptions->isEnabled();
     }

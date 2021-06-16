@@ -61,7 +61,6 @@ class Php extends Base
         $this->setEnabled(true);
     }
 
-
     public function getExtensions(): array
     {
         return $this->extensions;
