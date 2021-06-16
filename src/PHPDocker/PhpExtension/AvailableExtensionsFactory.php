@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,12 +41,8 @@ class AvailableExtensionsFactory
 
     /**
      * Returns an instance to the appropriate class for extensions for a given php version.
-     *
-     * @param string $phpVersion
-     *
-     * @return mixed
      */
-    public static function create(string $phpVersion)
+    public static function create(string $phpVersion): BaseAvailableExtensions
     {
         if (array_key_exists($phpVersion, self::SUPPORTED_VERSIONS) === false) {
             throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $phpVersion));

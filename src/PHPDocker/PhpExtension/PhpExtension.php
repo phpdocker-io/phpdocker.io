@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,29 +22,14 @@ namespace PHPDocker\PhpExtension;
  */
 class PhpExtension
 {
-    /**
-     * @var string
-     */
-    protected $name;
+    protected string $name;
+    protected array  $packages = [];
 
-    /**
-     * @var array
-     */
-    protected $packages = [];
-
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return PhpExtension
-     */
     public function setName(string $name): PhpExtension
     {
         $this->name = $name;
@@ -52,19 +37,11 @@ class PhpExtension
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function getPackages(): array
     {
         return $this->packages;
     }
 
-    /**
-     * @param string $package
-     *
-     * @return PhpExtension
-     */
     public function addPackage(string $package): PhpExtension
     {
         $this->packages[] = $package;

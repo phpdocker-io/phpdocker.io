@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,16 +25,8 @@ use PHPDocker\Interfaces\SlugifierInterface;
  */
 class Slugifier implements SlugifierInterface
 {
-    /**
-     * @var Slugify
-     */
-    protected $slugifier;
+    protected Slugify $slugifier;
 
-    /**
-     * Ensure we receive the slugifier.
-     *
-     * @param Slugify $slugifier
-     */
     public function __construct(Slugify $slugifier)
     {
         $this->slugifier = $slugifier;
@@ -42,10 +34,6 @@ class Slugifier implements SlugifierInterface
 
     /**
      * Takes a string and returns a slugified version of it.
-     *
-     * @param string $string
-     *
-     * @return string
      */
     public function slugify(string $string): string
     {

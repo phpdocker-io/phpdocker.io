@@ -1,6 +1,15 @@
 <?php
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+/** @noinspection PhpPureAttributeCanBeAddedInspection */
+
 /**
- * Copyright 2016 Luis Alberto Pabon Flores
+ * Copyright 2016 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -329,7 +338,7 @@ class Project
     public function getSlugifier(): SlugifierInterface
     {
         if ($this->slugifier === null) {
-            throw new Exception\MissingDependencyException('Slugifier hasn\'t been initialised');
+            throw new Exception\MissingDependencyException("Slugifier hasn't been initialised");
         }
 
         return $this->slugifier;

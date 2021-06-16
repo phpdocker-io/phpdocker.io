@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpArrayShapeAttributeCanBeAddedInspection */
+
 /**
  * Copyright 2019 Luis Alberto Pabón Flores
  *
