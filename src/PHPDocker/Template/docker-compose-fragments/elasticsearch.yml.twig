@@ -1,5 +1,4 @@
 {% if project.hasElasticsearch() %}
     elasticsearch:
       image: elasticsearch:{{ elasticsearch.getVersion() }}
-      container_name: {{ slug }}-elasticsearch
 {% endif %}

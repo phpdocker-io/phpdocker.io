@@ -93,7 +93,6 @@ class Generator
         $data = [
             'phpVersion'      => $project->getPhpOptions()->getVersion(),
             'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
-            'slug'            => $project->getProjectNameSlug(),
             'project'         => $project,
             'hasClickhouse'   => $project->hasClickhouse(),
         ];
@@ -147,7 +146,6 @@ class Generator
     {
         $data = [
             'projectName'     => $project->getName(),
-            'projectNameSlug' => $project->getProjectNameSlug(),
             'applicationType' => $project->getApplicationOptions()->getApplicationType(),
             'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
         ];
