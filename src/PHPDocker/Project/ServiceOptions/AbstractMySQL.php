@@ -26,30 +26,11 @@ use InvalidArgumentException;
  */
 abstract class AbstractMySQL extends Base
 {
-    /**
-     * @var string
-     */
-    protected $version;
-
-    /**
-     * @var string
-     */
-    protected $rootPassword;
-
-    /**
-     * @var string
-     */
-    protected $databaseName;
-
-    /**
-     * @var string
-     */
-    protected $username;
-
-    /**
-     * @var string
-     */
-    protected $password;
+    protected string $version;
+    protected ?string $rootPassword;
+    protected ?string $databaseName;
+    protected ?string $username;
+    protected ?string $password;
 
     /**
      * Return an array of available versions, like so:
