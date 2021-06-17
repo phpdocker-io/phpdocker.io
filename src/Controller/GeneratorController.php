@@ -62,7 +62,7 @@ class GeneratorController extends AbstractController
 //                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
 //                ->deleteFileAfterSend(true);
 
-            $response = new Response(content: $form->getData());
+            $response = new Response(content: json_encode($form->getData()));
 
             return $response;
         }
