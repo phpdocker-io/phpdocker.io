@@ -3,6 +3,9 @@
 ###############################################################################
 version: "3.4"
 services:
+  redis:
+    image: redis:alpine
+
   webserver:
     image: pagespeed/nginx-pagespeed:stable
     working_dir: /application

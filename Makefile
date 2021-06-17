@@ -21,10 +21,13 @@ echo-build-tag:
 	echo $(BUILD_TAG)
 
 start:
-	docker-compose up -d
+	docker-compose up -d --scale php-fpm=2
 
 stop:
 	docker-compose stop
+
+shell:
+	docker-compose exec php-fpm bash
 
 init: clean install-mkcert create-certs clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 

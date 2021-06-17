@@ -31,7 +31,8 @@ metadata:
   name: phpdocker-io-old
   namespace: phpdocker-io-old
 data:
-  dummy: "yes"
+  redis_host: "redis"
+  redis_port: "6379"
 
 ---
 
@@ -82,52 +83,58 @@ spec:
                   name: phpdocker-io-old
                   key: google_analytics
 
-            - name: RECAPTCHA_SITE_KEY
+            - name: REDIS_HOST
               valueFrom:
-                secretKeyRef:
+                configMapKeyRef:
                   name: phpdocker-io-old
-                  key: recaptcha.site_key
+                  key: redis_host
+
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: phpdocker-io-old
+                  key: redis_port
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: memcached-phpdocker-io-old
+  name: redis
   namespace: phpdocker-io-old
   labels:
-    app: memcached-phpdocker-io-old
+    app: redis
 spec:
   ports:
-    - port: 11211
-      targetPort: 11211
+    - port: 6379
+      targetPort: 6379
       protocol: TCP
   selector:
-    app: memcached-phpdocker-io-old
+    app: redis
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: memcached-phpdocker-io-old
+  name: redis
   namespace: phpdocker-io-old
   labels:
-    app: memcached-phpdocker-io-old
+    app: redis
 spec:
   replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: memcached-phpdocker-io-old
+      app: redis
   template:
     metadata:
       labels:
-        app: memcached-phpdocker-io-old
+        app: redis
     spec:
       nodeSelector:
         preemptible: "false"
       containers:
-        - image: memcached:alpine
-          name: memcached
+        - image: redis:alpine
+          name: redis
