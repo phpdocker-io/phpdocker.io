@@ -18,7 +18,6 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\Project;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -28,6 +27,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Valid;
 
 /**
  * Project forms.
@@ -83,19 +83,29 @@ class ProjectType extends AbstractGeneratorType
                 'empty_data'  => false,
                 'constraints' => new Type(type: 'bool'),
             ])
-            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
-            ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
-            ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
-            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
-            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
-            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return Project::class;
+            ->add('phpOptions', PhpType::class, [
+                'label'       => 'PHP Options',
+                'constraints' => new Valid(),
+            ])
+            ->add('mysqlOptions', MySQLType::class, [
+                'label'       => 'MySQL',
+                'constraints' => new Valid(),
+            ])
+            ->add('mariadbOptions', MariaDBType::class, [
+                'label'       => 'MariaDB',
+                'constraints' => new Valid(),
+            ])
+            ->add('postgresOptions', PostgresType::class, [
+                'label'       => 'Postgres',
+                'constraints' => new Valid(),
+            ])
+            ->add('applicationOptions', ApplicationType::class, [
+                'label'       => 'Application options',
+                'constraints' => new Valid(),
+            ])
+            ->add('elasticsearchOptions', ElasticsearchType::class, [
+                'label'       => 'Elasticsearch',
+                'constraints' => new Valid(),
+            ]);
     }
 }

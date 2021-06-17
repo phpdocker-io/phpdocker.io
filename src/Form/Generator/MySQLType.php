@@ -19,7 +19,6 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\MySQLOptions;
 use App\PHPDocker\Project\ServiceOptions\MySQL;
 
 /**
@@ -27,14 +26,6 @@ use App\PHPDocker\Project\ServiceOptions\MySQL;
  */
 class MySQLType extends AbstractMySQLType
 {
-    /**
-     * @inheritdoc
-     */
-    protected function getDataClass(): string
-    {
-        return MySQLOptions::class;
-    }
-
     /**
      * @inheritdoc
      */

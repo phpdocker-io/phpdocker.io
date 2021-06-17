@@ -27,6 +27,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Class ElasticsearchType
@@ -42,8 +43,9 @@ class ElasticsearchType extends AbstractGeneratorType
     {
         $builder
             ->add('hasElasticsearch', CheckboxType::class, [
-                'label'    => 'Enable Elasticsearch',
-                'required' => false,
+                'label'       => 'Enable Elasticsearch',
+                'required'    => false,
+                'constraints' => new Type(type: 'bool'),
             ])
             ->add('version', ChoiceType::class, [
                 'choices'     => array_flip(Elasticsearch::getChoices()),
@@ -56,14 +58,6 @@ class ElasticsearchType extends AbstractGeneratorType
                     new Length(min: 1, max: 128),
                 ],
             ]);
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return ElasticsearchOptions::class;
     }
 
     protected function getValidationGroups(): callable

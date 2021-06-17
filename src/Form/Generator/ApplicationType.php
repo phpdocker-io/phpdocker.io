@@ -61,12 +61,4 @@ class ApplicationType extends AbstractGeneratorType
                 ],
             ]);
     }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return Application::class;
-    }
 }

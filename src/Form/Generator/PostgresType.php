@@ -28,6 +28,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Form for Postgres options.
@@ -49,8 +50,9 @@ class PostgresType extends AbstractGeneratorType
 
         $builder
             ->add('hasPostgres', CheckboxType::class, [
-                'label'    => 'Enable Postgres',
-                'required' => false,
+                'label'       => 'Enable Postgres',
+                'required'    => false,
+                'constraints' => new Type(type: 'bool'),
             ])
             ->add('version', ChoiceType::class, [
                 'choices'     => array_flip(Postgres::getChoices()),
@@ -74,14 +76,6 @@ class PostgresType extends AbstractGeneratorType
                 'attr'        => ['placeholder' => 'Your app\'s database name'],
                 'constraints' => $defaultConstraints,
             ]);
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return PostgresOptions::class;
     }
 
     protected function getValidationGroups(): callable

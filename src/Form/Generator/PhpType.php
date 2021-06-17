@@ -78,24 +78,24 @@ class PhpType extends AbstractGeneratorType
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions73', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php73AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 7.3.x)',
-                'required' => false,
+                'choices'     => $this->getExtensionChoices(Php73AvailableExtensions::create()->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 7.3.x)',
+                'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions74', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php74AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 7.4.x)',
-                'required' => false,
+                'choices'     => $this->getExtensionChoices(Php74AvailableExtensions::create()->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 7.4.x)',
+                'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions80', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php80AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 8.0.x)',
-                'required' => false,
+                'choices'     => $this->getExtensionChoices(Php80AvailableExtensions::create()->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 8.0.x)',
+                'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ]);
     }
@@ -125,13 +125,5 @@ class PhpType extends AbstractGeneratorType
         }
 
         return $versions;
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return PhpOptions::class;
     }
 }
