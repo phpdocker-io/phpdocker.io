@@ -97,6 +97,11 @@ class GeneratorController extends AbstractController
             phpOptions: $phpOptions
         );
 
+        $project->getMemcachedOptions()->setEnabled($formData['hasMemcached']);
+        $project->getRedisOptions()->setEnabled($formData['hasRedis']);
+        $project->getMailhogOptions()->setEnabled($formData['hasMailhog']);
+        $project->getClickhouseOptions()->setEnabled($formData['hasClickhouse']);
+
         $mysqlData = $formData['mysqlOptions'];
         if ($mysqlData['hasMysql'] === true) {
             $project
