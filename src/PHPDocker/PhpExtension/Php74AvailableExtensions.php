@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpArrayShapeAttributeCanBeAddedInspection */
+<?php
+declare(strict_types=1);
+/** @noinspection PhpArrayShapeAttributeCanBeAddedInspection */
 
 /**
  * Copyright 2019 Luis Alberto Pabón Flores
