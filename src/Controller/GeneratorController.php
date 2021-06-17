@@ -22,6 +22,7 @@ use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
 use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\Project\Project;
+use App\PHPDocker\Project\ServiceOptions\Application;
 use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -90,11 +91,15 @@ class GeneratorController extends AbstractController
             hasGit: $phpData['hasGit']
         );
 
+        $appData    = $formData['applicationOptions'];
+        $appOptions = new Application(applicationType: $appData['applicationType'], uploadSize: $appData['uploadSize']);
+
         $project = new Project(
             name: $formData['name'],
             projectNameSlug: $this->slugifier->slugify($formData['name']),
             basePort: $formData['basePort'],
-            phpOptions: $phpOptions
+            phpOptions: $phpOptions,
+            applicationOptions: $appOptions,
         );
 
         $project->getMemcachedOptions()->setEnabled($formData['hasMemcached']);

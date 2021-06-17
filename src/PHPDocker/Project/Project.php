@@ -26,7 +26,6 @@ use App\PHPDocker\Project\ServiceOptions\Php;
  */
 class Project
 {
-    private ServiceOptions\Application   $applicationOptions;
     private ServiceOptions\Nginx         $nginxOptions;
     private ServiceOptions\MySQL         $mysqlOptions;
     private ServiceOptions\MariaDB       $mariadbOptions;
@@ -37,10 +36,14 @@ class Project
     private ServiceOptions\Elasticsearch $elasticsearchOptions;
     private ServiceOptions\Clickhouse    $clickhouseOptions;
 
-    public function __construct(private string $name, private string $projectNameSlug, private int $basePort, private Php $phpOptions)
-    {
+    public function __construct(
+        private string $name,
+        private string $projectNameSlug,
+        private int $basePort,
+        private Php $phpOptions,
+        private ServiceOptions\Application $applicationOptions
+    ) {
         // Initialise project properties
-        $this->applicationOptions   = new ServiceOptions\Application();
         $this->nginxOptions         = new ServiceOptions\Nginx();
         $this->mysqlOptions         = new ServiceOptions\MySQL();
         $this->mariadbOptions       = new ServiceOptions\MariaDB();
