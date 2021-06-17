@@ -53,6 +53,7 @@ class ApplicationType extends AbstractGeneratorType
             ->add('uploadSize', IntegerType::class, [
                 'label'       => 'Max upload size (MB)',
                 'required'    => true,
+                'data'        => 100,
                 'constraints' => [
                     new NotBlank(),
                     new NotNull(),
