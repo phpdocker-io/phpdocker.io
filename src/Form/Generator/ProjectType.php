@@ -52,6 +52,7 @@ class ProjectType extends AbstractGeneratorType
             ->add('basePort', IntegerType::class, [
                 'label'       => 'Base port',
                 'attr'        => ['placeholder' => 'For nginx, Mailhog control panel...'],
+                'data'        => random_int(min: 2, max: 65) * 1000,
                 'constraints' => [
                     new NotBlank(),
                     new NotNull(),
