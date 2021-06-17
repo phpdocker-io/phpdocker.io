@@ -30,7 +30,7 @@ abstract class AbstractGeneratorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-//            'validation_groups' => $this->getValidationGroups(),
+            'validation_groups' => $this->getValidationGroups(),
         ]);
     }
 

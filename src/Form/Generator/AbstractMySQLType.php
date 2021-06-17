@@ -108,8 +108,7 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
             $data   = $form->getData();
             $groups = ['Default'];
 
-            $hasOption = $this->getHasOptionFunctionName();
-            if ($data->{$hasOption}() === true) {
+            if ($data[$this->getHasOptionFunctionName()] === true) {
                 $groups[] = $this->getValidationGroup();
             }
 

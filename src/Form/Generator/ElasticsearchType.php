@@ -65,7 +65,7 @@ class ElasticsearchType extends AbstractGeneratorType
             $data   = $form->getData();
             $groups = ['Default'];
 
-            if ($data->hasElasticsearch() === true) {
+            if ($data['hasElasticsearch'] === true) {
                 $groups[] = self::VALIDATION_GROUP;
             }
 

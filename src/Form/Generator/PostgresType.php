@@ -44,7 +44,7 @@ class PostgresType extends AbstractGeneratorType
         $defaultConstraints = [
             new NotBlank(groups: [self::VALIDATION_GROUP]),
             new NotNull(groups: [self::VALIDATION_GROUP]),
-            new Length(min: 1, max: 128),
+            new Length(min: 2, max: 128),
         ];
 
         $builder
@@ -79,11 +79,10 @@ class PostgresType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return static function (FormInterface $form) {
-            /** @var PostgresOptions $data */
             $data   = $form->getData();
             $groups = ['Default'];
 
-            if ($data->hasPostgres() === true) {
+            if ($data['hasPostgres'] === true) {
                 $groups[] = self::VALIDATION_GROUP;
             }
 
