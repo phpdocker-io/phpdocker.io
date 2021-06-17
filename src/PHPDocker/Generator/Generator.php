@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace App\PHPDocker\Generator;
 
 use App\PHPDocker\Interfaces\ArchiveInterface;
+use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Zip\Archiver;
@@ -36,7 +37,8 @@ class Generator
     public function __construct(
         protected Archiver $archiver,
         protected Environment $twig,
-        protected MarkdownExtra $markdownExtra
+        protected MarkdownExtra $markdownExtra,
+        protected SlugifierInterface $slugifier,
     ) {
         $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
@@ -55,7 +57,7 @@ class Generator
             ->addFile($this->getNginxConf($project))
             ->addFile($this->getDockerCompose($project), true);
 
-        return $this->archiver->generateArchive(sprintf('%s.zip', $project->getProjectNameSlug()));
+        return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
     }
 
     /**

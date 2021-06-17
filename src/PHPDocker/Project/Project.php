@@ -38,7 +38,6 @@ class Project
 
     public function __construct(
         private string $name,
-        private string $projectNameSlug,
         private int $basePort,
         private Php $phpOptions,
         private ServiceOptions\Application $applicationOptions
@@ -53,14 +52,6 @@ class Project
         $this->mailhogOptions       = new ServiceOptions\Mailhog();
         $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
         $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
-    }
-
-    /**
-     * Returns a slugged-up version of the project name.
-     */
-    public function getProjectNameSlug(): string
-    {
-        return $this->projectNameSlug;
     }
 
     public function getName(): ?string

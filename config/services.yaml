@@ -30,12 +30,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\PHPDocker\Generator\Generator:
-        factory: [App\PHPDocker\Generator\Factory, create]
-
-    cocur_slugify:
-        class: Cocur\Slugify\Slugify
-
-    App\PHPDocker\Interfaces\SlugifierInterface:
-        class: App\Services\Slugifier
-        arguments: ['@cocur_slugify']
+    # Instantiate some third party libraries we need for autowiring our own services
+    Michelf\MarkdownExtra: ~
+    Cocur\Slugify\Slugify: ~

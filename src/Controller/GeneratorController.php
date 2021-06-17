@@ -94,7 +94,6 @@ class GeneratorController extends AbstractController
 
         $project = new Project(
             name: $formData['name'],
-            projectNameSlug: $this->slugifier->slugify($formData['name']),
             basePort: $formData['basePort'],
             phpOptions: $phpOptions,
             applicationOptions: $appOptions,
