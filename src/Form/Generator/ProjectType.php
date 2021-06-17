@@ -63,25 +63,21 @@ class ProjectType extends AbstractGeneratorType
                 'required'    => false,
                 'label'       => 'Enable Memcached',
                 'empty_data'  => false,
-                'constraints' => new Type(type: 'bool'),
             ])
             ->add('hasRedis', CheckboxType::class, [
                 'required'    => false,
                 'label'       => 'Enable Redis',
                 'empty_data'  => false,
-                'constraints' => new Type(type: 'bool'),
             ])
             ->add('hasMailhog', CheckboxType::class, [
                 'required'    => false,
                 'label'       => 'Enable Mailhog',
                 'empty_data'  => false,
-                'constraints' => new Type(type: 'bool'),
             ])
             ->add('hasClickhouse', CheckboxType::class, [
                 'required'    => false,
                 'label'       => 'Enable Clickhouse',
                 'empty_data'  => false,
-                'constraints' => new Type(type: 'bool'),
             ])
             ->add('phpOptions', PhpType::class, [
                 'label'       => 'PHP Options',

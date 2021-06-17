@@ -45,7 +45,6 @@ class ElasticsearchType extends AbstractGeneratorType
             ->add('hasElasticsearch', CheckboxType::class, [
                 'label'       => 'Enable Elasticsearch',
                 'required'    => false,
-                'constraints' => new Type(type: 'bool'),
             ])
             ->add('version', ChoiceType::class, [
                 'choices'     => array_flip(Elasticsearch::getChoices()),

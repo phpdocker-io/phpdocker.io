@@ -57,7 +57,6 @@ class PhpType extends AbstractGeneratorType
                 'label'       => 'Add git (eg for composer)',
                 'required'    => false,
                 'empty_data'  => 'false',
-                'constraints' => new Type(type: 'bool'),
             ])
             ->add('version', ChoiceType::class, [
                 'choices'     => $this->getVersionChoices(),
