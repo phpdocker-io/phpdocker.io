@@ -1,6 +1,6 @@
 <?php
-/**
- * Copyright 2016 Luis Alberto Pabón Flores
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace PHPDocker\Zip;
+namespace App\PHPDocker\Zip;
 
-use PHPDocker\Interfaces\ArchiveInterface;
-use PHPDocker\Interfaces\GeneratedFileInterface;
+use App\PHPDocker\Interfaces\ArchiveInterface;
+use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use ZipArchive;
 
 /**

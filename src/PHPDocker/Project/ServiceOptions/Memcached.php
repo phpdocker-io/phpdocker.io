@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace PHPDocker\Project\ServiceOptions;
+namespace App\PHPDocker\Project\ServiceOptions;
 
 /**
  * Options for Memcached container.

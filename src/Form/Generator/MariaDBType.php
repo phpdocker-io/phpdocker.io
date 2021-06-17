@@ -19,7 +19,7 @@
 namespace App\Form\Generator;
 
 use App\Entity\Generator\MariaDBOptions;
-use PHPDocker\Project\ServiceOptions\MariaDB;
+use App\PHPDocker\Project\ServiceOptions\MariaDB;
 
 /**
  * Form for Mariadb options.

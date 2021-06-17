@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPDocker\Interfaces;
+namespace App\PHPDocker\Interfaces;
 
 /**
  * Describes a parsed, generated file by its filename and contents.

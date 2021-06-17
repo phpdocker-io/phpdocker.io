@@ -17,13 +17,13 @@
 
 namespace App\Entity\Generator;
 
-use PHPDocker\Interfaces\SlugifierInterface;
+use App\PHPDocker\Interfaces\SlugifierInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Project entity and validation.
  */
-class Project extends \PHPDocker\Project\Project
+class Project extends \App\PHPDocker\Project\Project
 {
     /**
      * @var string

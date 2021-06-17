@@ -1,6 +1,6 @@
 <?php
-/**
- * Copyright 2016 Luis Alberto Pabón Flores
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,16 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace PHPDocker\Generator;
+namespace App\PHPDocker\Generator;
 
+use App\PHPDocker\Interfaces\ArchiveInterface;
+use App\PHPDocker\PhpExtension\PhpExtension;
+use App\PHPDocker\Project\Project;
+use App\PHPDocker\Zip\Archiver;
 use Michelf\MarkdownExtra;
-use PHPDocker\Interfaces\ArchiveInterface;
-use PHPDocker\PhpExtension\PhpExtension;
-use PHPDocker\Project\Project;
-use PHPDocker\Zip\Archiver;
 use Twig\Environment;
 
 /**

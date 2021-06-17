@@ -15,18 +15,26 @@
  * limitations under the License.
  */
 
-namespace App\PHPDocker\Generator\GeneratedFile;
+namespace App\Services;
+
+use App\PHPDocker\Interfaces\SlugifierInterface;
+use Cocur\Slugify\Slugify;
 
 /**
- * nginx.conf file
+ * String slugifier.
  */
-class NginxConf extends Base
+class Slugifier implements SlugifierInterface
 {
-    /**
-     * @inheritdoc
-     */
-    public function getFilename(): string
+
+    public function __construct(protected Slugify $slugifier)
     {
-        return 'nginx' . DIRECTORY_SEPARATOR . 'nginx.conf';
+    }
+
+    /**
+     * Takes a string and returns a slugified version of it.
+     */
+    public function slugify(string $string): string
+    {
+        return $this->slugifier->slugify($string);
     }
 }
