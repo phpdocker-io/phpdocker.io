@@ -20,7 +20,6 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\PhpOptions;
 use App\PHPDocker\PhpExtension\Php72AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php73AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php74AvailableExtensions;
@@ -118,7 +117,7 @@ class PhpType extends AbstractGeneratorType
     private function getVersionChoices(): array
     {
         $versions = [];
-        foreach (PhpOptions::getSupportedVersions() as $version) {
+        foreach (Php::getSupportedVersions() as $version) {
             $versions[$version] = $version;
         }
 
