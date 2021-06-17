@@ -17,15 +17,17 @@
 
 namespace App\Form\Generator;
 
-use PHPDocker\Project\ServiceOptions\Application;
+use App\Entity\Generator\ElasticsearchOptions;
+use App\PHPDocker\Project\ServiceOptions\Elasticsearch;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 
 /**
- * Form for application options.
+ * Class ElasticsearchType
  */
-class ApplicationType extends AbstractGeneratorType
+class ElasticsearchType extends AbstractGeneratorType
 {
     /**
      * Builds the form definition.
@@ -33,15 +35,15 @@ class ApplicationType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('applicationType', ChoiceType::class, [
-                'choices'  => array_flip(Application::getChoices()),
+            ->add('hasElasticsearch', CheckboxType::class, [
+                'label'    => 'Enable Elasticsearch',
+                'required' => false,
+            ])
+            ->add('version', ChoiceType::class, [
+                'choices'  => array_flip(Elasticsearch::getChoices()),
                 'expanded' => false,
                 'multiple' => false,
-                'label'    => 'Application type',
-            ])
-            ->add('uploadSize', IntegerType::class, [
-                'label'    => 'Max upload size (MB)',
-                'required' => true,
+                'label'    => 'Version',
             ]);
     }
 
@@ -50,6 +52,21 @@ class ApplicationType extends AbstractGeneratorType
      */
     protected function getDataClass(): string
     {
-        return Application::class;
+        return ElasticsearchOptions::class;
+    }
+
+    protected function getValidationGroups(): callable
+    {
+        return static function (FormInterface $form) {
+            /** @var ElasticsearchOptions $data */
+            $data   = $form->getData();
+            $groups = ['Default'];
+
+            if ($data->hasElasticsearch() === true) {
+                $groups[] = 'elasticsearchOptions';
+            }
+
+            return $groups;
+        };
     }
 }

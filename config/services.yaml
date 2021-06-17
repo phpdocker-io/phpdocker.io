@@ -14,28 +14,28 @@ services:
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
-        resource: '../src/App/'
+        resource: '../src/'
         exclude:
-            - '../src/App/DependencyInjection/'
-            - '../src/App/Entity/'
-            - '../src/App/Kernel.php'
-            - '../src/App/Tests/'
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
-        resource: '../src/App/Controller/'
+        resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    PHPDocker\Generator\Generator:
-        factory: [PHPDocker\Generator\Factory, create]
+    App\PHPDocker\Generator\Generator:
+        factory: [App\PHPDocker\Generator\Factory, create]
 
     cocur_slugify:
         class: Cocur\Slugify\Slugify
 
-    PHPDocker\Interfaces\SlugifierInterface:
+    App\PHPDocker\Interfaces\SlugifierInterface:
         class: App\Services\Slugifier
         arguments: ['@cocur_slugify']

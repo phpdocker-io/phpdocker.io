@@ -17,7 +17,7 @@
 
 namespace App\Entity\Generator;
 
-use PHPDocker\Project\ServiceOptions\Php as BasePhpOptions;
+use App\PHPDocker\Project\ServiceOptions\Php as BasePhpOptions;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

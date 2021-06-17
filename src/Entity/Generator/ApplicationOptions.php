@@ -15,26 +15,33 @@
  * limitations under the License.
  */
 
-namespace App\Services;
+namespace App\Entity\Generator;
 
-use Cocur\Slugify\Slugify;
-use PHPDocker\Interfaces\SlugifierInterface;
+use App\Assert as CustomAssert;
+use App\PHPDocker\Project\ServiceOptions\Application;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * String slugifier.
+ * Validation for Application options
  */
-class Slugifier implements SlugifierInterface
+class ApplicationOptions extends Application
 {
-
-    public function __construct(protected Slugify $slugifier)
-    {
-    }
+    /**
+     * @var string
+     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @CustomAssert\ApplicationType()
+     */
+    protected $applicationType;
 
     /**
-     * Takes a string and returns a slugified version of it.
+     * @var int
+     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\Type(type="integer")
+     * @Assert\Range(min="2", max="2147483647")
      */
-    public function slugify(string $string): string
-    {
-        return $this->slugifier->slugify($string);
-    }
+    protected $uploadSize = 100;
 }

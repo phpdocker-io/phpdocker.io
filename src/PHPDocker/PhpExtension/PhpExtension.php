@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace PHPDocker\PhpExtension;
+namespace App\PHPDocker\PhpExtension;
 
 /**
  * Describes a PHP extension

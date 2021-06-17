@@ -1,6 +1,8 @@
 {
     "type": "project",
     "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
         "php": "8.0.*",
         "ext-ctype": "*",
@@ -23,7 +25,14 @@
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
+    "require-dev": {
+        "symfony/debug-bundle": "^5.0",
+        "symfony/stopwatch": "^5.0",
+        "symfony/var-dumper": "^5.0",
+        "symfony/web-profiler-bundle": "^5.0"
+    },
     "config": {
+        "optimize-autoloader": true,
         "preferred-install": {
             "*": "dist"
         },
@@ -31,8 +40,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/App/",
-            "PHPDocker\\": "src/PHPDocker/"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
@@ -41,12 +49,9 @@
         }
     },
     "replace": {
-        "paragonie/random_compat": "2.*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-php71": "*",
-        "symfony/polyfill-php70": "*",
-        "symfony/polyfill-php56": "*"
+        "symfony/polyfill-php72": "*"
     },
     "scripts": {
         "auto-scripts": {
@@ -68,11 +73,5 @@
             "allow-contrib": false,
             "require": "^5.0"
         }
-    },
-    "require-dev": {
-        "symfony/debug-bundle": "^5.0",
-        "symfony/stopwatch": "^5.0",
-        "symfony/var-dumper": "^5.0",
-        "symfony/web-profiler-bundle": "^5.0"
     }
 }

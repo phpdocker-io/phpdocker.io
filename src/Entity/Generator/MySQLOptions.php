@@ -18,7 +18,7 @@
 
 namespace App\Entity\Generator;
 
-use PHPDocker\Project\ServiceOptions\MySQL;
+use App\PHPDocker\Project\ServiceOptions\MySQL;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

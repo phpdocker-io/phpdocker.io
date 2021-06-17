@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Luis Alberto Pabón Flores
  *
@@ -17,31 +18,40 @@
 
 namespace App\Entity\Generator;
 
-use App\Assert as CustomAssert;
-use PHPDocker\Project\ServiceOptions\Application;
+use App\PHPDocker\Project\ServiceOptions\Elasticsearch;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Validation for Application options
+ * Elasticsearch options entity for validation.
  */
-class ApplicationOptions extends Application
+class ElasticsearchOptions extends Elasticsearch
 {
     /**
      * @var string
      *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @CustomAssert\ApplicationType()
+     * @Assert\NotBlank(groups={"elasticsearchOptions"})
+     * @Assert\NotNull(groups={"elasticsearchOptions"})
+     * @Assert\Length(min=1, max=128)
      */
-    protected $applicationType;
+    protected $version = self::VERSION_65;
 
     /**
-     * @var int
+     * Redirect hasElasticsearch to enabled.
      *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
-     * @Assert\Type(type="integer")
-     * @Assert\Range(min="2", max="2147483647")
+     * @param bool $hasElasticsearch
+     *
+     * @return self
      */
-    protected $uploadSize = 100;
+    public function setHasElasticsearch(bool $hasElasticsearch = false): self
+    {
+        return $this->setEnabled($hasElasticsearch);
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasElasticsearch(): bool
+    {
+        return $this->isEnabled();
+    }
 }

@@ -17,7 +17,7 @@
  *
  */
 
-namespace PHPDocker\PhpExtension;
+namespace App\PHPDocker\PhpExtension;
 
 class Php80AvailableExtensions extends BaseAvailableExtensions
 {

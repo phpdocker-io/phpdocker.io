@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace PHPDocker\Generator\GeneratedFile;
+namespace App\PHPDocker\Generator\GeneratedFile;
 
 /**
  * HTML readme file

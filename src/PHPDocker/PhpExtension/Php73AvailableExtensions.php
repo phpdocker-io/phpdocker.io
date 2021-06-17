@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace PHPDocker\PhpExtension;
+namespace App\PHPDocker\PhpExtension;
 
 class Php73AvailableExtensions extends BaseAvailableExtensions
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPDocker\Interfaces;
+namespace App\PHPDocker\Interfaces;
 
 /**
  * Interface a slugifier MUST fulfil.

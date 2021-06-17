@@ -18,7 +18,7 @@
 
 namespace App\Entity\Generator;
 
-use PHPDocker\Project\ServiceOptions\Postgres;
+use App\PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
