@@ -1,7 +1,6 @@
 {% if project.hasMysql() %}
     mysql:
       image: mysql:{{ mysql.getVersion() }}
-      container_name: {{ slug }}-mysql
       working_dir: /application
       volumes:
         - .:/application

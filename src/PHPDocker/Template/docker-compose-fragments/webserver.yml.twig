@@ -1,6 +1,5 @@
     webserver:
       image: nginx:alpine
-      container_name: {{ slug }}-webserver
       working_dir: /application
       volumes:
           - .:/application
