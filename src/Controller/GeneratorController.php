@@ -51,8 +51,6 @@ class GeneratorController extends AbstractController
         // Process form
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() === true) {
-            dump($form->getData());
-
             $project = $this->hydrateProject($form->getData());
 
             // Generate zip file with docker project

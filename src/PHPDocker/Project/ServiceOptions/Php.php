@@ -33,7 +33,7 @@ class Php extends Base
     public const PHP_VERSION_80 = '8.0.x';
 
     private string $version;
-    private array  $extensions;
+    private array  $extensions = [];
 
     /**
      * Supported PHP versions
