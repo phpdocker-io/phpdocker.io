@@ -40,15 +40,9 @@ class Application
         self::APPLICATION_TYPE_SYMFONY => '[Legacy] Symfony 2/3',
     ];
 
-    /**
-     * @var string
-     */
-    protected $applicationType = self::APPLICATION_TYPE_GENERIC;
-
-    /**
-     * @var int
-     */
-    protected $uploadSize = 100;
+    public function __construct(private string $applicationType, private int $uploadSize)
+    {
+    }
 
     public function getApplicationType(): ?string
     {

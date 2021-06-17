@@ -29,20 +29,20 @@ class Postgres extends Base
     /**
      * Available versions
      */
-    protected const VERSION_111 = '11.1';
-    protected const VERSION_110 = '11.0';
-    protected const VERSION_106 = '10.6';
-    protected const VERSION_105 = '10.5';
-    protected const VERSION_104 = '10.4';
-    protected const VERSION_103 = '10.3';
-    protected const VERSION_102 = '10.2';
-    protected const VERSION_101 = '10.1';
-    protected const VERSION_100 = '10.0';
-    protected const VERSION_96  = '9.6';
-    protected const VERSION_95  = '9.5';
-    protected const VERSION_94  = '9.4';
+    private const VERSION_111 = '11.1';
+    private const VERSION_110 = '11.0';
+    private const VERSION_106 = '10.6';
+    private const VERSION_105 = '10.5';
+    private const VERSION_104 = '10.4';
+    private const VERSION_103 = '10.3';
+    private const VERSION_102 = '10.2';
+    private const VERSION_101 = '10.1';
+    private const VERSION_100 = '10.0';
+    private const VERSION_96  = '9.6';
+    private const VERSION_95  = '9.5';
+    private const VERSION_94  = '9.4';
 
-    protected const ALLOWED_VERSIONS = [
+    private const ALLOWED_VERSIONS = [
         self::VERSION_111 => '11.1.x',
         self::VERSION_110 => '11.0.x',
         self::VERSION_106 => '10.6.x',
@@ -57,25 +57,10 @@ class Postgres extends Base
         self::VERSION_94  => '9.4.x',
     ];
 
-    /**
-     * @var string
-     */
-    protected $version = self::VERSION_111;
-
-    /**
-     * @var string
-     */
-    protected $rootUser;
-
-    /**
-     * @var string
-     */
-    protected $rootPassword;
-
-    /**
-     * @var string
-     */
-    protected $databaseName;
+    private string $version = self::VERSION_111;
+    private string $rootUser;
+    private string $rootPassword;
+    private string $databaseName;
 
     public function getVersion(): string
     {
