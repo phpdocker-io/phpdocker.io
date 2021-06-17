@@ -18,11 +18,16 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\Project;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\Type;
+use Symfony\Component\Validator\Constraints\Valid;
 
 /**
  * Project forms.
@@ -36,12 +41,24 @@ class ProjectType extends AbstractGeneratorType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Project name',
-                'attr'  => ['placeholder' => 'Used on host, container, vm and folder names'],
+                'label'       => 'Project name',
+                'attr'        => ['placeholder' => 'Used on host, container, vm and folder names'],
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                    new Length(min: 1, max: 128),
+                ],
             ])
             ->add('basePort', IntegerType::class, [
-                'label' => 'Base port',
-                'attr'  => ['placeholder' => 'For nginx, Mailhog control panel...'],
+                'label'       => 'Base port',
+                'attr'        => ['placeholder' => 'For nginx, Mailhog control panel...'],
+                'data'        => random_int(min: 2, max: 65) * 1000,
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                    new Type(type: 'integer'),
+                    new Range(min: 1025, max: 65535),
+                ],
             ])
             ->add('hasMemcached', CheckboxType::class, [
                 'required' => false,
@@ -59,19 +76,29 @@ class ProjectType extends AbstractGeneratorType
                 'required' => false,
                 'label'    => 'Enable Clickhouse',
             ])
-            ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
-            ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])
-            ->add('mariadbOptions', MariaDBType::class, ['label' => 'MariaDB'])
-            ->add('postgresOptions', PostgresType::class, ['label' => 'Postgres'])
-            ->add('applicationOptions', ApplicationType::class, ['label' => 'Application options'])
-            ->add('elasticsearchOptions', ElasticsearchType::class, ['label' => 'Elasticsearch']);
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return Project::class;
+            ->add('phpOptions', PhpType::class, [
+                'label'       => 'PHP Options',
+                'constraints' => new Valid(),
+            ])
+            ->add('mysqlOptions', MySQLType::class, [
+                'label'       => 'MySQL',
+                'constraints' => new Valid(),
+            ])
+            ->add('mariadbOptions', MariaDBType::class, [
+                'label'       => 'MariaDB',
+                'constraints' => new Valid(),
+            ])
+            ->add('postgresOptions', PostgresType::class, [
+                'label'       => 'Postgres',
+                'constraints' => new Valid(),
+            ])
+            ->add('applicationOptions', ApplicationType::class, [
+                'label'       => 'Application options',
+                'constraints' => new Valid(),
+            ])
+            ->add('elasticsearchOptions', ElasticsearchType::class, [
+                'label'       => 'Elasticsearch',
+                'constraints' => new Valid(),
+            ]);
     }
 }

@@ -26,7 +26,7 @@ abstract class Base
     /**
      * @var bool
      */
-    protected $enabled = false;
+    protected bool $enabled = false;
 
     public function isEnabled(): bool
     {

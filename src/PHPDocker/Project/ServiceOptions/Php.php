@@ -20,7 +20,6 @@ declare(strict_types=1);
 namespace App\PHPDocker\Project\ServiceOptions;
 
 use App\PHPDocker\PhpExtension\AvailableExtensionsFactory;
-use App\PHPDocker\PhpExtension\PhpExtension;
 use InvalidArgumentException;
 
 /**
@@ -33,71 +32,34 @@ class Php extends Base
     public const PHP_VERSION_74 = '7.4.x';
     public const PHP_VERSION_80 = '8.0.x';
 
-    /**
-     * @var array
-     */
-    protected $extensions = [];
-
-    /**
-     * @var bool
-     */
-    protected $hasGit = false;
+    private string $version;
+    private array  $extensions = [];
 
     /**
      * Supported PHP versions
      */
-    public const SUPPORTED_VERSIONS = [
+    private const SUPPORTED_VERSIONS = [
         self::PHP_VERSION_80,
         self::PHP_VERSION_74,
         self::PHP_VERSION_73,
         self::PHP_VERSION_72,
     ];
 
-    /**
-     * @var string
-     */
-    protected $version;
-
-    public function __construct()
+    public function __construct(string $version, array $extensions, private bool $hasGit)
     {
         $this->setEnabled(true);
-    }
 
-    public function getExtensions(): array
-    {
-        return $this->extensions;
-    }
+        // Validate & set version
+        if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
+            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
+        }
 
-    public function setPhpExtensions(array $phpExtensions): self
-    {
-        foreach ($phpExtensions as $phpExtension) {
+        $this->version = $version;
+
+        // Parse extensions
+        foreach ($extensions as $phpExtension) {
             $this->addExtensionByName($phpExtension);
         }
-
-        return $this;
-    }
-
-    /**
-     * Adds an extension given the name only.
-     */
-    public function addExtensionByName(string $extensionName): self
-    {
-        static $extensionInstance;
-
-        if ($extensionInstance === null) {
-            $extensionInstance = AvailableExtensionsFactory::create($this->getVersion());
-        }
-
-        $this->addExtension($extensionInstance->getPhpExtension($extensionName));
-
-        return $this;
-    }
-
-    public function addExtension(PhpExtension $extension): self
-    {
-        $this->extensions[] = $extension;
-
-        return $this;
     }
 
     public function getVersion(): string
@@ -105,15 +67,14 @@ class Php extends Base
         return $this->version;
     }
 
-    public function setVersion(string $version): self
+    public function hasGit(): bool
     {
-        if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
-            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
-        }
+        return $this->hasGit;
+    }
 
-        $this->version = $version;
-
-        return $this;
+    public function getExtensions(): array
+    {
+        return $this->extensions;
     }
 
     /**
@@ -124,15 +85,17 @@ class Php extends Base
         return self::SUPPORTED_VERSIONS;
     }
 
-    public function hasGit(): bool
+    /**
+     * Adds an extension given the name only.
+     */
+    private function addExtensionByName(string $extensionName): void
     {
-        return $this->hasGit;
-    }
+        static $extensionInstance;
 
-    public function setHasGit(bool $hasGit): self
-    {
-        $this->hasGit = $hasGit;
+        if ($extensionInstance === null) {
+            $extensionInstance = AvailableExtensionsFactory::create($this->getVersion());
+        }
 
-        return $this;
+        $this->extensions[] = $extensionInstance->getPhpExtension($extensionName);
     }
 }

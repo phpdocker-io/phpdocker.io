@@ -24,12 +24,17 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Class ElasticsearchType
  */
 class ElasticsearchType extends AbstractGeneratorType
 {
+    private const VALIDATION_GROUP = 'elasticsearchOptions';
+
     /**
      * Builds the form definition.
      */
@@ -41,19 +46,16 @@ class ElasticsearchType extends AbstractGeneratorType
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => array_flip(Elasticsearch::getChoices()),
-                'expanded' => false,
-                'multiple' => false,
-                'label'    => 'Version',
+                'choices'     => array_flip(Elasticsearch::getChoices()),
+                'expanded'    => false,
+                'multiple'    => false,
+                'label'       => 'Version',
+                'constraints' => [
+                    new NotBlank(groups: [self::VALIDATION_GROUP]),
+                    new NotNull(groups: [self::VALIDATION_GROUP]),
+                    new Length(min: 1, max: 128),
+                ],
             ]);
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return ElasticsearchOptions::class;
     }
 
     protected function getValidationGroups(): callable
@@ -63,8 +65,8 @@ class ElasticsearchType extends AbstractGeneratorType
             $data   = $form->getData();
             $groups = ['Default'];
 
-            if ($data->hasElasticsearch() === true) {
-                $groups[] = 'elasticsearchOptions';
+            if ($data['hasElasticsearch'] === true) {
+                $groups[] = self::VALIDATION_GROUP;
             }
 
             return $groups;

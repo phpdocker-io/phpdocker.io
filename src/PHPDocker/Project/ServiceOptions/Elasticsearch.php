@@ -29,15 +29,15 @@ class Elasticsearch extends Base
     /**
      * Available versions
      */
-    protected const VERSION_56 = '5.6';
-    protected const VERSION_65 = '6.5.4';
+    private const VERSION_56 = '5.6';
+    private const VERSION_65 = '6.5.4';
 
     private const ALLOWED_VERSIONS = [
         self::VERSION_65 => '6.5.x',
         self::VERSION_56 => '5.6.x',
     ];
 
-    protected $version = self::VERSION_65;
+    private string $version = self::VERSION_65;
 
     public function getVersion(): string
     {

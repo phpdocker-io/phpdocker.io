@@ -20,15 +20,19 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\PhpOptions;
 use App\PHPDocker\PhpExtension\Php72AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php73AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php74AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php80AvailableExtensions;
 use App\PHPDocker\PhpExtension\PhpExtension;
+use App\PHPDocker\Project\ServiceOptions\Php;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Form for PHP options.
@@ -40,40 +44,56 @@ class PhpType extends AbstractGeneratorType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $phpOptionsConstraints = [
+            new Type(type: 'array'),
+            new All([
+                new Type(type: 'string'),
+            ]),
+        ];
+
         $builder
             ->add('hasGit', CheckboxType::class, [
                 'label'    => 'Add git (eg for composer)',
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => $this->getVersionChoices(),
-                'expanded' => false,
-                'multiple' => false,
-                'label'    => 'PHP Version',
+                'choices'     => $this->getVersionChoices(),
+                'expanded'    => false,
+                'multiple'    => false,
+                'label'       => 'PHP Version',
+                'empty_data'  => Php::getSupportedVersions()[0],
+                'constraints' => [
+                    new NotBlank(),
+                    new Choice(choices: Php::getSupportedVersions()),
+                ],
             ])
             ->add('phpExtensions72', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php72AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 7.2.x)',
-                'required' => false,
+                'choices'     => $this->getExtensionChoices(Php72AvailableExtensions::create()->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 7.2.x)',
+                'required'    => false,
+                'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions73', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php73AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 7.3.x)',
-                'required' => false,
+                'choices'     => $this->getExtensionChoices(Php73AvailableExtensions::create()->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 7.3.x)',
+                'required'    => false,
+                'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions74', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php74AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 7.4.x)',
-                'required' => false,
+                'choices'     => $this->getExtensionChoices(Php74AvailableExtensions::create()->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 7.4.x)',
+                'required'    => false,
+                'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions80', ChoiceType::class, [
-                'choices'  => $this->getExtensionChoices(Php80AvailableExtensions::create()->getOptional()),
-                'multiple' => true,
-                'label'    => 'Extensions (PHP 8.0.x)',
-                'required' => false,
+                'choices'     => $this->getExtensionChoices(Php80AvailableExtensions::create()->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 8.0.x)',
+                'required'    => false,
+                'constraints' => $phpOptionsConstraints,
             ]);
     }
 
@@ -97,18 +117,10 @@ class PhpType extends AbstractGeneratorType
     private function getVersionChoices(): array
     {
         $versions = [];
-        foreach (PhpOptions::getSupportedVersions() as $version) {
+        foreach (Php::getSupportedVersions() as $version) {
             $versions[$version] = $version;
         }
 
         return $versions;
-    }
-
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    protected function getDataClass(): string
-    {
-        return PhpOptions::class;
     }
 }

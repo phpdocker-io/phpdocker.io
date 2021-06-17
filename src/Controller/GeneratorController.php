@@ -18,11 +18,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Generator\PhpOptions;
-use App\Entity\Generator\Project;
 use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
 use App\PHPDocker\Interfaces\SlugifierInterface;
+use App\PHPDocker\Project\Project;
+use App\PHPDocker\Project\ServiceOptions\Application;
+use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -35,26 +36,25 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class GeneratorController extends AbstractController
 {
+    public function __construct(private SlugifierInterface $slugifier, private Generator $generator)
+    {
+    }
+
     /**
      * Form and form processor for creating a project.
      */
-    public function create(
-        Request $request,
-        SlugifierInterface $slugifier,
-        Generator $generator
-    ): BinaryFileResponse|Response {
+    public function create(Request $request): BinaryFileResponse|Response
+    {
         // Set up form
-        $project = new Project($slugifier);
-        $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
+        $form = $this->createForm(type: ProjectType::class, options: ['method' => Request::METHOD_POST]);
 
         // Process form
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() === true) {
-            // Fix PHP extensions per version before sending to generator
-            $project = $this->fixPhpExtensionGeneratorExpectation($project);
+            $project = $this->hydrateProject($form->getData());
 
             // Generate zip file with docker project
-            $zipFile = $generator->generate($project);
+            $zipFile = $this->generator->generate($project);
 
             // Generate file download & cleanup
             $response = new BinaryFileResponse($zipFile->getTmpFilename());
@@ -71,27 +71,82 @@ class GeneratorController extends AbstractController
         ]);
     }
 
-    /**
-     * Add php extensions to project based on version on the property the generator expects
-     * as phpExtensions56/70 do not exist from its point of view.
-     *
-     * @throws InvalidArgumentException
-     */
-    private function fixPhpExtensionGeneratorExpectation(Project $project): Project
+    private function hydrateProject(array $formData): Project
     {
-        /** @var PhpOptions $phpOptions */
-        $phpOptions = $project->getPhpOptions();
-        $phpVersion = $phpOptions->getVersion();
+        $phpData = $formData['phpOptions'];
 
-        $extensions = match ($phpVersion) {
-            PhpOptions::PHP_VERSION_72 => $phpOptions->getPhpExtensions72(),
-            PhpOptions::PHP_VERSION_73 => $phpOptions->getPhpExtensions73(),
-            PhpOptions::PHP_VERSION_74 => $phpOptions->getPhpExtensions74(),
-            PhpOptions::PHP_VERSION_80 => $phpOptions->getPhpExtensions80(),
+        $extensions = match ($phpData['version']) {
+            PhpOptions::PHP_VERSION_72 => $phpData['phpExtensions72'],
+            PhpOptions::PHP_VERSION_73 => $phpData['phpExtensions73'],
+            PhpOptions::PHP_VERSION_74 => $phpData['phpExtensions74'],
+            PhpOptions::PHP_VERSION_80 => $phpData['phpExtensions80'],
             default => throw new InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion)),
         };
 
-        $project->getPhpOptions()->setPhpExtensions($extensions);
+        $phpOptions = new PhpOptions(
+            version: $phpData['version'],
+            extensions: $extensions,
+            hasGit: $phpData['hasGit']
+        );
+
+        $appData    = $formData['applicationOptions'];
+        $appOptions = new Application(applicationType: $appData['applicationType'], uploadSize: $appData['uploadSize']);
+
+        $project = new Project(
+            name: $formData['name'],
+            projectNameSlug: $this->slugifier->slugify($formData['name']),
+            basePort: $formData['basePort'],
+            phpOptions: $phpOptions,
+            applicationOptions: $appOptions,
+        );
+
+        $project->getMemcachedOptions()->setEnabled($formData['hasMemcached']);
+        $project->getRedisOptions()->setEnabled($formData['hasRedis']);
+        $project->getMailhogOptions()->setEnabled($formData['hasMailhog']);
+        $project->getClickhouseOptions()->setEnabled($formData['hasClickhouse']);
+
+        $mysqlData = $formData['mysqlOptions'];
+        if ($mysqlData['hasMysql'] === true) {
+            $project
+                ->getMysqlOptions()
+                ->setEnabled(true)
+                ->setVersion($mysqlData['version'])
+                ->setDatabaseName($mysqlData['databaseName'])
+                ->setRootPassword($mysqlData['rootPassword'])
+                ->setUsername($mysqlData['username'])
+                ->setPassword($mysqlData['password']);
+        }
+
+        $mariaDbData = $formData['mariadbOptions'];
+        if ($mariaDbData['hasMariadb'] === true) {
+            $project
+                ->getMariadbOptions()
+                ->setEnabled(true)
+                ->setVersion($mariaDbData['version'])
+                ->setDatabaseName($mariaDbData['databaseName'])
+                ->setRootPassword($mariaDbData['rootPassword'])
+                ->setUsername($mariaDbData['username'])
+                ->setPassword($mariaDbData['password']);
+        }
+
+        $pgData = $formData['postgresOptions'];
+        if ($pgData['hasPostgres'] === true) {
+            $project
+                ->getPostgresOptions()
+                ->setEnabled(true)
+                ->setVersion($pgData['version'])
+                ->setDatabaseName($pgData['databaseName'])
+                ->setRootUser($pgData['rootUser'])
+                ->setRootPassword($pgData['rootPassword']);
+        }
+
+        $esData = $formData['elasticsearchOptions'];
+        if ($esData['hasElasticsearch'] === true) {
+            $project
+                ->getElasticsearchOptions()
+                ->setEnabled(true)
+                ->setVersion($esData['version']);
+        }
 
         return $project;
     }

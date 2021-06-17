@@ -23,6 +23,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Base form for MySQL-like options.
@@ -59,32 +62,43 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $defaultConstraints = [
+            new NotBlank(groups: [$this->getValidationGroup()]),
+            new NotNull(groups: [$this->getValidationGroup()]),
+            new Length(min: 1, max: 128),
+        ];
+
         $builder
             ->add($this->getHasOptionFieldName(), CheckboxType::class, [
                 'label'    => $this->getHasOptionLabel(),
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => $this->getVersionChoices(),
-                'expanded' => false,
-                'multiple' => false,
-                'label'    => 'Version',
+                'choices'     => $this->getVersionChoices(),
+                'expanded'    => false,
+                'multiple'    => false,
+                'label'       => 'Version',
+                'constraints' => $defaultConstraints,
             ])
             ->add('rootPassword', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Password for root user'],
+                'label'       => false,
+                'attr'        => ['placeholder' => 'Password for root user'],
+                'constraints' => $defaultConstraints,
             ])
             ->add('databaseName', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Your app\'s database name'],
+                'label'       => false,
+                'attr'        => ['placeholder' => 'Your app\'s database name'],
+                'constraints' => $defaultConstraints,
             ])
             ->add('username', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Your app\'s database username'],
+                'label'       => false,
+                'attr'        => ['placeholder' => 'Your app\'s database username'],
+                'constraints' => $defaultConstraints,
             ])
             ->add('password', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Your app\'s database password'],
+                'label'       => false,
+                'attr'        => ['placeholder' => 'Your app\'s database password'],
+                'constraints' => $defaultConstraints,
             ]);
     }
 
@@ -94,8 +108,7 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
             $data   = $form->getData();
             $groups = ['Default'];
 
-            $hasOption = $this->getHasOptionFunctionName();
-            if ($data->{$hasOption}() === true) {
+            if ($data[$this->getHasOptionFunctionName()] === true) {
                 $groups[] = $this->getValidationGroup();
             }
 

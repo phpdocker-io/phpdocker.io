@@ -19,7 +19,6 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\MariaDBOptions;
 use App\PHPDocker\Project\ServiceOptions\MariaDB;
 
 /**
@@ -27,14 +26,6 @@ use App\PHPDocker\Project\ServiceOptions\MariaDB;
  */
 class MariaDBType extends AbstractMySQLType
 {
-    /**
-     * @inheritdoc
-     */
-    protected function getDataClass(): string
-    {
-        return MariaDBOptions::class;
-    }
-
     /**
      * @inheritdoc
      */
