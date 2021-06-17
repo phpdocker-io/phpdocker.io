@@ -44,24 +44,25 @@ class GeneratorController extends AbstractController
         Generator $generator
     ): BinaryFileResponse|Response {
         // Set up form
-        $project = new Project($slugifier);
-        $form    = $this->createForm(ProjectType::class, $project, ['method' => Request::METHOD_POST]);
+        $form = $this->createForm(type: ProjectType::class, options: ['method' => Request::METHOD_POST]);
 
         // Process form
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() === true) {
             // Fix PHP extensions per version before sending to generator
-            $project = $this->fixPhpExtensionGeneratorExpectation($project);
+            //$project = $this->fixPhpExtensionGeneratorExpectation($project);
 
             // Generate zip file with docker project
-            $zipFile = $generator->generate($project);
+//            $zipFile = $generator->generate($project);
+//
+//            // Generate file download & cleanup
+//            $response = new BinaryFileResponse($zipFile->getTmpFilename());
+//            $response
+//                ->prepare($request)
+//                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
+//                ->deleteFileAfterSend(true);
 
-            // Generate file download & cleanup
-            $response = new BinaryFileResponse($zipFile->getTmpFilename());
-            $response
-                ->prepare($request)
-                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
-                ->deleteFileAfterSend(true);
+            $response = new Response(content: $form->getData());
 
             return $response;
         }

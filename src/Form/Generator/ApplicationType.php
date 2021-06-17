@@ -18,10 +18,15 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
+use App\Assert\ApplicationType as AssertApplicationType;
 use App\PHPDocker\Project\ServiceOptions\Application;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Form for application options.
@@ -35,14 +40,25 @@ class ApplicationType extends AbstractGeneratorType
     {
         $builder
             ->add('applicationType', ChoiceType::class, [
-                'choices'  => array_flip(Application::getChoices()),
-                'expanded' => false,
-                'multiple' => false,
-                'label'    => 'Application type',
+                'choices'     => array_flip(Application::getChoices()),
+                'expanded'    => false,
+                'multiple'    => false,
+                'label'       => 'Application type',
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                    new AssertApplicationType(),
+                ],
             ])
             ->add('uploadSize', IntegerType::class, [
-                'label'    => 'Max upload size (MB)',
-                'required' => true,
+                'label'       => 'Max upload size (MB)',
+                'required'    => true,
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                    new Type(type: 'integer'),
+                    new Range(min: 2, max: 2147483647),
+                ],
             ]);
     }
 

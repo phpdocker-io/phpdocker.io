@@ -23,6 +23,11 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Project forms.
@@ -36,28 +41,47 @@ class ProjectType extends AbstractGeneratorType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Project name',
-                'attr'  => ['placeholder' => 'Used on host, container, vm and folder names'],
+                'label'       => 'Project name',
+                'attr'        => ['placeholder' => 'Used on host, container, vm and folder names'],
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                    new Length(min: 1, max: 128),
+                ],
             ])
             ->add('basePort', IntegerType::class, [
-                'label' => 'Base port',
-                'attr'  => ['placeholder' => 'For nginx, Mailhog control panel...'],
+                'label'       => 'Base port',
+                'attr'        => ['placeholder' => 'For nginx, Mailhog control panel...'],
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                    new Type(type: 'integer'),
+                    new Range(min: 1025, max: 65535),
+                ],
             ])
             ->add('hasMemcached', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Memcached',
+                'required'    => false,
+                'label'       => 'Enable Memcached',
+                'empty_data'  => false,
+                'constraints' => new Type(type: 'bool'),
             ])
             ->add('hasRedis', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Redis',
+                'required'    => false,
+                'label'       => 'Enable Redis',
+                'empty_data'  => false,
+                'constraints' => new Type(type: 'bool'),
             ])
             ->add('hasMailhog', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Mailhog',
+                'required'    => false,
+                'label'       => 'Enable Mailhog',
+                'empty_data'  => false,
+                'constraints' => new Type(type: 'bool'),
             ])
             ->add('hasClickhouse', CheckboxType::class, [
-                'required' => false,
-                'label'    => 'Enable Clickhouse',
+                'required'    => false,
+                'label'       => 'Enable Clickhouse',
+                'empty_data'  => false,
+                'constraints' => new Type(type: 'bool'),
             ])
             ->add('phpOptions', PhpType::class, ['label' => 'PHP Options'])
             ->add('mysqlOptions', MySQLType::class, ['label' => 'MySQL'])

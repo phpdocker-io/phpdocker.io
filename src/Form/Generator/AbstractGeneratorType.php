@@ -26,16 +26,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class AbstractGeneratorType extends AbstractType
 {
-    /**
-     * This should return a string with the FQDN of the entity class associated to this form.
-     */
-    abstract protected function getDataClass(): string;
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class'        => $this->getDataClass(),
-            'validation_groups' => $this->getValidationGroups(),
+//            'validation_groups' => $this->getValidationGroups(),
         ]);
     }
 

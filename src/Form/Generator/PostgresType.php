@@ -25,39 +25,54 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Form for Postgres options.
  */
 class PostgresType extends AbstractGeneratorType
 {
+    private const VALIDATION_GROUP = 'postgresOptions';
+
     /**
      * Builds the form definition.
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $defaultConstraints = [
+            new NotBlank(groups: [self::VALIDATION_GROUP]),
+            new NotNull(groups: [self::VALIDATION_GROUP]),
+            new Length(min: 1, max: 128),
+        ];
+
         $builder
             ->add('hasPostgres', CheckboxType::class, [
                 'label'    => 'Enable Postgres',
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
-                'choices'  => array_flip(Postgres::getChoices()),
-                'expanded' => false,
-                'multiple' => false,
-                'label'    => 'Version',
+                'choices'     => array_flip(Postgres::getChoices()),
+                'expanded'    => false,
+                'multiple'    => false,
+                'label'       => 'Version',
+                'constraints' => $defaultConstraints,
             ])
             ->add('rootUser', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Root username'],
+                'label'       => false,
+                'attr'        => ['placeholder' => 'Root username'],
+                'constraints' => $defaultConstraints,
             ])
             ->add('rootPassword', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Password for root user'],
+                'label'       => false,
+                'attr'        => ['placeholder' => 'Password for root user'],
+                'constraints' => $defaultConstraints,
             ])
             ->add('databaseName', TextType::class, [
-                'label' => false,
-                'attr'  => ['placeholder' => 'Your app\'s database name'],
+                'label'       => false,
+                'attr'        => ['placeholder' => 'Your app\'s database name'],
+                'constraints' => $defaultConstraints,
             ]);
     }
 
@@ -77,7 +92,7 @@ class PostgresType extends AbstractGeneratorType
             $groups = ['Default'];
 
             if ($data->hasPostgres() === true) {
-                $groups[] = 'postgresOptions';
+                $groups[] = self::VALIDATION_GROUP;
             }
 
             return $groups;
