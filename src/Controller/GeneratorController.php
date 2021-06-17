@@ -20,7 +20,6 @@ namespace App\Controller;
 
 use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
-use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Project\ServiceOptions\Application;
 use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
@@ -36,7 +35,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class GeneratorController extends AbstractController
 {
-    public function __construct(private SlugifierInterface $slugifier, private Generator $generator)
+    public function __construct(private Generator $generator)
     {
     }
 
