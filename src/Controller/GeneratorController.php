@@ -52,9 +52,6 @@ class GeneratorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid() === true) {
             dump($form->getData());
 
-            // Fix PHP extensions per version before sending to generator
-            //$project = $this->fixPhpExtensionGeneratorExpectation($project);
-
             $project = $this->hydrateProject($form->getData());
 
             // Generate zip file with docker project
@@ -77,10 +74,20 @@ class GeneratorController extends AbstractController
 
     private function hydrateProject(array $formData): Project
     {
+        $phpData = $formData['phpOptions'];
+
+        $extensions = match ($phpData['version']) {
+            PhpOptions::PHP_VERSION_72 => $phpData['phpExtensions72'],
+            PhpOptions::PHP_VERSION_73 => $phpData['phpExtensions73'],
+            PhpOptions::PHP_VERSION_74 => $phpData['phpExtensions74'],
+            PhpOptions::PHP_VERSION_80 => $phpData['phpExtensions80'],
+            default => throw new InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion)),
+        };
+
         $phpOptions = new PhpOptions(
-            version: $formData['phpOptions']['version'],
-            extensions: [],
-            hasGit: $formData['phpOptions']['hasGit']
+            version: $phpData['version'],
+            extensions: $extensions,
+            hasGit: $phpData['hasGit']
         );
 
         $project = new Project(
@@ -90,31 +97,49 @@ class GeneratorController extends AbstractController
             phpOptions: $phpOptions
         );
 
+        $mysqlData = $formData['mysqlOptions'];
+        if ($mysqlData['hasMysql'] === true) {
+            $project
+                ->getMysqlOptions()
+                ->setEnabled(true)
+                ->setVersion($mysqlData['version'])
+                ->setDatabaseName($mysqlData['databaseName'])
+                ->setRootPassword($mysqlData['rootPassword'])
+                ->setUsername($mysqlData['username'])
+                ->setPassword($mysqlData['password']);
+        }
+
+        $mariaDbData = $formData['mariadbOptions'];
+        if ($mariaDbData['hasMariadb'] === true) {
+            $project
+                ->getMariadbOptions()
+                ->setEnabled(true)
+                ->setVersion($mariaDbData['version'])
+                ->setDatabaseName($mariaDbData['databaseName'])
+                ->setRootPassword($mariaDbData['rootPassword'])
+                ->setUsername($mariaDbData['username'])
+                ->setPassword($mariaDbData['password']);
+        }
+
+        $pgData = $formData['postgresOptions'];
+        if ($pgData['hasPostgres'] === true) {
+            $project
+                ->getPostgresOptions()
+                ->setEnabled(true)
+                ->setVersion($pgData['version'])
+                ->setDatabaseName($pgData['databaseName'])
+                ->setRootUser($pgData['rootUser'])
+                ->setRootPassword($pgData['rootPassword']);
+        }
+
+        $esData = $formData['elasticsearchOptions'];
+        if ($esData['hasElasticsearch'] === true) {
+            $project
+                ->getElasticsearchOptions()
+                ->setEnabled(true)
+                ->setVersion($esData['version']);
+        }
+
         return $project;
     }
-
-    /**
-     * Add php extensions to project based on version on the property the generator expects
-     * as phpExtensions56/70 do not exist from its point of view.
-     *
-     * @throws InvalidArgumentException
-     */
-//    private function fixPhpExtensionGeneratorExpectation(Project $project): Project
-//    {
-//        /** @var PhpOptions $phpOptions */
-//        $phpOptions = $project->getPhpOptions();
-//        $phpVersion = $phpOptions->getVersion();
-//
-//        $extensions = match ($phpVersion) {
-//            PhpOptions::PHP_VERSION_72 => $phpOptions->getPhpExtensions72(),
-//            PhpOptions::PHP_VERSION_73 => $phpOptions->getPhpExtensions73(),
-//            PhpOptions::PHP_VERSION_74 => $phpOptions->getPhpExtensions74(),
-//            PhpOptions::PHP_VERSION_80 => $phpOptions->getPhpExtensions80(),
-//            default => throw new InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion)),
-//        };
-//
-//        $project->getPhpOptions()->setPhpExtensions($extensions);
-//
-//        return $project;
-//    }
 }
