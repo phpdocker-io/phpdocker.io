@@ -33,15 +33,7 @@ class Php extends Base
     public const PHP_VERSION_74 = '7.4.x';
     public const PHP_VERSION_80 = '8.0.x';
 
-    /**
-     * @var array
-     */
-    protected $extensions = [];
-
-    /**
-     * @var bool
-     */
-    protected $hasGit = false;
+    private string $version;
 
     /**
      * Supported PHP versions
@@ -53,13 +45,14 @@ class Php extends Base
         self::PHP_VERSION_72,
     ];
 
-    /**
-     * @var string
-     */
-    protected $version;
-
-    public function __construct()
+    public function __construct(string $version, private array $extensions, private bool $hasGit)
     {
+        if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
+            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
+        }
+
+        $this->version = $version;
+
         $this->setEnabled(true);
     }
 
@@ -105,17 +98,6 @@ class Php extends Base
         return $this->version;
     }
 
-    public function setVersion(string $version): self
-    {
-        if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
-            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
-        }
-
-        $this->version = $version;
-
-        return $this;
-    }
-
     /**
      * Returns an array of supported PHP versions.
      */
@@ -127,12 +109,5 @@ class Php extends Base
     public function hasGit(): bool
     {
         return $this->hasGit;
-    }
-
-    public function setHasGit(bool $hasGit): self
-    {
-        $this->hasGit = $hasGit;
-
-        return $this;
     }
 }
