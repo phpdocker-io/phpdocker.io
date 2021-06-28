@@ -49,7 +49,7 @@ clear-cache:
 
 install-assets-dev:
 	mkdir -p web/bundles web/css web/js
-	$(PHP_RUN)  bin/console assets:install --symlink --relative
+	$(PHP_RUN) bin/console assets:install --symlink --relative
 
 composer-install:
 	$(PHP_RUN) composer -o install
@@ -66,7 +66,7 @@ bower-install:
 install-dependencies: composer-install bower-install
 
 composer-update:
-	$(PHP_RUN) run php-fpm composer update --no-scripts
+	$(PHP_RUN) composer update --no-scripts
 	make composer-install
 
 install-mkcert:
