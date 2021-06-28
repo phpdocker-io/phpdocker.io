@@ -48,6 +48,7 @@ final class DefaultContext implements Context
             throw new RuntimeException('No response received');
         }
 
+        Assertion::same($this->response->getStatusCode(), 301);
         Assertion::true($this->response->headers->has('location'));
         Assertion::same($this->response->headers->get('location'), $url);
     }
