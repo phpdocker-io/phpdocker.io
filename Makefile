@@ -28,7 +28,7 @@ stop:
 	docker-compose stop
 
 shell:
-	docker-compose exec php-fpm bash
+	$(PHP_RUN) bash
 
 init: clean install-mkcert create-certs clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 
@@ -90,7 +90,7 @@ open-frontend:
 prep-ci: composer-install fix-permissions fix-cache-permissions-dev
 
 behaviour:
-	$(PHP_RUN) vendor/bin/behat
+	$(PHP_RUN) vendor/bin/behat --colors
 
 composer-cache-dir:
 	@composer config cache-files-dir
