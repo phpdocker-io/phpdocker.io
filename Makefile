@@ -65,7 +65,7 @@ bower-install:
 install-dependencies: composer-install bower-install
 
 composer-update:
-	docker-compose run php-fpm composer update
+	docker-compose run php-fpm composer update --no-scripts
 	make composer-install
 
 install-mkcert:

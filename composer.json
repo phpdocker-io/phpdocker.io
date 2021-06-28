@@ -24,8 +24,8 @@
         "symfony/twig-bundle": "^5.0",
         "symfony/validator": "^5.0",
         "symfony/yaml": "^5.0",
-        "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/extra-bundle": "^3.0",
+        "twig/twig": "^3.0"
     },
     "require-dev": {
         "symfony/debug-bundle": "^5.0",
