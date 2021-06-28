@@ -2,7 +2,7 @@ default:
     suites:
         default:
             contexts:
-                - App\Tests\Behat\DemoContext
+                - App\Tests\Behat\DefaultContext
 
     extensions:
         FriendsOfBehat\SymfonyExtension: null
