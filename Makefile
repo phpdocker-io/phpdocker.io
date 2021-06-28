@@ -86,11 +86,14 @@ init-hosts: clean-hosts
 open-frontend:
 	xdg-open https://$(SITE_HOST):10000
 
-### Tests
+### Tests & ci
 prep-ci: install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 
 behaviour:
 	$(PHP_RUN) vendor/bin/behat
+
+composer-cache-dir:
+	@composer config cache-files-dir
 
 ### Deployment targets
 
