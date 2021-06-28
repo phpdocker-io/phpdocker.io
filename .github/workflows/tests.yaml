@@ -1,17 +1,15 @@
-name: Test
+name: Run tests galore
 
 on:
   push:
     branches:
       - master
-      - features/**
-      - dependabot/**
   pull_request:
     branches:
       - master
 
 jobs:
-  docker:
+  tests:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
@@ -25,6 +23,6 @@ jobs:
       - name: Run behaviour tests
         run: make behaviour
 
-      - name: Stop containers
+      - name: Cleanup
         if: always()
         run: make clean
