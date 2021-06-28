@@ -28,13 +28,13 @@ final class DefaultContext implements Context
     /**
      * @Then /^the response code should be (\d+)$/
      */
-    public function theResponseCodeShouldBe(int $arg1)
+    public function theResponseCodeShouldBe(int $responseCode)
     {
         if ($this->response === null) {
             throw new RuntimeException('No response received');
         }
 
-        Assertion::same($this->response->getStatusCode(), $arg1);
+        Assertion::same($this->response->getStatusCode(), $responseCode);
     }
 
     /**
