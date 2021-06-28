@@ -5,30 +5,16 @@ declare(strict_types=1);
 namespace App\Tests\Behat;
 
 use Assert\Assertion;
-use Behat\Behat\Context\Context;
-use RuntimeException;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
+use Behat\MinkExtension\Context\MinkContext;
 
-final class DefaultContext implements Context
+final class DefaultContext extends MinkContext
 {
-    private Response $response;
-
-    public function __construct(private KernelInterface $kernel)
-    {
-    }
-
     /**
      * @Then /^the response code should be (\d+)$/
      */
     public function theResponseCodeShouldBe(int $responseCode)
     {
-        if ($this->response === null) {
-            throw new RuntimeException('No response received');
-        }
-
-        Assertion::same($this->response->getStatusCode(), $responseCode);
+        Assertion::same($this->getSession()->getStatusCode(), $responseCode);
     }
 
     /**
@@ -36,7 +22,10 @@ final class DefaultContext implements Context
      */
     public function iLoad(string $path)
     {
-        $this->response = $this->kernel->handle(Request::create($path, 'GET'));
+        // Ensure we do not follow any redirects so that we can test them
+        $this->getSession()->getDriver()->getClient()->followRedirects(false);
+
+        $this->getSession()->visit($path);
     }
 
     /**
@@ -44,12 +33,10 @@ final class DefaultContext implements Context
      */
     public function itShouldPermanentlyRedirectTo(string $url)
     {
-        if ($this->response === null) {
-            throw new RuntimeException('No response received');
-        }
+        $headers = $this->getSession()->getResponseHeaders();
 
-        Assertion::same($this->response->getStatusCode(), 301);
-        Assertion::true($this->response->headers->has('location'));
-        Assertion::same($this->response->headers->get('location'), $url);
+        Assertion::same($this->getSession()->getStatusCode(), 301);
+        Assertion::keyExists($headers, 'location');
+        Assertion::same($headers['location'][0], $url);
     }
 }

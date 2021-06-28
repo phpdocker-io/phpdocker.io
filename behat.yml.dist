@@ -6,3 +6,7 @@ default:
 
     extensions:
         FriendsOfBehat\SymfonyExtension: null
+        Behat\MinkExtension:
+            sessions:
+                symfony:
+                    symfony: ~

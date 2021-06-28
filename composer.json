@@ -29,6 +29,9 @@
     },
     "require-dev": {
         "beberlei/assert": "^3.3",
+        "friends-of-behat/mink": "^1.9",
+        "friends-of-behat/mink-browserkit-driver": "^1.5",
+        "friends-of-behat/mink-extension": "^2.5",
         "friends-of-behat/symfony-extension": "^2.2",
         "symfony/debug-bundle": "^5.0",
         "symfony/stopwatch": "^5.0",
