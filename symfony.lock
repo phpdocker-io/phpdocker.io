@@ -32,6 +32,15 @@
     "doctrine/lexer": {
         "version": "1.2.1"
     },
+    "friends-of-behat/mink": {
+        "version": "v1.9.0"
+    },
+    "friends-of-behat/mink-browserkit-driver": {
+        "version": "v1.5.0"
+    },
+    "friends-of-behat/mink-extension": {
+        "version": "v2.5.0"
+    },
     "friends-of-behat/symfony-extension": {
         "version": "2.0",
         "recipe": {
@@ -71,6 +80,9 @@
     "psr/log": {
         "version": "1.1.4"
     },
+    "symfony/browser-kit": {
+        "version": "v5.3.0"
+    },
     "symfony/cache": {
         "version": "v4.4.25"
     },
@@ -92,6 +104,9 @@
             "bin/console"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v5.3.0"
+    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
@@ -112,6 +127,9 @@
     },
     "symfony/deprecation-contracts": {
         "version": "v2.4.0"
+    },
+    "symfony/dom-crawler": {
+        "version": "v5.3.0"
     },
     "symfony/dotenv": {
         "version": "v4.4.25"
