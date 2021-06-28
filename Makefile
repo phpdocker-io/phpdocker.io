@@ -50,10 +50,10 @@ install-assets-dev:
 	mkdir -p web/bundles web/css web/js
 	docker-compose run php-fpm bin/console assets:install --symlink --relative
 
-install-dependencies-php:
+composer-install:
 	docker-compose run php-fpm composer -o install
 
-install-dependencies-frontend:
+bower-install:
 	docker run  \
 	    --rm \
 	    -it \
@@ -62,11 +62,11 @@ install-dependencies-frontend:
 	    node:alpine \
 	    sh -c "apk update; apk add git; npm i -g bower; bower install --allow-root"
 
-install-dependencies: install-dependencies-php install-dependencies-frontend
+install-dependencies: composer-install bower-install
 
-update-dependencies-php:
+composer-update:
 	docker-compose run php-fpm composer update
-	make install-dependencies-php
+	make composer-install
 
 install-mkcert:
 	@echo "Installing mkcert for OS type ${BINARY_SUFFIX}"
