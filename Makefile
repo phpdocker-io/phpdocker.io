@@ -57,7 +57,7 @@ composer-install:
 bower-install:
 	docker run  \
 	    --rm \
-	    -it \
+	    -t \
 	    -v "`pwd`:/workdir" \
 	    -w /workdir \
 	    node:alpine \
