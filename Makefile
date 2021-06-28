@@ -87,7 +87,7 @@ open-frontend:
 	xdg-open https://$(SITE_HOST):10000
 
 ### Tests & ci
-prep-ci: install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
+prep-ci: composer-install fix-permissions fix-cache-permissions-dev
 
 behaviour:
 	$(PHP_RUN) vendor/bin/behat
