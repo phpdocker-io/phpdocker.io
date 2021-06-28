@@ -82,10 +82,13 @@ clean-hosts:
 
 init-hosts: clean-hosts
 	sudo bin/hosts add 127.0.0.1 $(SITE_HOST)
+
 open-frontend:
 	xdg-open https://$(SITE_HOST):10000
 
 ### Tests
+prep-ci: install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
+
 behaviour:
 	$(PHP_RUN) vendor/bin/behat
 
