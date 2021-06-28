@@ -1,0 +1,7 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Behat\:
+        resource: '../tests/Behat/*'

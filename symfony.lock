@@ -1,6 +1,21 @@
 {
+    "beberlei/assert": {
+        "version": "v3.3.1"
+    },
+    "behat/behat": {
+        "version": "v3.8.1"
+    },
+    "behat/gherkin": {
+        "version": "v4.8.0"
+    },
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "cocur/slugify": {
         "version": "v4.0.0"
+    },
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99.2"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -16,6 +31,27 @@
     },
     "doctrine/lexer": {
         "version": "1.2.1"
+    },
+    "friends-of-behat/symfony-extension": {
+        "version": "2.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "2.0",
+            "ref": "3d21344765fd3440a85bdd27d4cada186ec628bd"
+        },
+        "files": [
+            "behat.yml.dist",
+            "config/services_test.yaml",
+            "features/demo.feature",
+            "tests/Behat/DemoContext.php"
+        ]
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.5"
+    },
+    "laminas/laminas-code": {
+        "version": "4.4.0"
     },
     "michelf/php-markdown": {
         "version": "1.9.0"
@@ -201,6 +237,9 @@
     "symfony/property-info": {
         "version": "v5.3.1"
     },
+    "symfony/proxy-manager-bridge": {
+        "version": "v5.3.0"
+    },
     "symfony/routing": {
         "version": "5.3",
         "recipe": {
@@ -231,6 +270,19 @@
     },
     "symfony/string": {
         "version": "v5.3.0"
+    },
+    "symfony/translation": {
+        "version": "5.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.3",
+            "ref": "da64f5a2b6d96f5dc24914517c0350a5f91dee43"
+        },
+        "files": [
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
+        ]
     },
     "symfony/translation-contracts": {
         "version": "v2.4.0"

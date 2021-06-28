@@ -2,6 +2,7 @@ SHELL=/bin/bash
 MKCERT_VERSION=v1.3.0
 MKCERT_LOCATION=$(PWD)/bin/mkcert
 SITE_HOST=phpdocker.local
+PHP_RUN=docker-compose run --rm php-fpm
 
 ifndef BUILD_TAG
 	BUILD_TAG:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
@@ -27,7 +28,7 @@ stop:
 	docker-compose stop
 
 shell:
-	docker-compose exec php-fpm bash
+	$(PHP_RUN) bash
 
 init: clean install-mkcert create-certs clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 
@@ -44,19 +45,19 @@ fix-cache-permissions-dev:
 	sudo chmod -Rf 777 var/*
 
 clear-cache:
-	docker-compose run php-fpm rm var/* -rf
+	$(PHP_RUN) rm var/* -rf
 
 install-assets-dev:
 	mkdir -p web/bundles web/css web/js
-	docker-compose run php-fpm bin/console assets:install --symlink --relative
+	$(PHP_RUN) bin/console assets:install --symlink --relative
 
 composer-install:
-	docker-compose run php-fpm composer -o install
+	$(PHP_RUN) composer -o install
 
 bower-install:
 	docker run  \
 	    --rm \
-	    -it \
+	    -t \
 	    -v "`pwd`:/workdir" \
 	    -w /workdir \
 	    node:alpine \
@@ -65,7 +66,7 @@ bower-install:
 install-dependencies: composer-install bower-install
 
 composer-update:
-	docker-compose run php-fpm composer update --no-scripts
+	$(PHP_RUN) composer update --no-scripts
 	make composer-install
 
 install-mkcert:
@@ -81,8 +82,18 @@ clean-hosts:
 
 init-hosts: clean-hosts
 	sudo bin/hosts add 127.0.0.1 $(SITE_HOST)
+
 open-frontend:
 	xdg-open https://$(SITE_HOST):10000
+
+### Tests & ci
+prep-ci: composer-install fix-permissions fix-cache-permissions-dev
+
+behaviour:
+	$(PHP_RUN) vendor/bin/behat --colors
+
+composer-cache-dir:
+	@composer config cache-files-dir
 
 ### Deployment targets
 
