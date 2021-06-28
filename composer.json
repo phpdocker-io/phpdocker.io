@@ -28,6 +28,7 @@
         "twig/twig": "^3.0"
     },
     "require-dev": {
+        "friends-of-behat/symfony-extension": "^2.2",
         "symfony/debug-bundle": "^5.0",
         "symfony/stopwatch": "^5.0",
         "symfony/var-dumper": "^5.0",
