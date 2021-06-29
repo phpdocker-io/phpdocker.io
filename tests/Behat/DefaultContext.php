@@ -6,7 +6,6 @@ namespace App\Tests\Behat;
 
 use Assert\Assertion;
 use Behat\MinkExtension\Context\MinkContext;
-use VirtualFileSystem\FileSystem;
 use ZipArchive;
 
 final class DefaultContext extends MinkContext
@@ -57,21 +56,20 @@ final class DefaultContext extends MinkContext
 
         Assertion::eqArraySubset($headers, $expectedZipHeaders);
 
-        $fs = new FileSystem();
-        $filename = sprintf("/tmp/%s", $zipFilename);
+        Assertion::true($this->isZipFile($response));
+    }
 
-        file_put_contents(filename: $fs->path($filename), data: $response);
+    private function isZipFile(string $data): bool
+    {
+        $fn = sprintf('%s', tempnam('/tmp', 'zip_test_'));
+        file_put_contents(filename: $fn, data: $data);
 
-        $zipFile = new ZipArchive();
-        $zipFile->open($filename);
+        try {
+            $zipFile = new ZipArchive();
 
-//        // Check we have a zip file
-//        try {
-//
-//        } catch (\Throwable $ex) {
-//
-//        }
-//        $filename = sprintf("%s/%s.%s", )
-
+            return $zipFile->open($fn);
+        } finally {
+            @unlink($fn);
+        }
     }
 }
