@@ -39,4 +39,29 @@ final class DefaultContext extends MinkContext
         Assertion::keyExists($headers, 'location');
         Assertion::same($headers['location'][0], $url);
     }
+
+    /**
+     * @Given /^I should receive a zip file named "([^"]*)"$/
+     */
+    public function iShouldReceiveAZipFileNamed(string $zipFilename)
+    {
+        $response = $this->getSession()->getDriver()->getContent();
+        $headers  = $this->getSession()->getResponseHeaders();
+
+        $expectedZipHeaders = [
+            "content-type"        => ["application/zip"],
+            "content-disposition" => [sprintf("attachment; filename=%s", $zipFilename)],
+        ];
+
+        Assertion::eqArraySubset($headers, $expectedZipHeaders);
+
+//        // Check we have a zip file
+//        try {
+//
+//        } catch (\Throwable $ex) {
+//
+//        }
+//        $filename = sprintf("%s/%s.%s", )
+
+    }
 }
