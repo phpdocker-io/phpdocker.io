@@ -68,9 +68,6 @@
     "monolog/monolog": {
         "version": "1.26.1"
     },
-    "php-vfs/php-vfs": {
-        "version": "v1.4.2"
-    },
     "psr/cache": {
         "version": "1.0.1"
     },
