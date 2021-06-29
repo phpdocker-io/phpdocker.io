@@ -10,7 +10,7 @@
         {% set image = 'phpdockerio/php80-fpm:latest' %}
     {% endif %}
 FROM {{ image }}
-WORKDIR "/application"
+WORKDIR "{{ dockerWorkingDir }}"
 
 {% if extensionPackages %}
 # Install selected extensions and other stuff

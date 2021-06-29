@@ -128,6 +128,7 @@ class Generator
             'extensionPackages' => array_unique($packages),
             'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
             'hasGit'            => $project->getPhpOptions()->hasGit(),
+            'dockerWorkingDir'  => $project->getWorkingDirOptions()->getDockerWorkingDir(),
         ];
 
         return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
@@ -149,9 +150,10 @@ class Generator
     private function getNginxConf(Project $project): GeneratedFile\NginxConf
     {
         $data = [
-            'projectName'     => $project->getName(),
-            'applicationType' => $project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'   => $project->getApplicationOptions()->getUploadSize(),
+            'projectName'      => $project->getName(),
+            'applicationType'  => $project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'    => $project->getApplicationOptions()->getUploadSize(),
+            'dockerWorkingDir' => $project->getWorkingDirOptions()->getDockerWorkingDir(),
         ];
 
         return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));

@@ -1,9 +1,9 @@
 {% if project.hasPostgres() %}
     postgres:
       image: postgres:{{ postgres.getVersion() }}-alpine
-      working_dir: /application
+      working_dir: {{ dir.getDockerWorkingDir() }}
       volumes:
-        - .:/application
+        - {{ dir.getLocalWorkingDir() }}:{{ dir.getDockerWorkingDir() }}
       environment:
         - POSTGRES_USER={{ postgres.getRootUser() }}
         - POSTGRES_PASSWORD={{ postgres.getRootPassword() }}

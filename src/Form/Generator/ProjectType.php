@@ -99,6 +99,10 @@ class ProjectType extends AbstractGeneratorType
             ->add('elasticsearchOptions', ElasticsearchType::class, [
                 'label'       => 'Elasticsearch',
                 'constraints' => new Valid(),
+            ])
+            ->add('workingDirOptions', WorkingDirType::class, [
+                'label'       => 'Working Dir options',
+                'constraints' => new Valid(),
             ]);
     }
 }

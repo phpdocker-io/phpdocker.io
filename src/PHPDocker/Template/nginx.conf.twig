@@ -13,7 +13,7 @@ server {
             {% set indexFile = 'index' %}
         {% endif %}
 
-    root /application/web;
+    root {{ dockerWorkingDir }}/web;
     
     rewrite ^/{{ indexFile }}\.php/?(.*)$ /$1 permanent;
     
@@ -51,7 +51,7 @@ server {
     {% endapply %}
 {% else %}
 
-    root /application/public;
+    root {{ dockerWorkingDir }}/public;
     index index.php;
 
     # try to serve file directly, fallback to index.php

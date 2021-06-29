@@ -1,9 +1,9 @@
 {% if project.hasMysql() %}
     mysql:
       image: mysql:{{ mysql.getVersion() }}
-      working_dir: /application
+      working_dir: {{ dir.getDockerWorkingDir() }}
       volumes:
-        - .:/application
+        - {{ dir.getLocalWorkingDir() }}:{{ dir.getDockerWorkingDir() }}
       environment:
         - MYSQL_ROOT_PASSWORD={{ mysql.getRootPassword() }}
         - MYSQL_DATABASE={{ mysql.getDatabaseName() }}

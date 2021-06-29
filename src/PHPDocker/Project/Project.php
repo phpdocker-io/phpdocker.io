@@ -40,7 +40,8 @@ class Project
         private string $name,
         private int $basePort,
         private Php $phpOptions,
-        private ServiceOptions\Application $applicationOptions
+        private ServiceOptions\Application $applicationOptions,
+        private ServiceOptions\WorkingDir $workingDirOptions,
     ) {
         // Initialise project properties
         $this->nginxOptions         = new ServiceOptions\Nginx();
@@ -162,5 +163,15 @@ class Project
     public function hasClickhouse(): bool
     {
         return $this->clickhouseOptions->isEnabled();
+    }
+
+    public function getWorkingDirOptions(): ServiceOptions\WorkingDir
+    {
+        return $this->workingDirOptions;
+    }
+
+    public function hasWorkingDirOptions(): bool
+    {
+        return true;
     }
 }
