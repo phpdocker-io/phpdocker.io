@@ -7,6 +7,7 @@ default:
     extensions:
         FriendsOfBehat\SymfonyExtension: null
         Behat\MinkExtension:
+            show_cmd: 'firefox %s'
             sessions:
                 symfony:
                     symfony: ~
