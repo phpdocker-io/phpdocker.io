@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86afd0ace1857d15402a70d884b98637",
+    "content-hash": "5fff6124beea88b832619e13ee0f529e",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -5374,6 +5374,62 @@
                 }
             ],
             "time": "2021-06-17T13:39:43+00:00"
+        },
+        {
+            "name": "php-vfs/php-vfs",
+            "version": "v1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michael-donat/php-vfs.git",
+                "reference": "e56b0bd9a118941ea5681e1673ed602d47887be8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michael-donat/php-vfs/zipball/e56b0bd9a118941ea5681e1673ed602d47887be8",
+                "reference": "e56b0bd9a118941ea5681e1673ed602d47887be8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "doctrine/instantiator": "~1.0.2",
+                "php": ">=7.0",
+                "phpunit/phpunit": "^6.5",
+                "sami/sami": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "VirtualFileSystem": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Donat",
+                    "email": "michael.donat@me.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Virtual file system implementation for use with PHP unit testing.",
+            "homepage": "http://michael-donat.github.com/php-vfs",
+            "keywords": [
+                "filesystem",
+                "php",
+                "testing",
+                "unit",
+                "virtual"
+            ],
+            "support": {
+                "issues": "https://github.com/michael-donat/php-vfs/issues",
+                "source": "https://github.com/michael-donat/php-vfs/tree/v1.4.2",
+                "wiki": "https://github.com/michael-donat/php-vfs/wiki"
+            },
+            "time": "2020-10-14T06:51:31+00:00"
         },
         {
             "name": "symfony/browser-kit",
