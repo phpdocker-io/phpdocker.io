@@ -1,6 +1,8 @@
 SHELL=/bin/bash
 MKCERT_VERSION=v1.3.0
 MKCERT_LOCATION=$(PWD)/bin/mkcert
+HOSTS_VERSION=3.6.4
+HOSTS_LOCATION=$(PWD)/bin/hosts
 SITE_HOST=phpdocker.local
 PHP_RUN=docker-compose run --rm php-fpm
 
@@ -30,7 +32,7 @@ stop:
 shell:
 	$(PHP_RUN) bash
 
-init: clean install-mkcert create-certs clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
+init: clean install-mkcert create-certs install-hosts clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 
 clean: clear-cache
 	docker-compose down
@@ -76,6 +78,10 @@ install-mkcert:
 
 create-certs:
 	bin/mkcert -cert-file=infrastructure/local/localhost.pem -key-file=infrastructure/local/localhost-key.pem $(SITE_HOST)
+
+install-hosts:
+	@echo "Installing hosts script"
+	@if [[ ! -f '$(HOSTS_LOCATION)' ]]; then curl -sL 'https://raw.githubusercontent.com/xwmx/hosts/$(HOSTS_VERSION)/hosts' -o $(HOSTS_LOCATION); chmod +x $(HOSTS_LOCATION);	fi;
 
 clean-hosts:
 	sudo bin/hosts remove --force *$(SITE_HOST) > /dev/null 2>&1 || exit 0
