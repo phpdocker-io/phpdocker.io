@@ -30,6 +30,7 @@ jobs:
         with:
           github_token: ${{ github.token }}
           last_commit_age_days: 30
+          ignore_branches: next
 
           # Actually get action to delete abandoned branches by disabling dry run
           dry_run: no
