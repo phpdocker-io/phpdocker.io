@@ -1,0 +1,36 @@
+name: Repo cleanup (old PRs, branches and issues)
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+  # Allow workflow to be manually run from the GitHub UI
+  workflow_dispatch:
+
+jobs:
+  cleanup-repository:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Mark issues and PRs with no activity as stale after a while, and close them after a while longer
+      - uses: actions/stale@v3
+        with:
+          stale-issue-message: 'Marking issue as stale'
+          stale-pr-message: 'Marking PR as stale'
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          exempt-pr-labels: 'stale-exempt'
+          days-before-stale: 30
+          days-before-close: 7
+
+      # Delete old, abandoned branches
+      # See what constitutes an abandoned branch here: https://github.com/phpdocker-io/github-actions-delete-abandoned-branches
+      - uses: phpdocker-io/github-actions-delete-abandoned-branches@v1
+        with:
+          github_token: ${{ github.token }}
+          last_commit_age_days: 30
+          ignore_branches: next
+
+          # Actually get action to delete abandoned branches by disabling dry run
+          dry_run: no
