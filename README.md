@@ -40,5 +40,3 @@ Recommended installation is running a `make init` script: this will set up the a
 This is an initial fail-safe set up and not always you need to run it, after it's done once you'll just need to do a good old `docker-compose up -d`.
 
 Running the app on **Windows** is possible using Wsl2 and Docker. More info here: [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). App will be available at [https://localhost:10000/generator](https://phpdocker.local:10000/generator) route.
-
-**Note:** you'll notice a `console` script at the root of the project. It does some voodoo to run `bin/console` within the container.
