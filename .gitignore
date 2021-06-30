@@ -11,6 +11,7 @@
 .idea
 public/vendor/
 bin/mkcert
+bin/hosts
 
 ###> friends-of-behat/symfony-extension ###
 /behat.yml
