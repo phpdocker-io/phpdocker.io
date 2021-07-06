@@ -20,8 +20,8 @@ declare(strict_types=1);
 namespace App\PHPDocker\Generator;
 
 use App\PHPDocker\Generator\Files\Dockerfile;
+use App\PHPDocker\Generator\Files\ReadmeMd;
 use App\PHPDocker\Interfaces\ArchiveInterface;
-use App\PHPDocker\Interfaces\ProjectFileInterface;
 use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\Project;
@@ -60,6 +60,7 @@ class Generator
 //            ->addFile($this->getDockerCompose($project), true);
 
         $this->archiver
+            ->addFile(new ReadmeMd($this->twig, $project))
             ->addFile(new Dockerfile($this->twig, $project));
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
