@@ -117,6 +117,10 @@ class Generator
         $phpOptions = $project->getPhpOptions();
         $packages   = [];
 
+        if ($project->getPhpOptions()->hasGit() === true) {
+            $packages[] = 'git';
+        }
+
         // Resolve extension packages to install
         foreach ($phpOptions->getExtensions() as $extension) {
             /** @var PhpExtension $extension */
@@ -124,10 +128,9 @@ class Generator
         }
 
         $data = [
-            'phpVersion'        => $project->getPhpOptions()->getVersion(),
-            'extensionPackages' => array_unique($packages),
-            'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
-            'hasGit'            => $project->getPhpOptions()->hasGit(),
+            'phpVersion'      => $project->getPhpOptions()->getVersion(),
+            'packages'        => array_unique($packages),
+            'applicationType' => $project->getApplicationOptions()->getApplicationType(),
         ];
 
         return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));

@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace App\PHPDocker\Project\ServiceOptions;
 
 use App\PHPDocker\PhpExtension\AvailableExtensionsFactory;
+use App\PHPDocker\PhpExtension\PhpExtension;
 use InvalidArgumentException;
 
 /**
@@ -33,7 +34,9 @@ class Php extends Base
     public const PHP_VERSION_80 = '8.0.x';
 
     private string $version;
-    private array  $extensions = [];
+
+    /** @var PhpExtension[] */
+    private array $extensions = [];
 
     /**
      * Supported PHP versions
