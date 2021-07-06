@@ -19,7 +19,9 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Generator;
 
+use App\PHPDocker\Generator\Files\Dockerfile;
 use App\PHPDocker\Interfaces\ArchiveInterface;
+use App\PHPDocker\Interfaces\ProjectFileInterface;
 use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\Project;
@@ -48,14 +50,17 @@ class Generator
      */
     public function generate(Project $project): ArchiveInterface
     {
-        $this
-            ->archiver
-            ->addFile($this->getReadmeMd($project))
-            ->addFile($this->getReadmeHtml($project))
-            ->addFile($this->getPhpDockerConf($project))
-            ->addFile($this->getPhpIniOverrides($project))
-            ->addFile($this->getNginxConf($project))
-            ->addFile($this->getDockerCompose($project), true);
+//        $this
+//            ->archiver
+//            ->addFile($this->getReadmeMd($project))
+//            ->addFile($this->getReadmeHtml($project))
+//            ->addFile($this->getPhpDockerConf($project))
+//            ->addFile($this->getPhpIniOverrides($project))
+//            ->addFile($this->getNginxConf($project))
+//            ->addFile($this->getDockerCompose($project), true);
+
+        $this->archiver
+            ->addFile(new Dockerfile($this->twig, $project));
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
     }
