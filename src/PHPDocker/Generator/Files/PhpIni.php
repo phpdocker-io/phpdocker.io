@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright 2016 Luis Alberto Pabón Flores
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,31 @@ declare(strict_types=1);
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace App\PHPDocker\Generator\GeneratedFile;
+namespace App\PHPDocker\Generator\Files;
 
-/**
- * PHP docker config
- */
-class PhpDockerConf extends Base
+use App\PHPDocker\Interfaces\GeneratedFileInterface;
+use App\PHPDocker\Project\Project;
+use Twig\Environment;
+
+class PhpIni implements GeneratedFileInterface
 {
-    /**
-     * @inheritdoc
-     */
+    public function __construct(private Environment $twig, private Project $project)
+    {
+
+    }
+
+    public function getContents(): string
+    {
+        $data = ['maxUploadSize' => $this->project->getApplicationOptions()->getUploadSize()];
+
+        return $this->twig->render('php-ini-overrides.ini.twig', $data);
+    }
+
     public function getFilename(): string
     {
-        return 'php-fpm' . DIRECTORY_SEPARATOR . 'Dockerfile';
+        return 'php-fpm' . DIRECTORY_SEPARATOR . 'php-ini-overrides.ini';
     }
 }

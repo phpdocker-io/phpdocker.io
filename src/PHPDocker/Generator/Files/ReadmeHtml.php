@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright 2016 Luis Alberto Pabón Flores
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,31 @@ declare(strict_types=1);
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace App\PHPDocker\Generator\GeneratedFile;
+namespace App\PHPDocker\Generator\Files;
 
-/**
- * nginx.conf file
- */
-class NginxConf extends Base
+use App\PHPDocker\Interfaces\GeneratedFileInterface;
+use Michelf\MarkdownExtra;
+use Twig\Environment;
+
+class ReadmeHtml implements GeneratedFileInterface
 {
-    /**
-     * @inheritdoc
-     */
+    public function __construct(private Environment $twig, private MarkdownExtra $markdown, private string $readmeMd)
+    {
+
+    }
+
+    public function getContents(): string
+    {
+        $html = $this->markdown->transform($this->readmeMd);
+
+        return $this->twig->render('README.html.twig', ['text' => $html]);
+    }
+
     public function getFilename(): string
     {
-        return 'nginx' . DIRECTORY_SEPARATOR . 'nginx.conf';
+        return 'README.html';
     }
 }

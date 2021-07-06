@@ -17,21 +17,32 @@ declare(strict_types=1);
  *
  */
 
-namespace App\PHPDocker\Generator\GeneratedFile;
+namespace App\PHPDocker\Generator\Files;
 
 use App\PHPDocker\Interfaces\GeneratedFileInterface;
+use App\PHPDocker\Project\Project;
+use Twig\Environment;
 
-/**
- * Base class for all generated files.
- */
-abstract class Base implements GeneratedFileInterface
+class NginxConf implements GeneratedFileInterface
 {
-    public function __construct(protected string $contents)
+    public function __construct(private Environment $twig, private Project $project)
     {
+
     }
 
     public function getContents(): string
     {
-        return $this->contents;
+        $data = [
+            'projectName'     => $this->project->getName(),
+            'applicationType' => $this->project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'   => $this->project->getApplicationOptions()->getUploadSize(),
+        ];
+
+        return $this->twig->render('nginx.conf.twig', $data);
+    }
+
+    public function getFilename(): string
+    {
+        return 'nginx' . DIRECTORY_SEPARATOR . 'nginx.conf';
     }
 }
