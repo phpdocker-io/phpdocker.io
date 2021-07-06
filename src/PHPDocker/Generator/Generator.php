@@ -65,7 +65,7 @@ class Generator
             ->addFile(new Dockerfile($this->twig, $project))
             ->addFile($phpIni)
             ->addFile(new NginxConf($this->twig, $project))
-            ->addFile(new DockerComposeNew($this->yaml, $project), true)
+            ->addFile(new DockerComposeNew($this->yaml, $project, $phpIni->getFilename()), true)
             ->addFile(new DockerCompose($this->twig, $project, $phpIni->getFilename()), true);
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));

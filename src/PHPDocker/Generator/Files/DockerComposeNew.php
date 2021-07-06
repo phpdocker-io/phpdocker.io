@@ -32,7 +32,7 @@ class DockerComposeNew implements GeneratedFileInterface
 
     private array $services;
 
-    public function __construct(private Dumper $yaml, private Project $project)
+    public function __construct(private Dumper $yaml, private Project $project, private string $phpIniLocation)
     {
 
     }
@@ -46,14 +46,19 @@ class DockerComposeNew implements GeneratedFileInterface
             ->addMailhog($basePort)
             ->addRedis()
             ->addMysql($basePort)
-            ->addMariadb($basePort);
+            ->addMariadb($basePort)
+            ->addPostgres($basePort)
+            ->addElasticsearch()
+            ->addClickhouse()
+            ->addWebserver()
+            ->addPhpFpm();
 
         $data = [
             'version'  => self::DOCKER_COMPOSE_FILE_VERSION,
             'services' => $this->services,
         ];
 
-        return $this->yaml->dump(input: $data, inline: 4, indent: 2);
+        return $this->yaml->dump(input: $data, inline: 4);
     }
 
     public function getFilename(): string
@@ -117,7 +122,7 @@ class DockerComposeNew implements GeneratedFileInterface
 
     private function addMariadb(int &$basePort): self
     {
-        if ($this->project->hasMysql() === true) {
+        if ($this->project->hasMariadb() === true) {
             $basePort++;
             $mariadbOptions = $this->project->getMariadbOptions();
 
@@ -138,4 +143,76 @@ class DockerComposeNew implements GeneratedFileInterface
         return $this;
     }
 
+    private function addPostgres(int &$basePort): self
+    {
+        if ($this->project->hasPostgres() === true) {
+            $basePort++;
+            $pgOptions = $this->project->getPostgresOptions();
+
+            $this->services['postgres'] = [
+                'image'       => sprintf('postgres:%s-alpine', $pgOptions->getVersion()),
+                'working_dir' => self::WORKING_DIR,
+                'volumes'     => [self::DEFAULT_VOLUME],
+                'environment' => [
+                    sprintf('POSTGRES_USER=%s', $pgOptions->getRootUser()),
+                    sprintf('POSTGRES_PASSWORD=%s', $pgOptions->getRootPassword()),
+                    sprintf('POSTGRES_DB=%s', $pgOptions->getDatabaseName()),
+                ],
+                'ports'       => [sprintf('%s:5432', $basePort)],
+            ];
+        }
+
+        return $this;
+    }
+
+    private function addElasticsearch(): self
+    {
+        if ($this->project->hasElasticsearch() === true) {
+            $this->services['elasticsearch'] = [
+                'image' => sprintf('elasticsearch:%s', $this->project->getElasticsearchOptions()->getVersion()),
+            ];
+        }
+
+        return $this;
+    }
+
+    private function addClickhouse(): self
+    {
+        if ($this->project->hasMemcached() === true) {
+            $this->services['clickhouse'] = ['image' => 'yandex/clickhouse-server:latest'];
+        }
+
+        return $this;
+    }
+
+    private function addWebserver(): self
+    {
+        $this->services['webserver'] = [
+            'image'       => 'nginx:alpine',
+            'working_dir' => self::WORKING_DIR,
+            'volumes'     => [
+                self::DEFAULT_VOLUME,
+                './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf',
+            ],
+            'ports'       => [sprintf('%s:80', $this->project->getBasePort())],
+        ];
+
+        return $this;
+    }
+
+    private function addPhpFpm(): self
+    {
+        $shortVersion = str_replace(search: '.x', replace: '', subject: $this->project->getPhpOptions()->getVersion());
+
+        $this->services['php-fpm'] = [
+            'build'       => 'phpdocker/php-fpm',
+            'working_dir' => self::WORKING_DIR,
+            'volumes'     => [
+                self::DEFAULT_VOLUME,
+                sprintf('./phpdocker/%s:/etc/php/%s/fpm/conf.d/99-overrides.ini', $this->phpIniLocation, $shortVersion),
+            ],
+        ];
+
+        return $this;
+    }
 }
