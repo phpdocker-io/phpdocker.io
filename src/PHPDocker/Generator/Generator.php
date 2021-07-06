@@ -19,6 +19,7 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Generator;
 
+use App\PHPDocker\Generator\Files\DockerCompose;
 use App\PHPDocker\Generator\Files\Dockerfile;
 use App\PHPDocker\Generator\Files\NginxConf;
 use App\PHPDocker\Generator\Files\PhpIni;
@@ -63,12 +64,15 @@ class Generator
 //            ->addFile($this->getDockerCompose($project), true);
 
         $readmeMd = new ReadmeMd($this->twig, $project);
+        $phpIni = new PhpIni($this->twig, $project);
+
         $this->archiver
             ->addFile($readmeMd)
             ->addFile(new ReadmeHtml($this->twig, $this->markdownExtra, $readmeMd->getContents()))
             ->addFile(new Dockerfile($this->twig, $project))
-            ->addFile(new PhpIni($this->twig, $project))
-            ->addFile(new NginxConf($this->twig, $project));
+            ->addFile($phpIni)
+            ->addFile(new NginxConf($this->twig, $project))
+            ->addFile(new DockerCompose($this->twig, $project, $phpIni->getFilename()), true);
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
     }
