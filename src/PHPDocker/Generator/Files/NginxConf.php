@@ -23,7 +23,7 @@ use App\PHPDocker\Interfaces\ProjectFileInterface;
 use App\PHPDocker\Project\Project;
 use Twig\Environment;
 
-class PhpIni implements ProjectFileInterface
+class NginxConf implements ProjectFileInterface
 {
     public function __construct(private Environment $twig, private Project $project)
     {
@@ -32,13 +32,17 @@ class PhpIni implements ProjectFileInterface
 
     public function getContents(): string
     {
-        $data = ['maxUploadSize' => $this->project->getApplicationOptions()->getUploadSize()];
+        $data = [
+            'projectName'     => $this->project->getName(),
+            'applicationType' => $this->project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'   => $this->project->getApplicationOptions()->getUploadSize(),
+        ];
 
-        return $this->twig->render('php-ini-overrides.ini.twig', $data);
+        return $this->twig->render('nginx.conf.twig', $data);
     }
 
     public function getFilename(): string
     {
-        return 'php-fpm' . DIRECTORY_SEPARATOR . 'php-ini-overrides.ini';
+        return 'nginx' . DIRECTORY_SEPARATOR . 'nginx.conf';
     }
 }
