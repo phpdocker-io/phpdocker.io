@@ -19,11 +19,11 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Generator\Files;
 
-use App\PHPDocker\Interfaces\ProjectFileInterface;
+use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use Michelf\MarkdownExtra;
 use Twig\Environment;
 
-class ReadmeHtml implements ProjectFileInterface
+class ReadmeHtml implements GeneratedFileInterface
 {
     public function __construct(private Environment $twig, private MarkdownExtra $markdown, private string $readmeMd)
     {

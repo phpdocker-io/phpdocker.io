@@ -19,11 +19,11 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Generator\Files;
 
-use App\PHPDocker\Interfaces\ProjectFileInterface;
+use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use App\PHPDocker\Project\Project;
 use Twig\Environment;
 
-class Dockerfile implements ProjectFileInterface
+class Dockerfile implements GeneratedFileInterface
 {
     private const FILENAME = 'php-fpm' . DIRECTORY_SEPARATOR . 'Dockerfile';
 

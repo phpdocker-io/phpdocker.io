@@ -20,7 +20,7 @@ declare(strict_types=1);
 namespace App\PHPDocker\Zip;
 
 use App\PHPDocker\Interfaces\ArchiveInterface;
-use App\PHPDocker\Interfaces\ProjectFileInterface;
+use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use ZipArchive;
 
 /**
@@ -46,7 +46,7 @@ class Archiver
     /**
      * Adds a file to the list.
      */
-    public function addFile(ProjectFileInterface $file, bool $ignorePrefix = false): self
+    public function addFile(GeneratedFileInterface $file, bool $ignorePrefix = false): self
     {
         $localName = $file->getFilename();
         if ($ignorePrefix === false) {

@@ -25,7 +25,7 @@ namespace App\PHPDocker\Interfaces;
  *
  * How they perform the rendering is up to the file itself.
  */
-interface ProjectFileInterface
+interface GeneratedFileInterface
 {
     /**
      * Returns a string rendered rendition of the file.
