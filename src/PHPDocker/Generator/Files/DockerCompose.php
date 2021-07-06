@@ -58,7 +58,9 @@ class DockerCompose implements GeneratedFileInterface
             'services' => $this->services,
         ];
 
-        return $this->yaml->dump(input: $data, inline: 4);
+        $rendered = $this->prependHeader($this->yaml->dump(input: $data, inline: 4));
+
+        return $this->addEmptyLinesBetweenItems($rendered);
     }
 
     public function getFilename(): string
@@ -214,5 +216,36 @@ class DockerCompose implements GeneratedFileInterface
         ];
 
         return $this;
+    }
+
+    private function prependHeader(string $renderedYaml): string
+    {
+        $header = <<<TEXT
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+
+TEXT;
+
+        return $header . $renderedYaml;
+    }
+
+    /**
+     * Format YAML string to add empty lines between block objects.
+     *
+     * @see https://github.com/symfony/symfony/issues/22421
+     */
+    private function addEmptyLinesBetweenItems(string $result): string
+    {
+        $i = 0;
+
+        return preg_replace_callback('#^[\s]{4}[a-zA-Z_]+#m', static function ($match) use (&$i) {
+            ++$i;
+            if ($i === 1) {
+                return $match[0];
+            }
+
+            return PHP_EOL . $match[0];
+        }, $result);
     }
 }
