@@ -20,7 +20,6 @@ declare(strict_types=1);
 namespace App\PHPDocker\Generator;
 
 use App\PHPDocker\Generator\Files\DockerCompose;
-use App\PHPDocker\Generator\Files\DockerComposeNew;
 use App\PHPDocker\Generator\Files\Dockerfile;
 use App\PHPDocker\Generator\Files\NginxConf;
 use App\PHPDocker\Generator\Files\PhpIni;
@@ -65,8 +64,7 @@ class Generator
             ->addFile(new Dockerfile($this->twig, $project))
             ->addFile($phpIni)
             ->addFile(new NginxConf($this->twig, $project))
-            ->addFile(new DockerComposeNew($this->yaml, $project, $phpIni->getFilename()), true)
-            ->addFile(new DockerCompose($this->twig, $project, $phpIni->getFilename()), true);
+            ->addFile(new DockerCompose($this->yaml, $project, $phpIni->getFilename()), true);
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
     }
