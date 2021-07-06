@@ -1,6 +1,0 @@
-{% if project.hasMailhog() %}
-    mailhog:
-      image: mailhog/mailhog:latest
-      ports:
-        - "{{ project.getBasePort() + 1 }}:8025"
-{% endif %}

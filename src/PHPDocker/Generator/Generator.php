@@ -30,6 +30,7 @@ use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Zip\Archiver;
 use Michelf\MarkdownExtra;
+use Symfony\Component\Yaml\Dumper;
 use Twig\Environment;
 
 /**
@@ -40,10 +41,11 @@ class Generator
     private const BASE_ZIP_FOLDER = 'phpdocker';
 
     public function __construct(
-        protected Archiver $archiver,
-        protected Environment $twig,
-        protected MarkdownExtra $markdownExtra,
-        protected SlugifierInterface $slugifier,
+        private Archiver $archiver,
+        private Environment $twig,
+        private MarkdownExtra $markdownExtra,
+        private SlugifierInterface $slugifier,
+        private Dumper $yaml,
     ) {
         $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
@@ -62,7 +64,7 @@ class Generator
             ->addFile(new Dockerfile($this->twig, $project))
             ->addFile($phpIni)
             ->addFile(new NginxConf($this->twig, $project))
-            ->addFile(new DockerCompose($this->twig, $project, $phpIni->getFilename()), true);
+            ->addFile(new DockerCompose($this->yaml, $project, $phpIni->getFilename()), true);
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
     }
