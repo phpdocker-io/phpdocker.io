@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace App\PHPDocker\Generator;
 
 use App\PHPDocker\Generator\Files\DockerCompose;
+use App\PHPDocker\Generator\Files\DockerComposeNew;
 use App\PHPDocker\Generator\Files\Dockerfile;
 use App\PHPDocker\Generator\Files\NginxConf;
 use App\PHPDocker\Generator\Files\PhpIni;
@@ -30,6 +31,7 @@ use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Zip\Archiver;
 use Michelf\MarkdownExtra;
+use Symfony\Component\Yaml\Dumper;
 use Twig\Environment;
 
 /**
@@ -40,10 +42,11 @@ class Generator
     private const BASE_ZIP_FOLDER = 'phpdocker';
 
     public function __construct(
-        protected Archiver $archiver,
-        protected Environment $twig,
-        protected MarkdownExtra $markdownExtra,
-        protected SlugifierInterface $slugifier,
+        private Archiver $archiver,
+        private Environment $twig,
+        private MarkdownExtra $markdownExtra,
+        private SlugifierInterface $slugifier,
+        private Dumper $yaml,
     ) {
         $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
@@ -62,6 +65,7 @@ class Generator
             ->addFile(new Dockerfile($this->twig, $project))
             ->addFile($phpIni)
             ->addFile(new NginxConf($this->twig, $project))
+            ->addFile(new DockerComposeNew($this->yaml, $project), true)
             ->addFile(new DockerCompose($this->twig, $project, $phpIni->getFilename()), true);
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
