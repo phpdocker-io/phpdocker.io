@@ -19,10 +19,21 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Interfaces;
 
-use App\PHPDocker\Project\Project;
-
+/**
+ * Generator files know how to render themselves. This interface defines how to get to the rendered contents as well
+ * as the filename.
+ *
+ * How they perform the rendering is up to the file itself.
+ */
 interface ProjectFileInterface
 {
+    /**
+     * Returns a string rendered rendition of the file.
+     */
     public function getContents(): string;
+
+    /**
+     * Returns the filename of the current file.
+     */
     public function getFilename(): string;
 }

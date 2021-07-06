@@ -20,7 +20,6 @@ declare(strict_types=1);
 namespace App\PHPDocker\Zip;
 
 use App\PHPDocker\Interfaces\ArchiveInterface;
-use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use App\PHPDocker\Interfaces\ProjectFileInterface;
 use ZipArchive;
 
