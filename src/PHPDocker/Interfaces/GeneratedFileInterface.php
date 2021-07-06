@@ -29,6 +29,8 @@ interface GeneratedFileInterface
 {
     /**
      * Returns a string rendered rendition of the file.
+     * Eg:
+     *   - Folder\SomeFile
      */
     public function getContents(): string;
 
