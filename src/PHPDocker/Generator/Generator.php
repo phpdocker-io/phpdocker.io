@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace App\PHPDocker\Generator;
 
 use App\PHPDocker\Generator\Files\Dockerfile;
+use App\PHPDocker\Generator\Files\ReadmeHtml;
 use App\PHPDocker\Generator\Files\ReadmeMd;
 use App\PHPDocker\Interfaces\ArchiveInterface;
 use App\PHPDocker\Interfaces\SlugifierInterface;
@@ -59,8 +60,10 @@ class Generator
 //            ->addFile($this->getNginxConf($project))
 //            ->addFile($this->getDockerCompose($project), true);
 
+        $readmeMd = new ReadmeMd($this->twig, $project);
         $this->archiver
-            ->addFile(new ReadmeMd($this->twig, $project))
+            ->addFile($readmeMd)
+            ->addFile(new ReadmeHtml($this->twig, $this->markdownExtra, $readmeMd->getContents()))
             ->addFile(new Dockerfile($this->twig, $project));
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
