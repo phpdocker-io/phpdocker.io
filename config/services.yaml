@@ -33,6 +33,7 @@ services:
   # Instantiate some third party libraries we need for autowiring our own services
   Michelf\MarkdownExtra: ~
   Cocur\Slugify\Slugify: ~
+  Symfony\Component\Yaml\Dumper: ~
 
   # Sessions
   Redis:

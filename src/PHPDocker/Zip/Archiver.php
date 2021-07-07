@@ -46,14 +46,14 @@ class Archiver
     /**
      * Adds a file to the list.
      */
-    public function addFile(GeneratedFileInterface $generatedFile, bool $ignorePrefix = false): self
+    public function addFile(GeneratedFileInterface $file, bool $ignorePrefix = false): self
     {
-        $localName = $generatedFile->getFilename();
+        $localName = $file->getFilename();
         if ($ignorePrefix === false) {
             $localName = $this->prefixFilename($localName);
         }
 
-        $this->zipFile->addFromString($localName, $generatedFile->getContents());
+        $this->zipFile->addFromString($localName, $file->getContents());
 
         return $this;
     }

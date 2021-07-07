@@ -17,21 +17,26 @@ declare(strict_types=1);
  *
  */
 
-namespace App\PHPDocker\Generator\GeneratedFile;
+namespace App\PHPDocker\Generator\Files;
 
 use App\PHPDocker\Interfaces\GeneratedFileInterface;
+use App\PHPDocker\Project\Project;
+use Twig\Environment;
 
-/**
- * Base class for all generated files.
- */
-abstract class Base implements GeneratedFileInterface
+class ReadmeMd implements GeneratedFileInterface
 {
-    public function __construct(protected string $contents)
+    public function __construct(private Environment $twig, private Project $project)
     {
+
     }
 
     public function getContents(): string
     {
-        return $this->contents;
+        return $this->twig->render('README.md.twig', ['project' => $this->project]);
+    }
+
+    public function getFilename(): string
+    {
+        return 'README.md';
     }
 }

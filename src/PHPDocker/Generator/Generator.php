@@ -19,12 +19,18 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Generator;
 
+use App\PHPDocker\Generator\Files\DockerCompose;
+use App\PHPDocker\Generator\Files\Dockerfile;
+use App\PHPDocker\Generator\Files\NginxConf;
+use App\PHPDocker\Generator\Files\PhpIni;
+use App\PHPDocker\Generator\Files\ReadmeHtml;
+use App\PHPDocker\Generator\Files\ReadmeMd;
 use App\PHPDocker\Interfaces\ArchiveInterface;
 use App\PHPDocker\Interfaces\SlugifierInterface;
-use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Zip\Archiver;
 use Michelf\MarkdownExtra;
+use Symfony\Component\Yaml\Dumper;
 use Twig\Environment;
 
 /**
@@ -35,10 +41,11 @@ class Generator
     private const BASE_ZIP_FOLDER = 'phpdocker';
 
     public function __construct(
-        protected Archiver $archiver,
-        protected Environment $twig,
-        protected MarkdownExtra $markdownExtra,
-        protected SlugifierInterface $slugifier,
+        private Archiver $archiver,
+        private Environment $twig,
+        private MarkdownExtra $markdownExtra,
+        private SlugifierInterface $slugifier,
+        private Dumper $yaml,
     ) {
         $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
@@ -48,114 +55,17 @@ class Generator
      */
     public function generate(Project $project): ArchiveInterface
     {
-        $this
-            ->archiver
-            ->addFile($this->getReadmeMd($project))
-            ->addFile($this->getReadmeHtml($project))
-            ->addFile($this->getPhpDockerConf($project))
-            ->addFile($this->getPhpIniOverrides($project))
-            ->addFile($this->getNginxConf($project))
-            ->addFile($this->getDockerCompose($project), true);
+        $readmeMd = new ReadmeMd($this->twig, $project);
+        $phpIni   = new PhpIni($this->twig, $project);
+
+        $this->archiver
+            ->addFile($readmeMd)
+            ->addFile(new ReadmeHtml($this->twig, $this->markdownExtra, $readmeMd->getContents()))
+            ->addFile(new Dockerfile($this->twig, $project))
+            ->addFile($phpIni)
+            ->addFile(new NginxConf($this->twig, $project))
+            ->addFile(new DockerCompose($this->yaml, $project, $phpIni->getFilename()), true);
 
         return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
-    }
-
-    /**
-     * Generates the Readme file in Markdown format.
-     */
-    private function getReadmeMd(Project $project): GeneratedFile\ReadmeMd
-    {
-        static $readme;
-
-        if ($readme === null) {
-            $readme = new GeneratedFile\ReadmeMd($this->twig->render('README.md.twig', ['project' => $project]));
-        }
-
-        return $readme;
-    }
-
-    /**
-     * Returns the HTML readme, converted off Markdown.
-     */
-    private function getReadmeHtml(Project $project): GeneratedFile\ReadmeHtml
-    {
-        static $readmeHtml;
-
-        if ($readmeHtml === null) {
-            $html       = $this->markdownExtra->transform($this->getReadmeMd($project)->getContents());
-            $readmeHtml = new GeneratedFile\ReadmeHtml($this->twig->render('README.html.twig', ['text' => $html]));
-        }
-
-        return $readmeHtml;
-    }
-
-    /**
-     * Generates the docker-compose file, and returns as a string of its contents.
-     */
-    private function getDockerCompose(Project $project): GeneratedFile\DockerCompose
-    {
-        $data = [
-            'phpVersion'      => $project->getPhpOptions()->getVersion(),
-            'phpIniOverrides' => (new GeneratedFile\PhpIniOverrides(''))->getFilename(),
-            'project'         => $project,
-            'hasClickhouse'   => $project->hasClickhouse(),
-        ];
-
-        // Get YML file, raw, then prettify by eliminating excess of blank lines and ensuring a blank line at the end
-        $rendered = $this->twig->render('docker-compose.yml.twig', $data);
-        $rendered = preg_replace("/[\r\n]{2,}/", "\n\n", $rendered);
-        $rendered .= "\n";
-
-        return new GeneratedFile\DockerCompose($rendered);
-    }
-
-    /**
-     * Returns the dockerfile for php-fpm.
-     */
-    private function getPhpDockerConf(Project $project): GeneratedFile\PhpDockerConf
-    {
-        $phpOptions = $project->getPhpOptions();
-        $packages   = [];
-
-        // Resolve extension packages to install
-        foreach ($phpOptions->getExtensions() as $extension) {
-            /** @var PhpExtension $extension */
-            $packages = array_merge($packages, $extension->getPackages());
-        }
-
-        $data = [
-            'phpVersion'        => $project->getPhpOptions()->getVersion(),
-            'extensionPackages' => array_unique($packages),
-            'applicationType'   => $project->getApplicationOptions()->getApplicationType(),
-            'hasGit'            => $project->getPhpOptions()->hasGit(),
-            'dockerWorkingDir'  => $project->getWorkingDirOptions()->getDockerWorkingDir(),
-        ];
-
-        return new GeneratedFile\PhpDockerConf($this->twig->render('dockerfile-php-fpm.conf.twig', $data));
-    }
-
-    /**
-     * Returns the contents of php.ini
-     */
-    private function getPhpIniOverrides(Project $project): GeneratedFile\PhpIniOverrides
-    {
-        $data = ['maxUploadSize' => $project->getApplicationOptions()->getUploadSize()];
-
-        return new GeneratedFile\PhpIniOverrides($this->twig->render('php-ini-overrides.ini.twig', $data));
-    }
-
-    /**
-     * Generates and returns the nginx.conf file.
-     */
-    private function getNginxConf(Project $project): GeneratedFile\NginxConf
-    {
-        $data = [
-            'projectName'      => $project->getName(),
-            'applicationType'  => $project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'    => $project->getApplicationOptions()->getUploadSize(),
-            'dockerWorkingDir' => $project->getWorkingDirOptions()->getDockerWorkingDir(),
-        ];
-
-        return new GeneratedFile\NginxConf($this->twig->render('nginx.conf.twig', $data));
     }
 }
