@@ -94,8 +94,8 @@ class GeneratorController extends AbstractController
 
         $workingDirData    = $formData['workingDirOptions'];
         $workingDirOptions = new WorkingDir(
-            localWorkingDir: $workingDirData['localWorkingDir'],
-            dockerWorkingDir: $workingDirData['dockerWorkingDir']
+            localWorkingDir: rtrim($workingDirData['localWorkingDir'], '/'),
+            dockerWorkingDir: rtrim($workingDirData['dockerWorkingDir'], '/'),
         );
 
         $project = new Project(

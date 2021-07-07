@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-
 namespace App\PHPDocker\Project\ServiceOptions;
-
 
 final class WorkingDir extends Base
 {

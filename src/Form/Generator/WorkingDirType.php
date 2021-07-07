@@ -1,9 +1,7 @@
 <?php
 declare(strict_types=1);
 
-
 namespace App\Form\Generator;
-
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
