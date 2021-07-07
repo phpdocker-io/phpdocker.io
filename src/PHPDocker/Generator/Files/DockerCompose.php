@@ -58,9 +58,7 @@ class DockerCompose implements GeneratedFileInterface
             'services' => $this->services,
         ];
 
-        $rendered = $this->prependHeader($this->yaml->dump(input: $data, inline: 4));
-
-        return $this->addEmptyLinesBetweenItems($rendered);
+        return $this->tidyYaml($this->yaml->dump(input: $data, inline: 4));
     }
 
     public function getFilename(): string
@@ -216,6 +214,11 @@ class DockerCompose implements GeneratedFileInterface
         ];
 
         return $this;
+    }
+
+    private function tidyYaml(string $renderedYaml): string
+    {
+        return $this->addEmptyLinesBetweenItems($this->prependHeader($renderedYaml));
     }
 
     private function prependHeader(string $renderedYaml): string
