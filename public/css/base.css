@@ -134,10 +134,11 @@ form .group {
 }
 
 form .group .note {
-    font-style : italic;
-    font-size  : 0.8em;
-    display    : block;
-    clear      : both;
+    font-style  : italic;
+    font-size   : 0.8em;
+    display     : block;
+    clear       : both;
+    padding-left: 15px;
 }
 
 form .group h2 {

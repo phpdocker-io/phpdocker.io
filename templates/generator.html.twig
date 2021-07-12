@@ -10,12 +10,6 @@
 {% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
 
 {% block body %}
-    <style>
-        .pl-30  {
-            padding-left: 30px;
-        }
-    </style>
-
     <form method="post" id="generator" action="{{ path('generator') }}">
         <div class="row">
             {{ form_errors(form) }}
@@ -38,8 +32,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col col-lg-6 col-md-6 note pl-30">
-                        <p>Note: if you want to use Phalcon, select "generic" application type, then look for Phalcon on the
+                    <div class="col col-lg-6 col-md-6">
+                        <p class="note">Note: if you want to use Phalcon, select "generic" application type, then look for Phalcon on the
                             list of PHP extensions.</p>
                     </div>
                 </div>
