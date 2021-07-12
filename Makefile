@@ -101,6 +101,9 @@ behaviour:
 composer-cache-dir:
 	@composer config cache-files-dir
 
+phpstan:
+	$(PHP_RUN) vendor/bin/phpstan -v analyse -l 7 src
+
 ### Deployment targets
 
 build-images:
