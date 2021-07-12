@@ -42,7 +42,7 @@ class ProjectType extends AbstractGeneratorType
         $builder
             ->add('name', TextType::class, [
                 'label'       => 'Project name',
-                'attr'        => ['placeholder' => 'Used on host, container, vm and folder names'],
+                'attr'        => ['placeholder' => "Used to name the zip file"],
                 'constraints' => [
                     new NotBlank(),
                     new NotNull(),
