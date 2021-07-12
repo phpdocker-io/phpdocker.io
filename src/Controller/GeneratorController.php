@@ -80,7 +80,7 @@ class GeneratorController extends AbstractController
             PhpOptions::PHP_VERSION_73 => $phpData['phpExtensions73'],
             PhpOptions::PHP_VERSION_74 => $phpData['phpExtensions74'],
             PhpOptions::PHP_VERSION_80 => $phpData['phpExtensions80'],
-            default => throw new InvalidArgumentException(sprintf('Eek! Unsupported php version %s', $phpVersion)),
+            default => throw new InvalidArgumentException(sprintf('Unsupported php version %s', $phpData['version'])),
         };
 
         $phpOptions = new PhpOptions(
