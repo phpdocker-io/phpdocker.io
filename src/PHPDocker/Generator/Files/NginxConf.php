@@ -33,9 +33,10 @@ class NginxConf implements GeneratedFileInterface
     public function getContents(): string
     {
         $data = [
-            'projectName'     => $this->project->getName(),
-            'applicationType' => $this->project->getApplicationOptions()->getApplicationType(),
-            'maxUploadSize'   => $this->project->getApplicationOptions()->getUploadSize(),
+            'projectName'      => $this->project->getName(),
+            'applicationType'  => $this->project->getApplicationOptions()->getApplicationType(),
+            'maxUploadSize'    => $this->project->getApplicationOptions()->getUploadSize(),
+            'dockerWorkingDir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
         ];
 
         return $this->twig->render('nginx.conf.twig', $data);

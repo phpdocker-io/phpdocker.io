@@ -10,7 +10,7 @@
     {% endif %}
 {% endapply %}
 FROM {{ image }}
-WORKDIR "/application"
+WORKDIR "{{ dockerWorkingDir }}"
 
 {% if packages %}
 RUN apt-get update; \
