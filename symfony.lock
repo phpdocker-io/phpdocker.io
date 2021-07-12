@@ -68,6 +68,9 @@
     "monolog/monolog": {
         "version": "1.26.1"
     },
+    "phpstan/phpstan": {
+        "version": "0.12.92"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
