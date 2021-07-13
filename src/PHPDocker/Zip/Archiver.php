@@ -28,8 +28,9 @@ use ZipArchive;
  */
 class Archiver
 {
-    protected string   $baseFolder = '';
+    /** @var string[] */
     protected array    $files      = [];
+    protected string   $baseFolder = '';
     private ZipArchive $zipFile;
 
     /**

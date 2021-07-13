@@ -56,6 +56,7 @@ class MariaDB extends AbstractMySQL
 
     /**
      * @inheritdoc
+     * @return array<string, string>
      */
     public static function getChoices(): array
     {
