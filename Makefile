@@ -102,7 +102,7 @@ composer-cache-dir:
 	@composer config cache-files-dir
 
 static-analysis:
-	$(PHP_RUN) vendor/bin/phpstan -v analyse -l 5 src
+	$(PHP_RUN) vendor/bin/phpstan --ansi -v analyse -l 5 src
 
 ### Deployment targets
 
