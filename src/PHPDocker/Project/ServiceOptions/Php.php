@@ -48,6 +48,9 @@ class Php extends Base
         self::PHP_VERSION_72,
     ];
 
+    /**
+     * @param string[] $extensions
+     */
     public function __construct(string $version, array $extensions, private bool $hasGit)
     {
         $this->setEnabled(true);
@@ -75,6 +78,9 @@ class Php extends Base
         return $this->hasGit;
     }
 
+    /**
+     * @return PhpExtension[]
+     */
     public function getExtensions(): array
     {
         return $this->extensions;
@@ -82,6 +88,7 @@ class Php extends Base
 
     /**
      * Returns an array of supported PHP versions.
+     * @return string[]
      */
     public static function getSupportedVersions(): array
     {

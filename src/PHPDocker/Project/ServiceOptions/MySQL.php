@@ -45,6 +45,7 @@ class MySQL extends AbstractMySQL
 
     /**
      * @inheritdoc
+     * @return array<string, string>
      */
     public static function getChoices(): array
     {

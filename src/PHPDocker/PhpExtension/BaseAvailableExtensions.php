@@ -36,20 +36,6 @@ abstract class BaseAvailableExtensions
     abstract protected function getOptionalExtensionsMap(): array;
 
     /**
-     * Spawns a new instance to this class.
-     */
-    public static function create(): self
-    {
-        static $instance;
-
-        if ($instance === null) {
-            $instance = new static();
-        }
-
-        return $instance;
-    }
-
-    /**
      * Returns true if extension exists and is available.
      */
     public function isAvailable(string $name): bool
