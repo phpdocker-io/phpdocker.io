@@ -12,11 +12,11 @@ final class WorkingDirType extends AbstractGeneratorType
     {
         $builder
             ->add('localWorkingDir', TextType::class, [
-                'label' => 'Source volume',
+                'label' => 'App source code relative folder',
                 'data'  => '.',
             ])
             ->add('dockerWorkingDir', TextType::class, [
-                'label' => 'Target volume',
+                'label' => 'Containers workdir',
                 'data'  => '/application',
             ]);
     }
