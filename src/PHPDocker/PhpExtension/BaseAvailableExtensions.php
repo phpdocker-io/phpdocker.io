@@ -26,28 +26,18 @@ abstract class BaseAvailableExtensions
     /**
      * Must return an array of all available mandatory extensions, indexed by display name
      * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
+     *
+     * @return array<string, array<string, string[]>>
      */
     abstract protected function getMandatoryExtensionsMap(): array;
 
     /**
      * Must return an array of all available optional extensions, indexed by display name
      * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
+     *
+     * @return array<string, array<string, string[]>>
      */
     abstract protected function getOptionalExtensionsMap(): array;
-
-    /**
-     * Spawns a new instance to this class.
-     */
-    public static function create(): self
-    {
-        static $instance;
-
-        if ($instance === null) {
-            $instance = new static();
-        }
-
-        return $instance;
-    }
 
     /**
      * Returns true if extension exists and is available.
@@ -59,6 +49,8 @@ abstract class BaseAvailableExtensions
 
     /**
      * Returns all available extensions, mandatory or not.
+     *
+     * @return array<string, array<string, string[]>>
      */
     public function getAll(): array
     {
@@ -97,6 +89,7 @@ abstract class BaseAvailableExtensions
     /**
      * Returns all optional php extensions as an array of PhpExtension.
      *
+     * @return PhpExtension[]
      * @throws Exception\NotFoundException
      */
     public function getOptional(): array

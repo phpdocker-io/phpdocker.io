@@ -32,6 +32,9 @@ jobs:
       - name: Initialise environment
         run: make prep-ci
 
+      - name: Run static analysis
+        run: make static-analysis
+
       - name: Run behaviour tests
         run: make behaviour
 

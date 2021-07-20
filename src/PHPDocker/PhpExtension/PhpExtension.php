@@ -24,7 +24,9 @@ namespace App\PHPDocker\PhpExtension;
 class PhpExtension
 {
     protected string $name;
-    protected array  $packages = [];
+
+    /** @var string[] */
+    protected array $packages = [];
 
     public function getName(): string
     {
@@ -38,6 +40,9 @@ class PhpExtension
         return $this;
     }
 
+    /**
+     * @return string[]
+     */
     public function getPackages(): array
     {
         return $this->packages;

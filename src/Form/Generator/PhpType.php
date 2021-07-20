@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-/** @noinspection PhpPureAttributeCanBeAddedInspection */
 
 /**
  * Copyright 2016 Luis Alberto Pabón Flores
@@ -68,28 +67,28 @@ class PhpType extends AbstractGeneratorType
                 ],
             ])
             ->add('phpExtensions72', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices(Php72AvailableExtensions::create()->getOptional()),
+                'choices'     => $this->getExtensionChoices((new Php72AvailableExtensions())->getOptional()),
                 'multiple'    => true,
                 'label'       => 'Extensions (PHP 7.2.x)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions73', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices(Php73AvailableExtensions::create()->getOptional()),
+                'choices'     => $this->getExtensionChoices((new Php73AvailableExtensions())->getOptional()),
                 'multiple'    => true,
                 'label'       => 'Extensions (PHP 7.3.x)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions74', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices(Php74AvailableExtensions::create()->getOptional()),
+                'choices'     => $this->getExtensionChoices((new Php74AvailableExtensions())->getOptional()),
                 'multiple'    => true,
                 'label'       => 'Extensions (PHP 7.4.x)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions80', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices(Php80AvailableExtensions::create()->getOptional()),
+                'choices'     => $this->getExtensionChoices((new Php80AvailableExtensions())->getOptional()),
                 'multiple'    => true,
                 'label'       => 'Extensions (PHP 8.0.x)',
                 'required'    => false,
@@ -99,12 +98,15 @@ class PhpType extends AbstractGeneratorType
 
     /**
      * Returns all available extensions as an array we can feed to ChoiceType.
+     *
+     * @param PhpExtension[] $rawChoices
+     *
+     * @return array<string, string>
      */
-    private function getExtensionChoices($rawChoices): array
+    private function getExtensionChoices(array $rawChoices): array
     {
         $choices = [];
         foreach ($rawChoices as $extension) {
-            /** @var PhpExtension $extension */
             $choices[$extension->getName()] = $extension->getName();
         }
 
@@ -113,6 +115,8 @@ class PhpType extends AbstractGeneratorType
 
     /**
      * Gets ChoiceType choices for available PHP versions.
+     *
+     * @return array<string, string>
      */
     private function getVersionChoices(): array
     {

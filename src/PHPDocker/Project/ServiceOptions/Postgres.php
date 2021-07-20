@@ -114,6 +114,9 @@ class Postgres extends Base
         return $this;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function getChoices(): array
     {
         return self::ALLOWED_VERSIONS;

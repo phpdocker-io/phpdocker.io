@@ -71,6 +71,9 @@ class GeneratorController extends AbstractController
         ]);
     }
 
+    /**
+     * @param array<string, mixed> $formData
+     */
     private function hydrateProject(array $formData): Project
     {
         $phpData = $formData['phpOptions'];

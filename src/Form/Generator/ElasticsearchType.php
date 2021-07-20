@@ -18,7 +18,6 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\ElasticsearchOptions;
 use App\PHPDocker\Project\ServiceOptions\Elasticsearch;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -61,7 +60,7 @@ class ElasticsearchType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return static function (FormInterface $form) {
-            /** @var ElasticsearchOptions $data */
+            /** @var array<string, string|boolean> $data */
             $data   = $form->getData();
             $groups = ['Default'];
 

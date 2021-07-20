@@ -60,6 +60,9 @@ class Application
         return $this;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function getChoices(): array
     {
         return self::ALLOWED_APPLICATION_TYPES;

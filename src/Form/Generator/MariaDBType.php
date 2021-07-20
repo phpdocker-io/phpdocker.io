@@ -44,6 +44,7 @@ class MariaDBType extends AbstractMySQLType
 
     /**
      * @inheritdoc
+     * @return array<string, string>
      */
     protected function getVersionChoices(): array
     {

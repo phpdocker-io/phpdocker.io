@@ -30,7 +30,7 @@ class PostgresTypeValidator extends ConstraintValidator
     /**
      * Checks if the passed value is valid.
      */
-    public function validate($value, Constraint $constraint): void
+    public function validate($value, Constraint|PostgresType $constraint): void
     {
         if ($value !== null && array_key_exists($value, Postgres::getChoices()) === false) {
             $this

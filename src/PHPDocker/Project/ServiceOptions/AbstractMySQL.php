@@ -26,7 +26,7 @@ use InvalidArgumentException;
  */
 abstract class AbstractMySQL extends Base
 {
-    protected string $version;
+    protected string  $version;
     protected ?string $rootPassword;
     protected ?string $databaseName;
     protected ?string $username;
@@ -38,6 +38,8 @@ abstract class AbstractMySQL extends Base
      *    'version' => 'version_name',
      *    ...
      * ]
+     *
+     * @return array<string, string>
      */
     abstract public static function getChoices(): array;
 
