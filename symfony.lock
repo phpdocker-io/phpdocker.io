@@ -267,7 +267,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "5.3",
-            "ref": "2d706bd8c6a9e6730343bb22092dabba1f42f4f3"
+            "ref": "44633353926a0382d7dfb0530922c5c0b30fae11"
         },
         "files": [
             "config/packages/routing.yaml",
