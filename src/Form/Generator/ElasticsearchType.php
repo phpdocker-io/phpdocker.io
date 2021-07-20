@@ -60,7 +60,7 @@ class ElasticsearchType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return static function (FormInterface $form) {
-            /** @var Elasticsearch $data */
+            /** @var array<string, string|boolean> $data */
             $data   = $form->getData();
             $groups = ['Default'];
 

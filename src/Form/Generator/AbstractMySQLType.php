@@ -44,6 +44,8 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
 
     /**
      * Return the list of available versions for the version selector field.
+     *
+     * @return array<string, string>
      */
     abstract protected function getVersionChoices(): array;
 
