@@ -252,6 +252,6 @@ TEXT;
             }
 
             return PHP_EOL . $match[0];
-        }, $result);
+        }, $result) ?? $result;
     }
 }
