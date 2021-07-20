@@ -27,6 +27,7 @@ class DockerCompose implements GeneratedFileInterface
 {
     private const DOCKER_COMPOSE_FILE_VERSION = '3.1';
 
+    /** @var array<string, mixed> */
     private array  $services;
     private string $defaultVolume;
 

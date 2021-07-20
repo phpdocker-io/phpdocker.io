@@ -49,6 +49,8 @@ abstract class BaseAvailableExtensions
 
     /**
      * Returns all available extensions, mandatory or not.
+     *
+     * @return array<string, array<string, string[]>>
      */
     public function getAll(): array
     {
@@ -87,6 +89,7 @@ abstract class BaseAvailableExtensions
     /**
      * Returns all optional php extensions as an array of PhpExtension.
      *
+     * @return PhpExtension[]
      * @throws Exception\NotFoundException
      */
     public function getOptional(): array

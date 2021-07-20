@@ -8,16 +8,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class WorkingDirType extends AbstractGeneratorType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('localWorkingDir', TextType::class, [
-                'label'       => 'Source volume',
-                'data'        => '.',
+                'label' => 'Source volume',
+                'data'  => '.',
             ])
             ->add('dockerWorkingDir', TextType::class, [
-                'label'       => 'Target volume',
-                'data'        => '/application',
+                'label' => 'Target volume',
+                'data'  => '/application',
             ]);
     }
 

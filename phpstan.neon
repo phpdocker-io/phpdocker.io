@@ -1,4 +1,6 @@
 parameters:
   ignoreErrors:
     - '#Access to an undefined property Symfony\\Component\\Validator\\Constraint::\$message#'
+    - '#has parameter \$builder with no value type specified in iterable type Symfony\\Component\\Form\\FormBuilderInterface#'
+    - '#has parameter \$options with no value type specified in iterable type array#'
 
