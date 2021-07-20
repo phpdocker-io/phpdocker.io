@@ -26,12 +26,16 @@ abstract class BaseAvailableExtensions
     /**
      * Must return an array of all available mandatory extensions, indexed by display name
      * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
+     *
+     * @return array<string, array<string, string[]>>
      */
     abstract protected function getMandatoryExtensionsMap(): array;
 
     /**
      * Must return an array of all available optional extensions, indexed by display name
      * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
+     *
+     * @return array<string, array<string, string[]>>
      */
     abstract protected function getOptionalExtensionsMap(): array;
 

@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-/** @noinspection PhpArrayShapeAttributeCanBeAddedInspection */
 
 /**
  * Copyright 2016 Luis Alberto Pabón Flores
@@ -24,6 +23,7 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
 {
     /**
      * @inheritDoc
+     * @return array<string, array<string, string[]>>
      */
     protected function getMandatoryExtensionsMap(): array
     {
@@ -40,6 +40,7 @@ class Php73AvailableExtensions extends BaseAvailableExtensions
 
     /**
      * @inheritDoc
+     * @return array<string, array<string, string[]>>
      */
     protected function getOptionalExtensionsMap(): array
     {

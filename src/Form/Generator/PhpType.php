@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-/** @noinspection PhpPureAttributeCanBeAddedInspection */
 
 /**
  * Copyright 2016 Luis Alberto Pabón Flores

@@ -56,7 +56,7 @@ class Elasticsearch extends Base
     }
 
     /**
-     * Returns all supported MySQL versions with their descriptions.
+     * @return array<string, string>
      */
     public static function getChoices(): array
     {
