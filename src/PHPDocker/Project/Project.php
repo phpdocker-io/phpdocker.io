@@ -55,12 +55,12 @@ class Project
         $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getBasePort(): ?int
+    public function getBasePort(): int
     {
         return $this->basePort;
     }
@@ -168,10 +168,5 @@ class Project
     public function getWorkingDirOptions(): ServiceOptions\WorkingDir
     {
         return $this->workingDirOptions;
-    }
-
-    public function hasWorkingDirOptions(): bool
-    {
-        return true;
     }
 }
