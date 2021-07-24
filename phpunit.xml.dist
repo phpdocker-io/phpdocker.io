@@ -23,10 +23,15 @@
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <coverage>
         <include>
-            <directory suffix=".php">src</directory>
+            <directory>src</directory>
         </include>
+        <report>
+            <clover outputFile="reports/phpunit/coverage.xml"/>
+            <html outputDirectory="reports/phpunit" lowUpperBound="85" highLowerBound="90"/>
+            <xml outputDirectory="reports/infection/coverage-xml"/>
+        </report>
     </coverage>
 
     <listeners>
