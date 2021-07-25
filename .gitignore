@@ -26,3 +26,5 @@ bin/hosts
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+reports/
