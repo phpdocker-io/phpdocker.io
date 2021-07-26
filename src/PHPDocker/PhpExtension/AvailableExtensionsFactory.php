@@ -52,6 +52,6 @@ class AvailableExtensionsFactory
 
         $className = self::SUPPORTED_VERSIONS[$phpVersion];
 
-        return $className::create();
+        return new $className;
     }
 }
