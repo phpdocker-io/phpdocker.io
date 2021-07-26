@@ -113,6 +113,9 @@ coverage-tests:
 mutation-tests:
 	$(PHP_RUN) vendor/bin/infection --coverage=reports/infection --threads=2 -s --min-msi=0 --min-covered-msi=0
 
+open-coverage-report:
+	xdg-open reports/phpunit/index.html
+
 ### Deployment targets
 
 build-images:

@@ -33,6 +33,10 @@
             <xml outputDirectory="reports/infection/coverage-xml"/>
         </report>
     </coverage>
+    <logging>
+        <!-- For infection -->
+        <junit outputFile="reports/infection/junit.xml"/>
+    </logging>
 
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
