@@ -32,8 +32,9 @@ services:
 
   # Instantiate some third party libraries we need for autowiring our own services
   Michelf\MarkdownExtra: ~
-  Cocur\Slugify\Slugify: ~
   Symfony\Component\Yaml\Dumper: ~
+  Cocur\Slugify\SlugifyInterface:
+    class: Cocur\Slugify\Slugify
 
   # Sessions
   Redis:
@@ -44,5 +45,5 @@ services:
           - '%env(int:REDIS_PORT)%'
 
   Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
-    arguments: ['@Redis']
+    arguments: [ '@Redis' ]
 

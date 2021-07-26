@@ -33,8 +33,11 @@
         "friends-of-behat/mink-browserkit-driver": "^1.5",
         "friends-of-behat/mink-extension": "^2.5",
         "friends-of-behat/symfony-extension": "^2.2",
+        "infection/infection": "^0.23.0",
         "phpstan/phpstan": "^0.12.92",
+        "phpunit/phpunit": "^9.5",
         "symfony/debug-bundle": "^5.0",
+        "symfony/phpunit-bridge": "^5.3",
         "symfony/stopwatch": "^5.0",
         "symfony/var-dumper": "^5.0",
         "symfony/web-profiler-bundle": "^5.0"

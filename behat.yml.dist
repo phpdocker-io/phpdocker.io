@@ -6,7 +6,7 @@ default:
 
     extensions:
         FriendsOfBehat\SymfonyExtension:
-            bootstrap: 'config/behat_bootstrap.php'
+            bootstrap: 'tests/bootstrap.php'
         Behat\MinkExtension:
             show_cmd: 'firefox %s'
             sessions:

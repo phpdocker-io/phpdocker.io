@@ -38,6 +38,12 @@ jobs:
       - name: Run behaviour tests
         run: make behaviour
 
+      - name: Run unit tests
+        run: make coverage-tests
+
+      - name: Run mutation tests
+        run: make mutation-tests
+
       - name: Cleanup
         if: always()
         run: make clean
