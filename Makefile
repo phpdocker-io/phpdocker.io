@@ -105,10 +105,10 @@ static-analysis:
 	$(PHP_RUN) vendor/bin/phpstan --ansi -v analyse -l 8 src
 
 unit-tests:
-	$(PHP_RUN) vendor/bin/phpunit --testdox
+	$(PHP_RUN) vendor/bin/phpunit --testdox --colors=always
 
 coverage-tests:
-	$(PHP_RUN) php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox
+	$(PHP_RUN) php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox --colors=always
 
 mutation-tests:
 	$(PHP_RUN) vendor/bin/infection --coverage=reports/infection --threads=2 -s --min-msi=0 --min-covered-msi=0
