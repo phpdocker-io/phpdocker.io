@@ -104,6 +104,15 @@ composer-cache-dir:
 static-analysis:
 	$(PHP_RUN) vendor/bin/phpstan --ansi -v analyse -l 8 src
 
+unit-tests:
+	$(PHP_RUN) vendor/bin/phpunit --testdox
+
+coverage-tests:
+	$(PHP_RUN) XDEBUG_MODE=coverage php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox
+
+mutation-tests:
+	$(PHP_RUN) vendor/bin/infection --coverage=reports/infection --threads=2 -s --min-msi=0 --min-covered-msi=0
+
 ### Deployment targets
 
 build-images:
