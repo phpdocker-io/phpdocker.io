@@ -4,7 +4,7 @@ MKCERT_LOCATION=$(PWD)/bin/mkcert
 HOSTS_VERSION=3.6.4
 HOSTS_LOCATION=$(PWD)/bin/hosts
 SITE_HOST=phpdocker.local
-PHP_RUN=docker-compose run --rm php-fpm
+PHP_RUN=docker-compose run -e XDEBUG_MODE=coverage --rm php-fpm
 
 ifndef BUILD_TAG
 	BUILD_TAG:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
@@ -108,7 +108,7 @@ unit-tests:
 	$(PHP_RUN) vendor/bin/phpunit --testdox
 
 coverage-tests:
-	$(PHP_RUN) XDEBUG_MODE=coverage php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox
+	$(PHP_RUN) php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox
 
 mutation-tests:
 	$(PHP_RUN) vendor/bin/infection --coverage=reports/infection --threads=2 -s --min-msi=0 --min-covered-msi=0
