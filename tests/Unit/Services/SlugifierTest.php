@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright 2016 Luis Alberto Pabón Flores
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,35 @@ declare(strict_types=1);
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace App\Services;
+namespace App\Tests\Unit\Services;
 
-use App\PHPDocker\Interfaces\SlugifierInterface;
+use App\Services\Slugifier;
 use Cocur\Slugify\SlugifyInterface;
+use PHPUnit\Framework\TestCase;
 
-/**
- * String slugifier.
- */
-class Slugifier implements SlugifierInterface
+class SlugifierTest extends TestCase
 {
-
-    public function __construct(protected SlugifyInterface $slugifier)
-    {
-    }
-
     /**
-     * Takes a string and returns a slugified version of it.
+     * @test
      */
-    public function slugify(string $string): string
+    public function passThroughWorks(): void
     {
-        return $this->slugifier->slugify($string);
+        $mockCocur = $this->createMock(SlugifyInterface::class);
+
+        $mockInput  = 'foo';
+        $mockReturn = 'bar';
+
+        $slugifier = new Slugifier($mockCocur);
+
+        $mockCocur
+            ->expects(self::once())
+            ->method('slugify')
+            ->with($mockInput)
+            ->willReturn($mockReturn);
+
+        self::assertEquals($mockReturn, $slugifier->slugify($mockInput));
     }
 }
