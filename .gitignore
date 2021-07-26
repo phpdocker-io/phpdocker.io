@@ -28,3 +28,4 @@ bin/hosts
 ###< symfony/phpunit-bridge ###
 
 reports/
+infection.json.dist
