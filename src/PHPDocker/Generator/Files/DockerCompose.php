@@ -33,7 +33,6 @@ class DockerCompose implements GeneratedFileInterface
 
     public function __construct(private Dumper $yaml, private Project $project, private string $phpIniLocation)
     {
-
     }
 
     public function getContents(): string
