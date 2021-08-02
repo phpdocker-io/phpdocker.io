@@ -45,12 +45,10 @@ class GeneratorController extends AbstractController
      */
     public function create(Request $request): BinaryFileResponse|Response
     {
-        // Set up form
         $form = $this->createForm(type: ProjectType::class, options: ['method' => Request::METHOD_POST]);
-
-        // Process form
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() === true) {
+
+        if ($form->isSubmitted() === true && $form->isValid() === true) {
             $project = $this->hydrateProject($form->getData());
 
             // Generate zip file with docker project

@@ -27,7 +27,6 @@ class ReadmeHtml implements GeneratedFileInterface
 {
     public function __construct(private Environment $twig, private MarkdownExtra $markdown, private string $readmeMd)
     {
-
     }
 
     public function getContents(): string
