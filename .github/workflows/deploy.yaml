@@ -46,4 +46,4 @@ jobs:
         run: make build-and-push deploy
 
       - name: Wait for deployment success
-        run: kubectl rollout status deployment ${{ secrets.KUBE_NS }}
+        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
