@@ -39,9 +39,6 @@ jobs:
           location: ${{ secrets.GKE_ZONE }}
           credentials: ${{ secrets.GKE_SA_KEY }}
 
-      - name: Check kubectl
-        run: kubectl get pods --namespace=${{ secrets.KUBE_NS }}
-
       - name: Build & deploy
         run: make build-and-push deploy
 
