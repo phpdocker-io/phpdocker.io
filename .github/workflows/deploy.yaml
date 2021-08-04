@@ -1,14 +1,20 @@
-name: CI notify
+name: Deploy application
 
-# Only trigger, when the build workflow succeeded
 on:
+  # Ensure we're run after tests
   workflow_run:
-    workflows: ["Run tests galore"]
+    workflows: [ "Run tests galore" ]
     types:
       - completed
 
+  # Also, re-deploy once per week to ensure we refresh our versions
+  # of the app's runtime
+  schedule:
+    - cron: "0 0 * * 0"
+
 jobs:
   deploy:
+    # We only deploy master
     if: ${{ github.ref == 'refs/heads/dev' }}
     runs-on: ubuntu-latest
 
@@ -27,11 +33,17 @@ jobs:
         run: gcloud --quiet auth configure-docker
 
       # Get the GKE credentials so we can deploy to the cluster
-      - uses: google-github-actions/get-gke-credentials@master
+      - uses: google-github-actions/get-gke-credentials@main
         with:
           cluster_name: ${{ secrets.GKE_CLUSTER }}
           location: ${{ secrets.GKE_ZONE }}
           credentials: ${{ secrets.GKE_SA_KEY }}
 
+      - name: Check kubectl
+        run: kubectl get pods --namespace=${{ secrets.KUBE_NS }}
+
       - name: Build & deploy
         run: make build-and-push deploy
+
+      - name: Wait for deployment success
+        run: kubectl rollout status deployment ${{ secrets.KUBE_NS }}
