@@ -3,7 +3,7 @@ name: Deploy application
 on:
   # Ensure we're run after tests
   workflow_run:
-    workflows: [ "Run tests galore" ]
+    workflows: [ "Test application" ]
     types:
       - completed
 
