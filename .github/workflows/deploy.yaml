@@ -1,0 +1,37 @@
+name: CI notify
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["Run tests galore"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: ${{ github.ref == 'refs/heads/dev' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Setup gcloud CLI
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT }}
+
+      # Configure docker to use the gcloud command-line tool as a credential helper
+      - name: Configure docker for GCR
+        run: gcloud --quiet auth configure-docker
+
+      # Get the GKE credentials so we can deploy to the cluster
+      - uses: google-github-actions/get-gke-credentials@master
+        with:
+          cluster_name: ${{ secrets.GKE_CLUSTER }}
+          location: ${{ secrets.GKE_ZONE }}
+          credentials: ${{ secrets.GKE_SA_KEY }}
+
+      - name: Build & deploy
+        run: make build-and-push deploy

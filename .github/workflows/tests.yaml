@@ -3,7 +3,7 @@ name: Run tests galore
 on:
   push:
     branches:
-      - master
+      - dev
   pull_request:
     branches:
       - master
