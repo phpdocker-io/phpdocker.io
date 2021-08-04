@@ -17,32 +17,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(make composer-cache-dir)"
-
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Initialise environment
-        run: make prep-ci
-
-      - name: Run static analysis
-        run: make static-analysis
-
-      - name: Run behaviour tests
-        run: make behaviour
-
-      - name: Run unit tests
-        run: make coverage-tests
-
-      - name: Run mutation tests
-        run: make mutation-tests
+#      - name: Get Composer Cache Directory
+#        id: composer-cache
+#        run: |
+#          echo "::set-output name=dir::$(make composer-cache-dir)"
+#
+#      - uses: actions/cache@v2
+#        with:
+#          path: ${{ steps.composer-cache.outputs.dir }}
+#          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-composer-
+#
+#      - name: Initialise environment
+#        run: make prep-ci
+#
+#      - name: Run static analysis
+#        run: make static-analysis
+#
+#      - name: Run behaviour tests
+#        run: make behaviour
+#
+#      - name: Run unit tests
+#        run: make coverage-tests
+#
+#      - name: Run mutation tests
+#        run: make mutation-tests
 
       - name: Cleanup
         if: always()
