@@ -4,6 +4,7 @@ on:
   # Ensure we're run after tests
   workflow_run:
     workflows: [ "Test application" ]
+    branches: [ "master" ]
     types:
       - completed
 
