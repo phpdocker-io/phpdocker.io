@@ -49,13 +49,13 @@ jobs:
           echo "BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build containers
-        run: make build-images tag-images
+        run: make build-images tag-images -e BUILD_TAG=${BUILD_TAG}
 
       - name: Push to container registry
-        run: make push-images
+        run: make push-images -e BUILD_TAG=${BUILD_TAG}
 
       - name: Deploy application
-        run: make deploy
+        run: make deploy -e BUILD_TAG=${BUILD_TAG}
 
       - name: Wait for deployment success
         run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
