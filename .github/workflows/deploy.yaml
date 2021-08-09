@@ -41,8 +41,20 @@ jobs:
           location: ${{ secrets.GKE_ZONE }}
           credentials: ${{ secrets.GKE_SA_KEY }}
 
-      - name: Build & deploy
-        run: make build-and-push deploy
+      # We could build-and-push deploy, but it makes that step on the pipeline too
+      # complex to follow effectively. Instead, set BUILD_TAG here so that we can
+      # run build, push and deploy separately
+      - name: Set build tag
+        run: BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)
+
+      - name: Build containers
+        run: make build-images tag-images
+
+      - name: Push to container registry
+        run: make push-images
+
+      - name: Deploy application
+        run: make deploy
 
       - name: Wait for deployment success
         run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
