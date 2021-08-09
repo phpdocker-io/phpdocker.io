@@ -44,7 +44,7 @@ metadata:
   labels:
     app: phpdocker-io-old
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
   selector:
