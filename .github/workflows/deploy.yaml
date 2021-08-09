@@ -46,8 +46,7 @@ jobs:
       # run build, push and deploy separately
       - name: Set build tag
         run: |
-          export BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)
-          echo "Build tag is: ${BUILD_TAG}"
+          echo "BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build containers
         run: make build-images tag-images
