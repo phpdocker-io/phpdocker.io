@@ -1,8 +1,8 @@
 SHELL=/bin/bash
 MKCERT_VERSION=v1.4.3
-MKCERT_LOCATION=$(PWD)/bin/mkcert
+MKCERT_LOCATION=bin/mkcert
 HOSTS_VERSION=3.6.4
-HOSTS_LOCATION=$(PWD)/bin/hosts
+HOSTS_LOCATION=bin/hosts
 SITE_HOST=phpdocker.local
 PHP_RUN=docker-compose run -e XDEBUG_MODE=coverage --rm php-fpm
 
