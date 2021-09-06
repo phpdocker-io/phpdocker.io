@@ -14,7 +14,7 @@ ifndef BINARY_SUFFIX
 	BINARY_SUFFIX:=$(shell [[ "`uname -s`" == "Linux" ]] && echo linux || echo darwin)-amd64
 endif
 
-ifndef BINARY_ARCH
+ifndef BUILD_TAG
 	BUILD_TAG:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
 endif
 
