@@ -60,7 +60,7 @@ RUN apk add git --no-cache; \
     bower install --allow-root
 
 ## Actual deployable frontend image
-FROM pagespeed/nginx-pagespeed:stable AS frontend-deployment
+FROM phpdockerio/nginx-pagespeed:latest AS frontend-deployment
 
 WORKDIR /application
 

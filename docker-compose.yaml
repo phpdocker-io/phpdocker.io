@@ -7,7 +7,7 @@ services:
     image: redis:alpine
 
   webserver:
-    image: pagespeed/nginx-pagespeed:stable
+    image: phpdockerio/nginx-pagespeed:latest
     working_dir: /application
     volumes:
       - .:/application

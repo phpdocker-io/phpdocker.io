@@ -6,7 +6,7 @@ HOSTS_LOCATION=bin/hosts
 SITE_HOST=phpdocker.local
 PHP_RUN=docker-compose run -e XDEBUG_MODE=coverage --rm php-fpm
 
-BUILD_TAG?=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
+BUILD_TAG?:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
 
 # linux-amd64, darwin-amd64, linux-arm
 # On windows, override with windows-amd64.exe
@@ -19,6 +19,10 @@ ifndef BUILD_TAG
 endif
 
 echo-build-tag:
+	echo $(BUILD_TAG)
+	sleep 3
+
+echo-build-tag-2:
 	echo $(BUILD_TAG)
 
 start:
