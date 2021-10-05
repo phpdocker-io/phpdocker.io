@@ -56,28 +56,14 @@ jobs:
       - name: Build containers
         run: make build-images tag-images -e BUILD_TAG=${BUILD_TAG}
 
-      - name: Run the Anchore container scan (php)
+      - name: Run the Anchore container scan (php container)
         uses: anchore/scan-action@main
         with:
           image: "${{ env.PHP_CONTAINER }}"
           acs-report-enable: true
           fail-build: false
 
-      - name: Upload Anchore Scan Report (php)
-        uses: github/codeql-action/upload-sarif@v1
-        if: always()
-        continue-on-error: true
-        with:
-          sarif_file: results.sarif
-
-      - name: Run the Anchore container scan (nginx)
-        uses: anchore/scan-action@main
-        with:
-          image: "${{ env.NGINX_CONTAINER }}"
-          acs-report-enable: true
-          fail-build: false
-
-      - name: Upload Anchore Scan Report (nginx)
+      - name: Upload Anchore Scan Report (php container)
         uses: github/codeql-action/upload-sarif@v1
         if: always()
         continue-on-error: true
