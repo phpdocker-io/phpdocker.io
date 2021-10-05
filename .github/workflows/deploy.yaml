@@ -14,6 +14,8 @@ on:
     - cron: "0 0 * * 0"
 env:
   TEST_URL: https://phpdocker.io/generator
+  PHP_CONTAINER: phpdocker-old-php-fpm
+  NGINX_CONTAINER: phpdocker-old-nginx
 jobs:
   deploy:
     # We only deploy master
@@ -50,6 +52,28 @@ jobs:
 
       - name: Build containers
         run: make build-images tag-images -e BUILD_TAG=${BUILD_TAG}
+
+      - name: Run the Anchore container scan (php)
+        uses: anchore/scan-action@main
+        with:
+          image: "${{ env.PHP_CONTAINER }}"
+          acs-report-enable: true
+
+      - name: Upload Anchore Scan Report (php)
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif
+
+      - name: Run the Anchore container scan (nginx)
+        uses: anchore/scan-action@main
+        with:
+          image: "${{ env.NGINX_CONTAINER }}"
+          acs-report-enable: true
+
+      - name: Upload Anchore Scan Report (nginx)
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif
 
       - name: Push to container registry
         run: make push-images -e BUILD_TAG=${BUILD_TAG}
