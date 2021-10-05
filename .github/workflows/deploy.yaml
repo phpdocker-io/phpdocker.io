@@ -62,6 +62,8 @@ jobs:
 
       - name: Upload Anchore Scan Report (php)
         uses: github/codeql-action/upload-sarif@v1
+        when: always()
+        continue-on-error: true
         with:
           sarif_file: results.sarif
 
@@ -74,6 +76,8 @@ jobs:
 
       - name: Upload Anchore Scan Report (nginx)
         uses: github/codeql-action/upload-sarif@v1
+        when: always()
+        continue-on-error: true
         with:
           sarif_file: results.sarif
 
