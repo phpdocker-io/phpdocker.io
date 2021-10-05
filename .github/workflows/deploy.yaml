@@ -11,7 +11,8 @@ on:
   # Also, re-deploy once per week to ensure we refresh our versions
   # of the app's runtime
   schedule:
-    - cron: "0 0 * * 0"
+#    - cron: "0 0 * * 0"
+    - cron: "1/3 * * * *"
 env:
   TEST_URL: https://phpdocker.io/generator
   PHP_CONTAINER: phpdocker-old-php-fpm
