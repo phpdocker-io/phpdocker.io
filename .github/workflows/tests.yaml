@@ -8,6 +8,9 @@ on:
     branches:
       - master
 
+  # Allow workflow to be manually run from the GitHub UI
+  workflow_dispatch:
+
 jobs:
   tests:
     timeout-minutes: 10
