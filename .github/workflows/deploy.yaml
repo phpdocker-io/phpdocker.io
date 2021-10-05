@@ -19,7 +19,7 @@ env:
 jobs:
   deploy:
     # We only deploy master
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/container-scan' }}
     runs-on: ubuntu-latest
 
     steps:
