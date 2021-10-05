@@ -75,25 +75,25 @@ jobs:
         with:
           sarif_file: results.sarif
 
-      - name: Push to container registry
-        run: make push-images -e BUILD_TAG=${BUILD_TAG}
-
-      - name: Deploy application
-        run: make deploy -e BUILD_TAG=${BUILD_TAG}
-
-      - name: Wait for deployment success
-        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-
-      - name: Check website is responding correctly, or rollback
-        run: |
-          set +e
-          curl --fail -sSL -D - ${{ env.TEST_URL }} -o /dev/null
-
-          if [[ "$?" != 0 ]]; then
-            echo "Website is not properly online, rolling back"
-            kubectl rollout undo deployment.v1.apps/${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-            kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-            exit 1
-          fi
-
-          set -e
+#      - name: Push to container registry
+#        run: make push-images -e BUILD_TAG=${BUILD_TAG}
+#
+#      - name: Deploy application
+#        run: make deploy -e BUILD_TAG=${BUILD_TAG}
+#
+#      - name: Wait for deployment success
+#        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+#
+#      - name: Check website is responding correctly, or rollback
+#        run: |
+#          set +e
+#          curl --fail -sSL -D - ${{ env.TEST_URL }} -o /dev/null
+#
+#          if [[ "$?" != 0 ]]; then
+#            echo "Website is not properly online, rolling back"
+#            kubectl rollout undo deployment.v1.apps/${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+#            kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+#            exit 1
+#          fi
+#
+#          set -e
