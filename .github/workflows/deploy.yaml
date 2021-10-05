@@ -58,6 +58,7 @@ jobs:
         with:
           image: "${{ env.PHP_CONTAINER }}"
           acs-report-enable: true
+          fail-build: false
 
       - name: Upload Anchore Scan Report (php)
         uses: github/codeql-action/upload-sarif@v1
@@ -69,6 +70,7 @@ jobs:
         with:
           image: "${{ env.NGINX_CONTAINER }}"
           acs-report-enable: true
+          fail-build: false
 
       - name: Upload Anchore Scan Report (nginx)
         uses: github/codeql-action/upload-sarif@v1
