@@ -2,6 +2,9 @@
     "source": {
         "directories": [
             "src"
+        ],
+        "excludes": [
+            "Kernel.php"
         ]
     },
     "logs": {
