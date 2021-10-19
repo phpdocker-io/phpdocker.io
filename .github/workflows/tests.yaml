@@ -41,7 +41,7 @@ jobs:
       - name: Run behaviour tests
         run: make behaviour
 
-      - name: Run unit tests
+      - name: Run unit and functional tests
         run: make coverage-tests
 
       - name: Run mutation tests
