@@ -55,8 +55,6 @@ spec:
       labels:
         app: phpdocker-io-old
     spec:
-      nodeSelector:
-        preemptible: "false"
       containers:
         - image: eu.gcr.io/auron-infrastructure/phpdocker-old-nginx:latest
           name: nginx
@@ -133,8 +131,6 @@ spec:
       labels:
         app: redis
     spec:
-      nodeSelector:
-        preemptible: "false"
       containers:
         - image: redis:alpine
           name: redis
