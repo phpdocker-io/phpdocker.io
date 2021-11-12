@@ -120,8 +120,8 @@ open-coverage-report:
 
 ### Deployment targets
 build-and-push:
-	docker buildx build --target=backend-deployment  --tag eu.gcr.io/auron-infrastructure/phpdocker-old-php-fpm:$(BUILD_TAG) --platform linux/arm/v7 --pull --push .
-	docker buildx build --target=frontend-deployment --tag eu.gcr.io/auron-infrastructure/phpdocker-old-nginx:$(BUILD_TAG)   --platform linux/arm/v7 --pull --push .
+	docker buildx build --target=backend-deployment  --tag eu.gcr.io/auron-infrastructure/phpdocker-php-fpm:$(BUILD_TAG) --platform linux/arm/v7 --pull --push .
+	docker buildx build --target=frontend-deployment --tag eu.gcr.io/auron-infrastructure/phpdocker-nginx:$(BUILD_TAG)   --platform linux/arm/v7 --pull --push .
 
 deploy:
 	cp infrastructure/kubernetes/deployment.yaml /tmp/phpdocker-deployment-$(BUILD_TAG).yaml
