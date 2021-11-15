@@ -42,11 +42,11 @@ COPY src              ./src
 COPY templates        ./templates
 COPY public/index.php ./public/
 
+RUN touch ./.env
+
 RUN composer dump-autoload --optimize --classmap-authoritative --no-scripts; \
     bin/console cache:warmup; \
     chown www-data:www-data var/ -Rf
-
-RUN touch .env
 
 ############
 # Frontend #
