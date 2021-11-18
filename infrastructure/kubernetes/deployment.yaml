@@ -2,34 +2,62 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: phpdocker-io-old
+  name: phpdocker
   labels:
-    name: phpdocker-io-old
+    name: phpdocker
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpdocker-io-old
-  namespace: phpdocker-io-old
+  name: phpdocker
+  namespace: phpdocker
   labels:
-    app: phpdocker-io-old
+    app: phpdocker
 spec:
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
   selector:
-    app: phpdocker-io-old
+    app: phpdocker
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: phpdocker
+  namespace: phpdocker
+  annotations:
+    nginx.ingress.kubernetes.io/server-alias: www.phpdocker.io
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: phpdocker.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: phpdocker
+                port:
+                  number: 80
+  tls:
+    - secretName: phpdocker-tls
+      hosts:
+        - phpdocker.io
+        - www.phpdocker.io
 
 ---
 
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: phpdocker-io-old
-  namespace: phpdocker-io-old
+  name: phpdocker
+  namespace: phpdocker
 data:
   redis_host: "redis"
   redis_port: "6379"
@@ -39,29 +67,27 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phpdocker-io-old
-  namespace: phpdocker-io-old
+  name: phpdocker
+  namespace: phpdocker
   labels:
-    app: phpdocker-io-old
+    app: phpdocker
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: phpdocker-io-old
+      app: phpdocker
   template:
     metadata:
       labels:
-        app: phpdocker-io-old
+        app: phpdocker
     spec:
-      nodeSelector:
-        preemptible: "false"
       containers:
-        - image: eu.gcr.io/auron-infrastructure/phpdocker-old-nginx:latest
+        - image: eu.gcr.io/auron-infrastructure/phpdocker-nginx:latest
           name: nginx
 
-        - image: eu.gcr.io/auron-infrastructure/phpdocker-old-php-fpm:latest
+        - image: eu.gcr.io/auron-infrastructure/phpdocker-php-fpm:latest
           name: php-fpm
 
           env:
@@ -74,25 +100,25 @@ spec:
             - name: APP_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: phpdocker-io-old
+                  name: phpdocker
                   key: app.secret
 
             - name: GOOGLE_ANALYTICS
               valueFrom:
                 secretKeyRef:
-                  name: phpdocker-io-old
+                  name: phpdocker
                   key: google_analytics
 
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: phpdocker-io-old
+                  name: phpdocker
                   key: redis_host
 
             - name: REDIS_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: phpdocker-io-old
+                  name: phpdocker
                   key: redis_port
 
 ---
@@ -101,7 +127,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis
-  namespace: phpdocker-io-old
+  namespace: phpdocker
   labels:
     app: redis
 spec:
@@ -118,7 +144,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
-  namespace: phpdocker-io-old
+  namespace: phpdocker
   labels:
     app: redis
 spec:
@@ -133,8 +159,6 @@ spec:
       labels:
         app: redis
     spec:
-      nodeSelector:
-        preemptible: "false"
       containers:
         - image: redis:alpine
           name: redis

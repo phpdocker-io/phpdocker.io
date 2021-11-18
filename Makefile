@@ -119,20 +119,9 @@ open-coverage-report:
 	xdg-open reports/phpunit/index.html
 
 ### Deployment targets
-
-build-images:
-	docker build --pull --target=backend-deployment  -t phpdocker-old-php-fpm .
-	docker build --pull --target=frontend-deployment -t phpdocker-old-nginx   .
-
-tag-images:
-	docker tag phpdocker-old-nginx eu.gcr.io/auron-infrastructure/phpdocker-old-nginx:$(BUILD_TAG)
-	docker tag phpdocker-old-php-fpm eu.gcr.io/auron-infrastructure/phpdocker-old-php-fpm:$(BUILD_TAG)
-
-push-images:
-	docker push eu.gcr.io/auron-infrastructure/phpdocker-old-nginx:$(BUILD_TAG)
-	docker push eu.gcr.io/auron-infrastructure/phpdocker-old-php-fpm:$(BUILD_TAG)
-
-build-and-push: build-images tag-images push-images
+build-and-push:
+	docker buildx build --target=backend-deployment  --tag eu.gcr.io/auron-infrastructure/phpdocker-php-fpm:$(BUILD_TAG) --platform linux/arm/v7 --pull --push .
+	docker buildx build --target=frontend-deployment --tag eu.gcr.io/auron-infrastructure/phpdocker-nginx:$(BUILD_TAG)   --platform linux/arm/v7 --pull --push .
 
 deploy:
 	cp infrastructure/kubernetes/deployment.yaml /tmp/phpdocker-deployment-$(BUILD_TAG).yaml
