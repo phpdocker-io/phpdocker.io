@@ -1,94 +1,94 @@
-name: Deploy application
-
-on:
-  # Ensure we're run after tests
-  workflow_run:
-    workflows: [ "Test application" ]
-    branches: [ "master" ]
-    types:
-      - completed
-
-  # Allow workflow to be manually run from the GitHub UI
-  workflow_dispatch:
-
-  # Also, re-deploy once per week to ensure we refresh our versions
-  # of the app's runtime
-  schedule:
-    - cron: "0 0 * * 0"
-env:
-  TEST_URL: https://phpdocker.io/generator
-  PHP_CONTAINER: phpdocker-old-php-fpm
-  NGINX_CONTAINER: phpdocker-old-nginx
-jobs:
-  deploy:
-    # We only deploy master
-    if: ${{ github.ref == 'refs/heads/master' }}
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      # Setup gcloud CLI
-      - uses: google-github-actions/setup-gcloud@master
-        with:
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
-          project_id: ${{ secrets.GKE_PROJECT }}
-
-      # Configure docker to use the gcloud command-line tool as a credential helper
-      - name: Configure docker for GCR
-        run: gcloud --quiet auth configure-docker
-
-      # Get the GKE credentials so we can deploy to the cluster
-      - uses: google-github-actions/get-gke-credentials@main
-        with:
-          cluster_name: ${{ secrets.GKE_CLUSTER }}
-          location: ${{ secrets.GKE_ZONE }}
-          credentials: ${{ secrets.GKE_SA_KEY }}
-
-      # We could build-and-push deploy, but it makes that step on the pipeline too
-      # complex to follow effectively. Instead, set BUILD_TAG here so that we can
-      # run build, push and deploy separately
-      - name: Set build tag
-        run: |
-          echo "BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
-
-      - name: Build containers
-        run: make build-images tag-images -e BUILD_TAG=${BUILD_TAG}
-
-      - name: Run the Anchore container scan (php container)
-        uses: anchore/scan-action@main
-        with:
-          image: "${{ env.PHP_CONTAINER }}"
-          acs-report-enable: true
-          fail-build: false
-
-      - name: Upload Anchore Scan Report (php container)
-        uses: github/codeql-action/upload-sarif@v1
-        if: always()
-        continue-on-error: true
-        with:
-          sarif_file: results.sarif
-
-      - name: Push to container registry
-        run: make push-images -e BUILD_TAG=${BUILD_TAG}
-
-      - name: Deploy application
-        run: make deploy -e BUILD_TAG=${BUILD_TAG}
-
-      - name: Wait for deployment success
-        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-
-      - name: Check website is responding correctly, or rollback
-        run: |
-          set +e
-          curl --fail -sSL -D - ${{ env.TEST_URL }} -o /dev/null
-
-          if [[ "$?" != 0 ]]; then
-            echo "Website is not properly online, rolling back"
-            kubectl rollout undo deployment.v1.apps/${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-            kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-            exit 1
-          fi
-
-          set -e
+#name: Deploy application
+#
+#on:
+#  # Ensure we're run after tests
+#  workflow_run:
+#    workflows: [ "Test application" ]
+#    branches: [ "master" ]
+#    types:
+#      - completed
+#
+#  # Allow workflow to be manually run from the GitHub UI
+#  workflow_dispatch:
+#
+#  # Also, re-deploy once per week to ensure we refresh our versions
+#  # of the app's runtime
+#  schedule:
+#    - cron: "0 0 * * 0"
+#env:
+#  TEST_URL: https://phpdocker.io/generator
+#  PHP_CONTAINER: phpdocker-old-php-fpm
+#  NGINX_CONTAINER: phpdocker-old-nginx
+#jobs:
+#  deploy:
+#    # We only deploy master
+#    if: ${{ github.ref == 'refs/heads/master' }}
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#
+#      # Setup gcloud CLI
+#      - uses: google-github-actions/setup-gcloud@master
+#        with:
+#          service_account_key: ${{ secrets.GKE_SA_KEY }}
+#          project_id: ${{ secrets.GKE_PROJECT }}
+#
+#      # Configure docker to use the gcloud command-line tool as a credential helper
+#      - name: Configure docker for GCR
+#        run: gcloud --quiet auth configure-docker
+#
+#      # Get the GKE credentials so we can deploy to the cluster
+#      - uses: google-github-actions/get-gke-credentials@main
+#        with:
+#          cluster_name: ${{ secrets.GKE_CLUSTER }}
+#          location: ${{ secrets.GKE_ZONE }}
+#          credentials: ${{ secrets.GKE_SA_KEY }}
+#
+#      # We could build-and-push deploy, but it makes that step on the pipeline too
+#      # complex to follow effectively. Instead, set BUILD_TAG here so that we can
+#      # run build, push and deploy separately
+#      - name: Set build tag
+#        run: |
+#          echo "BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+#
+#      - name: Build containers
+#        run: make build-images tag-images -e BUILD_TAG=${BUILD_TAG}
+#
+#      - name: Run the Anchore container scan (php container)
+#        uses: anchore/scan-action@main
+#        with:
+#          image: "${{ env.PHP_CONTAINER }}"
+#          acs-report-enable: true
+#          fail-build: false
+#
+#      - name: Upload Anchore Scan Report (php container)
+#        uses: github/codeql-action/upload-sarif@v1
+#        if: always()
+#        continue-on-error: true
+#        with:
+#          sarif_file: results.sarif
+#
+#      - name: Push to container registry
+#        run: make push-images -e BUILD_TAG=${BUILD_TAG}
+#
+#      - name: Deploy application
+#        run: make deploy -e BUILD_TAG=${BUILD_TAG}
+#
+#      - name: Wait for deployment success
+#        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+#
+#      - name: Check website is responding correctly, or rollback
+#        run: |
+#          set +e
+#          curl --fail -sSL -D - ${{ env.TEST_URL }} -o /dev/null
+#
+#          if [[ "$?" != 0 ]]; then
+#            echo "Website is not properly online, rolling back"
+#            kubectl rollout undo deployment.v1.apps/${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+#            kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+#            exit 1
+#          fi
+#
+#          set -e
