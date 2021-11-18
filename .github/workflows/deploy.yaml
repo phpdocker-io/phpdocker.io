@@ -1,34 +1,34 @@
-#name: Deploy application
-#
-#on:
-#  # Ensure we're run after tests
-#  workflow_run:
-#    workflows: [ "Test application" ]
-#    branches: [ "master" ]
-#    types:
-#      - completed
-#
-#  # Allow workflow to be manually run from the GitHub UI
-#  workflow_dispatch:
-#
-#  # Also, re-deploy once per week to ensure we refresh our versions
-#  # of the app's runtime
-#  schedule:
-#    - cron: "0 0 * * 0"
-#env:
-#  TEST_URL: https://phpdocker.io/generator
-#  PHP_CONTAINER: phpdocker-old-php-fpm
-#  NGINX_CONTAINER: phpdocker-old-nginx
-#jobs:
-#  deploy:
-#    # We only deploy master
-#    if: ${{ github.ref == 'refs/heads/master' }}
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#
+name: Deploy application
+
+on:
+  # Ensure we're run after tests
+  workflow_run:
+    workflows: [ "Test application" ]
+    branches: [ "master" ]
+    types:
+      - completed
+
+  # Allow workflow to be manually run from the GitHub UI
+  workflow_dispatch:
+
+  # Also, re-deploy once per week to ensure we refresh our versions
+  # of the app's runtime
+  schedule:
+    - cron: "0 0 * * 0"
+env:
+  TEST_URL: https://phpdocker.io/generator
+  PHP_CONTAINER: phpdocker-old-php-fpm
+  NGINX_CONTAINER: phpdocker-old-nginx
+jobs:
+  deploy:
+    # We only deploy master
+    if: ${{ github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
 #      # Setup gcloud CLI
 #      - uses: google-github-actions/setup-gcloud@master
 #        with:
