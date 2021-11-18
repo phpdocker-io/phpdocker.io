@@ -29,10 +29,14 @@ kind: Ingress
 metadata:
   name: phpdocker
   namespace: phpdocker
+  annotations:
+    nginx.ingress.kubernetes.io/server-alias: www.phpdocker.io
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: phpdocker.io
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -41,6 +45,11 @@ spec:
                 name: phpdocker
                 port:
                   number: 80
+  tls:
+    - secretName: phpdocker-tls
+      hosts:
+        - phpdocker.io
+        - www.phpdocker.io
 
 ---
 
