@@ -1,0 +1,111 @@
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --darkest   : #1d1d1d;
+        --dark      : #383838;
+        --bright    : #797979;
+        --brightest : #b1b1b1;
+        --dark-blue : #296292;
+    }
+
+    * {
+        scrollbar-color : var(--darkest) var(--dark);
+    }
+
+    section#header,
+    footer {
+        background-color : #111 !important;
+    }
+
+    body {
+        color : var(--brightest);
+    }
+
+    section#content {
+        background-color : var(--darkest);
+    }
+
+    form .group h3 {
+        background-color : #33373a;
+        color            : rgb(232, 230, 227);
+    }
+
+    .form-control {
+        color            : var(--brightest);
+        background-color : var(--darkest);
+        border-color     : var(--dark);
+    }
+
+    #header a,
+    #header p {
+        color : var(--brightest) !important;
+    }
+
+    /** Multiselect **/
+    .dropdown-menu {
+        background-color : var(--darkest);
+        border-color     : var(--dark);
+        box-shadow       : rgba(0, 0, 0, 0.18);
+    }
+
+    .dropdown-menu > li > a {
+        color     : var(--brightest);
+        font-size : 1.2em;
+    }
+
+    .input-group-addon {
+        background-color : var(--dark);
+        color            : var(--brightest);
+        border-color     : var(--dark);
+    }
+
+    ul.multiselect-container.dropdown-menu li a label.checkbox:hover,
+    .multiselect.dropdown-toggle:hover {
+        background-color : var(--dark) !important;
+        color            : var(--brightest) !important;
+    }
+
+    /** Toggles **/
+    .btn-default,
+    .btn-default:active,
+    .open > .dropdown-toggle.btn-default,
+    button.btn.btn-default.multiselect-clear-filter {
+        color            : var(--brightest);
+        background-color : var(--dark) !important;
+        border-color     : var(--dark);
+    }
+
+    label.btn.btn-default.btn-sm {
+        background-color : var(--dark);
+        color            : var(--brightest);
+    }
+
+    .btn-sm:hover {
+        border-color : var(--bright) !important;
+    }
+
+    .toggle-on {
+        background-color : var(--dark-blue);
+    }
+
+    .toggle-handle {
+        background-color : var(--darkest) !important;
+    }
+}
+
