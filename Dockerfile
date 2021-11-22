@@ -3,7 +3,7 @@
 ###########
 
 # Base container for dev & deployment
-FROM phpdockerio/php80-fpm:latest AS backend-base
+FROM phpdockerio/php:8.0-fpm AS backend-base
 WORKDIR "/application"
 
 RUN apt-get update; \
