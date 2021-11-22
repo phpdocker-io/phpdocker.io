@@ -30,7 +30,7 @@
 
     section#header,
     footer {
-        background-color : #111 !important;
+        background-color : var(--darkest) !important;
     }
 
     body {
