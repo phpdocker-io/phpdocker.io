@@ -1,0 +1,107 @@
+/*
+ * Copyright 2021 Luis Alberto Pabón Flores
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+@media (prefers-color-scheme: dark) {
+    * {
+        scrollbar-color: #454a4d #202324;
+    }
+
+    section#header,
+    footer {
+        background-color: black !important;
+    }
+
+    body {
+        color: #c8c3bc;
+    }
+
+    section#content {
+        background-color: #181a1b;
+    }
+
+    form .group h3 {
+        background-color: rgb(51, 55, 58);
+        color: rgb(232, 230, 227);
+    }
+
+    .form-control {
+        color: rgb(178, 172, 162);
+        background-color: #181a1b;
+        border-color: #3e4446;
+        box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px inset;
+    }
+
+    #header a,
+    #header p {
+        color: #e8e6e3 !important;
+    }
+
+    /** Multiselect **/
+    .dropdown-menu {
+        background-color: #181a1b;
+        border-color: rgba(140, 130, 115, 0.15);
+        box-shadow: rgba(0, 0, 0, 0.18);
+    }
+
+    .dropdown-menu > li > a {
+        color: #c8c3bc;
+        font-size: 1.2em;
+    }
+
+    .input-group-addon {
+        background-color: #222426;
+        color: #b2aca2;
+        border-color: #3e4446;
+    }
+    ul.multiselect-container.dropdown-menu li a label.checkbox:hover,
+    .multiselect.dropdown-toggle:hover {
+        background-color: #1e2021 !important;
+        color: #c8c3bc !important;
+    }
+
+    /** Toggles **/
+    .btn-default,
+    .btn-default:active,
+    .open > .dropdown-toggle.btn-default,
+    button.btn.btn-default.multiselect-clear-filter{
+        color: #c8c3bc;
+        background-color: #181a1b;
+        border-color: #474d50;
+    }
+
+    label.btn.btn-default.btn-sm {
+        background-color: #26292b;
+        color: #c8c3bc;
+    }
+
+    .btn-sm:hover {
+        border-color: #50575b !important;
+    }
+
+    .toggle-on {
+        background-color: #296292;
+    }
+
+    .toggle-handle {
+        background-color: #181a1b !important;
+    }
+
+    .toggle-off:hover {
+        background-color: #303436;
+    }
+
+}
+
