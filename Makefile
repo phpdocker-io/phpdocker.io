@@ -52,7 +52,6 @@ clear-cache:
 	$(PHP_RUN) rm var/* -rf
 
 install-assets-dev:
-	mkdir -p web/bundles web/css web/js
 	$(PHP_RUN) bin/console assets:install --symlink --relative
 
 composer-install:
