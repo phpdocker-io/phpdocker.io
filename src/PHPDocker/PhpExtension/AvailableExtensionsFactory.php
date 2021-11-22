@@ -26,10 +26,10 @@ use InvalidArgumentException;
  */
 class AvailableExtensionsFactory
 {
-    private const PHP_VERSION_72 = '7.2.x';
-    private const PHP_VERSION_73 = '7.3.x';
-    private const PHP_VERSION_74 = '7.4.x';
-    private const PHP_VERSION_80 = '8.0.x';
+    private const PHP_VERSION_72 = '7.2';
+    private const PHP_VERSION_73 = '7.3';
+    private const PHP_VERSION_74 = '7.4';
+    private const PHP_VERSION_80 = '8.0';
 
     /**
      * Supported PHP versions

@@ -69,28 +69,28 @@ class PhpType extends AbstractGeneratorType
             ->add('phpExtensions72', ChoiceType::class, [
                 'choices'     => $this->getExtensionChoices((new Php72AvailableExtensions())->getOptional()),
                 'multiple'    => true,
-                'label'       => 'Extensions (PHP 7.2.x)',
+                'label'       => 'Extensions (PHP 7.2)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions73', ChoiceType::class, [
                 'choices'     => $this->getExtensionChoices((new Php73AvailableExtensions())->getOptional()),
                 'multiple'    => true,
-                'label'       => 'Extensions (PHP 7.3.x)',
+                'label'       => 'Extensions (PHP 7.3)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions74', ChoiceType::class, [
                 'choices'     => $this->getExtensionChoices((new Php74AvailableExtensions())->getOptional()),
                 'multiple'    => true,
-                'label'       => 'Extensions (PHP 7.4.x)',
+                'label'       => 'Extensions (PHP 7.4)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions80', ChoiceType::class, [
                 'choices'     => $this->getExtensionChoices((new Php80AvailableExtensions())->getOptional()),
                 'multiple'    => true,
-                'label'       => 'Extensions (PHP 8.0.x)',
+                'label'       => 'Extensions (PHP 8.0)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ]);

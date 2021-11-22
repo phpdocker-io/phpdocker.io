@@ -32,7 +32,7 @@ class MySQL extends AbstractMySQL
     private const VERSION_80 = '8.0';
 
     private const ALLOWED_VERSIONS = [
-        self::VERSION_80 => '8.0.x',
+        self::VERSION_80 => '8.0',
         self::VERSION_57 => '5.7.x',
         self::VERSION_56 => '5.6.x',
         self::VERSION_55 => '5.5.x',
