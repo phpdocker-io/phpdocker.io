@@ -1,15 +1,4 @@
-{% apply spaceless %}
-    {% if phpVersion == '7.2' %}
-        {% set image = 'phpdockerio/php72-fpm:latest' %}
-    {% elseif phpVersion == '7.3' %}
-        {% set image = 'phpdockerio/php73-fpm:latest' %}
-    {% elseif phpVersion == '7.4' %}
-        {% set image = 'phpdockerio/php74-fpm:latest' %}
-    {% else %}
-        {% set image = 'phpdockerio/php80-fpm:latest' %}
-    {% endif %}
-{% endapply %}
-FROM {{ image }}
+FROM 'phpdockerio/php:{{ phpVersion }}-fpm'
 WORKDIR "{{ dockerWorkingDir }}"
 
 {% if packages %}
