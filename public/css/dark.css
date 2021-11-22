@@ -15,10 +15,10 @@
  *
  */
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme : dark) {
     :root {
-        --darkest   : #1d1d1d;
-        --dark      : #383838;
+        --darkest   : #131313;
+        --dark      : #2a2a2a;
         --bright    : #797979;
         --brightest : #b1b1b1;
         --dark-blue : #296292;
@@ -43,7 +43,11 @@
 
     form .group h3 {
         background-color : #33373a;
-        color            : rgb(232, 230, 227);
+        color            : var(--brightest);
+    }
+
+    .btn-custom-three {
+        background-color : var(--dark);
     }
 
     .form-control {
