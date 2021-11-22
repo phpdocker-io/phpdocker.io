@@ -14,22 +14,32 @@
  * limitations under the License.
  *
  */
+
+
 @media (prefers-color-scheme: dark) {
+    :root {
+        --darkest: #181a1b;
+        --dark: #383838;
+        --bright: #797979;
+        --brightest: #b2aca2;
+        --dark-blue: #296292;
+    }
+
     * {
         scrollbar-color: #454a4d #202324;
     }
 
     section#header,
     footer {
-        background-color: black !important;
+        background-color: #111 !important;
     }
 
     body {
-        color: #c8c3bc;
+        color: var(--brightest);
     }
 
     section#content {
-        background-color: #181a1b;
+        background-color: var(--darkest);
     }
 
     form .group h3 {
@@ -38,38 +48,37 @@
     }
 
     .form-control {
-        color: rgb(178, 172, 162);
-        background-color: #181a1b;
-        border-color: #3e4446;
-        box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px inset;
+        color: var(--brightest);
+        background-color: var(--darkest);
+        border-color: var(--dark);
     }
 
     #header a,
     #header p {
-        color: #e8e6e3 !important;
+        color: var(--brightest) !important;
     }
 
     /** Multiselect **/
     .dropdown-menu {
-        background-color: #181a1b;
-        border-color: rgba(140, 130, 115, 0.15);
+        background-color: var(--darkest);
+        border-color: var(--dark);
         box-shadow: rgba(0, 0, 0, 0.18);
     }
 
     .dropdown-menu > li > a {
-        color: #c8c3bc;
+        color: var(--brightest);
         font-size: 1.2em;
     }
 
     .input-group-addon {
-        background-color: #222426;
-        color: #b2aca2;
-        border-color: #3e4446;
+        background-color: var(--dark);
+        color: var(--brightest);
+        border-color: var(--dark);
     }
     ul.multiselect-container.dropdown-menu li a label.checkbox:hover,
     .multiselect.dropdown-toggle:hover {
-        background-color: #1e2021 !important;
-        color: #c8c3bc !important;
+        background-color: var(--dark) !important;
+        color: var(--brightest) !important;
     }
 
     /** Toggles **/
@@ -77,26 +86,26 @@
     .btn-default:active,
     .open > .dropdown-toggle.btn-default,
     button.btn.btn-default.multiselect-clear-filter{
-        color: #c8c3bc;
-        background-color: #181a1b;
-        border-color: #474d50;
+        color: var(--brightest);
+        background-color: var(--dark) !important;
+        border-color: var(--dark);
     }
 
     label.btn.btn-default.btn-sm {
-        background-color: #26292b;
-        color: #c8c3bc;
+        background-color: var(--dark);
+        color: var(--brightest);
     }
 
     .btn-sm:hover {
-        border-color: #50575b !important;
+        border-color: var(--bright) !important;
     }
 
     .toggle-on {
-        background-color: #296292;
+        background-color: var(--dark-blue);
     }
 
     .toggle-handle {
-        background-color: #181a1b !important;
+        background-color: var(--darkest) !important;
     }
 
     .toggle-off:hover {
