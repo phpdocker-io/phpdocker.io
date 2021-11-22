@@ -15,12 +15,12 @@
  *
  */
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme : dark) {
     :root {
-        --darkest   : #1d1d1d;
-        --dark      : #383838;
+        --darkest   : #191919;
+        --dark      : #2a2a2a;
         --bright    : #797979;
-        --brightest : #b1b1b1;
+        --brightest : #c2c2c2;
         --dark-blue : #296292;
     }
 
@@ -30,7 +30,7 @@
 
     section#header,
     footer {
-        background-color : #111 !important;
+        background-color : var(--darkest) !important;
     }
 
     body {
@@ -42,8 +42,12 @@
     }
 
     form .group h3 {
-        background-color : #33373a;
-        color            : rgb(232, 230, 227);
+        background-color : var(--dark);
+        color            : var(--brightest);
+    }
+
+    .btn-custom-three {
+        background-color : var(--dark);
     }
 
     .form-control {
