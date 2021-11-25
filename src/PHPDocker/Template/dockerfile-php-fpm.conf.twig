@@ -1,4 +1,4 @@
-FROM 'phpdockerio/php:{{ phpVersion }}-fpm'
+FROM phpdockerio/php:{{ phpVersion }}-fpm
 WORKDIR "{{ dockerWorkingDir }}"
 
 {% if packages %}

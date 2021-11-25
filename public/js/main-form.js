@@ -102,23 +102,18 @@ function doMainFormMagic () {
     phpVersionSelector.change(function () {
         extensionMultiSelects.parents('.form-group').hide()
 
+        let chosenVersion = '81'
         switch ($(this).val()) {
-            case '7.3':
-                extensionMultiSelects.filter('[id$=73]').parents('.form-group').show()
-                break
-
             case '7.4':
-                extensionMultiSelects.filter('[id$=74]').parents('.form-group').show()
+                chosenVersion = '74'
                 break
 
             case '8.0':
-                extensionMultiSelects.filter('[id$=80]').parents('.form-group').show()
-                break
-
-            default:
-                extensionMultiSelects.filter('[id$=81]').parents('.form-group').show()
+                chosenVersion = '80'
                 break
         }
+
+        extensionMultiSelects.filter('[id$=' + chosenVersion + ']').parents('.form-group').show()
     })
 
     const form          = $('#generator')

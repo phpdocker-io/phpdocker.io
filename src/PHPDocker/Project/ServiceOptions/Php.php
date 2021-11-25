@@ -28,7 +28,6 @@ use InvalidArgumentException;
  */
 class Php extends Base
 {
-    public const PHP_VERSION_73 = '7.3';
     public const PHP_VERSION_74 = '7.4';
     public const PHP_VERSION_80 = '8.0';
     public const PHP_VERSION_81 = '8.1';
@@ -45,7 +44,6 @@ class Php extends Base
         self::PHP_VERSION_81,
         self::PHP_VERSION_80,
         self::PHP_VERSION_74,
-        self::PHP_VERSION_73,
     ];
 
     /**

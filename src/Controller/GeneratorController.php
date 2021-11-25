@@ -77,7 +77,6 @@ class GeneratorController extends AbstractController
         $phpData = $formData['phpOptions'];
 
         $extensions = match ($phpData['version']) {
-            PhpOptions::PHP_VERSION_73 => $phpData['phpExtensions73'],
             PhpOptions::PHP_VERSION_74 => $phpData['phpExtensions74'],
             PhpOptions::PHP_VERSION_80 => $phpData['phpExtensions80'],
             PhpOptions::PHP_VERSION_81 => $phpData['phpExtensions81'],
