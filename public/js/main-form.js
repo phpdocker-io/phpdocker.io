@@ -103,10 +103,6 @@ function doMainFormMagic () {
         extensionMultiSelects.parents('.form-group').hide()
 
         switch ($(this).val()) {
-            case '7.2':
-                extensionMultiSelects.filter('[id$=72]').parents('.form-group').show()
-                break
-
             case '7.3':
                 extensionMultiSelects.filter('[id$=73]').parents('.form-group').show()
                 break
@@ -115,8 +111,12 @@ function doMainFormMagic () {
                 extensionMultiSelects.filter('[id$=74]').parents('.form-group').show()
                 break
 
-            default:
+            case '8.0':
                 extensionMultiSelects.filter('[id$=80]').parents('.form-group').show()
+                break
+
+            default:
+                extensionMultiSelects.filter('[id$=81]').parents('.form-group').show()
                 break
         }
     })

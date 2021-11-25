@@ -19,10 +19,10 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\PHPDocker\PhpExtension\Php72AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php73AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php74AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php80AvailableExtensions;
+use App\PHPDocker\PhpExtension\Php81AvailableExtensions;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\ServiceOptions\Php;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -66,13 +66,6 @@ class PhpType extends AbstractGeneratorType
                     new Choice(choices: Php::getSupportedVersions()),
                 ],
             ])
-            ->add('phpExtensions72', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices((new Php72AvailableExtensions())->getOptional()),
-                'multiple'    => true,
-                'label'       => 'Extensions (PHP 7.2)',
-                'required'    => false,
-                'constraints' => $phpOptionsConstraints,
-            ])
             ->add('phpExtensions73', ChoiceType::class, [
                 'choices'     => $this->getExtensionChoices((new Php73AvailableExtensions())->getOptional()),
                 'multiple'    => true,
@@ -91,6 +84,13 @@ class PhpType extends AbstractGeneratorType
                 'choices'     => $this->getExtensionChoices((new Php80AvailableExtensions())->getOptional()),
                 'multiple'    => true,
                 'label'       => 'Extensions (PHP 8.0)',
+                'required'    => false,
+                'constraints' => $phpOptionsConstraints,
+            ])
+            ->add('phpExtensions81', ChoiceType::class, [
+                'choices'     => $this->getExtensionChoices((new Php81AvailableExtensions())->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 8.1)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ]);
