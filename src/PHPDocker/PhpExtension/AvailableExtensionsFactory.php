@@ -26,19 +26,19 @@ use InvalidArgumentException;
  */
 class AvailableExtensionsFactory
 {
-    private const PHP_VERSION_72 = '7.2';
     private const PHP_VERSION_73 = '7.3';
     private const PHP_VERSION_74 = '7.4';
     private const PHP_VERSION_80 = '8.0';
+    private const PHP_VERSION_81 = '8.1';
 
     /**
      * Supported PHP versions
      */
     private const SUPPORTED_VERSIONS = [
-        self::PHP_VERSION_72 => Php72AvailableExtensions::class,
         self::PHP_VERSION_73 => Php73AvailableExtensions::class,
         self::PHP_VERSION_74 => Php74AvailableExtensions::class,
         self::PHP_VERSION_80 => Php80AvailableExtensions::class,
+        self::PHP_VERSION_81 => Php81AvailableExtensions::class,
     ];
 
     /**

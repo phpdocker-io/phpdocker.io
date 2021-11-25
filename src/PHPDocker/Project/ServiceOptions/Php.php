@@ -28,10 +28,10 @@ use InvalidArgumentException;
  */
 class Php extends Base
 {
-    public const PHP_VERSION_72 = '7.2';
     public const PHP_VERSION_73 = '7.3';
     public const PHP_VERSION_74 = '7.4';
     public const PHP_VERSION_80 = '8.0';
+    public const PHP_VERSION_81 = '8.1';
 
     private string $version;
 
@@ -42,10 +42,10 @@ class Php extends Base
      * Supported PHP versions
      */
     private const SUPPORTED_VERSIONS = [
+        self::PHP_VERSION_81,
         self::PHP_VERSION_80,
         self::PHP_VERSION_74,
         self::PHP_VERSION_73,
-        self::PHP_VERSION_72,
     ];
 
     /**
