@@ -84,10 +84,10 @@ spec:
         app: phpdocker
     spec:
       containers:
-        - image: eu.gcr.io/auron-infrastructure/phpdocker-nginx:latest
+        - image: phpdockerio/site-php:latest
           name: nginx
 
-        - image: eu.gcr.io/auron-infrastructure/phpdocker-php-fpm:latest
+        - image: phpdockerio/site-ngx:latest
           name: php-fpm
 
           env:
