@@ -19,7 +19,6 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\PHPDocker\PhpExtension\Php73AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php74AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php80AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php81AvailableExtensions;
@@ -65,13 +64,6 @@ class PhpType extends AbstractGeneratorType
                     new NotBlank(),
                     new Choice(choices: Php::getSupportedVersions()),
                 ],
-            ])
-            ->add('phpExtensions73', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices((new Php73AvailableExtensions())->getOptional()),
-                'multiple'    => true,
-                'label'       => 'Extensions (PHP 7.3)',
-                'required'    => false,
-                'constraints' => $phpOptionsConstraints,
             ])
             ->add('phpExtensions74', ChoiceType::class, [
                 'choices'     => $this->getExtensionChoices((new Php74AvailableExtensions())->getOptional()),
