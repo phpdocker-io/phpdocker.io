@@ -118,9 +118,12 @@ open-coverage-report:
 	xdg-open reports/phpunit/index.html
 
 ### Deployment targets
+PHP_CONTAINER=phpdockerio/site-php
+NGX_CONTAINER=phpdockerio/site-ngx
+CONTAINER_ARCH=linux/arm/v7,linux/amd64
 build-and-push:
-	docker buildx build --target=backend-deployment  --tag eu.gcr.io/auron-infrastructure/phpdocker-php-fpm:$(BUILD_TAG) --tag eu.gcr.io/auron-infrastructure/phpdocker-php-fpm:latest --platform linux/arm/v7,linux/amd64 --pull --push .
-	docker buildx build --target=frontend-deployment --tag eu.gcr.io/auron-infrastructure/phpdocker-nginx:$(BUILD_TAG)   --tag eu.gcr.io/auron-infrastructure/phpdocker-nginx:latest   --platform linux/arm/v7,linux/amd64 --pull --push .
+	docker buildx build --target=backend-deployment  --tag $(PHP_CONTAINER):$(BUILD_TAG) --tag $(PHP_CONTAINER):latest --platform $(CONTAINER_ARCH) --pull --push .
+	docker buildx build --target=frontend-deployment --tag $(NGX_CONTAINER):$(BUILD_TAG) --tag $(NGX_CONTAINER):latest --platform $(CONTAINER_ARCH) --pull --push .
 
 deploy:
 	cp infrastructure/kubernetes/deployment.yaml /tmp/phpdocker-deployment-$(BUILD_TAG).yaml
@@ -130,4 +133,4 @@ deploy:
 	rm /tmp/phpdocker-deployment-$(BUILD_TAG).yaml
 
 rollback:
-	kubectl rollout undo deployment.v1.apps/phpdocker-io-old
+	kubectl rollout undo deployment.v1.apps/phpdocker

@@ -15,10 +15,18 @@ on:
   # of the app's runtime
   schedule:
     - cron: "0 0 * * 0"
+
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    branches:
+#      - master
+
+  # Allow workflow to be manually run from the GitHub UI
+  workflow_dispatch:
 env:
   TEST_URL: https://phpdocker.io/generator
-  PHP_CONTAINER: phpdocker-old-php-fpm
-  NGINX_CONTAINER: phpdocker-old-nginx
 jobs:
   deploy:
     # We only deploy master
@@ -29,52 +37,53 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-#      # Setup gcloud CLI
-#      - uses: google-github-actions/setup-gcloud@master
-#        with:
-#          service_account_key: ${{ secrets.GKE_SA_KEY }}
-#          project_id: ${{ secrets.GKE_PROJECT }}
-#
-#      # Configure docker to use the gcloud command-line tool as a credential helper
-#      - name: Configure docker for GCR
-#        run: gcloud --quiet auth configure-docker
-#
-#      # Get the GKE credentials so we can deploy to the cluster
-#      - uses: google-github-actions/get-gke-credentials@main
-#        with:
-#          cluster_name: ${{ secrets.GKE_CLUSTER }}
-#          location: ${{ secrets.GKE_ZONE }}
-#          credentials: ${{ secrets.GKE_SA_KEY }}
-#
-#      # We could build-and-push deploy, but it makes that step on the pipeline too
-#      # complex to follow effectively. Instead, set BUILD_TAG here so that we can
-#      # run build, push and deploy separately
-#      - name: Set build tag
+      - name: Set up QEMU (required for arm build)
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # We could build-and-push deploy, but it makes that step on the pipeline too
+      # complex to follow effectively. Instead, set BUILD_TAG here so that we can
+      # run build, push and deploy separately
+      - name: Set build tag
+        run: |
+          echo "BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Build containers
+        run: make build-and-push -e BUILD_TAG=${BUILD_TAG}
+
+      - name: Run the Anchore container scan (php container)
+        uses: anchore/scan-action@main
+        with:
+          image: "phpdockerio/site-php:latest"
+          acs-report-enable: true
+          fail-build: false
+
+      - name: Upload Anchore Scan Report (php container)
+        uses: github/codeql-action/upload-sarif@v1
+        if: always()
+        continue-on-error: true
+        with:
+          sarif_file: results.sarif
+
+#      - name: Set up wireguard tunnel configuration
 #        run: |
-#          echo "BUILD_TAG=$(date +'%Y-%m-%d-%H-%M-%S')-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+#          sudo apt install wireguard resolvconf
+#          echo '${{ secrets.WIRE_CONFIG }}' | sudo tee -a /etc/wireguard/tunnel.conf > /dev/null
 #
-#      - name: Build containers
-#        run: make build-images tag-images -e BUILD_TAG=${BUILD_TAG}
-#
-#      - name: Run the Anchore container scan (php container)
-#        uses: anchore/scan-action@main
-#        with:
-#          image: "${{ env.PHP_CONTAINER }}"
-#          acs-report-enable: true
-#          fail-build: false
-#
-#      - name: Upload Anchore Scan Report (php container)
-#        uses: github/codeql-action/upload-sarif@v1
-#        if: always()
-#        continue-on-error: true
-#        with:
-#          sarif_file: results.sarif
-#
-#      - name: Push to container registry
-#        run: make push-images -e BUILD_TAG=${BUILD_TAG}
+#      - name: Open wireguard tunnel
+#        runt: sudo wg-quick up tunnel
 #
 #      - name: Deploy application
-#        run: make deploy -e BUILD_TAG=${BUILD_TAG}
+##        run: make deploy -e BUILD_TAG=${BUILD_TAG}
+#        run: make deploy -e BUILD_TAG=latest
 #
 #      - name: Wait for deployment success
 #        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
