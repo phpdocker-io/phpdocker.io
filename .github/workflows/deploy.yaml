@@ -16,15 +16,6 @@ on:
   schedule:
     - cron: "0 0 * * 0"
 
-#  push:
-#    branches:
-#      - master
-#  pull_request:
-#    branches:
-#      - master
-
-  # Allow workflow to be manually run from the GitHub UI
-#  workflow_dispatch:
 env:
   TEST_URL: https://phpdocker.io/generator
 jobs:
@@ -73,31 +64,40 @@ jobs:
         with:
           sarif_file: results.sarif
 
-#      - name: Set up wireguard tunnel configuration
-#        run: |
-#          sudo apt install wireguard resolvconf
-#          echo '${{ secrets.WIRE_CONFIG }}' | sudo tee -a /etc/wireguard/tunnel.conf > /dev/null
-#
-#      - name: Open wireguard tunnel
-#        runt: sudo wg-quick up tunnel
-#
-#      - name: Deploy application
-##        run: make deploy -e BUILD_TAG=${BUILD_TAG}
-#        run: make deploy -e BUILD_TAG=latest
-#
-#      - name: Wait for deployment success
-#        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-#
-#      - name: Check website is responding correctly, or rollback
-#        run: |
-#          set +e
-#          curl --fail -sSL -D - ${{ env.TEST_URL }} -o /dev/null
-#
-#          if [[ "$?" != 0 ]]; then
-#            echo "Website is not properly online, rolling back"
-#            kubectl rollout undo deployment.v1.apps/${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-#            kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
-#            exit 1
-#          fi
-#
-#          set -e
+      - name: Set up wireguard tunnel configuration
+        run: |
+          sudo apt install wireguard resolvconf
+          echo '${{ secrets.WIRE_CONFIG }}' | sudo tee -a /etc/wireguard/tunnel.conf > /dev/null
+
+      - name: Open wireguard tunnel
+        run: sudo wg-quick up tunnel
+
+      - name: Export kubeconfig
+        run: |
+          mkdir -p ~/.kube/
+          echo '${{ secrets.KUBE_CONFIG }}' > ~/.kube/config
+          kubectl get pods --namespace=${{ secrets.KUBE_NS }}
+
+      - name: Deploy application
+        run: make deploy -e BUILD_TAG=${BUILD_TAG}
+
+      - name: Wait for deployment success
+        run: kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+
+      - name: Check website is responding correctly, or rollback
+        run: |
+          set +e
+          curl --fail -sSL -D - ${{ env.TEST_URL }} -o /dev/null
+
+          if [[ "$?" != 0 ]]; then
+            echo "Website is not properly online, rolling back"
+            kubectl rollout undo deployment.v1.apps/${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+            kubectl rollout status deployment ${{ secrets.KUBE_DEPLOYMENT }} --namespace=${{ secrets.KUBE_NS }}
+            exit 1
+          fi
+
+          set -e
+
+      - name: Disconnect from tunnel
+        if: always()
+        run: wg-quick down tunnel
