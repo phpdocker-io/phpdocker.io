@@ -24,7 +24,7 @@ on:
 #      - master
 
   # Allow workflow to be manually run from the GitHub UI
-  workflow_dispatch:
+#  workflow_dispatch:
 env:
   TEST_URL: https://phpdocker.io/generator
 jobs:
