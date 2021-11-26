@@ -84,10 +84,10 @@ spec:
         app: phpdocker
     spec:
       containers:
-        - image: phpdockerio/site-php:latest
+        - image: phpdockerio/site-ngx:latest
           name: nginx
 
-        - image: phpdockerio/site-ngx:latest
+        - image: phpdockerio/site-php:latest
           name: php-fpm
 
           env:
