@@ -51,12 +51,12 @@
         "version": "v2.5.0"
     },
     "friends-of-behat/symfony-extension": {
-        "version": "2.0",
+        "version": "2.2",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "master",
             "version": "2.0",
-            "ref": "3d21344765fd3440a85bdd27d4cada186ec628bd"
+            "ref": "1e012e04f573524ca83795cd19df9ea690adb604"
         },
         "files": [
             "behat.yml.dist",
