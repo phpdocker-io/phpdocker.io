@@ -23,9 +23,6 @@ namespace App\PHPDocker\Project\ServiceOptions;
  */
 abstract class Base
 {
-    /**
-     * @var bool
-     */
     protected bool $enabled = false;
 
     public function isEnabled(): bool
@@ -38,5 +35,25 @@ abstract class Base
         $this->enabled = $enabled;
 
         return $this;
+    }
+
+    /**
+     * Return this service's external (meaning bound into the host from docker) port as a function of a given base
+     * port plus our internal offset.
+     */
+    public function getExternalPort(int $basePort): ?int
+    {
+        $offset = $this->getExternalPortOffset();
+
+        return $offset ?? $basePort + $offset;
+    }
+
+    /**
+     * When calculating our external port, we add this offset to a given base port.
+     *
+     * Override downstream for services you want them to have an external port.
+     */
+    protected function getExternalPortOffset(): ?int
+    {
     }
 }

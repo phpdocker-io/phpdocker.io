@@ -23,4 +23,8 @@ namespace App\PHPDocker\Project\ServiceOptions;
  */
 class Mailhog extends Base
 {
+    protected function getExternalPortOffset(): ?int
+    {
+        return 1;
+    }
 }

@@ -62,6 +62,11 @@ class Postgres extends Base
     private string $rootPassword;
     private string $databaseName;
 
+    protected function getExternalPortOffset(): ?int
+    {
+        return 4;
+    }
+
     public function getVersion(): string
     {
         return $this->version;
