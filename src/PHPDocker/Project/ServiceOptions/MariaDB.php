@@ -54,6 +54,11 @@ class MariaDB extends AbstractMySQL
         $this->version = self::VERSION_106;
     }
 
+    protected function getExternalPortOffset(): ?int
+    {
+        return 3;
+    }
+
     /**
      * @inheritdoc
      * @return array<string, string>

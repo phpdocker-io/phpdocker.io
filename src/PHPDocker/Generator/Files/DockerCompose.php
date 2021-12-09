@@ -30,26 +30,26 @@ class DockerCompose implements GeneratedFileInterface
     /** @var array<string, mixed> */
     private array  $services;
     private string $defaultVolume;
+    private int    $basePort;
 
     public function __construct(private Dumper $yaml, private Project $project, private string $phpIniLocation)
     {
+        $this->basePort = $this->project->getBasePort();
     }
 
     public function getContents(): string
     {
-        $basePort = $this->project->getBasePort();
-
         $workingDir = $this->project->getWorkingDirOptions();
 
         $this->defaultVolume = sprintf('%s:%s', $workingDir->getLocalWorkingDir(), $workingDir->getDockerWorkingDir());
 
         $this
             ->addMemcached()
-            ->addMailhog($basePort)
+            ->addMailhog()
             ->addRedis()
-            ->addMysql($basePort)
-            ->addMariadb($basePort)
-            ->addPostgres($basePort)
+            ->addMysql()
+            ->addMariadb()
+            ->addPostgres()
             ->addElasticsearch()
             ->addClickhouse()
             ->addWebserver()
@@ -77,13 +77,14 @@ class DockerCompose implements GeneratedFileInterface
         return $this;
     }
 
-    private function addMailhog(int &$basePort): self
+    private function addMailhog(): self
     {
         if ($this->project->hasMailhog() === true) {
-            $basePort++;
+            $extPort = $this->project->getMailhogOptions()->getExternalPort($this->basePort);
+
             $this->services['mailhog'] = [
                 'image' => 'mailhog/mailhog:latest',
-                'ports' => [sprintf('%s:8025', $basePort)],
+                'ports' => [sprintf('%s:8025', $extPort)],
             ];
         }
 
@@ -99,68 +100,68 @@ class DockerCompose implements GeneratedFileInterface
         return $this;
     }
 
-    private function addMysql(int &$basePort): self
+    private function addMysql(): self
     {
         if ($this->project->hasMysql() === true) {
-            $basePort++;
-            $mysqlOptions = $this->project->getMysqlOptions();
+            $mysql   = $this->project->getMysqlOptions();
+            $extPort = $mysql->getExternalPort($this->basePort);
 
             $this->services['mysql'] = [
-                'image'       => sprintf('mysql:%s', $mysqlOptions->getVersion()),
+                'image'       => sprintf('mysql:%s', $mysql->getVersion()),
                 'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
                 'volumes'     => [$this->defaultVolume],
                 'environment' => [
-                    sprintf('MYSQL_ROOT_PASSWORD=%s', $mysqlOptions->getRootPassword()),
-                    sprintf('MYSQL_DATABASE=%s', $mysqlOptions->getDatabaseName()),
-                    sprintf('MYSQL_USER=%s', $mysqlOptions->getUsername()),
-                    sprintf('MYSQL_PASSWORD=%s', $mysqlOptions->getPassword()),
+                    sprintf('MYSQL_ROOT_PASSWORD=%s', $mysql->getRootPassword()),
+                    sprintf('MYSQL_DATABASE=%s', $mysql->getDatabaseName()),
+                    sprintf('MYSQL_USER=%s', $mysql->getUsername()),
+                    sprintf('MYSQL_PASSWORD=%s', $mysql->getPassword()),
                 ],
-                'ports'       => [sprintf('%s:3306', $basePort)],
+                'ports'       => [sprintf('%s:3306', $extPort)],
             ];
         }
 
         return $this;
     }
 
-    private function addMariadb(int &$basePort): self
+    private function addMariadb(): self
     {
         if ($this->project->hasMariadb() === true) {
-            $basePort++;
-            $mariadbOptions = $this->project->getMariadbOptions();
+            $mariadb = $this->project->getMariadbOptions();
+            $extPort = $mariadb->getExternalPort($this->basePort);
 
             $this->services['mariadb'] = [
-                'image'       => sprintf('mariadb:%s', $mariadbOptions->getVersion()),
+                'image'       => sprintf('mariadb:%s', $mariadb->getVersion()),
                 'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
                 'volumes'     => [$this->defaultVolume],
                 'environment' => [
-                    sprintf('MYSQL_ROOT_PASSWORD=%s', $mariadbOptions->getRootPassword()),
-                    sprintf('MYSQL_DATABASE=%s', $mariadbOptions->getDatabaseName()),
-                    sprintf('MYSQL_USER=%s', $mariadbOptions->getUsername()),
-                    sprintf('MYSQL_PASSWORD=%s', $mariadbOptions->getPassword()),
+                    sprintf('MYSQL_ROOT_PASSWORD=%s', $mariadb->getRootPassword()),
+                    sprintf('MYSQL_DATABASE=%s', $mariadb->getDatabaseName()),
+                    sprintf('MYSQL_USER=%s', $mariadb->getUsername()),
+                    sprintf('MYSQL_PASSWORD=%s', $mariadb->getPassword()),
                 ],
-                'ports'       => [sprintf('%s:3306', $basePort)],
+                'ports'       => [sprintf('%s:3306', $extPort)],
             ];
         }
 
         return $this;
     }
 
-    private function addPostgres(int &$basePort): self
+    private function addPostgres(): self
     {
         if ($this->project->hasPostgres() === true) {
-            $basePort++;
-            $pgOptions = $this->project->getPostgresOptions();
+            $postgres = $this->project->getPostgresOptions();
+            $extPort  = $postgres->getExternalPort($this->basePort);
 
             $this->services['postgres'] = [
-                'image'       => sprintf('postgres:%s-alpine', $pgOptions->getVersion()),
+                'image'       => sprintf('postgres:%s-alpine', $postgres->getVersion()),
                 'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
                 'volumes'     => [$this->defaultVolume],
                 'environment' => [
-                    sprintf('POSTGRES_USER=%s', $pgOptions->getRootUser()),
-                    sprintf('POSTGRES_PASSWORD=%s', $pgOptions->getRootPassword()),
-                    sprintf('POSTGRES_DB=%s', $pgOptions->getDatabaseName()),
+                    sprintf('POSTGRES_USER=%s', $postgres->getRootUser()),
+                    sprintf('POSTGRES_PASSWORD=%s', $postgres->getRootPassword()),
+                    sprintf('POSTGRES_DB=%s', $postgres->getDatabaseName()),
                 ],
-                'ports'       => [sprintf('%s:5432', $basePort)],
+                'ports'       => [sprintf('%s:5432', $extPort)],
             ];
         }
 
@@ -196,7 +197,7 @@ class DockerCompose implements GeneratedFileInterface
                 $this->defaultVolume,
                 './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf',
             ],
-            'ports'       => [sprintf('%s:80', $this->project->getBasePort())],
+            'ports'       => [sprintf('%s:80', $this->basePort)],
         ];
 
         return $this;
@@ -244,13 +245,15 @@ TEXT;
     {
         $i = 0;
 
-        return preg_replace_callback('#^[\s]{4}[a-zA-Z_]+#m', static function ($match) use (&$i) {
+        $matcher = static function ($match) use (&$i) {
             ++$i;
             if ($i === 1) {
                 return $match[0];
             }
 
             return PHP_EOL . $match[0];
-        }, $result) ?? $result;
+        };
+
+        return preg_replace_callback('#^[\s]{4}[a-zA-Z_]+#m', $matcher, $result) ?? $result;
     }
 }

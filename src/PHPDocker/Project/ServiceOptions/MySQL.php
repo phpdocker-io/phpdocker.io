@@ -43,6 +43,11 @@ class MySQL extends AbstractMySQL
         $this->version = self::VERSION_80;
     }
 
+    protected function getExternalPortOffset(): ?int
+    {
+        return 2;
+    }
+
     /**
      * @inheritdoc
      * @return array<string, string>
