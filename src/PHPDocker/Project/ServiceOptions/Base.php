@@ -55,5 +55,6 @@ abstract class Base
      */
     protected function getExternalPortOffset(): ?int
     {
+        return null;
     }
 }
