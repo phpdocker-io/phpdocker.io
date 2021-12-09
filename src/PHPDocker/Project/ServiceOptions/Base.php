@@ -45,7 +45,7 @@ abstract class Base
     {
         $offset = $this->getExternalPortOffset();
 
-        return $offset ?? $basePort + $offset;
+        return $offset !== null ? ($basePort + $offset) : null;
     }
 
     /**
