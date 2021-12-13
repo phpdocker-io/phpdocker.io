@@ -23,6 +23,9 @@ namespace App\PHPDocker\PhpExtension;
  */
 abstract class BaseAvailableExtensions
 {
+    /** @var array<string, array<string, string[]>> */
+    private array $allExtensions = [];
+
     /**
      * Must return an array of all available mandatory extensions, indexed by display name
      * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
@@ -54,13 +57,11 @@ abstract class BaseAvailableExtensions
      */
     public function getAll(): array
     {
-        static $allExtensions;
-
-        if ($allExtensions === null) {
-            $allExtensions = array_merge($this->getMandatoryExtensionsMap(), $this->getOptionalExtensionsMap());
+        if ($this->allExtensions === []) {
+            $this->allExtensions = array_merge($this->getMandatoryExtensionsMap(), $this->getOptionalExtensionsMap());
         }
 
-        return $allExtensions;
+        return $this->allExtensions;
     }
 
     /**
