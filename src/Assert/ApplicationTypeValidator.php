@@ -30,7 +30,7 @@ class ApplicationTypeValidator extends ConstraintValidator
     /**
      * Checks if the passed value is valid.
      */
-    public function validate($value, Constraint|ApplicationType $constraint): void
+    public function validate(mixed $value, Constraint|ApplicationType $constraint): void
     {
         if ($value !== null && array_key_exists($value, Application::getChoices()) === false) {
             $this
