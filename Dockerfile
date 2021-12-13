@@ -3,18 +3,18 @@
 ###########
 
 # Base container for dev & deployment
-FROM phpdockerio/php:8.0-fpm AS backend-base
+FROM phpdockerio/php:8.1-fpm AS backend-base
 WORKDIR "/application"
 
 RUN apt-get update; \
     apt-get -y --no-install-recommends install \
-        php8.0-intl \
-        php8.0-redis; \
+        php8.1-intl \
+        php8.1-redis; \
     apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 FROM backend-base as backend-dev
 RUN apt-get update; \
-    apt-get -y --no-install-recommends install php8.0-xdebug; \
+    apt-get -y --no-install-recommends install php8.1-xdebug; \
     phpdismod xdebug; \
     apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
@@ -33,9 +33,9 @@ COPY composer.*  /application/
 RUN composer install --no-dev --no-scripts; \
     composer clear-cache
 
-COPY infrastructure/php-fpm/php-ini-overrides.ini  /etc/php/8.0/fpm/conf.d/z-overrides.ini
-COPY infrastructure/php-fpm/opcache-prod.ini       /etc/php/8.0/fpm/conf.d/z-opcache.ini
-COPY infrastructure/php-fpm/php-fpm-pool-prod.conf /etc/php/8.0/fpm/pool.d/z-optimised.conf
+COPY infrastructure/php-fpm/php-ini-overrides.ini  /etc/php/8.1/fpm/conf.d/z-overrides.ini
+COPY infrastructure/php-fpm/opcache-prod.ini       /etc/php/8.1/fpm/conf.d/z-opcache.ini
+COPY infrastructure/php-fpm/php-fpm-pool-prod.conf /etc/php/8.1/fpm/pool.d/z-optimised.conf
 
 COPY config           ./config
 COPY src              ./src
