@@ -60,17 +60,7 @@
         height : 80px;
     }
 
-    footer .copyright,
-    footer .share {
+    footer .copyright {
         text-align : center;
-    }
-
-    footer .share {
-        padding-right : 0;
-        margin-left   : -3em;
-    }
-
-    share-button ul {
-        margin-left : 16em !important;
     }
 }
