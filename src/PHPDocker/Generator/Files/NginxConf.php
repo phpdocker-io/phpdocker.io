@@ -32,7 +32,6 @@ class NginxConf implements GeneratedFileInterface
     public function getContents(): string
     {
         $data = [
-            'projectName'      => $this->project->getName(),
             'applicationType'  => $this->project->getApplicationOptions()->getApplicationType(),
             'dockerWorkingDir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
         ];

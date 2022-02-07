@@ -40,15 +40,6 @@ class ProjectType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label'       => 'Project name',
-                'attr'        => ['placeholder' => "Used to name the zip file"],
-                'constraints' => [
-                    new NotBlank(),
-                    new NotNull(),
-                    new Length(min: 1, max: 128),
-                ],
-            ])
             ->add('basePort', IntegerType::class, [
                 'label'       => 'Base port',
                 'attr'        => ['placeholder' => 'For nginx, Mailhog control panel...'],

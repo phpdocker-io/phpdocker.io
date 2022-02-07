@@ -37,7 +37,6 @@ class Project
     private ServiceOptions\Clickhouse    $clickhouseOptions;
 
     public function __construct(
-        private string $name,
         private int $basePort,
         private Php $phpOptions,
         private ServiceOptions\Application $applicationOptions,
@@ -53,11 +52,6 @@ class Project
         $this->mailhogOptions       = new ServiceOptions\Mailhog();
         $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
         $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
     }
 
     public function getBasePort(): int
