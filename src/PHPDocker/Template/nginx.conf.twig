@@ -1,7 +1,7 @@
 server {
     listen 80 default;
 
-    client_max_body_size {{ maxUploadSize + 8 }}M;
+    client_max_body_size 108M;
 
     access_log /var/log/nginx/application.access.log;
 
@@ -14,20 +14,20 @@ server {
         {% endif %}
 
     root {{ dockerWorkingDir }}/web;
-    
+
     rewrite ^/{{ indexFile }}\.php/?(.*)$ /$1 permanent;
-    
+
     try_files $uri @rewriteapp;
-    
+
     location @rewriteapp {
         rewrite ^(.*)$ /{{ indexFile }}.php/$1 last;
     }
-    
+
     # Deny all . files
     location ~ /\. {
         deny all;
     }
-    
+
     location ~ ^/({{ indexFile }}|{{ indexFile }}_dev)\.php(/|$) {
         fastcgi_pass php-fpm:9000;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
@@ -40,7 +40,7 @@ server {
         fastcgi_buffer_size 32k;
         include fastcgi_params;
     }
-    
+
     # Statics
         location /(bundles|media) {
         access_log off;
@@ -72,6 +72,6 @@ server {
         fastcgi_buffer_size 32k;
         include fastcgi_params;
     }
-    
+
 {% endif %}
 }

@@ -40,7 +40,7 @@ class Application
         self::APPLICATION_TYPE_SYMFONY => '[Legacy] Symfony 2/3',
     ];
 
-    public function __construct(private string $applicationType, private int $uploadSize)
+    public function __construct(private string $applicationType)
     {
     }
 
@@ -66,17 +66,5 @@ class Application
     public static function getChoices(): array
     {
         return self::ALLOWED_APPLICATION_TYPES;
-    }
-
-    public function getUploadSize(): ?int
-    {
-        return $this->uploadSize;
-    }
-
-    public function setUploadSize(int $uploadSize): self
-    {
-        $this->uploadSize = $uploadSize;
-
-        return $this;
     }
 }

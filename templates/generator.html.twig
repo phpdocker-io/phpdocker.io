@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="row">
-                    {% for field in ['applicationType', 'uploadSize'] %}
+                    {% for field in ['applicationType'] %}
                         <div class="col col-lg-6 col-md-6" id="container_for_{{ field }}">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
                     {% endfor %}
                 </div>
