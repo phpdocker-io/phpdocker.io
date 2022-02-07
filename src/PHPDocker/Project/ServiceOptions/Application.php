@@ -19,52 +19,20 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Project\ServiceOptions;
 
-use InvalidArgumentException;
-
 /**
  * Describes a few things about the user's project.
  */
 class Application
 {
     /**
-     * Supported application types
+     * @param string $frontControllerPath Path to the app's front controller, relative to project root
      */
-    private const APPLICATION_TYPE_SYMFONY = 'symfony';
-    private const APPLICATION_TYPE_GENERIC = 'generic';
-
-    /**
-     * Allowed application types with short description
-     */
-    private const ALLOWED_APPLICATION_TYPES = [
-        self::APPLICATION_TYPE_GENERIC => 'Generic: Symfony, Laravel, Slim...',
-        self::APPLICATION_TYPE_SYMFONY => '[Legacy] Symfony 2/3',
-    ];
-
-    public function __construct(private string $applicationType)
+    public function __construct(private string $frontControllerPath)
     {
     }
 
-    public function getApplicationType(): ?string
+    public function getFrontControllerPath(): string
     {
-        return $this->applicationType;
-    }
-
-    public function setApplicationType(string $applicationType): self
-    {
-        if (array_key_exists($applicationType, self::ALLOWED_APPLICATION_TYPES) === false) {
-            throw new InvalidArgumentException(sprintf('Application type %s not supported', $applicationType));
-        }
-
-        $this->applicationType = $applicationType;
-
-        return $this;
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    public static function getChoices(): array
-    {
-        return self::ALLOWED_APPLICATION_TYPES;
+        return $this->frontControllerPath;
     }
 }

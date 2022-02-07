@@ -18,24 +18,8 @@
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>Global configuration</h3>
                 <div class="row">
-                    {% for field in ['name', 'basePort'] %}
-                        {% if (attribute(form, field) is defined) %}
-                            <div class="col col-lg-6 col-md-6" id="container_for_{{ field }}">{{ form_row(attribute(form, field)) }}</div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div class="row">
-                    {% for field in ['applicationType'] %}
-                        <div class="col col-lg-6 col-md-6" id="container_for_{{ field }}">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="row">
-                    <div class="col col-lg-6 col-md-6">
-                        <p class="note">Note: if you want to use Phalcon, select "generic" application type, then look for Phalcon on the
-                            list of PHP extensions.</p>
-                    </div>
+                    <div class="col col-lg-6 col-md-6" id="container_for_basePort">{{ form_row(attribute(form, 'basePort')) }}</div>
+                    <div class="col col-lg-6 col-md-6" id="container_for_frontControllerPath">{{ form_row(attribute(form.applicationOptions, 'frontControllerPath')) }}</div>
                 </div>
 
                 <div class="row">

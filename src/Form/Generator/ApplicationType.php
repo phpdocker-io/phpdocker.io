@@ -18,15 +18,11 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Assert\ApplicationType as AssertApplicationType;
-use App\PHPDocker\Project\ServiceOptions\Application;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\Validator\Constraints\Range;
-use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Form for application options.
@@ -39,15 +35,14 @@ class ApplicationType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('applicationType', ChoiceType::class, [
-                'choices'     => array_flip(Application::getChoices()),
-                'expanded'    => false,
-                'multiple'    => false,
-                'label'       => 'Application type',
+            ->add('frontControllerPath', TextType::class, [
+                'label'       => 'Front controller path (relative to container workdir)',
+                'attr'        => ['placeholder' => 'Password for root user'],
+                'data'        => 'public/index.php',
                 'constraints' => [
                     new NotBlank(),
                     new NotNull(),
-                    new AssertApplicationType(),
+                    new Length(min: 2, max: 128),
                 ],
             ]);
     }

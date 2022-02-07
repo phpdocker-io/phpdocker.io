@@ -5,73 +5,25 @@ server {
 
     access_log /var/log/nginx/application.access.log;
 
-{% if applicationType == 'symfony' %}
-    {% apply spaceless %}
-        {% if applicationType == 'symfony' %}
-            {% set indexFile = 'app' %}
-        {% else %}
-            {% set indexFile = 'index' %}
-        {% endif %}
+    root {{ dockerWorkingDir }}/{{  frontControllerFolder }};
+    index {{  frontControllerFile }};
 
-    root {{ dockerWorkingDir }}/web;
-
-    rewrite ^/{{ indexFile }}\.php/?(.*)$ /$1 permanent;
-
-    try_files $uri @rewriteapp;
-
-    location @rewriteapp {
-        rewrite ^(.*)$ /{{ indexFile }}.php/$1 last;
-    }
-
-    # Deny all . files
-    location ~ /\. {
-        deny all;
-    }
-
-    location ~ ^/({{ indexFile }}|{{ indexFile }}_dev)\.php(/|$) {
-        fastcgi_pass php-fpm:9000;
-        fastcgi_split_path_info ^(.+\.php)(/.*)$;
-        fastcgi_index {{ indexFile }}.php;
-        send_timeout 1800;
-        fastcgi_read_timeout 1800;
-        fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/application_php_errors.log";
-        fastcgi_buffers 16 16k;
-        fastcgi_buffer_size 32k;
-        include fastcgi_params;
-    }
-
-    # Statics
-        location /(bundles|media) {
-        access_log off;
-        expires 30d;
-        try_files $uri @rewriteapp;
-    }
-
-    {% endapply %}
-{% else %}
-
-    root {{ dockerWorkingDir }}/public;
-    index index.php;
-
-    # try to serve file directly, fallback to index.php
+    # try to serve file directly, fallback to {{  frontControllerFile }}
     location / {
-        try_files $uri /index.php$is_args$args;
+        try_files $uri /{{  frontControllerFile }}$is_args$args;
     }
 
     if (!-e $request_filename) {
-        rewrite ^.*$ /index.php last;
+        rewrite ^.*$ /{{  frontControllerFile }} last;
     }
 
     location ~ \.php$ {
         fastcgi_pass php-fpm:9000;
-        fastcgi_index index.php;
+        fastcgi_index {{  frontControllerFile }};
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param PHP_VALUE "error_log=/var/log/nginx/application_php_errors.log";
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
         include fastcgi_params;
     }
-
-{% endif %}
 }

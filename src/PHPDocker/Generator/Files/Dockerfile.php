@@ -48,7 +48,7 @@ class Dockerfile implements GeneratedFileInterface
         $data = [
             'phpVersion'       => $this->project->getPhpOptions()->getVersion(),
             'packages'         => array_unique($packages),
-            'applicationType'  => $this->project->getApplicationOptions()->getApplicationType(),
+            'applicationType'  => $this->project->getApplicationOptions()->getFrontControllerPath(),
             'dockerWorkingDir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
         ];
 

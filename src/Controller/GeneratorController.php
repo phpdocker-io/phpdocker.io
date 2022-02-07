@@ -90,7 +90,7 @@ class GeneratorController extends AbstractController
         );
 
         $appData    = $formData['applicationOptions'];
-        $appOptions = new Application(applicationType: $appData['applicationType']);
+        $appOptions = new Application(frontControllerPath: $appData['frontControllerPath']);
 
         $workingDirData    = $formData['workingDirOptions'];
         $workingDirOptions = new WorkingDir(
