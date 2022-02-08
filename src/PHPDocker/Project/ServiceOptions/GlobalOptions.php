@@ -20,7 +20,6 @@ final class GlobalOptions extends Base
         return $this->appPath;
     }
 
-
     public function getDockerWorkingDir(): ?string
     {
         return $this->dockerWorkingDir;
