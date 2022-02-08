@@ -26,7 +26,6 @@ use App\PHPDocker\Generator\Files\PhpIni;
 use App\PHPDocker\Generator\Files\ReadmeHtml;
 use App\PHPDocker\Generator\Files\ReadmeMd;
 use App\PHPDocker\Interfaces\ArchiveInterface;
-use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Zip\Archiver;
 use Michelf\MarkdownExtra;
@@ -45,7 +44,6 @@ class Generator
         private Archiver $archiver,
         private Environment $twig,
         private MarkdownExtra $markdownExtra,
-        private SlugifierInterface $slugifier,
         private Dumper $yaml,
     ) {
         $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);

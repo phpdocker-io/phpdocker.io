@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright 2016 Luis Alberto Pabón Flores
+/*
+ * Copyright 2022 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,21 @@ declare(strict_types=1);
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-namespace App\Services;
+namespace App\Tests\Unit;
 
-use App\PHPDocker\Interfaces\SlugifierInterface;
-use Cocur\Slugify\SlugifyInterface;
 
-/**
- * String slugifier.
- */
-class Slugifier implements SlugifierInterface
+use PHPUnit\Framework\TestCase;
+
+class DummyTest extends TestCase
 {
-
-    public function __construct(protected SlugifyInterface $slugifier)
-    {
-    }
-
     /**
-     * Takes a string and returns a slugified version of it.
+     * @test
      */
-    public function slugify(string $string): string
+    public function dummyTest(): void
     {
-        return $this->slugifier->slugify($string);
+        self::assertIsString('Dummy test placed here to check our phpunit setup is working');
     }
 }
