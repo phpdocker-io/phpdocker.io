@@ -9,21 +9,35 @@ Feature:
     When I load "/generator"
     Then the response code should be 200
 
-  Scenario: Generator requires a project name
-    Given I am on "/generator"
-    And I press "Generate project archive"
-    Then the "#container_for_name" element should contain "This value should not be blank."
-
   Scenario: Generator requires a base port
     Given I am on "/generator"
-    And I fill in "project_basePort" with ""
+    And I fill in "project_globalOptions_basePort" with ""
     And I press "Generate project archive"
     Then the "#container_for_basePort" element should contain "This value should not be blank."
 
-  Scenario: Generate a project only with the name (checks ports and upload limit defaults work)
+  Scenario: Generate a project only with default settings
     Given I am on "/generator"
-    When I fill in "project_name" with "my project"
-    And I press "Generate project archive"
+    When I press "Generate project archive"
     Then the response code should be 200
-    And I should receive a zip file named "my-project.zip"
+    And I should receive a zip file named "phpdocker.zip"
 #    And show last response
+
+  Scenario: Check MySQL validation works
+    Given I am on "/generator"
+    When I check "Enable MySQL"
+    And I press "Generate project archive"
+    Then the "#container_for_mysql_rootPassword" element should contain "This value should not be blank."
+    And the "#container_for_mysql_databaseName" element should contain "This value should not be blank."
+    And the "#container_for_mysql_username" element should contain "This value should not be blank."
+    And the "#container_for_mysql_password" element should contain "This value should not be blank."
+
+  Scenario: MySQL config works correctly
+    Given I am on "/generator"
+    When I check "Enable MySQL"
+    And I fill in "project_mysqlOptions_rootPassword" with "root pass"
+    And I fill in "project_mysqlOptions_databaseName" with "db name"
+    And I fill in "project_mysqlOptions_username" with "user"
+    And I fill in "project_mysqlOptions_password" with "pass"
+    When I press "Generate project archive"
+    Then the response code should be 200
+    And I should receive a zip file named "phpdocker.zip"

@@ -26,7 +26,6 @@ use App\PHPDocker\Generator\Files\PhpIni;
 use App\PHPDocker\Generator\Files\ReadmeHtml;
 use App\PHPDocker\Generator\Files\ReadmeMd;
 use App\PHPDocker\Interfaces\ArchiveInterface;
-use App\PHPDocker\Interfaces\SlugifierInterface;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Zip\Archiver;
 use Michelf\MarkdownExtra;
@@ -38,13 +37,13 @@ use Twig\Environment;
  */
 class Generator
 {
-    private const BASE_ZIP_FOLDER = 'phpdocker';
+    private const BASE_ZIP_FOLDER  = 'phpdocker';
+    private const ARCHIVE_FILENAME = 'phpdocker.zip';
 
     public function __construct(
         private Archiver $archiver,
         private Environment $twig,
         private MarkdownExtra $markdownExtra,
-        private SlugifierInterface $slugifier,
         private Dumper $yaml,
     ) {
         $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
@@ -66,6 +65,6 @@ class Generator
             ->addFile(new NginxConf($this->twig, $project))
             ->addFile(new DockerCompose($this->yaml, $project, $phpIni->getFilename()), true);
 
-        return $this->archiver->generateArchive(sprintf('%s.zip', $this->slugifier->slugify($project->getName())));
+        return $this->archiver->generateArchive(self::ARCHIVE_FILENAME);
     }
 }

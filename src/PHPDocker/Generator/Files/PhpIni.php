@@ -25,15 +25,14 @@ use Twig\Environment;
 
 class PhpIni implements GeneratedFileInterface
 {
+
     public function __construct(private Environment $twig, private Project $project)
     {
     }
 
     public function getContents(): string
     {
-        $data = ['maxUploadSize' => $this->project->getApplicationOptions()->getUploadSize()];
-
-        return $this->twig->render('php-ini-overrides.ini.twig', $data);
+        return $this->twig->render('php-ini-overrides.ini.twig');
     }
 
     public function getFilename(): string

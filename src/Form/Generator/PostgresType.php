@@ -18,7 +18,6 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\Entity\Generator\PostgresOptions;
 use App\PHPDocker\Project\ServiceOptions\Postgres;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -27,7 +26,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Form for Postgres options.
@@ -43,7 +41,6 @@ class PostgresType extends AbstractGeneratorType
     {
         $defaultConstraints = [
             new NotBlank(groups: [self::VALIDATION_GROUP]),
-            new NotNull(groups: [self::VALIDATION_GROUP]),
             new Length(min: 2, max: 128),
         ];
 

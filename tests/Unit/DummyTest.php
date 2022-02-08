@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Copyright 2016 Luis Alberto Pabón Flores
+/*
+ * Copyright 2022 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,21 @@ declare(strict_types=1);
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-
-namespace App\Assert;
-
-use Symfony\Component\Validator\Constraint;
-
-/**
- * Validation constraint for application types.
  *
- * @Annotation
  */
-class ApplicationType extends Constraint
+
+namespace App\Tests\Unit;
+
+
+use PHPUnit\Framework\TestCase;
+
+class DummyTest extends TestCase
 {
-    public string $message = 'This value is not a supported application type';
+    /**
+     * @test
+     */
+    public function dummyTest(): void
+    {
+        self::assertIsString('Dummy test placed here to check our phpunit setup is working');
+    }
 }

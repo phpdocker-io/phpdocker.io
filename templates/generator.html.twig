@@ -18,29 +18,9 @@
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>Global configuration</h3>
                 <div class="row">
-                    {% for field in ['name', 'basePort'] %}
-                        {% if (attribute(form, field) is defined) %}
-                            <div class="col col-lg-6 col-md-6" id="container_for_{{ field }}">{{ form_row(attribute(form, field)) }}</div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div class="row">
-                    {% for field in ['applicationType', 'uploadSize'] %}
-                        <div class="col col-lg-6 col-md-6" id="container_for_{{ field }}">{{ form_row(attribute(form.applicationOptions, field)) }}</div>
-                    {% endfor %}
-                </div>
-
-                <div class="row">
-                    <div class="col col-lg-6 col-md-6">
-                        <p class="note">Note: if you want to use Phalcon, select "generic" application type, then look for Phalcon on the
-                            list of PHP extensions.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    {% for field in ['localWorkingDir', 'dockerWorkingDir'] %}
-                        <div class="col col-lg-6 col-md-6" id="container_for_{{ field }}">{{ form_row(attribute(form.workingDirOptions, field)) }}</div>
+                    {% for field in ['basePort', 'appPath', 'dockerWorkingDir'] %}
+                        <div class="col col-lg-4 col-md-4"
+                             id="container_for_{{ field }}">{{ form_row(attribute(form.globalOptions, field)) }}</div>
                     {% endfor %}
                 </div>
             </div>
@@ -52,6 +32,7 @@
 
                 <div class="col col-lg-6 col-md-6">
                     {{ form_row(attribute(form.phpOptions, 'version')) }}
+                    {{ form_row(attribute(form.phpOptions, 'frontControllerPath')) }}
                     {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
 
                     <div class="note">
@@ -84,7 +65,7 @@
                 <div id="mysql-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mysqlOptions, field) is defined) %}
-                            {{ form_row(attribute(form.mysqlOptions, field)) }}
+                            <div id="container_for_mysql_{{ field }}">{{ form_row(attribute(form.mysqlOptions, field)) }}</div>
                         {% endif %}
                     {% endfor %}
                 </div>

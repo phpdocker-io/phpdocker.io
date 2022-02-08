@@ -21,9 +21,8 @@ namespace App\Controller;
 use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
 use App\PHPDocker\Project\Project;
-use App\PHPDocker\Project\ServiceOptions\Application;
+use App\PHPDocker\Project\ServiceOptions\GlobalOptions;
 use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
-use App\PHPDocker\Project\ServiceOptions\WorkingDir;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -86,24 +85,20 @@ class GeneratorController extends AbstractController
         $phpOptions = new PhpOptions(
             version: $phpData['version'],
             extensions: $extensions,
-            hasGit: $phpData['hasGit']
+            hasGit: $phpData['hasGit'],
+            frontControllerPath: $phpData['frontControllerPath'],
         );
 
-        $appData    = $formData['applicationOptions'];
-        $appOptions = new Application(applicationType: $appData['applicationType'], uploadSize: $appData['uploadSize']);
-
-        $workingDirData    = $formData['workingDirOptions'];
-        $workingDirOptions = new WorkingDir(
-            localWorkingDir: rtrim($workingDirData['localWorkingDir'], '/'),
-            dockerWorkingDir: rtrim($workingDirData['dockerWorkingDir'], '/'),
+        $globalOptionsData = $formData['globalOptions'];
+        $globalOptions     = new GlobalOptions(
+            basePort: $globalOptionsData['basePort'],
+            appPath: rtrim($globalOptionsData['appPath'], '/'),
+            dockerWorkingDir: rtrim($globalOptionsData['dockerWorkingDir'], '/'),
         );
 
         $project = new Project(
-            name: $formData['name'],
-            basePort: $formData['basePort'],
             phpOptions: $phpOptions,
-            applicationOptions: $appOptions,
-            workingDirOptions: $workingDirOptions,
+            globalOptions: $globalOptions,
         );
 
         $project->getMemcachedOptions()->setEnabled($formData['hasMemcached']);

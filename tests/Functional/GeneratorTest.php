@@ -45,4 +45,14 @@ class GeneratorTest extends WebTestCase
 
         self::assertResponseRedirects(expectedLocation: 'http://localhost/generator', expectedCode: 301);
     }
+
+    /**
+     * @test
+     */
+    public function generatorLoads(): void
+    {
+        $this->client->request(method: 'GET', uri: '/generator');
+
+        self::assertResponseIsSuccessful();
+    }
 }

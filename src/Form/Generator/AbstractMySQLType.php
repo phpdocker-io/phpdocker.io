@@ -25,7 +25,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Base form for MySQL-like options.
@@ -66,7 +65,6 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
     {
         $defaultConstraints = [
             new NotBlank(groups: [$this->getValidationGroup()]),
-            new NotNull(groups: [$this->getValidationGroup()]),
             new Length(min: 1, max: 128),
         ];
 

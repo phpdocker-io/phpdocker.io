@@ -19,14 +19,7 @@ declare(strict_types=1);
 namespace App\Form\Generator;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\Validator\Constraints\Range;
-use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Valid;
 
 /**
@@ -40,26 +33,6 @@ class ProjectType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'label'       => 'Project name',
-                'attr'        => ['placeholder' => "Used to name the zip file"],
-                'constraints' => [
-                    new NotBlank(),
-                    new NotNull(),
-                    new Length(min: 1, max: 128),
-                ],
-            ])
-            ->add('basePort', IntegerType::class, [
-                'label'       => 'Base port',
-                'attr'        => ['placeholder' => 'For nginx, Mailhog control panel...'],
-                'data'        => random_int(min: 2, max: 65) * 1000,
-                'constraints' => [
-                    new NotBlank(),
-                    new NotNull(),
-                    new Type(type: 'integer'),
-                    new Range(min: 1025, max: 65535),
-                ],
-            ])
             ->add('hasMemcached', CheckboxType::class, [
                 'required' => false,
                 'label'    => 'Enable Memcached',
@@ -92,16 +65,12 @@ class ProjectType extends AbstractGeneratorType
                 'label'       => 'Postgres',
                 'constraints' => new Valid(),
             ])
-            ->add('applicationOptions', ApplicationType::class, [
-                'label'       => 'Application options',
-                'constraints' => new Valid(),
-            ])
             ->add('elasticsearchOptions', ElasticsearchType::class, [
                 'label'       => 'Elasticsearch',
                 'constraints' => new Valid(),
             ])
-            ->add('workingDirOptions', WorkingDirType::class, [
-                'label'       => 'Working Dir options',
+            ->add('globalOptions', GlobalOptionsType::class, [
+                'label'       => 'Global options',
                 'constraints' => new Valid(),
             ]);
     }

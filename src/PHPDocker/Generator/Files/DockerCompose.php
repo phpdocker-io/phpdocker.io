@@ -34,14 +34,14 @@ class DockerCompose implements GeneratedFileInterface
 
     public function __construct(private Dumper $yaml, private Project $project, private string $phpIniLocation)
     {
-        $this->basePort = $this->project->getBasePort();
+        $this->basePort = $this->project->getGlobalOptions()->getBasePort();
     }
 
     public function getContents(): string
     {
-        $workingDir = $this->project->getWorkingDirOptions();
+        $workingDir = $this->project->getGlobalOptions();
 
-        $this->defaultVolume = sprintf('%s:%s', $workingDir->getLocalWorkingDir(), $workingDir->getDockerWorkingDir());
+        $this->defaultVolume = sprintf('%s:%s', $workingDir->getAppPath(), $workingDir->getDockerWorkingDir());
 
         $this
             ->addMemcached()
@@ -108,7 +108,7 @@ class DockerCompose implements GeneratedFileInterface
 
             $this->services['mysql'] = [
                 'image'       => sprintf('mysql:%s', $mysql->getVersion()),
-                'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
+                'working_dir' => $this->project->getGlobalOptions()->getDockerWorkingDir(),
                 'volumes'     => [$this->defaultVolume],
                 'environment' => [
                     sprintf('MYSQL_ROOT_PASSWORD=%s', $mysql->getRootPassword()),
@@ -131,7 +131,7 @@ class DockerCompose implements GeneratedFileInterface
 
             $this->services['mariadb'] = [
                 'image'       => sprintf('mariadb:%s', $mariadb->getVersion()),
-                'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
+                'working_dir' => $this->project->getGlobalOptions()->getDockerWorkingDir(),
                 'volumes'     => [$this->defaultVolume],
                 'environment' => [
                     sprintf('MYSQL_ROOT_PASSWORD=%s', $mariadb->getRootPassword()),
@@ -154,7 +154,7 @@ class DockerCompose implements GeneratedFileInterface
 
             $this->services['postgres'] = [
                 'image'       => sprintf('postgres:%s-alpine', $postgres->getVersion()),
-                'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
+                'working_dir' => $this->project->getGlobalOptions()->getDockerWorkingDir(),
                 'volumes'     => [$this->defaultVolume],
                 'environment' => [
                     sprintf('POSTGRES_USER=%s', $postgres->getRootUser()),
@@ -192,7 +192,7 @@ class DockerCompose implements GeneratedFileInterface
     {
         $this->services['webserver'] = [
             'image'       => 'nginx:alpine',
-            'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
+            'working_dir' => $this->project->getGlobalOptions()->getDockerWorkingDir(),
             'volumes'     => [
                 $this->defaultVolume,
                 './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf',
@@ -209,7 +209,7 @@ class DockerCompose implements GeneratedFileInterface
 
         $this->services['php-fpm'] = [
             'build'       => 'phpdocker/php-fpm',
-            'working_dir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
+            'working_dir' => $this->project->getGlobalOptions()->getDockerWorkingDir(),
             'volumes'     => [
                 $this->defaultVolume,
                 sprintf('./phpdocker/%s:/etc/php/%s/fpm/conf.d/99-overrides.ini', $this->phpIniLocation, $shortVersion),
