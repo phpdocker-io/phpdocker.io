@@ -34,7 +34,7 @@ class NginxConf implements GeneratedFileInterface
         $frontControllerPath = $this->project->getPhpOptions()->getFrontControllerPath();
 
         $data = [
-            'dockerWorkingDir'      => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
+            'dockerWorkingDir'      => $this->project->getGlobalOptions()->getDockerWorkingDir(),
             'frontControllerFile'   => basename($frontControllerPath),
             'frontControllerFolder' => dirname($frontControllerPath),
         ];

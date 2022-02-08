@@ -48,7 +48,7 @@ class Dockerfile implements GeneratedFileInterface
         $data = [
             'phpVersion'       => $this->project->getPhpOptions()->getVersion(),
             'packages'         => array_unique($packages),
-            'dockerWorkingDir' => $this->project->getWorkingDirOptions()->getDockerWorkingDir(),
+            'dockerWorkingDir' => $this->project->getGlobalOptions()->getDockerWorkingDir(),
         ];
 
         return $this->twig->render('dockerfile-php-fpm.conf.twig', $data);

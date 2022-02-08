@@ -37,16 +37,6 @@ class ProjectType extends AbstractGeneratorType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('basePort', IntegerType::class, [
-                'label'       => 'Base port',
-                'attr'        => ['placeholder' => 'For nginx, Mailhog control panel...'],
-                'data'        => random_int(min: 2, max: 65) * 1000,
-                'constraints' => [
-                    new NotBlank(),
-                    new Type(type: 'integer'),
-                    new Range(min: 1025, max: 65535),
-                ],
-            ])
             ->add('hasMemcached', CheckboxType::class, [
                 'required' => false,
                 'label'    => 'Enable Memcached',
@@ -83,8 +73,8 @@ class ProjectType extends AbstractGeneratorType
                 'label'       => 'Elasticsearch',
                 'constraints' => new Valid(),
             ])
-            ->add('workingDirOptions', WorkingDirType::class, [
-                'label'       => 'Working Dir options',
+            ->add('globalOptions', GlobalOptionsType::class, [
+                'label'       => 'Global options',
                 'constraints' => new Valid(),
             ]);
     }

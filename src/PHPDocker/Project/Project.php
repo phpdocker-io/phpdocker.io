@@ -37,9 +37,8 @@ class Project
     private ServiceOptions\Clickhouse    $clickhouseOptions;
 
     public function __construct(
-        private int $basePort,
         private Php $phpOptions,
-        private ServiceOptions\WorkingDir $workingDirOptions,
+        private ServiceOptions\GlobalOptions $globalOptions,
     ) {
         // Initialise project properties
         $this->nginxOptions         = new ServiceOptions\Nginx();
@@ -51,11 +50,6 @@ class Project
         $this->mailhogOptions       = new ServiceOptions\Mailhog();
         $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
         $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
-    }
-
-    public function getBasePort(): int
-    {
-        return $this->basePort;
     }
 
     public function hasNginx(): bool
@@ -153,8 +147,8 @@ class Project
         return $this->clickhouseOptions->isEnabled();
     }
 
-    public function getWorkingDirOptions(): ServiceOptions\WorkingDir
+    public function getGlobalOptions(): ServiceOptions\GlobalOptions
     {
-        return $this->workingDirOptions;
+        return $this->globalOptions;
     }
 }

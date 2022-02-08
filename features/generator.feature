@@ -11,7 +11,7 @@ Feature:
 
   Scenario: Generator requires a base port
     Given I am on "/generator"
-    And I fill in "project_basePort" with ""
+    And I fill in "project_globalOptions_basePort" with ""
     And I press "Generate project archive"
     Then the "#container_for_basePort" element should contain "This value should not be blank."
 

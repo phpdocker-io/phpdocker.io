@@ -28,7 +28,7 @@ containers, then leave them running in the background.
 You can access your application via **`localhost`**. Mailhog and nginx both respond to any hostname, in case you want to
 add your own hostname on your `/etc/hosts`
 
-{% set basePort = project.getBasePort() %}
+{% set basePort = project.getGlobalOptions().getBasePort() %}
 Service|Address outside containers
 -------|--------------------------
 Webserver|[localhost:{{ basePort }}](http://localhost:{{ basePort }})
@@ -75,7 +75,7 @@ php-fpm|php-fpm|9000
 As in all server environments, your application needs the correct file permissions to work properly. You can change the
 files throughout the container, so you won't care if the user exists or has the same ID on your host.
 
-`docker-compose exec php-fpm chown -R www-data:www-data {{ project.getWorkingDirOptions().getDockerWorkingDir() }}/public`
+`docker-compose exec php-fpm chown -R www-data:www-data {{ project.getGlobalOptions().getDockerWorkingDir() }}/public`
 
 # Recommendations #
 

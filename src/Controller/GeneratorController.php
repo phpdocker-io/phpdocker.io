@@ -21,8 +21,8 @@ namespace App\Controller;
 use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
 use App\PHPDocker\Project\Project;
+use App\PHPDocker\Project\ServiceOptions\GlobalOptions;
 use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
-use App\PHPDocker\Project\ServiceOptions\WorkingDir;
 use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -89,16 +89,16 @@ class GeneratorController extends AbstractController
             frontControllerPath: $phpData['frontControllerPath'],
         );
 
-        $workingDirData    = $formData['workingDirOptions'];
-        $workingDirOptions = new WorkingDir(
-            localWorkingDir: rtrim($workingDirData['localWorkingDir'], '/'),
-            dockerWorkingDir: rtrim($workingDirData['dockerWorkingDir'], '/'),
+        $globalOptionsData = $formData['globalOptions'];
+        $globalOptions     = new GlobalOptions(
+            basePort: $globalOptionsData['basePort'],
+            appPath: rtrim($globalOptionsData['appPath'], '/'),
+            dockerWorkingDir: rtrim($globalOptionsData['dockerWorkingDir'], '/'),
         );
 
         $project = new Project(
-            basePort: $formData['basePort'],
             phpOptions: $phpOptions,
-            workingDirOptions: $workingDirOptions,
+            globalOptions: $globalOptions,
         );
 
         $project->getMemcachedOptions()->setEnabled($formData['hasMemcached']);

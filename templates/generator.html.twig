@@ -18,14 +18,9 @@
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>Global configuration</h3>
                 <div class="row">
-                    <div class="col col-lg-6 col-md-6"
-                         id="container_for_basePort">{{ form_row(attribute(form, 'basePort')) }}</div>
-                </div>
-
-                <div class="row">
-                    {% for field in ['localWorkingDir', 'dockerWorkingDir'] %}
-                        <div class="col col-lg-6 col-md-6"
-                             id="container_for_{{ field }}">{{ form_row(attribute(form.workingDirOptions, field)) }}</div>
+                    {% for field in ['basePort', 'appPath', 'dockerWorkingDir'] %}
+                        <div class="col col-lg-4 col-md-4"
+                             id="container_for_{{ field }}">{{ form_row(attribute(form.globalOptions, field)) }}</div>
                     {% endfor %}
                 </div>
             </div>
