@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51cecc5b82fff053275b430e55c33f05",
+    "content-hash": "6d311a4e99f882a267dcac9500e0eb72",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -4597,27 +4597,27 @@
         },
         {
             "name": "composer/xdebug-handler",
-            "version": "2.0.4",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "0c1a3925ec58a4ec98e992b9c7d171e9e184be0a"
+                "reference": "12f1b79476638a5615ed00ea6adbb269cec96fd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/0c1a3925ec58a4ec98e992b9c7d171e9e184be0a",
-                "reference": "0c1a3925ec58a4ec98e992b9c7d171e9e184be0a",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/12f1b79476638a5615ed00ea6adbb269cec96fd8",
+                "reference": "12f1b79476638a5615ed00ea6adbb269cec96fd8",
                 "shasum": ""
             },
             "require": {
                 "composer/pcre": "^1",
-                "php": "^5.3.2 || ^7.0 || ^8.0",
+                "php": "^7.2.5 || ^8.0",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.0",
                 "phpstan/phpstan-strict-rules": "^1.1",
-                "symfony/phpunit-bridge": "^4.2 || ^5.0 || ^6.0"
+                "symfony/phpunit-bridge": "^6.0"
             },
             "type": "library",
             "autoload": {
@@ -4643,7 +4643,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/xdebug-handler/issues",
-                "source": "https://github.com/composer/xdebug-handler/tree/2.0.4"
+                "source": "https://github.com/composer/xdebug-handler/tree/3.0.1"
             },
             "funding": [
                 {
@@ -4659,7 +4659,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-04T17:06:45+00:00"
+            "time": "2022-01-04T18:29:42+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -5252,21 +5252,21 @@
         },
         {
             "name": "infection/infection",
-            "version": "0.25.6",
+            "version": "0.26.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infection/infection.git",
-                "reference": "bded7581329766616bf35f1018326c9b3912df0b"
+                "reference": "8b96ac5326bee3dfdddb9377bf9ea3947ba78ca6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infection/infection/zipball/bded7581329766616bf35f1018326c9b3912df0b",
-                "reference": "bded7581329766616bf35f1018326c9b3912df0b",
+                "url": "https://api.github.com/repos/infection/infection/zipball/8b96ac5326bee3dfdddb9377bf9ea3947ba78ca6",
+                "reference": "8b96ac5326bee3dfdddb9377bf9ea3947ba78ca6",
                 "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2.0",
-                "composer/xdebug-handler": "^2.0",
+                "composer/xdebug-handler": "^2.0 || ^3.0",
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-libxml": "*",
@@ -5274,7 +5274,7 @@
                 "infection/extension-installer": "^0.1.0",
                 "infection/include-interceptor": "^0.2.5",
                 "justinrainbow/json-schema": "^5.2.10",
-                "nikic/php-parser": "^4.13",
+                "nikic/php-parser": "^4.13.2",
                 "ondram/ci-detector": "^3.3.0",
                 "php": "^7.4.7 || ^8.0",
                 "sanmai/later": "^0.1.1",
@@ -5362,7 +5362,7 @@
             ],
             "support": {
                 "issues": "https://github.com/infection/infection/issues",
-                "source": "https://github.com/infection/infection/tree/0.25.6"
+                "source": "https://github.com/infection/infection/tree/0.26.4"
             },
             "funding": [
                 {
@@ -5374,7 +5374,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-01-08T13:06:28+00:00"
+            "time": "2022-01-28T11:18:46+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
