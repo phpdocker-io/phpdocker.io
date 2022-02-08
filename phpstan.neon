@@ -1,3 +1,4 @@
 parameters:
+  checkMissingIterableValueType: false
   ignoreErrors:
     - '#Access to an undefined property Symfony\\Component\\Validator\\Constraint::\$message#'
