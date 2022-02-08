@@ -22,7 +22,6 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Valid;
@@ -44,7 +43,6 @@ class ProjectType extends AbstractGeneratorType
                 'data'        => random_int(min: 2, max: 65) * 1000,
                 'constraints' => [
                     new NotBlank(),
-                    new NotNull(),
                     new Type(type: 'integer'),
                     new Range(min: 1025, max: 65535),
                 ],

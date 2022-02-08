@@ -25,7 +25,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
  * Class ElasticsearchType
@@ -51,7 +50,6 @@ class ElasticsearchType extends AbstractGeneratorType
                 'label'       => 'Version',
                 'constraints' => [
                     new NotBlank(groups: [self::VALIDATION_GROUP]),
-                    new NotNull(groups: [self::VALIDATION_GROUP]),
                     new Length(min: 1, max: 128),
                 ],
             ]);

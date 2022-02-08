@@ -32,7 +32,6 @@ use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Type;
 
 /**
@@ -59,7 +58,6 @@ class PhpType extends AbstractGeneratorType
                 'data'        => 'public/index.php',
                 'constraints' => [
                     new NotBlank(),
-                    new NotNull(),
                     new Length(min: 2, max: 128),
                 ],
             ])
