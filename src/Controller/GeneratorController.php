@@ -48,7 +48,9 @@ class GeneratorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() === true && $form->isValid() === true) {
-            $project = $this->hydrateProject($form->getData());
+            /** @var array $data */
+            $data = $form->getData();
+            $project = $this->hydrateProject($data);
 
             // Generate zip file with docker project
             $zipFile = $this->generator->generate($project);
@@ -68,9 +70,6 @@ class GeneratorController extends AbstractController
         ]);
     }
 
-    /**
-     * @param array<string, mixed> $formData
-     */
     private function hydrateProject(array $formData): Project
     {
         $phpData = $formData['phpOptions'];

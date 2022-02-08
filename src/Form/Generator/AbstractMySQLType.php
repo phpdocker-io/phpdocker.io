@@ -105,6 +105,7 @@ abstract class AbstractMySQLType extends AbstractGeneratorType
     protected function getValidationGroups(): callable
     {
         return function (FormInterface $form) {
+            /** @var array<mixed> $data */
             $data   = $form->getData();
             $groups = ['Default'];
 

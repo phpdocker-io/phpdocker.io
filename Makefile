@@ -104,7 +104,7 @@ composer-cache-dir:
 	@composer config cache-files-dir
 
 static-analysis:
-	$(PHP_RUN) vendor/bin/phpstan --ansi -v analyse -l 8 src
+	$(PHP_RUN) vendor/bin/phpstan --ansi -v analyse -l 9 src
 
 unit-tests:
 	$(PHP_RUN) vendor/bin/phpunit --testdox --colors=always

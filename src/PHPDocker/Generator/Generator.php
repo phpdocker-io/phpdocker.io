@@ -55,7 +55,7 @@ class Generator
     public function generate(Project $project): ArchiveInterface
     {
         $readmeMd = new ReadmeMd($this->twig, $project);
-        $phpIni   = new PhpIni($this->twig, $project);
+        $phpIni   = new PhpIni($this->twig);
 
         $this->archiver
             ->addFile($readmeMd)
