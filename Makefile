@@ -6,6 +6,7 @@ HOSTS_LOCATION=bin/hosts
 SITE_HOST=phpdocker.local
 PHP_RUN=docker-compose run -e XDEBUG_MODE=coverage --rm php-fpm
 
+INFECTION_THREADS?=8
 BUILD_TAG?:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
 
 # linux-amd64, darwin-amd64, linux-arm
@@ -112,7 +113,7 @@ coverage-tests:
 	$(PHP_RUN) php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox --colors=always
 
 mutation-tests:
-	$(PHP_RUN) vendor/bin/infection --coverage=reports/infection --threads=2 -s --min-msi=0 --min-covered-msi=0
+	$(PHP_RUN) vendor/bin/infection --coverage=reports/infection --threads=$(INFECTION_THREADS) -s --min-msi=0 --min-covered-msi=0
 
 open-coverage-report:
 	xdg-open reports/phpunit/index.html
