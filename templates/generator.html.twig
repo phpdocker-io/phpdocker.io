@@ -10,7 +10,7 @@
 {% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
 
 {% block body %}
-    <form method="post" id="generator" action="{{ path('generator') }}">
+    <form method="post" id="generator" action="{{ path('generator') }}" novalidate>
         <div class="row">
             {{ form_errors(form) }}
         </div>
@@ -70,7 +70,7 @@
                 <div id="mysql-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mysqlOptions, field) is defined) %}
-                            {{ form_row(attribute(form.mysqlOptions, field)) }}
+                            <div id="container_for_mysql_{{ field }}">{{ form_row(attribute(form.mysqlOptions, field)) }}</div>
                         {% endif %}
                     {% endfor %}
                 </div>
