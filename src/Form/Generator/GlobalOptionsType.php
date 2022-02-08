@@ -26,7 +26,7 @@ final class GlobalOptionsType extends AbstractGeneratorType
                 ],
             ])
             ->add('appPath', TextType::class, [
-                'label' => 'App source code relative folder',
+                'label' => 'Your source code\'s path',
                 'data'  => '.',
             ])
             ->add('dockerWorkingDir', TextType::class, [

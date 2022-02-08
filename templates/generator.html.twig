@@ -23,6 +23,11 @@
                              id="container_for_{{ field }}">{{ form_row(attribute(form.globalOptions, field)) }}</div>
                     {% endfor %}
                 </div>
+                <div class="row">
+                    <div class="col col-lg-4 col-md-4"><div class="note">Initial port for services exposed from docker to your machine</div></div>
+                    <div class="col col-lg-4 col-md-4"><div class="note">Location of your app's source code relative to docker-compose.yaml</div></div>
+                    <div class="col col-lg-4 col-md-4"><div class="note">Working directory for all containers</div></div>
+                </div>
             </div>
         </div>
 
