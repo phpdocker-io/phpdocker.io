@@ -26,10 +26,13 @@ use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\ServiceOptions\Php;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Type;
 
 /**
@@ -50,6 +53,16 @@ class PhpType extends AbstractGeneratorType
         ];
 
         $builder
+            ->add('frontControllerPath', TextType::class, [
+                'label'       => 'Front controller path (relative to container workdir)',
+                'attr'        => ['placeholder' => 'Password for root user'],
+                'data'        => 'public/index.php',
+                'constraints' => [
+                    new NotBlank(),
+                    new NotNull(),
+                    new Length(min: 2, max: 128),
+                ],
+            ])
             ->add('hasGit', CheckboxType::class, [
                 'label'    => 'Add git (eg for composer)',
                 'required' => false,

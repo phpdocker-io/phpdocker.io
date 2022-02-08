@@ -21,7 +21,6 @@ namespace App\Controller;
 use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
 use App\PHPDocker\Project\Project;
-use App\PHPDocker\Project\ServiceOptions\Application;
 use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
 use App\PHPDocker\Project\ServiceOptions\WorkingDir;
 use InvalidArgumentException;
@@ -86,11 +85,9 @@ class GeneratorController extends AbstractController
         $phpOptions = new PhpOptions(
             version: $phpData['version'],
             extensions: $extensions,
-            hasGit: $phpData['hasGit']
+            hasGit: $phpData['hasGit'],
+            frontControllerPath: $phpData['frontControllerPath'],
         );
-
-        $appData    = $formData['applicationOptions'];
-        $appOptions = new Application(frontControllerPath: $appData['frontControllerPath']);
 
         $workingDirData    = $formData['workingDirOptions'];
         $workingDirOptions = new WorkingDir(
@@ -101,7 +98,6 @@ class GeneratorController extends AbstractController
         $project = new Project(
             basePort: $formData['basePort'],
             phpOptions: $phpOptions,
-            applicationOptions: $appOptions,
             workingDirOptions: $workingDirOptions,
         );
 

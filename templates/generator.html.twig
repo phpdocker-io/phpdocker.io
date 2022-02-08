@@ -18,13 +18,14 @@
             <div class="{{ formGroupClass }} {{ bigColumn }}">
                 <h3>Global configuration</h3>
                 <div class="row">
-                    <div class="col col-lg-6 col-md-6" id="container_for_basePort">{{ form_row(attribute(form, 'basePort')) }}</div>
-                    <div class="col col-lg-6 col-md-6" id="container_for_frontControllerPath">{{ form_row(attribute(form.applicationOptions, 'frontControllerPath')) }}</div>
+                    <div class="col col-lg-6 col-md-6"
+                         id="container_for_basePort">{{ form_row(attribute(form, 'basePort')) }}</div>
                 </div>
 
                 <div class="row">
                     {% for field in ['localWorkingDir', 'dockerWorkingDir'] %}
-                        <div class="col col-lg-6 col-md-6" id="container_for_{{ field }}">{{ form_row(attribute(form.workingDirOptions, field)) }}</div>
+                        <div class="col col-lg-6 col-md-6"
+                             id="container_for_{{ field }}">{{ form_row(attribute(form.workingDirOptions, field)) }}</div>
                     {% endfor %}
                 </div>
             </div>
@@ -36,6 +37,7 @@
 
                 <div class="col col-lg-6 col-md-6">
                     {{ form_row(attribute(form.phpOptions, 'version')) }}
+                    {{ form_row(attribute(form.phpOptions, 'frontControllerPath')) }}
                     {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
 
                     <div class="note">

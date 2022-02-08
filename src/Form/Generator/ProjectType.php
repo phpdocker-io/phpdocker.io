@@ -83,10 +83,6 @@ class ProjectType extends AbstractGeneratorType
                 'label'       => 'Postgres',
                 'constraints' => new Valid(),
             ])
-            ->add('applicationOptions', ApplicationType::class, [
-                'label'       => 'Application options',
-                'constraints' => new Valid(),
-            ])
             ->add('elasticsearchOptions', ElasticsearchType::class, [
                 'label'       => 'Elasticsearch',
                 'constraints' => new Valid(),

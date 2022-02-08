@@ -39,7 +39,6 @@ class Project
     public function __construct(
         private int $basePort,
         private Php $phpOptions,
-        private ServiceOptions\Application $applicationOptions,
         private ServiceOptions\WorkingDir $workingDirOptions,
     ) {
         // Initialise project properties
@@ -57,11 +56,6 @@ class Project
     public function getBasePort(): int
     {
         return $this->basePort;
-    }
-
-    public function getApplicationOptions(): ServiceOptions\Application
-    {
-        return $this->applicationOptions;
     }
 
     public function hasNginx(): bool

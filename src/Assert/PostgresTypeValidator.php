@@ -23,7 +23,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Application type validator.
+ * Postgres version config validator
  */
 class PostgresTypeValidator extends ConstraintValidator
 {

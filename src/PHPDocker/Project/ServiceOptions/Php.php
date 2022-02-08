@@ -48,9 +48,14 @@ class Php extends Base
 
     /**
      * @param string[] $extensions
+     * @param string   $frontControllerPath Path to the app's front controller, relative to project root
      */
-    public function __construct(string $version, array $extensions, private bool $hasGit)
-    {
+    public function __construct(
+        string $version,
+        array $extensions,
+        private bool $hasGit,
+        private string $frontControllerPath
+    ) {
         $this->setEnabled(true);
 
         // Validate & set version
@@ -86,6 +91,7 @@ class Php extends Base
 
     /**
      * Returns an array of supported PHP versions.
+     *
      * @return string[]
      */
     public static function getSupportedVersions(): array
@@ -105,5 +111,10 @@ class Php extends Base
         }
 
         $this->extensions[] = $extensionInstance->getPhpExtension($extensionName);
+    }
+
+    public function getFrontControllerPath(): string
+    {
+        return $this->frontControllerPath;
     }
 }
