@@ -34,7 +34,8 @@
     }
 
     body {
-        color : var(--brightest);
+        color            : var(--brightest);
+        background-color : var(--darkest);
     }
 
     section#content {

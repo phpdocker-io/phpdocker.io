@@ -55,12 +55,17 @@ section {
     padding : 0.5em 0;
 }
 
+section#content {
+    padding : 1.5em !important;
+}
+
 /***** Header *****/
 section#header {
     border-radius    : 0;
     margin-bottom    : 0;
     padding-top      : 0.5em;
     padding-bottom   : 0.5em;
+    padding-left     : 1.5em;
     text-shadow      : 2px 2px 6px rgba(0, 0, 0, .7);
     background-color : rgba(0, 0, 0, 0.64);
     border-color     : transparent;
@@ -113,18 +118,18 @@ form input[type=submit] {
 }
 
 form .group {
-    border        : 2px #444 solid;
-    border-radius : 5px;
-    padding-bottom: 10px;
-    margin-bottom : 1em;
+    border         : 2px #444 solid;
+    border-radius  : 5px;
+    padding-bottom : 10px;
+    margin-bottom  : 1em;
 }
 
 form .group .note {
-    font-style  : italic;
-    font-size   : 0.8em;
-    display     : block;
-    clear       : both;
-    padding-left: 15px;
+    font-style   : italic;
+    font-size    : 0.8em;
+    display      : block;
+    clear        : both;
+    padding-left : 15px;
 }
 
 form .group h2 {
