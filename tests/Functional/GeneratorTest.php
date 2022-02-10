@@ -39,11 +39,11 @@ class GeneratorTest extends WebTestCase
     /**
      * @test
      */
-    public function homeRedirectsToGenerator(): void
+    public function generatorRedirectsToHome(): void
     {
-        $this->client->request(method: 'GET', uri: '/');
+        $this->client->request(method: 'GET', uri: '/generator');
 
-        self::assertResponseRedirects(expectedLocation: 'http://localhost/generator', expectedCode: 301);
+        self::assertResponseRedirects(expectedLocation: 'http://localhost/', expectedCode: 301);
     }
 
     /**
@@ -51,7 +51,7 @@ class GeneratorTest extends WebTestCase
      */
     public function generatorLoads(): void
     {
-        $this->client->request(method: 'GET', uri: '/generator');
+        $this->client->request(method: 'GET', uri: '/');
 
         self::assertResponseIsSuccessful();
     }
