@@ -17,7 +17,7 @@ on:
     - cron: "0 0 * * 0"
 
 env:
-  TEST_URL: https://phpdocker.io/generator
+  TEST_URL: https://phpdocker.io/
 jobs:
   deploy:
     # We only deploy master
