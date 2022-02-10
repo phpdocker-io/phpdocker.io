@@ -6,8 +6,8 @@
 
 {% set formGroupClass = 'group' %}
 
-{% set bigColumn = 'col col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12' %}
-{% set halfColumn = 'col col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12' %}
+{% set bigColumn = 'col col-lg-12 col-md-12 col-sm-12 col-xs-12' %}
+{% set quarterColumn = 'col col-lg-3 col-md-3 col-sm-12 col-xs-12' %}
 
 {% block body %}
     <form method="post" id="generator" action="{{ path('generator') }}">
@@ -24,15 +24,21 @@
                     {% endfor %}
                 </div>
                 <div class="row">
-                    <div class="col col-lg-4 col-md-4"><div class="note">Initial port for services exposed from docker to your machine</div></div>
-                    <div class="col col-lg-4 col-md-4"><div class="note">Location of your app's source code relative to docker-compose.yaml</div></div>
-                    <div class="col col-lg-4 col-md-4"><div class="note">Working directory for all containers</div></div>
+                    <div class="col col-lg-4 col-md-4">
+                        <div class="note">Initial port for services exposed from docker to your machine</div>
+                    </div>
+                    <div class="col col-lg-4 col-md-4">
+                        <div class="note">Location of your app's source code relative to docker-compose.yaml</div>
+                    </div>
+                    <div class="col col-lg-4 col-md-4">
+                        <div class="note">Working directory for all containers</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="{{ formGroupClass }} {{ bigColumn }}">
+            <div class="{{ formGroupClass }} col col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <h3>PHP configuration</h3>
 
                 <div class="col col-lg-6 col-md-6">
@@ -43,11 +49,10 @@
                     <div class="note">
                         <p>Please note:</p>
                         <ul>
-                            <li>The following extensions are already included on the base image: APC,
+                            <li>Extensions already included on base image: APC,
                                 cURL, JSON, Sodium, MBString, OPCache, Readline, XML and Zip.
                             </li>
                             <li>Each PHP version supports a different set of extensions to the others.</li>
-                            <li>Adding git to the container adds ~75MB to it.</li>
                         </ul>
                     </div>
                 </div>
@@ -60,10 +65,20 @@
                     {{ form_row(attribute(form.phpOptions, 'phpExtensions74')) }}
                 </div>
             </div>
+            <div class="{{ formGroupClass }} col col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <h3>Zero-config Services</h3>
+                <p class="note">The following services take no additional configuration parameters.</p>
+
+                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse'] %}
+                    {% if (attribute(form, field) is defined) %}
+                        <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
 
         <div class="row">
-            <div class="{{ formGroupClass }} {{ halfColumn }}">
+            <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>MySQL</h3>
                 {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
 
@@ -76,7 +91,7 @@
                 </div>
             </div>
 
-            <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
+            <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>MariaDB</h3>
                 {{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}
 
@@ -88,9 +103,8 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="{{ formGroupClass }} {{ halfColumn }}">
+
+            <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>Postgres</h3>
                 {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
 
@@ -102,25 +116,13 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="{{ formGroupClass }} col col-md-5 col-lg-5 col-sm-12 col-xs-12">
+
+            <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>Elasticsearch</h3>
                 {{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}
                 <div id="elasticsearch-options">
                     {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="{{ formGroupClass }} col col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 col-sm-12 col-xs-12">
-                <h3>Zero-config Services</h3>
-                <p class="note">The following services take no additional configuration parameters.</p>
-
-                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse'] %}
-                    {% if (attribute(form, field) is defined) %}
-                        <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
-                    {% endif %}
-                {% endfor %}
             </div>
         </div>
 

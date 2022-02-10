@@ -62,7 +62,7 @@ class PhpType extends AbstractGeneratorType
                 ],
             ])
             ->add('hasGit', CheckboxType::class, [
-                'label'    => 'Add git (eg for composer)',
+                'label'    => 'Add git (eg for composer) - Adds 75MB',
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [
