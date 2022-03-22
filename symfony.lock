@@ -11,9 +11,6 @@
     "behat/transliterator": {
         "version": "v1.3.0"
     },
-    "composer/package-versions-deprecated": {
-        "version": "1.11.99.2"
-    },
     "composer/pcre": {
         "version": "1.0.0"
     },
@@ -256,9 +253,6 @@
             "config/packages/dev/debug.yaml"
         ]
     },
-    "symfony/debug-pack": {
-        "version": "v1.0.9"
-    },
     "symfony/dependency-injection": {
         "version": "v4.4.25"
     },
@@ -319,9 +313,6 @@
             "src/Controller/.gitignore",
             "src/Kernel.php"
         ]
-    },
-    "symfony/http-client-contracts": {
-        "version": "v2.4.0"
     },
     "symfony/http-foundation": {
         "version": "v4.4.25"
@@ -386,17 +377,11 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.23.0"
     },
-    "symfony/polyfill-php72": {
-        "version": "v1.23.0"
-    },
     "symfony/polyfill-php81": {
         "version": "v1.23.0"
     },
     "symfony/process": {
         "version": "v5.3.2"
-    },
-    "symfony/profiler-pack": {
-        "version": "v1.0.5"
     },
     "symfony/property-access": {
         "version": "v4.4.25"
@@ -469,9 +454,6 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
-    },
-    "symfony/twig-pack": {
-        "version": "v1.0.1"
     },
     "symfony/validator": {
         "version": "4.3",
