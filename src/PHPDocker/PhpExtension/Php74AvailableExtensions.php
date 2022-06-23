@@ -46,6 +46,7 @@ class Php74AvailableExtensions extends BaseAvailableExtensions
     protected function getOptionalExtensionsMap(): array
     {
         return [
+            'AMQP'                => ['packages' => ['php7.4-amqp']],
             'Bcmath'              => ['packages' => ['php7.4-bcmath']],
             'bzip2'               => ['packages' => ['php7.4-bz2']],
             'DBA'                 => ['packages' => ['php7.4-dba']],
