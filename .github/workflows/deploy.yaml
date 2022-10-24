@@ -50,20 +50,6 @@ jobs:
       - name: Build containers
         run: make build-and-push -e BUILD_TAG=${BUILD_TAG}
 
-      - name: Run the Anchore container scan (php container)
-        uses: anchore/scan-action@main
-        with:
-          image: "phpdockerio/site-php:latest"
-          acs-report-enable: true
-          fail-build: false
-
-      - name: Upload Anchore Scan Report (php container)
-        uses: github/codeql-action/upload-sarif@v1
-        if: always()
-        continue-on-error: true
-        with:
-          sarif_file: results.sarif
-
       - name: Set up wireguard tunnel configuration
         run: |
           sudo apt install wireguard resolvconf
