@@ -74,8 +74,7 @@ RUN sed -i "s/php-fpm/localhost/g"       /etc/nginx/conf.d/default.conf; \
     sed -i "s/listen 443/#listen 443/g"  /etc/nginx/conf.d/default.conf; \
     sed -i "s/ssl_/#ssl_/g"              /etc/nginx/conf.d/default.conf
 
-COPY --from=frontend-installer node_modules node_modules
+COPY --from=frontend-installer node_modules/@bower_components public/vendor
 
 COPY public/css    public/css
 COPY public/js     public/js
-COPY public/vendor public/vendor
