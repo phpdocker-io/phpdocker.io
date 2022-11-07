@@ -51,13 +51,14 @@ RUN composer dump-autoload --optimize --classmap-authoritative --no-scripts; \
 ############
 # Frontend #
 ############
-# Run bower install before we can install bundle's assets
-FROM node:alpine AS frontend-installer
+# For some reason, yarn install hangs on node:alpine when building for ARM, so use the normal image instead
+# Bigger and slower unfortunately but it works
+FROM node:latest AS frontend-installer
 
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn install
+RUN yarn install --immutable
 
 ## Actual deployable frontend image
 FROM nginx:alpine AS frontend-deployment
