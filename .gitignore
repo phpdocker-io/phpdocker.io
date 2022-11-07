@@ -28,3 +28,5 @@ bin/hosts
 ###< symfony/phpunit-bridge ###
 
 reports/
+
+node_modules

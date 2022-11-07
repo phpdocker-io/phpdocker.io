@@ -52,14 +52,12 @@ RUN composer dump-autoload --optimize --classmap-authoritative --no-scripts; \
 # Frontend #
 ############
 # Run bower install before we can install bundle's assets
-FROM node:alpine AS bower-installer
+FROM node:alpine AS frontend-installer
 
-COPY bower.json .
-COPY .bowerrc .
+COPY package.json .
+COPY yarn.lock .
 
-RUN apk add git --no-cache; \
-    npm i -g bower; \
-    bower install --allow-root
+RUN yarn install
 
 ## Actual deployable frontend image
 FROM nginx:alpine AS frontend-deployment
@@ -79,7 +77,7 @@ RUN sed -i "s/php-fpm/localhost/g"       /etc/nginx/conf.d/default.conf; \
     sed -i "s/listen 443/#listen 443/g"  /etc/nginx/conf.d/default.conf; \
     sed -i "s/ssl_/#ssl_/g"              /etc/nginx/conf.d/default.conf
 
-COPY --from=bower-installer public/vendor public/vendor
+COPY --from=frontend-installer public/vendor public/vendor
 
 COPY public/css public/css
 COPY public/js  public/js
