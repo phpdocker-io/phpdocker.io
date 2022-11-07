@@ -4,7 +4,7 @@ on:
   # Ensure we're run after tests
   workflow_run:
     workflows: [ "Test application" ]
-    branches: [ "master", "deploy-pipeline-warnings" ]
+    branches: [ "master" ]
     types:
       - completed
 
@@ -18,10 +18,11 @@ on:
 
 env:
   TEST_URL: https://phpdocker.io/
+
 jobs:
   deploy:
     # We only deploy master
-    #if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
 
     steps:
