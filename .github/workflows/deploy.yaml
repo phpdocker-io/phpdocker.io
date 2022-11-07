@@ -4,7 +4,7 @@ on:
   # Ensure we're run after tests
   workflow_run:
     workflows: [ "Test application" ]
-    branches: [ "master", "remove-bower" ]
+    branches: [ "master" ]
     types:
       - completed
 
@@ -22,7 +22,7 @@ env:
 jobs:
   deploy:
     # We only deploy master
-#    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
 
     steps:
