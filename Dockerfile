@@ -51,24 +51,20 @@ RUN composer dump-autoload --optimize --classmap-authoritative --no-scripts; \
 ############
 # Frontend #
 ############
-# Run bower install before we can install bundle's assets
-FROM node:alpine AS bower-installer
+# For some reason, yarn install hangs on node:alpine when building for ARM, so use the normal image instead
+# Bigger and slower unfortunately but it works
+FROM node:latest AS frontend-installer
 
-COPY bower.json .
-COPY .bowerrc .
+COPY package.json .
+COPY yarn.lock .
 
-RUN apk add git --no-cache; \
-    npm i -g bower; \
-    bower install --allow-root
+RUN yarn install --immutable
 
 ## Actual deployable frontend image
 FROM nginx:alpine AS frontend-deployment
 #FROM phpdockerio/nginx-pagespeed:latest AS frontend-deployment
 
 WORKDIR /application
-
-RUN mkdir ./web; \
-    touch ./web/app.php
 
 #COPY infrastructure/nginx/pagespeed.conf /etc/nginx/pagespeed.conf
 COPY infrastructure/nginx/nginx.conf /etc/nginx/conf.d/default.conf
@@ -79,7 +75,7 @@ RUN sed -i "s/php-fpm/localhost/g"       /etc/nginx/conf.d/default.conf; \
     sed -i "s/listen 443/#listen 443/g"  /etc/nginx/conf.d/default.conf; \
     sed -i "s/ssl_/#ssl_/g"              /etc/nginx/conf.d/default.conf
 
-COPY --from=bower-installer public/vendor public/vendor
+COPY --from=frontend-installer node_modules/@bower_components public/vendor
 
-COPY public/css public/css
-COPY public/js  public/js
+COPY public/css    public/css
+COPY public/js     public/js
