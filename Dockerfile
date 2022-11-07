@@ -65,9 +65,6 @@ FROM nginx:alpine AS frontend-deployment
 
 WORKDIR /application
 
-RUN mkdir ./web; \
-    touch ./web/app.php
-
 #COPY infrastructure/nginx/pagespeed.conf /etc/nginx/pagespeed.conf
 COPY infrastructure/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
@@ -77,7 +74,8 @@ RUN sed -i "s/php-fpm/localhost/g"       /etc/nginx/conf.d/default.conf; \
     sed -i "s/listen 443/#listen 443/g"  /etc/nginx/conf.d/default.conf; \
     sed -i "s/ssl_/#ssl_/g"              /etc/nginx/conf.d/default.conf
 
-COPY --from=frontend-installer public/vendor public/vendor
+COPY --from=frontend-installer node_modules node_modules
 
-COPY public/css public/css
-COPY public/js  public/js
+COPY public/css    public/css
+COPY public/js     public/js
+COPY public/vendor public/vendor
