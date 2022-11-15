@@ -45,7 +45,6 @@ class Php extends Base
         self::PHP_VERSION_82,
         self::PHP_VERSION_81,
         self::PHP_VERSION_80,
-        self::PHP_VERSION_74,
     ];
 
     /**
