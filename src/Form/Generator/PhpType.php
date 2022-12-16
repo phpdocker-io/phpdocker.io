@@ -19,9 +19,9 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\PHPDocker\PhpExtension\Php74AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php80AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php81AvailableExtensions;
+use App\PHPDocker\PhpExtension\Php82AvailableExtensions;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\ServiceOptions\Php;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -76,13 +76,6 @@ class PhpType extends AbstractGeneratorType
                     new Choice(choices: Php::getSupportedVersions()),
                 ],
             ])
-            ->add('phpExtensions74', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices((new Php74AvailableExtensions())->getOptional()),
-                'multiple'    => true,
-                'label'       => 'Extensions (PHP 7.4)',
-                'required'    => false,
-                'constraints' => $phpOptionsConstraints,
-            ])
             ->add('phpExtensions80', ChoiceType::class, [
                 'choices'     => $this->getExtensionChoices((new Php80AvailableExtensions())->getOptional()),
                 'multiple'    => true,
@@ -94,6 +87,13 @@ class PhpType extends AbstractGeneratorType
                 'choices'     => $this->getExtensionChoices((new Php81AvailableExtensions())->getOptional()),
                 'multiple'    => true,
                 'label'       => 'Extensions (PHP 8.1)',
+                'required'    => false,
+                'constraints' => $phpOptionsConstraints,
+            ])
+            ->add('phpExtensions82', ChoiceType::class, [
+                'choices'     => $this->getExtensionChoices((new Php82AvailableExtensions())->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 8.2)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ]);

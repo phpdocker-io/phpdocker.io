@@ -58,16 +58,16 @@ install-assets-dev:
 composer-install:
 	$(PHP_RUN) composer -o install
 
-bower-install:
+yarn-install:
 	docker run  \
 	    --rm \
 	    -t \
 	    -v "`pwd`:/workdir" \
 	    -w /workdir \
 	    node:alpine \
-	    sh -c "apk update; apk add git; npm i -g bower; bower install --allow-root"
+	    sh -c "yarn install --immutable"
 
-install-dependencies: composer-install bower-install
+install-dependencies: composer-install yarn-install
 
 composer-update:
 	$(PHP_RUN) composer update --no-scripts

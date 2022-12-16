@@ -26,17 +26,17 @@ use InvalidArgumentException;
  */
 class AvailableExtensionsFactory
 {
-    private const PHP_VERSION_74 = '7.4';
     private const PHP_VERSION_80 = '8.0';
     private const PHP_VERSION_81 = '8.1';
+    private const PHP_VERSION_82 = '8.2';
 
     /**
      * Supported PHP versions
      */
     private const SUPPORTED_VERSIONS = [
-        self::PHP_VERSION_74 => Php74AvailableExtensions::class,
         self::PHP_VERSION_80 => Php80AvailableExtensions::class,
         self::PHP_VERSION_81 => Php81AvailableExtensions::class,
+        self::PHP_VERSION_82 => Php82AvailableExtensions::class,
     ];
 
     /**
