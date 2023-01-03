@@ -35,12 +35,15 @@ stop:
 shell:
 	$(PHP_RUN) bash
 
-init: clean install-mkcert create-certs install-hosts clean-hosts init-hosts install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
+init: clean install-mkcert create-certs install-hosts clean-hosts init-hosts build-local install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 
 clean: clear-cache
 	docker-compose down
 	sudo rm -rf vendor
 	make clear-cache
+
+build-local:
+	docker-compose build
 
 fix-permissions:
 	sudo chown -Rf $(shell id -u):$(shell id -g) .
