@@ -24,7 +24,8 @@
         "symfony/validator": "^6.0",
         "symfony/yaml": "^6.0",
         "twig/extra-bundle": "^3.0",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "monolog/monolog": "2.9.1"
     },
     "require-dev": {
         "beberlei/assert": "^3.3",
