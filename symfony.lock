@@ -423,12 +423,12 @@
         "version": "v4.4.25"
     },
     "symfony/twig-bundle": {
-        "version": "5.4",
+        "version": "6.2",
         "recipe": {
             "repo": "github.com/symfony/recipes",
-            "branch": "master",
+            "branch": "main",
             "version": "5.4",
-            "ref": "bffbb8f1a849736e64006735afae730cb428b6ff"
+            "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
         },
         "files": [
             "config/packages/twig.yaml",
