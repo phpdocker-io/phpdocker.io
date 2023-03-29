@@ -1,3 +1,8 @@
 framework:
   validation:
     enable_annotations: true
+
+when@test:
+    framework:
+        validation:
+            not_compromised_password: false
