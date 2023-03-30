@@ -40,29 +40,30 @@
         <div class="row">
             <div class="{{ formGroupClass }} col col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <h3>PHP configuration</h3>
+                <div class="row">
+                    <div class="col col-lg-6 col-md-6">
+                        {{ form_row(attribute(form.phpOptions, 'version')) }}
+                        {{ form_row(attribute(form.phpOptions, 'frontControllerPath')) }}
+                        {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
 
-                <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'version')) }}
-                    {{ form_row(attribute(form.phpOptions, 'frontControllerPath')) }}
-                    {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
-
-                    <div class="note">
-                        <p>Please note:</p>
-                        <ul>
-                            <li>Extensions already included on base image: APC,
-                                cURL, JSON, Sodium, MBString, OPCache, Readline, XML and Zip.
-                            </li>
-                            <li>Each PHP version supports a different set of extensions to the others.</li>
-                        </ul>
+                        <div class="note">
+                            <p>Please note:</p>
+                            <ul>
+                                <li>Extensions already included on base image: APC,
+                                    cURL, JSON, Sodium, MBString, OPCache, Readline, XML and Zip.
+                                </li>
+                                <li>Each PHP version supports a different set of extensions to the others.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col col-lg-6 col-md-6">
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions82')) }}
+                    <div class="col col-lg-6 col-md-6">
+                        {{ form_row(attribute(form.phpOptions, 'phpExtensions82')) }}
 
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions81')) }}
+                        {{ form_row(attribute(form.phpOptions, 'phpExtensions81')) }}
 
-                    {{ form_row(attribute(form.phpOptions, 'phpExtensions80')) }}
+                        {{ form_row(attribute(form.phpOptions, 'phpExtensions80')) }}
+                    </div>
                 </div>
             </div>
             <div class="{{ formGroupClass }} col col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -80,7 +81,7 @@
         <div class="row">
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>{{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}</h3>
-                <div id="mysql-options">
+                <div id="mysql-options" class="row">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mysqlOptions, field) is defined) %}
                             <div id="container_for_mysql_{{ field }}">{{ form_row(attribute(form.mysqlOptions, field)) }}</div>
@@ -91,8 +92,7 @@
 
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>{{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}</h3>
-
-                <div id="mariadb-options">
+                <div id="mariadb-options" class="row">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mariadbOptions, field) is defined) %}
                             {{ form_row(attribute(form.mariadbOptions, field)) }}
@@ -103,7 +103,7 @@
 
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>{{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}</h3>
-                <div id="postgres-options">
+                <div id="postgres-options" class="row">
                     {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
                         {% if (attribute(form.postgresOptions, field) is defined) %}
                             {{ form_row(attribute(form.postgresOptions, field)) }}
@@ -114,7 +114,7 @@
 
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
                 <h3>{{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}</h3>
-                <div id="elasticsearch-options">
+                <div id="elasticsearch-options" class="row">
                     {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
                 </div>
             </div>
