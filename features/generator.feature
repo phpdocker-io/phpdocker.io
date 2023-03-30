@@ -24,7 +24,7 @@ Feature:
 
   Scenario: Check MySQL validation works
     Given I am on "/"
-    When I check "Enable MySQL"
+    When I check "MySQL"
     And I press "Generate project archive"
     Then the "#container_for_mysql_rootPassword" element should contain "This value should not be blank."
     And the "#container_for_mysql_databaseName" element should contain "This value should not be blank."
@@ -33,7 +33,7 @@ Feature:
 
   Scenario: MySQL config works correctly
     Given I am on "/"
-    When I check "Enable MySQL"
+    When I check "MySQL"
     And I fill in "project_mysqlOptions_rootPassword" with "root pass"
     And I fill in "project_mysqlOptions_databaseName" with "db name"
     And I fill in "project_mysqlOptions_username" with "user"
