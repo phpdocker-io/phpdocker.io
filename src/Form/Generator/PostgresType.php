@@ -46,7 +46,7 @@ class PostgresType extends AbstractGeneratorType
 
         $builder
             ->add('hasPostgres', CheckboxType::class, [
-                'label'    => 'Enable Postgres',
+                'label'    => 'Postgres',
                 'required' => false,
             ])
             ->add('version', ChoiceType::class, [

@@ -39,7 +39,7 @@ class MariaDBType extends AbstractMySQLType
      */
     protected function getHasOptionLabel(): string
     {
-        return 'Enable MariaDB';
+        return 'MariaDB';
     }
 
     /**
