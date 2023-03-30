@@ -19,6 +19,7 @@
     :root {
         --darkest   : #191919;
         --dark      : #2a2a2a;
+        --less-dark : #444444;
         --bright    : #797979;
         --brightest : #c2c2c2;
         --dark-blue : #296292;
@@ -107,6 +108,10 @@
 
     .toggle-on {
         background-color : var(--dark-blue);
+    }
+
+    .toggle-off {
+        background-color : var(--less-dark) !important;
     }
 
     .toggle-handle {

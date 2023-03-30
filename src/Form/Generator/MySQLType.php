@@ -39,7 +39,7 @@ class MySQLType extends AbstractMySQLType
      */
     protected function getHasOptionLabel(): string
     {
-        return 'Enable MySQL';
+        return 'MySQL';
     }
 
     /**

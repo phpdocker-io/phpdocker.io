@@ -35,19 +35,19 @@ class ProjectType extends AbstractGeneratorType
         $builder
             ->add('hasMemcached', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Enable Memcached',
+                'label'    => 'Memcached',
             ])
             ->add('hasRedis', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Enable Redis',
+                'label'    => 'Redis',
             ])
             ->add('hasMailhog', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Enable Mailhog',
+                'label'    => 'Mailhog',
             ])
             ->add('hasClickhouse', CheckboxType::class, [
                 'required' => false,
-                'label'    => 'Enable Clickhouse',
+                'label'    => 'Clickhouse',
             ])
             ->add('phpOptions', PhpType::class, [
                 'label'       => 'PHP Options',

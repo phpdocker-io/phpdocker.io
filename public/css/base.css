@@ -120,7 +120,6 @@ form input[type=submit] {
 form .group {
     border         : 2px #444 solid;
     border-radius  : 5px;
-    padding-bottom : 10px;
     margin-bottom  : 1em;
 }
 
@@ -137,10 +136,15 @@ form .group h2 {
 }
 
 form .group h3 {
-    margin           : -15px -15px 15px -15px;
+    margin           : -15px -15px 0 -15px;
     background-color : #444;
     padding          : 0.5em;
     color            : white;
+}
+
+form .row {
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 form .group h3:first-of-type {
