@@ -11,12 +11,6 @@
     "behat/transliterator": {
         "version": "v1.3.0"
     },
-    "composer/pcre": {
-        "version": "1.0.0"
-    },
-    "composer/xdebug-handler": {
-        "version": "2.0.1"
-    },
     "doctrine/annotations": {
         "version": "1.14",
         "recipe": {
@@ -60,21 +54,6 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
-    "infection/abstract-testframework-adapter": {
-        "version": "0.3.1"
-    },
-    "infection/extension-installer": {
-        "version": "0.1.1"
-    },
-    "infection/include-interceptor": {
-        "version": "0.2.4"
-    },
-    "infection/infection": {
-        "version": "0.23.0"
-    },
-    "justinrainbow/json-schema": {
-        "version": "5.2.11"
-    },
     "laminas/laminas-code": {
         "version": "4.4.0"
     },
@@ -89,9 +68,6 @@
     },
     "nikic/php-parser": {
         "version": "v4.11.0"
-    },
-    "ondram/ci-detector": {
-        "version": "3.5.1"
     },
     "phar-io/manifest": {
         "version": "2.0.3"
@@ -142,12 +118,6 @@
     },
     "psr/log": {
         "version": "1.1.4"
-    },
-    "sanmai/later": {
-        "version": "0.1.2"
-    },
-    "sanmai/pipeline": {
-        "version": "v5.1.0"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"
@@ -360,9 +330,6 @@
     "symfony/polyfill-php81": {
         "version": "v1.23.0"
     },
-    "symfony/process": {
-        "version": "v5.3.2"
-    },
     "symfony/property-access": {
         "version": "v4.4.25"
     },
@@ -469,9 +436,6 @@
     "symfony/yaml": {
         "version": "v4.4.25"
     },
-    "thecodingmachine/safe": {
-        "version": "v1.3.3"
-    },
     "theseer/tokenizer": {
         "version": "1.2.0"
     },
@@ -480,9 +444,6 @@
     },
     "twig/twig": {
         "version": "v3.3.2"
-    },
-    "webmozart/assert": {
-        "version": "1.10.0"
     },
     "webmozart/path-util": {
         "version": "2.3.0"

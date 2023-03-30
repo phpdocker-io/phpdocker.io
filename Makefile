@@ -115,9 +115,6 @@ unit-tests:
 coverage-tests:
 	$(PHP_RUN) php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox --colors=always
 
-mutation-tests:
-	$(PHP_RUN) vendor/bin/infection --coverage=reports/infection --threads=$(INFECTION_THREADS) -s --min-msi=0 --min-covered-msi=0
-
 open-coverage-report:
 	xdg-open reports/phpunit/index.html
 

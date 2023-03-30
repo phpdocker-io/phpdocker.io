@@ -32,7 +32,6 @@
         "friends-of-behat/mink-browserkit-driver": "^1.5",
         "friends-of-behat/mink-extension": "^2.5",
         "friends-of-behat/symfony-extension": "^2.2",
-        "infection/infection": "^0.26.4",
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^9.5",
         "symfony/debug-bundle": "^6.0",
@@ -49,7 +48,6 @@
         "sort-packages": true,
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "infection/extension-installer": true,
             "symfony/flex": true,
             "symfony/runtime": true
         }
