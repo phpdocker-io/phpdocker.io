@@ -79,9 +79,7 @@
 
         <div class="row">
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>MySQL</h3>
-                {{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}
-
+                <h3>{{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}</h3>
                 <div id="mysql-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mysqlOptions, field) is defined) %}
@@ -92,8 +90,7 @@
             </div>
 
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>MariaDB</h3>
-                {{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}
+                <h3>{{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}</h3>
 
                 <div id="mariadb-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
@@ -105,9 +102,7 @@
             </div>
 
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>Postgres</h3>
-                {{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}
-
+                <h3>{{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}</h3>
                 <div id="postgres-options">
                     {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
                         {% if (attribute(form.postgresOptions, field) is defined) %}
@@ -118,8 +113,7 @@
             </div>
 
             <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>Elasticsearch</h3>
-                {{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}
+                <h3>{{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}</h3>
                 <div id="elasticsearch-options">
                     {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
                 </div>
