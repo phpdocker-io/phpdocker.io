@@ -29,35 +29,25 @@ class Postgres extends Base
     /**
      * Available versions
      */
-    private const VERSION_111 = '11.1';
-    private const VERSION_110 = '11.0';
-    private const VERSION_106 = '10.6';
-    private const VERSION_105 = '10.5';
-    private const VERSION_104 = '10.4';
-    private const VERSION_103 = '10.3';
-    private const VERSION_102 = '10.2';
-    private const VERSION_101 = '10.1';
-    private const VERSION_100 = '10.0';
-    private const VERSION_96  = '9.6';
-    private const VERSION_95  = '9.5';
-    private const VERSION_94  = '9.4';
+    private const VERSION_15 = '15';
+    private const VERSION_14 = '14';
+    private const VERSION_13 = '13';
+    private const VERSION_12 = '12';
+    private const VERSION_11 = '11';
+    private const VERSION_10 = '10';
+    private const VERSION_96 = '9.6';
 
     private const ALLOWED_VERSIONS = [
-        self::VERSION_111 => '11.1.x',
-        self::VERSION_110 => '11.0.x',
-        self::VERSION_106 => '10.6.x',
-        self::VERSION_105 => '10.5.x',
-        self::VERSION_104 => '10.4.x',
-        self::VERSION_103 => '10.3.x',
-        self::VERSION_102 => '10.2.x',
-        self::VERSION_101 => '10.1.x',
-        self::VERSION_100 => '10.0.x',
-        self::VERSION_96  => '9.6.x',
-        self::VERSION_95  => '9.5.x',
-        self::VERSION_94  => '9.4.x',
+        self::VERSION_15 => '15.x',
+        self::VERSION_14 => '14.x',
+        self::VERSION_13 => '13.x',
+        self::VERSION_12 => '12.x',
+        self::VERSION_11 => '11.x',
+        self::VERSION_10 => '10.x',
+        self::VERSION_96 => '9.6.x',
     ];
 
-    private string $version = self::VERSION_111;
+    private string $version = self::VERSION_15;
     private string $rootUser;
     private string $rootPassword;
     private string $databaseName;

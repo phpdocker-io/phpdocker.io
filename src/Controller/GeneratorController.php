@@ -129,12 +129,15 @@ class GeneratorController extends AbstractController
                 ->setPassword($mariaDbData['password']);
         }
 
+        // For some reason, form data comes with version as int (instead of the original string)
+        // because postgres versions can be cast as int (eg Postgres::VERSION_15 = '15' at some point the form casts
+        // it to 15
         $pgData = $formData['postgresOptions'];
         if ($pgData['hasPostgres'] === true) {
             $project
                 ->getPostgresOptions()
                 ->setEnabled(true)
-                ->setVersion($pgData['version'])
+                ->setVersion((string) $pgData['version'])
                 ->setDatabaseName($pgData['databaseName'])
                 ->setRootUser($pgData['rootUser'])
                 ->setRootPassword($pgData['rootPassword']);

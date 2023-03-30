@@ -26,24 +26,32 @@ class MariaDB extends AbstractMySQL
     /**
      * Available versions
      */
-    private const VERSION_55  = '5.5';
-    private const VERSION_100 = '10.0';
-    private const VERSION_101 = '10.1';
-    private const VERSION_102 = '10.2';
-    private const VERSION_103 = '10.3';
-    private const VERSION_104 = '10.4';
-    private const VERSION_105 = '10.5';
-    private const VERSION_106 = '10.6';
+    private const VERSION_55   = '5.5';
+    private const VERSION_100  = '10.0';
+    private const VERSION_101  = '10.1';
+    private const VERSION_102  = '10.2';
+    private const VERSION_103  = '10.3';
+    private const VERSION_104  = '10.4';
+    private const VERSION_105  = '10.5';
+    private const VERSION_106  = '10.6';
+    private const VERSION_107  = '10.7';
+    private const VERSION_108  = '10.8';
+    private const VERSION_109  = '10.9';
+    private const VERSION_1010 = '10.10';
 
     private const ALLOWED_VERSIONS = [
-        self::VERSION_106 => '10.6.x',
-        self::VERSION_105 => '10.5.x',
-        self::VERSION_104 => '10.4.x',
-        self::VERSION_103 => '10.3.x',
-        self::VERSION_102 => '10.2.x',
-        self::VERSION_101 => '10.1.x',
-        self::VERSION_100 => '10.0.x',
-        self::VERSION_55  => '5.5.x',
+        self::VERSION_1010 => '10.10.x',
+        self::VERSION_109  => '10.9.x',
+        self::VERSION_108  => '10.8.x',
+        self::VERSION_107  => '10.7.x',
+        self::VERSION_106  => '10.6.x',
+        self::VERSION_105  => '10.5.x',
+        self::VERSION_104  => '10.4.x',
+        self::VERSION_103  => '10.3.x',
+        self::VERSION_102  => '10.2.x',
+        self::VERSION_101  => '10.1.x',
+        self::VERSION_100  => '10.0.x',
+        self::VERSION_55   => '5.5.x',
     ];
 
     /**
@@ -51,7 +59,7 @@ class MariaDB extends AbstractMySQL
      */
     public function __construct()
     {
-        $this->version = self::VERSION_106;
+        $this->version = self::VERSION_1010;
     }
 
     protected function getExternalPortOffset(): ?int
