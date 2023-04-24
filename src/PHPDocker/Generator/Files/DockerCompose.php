@@ -181,7 +181,7 @@ class DockerCompose implements GeneratedFileInterface
 
     private function addClickhouse(): self
     {
-        if ($this->project->hasMemcached() === true) {
+        if ($this->project->hasClickhouse() === true) {
             $this->services['clickhouse'] = ['image' => 'clickhouse/clickhouse-server:latest'];
         }
 
