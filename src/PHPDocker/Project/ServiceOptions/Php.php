@@ -54,8 +54,8 @@ class Php extends Base
     public function __construct(
         string $version,
         array $extensions,
-        private bool $hasGit,
-        private string $frontControllerPath
+        private readonly bool $hasGit,
+        private readonly string $frontControllerPath
     ) {
         $this->setEnabled(true);
 

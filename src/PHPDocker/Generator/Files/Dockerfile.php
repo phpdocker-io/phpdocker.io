@@ -27,7 +27,7 @@ class Dockerfile implements GeneratedFileInterface
 {
     private const FILENAME = 'php-fpm' . DIRECTORY_SEPARATOR . 'Dockerfile';
 
-    public function __construct(private Environment $twig, private Project $project)
+    public function __construct(private readonly Environment $twig, private readonly Project $project)
     {
     }
 

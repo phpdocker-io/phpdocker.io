@@ -32,7 +32,7 @@ class DockerCompose implements GeneratedFileInterface
     private string $defaultVolume;
     private int    $basePort;
 
-    public function __construct(private Dumper $yaml, private Project $project, private string $phpIniLocation)
+    public function __construct(private readonly Dumper $yaml, private readonly Project $project, private readonly string $phpIniLocation)
     {
         $this->basePort = $this->project->getGlobalOptions()->getBasePort();
     }

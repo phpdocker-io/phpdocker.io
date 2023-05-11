@@ -35,7 +35,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class GeneratorController extends AbstractController
 {
-    public function __construct(private Generator $generator)
+    public function __construct(private readonly Generator $generator)
     {
     }
 

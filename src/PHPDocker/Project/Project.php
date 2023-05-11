@@ -37,8 +37,8 @@ class Project
     private ServiceOptions\Clickhouse    $clickhouseOptions;
 
     public function __construct(
-        private Php $phpOptions,
-        private ServiceOptions\GlobalOptions $globalOptions,
+        private readonly Php $phpOptions,
+        private readonly ServiceOptions\GlobalOptions $globalOptions,
     ) {
         // Initialise project properties
         $this->nginxOptions         = new ServiceOptions\Nginx();
