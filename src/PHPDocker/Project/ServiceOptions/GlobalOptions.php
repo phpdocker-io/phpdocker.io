@@ -6,7 +6,7 @@ namespace App\PHPDocker\Project\ServiceOptions;
 final class GlobalOptions extends Base
 {
 
-    public function __construct(private int $basePort, private string $appPath, private string $dockerWorkingDir)
+    public function __construct(private readonly int $basePort, private readonly string $appPath, private readonly string $dockerWorkingDir)
     {
     }
 

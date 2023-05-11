@@ -25,7 +25,7 @@ use Twig\Environment;
 
 class ReadmeHtml implements GeneratedFileInterface
 {
-    public function __construct(private Environment $twig, private MarkdownExtra $markdown, private string $readmeMd)
+    public function __construct(private readonly Environment $twig, private readonly MarkdownExtra $markdown, private readonly string $readmeMd)
     {
     }
 

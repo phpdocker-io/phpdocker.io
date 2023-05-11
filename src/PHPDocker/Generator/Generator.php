@@ -41,10 +41,10 @@ class Generator
     private const ARCHIVE_FILENAME = 'phpdocker.zip';
 
     public function __construct(
-        private Archiver $archiver,
-        private Environment $twig,
-        private MarkdownExtra $markdownExtra,
-        private Dumper $yaml,
+        private readonly Archiver $archiver,
+        private readonly Environment $twig,
+        private readonly MarkdownExtra $markdownExtra,
+        private readonly Dumper $yaml,
     ) {
         $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }

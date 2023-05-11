@@ -25,7 +25,7 @@ use Twig\Environment;
 
 class NginxConf implements GeneratedFileInterface
 {
-    public function __construct(private Environment $twig, private Project $project)
+    public function __construct(private readonly Environment $twig, private readonly Project $project)
     {
     }
 

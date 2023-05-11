@@ -26,7 +26,7 @@ use Twig\Environment;
 class PhpIni implements GeneratedFileInterface
 {
 
-    public function __construct(private Environment $twig)
+    public function __construct(private readonly Environment $twig)
     {
     }
 
