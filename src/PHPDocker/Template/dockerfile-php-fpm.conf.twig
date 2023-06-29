@@ -2,9 +2,9 @@ FROM phpdockerio/php:{{ phpVersion }}-fpm
 WORKDIR "{{ dockerWorkingDir }}"
 
 {% if packages %}
-RUN apt-get update; \
-    apt-get -y --no-install-recommends install \
-        {{ packages | join(' \\ \n        ') }}; \
-    apt-get clean; \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apt-get update \
+    && apt-get -y --no-install-recommends install \
+        {{ packages | join(' \\ \n        ') }} \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 {% endif %}
