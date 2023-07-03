@@ -23,7 +23,7 @@ jobs:
       - name: Get Composer Cache Directory
         id: composer-cache
         run: |
-          echo "::set-output name=dir::$(make composer-cache-dir)"
+          echo "dir=$(make composer-cache-dir)" >> $GITHUB_OUTPUT
 
       - uses: actions/cache@v3
         with:
