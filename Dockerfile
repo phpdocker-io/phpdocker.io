@@ -81,8 +81,7 @@ WORKDIR /application
 COPY infrastructure/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # NGINX config: update php-fpm hostname to localhost (same pod in k8s), activate pagespeed config, deactivate SSL
-RUN sed -i "s/php-fpm/localhost/g"       /etc/nginx/conf.d/default.conf \
-    && sed -i "s/# %DEPLOYMENT //g"         /etc/nginx/conf.d/default.conf \
+RUN sed -i "s/# %DEPLOYMENT //g"         /etc/nginx/conf.d/default.conf \
     && sed -i "s/listen 443/#listen 443/g"  /etc/nginx/conf.d/default.conf \
     && sed -i "s/ssl_/#ssl_/g"              /etc/nginx/conf.d/default.conf
 
