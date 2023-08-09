@@ -121,7 +121,7 @@ open-coverage-report:
 ### Deployment targets
 PHP_CONTAINER=phpdockerio/site-php
 NGX_CONTAINER=phpdockerio/site-ngx
-CONTAINER_ARCH=linux/arm/v7,linux/amd64
+CONTAINER_ARCH=linux/amd64
 build-and-push:
 	docker buildx build --target=backend-deployment  --tag $(PHP_CONTAINER):$(BUILD_TAG) --tag $(PHP_CONTAINER):latest --platform $(CONTAINER_ARCH) --pull --push .
 	docker buildx build --target=frontend-deployment --tag $(NGX_CONTAINER):$(BUILD_TAG) --tag $(NGX_CONTAINER):latest --platform $(CONTAINER_ARCH) --pull --push .
