@@ -129,10 +129,10 @@ function doMainFormMagic () {
     // Analytics
     form.on('submit', function (event) {
         $('input[type=checkbox]').each(function () {
-            ga('send', 'event', 'builder-form', 'builder-choices', $(this).attr('name'), $(this).is(':checked'))
+            gtag('send', 'event', 'builder-form', 'builder-choices', $(this).attr('name'), $(this).is(':checked'))
         })
 
-        ga('send', 'event', 'builder-form', 'form-submission')
+        gtag('send', 'event', 'builder-form', 'form-submission')
     })
 
     // Bootstrap toggles
