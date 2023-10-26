@@ -96,7 +96,7 @@ class Archiver
     private function prefixFilename(string $filename): string
     {
         if ($this->baseFolder !== '') {
-            return sprintf('%s%s%s', $this->baseFolder, DIRECTORY_SEPARATOR, $filename);
+            return sprintf('%s%s%s', $this->baseFolder, '/', $filename);
         }
 
         return $filename;

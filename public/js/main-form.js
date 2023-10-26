@@ -33,7 +33,7 @@ function doMainFormMagic () {
         }
 
         // Toggle on checkbox changes
-        switchNode.change(function () {
+        switchNode.on('change', function () {
             if (switchNode.prop('checked') == true) {
                 enableOptions()
             } else {
@@ -84,7 +84,7 @@ function doMainFormMagic () {
 
     /*** UGLY HACK ***/
     // Open multiselects
-    $('button.multiselect').click()
+    $('button.multiselect').trigger("click")
 
     // Unfortunately, the previous "click" on the multiselects makes the page scroll on load
     // Negate
@@ -93,13 +93,13 @@ function doMainFormMagic () {
     /*** END OF UGLY HACK ***/
 
     // Focus on the first form field
-    $('form:not(.filter) :input:visible:enabled:first').focus()
+    $('form:not(.filter) :input:visible:enabled:first').on('focus')
 
     /**
      * Change multiselect based on php version chosen
      */
     let phpVersionSelector = $('#project_phpOptions_version')
-    phpVersionSelector.change(function () {
+    phpVersionSelector.on('change', function () {
         extensionMultiSelects.parents('.form-group').hide()
 
         let chosenVersion = '82'
@@ -119,7 +119,7 @@ function doMainFormMagic () {
     const form          = $('#generator')
     const hiddenFieldId = 'hidden-phpversion'
 
-    phpVersionSelector.change(function () {
+    phpVersionSelector.on('change',function () {
         let hiddenField = $('#' + hiddenFieldId)
         if (hiddenField.length) {
             hiddenField.val(phpVersionSelector.val())
@@ -127,12 +127,12 @@ function doMainFormMagic () {
     })
 
     // Analytics
-    form.submit(function (event) {
+    form.on('submit', function (event) {
         $('input[type=checkbox]').each(function () {
-            ga('send', 'event', 'builder-form', 'builder-choices', $(this).attr('name'), $(this).is(':checked'))
+            gtag('send', 'event', 'builder-form', 'builder-choices', $(this).attr('name'), $(this).is(':checked'))
         })
 
-        ga('send', 'event', 'builder-form', 'form-submission')
+        gtag('send', 'event', 'builder-form', 'form-submission')
     })
 
     // Bootstrap toggles
