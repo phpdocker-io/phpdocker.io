@@ -10,7 +10,7 @@
         "ext-redis": "*",
         "ext-zip": "*",
         "doctrine/annotations": "^2.0",
-        "michelf/php-markdown": "^1.9",
+        "michelf/php-markdown": "^2.0",
         "symfony/console": "^6.0",
         "symfony/dotenv": "^6.0",
         "symfony/flex": "^v2.4",
