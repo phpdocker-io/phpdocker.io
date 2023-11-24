@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
-/*
- * Copyright 2021 Luis Alberto Pabón Flores
+/**
+ * Copyright 2023 Luis Alberto Pabón Flores
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
