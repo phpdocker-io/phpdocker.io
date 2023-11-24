@@ -9,7 +9,7 @@
         "ext-iconv": "*",
         "ext-redis": "*",
         "ext-zip": "*",
-        "doctrine/annotations": "^1.13",
+        "doctrine/annotations": "^2.0",
         "michelf/php-markdown": "^1.9",
         "symfony/console": "^6.0",
         "symfony/dotenv": "^6.0",
