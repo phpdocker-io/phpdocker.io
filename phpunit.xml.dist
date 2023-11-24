@@ -23,9 +23,9 @@
         </testsuite>
     </testsuites>
 
-    <coverage>
+    <coverage processUncoveredFiles="true">
         <include>
-            <directory>src</directory>
+            <directory suffix=".php">src</directory>
         </include>
         <report>
             <clover outputFile="reports/phpunit/coverage.xml"/>
@@ -38,6 +38,8 @@
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
     </listeners>
 
+    <!-- Uncomment when adding extensions
     <extensions>
     </extensions>
+    -->
 </phpunit>
