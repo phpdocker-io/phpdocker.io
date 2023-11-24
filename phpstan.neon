@@ -1,4 +1,11 @@
 parameters:
+  paths:
+    - bin/
+    - config/
+    - public/
+    - src/
+    - tests/
+
   checkMissingIterableValueType: false
   ignoreErrors:
     - '#Access to an undefined property Symfony\\Component\\Validator\\Constraint::\$message#'
