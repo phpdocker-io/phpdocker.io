@@ -102,14 +102,14 @@ function doMainFormMagic () {
     phpVersionSelector.on('change', function () {
         extensionMultiSelects.parents('.form-group').hide()
 
-        let chosenVersion = '82'
+        let chosenVersion = '83'
         switch ($(this).val()) {
-            case '8.0':
-                chosenVersion = '80'
-                break
-
             case '8.1':
                 chosenVersion = '81'
+                break
+
+            case '8.2':
+                chosenVersion = '82'
                 break
         }
 
