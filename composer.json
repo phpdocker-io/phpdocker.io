@@ -11,18 +11,18 @@
         "ext-zip": "*",
         "doctrine/annotations": "^2.0",
         "michelf/php-markdown": "^2.0",
-        "symfony/console": "^6.0",
-        "symfony/dotenv": "^6.0",
+        "symfony/console": "^6.4",
+        "symfony/dotenv": "^6.4",
         "symfony/flex": "^v2.4",
-        "symfony/form": "^6.0",
-        "symfony/framework-bundle": "^6.0",
-        "symfony/mime": "^6.0",
+        "symfony/form": "^6.4",
+        "symfony/framework-bundle": "^6.4",
+        "symfony/mime": "^6.4",
         "symfony/monolog-bundle": "^3.7",
-        "symfony/runtime": "^6.0",
-        "symfony/security-csrf": "^6.0",
-        "symfony/twig-bundle": "^6.0",
-        "symfony/validator": "^6.0",
-        "symfony/yaml": "^6.0",
+        "symfony/runtime": "^6.4",
+        "symfony/security-csrf": "^6.4",
+        "symfony/twig-bundle": "^6.4",
+        "symfony/validator": "^6.4",
+        "symfony/yaml": "^6.4",
         "twig/extra-bundle": "^3.0",
         "twig/twig": "^3.0"
     },
@@ -34,11 +34,11 @@
         "friends-of-behat/symfony-extension": "^2.2",
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^9.5",
-        "symfony/debug-bundle": "^6.0",
+        "symfony/debug-bundle": "^6.4",
         "symfony/phpunit-bridge": "^5.3",
-        "symfony/stopwatch": "^6.0",
-        "symfony/var-dumper": "^6.0",
-        "symfony/web-profiler-bundle": "^6.0"
+        "symfony/stopwatch": "^6.4",
+        "symfony/var-dumper": "^6.4",
+        "symfony/web-profiler-bundle": "^6.4"
     },
     "config": {
         "optimize-autoloader": true,
@@ -85,7 +85,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "^6.0"
+            "require": "^6.4"
         }
     }
 }
