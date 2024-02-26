@@ -55,7 +55,7 @@ COPY public/index.php ./public/
 
 RUN touch ./.env
 
-RUN composer dump-autoload --optimize --classmap-authoritative --no-scripts \
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer dump-autoload --optimize --classmap-authoritative --no-scripts \
     && bin/console cache:warmup \
     && chown www-data:www-data var/ -Rf
 
