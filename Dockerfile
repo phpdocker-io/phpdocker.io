@@ -1,4 +1,4 @@
-ARG PHP_VERSION=8.2
+ARG PHP_VERSION=8.3
 
 ###########
 # Backend #
@@ -88,5 +88,5 @@ RUN sed -i "s/php-fpm/localhost/g"       /etc/nginx/conf.d/default.conf \
 
 COPY --from=frontend-installer node_modules/@bower_components public/vendor
 
-COPY public/css    public/css
-COPY public/js     public/js
+COPY public/css public/css
+COPY public/js  public/js
