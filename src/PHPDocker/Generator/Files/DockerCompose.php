@@ -213,6 +213,7 @@ class DockerCompose implements GeneratedFileInterface
             'volumes'     => [
                 $this->defaultVolume,
                 sprintf('./phpdocker/%s:/etc/php/%s/fpm/conf.d/99-overrides.ini', $this->phpIniLocation, $shortVersion),
+                sprintf('./phpdocker/%s:/etc/php/%s/cli/conf.d/99-overrides.ini', $this->phpIniLocation, $shortVersion),
             ],
         ];
 
