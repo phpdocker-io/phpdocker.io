@@ -29,13 +29,13 @@ class Postgres extends Base
     /**
      * Available versions
      */
-    private const VERSION_15 = '15';
-    private const VERSION_14 = '14';
-    private const VERSION_13 = '13';
-    private const VERSION_12 = '12';
-    private const VERSION_11 = '11';
-    private const VERSION_10 = '10';
-    private const VERSION_96 = '9.6';
+    private const string VERSION_15 = '15';
+    private const string VERSION_14 = '14';
+    private const string VERSION_13 = '13';
+    private const string VERSION_12 = '12';
+    private const string VERSION_11 = '11';
+    private const string VERSION_10 = '10';
+    private const string VERSION_96 = '9.6';
 
     private const ALLOWED_VERSIONS = [
         self::VERSION_15 => '15.x',

@@ -31,7 +31,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class ElasticsearchType extends AbstractGeneratorType
 {
-    private const VALIDATION_GROUP = 'elasticsearchOptions';
+    private const string VALIDATION_GROUP = 'elasticsearchOptions';
 
     /**
      * Builds the form definition.
