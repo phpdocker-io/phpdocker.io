@@ -26,17 +26,17 @@ class MariaDB extends AbstractMySQL
     /**
      * Available versions
      */
-    private const VERSION_104  = '10.4';
-    private const VERSION_105  = '10.5';
-    private const VERSION_106  = '10.6';
-    private const VERSION_107  = '10.7';
-    private const VERSION_108  = '10.8';
-    private const VERSION_109  = '10.9';
-    private const VERSION_1010 = '10.10';
-    private const VERSION_1011 = '10.11';
-    private const VERSION_110 = '11.0';
+    private const string VERSION_104 = '10.4';
+    private const string VERSION_105 = '10.5';
+    private const string VERSION_106 = '10.6';
+    private const string VERSION_107 = '10.7';
+    private const string VERSION_108 = '10.8';
+    private const string VERSION_109 = '10.9';
+    private const string VERSION_1010 = '10.10';
+    private const string VERSION_1011 = '10.11';
+    private const string VERSION_110  = '11.0';
 
-    private const ALLOWED_VERSIONS = [
+    private const array ALLOWED_VERSIONS = [
         self::VERSION_110 => '11.0.x',
         self::VERSION_1011 => '10.11.x',
         self::VERSION_1010 => '10.10.x',

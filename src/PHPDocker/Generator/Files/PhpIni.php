@@ -20,13 +20,12 @@ declare(strict_types=1);
 namespace App\PHPDocker\Generator\Files;
 
 use App\PHPDocker\Interfaces\GeneratedFileInterface;
-use App\PHPDocker\Project\Project;
 use Twig\Environment;
 
-class PhpIni implements GeneratedFileInterface
+readonly class PhpIni implements GeneratedFileInterface
 {
 
-    public function __construct(private readonly Environment $twig)
+    public function __construct(private Environment $twig)
     {
     }
 

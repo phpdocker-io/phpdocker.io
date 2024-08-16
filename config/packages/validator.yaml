@@ -1,6 +1,7 @@
 framework:
   validation:
-    enable_annotations: true
+    # Mandatory
+    email_validation_mode: strict
 
 when@test:
     framework:

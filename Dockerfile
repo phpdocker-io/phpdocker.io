@@ -73,11 +73,9 @@ RUN yarn install --immutable
 
 ## Actual deployable frontend image
 FROM nginx:alpine AS frontend-deployment
-#FROM phpdockerio/nginx-pagespeed:latest AS frontend-deployment
 
 WORKDIR /application
 
-#COPY infrastructure/nginx/pagespeed.conf /etc/nginx/pagespeed.conf
 COPY infrastructure/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # NGINX config: update php-fpm hostname to localhost (same pod in k8s), activate pagespeed config, deactivate SSL

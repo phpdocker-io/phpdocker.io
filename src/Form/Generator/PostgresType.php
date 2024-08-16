@@ -32,7 +32,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class PostgresType extends AbstractGeneratorType
 {
-    private const VALIDATION_GROUP = 'postgresOptions';
+    private const string VALIDATION_GROUP = 'postgresOptions';
 
     /**
      * Builds the form definition.
