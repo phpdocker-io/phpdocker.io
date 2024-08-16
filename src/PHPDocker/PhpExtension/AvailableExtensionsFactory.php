@@ -33,7 +33,7 @@ class AvailableExtensionsFactory
     /**
      * Supported PHP versions
      */
-    private const SUPPORTED_VERSIONS = [
+    private const array SUPPORTED_VERSIONS = [
         self::PHP_VERSION_81 => Php81AvailableExtensions::class,
         self::PHP_VERSION_82 => Php82AvailableExtensions::class,
         self::PHP_VERSION_83 => Php83AvailableExtensions::class,

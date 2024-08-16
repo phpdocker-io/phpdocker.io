@@ -36,7 +36,7 @@ class MariaDB extends AbstractMySQL
     private const string VERSION_1011 = '10.11';
     private const string VERSION_110  = '11.0';
 
-    private const ALLOWED_VERSIONS = [
+    private const array ALLOWED_VERSIONS = [
         self::VERSION_110 => '11.0.x',
         self::VERSION_1011 => '10.11.x',
         self::VERSION_1010 => '10.10.x',

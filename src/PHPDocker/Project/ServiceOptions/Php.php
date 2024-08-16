@@ -40,7 +40,7 @@ class Php extends Base
     /**
      * Supported PHP versions
      */
-    private const SUPPORTED_VERSIONS = [
+    private const array SUPPORTED_VERSIONS = [
         self::PHP_VERSION_83,
         self::PHP_VERSION_82,
         self::PHP_VERSION_81,

@@ -37,7 +37,7 @@ class Postgres extends Base
     private const string VERSION_10 = '10';
     private const string VERSION_96 = '9.6';
 
-    private const ALLOWED_VERSIONS = [
+    private const array ALLOWED_VERSIONS = [
         self::VERSION_15 => '15.x',
         self::VERSION_14 => '14.x',
         self::VERSION_13 => '13.x',
