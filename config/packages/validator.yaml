@@ -1,5 +1,6 @@
 framework:
   validation:
+    # Mandatory
     email_validation_mode: strict
 
 when@test:
