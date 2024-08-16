@@ -1,7 +1,12 @@
 framework:
-  validation:
-    # Mandatory
-    email_validation_mode: strict
+    validation:
+        # Mandatory
+        email_validation_mode: strict
+
+        # Enables validator auto-mapping support.
+        # For instance, basic validation constraints will be inferred from Doctrine's metadata.
+        #auto_mapping:
+        #    App\Entity\: []
 
 when@test:
     framework:
