@@ -14,7 +14,7 @@ jobs:
     steps:
 
       # Mark issues and PRs with no activity as stale after a while, and close them after a while longer
-      - uses: actions/stale@v3
+      - uses: actions/stale@v9
         with:
           stale-issue-message: 'Marking issue as stale'
           stale-pr-message: 'Marking PR as stale'
