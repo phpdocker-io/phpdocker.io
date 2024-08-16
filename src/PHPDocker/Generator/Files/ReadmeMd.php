@@ -23,9 +23,9 @@ use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use App\PHPDocker\Project\Project;
 use Twig\Environment;
 
-class ReadmeMd implements GeneratedFileInterface
+readonly class ReadmeMd implements GeneratedFileInterface
 {
-    public function __construct(private readonly Environment $twig, private readonly Project $project)
+    public function __construct(private Environment $twig, private Project $project)
     {
     }
 
