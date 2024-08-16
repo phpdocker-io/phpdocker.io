@@ -4,7 +4,7 @@ MKCERT_LOCATION=bin/mkcert
 HOSTS_VERSION=3.6.4
 HOSTS_LOCATION=bin/hosts
 SITE_HOST=phpdocker.local
-PHP_RUN=docker-compose run -e XDEBUG_MODE=coverage --rm php-fpm
+PHP_RUN=docker compose run -e XDEBUG_MODE=coverage --rm php-fpm
 
 INFECTION_THREADS?=8
 BUILD_TAG?:=$(shell date +'%Y-%m-%d-%H-%M-%S')-$(shell git rev-parse --short HEAD)
@@ -27,10 +27,10 @@ echo-build-tag-2:
 	echo $(BUILD_TAG)
 
 start:
-	docker-compose up -d --scale php-fpm=2
+	docker compose up -d --scale php-fpm=2
 
 stop:
-	docker-compose stop
+	docker compose stop
 
 shell:
 	$(PHP_RUN) bash
@@ -38,12 +38,12 @@ shell:
 init: clean install-mkcert create-certs install-hosts clean-hosts init-hosts build-local install-dependencies install-assets-dev fix-permissions fix-cache-permissions-dev start
 
 clean: clear-cache
-	docker-compose down
+	docker compose down
 	sudo rm -rf vendor
 	make clear-cache
 
 build-local:
-	docker-compose build
+	docker compose build
 
 fix-permissions:
 	sudo chown -Rf $(shell id -u):$(shell id -g) .
