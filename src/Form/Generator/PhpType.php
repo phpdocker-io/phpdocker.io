@@ -22,6 +22,7 @@ namespace App\Form\Generator;
 use App\PHPDocker\PhpExtension\Php81AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php82AvailableExtensions;
 use App\PHPDocker\PhpExtension\Php83AvailableExtensions;
+use App\PHPDocker\PhpExtension\Php84AvailableExtensions;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\ServiceOptions\Php;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -94,6 +95,13 @@ class PhpType extends AbstractGeneratorType
                 'choices'     => $this->getExtensionChoices((new Php83AvailableExtensions())->getOptional()),
                 'multiple'    => true,
                 'label'       => 'Extensions (PHP 8.3)',
+                'required'    => false,
+                'constraints' => $phpOptionsConstraints,
+            ])
+            ->add('phpExtensions84', ChoiceType::class, [
+                'choices'     => $this->getExtensionChoices((new Php84AvailableExtensions())->getOptional()),
+                'multiple'    => true,
+                'label'       => 'Extensions (PHP 8.4)',
                 'required'    => false,
                 'constraints' => $phpOptionsConstraints,
             ]);
