@@ -1,4 +1,4 @@
-name: Deploy application
+name: Build containers
 
 on:
   # Ensure we're run after tests
@@ -20,7 +20,7 @@ env:
   TEST_URL: https://phpdocker.io/
 
 jobs:
-  deploy:
+  build-and-deploy:
     # We only deploy master
     if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
