@@ -64,7 +64,7 @@ abstract class AbstractMySQL extends Base
         return $this->rootPassword;
     }
 
-    public function setRootPassword(string $rootPassword = null): self
+    public function setRootPassword(?string $rootPassword): self
     {
         $this->rootPassword = $rootPassword;
 
@@ -76,7 +76,7 @@ abstract class AbstractMySQL extends Base
         return $this->databaseName;
     }
 
-    public function setDatabaseName(string $databaseName = null): self
+    public function setDatabaseName(?string $databaseName): self
     {
         $this->databaseName = $databaseName;
 
@@ -88,7 +88,7 @@ abstract class AbstractMySQL extends Base
         return $this->username;
     }
 
-    public function setUsername(string $username = null): self
+    public function setUsername(?string $username): self
     {
         $this->username = $username;
 
@@ -100,7 +100,7 @@ abstract class AbstractMySQL extends Base
         return $this->password;
     }
 
-    public function setPassword(string $password = null): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
