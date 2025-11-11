@@ -110,7 +110,7 @@ static-analysis:
 	$(PHP_RUN) vendor/bin/phpstan --ansi -v analyse -l 9 src
 
 unit-tests:
-	$(PHP_RUN) vendor/bin/phpunit --testdox --colors=always
+	$(PHP_RUN) vendor/bin/phpunit --no-coverage --testdox --colors=always
 
 coverage-tests:
 	$(PHP_RUN) php -d zend_extension=xdebug.so vendor/bin/phpunit --testdox --colors=always

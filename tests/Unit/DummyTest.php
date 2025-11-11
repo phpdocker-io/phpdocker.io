@@ -20,13 +20,12 @@ declare(strict_types=1);
 namespace App\Tests\Unit;
 
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class DummyTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function dummyTest(): void
     {
         self::assertIsString('Dummy test placed here to check our phpunit setup is working');

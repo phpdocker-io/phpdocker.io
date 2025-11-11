@@ -32,9 +32,8 @@
         "friends-of-behat/mink-extension": "^2.5",
         "friends-of-behat/symfony-extension": "^2.2",
         "phpstan/phpstan": "^1.4",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^12.0",
         "symfony/debug-bundle": "^7.0",
-        "symfony/phpunit-bridge": "^5.3",
         "symfony/stopwatch": "^7.0",
         "symfony/var-dumper": "^7.0",
         "symfony/web-profiler-bundle": "^7.0"
