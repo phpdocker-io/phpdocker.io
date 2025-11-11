@@ -19,6 +19,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
+use PHPUnit\Framework\Attributes\Test;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -36,9 +37,7 @@ class GeneratorTest extends WebTestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function generatorRedirectsToHome(): void
     {
         $this->client->request(method: 'GET', uri: '/generator');
@@ -46,9 +45,7 @@ class GeneratorTest extends WebTestCase
         self::assertResponseRedirects(expectedLocation: 'http://localhost/', expectedCode: 301);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function generatorLoads(): void
     {
         $this->client->request(method: 'GET', uri: '/');
