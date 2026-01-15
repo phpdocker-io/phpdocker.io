@@ -26,7 +26,6 @@ use InvalidArgumentException;
  */
 class AvailableExtensionsFactory
 {
-    private const string PHP_VERSION_81 = '8.1';
     private const string PHP_VERSION_82 = '8.2';
     private const string PHP_VERSION_83 = '8.3';
     private const string PHP_VERSION_84 = '8.4';
@@ -36,7 +35,6 @@ class AvailableExtensionsFactory
      * Supported PHP versions
      */
     private const array SUPPORTED_VERSIONS = [
-        self::PHP_VERSION_81 => Php81AvailableExtensions::class,
         self::PHP_VERSION_82 => Php82AvailableExtensions::class,
         self::PHP_VERSION_83 => Php83AvailableExtensions::class,
         self::PHP_VERSION_84 => Php84AvailableExtensions::class,
