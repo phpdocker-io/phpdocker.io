@@ -1,33 +1,67 @@
 PHPDocker.io
 ============
 
-This is the repository for both the website and the generator over at [PHPDocker.io](http://phpdocker.io), opensourced on an Apache 2.0 license and open for anyone to contribute as they please
+PHPDocker.io is a web-based generator for Docker environments tailored for PHP applications. This repository contains both the website and the generator core, open-sourced under the Apache 2.0 license.
+
+Visit us at [phpdocker.io](https://phpdocker.io).
+
+Tech Stack
+----------
+
+- **PHP**: 8.4
+- **Framework**: Symfony 7.0
+- **Frontend**: Yarn / Symfony Asset
+- **Storage**: Redis
+- **Environment**: Docker & Docker Compose
 
 Contributing
 ------------
 
 Fork, tweak & pull request.
 
-Please follow PSR code formatting standards, and Symfony best practices and, in general, do what you see already done in the current code.
+Please follow PSR-12 code formatting standards, Symfony best practices, and maintain strict typing. Ensure all changes pass static analysis at level 9.
+
+See [AGENTS.md](./AGENTS.md) for a more detailed guide for developers and AI agents.
 
 Running the project
 -------------------
 
-Project is given with a [PHPDocker.io](http://phpdocker.io) generated environment. 
+The project comes with its own PHPDocker.io generated environment.
 
-Recommended installation is running a `make init` script: this will set up the app (bower install, composer install, etc) through docker and docker-compose commands.
+### Prerequisites
 
-  * Clone
-  * Run `make init` - this will:
-     * clean up caches
-     * provision a cert using `mkcert`
-     * create a hosts entry (`phpdocker.local`)
-     * composer and bower install
-     * ensure web assets are available    
-     * start up the environment
+- Docker and Docker Compose
+- `mkcert` (for local SSL)
+- `make`
 
-  * You can then head off to the [/generator](https://phpdocker.local:10000/generator) route.
+### Installation
 
-This is an initial fail-safe set up and not always you need to run it, after it's done once you'll just need to do a good old `docker-compose up -d`.
+The recommended installation is running the `make init` script. This will automate the setup through Docker:
 
-Running the app on **Windows** is possible using Wsl2 and Docker. More info here: [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). App will be available at [https://localhost:10000/generator](https://phpdocker.local:10000/generator) route.
+```bash
+make init
+```
+
+This command performs the following:
+- Cleans up caches
+- Provisions a local SSL certificate using `mkcert`
+- Creates a hosts entry (`phpdocker.local`)
+- Installs PHP dependencies via Composer
+- Installs JS dependencies via Yarn
+- Installs web assets
+- Starts up the Docker environment
+
+Once finished, the application will be available at [https://phpdocker.local:10000](https://phpdocker.local:10000). You can head directly to the [/generator](https://phpdocker.local:10000/generator) route.
+
+### Common Commands
+
+- `make start`: Start the environment.
+- `make stop`: Stop the environment.
+- `make shell`: Open a bash shell inside the PHP container.
+- `make static-analysis`: Run PHPStan (level 9).
+- `make unit-tests`: Run PHPUnit.
+- `make behaviour`: Run Behat tests.
+
+### Windows Support
+
+Running the app on **Windows** is possible using WSL2 and Docker. More info here: [Docker Desktop WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/). The app will be available at [https://localhost:10000](https://localhost:10000).
