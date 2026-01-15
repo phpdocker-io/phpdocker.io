@@ -32,6 +32,7 @@ class Php extends Base
     public const string PHP_VERSION_82 = '8.2';
     public const string PHP_VERSION_83 = '8.3';
     public const string PHP_VERSION_84 = '8.4';
+    public const string PHP_VERSION_85 = '8.5';
 
     private string $version;
 
@@ -42,6 +43,7 @@ class Php extends Base
      * Supported PHP versions
      */
     private const array SUPPORTED_VERSIONS = [
+        self::PHP_VERSION_85,
         self::PHP_VERSION_84,
         self::PHP_VERSION_83,
         self::PHP_VERSION_82,
