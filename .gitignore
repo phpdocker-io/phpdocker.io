@@ -36,3 +36,4 @@ phpstan.neon
 ###< phpstan/phpstan ###
 
 .claude/settings.local.json
+config/reference.php
