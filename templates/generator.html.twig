@@ -97,7 +97,7 @@
                 <div id="mariadb-options" class="row">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mariadbOptions, field) is defined) %}
-                            {{ form_row(attribute(form.mariadbOptions, field)) }}
+                            <div id="container_for_mariadb_{{ field }}">{{ form_row(attribute(form.mariadbOptions, field)) }}</div>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -108,7 +108,7 @@
                 <div id="postgres-options" class="row">
                     {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
                         {% if (attribute(form.postgresOptions, field) is defined) %}
-                            {{ form_row(attribute(form.postgresOptions, field)) }}
+                            <div id="container_for_postgres_{{ field }}">{{ form_row(attribute(form.postgresOptions, field)) }}</div>
                         {% endif %}
                     {% endfor %}
                 </div>

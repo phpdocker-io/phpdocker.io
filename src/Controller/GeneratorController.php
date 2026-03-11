@@ -35,8 +35,10 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class GeneratorController extends AbstractController
 {
-    public function __construct(private readonly Generator $generator)
-    {
+    public function __construct(
+        private readonly Generator $generator,
+        private readonly string $environment,
+    ) {
     }
 
     /**
@@ -55,12 +57,14 @@ class GeneratorController extends AbstractController
             // Generate zip file with docker project
             $zipFile = $this->generator->generate($project);
 
-            // Generate file download & cleanup
+            // Generate file download & cleanup (keep file in test env so functional tests can read it)
             $response = new BinaryFileResponse($zipFile->getTmpFilename());
             $response
                 ->prepare($request)
-                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename())
-                ->deleteFileAfterSend(true);
+                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $zipFile->getFilename());
+            if ($this->environment !== 'test') {
+                $response->deleteFileAfterSend(true);
+            }
 
             return $response;
         }

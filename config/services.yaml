@@ -26,9 +26,14 @@ services:
   App\Controller\:
     resource: '../src/Controller/'
     tags: [ 'controller.service_arguments' ]
+    bind:
+      $environment: '%kernel.environment%'
 
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones
+
+  App\PHPDocker\Zip\Archiver:
+    shared: false
 
   # Instantiate some third party libraries we need for autowiring our own services
   Michelf\MarkdownExtra: ~
