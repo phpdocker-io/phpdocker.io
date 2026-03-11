@@ -4,86 +4,77 @@
 {% set activePage = 'generator' %}
 {% block pageTitle %} - Generator{% endblock %}
 
-{% set formGroupClass = 'group' %}
-
-{% set bigColumn = 'col col-lg-12 col-md-12 col-sm-12 col-xs-12' %}
-{% set quarterColumn = 'col col-lg-3 col-md-3 col-sm-12 col-xs-12' %}
-
 {% block body %}
     <form method="post" id="generator" action="{{ path('generator') }}">
-        <div class="row">
-            {{ form_errors(form) }}
-        </div>
-        <div class="row">
-            <div class="{{ formGroupClass }} {{ bigColumn }}">
-                <h3>Global configuration</h3>
-                <div class="row">
+        {{ form_errors(form) }}
+
+        {# Global configuration #}
+        <div class="form-panel">
+            <h3 class="panel-header">Global configuration</h3>
+            <div class="panel-body">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {% for field in ['basePort', 'appPath', 'dockerWorkingDir'] %}
-                        <div class="col col-lg-4 col-md-4"
-                             id="container_for_{{ field }}">{{ form_row(attribute(form.globalOptions, field)) }}</div>
+                        <div id="container_for_{{ field }}">{{ form_row(attribute(form.globalOptions, field)) }}</div>
                     {% endfor %}
                 </div>
-                <div class="row">
-                    <div class="col col-lg-4 col-md-4">
-                        <div class="note">Initial port for services exposed from docker to your machine</div>
-                    </div>
-                    <div class="col col-lg-4 col-md-4">
-                        <div class="note">Location of your app's source code relative to docker-compose.yaml</div>
-                    </div>
-                    <div class="col col-lg-4 col-md-4">
-                        <div class="note">Working directory for all containers</div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-1">
+                    <p class="form-note">Initial port for services exposed from docker to your machine</p>
+                    <p class="form-note">Location of your app's source code relative to docker-compose.yaml</p>
+                    <p class="form-note">Working directory for all containers</p>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="{{ formGroupClass }} col col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                <h3>PHP configuration</h3>
-                <div class="row">
-                    <div class="col col-lg-6 col-md-6">
-                        {{ form_row(attribute(form.phpOptions, 'version')) }}
-                        {{ form_row(attribute(form.phpOptions, 'frontControllerPath')) }}
-                        {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
+        {# PHP + Zero-config row #}
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-4">
+            <div class="form-panel lg:col-span-3">
+                <h3 class="panel-header">PHP configuration</h3>
+                <div class="panel-body">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            {{ form_row(attribute(form.phpOptions, 'version')) }}
+                            {{ form_row(attribute(form.phpOptions, 'frontControllerPath')) }}
+                            {{ form_row(attribute(form.phpOptions, 'hasGit')) }}
 
-                        <div class="note">
-                            <p>Please note:</p>
-                            <ul>
-                                <li>Extensions already included on base image: APC,
-                                    cURL, JSON, Sodium, MBString, OPCache, Readline, XML and Zip.
-                                </li>
-                                <li>Each PHP version supports a different set of extensions to the others.</li>
-                            </ul>
+                            <div class="form-note mt-2">
+                                <p class="mb-1">Please note:</p>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Extensions already included on base image: APC,
+                                        cURL, JSON, Sodium, MBString, OPCache, Readline, XML and Zip.
+                                    </li>
+                                    <li>Each PHP version supports a different set of extensions to the others.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            {{ form_row(attribute(form.phpOptions, 'phpExtensions85')) }}
+                            {{ form_row(attribute(form.phpOptions, 'phpExtensions84')) }}
+                            {{ form_row(attribute(form.phpOptions, 'phpExtensions83')) }}
+                            {{ form_row(attribute(form.phpOptions, 'phpExtensions82')) }}
                         </div>
                     </div>
-
-                    <div class="col col-lg-6 col-md-6">
-                        {{ form_row(attribute(form.phpOptions, 'phpExtensions85')) }}
-
-                        {{ form_row(attribute(form.phpOptions, 'phpExtensions84')) }}
-
-                        {{ form_row(attribute(form.phpOptions, 'phpExtensions83')) }}
-
-                        {{ form_row(attribute(form.phpOptions, 'phpExtensions82')) }}
-                    </div>
                 </div>
             </div>
-            <div class="{{ formGroupClass }} col col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <h3>Zero-config Services</h3>
-                <p class="note">The following services take no additional configuration parameters.</p>
 
-                {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse'] %}
-                    {% if (attribute(form, field) is defined) %}
-                        <div class="form-group">{{ form_widget(attribute(form, field)) }}</div>
-                    {% endif %}
-                {% endfor %}
+            <div class="form-panel lg:col-span-1">
+                <h3 class="panel-header">Zero-config Services</h3>
+                <div class="panel-body">
+                    <p class="form-note mb-3">The following services take no additional configuration parameters.</p>
+                    {% for field in ['hasMemcached', 'hasRedis', 'hasMailhog', 'hasClickhouse'] %}
+                        {% if (attribute(form, field) is defined) %}
+                            {{ form_row(attribute(form, field)) }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>{{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }}</h3>
-                <div id="mysql-options" class="row">
+        {# Database + Elasticsearch panels #}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+            <div class="form-panel">
+                <h3 class="panel-header">{{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }} MySQL</h3>
+                <div class="panel-body" id="mysql-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mysqlOptions, field) is defined) %}
                             <div id="container_for_mysql_{{ field }}">{{ form_row(attribute(form.mysqlOptions, field)) }}</div>
@@ -92,9 +83,9 @@
                 </div>
             </div>
 
-            <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>{{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }}</h3>
-                <div id="mariadb-options" class="row">
+            <div class="form-panel">
+                <h3 class="panel-header">{{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }} MariaDB</h3>
+                <div class="panel-body" id="mariadb-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mariadbOptions, field) is defined) %}
                             {{ form_row(attribute(form.mariadbOptions, field)) }}
@@ -103,9 +94,9 @@
                 </div>
             </div>
 
-            <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>{{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }}</h3>
-                <div id="postgres-options" class="row">
+            <div class="form-panel">
+                <h3 class="panel-header">{{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }} Postgres</h3>
+                <div class="panel-body" id="postgres-options">
                     {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
                         {% if (attribute(form.postgresOptions, field) is defined) %}
                             {{ form_row(attribute(form.postgresOptions, field)) }}
@@ -114,9 +105,9 @@
                 </div>
             </div>
 
-            <div class="{{ formGroupClass }} {{ quarterColumn }}">
-                <h3>{{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }}</h3>
-                <div id="elasticsearch-options" class="row">
+            <div class="form-panel">
+                <h3 class="panel-header">{{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }} Elasticsearch</h3>
+                <div class="panel-body" id="elasticsearch-options">
                     {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
                 </div>
             </div>
@@ -124,13 +115,8 @@
 
         {{ form_rest(form) }}
 
-        <div class="row">
-            <div class="col col-lg-4 col-lg-offset-4">
-                <div class="text-center">
-                    <input type="submit" class="btn button-custom btn-custom-three shadow"
-                           value="Generate project archive">
-                </div>
-            </div>
+        <div class="flex justify-center py-8">
+            <input type="submit" class="btn-generate" value="Generate project archive">
         </div>
     </form>
 {% endblock %}
