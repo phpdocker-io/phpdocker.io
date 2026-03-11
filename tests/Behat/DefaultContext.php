@@ -10,6 +10,9 @@ use ZipArchive;
 
 final class DefaultContext extends MinkContext
 {
+    private ?ZipArchive $lastZip = null;
+    private ?string $lastZipTmpFile = null;
+
     /**
      * @Then /^the response code should be (\d+)$/
      */
@@ -56,20 +59,63 @@ final class DefaultContext extends MinkContext
 
         Assertion::eqArraySubset($headers, $expectedZipHeaders);
 
-        Assertion::true($this->isZipFile($response));
+        $tmpFile = sprintf('%s', tempnam('/tmp', 'zip_test_'));
+        file_put_contents(filename: $tmpFile, data: $response);
+
+        $zip    = new ZipArchive();
+        $result = $zip->open($tmpFile);
+
+        Assertion::true($result);
+
+        $this->lastZip        = $zip;
+        $this->lastZipTmpFile = $tmpFile;
     }
 
-    private function isZipFile(string $data): bool
+    /** @AfterScenario */
+    public function cleanUpZip(): void
     {
-        $fn = sprintf('%s', tempnam('/tmp', 'zip_test_'));
-        file_put_contents(filename: $fn, data: $data);
-
-        try {
-            $zipFile = new ZipArchive();
-
-            return $zipFile->open($fn);
-        } finally {
-            @unlink($fn);
+        if ($this->lastZip !== null) {
+            $this->lastZip->close();
+            $this->lastZip = null;
         }
+
+        if ($this->lastZipTmpFile !== null) {
+            @unlink($this->lastZipTmpFile);
+            $this->lastZipTmpFile = null;
+        }
+    }
+
+    /**
+     * @Then /^the zip should contain the file "([^"]*)"$/
+     */
+    public function theZipShouldContainTheFile(string $path): void
+    {
+        Assertion::notNull($this->lastZip, 'No zip file available. Did you call "I should receive a zip file named" first?');
+        Assertion::true(
+            $this->lastZip->locateName($path) !== false,
+            sprintf('File "%s" not found in zip archive', $path),
+        );
+    }
+
+    /**
+     * @Then /^the zip file "([^"]*)" should contain "([^"]*)"$/
+     */
+    public function theZipFileShouldContain(string $path, string $content): void
+    {
+        Assertion::notNull($this->lastZip, 'No zip file available. Did you call "I should receive a zip file named" first?');
+        $fileContent = $this->lastZip->getFromName($path);
+        Assertion::string($fileContent, sprintf('File "%s" not found in zip archive', $path));
+        Assertion::contains($fileContent, $content, sprintf('File "%s" does not contain "%s"', $path, $content));
+    }
+
+    /**
+     * @Then /^the zip file "([^"]*)" should not contain "([^"]*)"$/
+     */
+    public function theZipFileShouldNotContain(string $path, string $content): void
+    {
+        Assertion::notNull($this->lastZip, 'No zip file available. Did you call "I should receive a zip file named" first?');
+        $fileContent = $this->lastZip->getFromName($path);
+        Assertion::string($fileContent, sprintf('File "%s" not found in zip archive', $path));
+        Assertion::notContains($fileContent, $content, sprintf('File "%s" should not contain "%s"', $path, $content));
     }
 }
