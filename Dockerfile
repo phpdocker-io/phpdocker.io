@@ -71,6 +71,12 @@ COPY yarn.lock .
 
 RUN yarn install --immutable
 
+COPY tailwind.config.js postcss.config.js ./
+COPY assets/ ./assets/
+COPY templates/ ./templates/
+
+RUN yarn build:css
+
 ## Actual deployable frontend image
 FROM nginx:alpine AS frontend-deployment
 
@@ -84,6 +90,6 @@ RUN sed -i "s/# %DEPLOYMENT //g"            /etc/nginx/conf.d/default.conf \
     && sed -i "s/ssl_/#ssl_/g"              /etc/nginx/conf.d/default.conf
 
 COPY --from=frontend-installer node_modules/@bower_components public/vendor
+COPY --from=frontend-installer /public/css public/css
 
-COPY public/css public/css
 COPY public/js  public/js
