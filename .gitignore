@@ -37,3 +37,5 @@ phpstan.neon
 
 .claude/settings.local.json
 config/reference.php
+
+public/css/app.css
