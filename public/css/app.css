@@ -500,6 +500,7 @@ video {
   display: none;
 }
   html {
+    font-size: 115%;
     background-color: #080d19;
     color: #e2e8f0;
     font-family: 'DM Sans', sans-serif;
@@ -752,6 +753,9 @@ video {
 .no-underline {
   text-decoration-line: none;
 }
+.max-w-screen-xl {
+    max-width: 1472px;
+  }
 
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
 
