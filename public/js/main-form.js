@@ -1,146 +1,63 @@
-$(doMainFormMagic)
+document.addEventListener('DOMContentLoaded', doMainFormMagic)
 
-/**
- * Generator form JS handles
- */
 function doMainFormMagic () {
-    /**
-     * Enable/disable form elements based on checkboxes
-     */
-    [
-        'postgres',
-        'mysql',
-        'mariadb',
-        'elasticsearch'
-    ].forEach(function (value) {
-        var optionsDiv    = $('#' + value + '-options')
-        var optionsFields = optionsDiv.find('input')
-        var switchNode    = $('#project_' + value + 'Options_has' + ucfirst(value))
+    // Enable/disable form elements based on checkboxes
+    const toggleServices = [
+        { optionsDiv: '#postgres-options',      switchId: '#project_postgresOptions_hasPostgres' },
+        { optionsDiv: '#mysql-options',         switchId: '#project_mysqlOptions_hasMysql' },
+        { optionsDiv: '#mariadb-options',       switchId: '#project_mariadbOptions_hasMariadb' },
+        { optionsDiv: '#elasticsearch-options', switchId: '#project_elasticsearchOptions_hasElasticsearch' },
+    ]
 
-        var disableOptions = function () {
-            if (switchNode.prop('checked') == false) {
-                optionsDiv.addClass('disabled')
-                optionsFields.prop('disabled', true)
-            }
+    toggleServices.forEach(({ optionsDiv: divId, switchId }) => {
+        const optionsDiv    = document.querySelector(divId)
+        const optionsFields = optionsDiv.querySelectorAll('input')
+        const switchNode    = document.querySelector(switchId)
+
+        const toggle = () => {
+            const on = switchNode.checked
+            optionsDiv.classList.toggle('disabled', !on)
+            optionsFields.forEach(el => el.disabled = !on)
         }
 
-        // Disable on page load
-        disableOptions()
-
-        var enableOptions = function () {
-            optionsDiv.removeClass('disabled')
-            optionsFields.prop('disabled', false)
-        }
-
-        // Toggle on checkbox changes
-        switchNode.on('change', function () {
-            if (switchNode.prop('checked') == true) {
-                enableOptions()
-            } else {
-                disableOptions()
-            }
-        })
+        toggle()
+        switchNode.addEventListener('change', toggle)
     })
 
     // Select PHP extensions based on service choices
-    let checkboxPrefix                               = 'project_'
-    let extensionServices                            = []
-    let extensionMultiSelects                        = $('[id^=project_phpOptions_phpExtensions]')
-    extensionServices['hasRedis']                    = 'Redis'
-    extensionServices['hasMemcached']                = 'Memcached'
-    extensionServices['mysqlOptions_hasMysql']       = 'MySQL'
-    extensionServices['mariadbOptions_hasMariadb']   = 'MySQL'
-    extensionServices['postgresOptions_hasPostgres'] = 'PostgreSQL'
-
-    for (var key in extensionServices) {
-        var value      = extensionServices[key]
-        var checkboxId = '#' + checkboxPrefix + key
-
-        $(checkboxId)
-            .data('multiselect', extensionMultiSelects)
-            .data('value', value)
-            .change(function () {
-                $(this).data('multiselect').multiselect('select', $(this).data('value'))
-            })
+    const extensionServices = {
+        hasRedis:                    'Redis',
+        hasMemcached:                'Memcached',
+        mysqlOptions_hasMysql:       'MySQL',
+        mariadbOptions_hasMariadb:   'MySQL',
+        postgresOptions_hasPostgres: 'PostgreSQL',
     }
 
-    // PHP extension multiselect
-    extensionMultiSelects.each(function (index) {
-        $(this).multiselect({
-            enableCaseInsensitiveFiltering: true,
-            maxHeight: 200,
-            buttonWidth: '100%',
-            dropUp: true,
-            onDropdownHide: function (event) {
-                event.preventDefault()
+    const phpExtensionsData = JSON.parse(
+        document.getElementById('php-extensions-data').textContent
+    )
+    const msEl = document.querySelector('[id^=project_phpOptions_phpExtensions]')
+    const ms   = new PHPDockerMultiSelect(msEl)
+
+    Object.entries(extensionServices).forEach(([key, value]) => {
+        document.querySelector('#project_' + key).addEventListener('change', function () {
+            if (this.checked) {
+                ms.selectByText(value)
             }
         })
-
-        // Hide all but the first one
-        if (index !== 0) {
-            $(this).parents('.form-group').hide()
-        }
     })
 
-    /*** UGLY HACK ***/
-    // Open multiselects
-    $('button.multiselect').trigger("click")
-
-    // Unfortunately, the previous "click" on the multiselects makes the page scroll on load
-    // Negate
-    $(window).scrollTop(0)
-
-    /*** END OF UGLY HACK ***/
-
-    // Focus on the first form field
-    $('form:not(.filter) :input:visible:enabled:first').on('focus')
-
-    /**
-     * Change multiselect based on php version chosen
-     */
-    let phpVersionSelector = $('#project_phpOptions_version')
-    phpVersionSelector.on('change', function () {
-        extensionMultiSelects.parents('.form-group').hide()
-
-        let chosenVersion = '85'
-        switch ($(this).val()) {
-            case '8.1':
-                chosenVersion = '81'
-                break
-
-            case '8.2':
-                chosenVersion = '82'
-                break
-
-            case '8.3':
-                chosenVersion = '83'
-                break
-
-            case '8.4':
-                chosenVersion = '84'
-                break
-        }
-
-        extensionMultiSelects.filter('[id$=' + chosenVersion + ']').parents('.form-group').show()
-    })
-
-    const form          = $('#generator')
-    const hiddenFieldId = 'hidden-phpversion'
-
-    phpVersionSelector.on('change',function () {
-        let hiddenField = $('#' + hiddenFieldId)
-        if (hiddenField.length) {
-            hiddenField.val(phpVersionSelector.val())
-        }
+    // Change multiselect based on php version chosen
+    document.querySelector('#project_phpOptions_version').addEventListener('change', function () {
+        ms.setOptions(phpExtensionsData[this.value] ?? [])
     })
 
     // Analytics
-    form.on('submit', function (event) {
-        $('input[type=checkbox]').each(function () {
-            gtag('send', 'event', 'builder-form', 'builder-choices', $(this).attr('name'), $(this).is(':checked'))
+    document.querySelector('#generator').addEventListener('submit', function () {
+        document.querySelectorAll('input[type=checkbox]').forEach(function (el) {
+            gtag('send', 'event', 'builder-form', 'builder-choices', el.name, el.checked)
         })
 
         gtag('send', 'event', 'builder-form', 'form-submission')
     })
-
 }

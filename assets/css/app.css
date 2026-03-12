@@ -133,99 +133,8 @@
   }
 }
 
-/* bootstrap-multiselect overrides */
-button.multiselect.dropdown-toggle {
-  display: block;
-  width: 100%;
-  background: #080d19;
-  border: 1px solid #1c3050;
-  border-radius: .375rem;
-  color: #e2e8f0;
-  padding: .5rem .75rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .875rem;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color .15s, box-shadow .15s;
-}
-
-button.multiselect.dropdown-toggle:hover,
-button.multiselect.dropdown-toggle:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, .2);
-  outline: none;
-}
-
-.multiselect-container.dropdown-menu {
-  display: block;
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  background: #080d19;
-  border: 1px solid #1c3050;
-  border-radius: .375rem;
-  margin-top: 2px;
-  padding: 4px 0;
-  list-style: none;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.multiselect-container > li > a {
-  display: block;
-  padding: 0;
-  color: #e2e8f0;
-  text-decoration: none;
-}
-
-.multiselect-container > li > a > label {
-  display: block;
-  padding: 5px 12px 5px 36px;
-  cursor: pointer;
-  color: #e2e8f0;
-  font-size: .875rem;
-  font-family: 'DM Sans', sans-serif;
-  margin: 0;
-}
-
-.multiselect-container > li > a > label:hover {
-  background: #1c3050;
-  color: #38bdf8;
-}
-
-.multiselect-container > li > a > label > input[type=checkbox] {
-  margin-right: 8px;
-  accent-color: #34d399;
-}
-
-.input-group-addon {
-  background: #0d1628;
-  border: 1px solid #1c3050;
-  color: #94a3b8;
-  padding: .375rem .5rem;
-  font-size: .875rem;
-}
-
-.multiselect-container .input-group input.form-control {
-  background: #080d19;
-  border: 1px solid #1c3050;
-  border-left: 0;
-  color: #e2e8f0;
-  padding: .375rem .5rem;
-  font-size: .875rem;
-}
-
-button.btn.btn-default.multiselect-clear-filter {
-  background: #0d1628;
-  border: 1px solid #1c3050;
-  color: #94a3b8;
-  padding: .25rem .5rem;
-  border-radius: .25rem;
-  cursor: pointer;
-}
-
-/* Pure CSS toggles — replaces bootstrap-toggle entirely */
-#generator input[type=checkbox] {
+/* Pure CSS toggles */
+#generator input[type=checkbox]:not(.ms-check) {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
@@ -241,7 +150,7 @@ button.btn.btn-default.multiselect-clear-filter {
   transition: background .2s, border-color .2s;
 }
 
-#generator input[type=checkbox]::after {
+#generator input[type=checkbox]:not(.ms-check)::after {
   content: '';
   position: absolute;
   width: 18px;
@@ -253,12 +162,12 @@ button.btn.btn-default.multiselect-clear-filter {
   transition: left .2s, background .2s;
 }
 
-#generator input[type=checkbox]:checked {
+#generator input[type=checkbox]:not(.ms-check):checked {
   background: #34d399;
   border-color: #34d399;
 }
 
-#generator input[type=checkbox]:checked::after {
+#generator input[type=checkbox]:not(.ms-check):checked::after {
   left: 22px;
   background: #fff;
 }

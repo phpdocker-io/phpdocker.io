@@ -42,6 +42,24 @@ class AvailableExtensionsFactory
     ];
 
     /**
+     * Returns all optional extension names keyed by PHP version string,
+     * for embedding in the page as JSON.
+     *
+     * @return array<string, string[]>
+     */
+    public static function getAllExtensionNames(): array
+    {
+        $result = [];
+        foreach (self::SUPPORTED_VERSIONS as $version => $class) {
+            $result[$version] = array_map(
+                static fn(PhpExtension $e) => $e->getName(),
+                (new $class())->getOptional(),
+            );
+        }
+        return $result;
+    }
+
+    /**
      * Returns an instance to the appropriate class for extensions for a given php version.
      */
     public static function create(string $phpVersion): BaseAvailableExtensions

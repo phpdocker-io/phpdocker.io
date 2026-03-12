@@ -7,21 +7,9 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@bower_components/bootstrap-multiselect@davidstutz/bootstrap-multiselect#0.9.13":
-  version "0.0.0"
-  resolved "https://codeload.github.com/davidstutz/bootstrap-multiselect/tar.gz/6367ced04daafc054aeff51b2a903669eb0da214"
-
 "@bower_components/font-awesome@FortAwesome/Font-Awesome#^4.5.0":
   version "4.7.0"
   resolved "https://codeload.github.com/FortAwesome/Font-Awesome/tar.gz/a8386aae19e200ddb0f6845b5feeee5eb7013687"
-
-"@bower_components/jquery-ui@components/jqueryui#^1.11.4":
-  version "1.12.1"
-  resolved "https://codeload.github.com/components/jqueryui/tar.gz/44ecf3794cc56b65954cc19737234a3119d036cc"
-
-"@bower_components/jquery@jquery/jquery-dist#^2.2.2":
-  version "2.2.4"
-  resolved "https://codeload.github.com/jquery/jquery-dist/tar.gz/c0185ab7c75aab88762c5aae780b9d83b80eda72"
 
 "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.13"
