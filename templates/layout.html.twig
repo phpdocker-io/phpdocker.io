@@ -22,11 +22,13 @@
 
 <body>
 
-<header class="bg-[#080d19] border-b border-[#1c3050] px-6 py-4">
-    <a href="{{ path('home') }}" class="no-underline">
-        <h1 class="text-3xl font-extrabold text-white tracking-tight" style="font-family:'Syne',sans-serif">PHPDocker.io</h1>
-    </a>
-    <p class="text-[#94a3b8] text-sm mt-0.5">A PHP development environment generator built with Docker containers.</p>
+<header class="bg-[#080d19] border-b border-[#1c3050] py-4">
+    <div class="px-4 max-w-screen-xl mx-auto">
+        <a href="{{ path('home') }}" class="no-underline">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight" style="font-family:'Syne',sans-serif">PHPDocker.io</h1>
+        </a>
+        <p class="text-[#94a3b8] text-sm mt-0.5">A PHP development environment generator built with Docker containers.</p>
+    </div>
 </header>
 
 <main class="px-4 py-6 max-w-screen-xl mx-auto">{% block body %}{% endblock %}</main>
