@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="PHPDocker.io">
+  <defs>
+    <linearGradient id="fav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gradient rounded square -->
+  <rect x="1" y="1" width="30" height="30" rx="7" fill="url(#fav-grad)"/>
+
+  <!-- </> code brackets scaled to 32px -->
+  <path d="M9,11 L5,16 L9,21" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="14" y1="9" x2="17" y2="23" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+  <path d="M22,11 L26,16 L22,21" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
