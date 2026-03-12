@@ -70,7 +70,16 @@ yarn-install:
 	    node:alpine \
 	    sh -c "yarn install --immutable"
 
-install-dependencies: composer-install yarn-install
+build-css:
+	docker run \
+	    --rm \
+	    -t \
+	    -v "`pwd`:/workdir" \
+	    -w /workdir \
+	    node:alpine \
+	    sh -c "yarn install && yarn build:css"
+
+install-dependencies: composer-install yarn-install build-css
 
 composer-update:
 	$(PHP_RUN) composer update --no-scripts

@@ -1,0 +1,264 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  html {
+    background-color: #080d19;
+    color: #e2e8f0;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: #080d19;
+    background-image: radial-gradient(circle, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  a {
+    color: #38bdf8;
+    font-weight: 600;
+  }
+
+  * {
+    scrollbar-color: #1c3050 #0d1628;
+    scrollbar-width: thin;
+  }
+}
+
+@layer components {
+  /* form-panel: glass-like dark card */
+  .form-panel {
+    background: #0d1628;
+    border: 1px solid #1c3050;
+    border-radius: .5rem;
+    box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.08), 0 4px 24px rgba(8, 13, 25, .6);
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  /* panel-header: dark bar + left 3px sky accent stripe */
+  .panel-header {
+    background: #0a1220;
+    border-bottom: 1px solid #1c3050;
+    border-left: 3px solid #38bdf8;
+    padding: .625rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #e2e8f0;
+    margin: 0;
+  }
+
+  .panel-body {
+    padding: 1.25rem;
+  }
+
+  .panel-body.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  /* form inputs / selects */
+  .form-input,
+  .form-select {
+    background: #080d19;
+    border: 1px solid #1c3050;
+    border-radius: .375rem;
+    color: #e2e8f0;
+    padding: .5rem .75rem;
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .875rem;
+    transition: border-color .15s, box-shadow .15s;
+  }
+
+  .form-input:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, .2);
+  }
+
+  .form-label {
+    display: block;
+    color: #94a3b8;
+    font-size: .8125rem;
+    font-weight: 500;
+    margin-bottom: .25rem;
+  }
+
+  .form-note {
+    font-style: italic;
+    font-size: .75rem;
+    color: #94a3b8;
+  }
+
+  .form-error {
+    color: #f87171;
+    font-size: .75rem;
+    margin-top: .25rem;
+  }
+
+  /* submit button */
+  .btn-generate {
+    background: linear-gradient(135deg, #0ea5e9, #6366f1);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: .875rem 2.5rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(56, 189, 248, .25);
+    transition: opacity .2s, box-shadow .2s;
+    letter-spacing: .025em;
+  }
+
+  .btn-generate:hover {
+    opacity: .9;
+    box-shadow: 0 0 30px rgba(56, 189, 248, .4);
+  }
+}
+
+/* bootstrap-multiselect overrides */
+button.multiselect.dropdown-toggle {
+  display: block;
+  width: 100%;
+  background: #080d19;
+  border: 1px solid #1c3050;
+  border-radius: .375rem;
+  color: #e2e8f0;
+  padding: .5rem .75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .875rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s;
+}
+
+button.multiselect.dropdown-toggle:hover,
+button.multiselect.dropdown-toggle:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, .2);
+  outline: none;
+}
+
+.multiselect-container.dropdown-menu {
+  display: block;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background: #080d19;
+  border: 1px solid #1c3050;
+  border-radius: .375rem;
+  margin-top: 2px;
+  padding: 4px 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.multiselect-container > li > a {
+  display: block;
+  padding: 0;
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+.multiselect-container > li > a > label {
+  display: block;
+  padding: 5px 12px 5px 36px;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: .875rem;
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+}
+
+.multiselect-container > li > a > label:hover {
+  background: #1c3050;
+  color: #38bdf8;
+}
+
+.multiselect-container > li > a > label > input[type=checkbox] {
+  margin-right: 8px;
+  accent-color: #34d399;
+}
+
+.input-group-addon {
+  background: #0d1628;
+  border: 1px solid #1c3050;
+  color: #94a3b8;
+  padding: .375rem .5rem;
+  font-size: .875rem;
+}
+
+.multiselect-container .input-group input.form-control {
+  background: #080d19;
+  border: 1px solid #1c3050;
+  border-left: 0;
+  color: #e2e8f0;
+  padding: .375rem .5rem;
+  font-size: .875rem;
+}
+
+button.btn.btn-default.multiselect-clear-filter {
+  background: #0d1628;
+  border: 1px solid #1c3050;
+  color: #94a3b8;
+  padding: .25rem .5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+/* Pure CSS toggles — replaces bootstrap-toggle entirely */
+#generator input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  min-width: 44px;
+  height: 24px;
+  background: #1c3050;
+  border: 1px solid #2d4a6e;
+  border-radius: 9999px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background .2s, border-color .2s;
+}
+
+#generator input[type=checkbox]::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #94a3b8;
+  border-radius: 9999px;
+  top: 2px;
+  left: 2px;
+  transition: left .2s, background .2s;
+}
+
+#generator input[type=checkbox]:checked {
+  background: #34d399;
+  border-color: #34d399;
+}
+
+#generator input[type=checkbox]:checked::after {
+  left: 22px;
+  background: #fff;
+}

@@ -143,8 +143,4 @@ function doMainFormMagic () {
         gtag('send', 'event', 'builder-form', 'form-submission')
     })
 
-    // Bootstrap toggles
-    $('#generator div.checkbox input[type=checkbox]').bootstrapToggle({
-        size: 'small'
-    })
 }
