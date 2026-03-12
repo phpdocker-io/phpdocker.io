@@ -92,4 +92,5 @@ RUN sed -i "s/# %DEPLOYMENT //g"            /etc/nginx/conf.d/default.conf \
 COPY --from=frontend-installer node_modules/@bower_components public/vendor
 COPY --from=frontend-installer /public/css public/css
 
-COPY public/js  public/js
+COPY public/js     public/js
+COPY public/images public/images
