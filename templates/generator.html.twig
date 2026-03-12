@@ -73,7 +73,7 @@
         {# Database + Elasticsearch panels #}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div class="form-panel">
-                <h3 class="panel-header">{{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }} MySQL</h3>
+                <h3 class="panel-header"><label class="flex items-center gap-2 cursor-pointer">{{ form_widget(attribute(form.mysqlOptions, 'hasMysql')) }} MySQL</label></h3>
                 <div class="panel-body" id="mysql-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mysqlOptions, field) is defined) %}
@@ -84,7 +84,7 @@
             </div>
 
             <div class="form-panel">
-                <h3 class="panel-header">{{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }} MariaDB</h3>
+                <h3 class="panel-header"><label class="flex items-center gap-2 cursor-pointer">{{ form_widget(attribute(form.mariadbOptions, 'hasMariadb')) }} MariaDB</label></h3>
                 <div class="panel-body" id="mariadb-options">
                     {% for field in ['version', 'rootPassword', 'databaseName', 'username', 'password'] %}
                         {% if (attribute(form.mariadbOptions, field) is defined) %}
@@ -95,7 +95,7 @@
             </div>
 
             <div class="form-panel">
-                <h3 class="panel-header">{{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }} Postgres</h3>
+                <h3 class="panel-header"><label class="flex items-center gap-2 cursor-pointer">{{ form_widget(attribute(form.postgresOptions, 'hasPostgres')) }} Postgres</label></h3>
                 <div class="panel-body" id="postgres-options">
                     {% for field in ['version', 'rootUser', 'rootPassword', 'databaseName'] %}
                         {% if (attribute(form.postgresOptions, field) is defined) %}
@@ -106,7 +106,7 @@
             </div>
 
             <div class="form-panel">
-                <h3 class="panel-header">{{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }} Elasticsearch</h3>
+                <h3 class="panel-header"><label class="flex items-center gap-2 cursor-pointer">{{ form_widget(attribute(form.elasticsearchOptions, 'hasElasticsearch')) }} Elasticsearch</label></h3>
                 <div class="panel-body" id="elasticsearch-options">
                     {{ form_row(attribute(form.elasticsearchOptions, 'version')) }}
                 </div>
