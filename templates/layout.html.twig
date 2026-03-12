@@ -15,6 +15,7 @@
 
     {% include 'analytics.html.twig' %}
 
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg"/>
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/css/app.css"/>
     <link rel="stylesheet" href="/vendor/bootstrap-multiselect/dist/css/bootstrap-multiselect.css"/>
@@ -24,8 +25,8 @@
 
 <header class="bg-[#080d19] border-b border-[#1c3050] py-4">
     <div class="px-4 max-w-screen-xl mx-auto">
-        <a href="{{ path('home') }}" class="no-underline">
-            <h1 class="text-3xl font-extrabold text-white tracking-tight" style="font-family:'Syne',sans-serif">PHPDocker.io</h1>
+        <a href="{{ path('home') }}" class="no-underline inline-block">
+            <img src="/images/logo.svg" alt="PHPDocker.io" class="h-10 w-auto"/>
         </a>
         <p class="text-[#94a3b8] text-sm mt-0.5">A PHP development environment generator built with Docker containers.</p>
     </div>
