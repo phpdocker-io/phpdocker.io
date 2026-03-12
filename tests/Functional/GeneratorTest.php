@@ -60,7 +60,7 @@ class GeneratorTest extends WebTestCase
     {
         $this->generateAndGetZip([
             'project[phpOptions][version]'          => '8.4',
-            'project[phpOptions][phpExtensions84]'  => ['Xdebug', 'GD'],
+            'project[phpOptions][phpExtensions]'    => ['Xdebug', 'GD'],
             'project[globalOptions][basePort]'      => '8000',
         ]);
 

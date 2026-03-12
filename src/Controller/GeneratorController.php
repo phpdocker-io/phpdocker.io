@@ -20,10 +20,10 @@ namespace App\Controller;
 
 use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
+use App\PHPDocker\PhpExtension\AvailableExtensionsFactory;
 use App\PHPDocker\Project\Project;
 use App\PHPDocker\Project\ServiceOptions\GlobalOptions;
 use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
-use InvalidArgumentException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,7 +70,8 @@ class GeneratorController extends AbstractController
         }
 
         return $this->render('generator.html.twig', [
-            'form' => $form->createView(),
+            'form'              => $form->createView(),
+            'phpExtensionsJson' => json_encode(AvailableExtensionsFactory::getAllExtensionNames()),
         ]);
     }
 
@@ -78,13 +79,7 @@ class GeneratorController extends AbstractController
     {
         $phpData = $formData['phpOptions'];
 
-        $extensions = match ($phpData['version']) {
-            PhpOptions::PHP_VERSION_82 => $phpData['phpExtensions82'],
-            PhpOptions::PHP_VERSION_83 => $phpData['phpExtensions83'],
-            PhpOptions::PHP_VERSION_84 => $phpData['phpExtensions84'],
-            PhpOptions::PHP_VERSION_85 => $phpData['phpExtensions85'],
-            default => throw new InvalidArgumentException(sprintf('Unsupported php version %s', $phpData['version'])),
-        };
+        $extensions = $phpData['phpExtensions'] ?? [];
 
         $phpOptions = new PhpOptions(
             version: $phpData['version'],

@@ -1,9 +1,6 @@
 {
   "dependencies": {
-    "@bower_components/bootstrap-multiselect": "davidstutz/bootstrap-multiselect#0.9.13",
-"@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.5.0",
-    "@bower_components/jquery": "jquery/jquery-dist#^2.2.2",
-    "@bower_components/jquery-ui": "components/jqueryui#^1.11.4"
+    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.5.0"
   },
   "devDependencies": {
     "tailwindcss": "^3.4",

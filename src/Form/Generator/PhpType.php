@@ -19,16 +19,16 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
-use App\PHPDocker\PhpExtension\Php82AvailableExtensions;
-use App\PHPDocker\PhpExtension\Php83AvailableExtensions;
-use App\PHPDocker\PhpExtension\Php84AvailableExtensions;
-use App\PHPDocker\PhpExtension\Php85AvailableExtensions;
+use App\PHPDocker\PhpExtension\AvailableExtensionsFactory;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\ServiceOptions\Php;
+use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
@@ -45,13 +45,6 @@ class PhpType extends AbstractGeneratorType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $phpOptionsConstraints = [
-            new Type(type: 'array'),
-            new All([
-                new Type(type: 'string'),
-            ]),
-        ];
-
         $builder
             ->add('frontControllerPath', TextType::class, [
                 'label'       => 'Front controller path (relative to container workdir)',
@@ -77,34 +70,37 @@ class PhpType extends AbstractGeneratorType
                     new Choice(choices: Php::getSupportedVersions()),
                 ],
             ])
-            ->add('phpExtensions82', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices((new Php82AvailableExtensions())->getOptional()),
-                'multiple'    => true,
-                'label'       => 'Extensions (PHP 8.2)',
-                'required'    => false,
-                'constraints' => $phpOptionsConstraints,
-            ])
-            ->add('phpExtensions83', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices((new Php83AvailableExtensions())->getOptional()),
-                'multiple'    => true,
-                'label'       => 'Extensions (PHP 8.3)',
-                'required'    => false,
-                'constraints' => $phpOptionsConstraints,
-            ])
-            ->add('phpExtensions84', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices((new Php84AvailableExtensions())->getOptional()),
-                'multiple'    => true,
-                'label'       => 'Extensions (PHP 8.4)',
-                'required'    => false,
-                'constraints' => $phpOptionsConstraints,
-            ])
-            ->add('phpExtensions85', ChoiceType::class, [
-                'choices'     => $this->getExtensionChoices((new Php85AvailableExtensions())->getOptional()),
-                'multiple'    => true,
-                'label'       => 'Extensions (PHP 8.5)',
-                'required'    => false,
-                'constraints' => $phpOptionsConstraints,
-            ]);
+        ;
+
+        $this->addExtensionsField($builder, Php::getSupportedVersions()[0]);
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (PreSubmitEvent $event): void {
+            $data    = $event->getData();
+            $version = (is_array($data) && in_array($data['version'] ?? '', Php::getSupportedVersions(), true))
+                ? $data['version']
+                : Php::getSupportedVersions()[0];
+
+            $event->getForm()->remove('phpExtensions');
+            $this->addExtensionsField($event->getForm(), $version);
+        });
+    }
+
+    private function addExtensionsField(FormBuilderInterface|FormInterface $form, string $version): void
+    {
+        $choices = $this->getExtensionChoices(
+            AvailableExtensionsFactory::create($version)->getOptional()
+        );
+
+        $form->add('phpExtensions', ChoiceType::class, [
+            'choices'     => $choices,
+            'multiple'    => true,
+            'label'       => 'Extensions',
+            'required'    => false,
+            'constraints' => [
+                new Type(type: 'array'),
+                new All([new Type(type: 'string')]),
+            ],
+        ]);
     }
 
     /**
