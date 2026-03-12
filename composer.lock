@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9babdc88b052193eecabd1f6411f6a1",
+    "content-hash": "d74b4c89edf49b32c32d3a22f1275298",
     "packages": [
         {
             "name": "michelf/php-markdown",
@@ -7511,7 +7511,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "8.4.*",
+        "php": "8.5.*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-redis": "*",
