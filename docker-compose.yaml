@@ -1,7 +1,7 @@
 ###############################################################################
 #                          Generated on phpdocker.io                          #
 ###############################################################################
-version: "3.4"
+
 services:
   redis:
     image: redis:alpine
@@ -14,7 +14,7 @@ services:
       - ./infrastructure/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./infrastructure/local/:/etc/ssl/local/
     ports:
-      - "10000:443"
+      - "20000:443"
 
   php-fpm:
     build:

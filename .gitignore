@@ -39,3 +39,5 @@ phpstan.neon
 config/reference.php
 
 public/css/app.css
+
+.steiner/
