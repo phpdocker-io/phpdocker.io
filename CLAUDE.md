@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 PHPDocker.io is a Symfony 8 web application that generates Docker environments for PHP projects. Users fill out a form and receive a zip archive containing `docker-compose.yaml`, `Dockerfile`, nginx config, PHP ini, and a README.
 
-**Tech stack:** PHP 8.4, Symfony 8.0, Twig, Redis (cache/sessions), Docker Compose (local), Kubernetes (production).
+**Tech stack:** PHP 8.5, Symfony 8.0, Twig, Redis (cache/sessions), Docker Compose (local), Kubernetes (production).
 
 ## Commands
 

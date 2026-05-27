@@ -8,7 +8,7 @@ Visit us at [phpdocker.io](https://phpdocker.io).
 Tech Stack
 ----------
 
-- **PHP**: 8.4
+- **PHP**: 8.5
 - **Framework**: Symfony 8.0
 - **Frontend**: Yarn / Symfony Asset
 - **Storage**: Redis
