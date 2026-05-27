@@ -1,0 +1,254 @@
+steps:
+  - id: step-1
+    title: Migrate Behat scenarios to PHPUnit functional tests
+    scope: |
+      Rewrite all 20 Behat scenarios from features/generator.feature into PHPUnit WebTestCase
+      tests in tests/Functional/GeneratorTest.php. Preserve exact coverage: redirect, page load,
+      form validation (base port, MySQL, MariaDB, Postgres), default zip generation, zip file
+      listing, docker-compose service toggles, PHP version in Dockerfile (8.2, 8.5), individual
+      services (Redis, Memcached, Mailhog, Clickhouse), services absent by default, all services
+      enabled simultaneously. Use existing generateAndGetZip / getZipFileContent helpers.
+      Add new assertion helpers for zipContainsFile, zipFileContains, zipFileNotContains if needed.
+    files:
+      - tests/Functional/GeneratorTest.php
+    constraints:
+      - Must use Symfony WebTestCase and KernelBrowser (already Symfony 8 compatible)
+      - Must not depend on any Behat/Mink code
+      - Must pass when run via make unit-tests after the rest of the upgrade is complete
+    acceptance:
+      - All 20 Behat scenarios have equivalent PHPUnit test methods
+      - Tests compile and pass before Behat is removed
+    verification:
+      - docker compose run --rm php-fpm vendor/bin/phpunit tests/Functional/GeneratorTest.php
+
+  - id: step-2
+    title: Remove Behat dependency stack and related files
+    scope: |
+      Remove all Behat-related dependencies from composer.json and composer.lock.
+      Delete behat.yml.dist, config/services_test.yaml, tests/Behat/ directory,
+      and features/ directory. Remove the beberlei/assert dev dependency (only used by Behat context).
+      Remove the 'behaviour' target from Makefile. Update tests/bootstrap.php comment
+      to no longer mention Behat.
+    files:
+      - composer.json
+      - composer.lock
+      - Makefile
+      - behat.yml.dist
+      - config/services_test.yaml
+      - tests/bootstrap.php
+    constraints:
+      - Do not accidentally remove PHPUnit or other non-Behat dependencies
+      - Ensure composer.json remains valid
+    acceptance:
+      - No references to friends-of-behat, behat/behat, or beberlei/assert remain
+      - No behat.yml.dist, config/services_test.yaml, tests/Behat/, or features/ remain
+      - Makefile no longer has a 'behaviour' target
+    verification:
+      - composer validate
+      - grep -ri behat . --include='*.php' --include='*.json' --include='*.yaml' --include='*.yml' --include='Makefile' (should return no matches)
+    depends_on:
+      - step-1
+
+  - id: step-3
+    title: Update Symfony constraints to 8.0.* in composer.json
+    scope: |
+      Change all symfony/* package constraints from ^7.0 to 8.0.*.
+      Update the extra.symfony.require field from ^7.0 to 8.0.*.
+      Update symfony/monolog-bundle constraint to latest compatible (^3.10 or ^4.0 if available).
+    files:
+      - composer.json
+    constraints:
+      - Keep PHP requirement at 8.5.*
+      - Do not change non-Symfony packages yet
+    acceptance:
+      - All symfony/* packages require 8.0.*
+      - extra.symfony.require is 8.0.*
+    verification:
+      - composer validate
+
+  - id: step-4
+    title: Update non-Symfony dependencies to latest stable
+    scope: |
+      Update phpunit/phpunit from ^12.0 to ^13.1.
+      Update phpstan/phpstan from ^1.4 to ^2.1.
+      Update twig/twig and twig/extra-bundle to latest ^3.x if not already current.
+      Update michelf/php-markdown to latest ^2.x.
+      Update symfony/flex to latest ^2.x.
+    files:
+      - composer.json
+    constraints:
+      - Verify each updated package supports PHP 8.5
+      - Prefer stable releases
+    acceptance:
+      - phpunit ^13.1, phpstan ^2.1, twig ^3.x
+    verification:
+      - composer validate
+
+  - id: step-5
+    title: Run composer update and resolve lock file
+    scope: |
+      Run composer update to regenerate composer.lock with Symfony 8.0.* and updated
+      dependencies. Resolve any dependency conflicts that arise.
+    files:
+      - composer.lock
+    constraints:
+      - Must resolve all conflicts without --ignore-platform-reqs
+      - PHP 8.5 platform must be satisfied
+    acceptance:
+      - composer install succeeds cleanly
+      - No unmet dependency warnings
+    verification:
+      - composer install --no-scripts
+      - composer audit
+    depends_on:
+      - step-2
+      - step-3
+      - step-4
+
+  - id: step-6
+    title: Update PHPUnit configuration for version 13
+    scope: |
+      Update phpunit.xml.dist schema URL from 12.0 to 13.x.
+      Review PHPUnit 13 upgrade guide for any configuration attribute changes
+      (e.g., backupGlobals, colors, source/coverage sections) and apply if needed.
+    files:
+      - phpunit.xml.dist
+    constraints:
+      - Keep existing test suite structure
+      - Preserve coverage report paths
+    acceptance:
+      - Schema validates for PHPUnit 13
+      - make unit-tests runs without PHPUnit config warnings
+    verification:
+      - docker compose run --rm php-fpm vendor/bin/phpunit --list-tests
+    depends_on:
+      - step-5
+
+  - id: step-7
+    title: Update PHPStan configuration for version 2
+    scope: |
+      Review phpstan.neon for any deprecated or removed options between 1.x and 2.x.
+      Update ignoreErrors entries if identifiers or message formats changed.
+      Add/update any new required parameters.
+    files:
+      - phpstan.neon
+    constraints:
+      - Must maintain level 9 analysis
+      - Preserve existing ignore rules where still applicable
+    acceptance:
+      - make static-analysis passes without PHPStan config errors
+    verification:
+      - docker compose run --rm php-fpm vendor/bin/phpstan --ansi -v analyse -l 9 src
+    depends_on:
+      - step-5
+
+  - id: step-8
+    title: Update Symfony recipes and symfony.lock
+    scope: |
+      Run composer recipes:update for all installed recipes.
+      Review config changes introduced by Symfony 8.0 recipes (framework.yaml,
+      twig.yaml, validator.yaml, monolog.yaml, etc.). Apply changes carefully,
+      preserving any project-specific customizations.
+      Update symfony.lock with new recipe versions.
+    files:
+      - symfony.lock
+      - config/packages/framework.yaml
+      - config/packages/twig.yaml
+      - config/packages/validator.yaml
+      - config/packages/monolog.yaml
+      - config/packages/routing.yaml
+      - config/packages/debug.yaml
+      - config/packages/web_profiler.yaml
+    constraints:
+      - Do not overwrite custom config values
+      - Review each recipe diff before accepting
+    acceptance:
+      - composer recipes shows no outdated recipes
+      - Application still boots correctly
+    verification:
+      - docker compose run --rm php-fpm bin/console cache:clear
+    depends_on:
+      - step-5
+
+  - id: step-9
+    title: Fix Symfony 8 breaking changes in application code
+    scope: |
+      Run static-analysis and unit-tests. Fix any Symfony 8 breaking changes that
+      affect this codebase. Likely areas:
+      - Validator Url constraint (requireTld default changed)
+      - Any uses of Request::get() (unlikely but check)
+      - Any custom CLI commands (Command attribute changes)
+      - PropertyInfo getTypes() → getType() if used
+      - Any removed framework bundle config options
+    files:
+      - src/
+    constraints:
+      - Make minimal changes; do not refactor beyond what's needed for Symfony 8
+      - Preserve existing business logic
+    acceptance:
+      - make static-analysis passes with zero errors
+      - make unit-tests passes with zero failures
+    verification:
+      - make static-analysis
+      - make unit-tests
+    depends_on:
+      - step-6
+      - step-7
+      - step-8
+
+  - id: step-10
+    title: Fix PHPStan errors introduced by upgrade
+    scope: |
+      PHPStan 2.x may have new rules or stricter analysis. Address any new errors
+      in src/ and tests/. Update phpstan.neon ignoreErrors if necessary, but prefer
+      fixing code over ignoring.
+    files:
+      - src/
+      - tests/
+      - phpstan.neon
+    constraints:
+      - Maintain PHPStan level 9
+    acceptance:
+      - make static-analysis passes with zero errors
+    verification:
+      - make static-analysis
+    depends_on:
+      - step-9
+
+  - id: step-11
+    title: Run full test suite and coverage
+    scope: |
+      Run make unit-tests, make coverage-tests, and verify all tests pass.
+      Inspect coverage report to ensure no significant regressions.
+    constraints:
+      - All tests must pass
+      - Coverage should not drop significantly
+    acceptance:
+      - make unit-tests passes with zero failures
+      - make coverage-tests passes with zero failures
+    verification:
+      - make unit-tests
+      - make coverage-tests
+    depends_on:
+      - step-1
+      - step-10
+
+  - id: step-12
+    title: Update documentation to reflect changes
+    scope: |
+      Update AGENTS.md to remove Behat references and update Symfony version mentions.
+      Update any README or other docs that mention Behat, Symfony 7, or old dependency versions.
+      Ensure all make targets documented still exist.
+    files:
+      - AGENTS.md
+      - README.md (if applicable)
+    constraints:
+      - Do not add new documentation unless explicitly required
+      - Keep changes minimal and accurate
+    acceptance:
+      - No stale Behat references in docs
+      - Symfony version mentions are accurate
+    verification:
+      - grep -ri behat AGENTS.md README.md || true
+    depends_on:
+      - step-2
