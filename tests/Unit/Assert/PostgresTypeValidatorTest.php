@@ -38,6 +38,19 @@ class PostgresTypeValidatorTest extends ConstraintValidatorTestCase
     }
 
     #[Test]
+    public function invalidVersionStringUsesConfiguredMessageAndValueParameter(): void
+    {
+        $constraint          = new PostgresType();
+        $constraint->message = 'Configured Postgres version message';
+
+        $this->validator->validate('99', $constraint);
+
+        $this->buildViolation('Configured Postgres version message')
+            ->setParameter('{{ value }}', '"99"')
+            ->assertRaised();
+    }
+
+    #[Test]
     public function nullValueProducesNoViolations(): void
     {
         $this->validator->validate(null, new PostgresType());

@@ -17,7 +17,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-FROM backend-base as backend-dev
+FROM backend-base AS backend-dev
 
 ARG PHP_VERSION
 
@@ -66,10 +66,13 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 composer dump-autoload --optimize --classmap-auth
 # Bigger and slower unfortunately but it works
 FROM node:latest AS frontend-installer
 
+ARG YARN_VERSION=1.22.22
+
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn install --immutable
+RUN npm install --global yarn@${YARN_VERSION} \
+    && yarn install --frozen-lockfile
 
 COPY tailwind.config.js postcss.config.js ./
 COPY assets/ ./assets/

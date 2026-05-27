@@ -146,6 +146,21 @@ class GeneratorTest extends WebTestCase
     }
 
     #[Test]
+    public function testElasticsearchVersionAppearsInDockerComposeWhenEnabled(): void
+    {
+        $this->generateAndGetZip([
+            'project[globalOptions][basePort]'                    => '8000',
+            'project[phpOptions][version]'                        => '8.4',
+            'project[elasticsearchOptions][hasElasticsearch]'     => '1',
+            'project[elasticsearchOptions][version]'              => '5.6',
+        ]);
+
+        $dockerCompose = $this->getZipFileContent('docker-compose.yml');
+
+        self::assertStringContainsString('elasticsearch:5.6', $dockerCompose);
+    }
+
+    #[Test]
     public function testPortOffsetsRespectCustomBasePort(): void
     {
         $this->generateAndGetZip([

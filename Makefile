@@ -68,7 +68,7 @@ yarn-install:
 	    -v "`pwd`:/workdir" \
 	    -w /workdir \
 	    node:alpine \
-	    sh -c "yarn install --immutable"
+	    sh -c "npm install --global yarn@1.22.22 && yarn install --frozen-lockfile"
 
 build-css:
 	docker run \
@@ -77,7 +77,7 @@ build-css:
 	    -v "`pwd`:/workdir" \
 	    -w /workdir \
 	    node:alpine \
-	    sh -c "yarn install && yarn build:css"
+	    sh -c "npm install --global yarn@1.22.22 && yarn install --frozen-lockfile && yarn build:css"
 
 install-dependencies: composer-install yarn-install build-css
 
