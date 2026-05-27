@@ -8,5 +8,3 @@ parameters:
 
   ignoreErrors:
     - identifier: missingType.iterableValue
-    - '#Access to an undefined property Symfony\\Component\\Validator\\Constraint::\$message#'
-    - '#Method App\\PHPDocker\\Project\\ServiceOptions\\Postgres::getChoices\(\) should return array<string, string> but returns array<int\|string, string>#'

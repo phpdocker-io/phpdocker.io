@@ -114,6 +114,7 @@ class Postgres extends Base
      */
     public static function getChoices(): array
     {
+        // @phpstan-ignore return.type (numeric string keys become int at runtime)
         return self::ALLOWED_VERSIONS;
     }
 }
