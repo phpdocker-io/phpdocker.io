@@ -76,7 +76,7 @@ class PhpType extends AbstractGeneratorType
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (PreSubmitEvent $event): void {
             $data    = $event->getData();
-            $version = (is_array($data) && in_array($data['version'] ?? '', Php::getSupportedVersions(), true))
+            $version = (is_array($data) && is_string($data['version'] ?? null) && in_array($data['version'], Php::getSupportedVersions(), true))
                 ? $data['version']
                 : Php::getSupportedVersions()[0];
 
