@@ -9,7 +9,7 @@ Tech Stack
 ----------
 
 - **PHP**: 8.4
-- **Framework**: Symfony 7.0
+- **Framework**: Symfony 8.0
 - **Frontend**: Yarn / Symfony Asset
 - **Storage**: Redis
 - **Environment**: Docker & Docker Compose
@@ -60,7 +60,6 @@ Once finished, the application will be available at [https://phpdocker.local:100
 - `make shell`: Open a bash shell inside the PHP container.
 - `make static-analysis`: Run PHPStan (level 9).
 - `make unit-tests`: Run PHPUnit.
-- `make behaviour`: Run Behat tests.
 
 ### Windows Support
 
