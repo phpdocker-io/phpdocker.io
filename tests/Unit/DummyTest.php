@@ -28,6 +28,6 @@ class DummyTest extends TestCase
     #[Test]
     public function dummyTest(): void
     {
-        self::assertIsString('Dummy test placed here to check our phpunit setup is working');
+        self::expectNotToPerformAssertions();
     }
 }
