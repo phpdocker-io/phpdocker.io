@@ -26,11 +26,6 @@
         "twig/twig": "^3.0"
     },
     "require-dev": {
-        "beberlei/assert": "^3.3",
-        "friends-of-behat/mink": "^1.9",
-        "friends-of-behat/mink-browserkit-driver": "^1.5",
-        "friends-of-behat/mink-extension": "^2.5",
-        "friends-of-behat/symfony-extension": "^2.2",
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^12.0",
         "symfony/debug-bundle": "^7.0",
