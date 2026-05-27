@@ -23,7 +23,7 @@ use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use App\PHPDocker\Project\Project;
 use Twig\Environment;
 
-readonly class NginxConf implements GeneratedFileInterface
+final readonly class NginxConf implements GeneratedFileInterface
 {
     public function __construct(private Environment $twig, private Project $project)
     {

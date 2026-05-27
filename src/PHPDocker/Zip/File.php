@@ -24,32 +24,21 @@ use App\PHPDocker\Interfaces\ArchiveInterface;
 /**
  * Represents a zip file.
  */
-class File implements ArchiveInterface
+final readonly class File implements ArchiveInterface
 {
-    protected string $filename;
-    protected string $tmpFilename;
+    public function __construct(
+        private string $filename,
+        private string $tmpFilename,
+    ) {
+    }
 
     public function getFilename(): string
     {
         return $this->filename;
     }
 
-    public function setFilename(string $filename): self
-    {
-        $this->filename = $filename;
-
-        return $this;
-    }
-
     public function getTmpFilename(): string
     {
         return $this->tmpFilename;
-    }
-
-    public function setTmpFilename(string $tmpFilename): self
-    {
-        $this->tmpFilename = $tmpFilename;
-
-        return $this;
     }
 }

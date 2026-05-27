@@ -23,7 +23,7 @@ use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use Michelf\MarkdownExtra;
 use Twig\Environment;
 
-readonly class ReadmeHtml implements GeneratedFileInterface
+final readonly class ReadmeHtml implements GeneratedFileInterface
 {
     public function __construct(private Environment $twig, private MarkdownExtra $markdown, private string $readmeMd)
     {

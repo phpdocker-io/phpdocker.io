@@ -22,9 +22,8 @@ namespace App\PHPDocker\Generator\Files;
 use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use Twig\Environment;
 
-readonly class PhpIni implements GeneratedFileInterface
+final readonly class PhpIni implements GeneratedFileInterface
 {
-
     public function __construct(private Environment $twig)
     {
     }

@@ -33,6 +33,8 @@ services:
   # please note that last definitions always *replace* previous ones
 
   App\PHPDocker\Zip\Archiver:
+    arguments:
+      $baseFolder: 'phpdocker'
     shared: false
 
   # Instantiate some third party libraries we need for autowiring our own services
@@ -49,4 +51,3 @@ services:
 
   Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
     arguments: [ '@Redis' ]
-

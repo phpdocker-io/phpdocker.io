@@ -37,7 +37,6 @@ use Twig\Environment;
  */
 class Generator
 {
-    private const string BASE_ZIP_FOLDER  = 'phpdocker';
     private const string ARCHIVE_FILENAME = 'phpdocker.zip';
 
     public function __construct(
@@ -46,7 +45,6 @@ class Generator
         private readonly MarkdownExtra $markdownExtra,
         private readonly Dumper $yaml,
     ) {
-        $this->archiver->setBaseFolder(self::BASE_ZIP_FOLDER);
     }
 
     /**

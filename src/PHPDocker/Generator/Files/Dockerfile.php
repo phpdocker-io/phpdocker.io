@@ -23,7 +23,7 @@ use App\PHPDocker\Interfaces\GeneratedFileInterface;
 use App\PHPDocker\Project\Project;
 use Twig\Environment;
 
-class Dockerfile implements GeneratedFileInterface
+final readonly class Dockerfile implements GeneratedFileInterface
 {
     private const string FILENAME = 'php-fpm' . DIRECTORY_SEPARATOR . 'Dockerfile';
 

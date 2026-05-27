@@ -26,17 +26,14 @@ use ZipArchive;
 /**
  * Creates a zip file.
  */
-class Archiver
+final class Archiver
 {
-    /** @var string[] */
-    protected array    $files      = [];
-    protected string   $baseFolder = '';
-    private ZipArchive $zipFile;
+    private readonly ZipArchive $zipFile;
 
     /**
      * Initialise Zip File via the zip PECL extension into a temporary file on local storage.
      */
-    public function __construct()
+    public function __construct(private readonly string $baseFolder = '')
     {
         $this->zipFile = new ZipArchive();
 
@@ -72,22 +69,7 @@ class Archiver
             throw new Exception\ArchiveNotCreatedException('Archive creation failed for an unknown reason');
         }
 
-        $file = new File();
-        $file
-            ->setFilename($archiveFilename)
-            ->setTmpFilename($filename);
-
-        return $file;
-    }
-
-    /**
-     * Sets the base folder all given files will be added into.
-     */
-    public function setBaseFolder(string $baseFolder): self
-    {
-        $this->baseFolder = $baseFolder;
-
-        return $this;
+        return new File($archiveFilename, $filename);
     }
 
     /**

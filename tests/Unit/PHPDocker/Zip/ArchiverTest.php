@@ -35,7 +35,7 @@ class ArchiverTest extends TestCase
     #[Test]
     public function generateArchiveReturnsArchiveWithCorrectFilename(): void
     {
-        $archiver = new Archiver();
+        $archiver = new Archiver('phpdocker');
         $archive  = $archiver->generateArchive('test.zip');
 
         self::assertInstanceOf(ArchiveInterface::class, $archive);
@@ -45,7 +45,7 @@ class ArchiverTest extends TestCase
     #[Test]
     public function generateArchiveReturnsTmpFilenamePointingToActualFile(): void
     {
-        $archiver = new Archiver();
+        $archiver = new Archiver('phpdocker');
         $archiver->addFile($this->makeFile('placeholder.txt', 'content'));
         $archive = $archiver->generateArchive('test.zip');
 
@@ -55,8 +55,7 @@ class ArchiverTest extends TestCase
     #[Test]
     public function addFileWithBaseFolderPrefixesFilename(): void
     {
-        $archiver = new Archiver();
-        $archiver->setBaseFolder('myfolder');
+        $archiver = new Archiver('myfolder');
         $archiver->addFile($this->makeFile('config.txt', 'content'));
 
         $archive = $archiver->generateArchive('out.zip');
@@ -70,8 +69,7 @@ class ArchiverTest extends TestCase
     #[Test]
     public function addFileWithIgnorePrefixDoesNotApplyBaseFolder(): void
     {
-        $archiver = new Archiver();
-        $archiver->setBaseFolder('myfolder');
+        $archiver = new Archiver('myfolder');
         $archiver->addFile($this->makeFile('readme.txt', 'content'), ignorePrefix: true);
 
         $archive = $archiver->generateArchive('out.zip');
