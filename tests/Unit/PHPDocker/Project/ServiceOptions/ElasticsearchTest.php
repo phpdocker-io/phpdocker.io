@@ -18,18 +18,17 @@ class ElasticsearchTest extends TestCase
     }
 
     #[Test]
-    public function setVersionTo56Succeeds(): void
+    public function constructorWithVersion56Succeeds(): void
     {
-        $es = new Elasticsearch();
-        $es->setVersion('5.6');
+        $es = new Elasticsearch(version: '5.6');
         self::assertSame('5.6', $es->getVersion());
     }
 
     #[Test]
-    public function setVersionWithInvalidVersionThrowsInvalidArgumentException(): void
+    public function constructorWithInvalidVersionThrowsInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        (new Elasticsearch())->setVersion('invalid');
+        new Elasticsearch(version: 'invalid');
     }
 
     #[Test]

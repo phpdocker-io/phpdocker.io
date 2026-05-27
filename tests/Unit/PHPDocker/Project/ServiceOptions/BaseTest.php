@@ -23,18 +23,11 @@ class BaseTest extends TestCase
     }
 
     #[Test]
-    public function setEnabledTrueReturnsTrue(): void
+    public function constructorWithEnabledTrueReturnsTrue(): void
     {
-        $this->service->setEnabled(true);
-        self::assertTrue($this->service->isEnabled());
-    }
+        $service = new class(true) extends Base {};
 
-    #[Test]
-    public function setEnabledFalseReturnsFalse(): void
-    {
-        $this->service->setEnabled(true);
-        $this->service->setEnabled(false);
-        self::assertFalse($this->service->isEnabled());
+        self::assertTrue($service->isEnabled());
     }
 
     #[Test]

@@ -16,15 +16,13 @@ class MemcachedTest extends TestCase
     }
 
     #[Test]
-    public function isDisabledByDefaultAndCanBeEnabled(): void
+    public function isDisabledByDefaultAndCanBeEnabledThroughConstructor(): void
     {
         $memcached = new Memcached();
 
         self::assertFalse($memcached->isEnabled());
 
-        $memcached->setEnabled(true);
-
-        self::assertTrue($memcached->isEnabled());
+        self::assertTrue((new Memcached(enabled: true))->isEnabled());
     }
 
     #[Test]

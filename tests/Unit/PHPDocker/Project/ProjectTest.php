@@ -31,16 +31,20 @@ class ProjectTest extends TestCase
         self::assertFalse($project->hasElasticsearch());
         self::assertInstanceOf(Elasticsearch::class, $project->getElasticsearchOptions());
 
-        $project->getElasticsearchOptions()->setEnabled(true);
+        $project = $this->createProject(
+            elasticsearchOptions: new Elasticsearch(enabled: true),
+        );
 
         self::assertTrue($project->hasElasticsearch());
     }
 
-    private function createProject(): Project
+    private function createProject(?Elasticsearch $elasticsearchOptions = null): Project
     {
         return new Project(
             new Php('8.4', [], false, 'index.php'),
             new GlobalOptions(8000, './', '/application'),
+            nginxOptions: new Nginx(),
+            elasticsearchOptions: $elasticsearchOptions,
         );
     }
 }

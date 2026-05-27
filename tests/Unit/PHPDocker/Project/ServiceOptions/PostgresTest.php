@@ -18,18 +18,17 @@ class PostgresTest extends TestCase
     }
 
     #[Test]
-    public function setVersionTo96Succeeds(): void
+    public function constructorWithVersion96Succeeds(): void
     {
-        $postgres = new Postgres();
-        $postgres->setVersion('9.6');
+        $postgres = new Postgres(version: '9.6');
         self::assertSame('9.6', $postgres->getVersion());
     }
 
     #[Test]
-    public function setVersionWithInvalidVersionThrowsInvalidArgumentException(): void
+    public function constructorWithInvalidVersionThrowsInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        (new Postgres())->setVersion('invalid');
+        new Postgres(version: 'invalid');
     }
 
     #[Test]

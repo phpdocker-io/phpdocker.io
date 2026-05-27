@@ -24,7 +24,7 @@ use InvalidArgumentException;
 /**
  * Postgres configuration
  */
-class Postgres extends Base
+final class Postgres extends Base
 {
     /**
      * Available versions
@@ -47,10 +47,29 @@ class Postgres extends Base
         self::VERSION_96 => '9.6.x',
     ];
 
-    private string $version = self::VERSION_15;
-    private string $rootUser;
-    private string $rootPassword;
-    private string $databaseName;
+    private readonly string $version;
+    private readonly string $rootUser;
+    private readonly string $rootPassword;
+    private readonly string $databaseName;
+
+    public function __construct(
+        string $version = self::VERSION_15,
+        string $rootUser = '',
+        string $rootPassword = '',
+        string $databaseName = '',
+        bool $enabled = false,
+    ) {
+        parent::__construct($enabled);
+
+        if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
+            throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
+        }
+
+        $this->version       = $version;
+        $this->rootUser      = $rootUser;
+        $this->rootPassword  = $rootPassword;
+        $this->databaseName  = $databaseName;
+    }
 
     protected function getExternalPortOffset(): ?int
     {
@@ -62,27 +81,9 @@ class Postgres extends Base
         return $this->version;
     }
 
-    public function setVersion(string $version): self
-    {
-        if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
-            throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
-        }
-
-        $this->version = $version;
-
-        return $this;
-    }
-
     public function getRootUser(): string
     {
         return $this->rootUser;
-    }
-
-    public function setRootUser(string $rootUser): self
-    {
-        $this->rootUser = $rootUser;
-
-        return $this;
     }
 
     public function getRootPassword(): string
@@ -90,23 +91,9 @@ class Postgres extends Base
         return $this->rootPassword;
     }
 
-    public function setRootPassword(string $rootPassword): self
-    {
-        $this->rootPassword = $rootPassword;
-
-        return $this;
-    }
-
     public function getDatabaseName(): string
     {
         return $this->databaseName;
-    }
-
-    public function setDatabaseName(string $databaseName): self
-    {
-        $this->databaseName = $databaseName;
-
-        return $this;
     }
 
     /**

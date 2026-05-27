@@ -21,7 +21,7 @@ namespace App\PHPDocker\Project\ServiceOptions;
 /**
  * Options for MariaDB container.
  */
-class MariaDB extends AbstractMySQL
+final class MariaDB extends AbstractMySQL
 {
     /**
      * Available versions
@@ -48,12 +48,22 @@ class MariaDB extends AbstractMySQL
         self::VERSION_104  => '10.4.x',
     ];
 
-    /**
-     * Set default version.
-     */
-    public function __construct()
-    {
-        $this->version = self::VERSION_110;
+    public function __construct(
+        string $version = self::VERSION_110,
+        ?string $rootPassword = null,
+        ?string $databaseName = null,
+        ?string $username = null,
+        ?string $password = null,
+        bool $enabled = false,
+    ) {
+        parent::__construct(
+            version: $version,
+            rootPassword: $rootPassword,
+            databaseName: $databaseName,
+            username: $username,
+            password: $password,
+            enabled: $enabled,
+        );
     }
 
     protected function getExternalPortOffset(): ?int

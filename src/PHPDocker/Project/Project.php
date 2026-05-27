@@ -19,37 +19,55 @@ declare(strict_types=1);
 
 namespace App\PHPDocker\Project;
 
+use App\PHPDocker\Project\ServiceOptions\Clickhouse;
+use App\PHPDocker\Project\ServiceOptions\Elasticsearch;
+use App\PHPDocker\Project\ServiceOptions\GlobalOptions;
+use App\PHPDocker\Project\ServiceOptions\Mailhog;
+use App\PHPDocker\Project\ServiceOptions\MariaDB;
+use App\PHPDocker\Project\ServiceOptions\Memcached;
+use App\PHPDocker\Project\ServiceOptions\MySQL;
+use App\PHPDocker\Project\ServiceOptions\Nginx;
 use App\PHPDocker\Project\ServiceOptions\Php;
+use App\PHPDocker\Project\ServiceOptions\Postgres;
+use App\PHPDocker\Project\ServiceOptions\Redis;
 
 /**
  * Defines a single project.
  */
-class Project
+final readonly class Project
 {
-    private ServiceOptions\Nginx         $nginxOptions;
-    private ServiceOptions\MySQL         $mysqlOptions;
-    private ServiceOptions\MariaDB       $mariadbOptions;
-    private ServiceOptions\Postgres      $postgresOptions;
-    private ServiceOptions\Memcached     $memcachedOptions;
-    private ServiceOptions\Redis         $redisOptions;
-    private ServiceOptions\Mailhog       $mailhogOptions;
-    private ServiceOptions\Elasticsearch $elasticsearchOptions;
-    private ServiceOptions\Clickhouse    $clickhouseOptions;
+    private Nginx $nginxOptions;
+    private MySQL $mysqlOptions;
+    private MariaDB $mariadbOptions;
+    private Postgres $postgresOptions;
+    private Memcached $memcachedOptions;
+    private Redis $redisOptions;
+    private Mailhog $mailhogOptions;
+    private Elasticsearch $elasticsearchOptions;
+    private Clickhouse $clickhouseOptions;
 
     public function __construct(
-        private readonly Php $phpOptions,
-        private readonly ServiceOptions\GlobalOptions $globalOptions,
+        private Php $phpOptions,
+        private GlobalOptions $globalOptions,
+        ?Nginx $nginxOptions = null,
+        ?MySQL $mysqlOptions = null,
+        ?MariaDB $mariadbOptions = null,
+        ?Postgres $postgresOptions = null,
+        ?Memcached $memcachedOptions = null,
+        ?Redis $redisOptions = null,
+        ?Mailhog $mailhogOptions = null,
+        ?Elasticsearch $elasticsearchOptions = null,
+        ?Clickhouse $clickhouseOptions = null,
     ) {
-        // Initialise project properties
-        $this->nginxOptions         = new ServiceOptions\Nginx();
-        $this->mysqlOptions         = new ServiceOptions\MySQL();
-        $this->mariadbOptions       = new ServiceOptions\MariaDB();
-        $this->postgresOptions      = new ServiceOptions\Postgres();
-        $this->redisOptions         = new ServiceOptions\Redis();
-        $this->memcachedOptions     = new ServiceOptions\Memcached();
-        $this->mailhogOptions       = new ServiceOptions\Mailhog();
-        $this->elasticsearchOptions = new ServiceOptions\Elasticsearch();
-        $this->clickhouseOptions    = new ServiceOptions\Clickhouse();
+        $this->nginxOptions         = $nginxOptions ?? new Nginx();
+        $this->mysqlOptions         = $mysqlOptions ?? new MySQL();
+        $this->mariadbOptions       = $mariadbOptions ?? new MariaDB();
+        $this->postgresOptions      = $postgresOptions ?? new Postgres();
+        $this->memcachedOptions     = $memcachedOptions ?? new Memcached();
+        $this->redisOptions         = $redisOptions ?? new Redis();
+        $this->mailhogOptions       = $mailhogOptions ?? new Mailhog();
+        $this->elasticsearchOptions = $elasticsearchOptions ?? new Elasticsearch();
+        $this->clickhouseOptions    = $clickhouseOptions ?? new Clickhouse();
     }
 
     public function hasNginx(): bool
@@ -57,7 +75,7 @@ class Project
         return $this->nginxOptions->isEnabled();
     }
 
-    public function getNginxOptions(): ServiceOptions\Nginx
+    public function getNginxOptions(): Nginx
     {
         return $this->nginxOptions;
     }
@@ -67,7 +85,7 @@ class Project
         return $this->mysqlOptions->isEnabled();
     }
 
-    public function getMysqlOptions(): ServiceOptions\MySQL
+    public function getMysqlOptions(): MySQL
     {
         return $this->mysqlOptions;
     }
@@ -77,7 +95,7 @@ class Project
         return $this->mariadbOptions->isEnabled();
     }
 
-    public function getMariadbOptions(): ServiceOptions\MariaDB
+    public function getMariadbOptions(): MariaDB
     {
         return $this->mariadbOptions;
     }
@@ -87,17 +105,17 @@ class Project
         return $this->postgresOptions->isEnabled();
     }
 
-    public function getPostgresOptions(): ServiceOptions\Postgres
+    public function getPostgresOptions(): Postgres
     {
         return $this->postgresOptions;
     }
 
-    public function getPhpOptions(): ServiceOptions\Php
+    public function getPhpOptions(): Php
     {
         return $this->phpOptions;
     }
 
-    public function getMemcachedOptions(): ServiceOptions\Memcached
+    public function getMemcachedOptions(): Memcached
     {
         return $this->memcachedOptions;
     }
@@ -107,7 +125,7 @@ class Project
         return $this->memcachedOptions->isEnabled();
     }
 
-    public function getRedisOptions(): ServiceOptions\Redis
+    public function getRedisOptions(): Redis
     {
         return $this->redisOptions;
     }
@@ -117,7 +135,7 @@ class Project
         return $this->redisOptions->isEnabled();
     }
 
-    public function getMailhogOptions(): ServiceOptions\Mailhog
+    public function getMailhogOptions(): Mailhog
     {
         return $this->mailhogOptions;
     }
@@ -127,7 +145,7 @@ class Project
         return $this->mailhogOptions->isEnabled();
     }
 
-    public function getElasticsearchOptions(): ServiceOptions\Elasticsearch
+    public function getElasticsearchOptions(): Elasticsearch
     {
         return $this->elasticsearchOptions;
     }
@@ -137,7 +155,7 @@ class Project
         return $this->elasticsearchOptions->isEnabled();
     }
 
-    public function getClickhouseOptions(): ServiceOptions\Clickhouse
+    public function getClickhouseOptions(): Clickhouse
     {
         return $this->clickhouseOptions;
     }
@@ -147,7 +165,7 @@ class Project
         return $this->clickhouseOptions->isEnabled();
     }
 
-    public function getGlobalOptions(): ServiceOptions\GlobalOptions
+    public function getGlobalOptions(): GlobalOptions
     {
         return $this->globalOptions;
     }

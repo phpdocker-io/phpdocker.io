@@ -21,6 +21,10 @@ namespace App\PHPDocker\Project\ServiceOptions;
 /**
  * Options for redis container
  */
-class Redis extends Base
+final class Redis extends Base
 {
+    public function __construct(bool $enabled = false)
+    {
+        parent::__construct($enabled);
+    }
 }

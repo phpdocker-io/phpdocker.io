@@ -22,8 +22,17 @@ use App\Form\Generator\ProjectType;
 use App\PHPDocker\Generator\Generator;
 use App\PHPDocker\PhpExtension\AvailableExtensionsFactory;
 use App\PHPDocker\Project\Project;
+use App\PHPDocker\Project\ServiceOptions\Clickhouse;
+use App\PHPDocker\Project\ServiceOptions\Elasticsearch;
 use App\PHPDocker\Project\ServiceOptions\GlobalOptions;
+use App\PHPDocker\Project\ServiceOptions\Mailhog;
+use App\PHPDocker\Project\ServiceOptions\MariaDB;
+use App\PHPDocker\Project\ServiceOptions\Memcached;
+use App\PHPDocker\Project\ServiceOptions\MySQL;
+use App\PHPDocker\Project\ServiceOptions\Nginx;
 use App\PHPDocker\Project\ServiceOptions\Php as PhpOptions;
+use App\PHPDocker\Project\ServiceOptions\Postgres;
+use App\PHPDocker\Project\ServiceOptions\Redis;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,62 +104,49 @@ class GeneratorController extends AbstractController
             dockerWorkingDir: rtrim($globalOptionsData['dockerWorkingDir'], '/'),
         );
 
-        $project = new Project(
+        $mysqlOptions = $formData['mysqlOptions']['hasMysql'] === true ? new MySQL(
+            version: $formData['mysqlOptions']['version'],
+            rootPassword: $formData['mysqlOptions']['rootPassword'],
+            databaseName: $formData['mysqlOptions']['databaseName'],
+            username: $formData['mysqlOptions']['username'],
+            password: $formData['mysqlOptions']['password'],
+            enabled: true,
+        ) : null;
+
+        $mariadbOptions = $formData['mariadbOptions']['hasMariadb'] === true ? new MariaDB(
+            version: $formData['mariadbOptions']['version'],
+            rootPassword: $formData['mariadbOptions']['rootPassword'],
+            databaseName: $formData['mariadbOptions']['databaseName'],
+            username: $formData['mariadbOptions']['username'],
+            password: $formData['mariadbOptions']['password'],
+            enabled: true,
+        ) : null;
+
+        $postgresOptions = $formData['postgresOptions']['hasPostgres'] === true ? new Postgres(
+            version: (string) $formData['postgresOptions']['version'],
+            rootUser: $formData['postgresOptions']['rootUser'],
+            rootPassword: $formData['postgresOptions']['rootPassword'],
+            databaseName: $formData['postgresOptions']['databaseName'],
+            enabled: true,
+        ) : null;
+
+        $elasticsearchOptions = $formData['elasticsearchOptions']['hasElasticsearch'] === true ? new Elasticsearch(
+            version: $formData['elasticsearchOptions']['version'],
+            enabled: true,
+        ) : null;
+
+        return new Project(
             phpOptions: $phpOptions,
             globalOptions: $globalOptions,
+            nginxOptions: new Nginx(),
+            mysqlOptions: $mysqlOptions,
+            mariadbOptions: $mariadbOptions,
+            postgresOptions: $postgresOptions,
+            memcachedOptions: new Memcached(enabled: $formData['hasMemcached']),
+            redisOptions: new Redis(enabled: $formData['hasRedis']),
+            mailhogOptions: new Mailhog(enabled: $formData['hasMailhog']),
+            elasticsearchOptions: $elasticsearchOptions,
+            clickhouseOptions: new Clickhouse(enabled: $formData['hasClickhouse']),
         );
-
-        $project->getMemcachedOptions()->setEnabled($formData['hasMemcached']);
-        $project->getRedisOptions()->setEnabled($formData['hasRedis']);
-        $project->getMailhogOptions()->setEnabled($formData['hasMailhog']);
-        $project->getClickhouseOptions()->setEnabled($formData['hasClickhouse']);
-
-        $mysqlData = $formData['mysqlOptions'];
-        if ($mysqlData['hasMysql'] === true) {
-            $project
-                ->getMysqlOptions()
-                ->setEnabled(true)
-                ->setVersion($mysqlData['version'])
-                ->setDatabaseName($mysqlData['databaseName'])
-                ->setRootPassword($mysqlData['rootPassword'])
-                ->setUsername($mysqlData['username'])
-                ->setPassword($mysqlData['password']);
-        }
-
-        $mariaDbData = $formData['mariadbOptions'];
-        if ($mariaDbData['hasMariadb'] === true) {
-            $project
-                ->getMariadbOptions()
-                ->setEnabled(true)
-                ->setVersion($mariaDbData['version'])
-                ->setDatabaseName($mariaDbData['databaseName'])
-                ->setRootPassword($mariaDbData['rootPassword'])
-                ->setUsername($mariaDbData['username'])
-                ->setPassword($mariaDbData['password']);
-        }
-
-        // For some reason, form data comes with version as int (instead of the original string)
-        // because postgres versions can be cast as int (eg Postgres::VERSION_15 = '15' at some point the form casts
-        // it to 15
-        $pgData = $formData['postgresOptions'];
-        if ($pgData['hasPostgres'] === true) {
-            $project
-                ->getPostgresOptions()
-                ->setEnabled(true)
-                ->setVersion((string) $pgData['version'])
-                ->setDatabaseName($pgData['databaseName'])
-                ->setRootUser($pgData['rootUser'])
-                ->setRootPassword($pgData['rootPassword']);
-        }
-
-        $esData = $formData['elasticsearchOptions'];
-        if ($esData['hasElasticsearch'] === true) {
-            $project
-                ->getElasticsearchOptions()
-                ->setEnabled(true)
-                ->setVersion($esData['version']);
-        }
-
-        return $project;
     }
 }

@@ -26,17 +26,17 @@ use InvalidArgumentException;
 /**
  * Options for PHP container.
  */
-class Php extends Base
+final class Php extends Base
 {
     public const string PHP_VERSION_82 = '8.2';
     public const string PHP_VERSION_83 = '8.3';
     public const string PHP_VERSION_84 = '8.4';
     public const string PHP_VERSION_85 = '8.5';
 
-    private string $version;
+    private readonly string $version;
 
     /** @var PhpExtension[] */
-    private array $extensions = [];
+    private readonly array $extensions;
 
     /**
      * Supported PHP versions
@@ -58,7 +58,7 @@ class Php extends Base
         private readonly bool $hasGit,
         private readonly string $frontControllerPath
     ) {
-        $this->setEnabled(true);
+        parent::__construct(true);
 
         // Validate & set version
         if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
@@ -68,9 +68,12 @@ class Php extends Base
         $this->version = $version;
 
         // Parse extensions
+        $parsedExtensions = [];
         foreach ($extensions as $phpExtension) {
-            $this->addExtensionByName($phpExtension);
+            $parsedExtensions[] = $this->addExtensionByName($phpExtension);
         }
+
+        $this->extensions = $parsedExtensions;
     }
 
     public function getVersion(): string
@@ -104,15 +107,9 @@ class Php extends Base
     /**
      * Adds an extension given the name only.
      */
-    private function addExtensionByName(string $extensionName): void
+    private function addExtensionByName(string $extensionName): PhpExtension
     {
-        static $extensionInstance;
-
-        if ($extensionInstance === null) {
-            $extensionInstance = AvailableExtensionsFactory::create($this->getVersion());
-        }
-
-        $this->extensions[] = $extensionInstance->getPhpExtension($extensionName);
+        return AvailableExtensionsFactory::create($this->getVersion())->getPhpExtension($extensionName);
     }
 
     public function getFrontControllerPath(): string

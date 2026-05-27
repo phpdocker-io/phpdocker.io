@@ -18,34 +18,31 @@ class MySQLTest extends TestCase
     }
 
     #[Test]
-    public function setVersionTo57Succeeds(): void
+    public function constructorWithVersion57Succeeds(): void
     {
-        $mysql = new MySQL();
-        $mysql->setVersion('5.7');
+        $mysql = new MySQL(version: '5.7');
         self::assertSame('5.7', $mysql->getVersion());
     }
 
     #[Test]
-    public function setVersionTo56Succeeds(): void
+    public function constructorWithVersion56Succeeds(): void
     {
-        $mysql = new MySQL();
-        $mysql->setVersion('5.6');
+        $mysql = new MySQL(version: '5.6');
         self::assertSame('5.6', $mysql->getVersion());
     }
 
     #[Test]
-    public function setVersionTo55Succeeds(): void
+    public function constructorWithVersion55Succeeds(): void
     {
-        $mysql = new MySQL();
-        $mysql->setVersion('5.5');
+        $mysql = new MySQL(version: '5.5');
         self::assertSame('5.5', $mysql->getVersion());
     }
 
     #[Test]
-    public function setVersionWithInvalidVersionThrowsInvalidArgumentException(): void
+    public function constructorWithInvalidVersionThrowsInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        (new MySQL())->setVersion('invalid');
+        new MySQL(version: 'invalid');
     }
 
     #[Test]

@@ -21,6 +21,10 @@ namespace App\PHPDocker\Project\ServiceOptions;
 /**
  * Options for clickhouse container
  */
-class Clickhouse extends Base
+final class Clickhouse extends Base
 {
+    public function __construct(bool $enabled = false)
+    {
+        parent::__construct($enabled);
+    }
 }

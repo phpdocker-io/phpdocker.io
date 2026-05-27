@@ -21,8 +21,13 @@ namespace App\PHPDocker\Project\ServiceOptions;
 /**
  * Options for Memcached container.
  */
-class Memcached extends Base
+final class Memcached extends Base
 {
+    public function __construct(bool $enabled = false)
+    {
+        parent::__construct($enabled);
+    }
+
     public function getContainerNameSuffix(): string
     {
         return 'memcached';

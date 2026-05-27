@@ -26,11 +26,11 @@ use InvalidArgumentException;
  */
 abstract class AbstractMySQL extends Base
 {
-    protected string  $version;
-    protected ?string $rootPassword;
-    protected ?string $databaseName;
-    protected ?string $username;
-    protected ?string $password;
+    private readonly string $version;
+    private readonly ?string $rootPassword;
+    private readonly ?string $databaseName;
+    private readonly ?string $username;
+    private readonly ?string $password;
 
     /**
      * Return an array of available versions, like so:
@@ -43,20 +43,30 @@ abstract class AbstractMySQL extends Base
      */
     abstract public static function getChoices(): array;
 
-    public function getVersion(): string
-    {
-        return $this->version;
-    }
+    public function __construct(
+        string $version,
+        ?string $rootPassword = null,
+        ?string $databaseName = null,
+        ?string $username = null,
+        ?string $password = null,
+        bool $enabled = false,
+    ) {
+        parent::__construct($enabled);
 
-    public function setVersion(string $version): self
-    {
         if (array_key_exists($version, static::getChoices()) === false) {
             throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
         }
 
-        $this->version = $version;
+        $this->version       = $version;
+        $this->rootPassword   = $rootPassword;
+        $this->databaseName   = $databaseName;
+        $this->username       = $username;
+        $this->password       = $password;
+    }
 
-        return $this;
+    public function getVersion(): string
+    {
+        return $this->version;
     }
 
     public function getRootPassword(): ?string
@@ -64,23 +74,9 @@ abstract class AbstractMySQL extends Base
         return $this->rootPassword;
     }
 
-    public function setRootPassword(?string $rootPassword): self
-    {
-        $this->rootPassword = $rootPassword;
-
-        return $this;
-    }
-
     public function getDatabaseName(): ?string
     {
         return $this->databaseName;
-    }
-
-    public function setDatabaseName(?string $databaseName): self
-    {
-        $this->databaseName = $databaseName;
-
-        return $this;
     }
 
     public function getUsername(): ?string
@@ -88,22 +84,8 @@ abstract class AbstractMySQL extends Base
         return $this->username;
     }
 
-    public function setUsername(?string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
-    }
-
-    public function setPassword(?string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
     }
 }

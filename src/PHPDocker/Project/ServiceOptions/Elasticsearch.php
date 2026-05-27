@@ -24,7 +24,7 @@ use InvalidArgumentException;
 /**
  * Options for Elasticsearch container.
  */
-class Elasticsearch extends Base
+final class Elasticsearch extends Base
 {
     /**
      * Available versions
@@ -37,22 +37,22 @@ class Elasticsearch extends Base
         self::VERSION_56 => '5.6.x',
     ];
 
-    private string $version = self::VERSION_65;
+    private readonly string $version;
 
-    public function getVersion(): string
+    public function __construct(string $version = self::VERSION_65, bool $enabled = false)
     {
-        return $this->version;
-    }
+        parent::__construct($enabled);
 
-    public function setVersion(string $version): self
-    {
         if (array_key_exists($version, self::ALLOWED_VERSIONS) === false) {
             throw new InvalidArgumentException(sprintf('Version %s is not supported', $version));
         }
 
         $this->version = $version;
+    }
 
-        return $this;
+    public function getVersion(): string
+    {
+        return $this->version;
     }
 
     /**

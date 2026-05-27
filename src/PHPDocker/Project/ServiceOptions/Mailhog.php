@@ -21,8 +21,13 @@ namespace App\PHPDocker\Project\ServiceOptions;
 /**
  * Options for Mailhog container.
  */
-class Mailhog extends Base
+final class Mailhog extends Base
 {
+    public function __construct(bool $enabled = false)
+    {
+        parent::__construct($enabled);
+    }
+
     protected function getExternalPortOffset(): ?int
     {
         return 1;

@@ -21,7 +21,7 @@ namespace App\PHPDocker\Project\ServiceOptions;
 /**
  * Options for MySQL container.
  */
-class MySQL extends AbstractMySQL
+final class MySQL extends AbstractMySQL
 {
     /**
      * Available versions
@@ -38,9 +38,22 @@ class MySQL extends AbstractMySQL
         self::VERSION_55 => '5.5.x',
     ];
 
-    public function __construct()
-    {
-        $this->version = self::VERSION_80;
+    public function __construct(
+        string $version = self::VERSION_80,
+        ?string $rootPassword = null,
+        ?string $databaseName = null,
+        ?string $username = null,
+        ?string $password = null,
+        bool $enabled = false,
+    ) {
+        parent::__construct(
+            version: $version,
+            rootPassword: $rootPassword,
+            databaseName: $databaseName,
+            username: $username,
+            password: $password,
+            enabled: $enabled,
+        );
     }
 
     protected function getExternalPortOffset(): ?int

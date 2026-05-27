@@ -23,18 +23,13 @@ namespace App\PHPDocker\Project\ServiceOptions;
  */
 abstract class Base
 {
-    protected bool $enabled = false;
+    public function __construct(private readonly bool $enabled = false)
+    {
+    }
 
     public function isEnabled(): bool
     {
         return $this->enabled;
-    }
-
-    public function setEnabled(bool $enabled): static
-    {
-        $this->enabled = $enabled;
-
-        return $this;
     }
 
     /**

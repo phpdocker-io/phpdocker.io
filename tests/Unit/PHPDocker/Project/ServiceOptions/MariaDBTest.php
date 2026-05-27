@@ -18,18 +18,17 @@ class MariaDBTest extends TestCase
     }
 
     #[Test]
-    public function setVersionTo104Succeeds(): void
+    public function constructorWithVersion104Succeeds(): void
     {
-        $mariadb = new MariaDB();
-        $mariadb->setVersion('10.4');
+        $mariadb = new MariaDB(version: '10.4');
         self::assertSame('10.4', $mariadb->getVersion());
     }
 
     #[Test]
-    public function setVersionWithInvalidVersionThrowsInvalidArgumentException(): void
+    public function constructorWithInvalidVersionThrowsInvalidArgumentException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        (new MariaDB())->setVersion('invalid');
+        new MariaDB(version: 'invalid');
     }
 
     #[Test]

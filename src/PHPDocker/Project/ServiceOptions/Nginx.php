@@ -21,10 +21,10 @@ namespace App\PHPDocker\Project\ServiceOptions;
 /**
  * Options for nginx container.
  */
-class Nginx extends Base
+final class Nginx extends Base
 {
-    public function __construct()
+    public function __construct(bool $enabled = true)
     {
-        $this->setEnabled(true);
+        parent::__construct($enabled);
     }
 }
