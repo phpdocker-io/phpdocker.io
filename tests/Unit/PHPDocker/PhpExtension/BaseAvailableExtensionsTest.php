@@ -19,10 +19,15 @@ class BaseAvailableExtensionsTest extends TestCase
     }
 
     #[Test]
-    public function getAllReturnsNonEmptyArray(): void
+    public function getAllReturnsPhpExtensionInstancesIndexedByName(): void
     {
         $all = $this->extensions->getAll();
+
         self::assertNotEmpty($all);
+        self::assertArrayHasKey('Xdebug', $all);
+        self::assertContainsOnlyInstancesOf(PhpExtension::class, $all);
+        self::assertSame('Xdebug', $all['Xdebug']->getName());
+        self::assertContains('php8.4-xdebug', $all['Xdebug']->getPackages());
     }
 
     #[Test]
@@ -49,8 +54,10 @@ class BaseAvailableExtensionsTest extends TestCase
     public function getPhpExtensionReturnsCorrectExtension(): void
     {
         $ext = $this->extensions->getPhpExtension('Xdebug');
+
         self::assertInstanceOf(PhpExtension::class, $ext);
         self::assertSame('Xdebug', $ext->getName());
+        self::assertContains('php8.4-xdebug', $ext->getPackages());
     }
 
     #[Test]
@@ -64,16 +71,10 @@ class BaseAvailableExtensionsTest extends TestCase
     public function getOptionalReturnsArrayOfPhpExtensionObjects(): void
     {
         $optional = $this->extensions->getOptional();
+
         self::assertNotEmpty($optional);
         foreach ($optional as $ext) {
             self::assertInstanceOf(PhpExtension::class, $ext);
         }
-    }
-
-    #[Test]
-    public function extensionPackagesAreMappedCorrectly(): void
-    {
-        $ext = $this->extensions->getPhpExtension('Xdebug');
-        self::assertContains('php8.4-xdebug', $ext->getPackages());
     }
 }

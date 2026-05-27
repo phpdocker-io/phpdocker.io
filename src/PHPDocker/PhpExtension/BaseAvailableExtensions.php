@@ -23,22 +23,24 @@ namespace App\PHPDocker\PhpExtension;
  */
 abstract class BaseAvailableExtensions
 {
-    /** @var array<string, array<string, string[]>> */
+    /**
+     * @var array<string, PhpExtension>
+     */
     private array $allExtensions = [];
 
     /**
      * Must return an array of all available mandatory extensions, indexed by display name
-     * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
+     * and containing a list of package names.
      *
-     * @return array<string, array<string, string[]>>
+     * @return array<string, string[]>
      */
     abstract protected function getMandatoryExtensionsMap(): array;
 
     /**
      * Must return an array of all available optional extensions, indexed by display name
-     * and containing an array of ['packages' => ['deb-package-1', 'deb-package-2' ...]
+     * and containing a list of package names.
      *
-     * @return array<string, array<string, string[]>>
+     * @return array<string, string[]>
      */
     abstract protected function getOptionalExtensionsMap(): array;
 
@@ -53,12 +55,15 @@ abstract class BaseAvailableExtensions
     /**
      * Returns all available extensions, mandatory or not.
      *
-     * @return array<string, array<string, string[]>>
+     * @return array<string, PhpExtension>
      */
     public function getAll(): array
     {
         if ($this->allExtensions === []) {
-            $this->allExtensions = array_merge($this->getMandatoryExtensionsMap(), $this->getOptionalExtensionsMap());
+            $this->allExtensions = array_merge(
+                $this->createExtensions($this->getMandatoryExtensionsMap()),
+                $this->createExtensions($this->getOptionalExtensionsMap()),
+            );
         }
 
         return $this->allExtensions;
@@ -75,16 +80,7 @@ abstract class BaseAvailableExtensions
             throw new Exception\NotFoundException(sprintf('PHP extension %s is not available to install', $name));
         }
 
-        $raw = $this->getAll()[$name];
-
-        $extension = new PhpExtension();
-        $extension->setName($name);
-
-        foreach ($raw['packages'] ?? [] as $package) {
-            $extension->addPackage($package);
-        }
-
-        return $extension;
+        return $this->getAll()[$name];
     }
 
     /**
@@ -95,9 +91,19 @@ abstract class BaseAvailableExtensions
      */
     public function getOptional(): array
     {
+        return array_values($this->createExtensions($this->getOptionalExtensionsMap()));
+    }
+
+    /**
+     * @param array<string, string[]> $extensionMap
+     *
+     * @return array<string, PhpExtension>
+     */
+    private function createExtensions(array $extensionMap): array
+    {
         $extensions = [];
-        foreach ($this->getOptionalExtensionsMap() as $name => $value) {
-            $extensions[] = $this->getPhpExtension($name);
+        foreach ($extensionMap as $name => $packages) {
+            $extensions[$name] = new PhpExtension($name, $packages);
         }
 
         return $extensions;

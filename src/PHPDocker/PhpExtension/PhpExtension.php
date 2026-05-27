@@ -19,25 +19,22 @@ declare(strict_types=1);
 namespace App\PHPDocker\PhpExtension;
 
 /**
- * Describes a PHP extension
+ * Describes a PHP extension.
  */
-class PhpExtension
+final readonly class PhpExtension
 {
-    protected string $name;
-
-    /** @var string[] */
-    protected array $packages = [];
+    /**
+     * @param string[] $packages
+     */
+    public function __construct(
+        private string $name,
+        private array $packages = [],
+    ) {
+    }
 
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -46,12 +43,5 @@ class PhpExtension
     public function getPackages(): array
     {
         return $this->packages;
-    }
-
-    public function addPackage(string $package): self
-    {
-        $this->packages[] = $package;
-
-        return $this;
     }
 }
