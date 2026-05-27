@@ -15,12 +15,12 @@ final class GlobalOptions extends Base
         return $this->basePort;
     }
 
-    public function getAppPath(): ?string
+    public function getAppPath(): string
     {
         return $this->appPath;
     }
 
-    public function getDockerWorkingDir(): ?string
+    public function getDockerWorkingDir(): string
     {
         return $this->dockerWorkingDir;
     }
