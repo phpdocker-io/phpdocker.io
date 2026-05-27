@@ -109,9 +109,6 @@ open-frontend:
 ### Tests & ci
 prep-ci: composer-install fix-permissions fix-cache-permissions-dev
 
-behaviour:
-	$(PHP_RUN) vendor/bin/behat --colors
-
 composer-cache-dir:
 	@composer config cache-files-dir
 

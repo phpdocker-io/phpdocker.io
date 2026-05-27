@@ -1,6 +1,6 @@
 <?php
 /**
- * Test environment (behat & phpunit).
+ * Test environment (phpunit).
  *
  * Loads .env support.
  */
