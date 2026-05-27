@@ -61,14 +61,14 @@ install-assets-dev:
 composer-install:
 	$(PHP_RUN) composer -o install
 
-yarn-install:
+npm-install:
 	docker run  \
 	    --rm \
 	    -t \
 	    -v "`pwd`:/workdir" \
 	    -w /workdir \
 	    node:alpine \
-	    sh -c "npm install --global yarn@1.22.22 && yarn install --frozen-lockfile"
+	    npm ci
 
 build-css:
 	docker run \
@@ -77,9 +77,9 @@ build-css:
 	    -v "`pwd`:/workdir" \
 	    -w /workdir \
 	    node:alpine \
-	    sh -c "npm install --global yarn@1.22.22 && yarn install --frozen-lockfile && yarn build:css"
+	    sh -c "npm ci && npm run build:css"
 
-install-dependencies: composer-install yarn-install build-css
+install-dependencies: composer-install npm-install build-css
 
 composer-update:
 	$(PHP_RUN) composer update --no-scripts
