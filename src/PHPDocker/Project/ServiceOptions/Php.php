@@ -21,32 +21,16 @@ namespace App\PHPDocker\Project\ServiceOptions;
 
 use App\PHPDocker\PhpExtension\AvailableExtensionsFactory;
 use App\PHPDocker\PhpExtension\PhpExtension;
-use InvalidArgumentException;
 
 /**
  * Options for PHP container.
  */
 final class Php extends Base
 {
-    public const string PHP_VERSION_82 = '8.2';
-    public const string PHP_VERSION_83 = '8.3';
-    public const string PHP_VERSION_84 = '8.4';
-    public const string PHP_VERSION_85 = '8.5';
-
     private readonly string $version;
 
     /** @var PhpExtension[] */
     private readonly array $extensions;
-
-    /**
-     * Supported PHP versions
-     */
-    private const array SUPPORTED_VERSIONS = [
-        self::PHP_VERSION_85,
-        self::PHP_VERSION_84,
-        self::PHP_VERSION_83,
-        self::PHP_VERSION_82,
-    ];
 
     /**
      * @param string[] $extensions
@@ -60,12 +44,7 @@ final class Php extends Base
     ) {
         parent::__construct(true);
 
-        // Validate & set version
-        if (in_array($version, self::SUPPORTED_VERSIONS, true) === false) {
-            throw new InvalidArgumentException(sprintf('PHP version specified (%s) is unsupported', $version));
-        }
-
-        $this->version = $version;
+        $this->version = self::fromString($version)->value;
 
         // Parse extensions
         $parsedExtensions = [];
@@ -101,7 +80,7 @@ final class Php extends Base
      */
     public static function getSupportedVersions(): array
     {
-        return self::SUPPORTED_VERSIONS;
+        return self::values();
     }
 
     /**
@@ -115,5 +94,15 @@ final class Php extends Base
     public function getFrontControllerPath(): string
     {
         return $this->frontControllerPath;
+    }
+
+    private static function values(): array
+    {
+        return PhpVersion::values();
+    }
+
+    private static function fromString(string $version): PhpVersion
+    {
+        return PhpVersion::fromString($version);
     }
 }

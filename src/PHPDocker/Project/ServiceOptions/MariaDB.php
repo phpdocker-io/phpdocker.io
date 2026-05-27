@@ -23,30 +23,7 @@ namespace App\PHPDocker\Project\ServiceOptions;
  */
 final class MariaDB extends AbstractMySQL
 {
-    /**
-     * Available versions
-     */
-    private const string VERSION_104 = '10.4';
-    private const string VERSION_105 = '10.5';
-    private const string VERSION_106 = '10.6';
-    private const string VERSION_107 = '10.7';
-    private const string VERSION_108 = '10.8';
-    private const string VERSION_109 = '10.9';
-    private const string VERSION_1010 = '10.10';
-    private const string VERSION_1011 = '10.11';
-    private const string VERSION_110  = '11.0';
-
-    private const array ALLOWED_VERSIONS = [
-        self::VERSION_110 => '11.0.x',
-        self::VERSION_1011 => '10.11.x',
-        self::VERSION_1010 => '10.10.x',
-        self::VERSION_109  => '10.9.x',
-        self::VERSION_108  => '10.8.x',
-        self::VERSION_107  => '10.7.x',
-        self::VERSION_106  => '10.6.x',
-        self::VERSION_105  => '10.5.x',
-        self::VERSION_104  => '10.4.x',
-    ];
+    private const string VERSION_110 = '11.0';
 
     public function __construct(
         string $version = self::VERSION_110,
@@ -77,6 +54,14 @@ final class MariaDB extends AbstractMySQL
      */
     public static function getChoices(): array
     {
-        return self::ALLOWED_VERSIONS;
+        return self::choices();
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private static function choices(): array
+    {
+        return MariaDBVersion::choices();
     }
 }
