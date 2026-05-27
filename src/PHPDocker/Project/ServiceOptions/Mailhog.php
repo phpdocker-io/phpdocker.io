@@ -28,7 +28,7 @@ final class Mailhog extends Base
         parent::__construct($enabled);
     }
 
-    protected function getExternalPortOffset(): ?int
+    protected function getExternalPortOffset(): int
     {
         return 1;
     }

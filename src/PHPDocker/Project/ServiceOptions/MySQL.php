@@ -56,7 +56,7 @@ final class MySQL extends AbstractMySQL
         );
     }
 
-    protected function getExternalPortOffset(): ?int
+    protected function getExternalPortOffset(): int
     {
         return 2;
     }

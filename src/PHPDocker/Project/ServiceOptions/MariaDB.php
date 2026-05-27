@@ -66,7 +66,7 @@ final class MariaDB extends AbstractMySQL
         );
     }
 
-    protected function getExternalPortOffset(): ?int
+    protected function getExternalPortOffset(): int
     {
         return 3;
     }

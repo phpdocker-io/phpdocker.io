@@ -71,7 +71,7 @@ final class Postgres extends Base
         $this->databaseName  = $databaseName;
     }
 
-    protected function getExternalPortOffset(): ?int
+    protected function getExternalPortOffset(): int
     {
         return 4;
     }
