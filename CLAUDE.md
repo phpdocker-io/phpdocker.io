@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-PHPDocker.io is a Symfony 7 web application that generates Docker environments for PHP projects. Users fill out a form and receive a zip archive containing `docker-compose.yaml`, `Dockerfile`, nginx config, PHP ini, and a README.
+PHPDocker.io is a Symfony 8 web application that generates Docker environments for PHP projects. Users fill out a form and receive a zip archive containing `docker-compose.yaml`, `Dockerfile`, nginx config, PHP ini, and a README.
 
-**Tech stack:** PHP 8.4, Symfony 7.0, Twig, Redis (cache/sessions), Docker Compose (local), Kubernetes (production).
+**Tech stack:** PHP 8.4, Symfony 8.0, Twig, Redis (cache/sessions), Docker Compose (local), Kubernetes (production).
 
 ## Commands
 
@@ -21,7 +21,6 @@ make shell              # Bash shell inside PHP container
 make static-analysis    # PHPStan level 9 on src/
 make unit-tests         # PHPUnit (no coverage)
 make coverage-tests     # PHPUnit with xdebug coverage
-make behaviour          # Behat behavioral tests
 
 make clear-cache        # Clear Symfony var/ cache
 make fix-cache-permissions-dev  # Fix var/ permissions if needed
@@ -32,10 +31,6 @@ make fix-cache-permissions-dev  # Fix var/ permissions if needed
 docker compose run -e XDEBUG_MODE=coverage --rm php-fpm vendor/bin/phpunit tests/Functional/GeneratorTest.php
 ```
 
-**Running a single Behat scenario:**
-```bash
-docker compose run -e XDEBUG_MODE=coverage --rm php-fpm vendor/bin/behat --colors --name="scenario name"
-```
 
 The app runs at `https://phpdocker.local:10000` after `make init`.
 
@@ -61,9 +56,7 @@ The app runs at `https://phpdocker.local:10000` after `make init`.
 
 - `tests/Unit/` — Unit tests for isolated classes
 - `tests/Functional/` — Symfony WebTestCase functional tests (`GeneratorTest.php` is the main one)
-- `tests/Behat/` + `features/` — Behavioral tests via Behat/Mink with Symfony driver
-
-When adding generator features, update `tests/Functional/GeneratorTest.php` and `features/generator.feature`.
+When adding generator features, update `tests/Functional/GeneratorTest.php`.
 
 ## Coding Standards
 
