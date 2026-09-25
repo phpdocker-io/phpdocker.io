@@ -110,7 +110,6 @@ composer-update:
 	make composer-install
 
 install-mkcert: verify-mkcert
-	chmod +x $(MKCERT_LOCATION)
 	bin/mkcert -install
 
 download-mkcert:
@@ -134,12 +133,12 @@ verify-mkcert: download-mkcert
 		echo "SHA-256 mismatch for $(MKCERT_LOCATION): expected '$(MKCERT_SHA256)', got '$$actual'"; \
 		exit 1; \
 	fi
+	chmod +x $(MKCERT_LOCATION)
 
 create-certs: verify-mkcert
 	bin/mkcert -cert-file=infrastructure/local/localhost.pem -key-file=infrastructure/local/localhost-key.pem $(SITE_HOST)
 
 install-hosts: verify-hosts
-	chmod +x $(HOSTS_LOCATION)
 
 download-hosts:
 	@echo "Installing hosts script ($(HOSTS_VERSION))"
@@ -158,6 +157,7 @@ verify-hosts: download-hosts
 		echo "SHA-256 mismatch for $(HOSTS_LOCATION): expected '$(HOSTS_SHA256)', got '$$actual'"; \
 		exit 1; \
 	fi
+	chmod +x $(HOSTS_LOCATION)
 
 clean-hosts: verify-hosts
 	sudo bin/hosts remove --force *$(SITE_HOST) > /dev/null 2>&1 || exit 0
