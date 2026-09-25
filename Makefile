@@ -109,7 +109,7 @@ composer-update:
 	$(PHP_RUN) composer update --no-scripts
 	make composer-install
 
-install-mkcert: download-mkcert verify-mkcert
+install-mkcert: verify-mkcert
 	chmod +x $(MKCERT_LOCATION)
 	bin/mkcert -install
 
@@ -120,23 +120,25 @@ download-mkcert:
 		mv '$(MKCERT_LOCATION).tmp' '$(MKCERT_LOCATION)'; \
 	fi
 
-verify-mkcert:
-	@if [[ -f '$(MKCERT_LOCATION)' ]]; then \
-		if [[ -z '$(MKCERT_SHA256)' ]]; then \
-			echo "No pinned SHA-256 for BINARY_SUFFIX '$(BINARY_SUFFIX)'; refusing to run $(MKCERT_LOCATION)"; \
-			exit 1; \
-		fi; \
-		actual="$$($(SHA256_CMD) '$(MKCERT_LOCATION)' | awk '{print $$1}')"; \
-		if [[ "$$actual" != '$(MKCERT_SHA256)' ]]; then \
-			echo "SHA-256 mismatch for $(MKCERT_LOCATION): expected '$(MKCERT_SHA256)', got '$$actual'"; \
-			exit 1; \
-		fi; \
+verify-mkcert: download-mkcert
+	@if [[ ! -f '$(MKCERT_LOCATION)' ]]; then \
+		echo "Missing $(MKCERT_LOCATION); refusing to run it"; \
+		exit 1; \
+	fi; \
+	if [[ -z '$(MKCERT_SHA256)' ]]; then \
+		echo "No pinned SHA-256 for BINARY_SUFFIX '$(BINARY_SUFFIX)'; refusing to run $(MKCERT_LOCATION)"; \
+		exit 1; \
+	fi; \
+	actual="$$($(SHA256_CMD) '$(MKCERT_LOCATION)' | awk '{print $$1}')"; \
+	if [[ "$$actual" != '$(MKCERT_SHA256)' ]]; then \
+		echo "SHA-256 mismatch for $(MKCERT_LOCATION): expected '$(MKCERT_SHA256)', got '$$actual'"; \
+		exit 1; \
 	fi
 
 create-certs: verify-mkcert
 	bin/mkcert -cert-file=infrastructure/local/localhost.pem -key-file=infrastructure/local/localhost-key.pem $(SITE_HOST)
 
-install-hosts: download-hosts verify-hosts
+install-hosts: verify-hosts
 	chmod +x $(HOSTS_LOCATION)
 
 download-hosts:
@@ -146,13 +148,15 @@ download-hosts:
 		mv '$(HOSTS_LOCATION).tmp' '$(HOSTS_LOCATION)'; \
 	fi
 
-verify-hosts:
-	@if [[ -f '$(HOSTS_LOCATION)' ]]; then \
-		actual="$$($(SHA256_CMD) '$(HOSTS_LOCATION)' | awk '{print $$1}')"; \
-		if [[ "$$actual" != '$(HOSTS_SHA256)' ]]; then \
-			echo "SHA-256 mismatch for $(HOSTS_LOCATION): expected '$(HOSTS_SHA256)', got '$$actual'"; \
-			exit 1; \
-		fi; \
+verify-hosts: download-hosts
+	@if [[ ! -f '$(HOSTS_LOCATION)' ]]; then \
+		echo "Missing $(HOSTS_LOCATION); refusing to run it"; \
+		exit 1; \
+	fi; \
+	actual="$$($(SHA256_CMD) '$(HOSTS_LOCATION)' | awk '{print $$1}')"; \
+	if [[ "$$actual" != '$(HOSTS_SHA256)' ]]; then \
+		echo "SHA-256 mismatch for $(HOSTS_LOCATION): expected '$(HOSTS_SHA256)', got '$$actual'"; \
+		exit 1; \
 	fi
 
 clean-hosts: verify-hosts
