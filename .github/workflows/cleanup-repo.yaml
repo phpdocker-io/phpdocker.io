@@ -11,10 +11,15 @@ jobs:
   cleanup-repository:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
     steps:
 
       # Mark issues and PRs with no activity as stale after a while, and close them after a while longer
-      - uses: actions/stale@v10
+      - uses: actions/stale@1e223db275d687790206a7acac4d1a11bd6fe629 # v10
         with:
           stale-issue-message: 'Marking issue as stale'
           stale-pr-message: 'Marking PR as stale'
@@ -26,7 +31,7 @@ jobs:
 
       # Delete old, abandoned branches
       # See what constitutes an abandoned branch here: https://github.com/phpdocker-io/github-actions-delete-abandoned-branches
-      - uses: phpdocker-io/github-actions-delete-abandoned-branches@v1
+      - uses: phpdocker-io/github-actions-delete-abandoned-branches@d8e3635360bd492315571df30f15f55c98a28434 # v1
         with:
           github_token: ${{ github.token }}
           last_commit_age_days: 30
