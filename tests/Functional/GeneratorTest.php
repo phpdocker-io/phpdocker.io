@@ -33,14 +33,24 @@ class GeneratorTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->client = static::createClient(options: [
-            'environment' => 'test',
-            'debug'       => false,
-        ]);
+        // The rate limiter keys requests by client IP, and its cache pool
+        // survives kernel resets. Give each test a unique, per-run IP so limiter
+        // state cannot leak between tests or test runs, and so tests never need
+        // to reach into the limiter's cache pool directly.
+        $clientIp = sprintf(
+            '10.%d.%d.%d',
+            random_int(0, 255),
+            random_int(0, 255),
+            random_int(1, 254),
+        );
 
-        // The rate limiter pool survives kernel resets in tests, so clear it to
-        // keep limiter state from leaking between tests.
-        $this->client->getContainer()->get('rate_limiter.cache')->clear();
+        $this->client = static::createClient(
+            options: [
+                'environment' => 'test',
+                'debug'       => false,
+            ],
+            server: ['REMOTE_ADDR' => $clientIp],
+        );
     }
 
     #[Test]
