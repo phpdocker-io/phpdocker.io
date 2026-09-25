@@ -37,9 +37,10 @@ class PathValidator extends ConstraintValidator
 
         assert($constraint instanceof Path);
 
-        $regex = Path::getRegexes()[$constraint->type] ?? null;
+        $regex    = Path::getRegexes()[$constraint->type] ?? null;
+        $segments = explode('/', $value);
 
-        if ($regex === null || str_contains($value, '..') || preg_match('#' . $regex . '#', $value) !== 1) {
+        if ($regex === null || in_array('..', $segments, true) || preg_match('#' . $regex . '#', $value) !== 1) {
             $this
                 ->context
                 ->buildViolation($constraint->message)

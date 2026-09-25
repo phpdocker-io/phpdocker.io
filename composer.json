@@ -14,7 +14,7 @@
         "symfony/dotenv": "^8.0",
         "symfony/flex": "^2.4",
         "symfony/form": "^8.0",
-        "symfony/framework-bundle": "^8.0",
+        "symfony/framework-bundle": "^8.1",
         "symfony/mime": "^8.0",
         "symfony/monolog-bundle": "^4.0",
         "symfony/rate-limiter": "^8.0",

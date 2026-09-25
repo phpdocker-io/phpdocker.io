@@ -50,7 +50,7 @@ class Path extends Constraint
     public static function getRegexes(): array
     {
         return [
-            self::ABSOLUTE_DIR => '\A/[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*\z',
+            self::ABSOLUTE_DIR => '\A/[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*/?\z',
             self::RELATIVE_PHP => '\A[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*\.php\z',
             self::HOST_PATH => '\A[A-Za-z0-9._/-]+\z',
         ];

@@ -30,9 +30,11 @@ class PathValidatorTest extends ConstraintValidatorTestCase
             'absolute nested'     => [Path::ABSOLUTE_DIR, '/var/www/myapp'],
             'relative php'        => [Path::RELATIVE_PHP, 'public/index.php'],
             'relative php nested' => [Path::RELATIVE_PHP, 'app/src/index.php'],
-            'host path dot'       => [Path::HOST_PATH, '.'],
-            'host path relative'  => [Path::HOST_PATH, 'src/app'],
-            'host path absolute'  => [Path::HOST_PATH, '/var/www'],
+            'host path dot'           => [Path::HOST_PATH, '.'],
+            'host path relative'      => [Path::HOST_PATH, 'src/app'],
+            'host path absolute'      => [Path::HOST_PATH, '/var/www'],
+            'host path dots in name'  => [Path::HOST_PATH, 'my..app'],
+            'absolute trailing slash' => [Path::ABSOLUTE_DIR, '/srv/'],
         ];
     }
 
@@ -55,6 +57,7 @@ class PathValidatorTest extends ConstraintValidatorTestCase
             'traversal absolute'          => [Path::ABSOLUTE_DIR, '/var/../etc'],
             'space absolute'              => [Path::ABSOLUTE_DIR, '/var/www myapp'],
             'absolute without leading slash' => [Path::ABSOLUTE_DIR, 'var/www'],
+            'absolute double trailing slash' => [Path::ABSOLUTE_DIR, '/srv//'],
             'php missing extension'       => [Path::RELATIVE_PHP, 'public/index'],
             'php space'                   => [Path::RELATIVE_PHP, 'public/my index.php'],
             'php traversal'               => [Path::RELATIVE_PHP, 'public/../index.php'],
