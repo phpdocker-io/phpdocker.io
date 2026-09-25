@@ -46,9 +46,19 @@ final class Archiver
         }
 
         // tempnam() creates a zero-byte placeholder, but the archive lives at ${base}.zip, so remove it.
-        unlink($zipFilename);
+        if (unlink($zipFilename) === false) {
+            throw new Exception\ArchiveNotCreatedException('Could not remove temporary file placeholder for archive');
+        }
 
-        $this->zipFile->open(sprintf('%s.zip', $zipFilename), ZipArchive::CREATE);
+        $zipPath = sprintf('%s.zip', $zipFilename);
+
+        if ($this->zipFile->open($zipPath, ZipArchive::CREATE) !== true) {
+            if (file_exists($zipPath)) {
+                unlink($zipPath);
+            }
+
+            throw new Exception\ArchiveNotCreatedException('Archive creation failed for an unknown reason');
+        }
     }
 
     /**
