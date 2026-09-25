@@ -213,6 +213,19 @@ class GeneratorTest extends WebTestCase
     }
 
     #[Test]
+    public function testSlashOnlyAppPathIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]' => '8000',
+            'project[globalOptions][appPath]'  => '/',
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is not a valid path', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
     public function testInvalidDockerWorkingDirIsRejected(): void
     {
         $this->client->request('GET', '/');
@@ -245,6 +258,59 @@ class GeneratorTest extends WebTestCase
         $this->client->submitForm('Generate project archive', [
             'project[globalOptions][basePort]' => '8000',
             'project[globalOptions][appPath]'  => str_repeat('a', 256),
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is too long', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testMaxLengthAppPathIsAccepted(): void
+    {
+        $this->generateAndGetZip([
+            'project[globalOptions][basePort]' => '8000',
+            'project[globalOptions][appPath]'  => str_repeat('a', 255),
+        ]);
+    }
+
+    #[Test]
+    public function testMaxLengthDockerWorkingDirIsAccepted(): void
+    {
+        $this->generateAndGetZip([
+            'project[globalOptions][basePort]'         => '8000',
+            'project[globalOptions][dockerWorkingDir]' => '/' . str_repeat('a', 254),
+        ]);
+    }
+
+    #[Test]
+    public function testOversizedDockerWorkingDirIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]'         => '8000',
+            'project[globalOptions][dockerWorkingDir]' => '/' . str_repeat('a', 255),
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is too long', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testMaxLengthFrontControllerPathIsAccepted(): void
+    {
+        $this->generateAndGetZip([
+            'project[globalOptions][basePort]'         => '8000',
+            'project[phpOptions][frontControllerPath]' => str_repeat('a', 124) . '.php',
+        ]);
+    }
+
+    #[Test]
+    public function testOversizedFrontControllerPathIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]'         => '8000',
+            'project[phpOptions][frontControllerPath]' => str_repeat('a', 125) . '.php',
         ]);
 
         self::assertResponseIsSuccessful();

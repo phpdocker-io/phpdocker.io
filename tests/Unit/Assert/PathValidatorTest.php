@@ -61,6 +61,17 @@ class PathValidatorTest extends ConstraintValidatorTestCase
             'php missing extension'       => [Path::RELATIVE_PHP, 'public/index'],
             'php space'                   => [Path::RELATIVE_PHP, 'public/my index.php'],
             'php traversal'               => [Path::RELATIVE_PHP, 'public/../index.php'],
+            'slash only host path'        => [Path::HOST_PATH, '/'],
+            'double slash host path'      => [Path::HOST_PATH, '//'],
+            'triple slash host path'      => [Path::HOST_PATH, '///'],
+            'absolute newline injection'  => [Path::ABSOLUTE_DIR, "/var/www\nfastcgi_pass evil;"],
+            'absolute semicolon injection' => [Path::ABSOLUTE_DIR, '/var/www;'],
+            'absolute hash injection'     => [Path::ABSOLUTE_DIR, '/var/www#'],
+            'absolute dollar injection'   => [Path::ABSOLUTE_DIR, '/var/www$foo'],
+            'php newline injection'       => [Path::RELATIVE_PHP, "public/index.php\n"],
+            'php semicolon injection'     => [Path::RELATIVE_PHP, 'public/index.php;'],
+            'php hash injection'          => [Path::RELATIVE_PHP, 'public/index.php#'],
+            'php dollar injection'        => [Path::RELATIVE_PHP, 'public/index.php$'],
         ];
     }
 
