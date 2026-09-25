@@ -22,8 +22,8 @@
         "symfony/twig-bundle": "8.0.*",
         "symfony/validator": "8.0.*",
         "symfony/yaml": "8.0.*",
-        "twig/extra-bundle": "^3.23",
-        "twig/twig": "^3.23"
+        "twig/extra-bundle": "^3.23 <3.29",
+        "twig/twig": "^3.23 <3.29"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1",
