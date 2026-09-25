@@ -19,6 +19,7 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
+use App\Assert\Path;
 use App\PHPDocker\PhpExtension\AvailableExtensionsFactory;
 use App\PHPDocker\PhpExtension\PhpExtension;
 use App\PHPDocker\Project\ServiceOptions\Php;
@@ -53,6 +54,7 @@ class PhpType extends AbstractGeneratorType
                 'constraints' => [
                     new NotBlank(),
                     new Length(min: 2, max: 128),
+                    new Path(type: Path::RELATIVE_PHP),
                 ],
             ])
             ->add('hasGit', CheckboxType::class, [

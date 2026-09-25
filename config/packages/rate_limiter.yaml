@@ -1,0 +1,13 @@
+framework:
+  rate_limiter:
+    generator:
+      policy: 'fixed_window'
+      limit: 30
+      interval: '1 minute'
+      cache_pool: 'rate_limiter.cache'
+
+when@test:
+  framework:
+    rate_limiter:
+      generator:
+        limit: 3
