@@ -13,6 +13,14 @@ framework:
     cookie_secure: auto
     cookie_samesite: strict
 
+  # Only these forwarded headers are honoured, and only when the request
+  # arrives from a proxy listed in SYMFONY_TRUSTED_PROXIES (Symfony's default
+  # env var, left unset here so no proxy is trusted by default).
+  trusted_headers:
+    - x-forwarded-for
+    - x-forwarded-proto
+    - x-forwarded-port
+
   #esi: true
   #fragments: true
   php_errors:
