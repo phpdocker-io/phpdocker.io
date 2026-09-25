@@ -1,3 +1,14 @@
 framework:
   cache:
     app: cache.adapter.apcu
+    default_redis_provider: 'redis://%env(REDIS_HOST)%:%env(REDIS_PORT)%'
+    pools:
+      rate_limiter.cache:
+        adapter: cache.adapter.redis
+
+when@test:
+  framework:
+    cache:
+      pools:
+        rate_limiter.cache:
+          adapter: cache.adapter.filesystem

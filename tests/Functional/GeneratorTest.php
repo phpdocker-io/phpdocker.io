@@ -33,10 +33,24 @@ class GeneratorTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->client = static::createClient(options: [
-            'environment' => 'test',
-            'debug'       => false,
-        ]);
+        // The rate limiter keys requests by client IP, and its cache pool
+        // survives kernel resets. Give each test a unique, per-run IP so limiter
+        // state cannot leak between tests or test runs, and so tests never need
+        // to reach into the limiter's cache pool directly.
+        $clientIp = sprintf(
+            '10.%d.%d.%d',
+            random_int(0, 255),
+            random_int(0, 255),
+            random_int(1, 254),
+        );
+
+        $this->client = static::createClient(
+            options: [
+                'environment' => 'test',
+                'debug'       => false,
+            ],
+            server: ['REMOTE_ADDR' => $clientIp],
+        );
     }
 
     #[Test]
@@ -183,6 +197,148 @@ class GeneratorTest extends WebTestCase
         self::assertStringContainsString('3001', $dockerCompose); // Mailhog offset +1
         self::assertStringContainsString('3002', $dockerCompose); // MySQL offset +2
         self::assertStringContainsString('3004', $dockerCompose); // Postgres offset +4
+    }
+
+    #[Test]
+    public function testInvalidAppPathIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]' => '8000',
+            'project[globalOptions][appPath]'  => '/var/www/my app',
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is not a valid path', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testSlashOnlyAppPathIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]' => '8000',
+            'project[globalOptions][appPath]'  => '/',
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is not a valid path', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testInvalidDockerWorkingDirIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]'         => '8000',
+            'project[globalOptions][dockerWorkingDir]' => 'relative/dir',
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is not a valid path', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testInvalidFrontControllerPathIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]'         => '8000',
+            'project[phpOptions][frontControllerPath]' => 'public/index',
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is not a valid path', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testOversizedAppPathIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]' => '8000',
+            'project[globalOptions][appPath]'  => str_repeat('a', 256),
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is too long', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testMaxLengthAppPathIsAccepted(): void
+    {
+        $this->generateAndGetZip([
+            'project[globalOptions][basePort]' => '8000',
+            'project[globalOptions][appPath]'  => str_repeat('a', 255),
+        ]);
+    }
+
+    #[Test]
+    public function testMaxLengthDockerWorkingDirIsAccepted(): void
+    {
+        $this->generateAndGetZip([
+            'project[globalOptions][basePort]'         => '8000',
+            'project[globalOptions][dockerWorkingDir]' => '/' . str_repeat('a', 254),
+        ]);
+    }
+
+    #[Test]
+    public function testOversizedDockerWorkingDirIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]'         => '8000',
+            'project[globalOptions][dockerWorkingDir]' => '/' . str_repeat('a', 255),
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is too long', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testMaxLengthFrontControllerPathIsAccepted(): void
+    {
+        $this->generateAndGetZip([
+            'project[globalOptions][basePort]'         => '8000',
+            'project[phpOptions][frontControllerPath]' => str_repeat('a', 124) . '.php',
+        ]);
+    }
+
+    #[Test]
+    public function testOversizedFrontControllerPathIsRejected(): void
+    {
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]'         => '8000',
+            'project[phpOptions][frontControllerPath]' => str_repeat('a', 125) . '.php',
+        ]);
+
+        self::assertResponseIsSuccessful();
+        self::assertStringContainsString('This value is too long', (string) $this->client->getResponse()->getContent());
+    }
+
+    #[Test]
+    public function testPostGenerationIsRateLimited(): void
+    {
+        $this->client->disableReboot();
+
+        // The limiter counts every POST, valid or not, so keep the first three
+        // submissions invalid to avoid generating multiple archives with the
+        // shared, single-use Archiver instance.
+        for ($i = 1; $i <= 3; ++$i) {
+            $this->client->request('GET', '/');
+            $this->client->submitForm('Generate project archive', [
+                'project[globalOptions][basePort]' => '',
+            ]);
+            self::assertResponseIsSuccessful();
+        }
+
+        $this->client->request('GET', '/');
+        $this->client->submitForm('Generate project archive', [
+            'project[globalOptions][basePort]' => '8000',
+        ]);
+
+        self::assertResponseStatusCodeSame(429);
     }
 
     private function generateAndGetZip(array $formData): void

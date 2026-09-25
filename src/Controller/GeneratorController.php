@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpKernel\Attribute\RateLimit;
 
 /**
  * Docker environment generator controller.
@@ -43,6 +44,7 @@ class GeneratorController extends AbstractController
     /**
      * Form and form processor for creating a project.
      */
+    #[RateLimit('generator', methods: ['POST'])]
     public function create(Request $request): BinaryFileResponse|Response
     {
         $form = $this->createForm(type: ProjectType::class, options: ['method' => Request::METHOD_POST]);

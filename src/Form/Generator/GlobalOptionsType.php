@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace App\Form\Generator;
 
+use App\Assert\Path;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Type;
@@ -26,12 +28,22 @@ final class GlobalOptionsType extends AbstractGeneratorType
                 ],
             ])
             ->add('appPath', TextType::class, [
-                'label' => 'Your source code\'s path',
-                'data'  => '.',
+                'label'       => 'Your source code\'s path',
+                'data'        => '.',
+                'constraints' => [
+                    new NotBlank(),
+                    new Length(max: 255),
+                    new Path(type: Path::HOST_PATH),
+                ],
             ])
             ->add('dockerWorkingDir', TextType::class, [
-                'label' => 'Containers workdir',
-                'data'  => '/application',
+                'label'       => 'Containers workdir',
+                'data'        => '/application',
+                'constraints' => [
+                    new NotBlank(),
+                    new Length(max: 255),
+                    new Path(type: Path::ABSOLUTE_DIR),
+                ],
             ]);
     }
 
