@@ -32,12 +32,22 @@ final class Archiver
 
     /**
      * Initialise Zip File via the zip PECL extension into a temporary file on local storage.
+     *
+     * @throws Exception\ArchiveNotCreatedException
      */
     public function __construct(private readonly string $baseFolder = '')
     {
         $this->zipFile = new ZipArchive();
 
         $zipFilename = tempnam(sys_get_temp_dir(), str_replace('\\', '_', self::class));
+
+        if ($zipFilename === false) {
+            throw new Exception\ArchiveNotCreatedException('Could not create temporary file for archive');
+        }
+
+        // tempnam() creates a zero-byte placeholder, but the archive lives at ${base}.zip, so remove it.
+        unlink($zipFilename);
+
         $this->zipFile->open(sprintf('%s.zip', $zipFilename), ZipArchive::CREATE);
     }
 

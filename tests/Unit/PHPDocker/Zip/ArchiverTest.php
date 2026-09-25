@@ -43,6 +43,21 @@ class ArchiverTest extends TestCase
     }
 
     #[Test]
+    public function constructorDoesNotLeaveOrphanTemporaryBaseFile(): void
+    {
+        $tempPrefix = sprintf('%s/%s*', sys_get_temp_dir(), str_replace('\\', '_', Archiver::class));
+        $before     = glob($tempPrefix) ?: [];
+
+        $archiver = new Archiver('phpdocker');
+        $archiver->generateArchive('test.zip');
+
+        $created = array_diff(glob($tempPrefix) ?: [], $before);
+        $orphans = array_filter($created, static fn (string $path): bool => !str_ends_with($path, '.zip'));
+
+        self::assertSame([], $orphans);
+    }
+
+    #[Test]
     public function generateArchiveReturnsTmpFilenamePointingToActualFile(): void
     {
         $archiver = new Archiver('phpdocker');
