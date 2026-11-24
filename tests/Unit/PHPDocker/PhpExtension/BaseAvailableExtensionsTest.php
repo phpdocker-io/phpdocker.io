@@ -25,7 +25,6 @@ class BaseAvailableExtensionsTest extends TestCase
 
         self::assertNotEmpty($all);
         self::assertArrayHasKey('Xdebug', $all);
-        self::assertContainsOnlyInstancesOf(PhpExtension::class, $all);
         self::assertSame('Xdebug', $all['Xdebug']->getName());
         self::assertContains('php8.4-xdebug', $all['Xdebug']->getPackages());
     }

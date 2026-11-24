@@ -42,6 +42,7 @@ class TrustedProxyTest extends WebTestCase
      */
     protected function tearDown(): void
     {
+        // @phpstan-ignore argument.type (restores Symfony's default -1 unset state)
         Request::setTrustedProxies([], -1);
 
         parent::tearDown();

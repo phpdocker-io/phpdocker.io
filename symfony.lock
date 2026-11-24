@@ -388,9 +388,6 @@
     "symfony/yaml": {
         "version": "v4.4.25"
     },
-    "theseer/tokenizer": {
-        "version": "1.2.0"
-    },
     "twig/extra-bundle": {
         "version": "v3.3.1"
     },
