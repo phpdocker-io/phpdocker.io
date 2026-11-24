@@ -1,4 +1,6 @@
 {
+    "name": "phpdocker-io/phpdocker.io",
+    "description": "Web-based generator for Docker environments tailored for PHP applications.",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -23,8 +25,8 @@
         "symfony/twig-bundle": "^8.0",
         "symfony/validator": "^8.0",
         "symfony/yaml": "^8.0",
-        "twig/extra-bundle": "^3.23 <3.29",
-        "twig/twig": "^3.23 <3.29"
+        "twig/extra-bundle": "^3.23",
+        "twig/twig": "^3.23"
     },
     "require-dev": {
         "phpstan/phpstan": "^2.1",

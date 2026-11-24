@@ -1,4 +1,5 @@
 parameters:
+  level: 9
   paths:
     - bin/
     - config/
